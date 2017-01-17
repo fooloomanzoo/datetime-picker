@@ -11,6 +11,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../datetime-picker.html">
+    <link rel="import" href="../calendar-element.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
@@ -29,6 +30,13 @@
         <template is="dom-bind">
           <datetime-picker id="dateFrom" date-string="{{minDate}}" max-date="[[maxDate]]" use-not-native></datetime-picker>
           <datetime-picker id="dateTo" date-string="{{maxDate}}" min-date="[[minDate]]" use-not-native></datetime-picker>
+        </template>
+      </demo-snippet>
+
+      <h3>stand-alone calendar</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <calendar-element opened></calendar-element>
         </template>
       </demo-snippet>
     </div>

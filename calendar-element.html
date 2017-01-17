@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-`calendar-component`
+`calendar-element`
 A polyfill date and time picker using Polymer 1.7.
 
 To opened it, add manually event handler:
@@ -19,12 +19,12 @@ To connect it with inputs, try it like:
     <input id="date" type="date" min="[[minDate]]" max="[[maxDate]]" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
     <input id="time" type="time" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
 
-    <calendar-component id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-component>
+    <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-element>
 
 @demo demo/index.html
 -->
 
-<dom-module id="calendar-component">
+<dom-module id="calendar-element">
   <template strip-whitespace>
     <style>
       :host {
@@ -201,7 +201,7 @@ To connect it with inputs, try it like:
     }
 
     Polymer({
-      is: 'calendar-component',
+      is: 'calendar-element',
 
       properties: {
         /**

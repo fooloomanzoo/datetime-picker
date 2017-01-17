@@ -42,7 +42,7 @@ For ranges between two dates, use it like:
     <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
 
     <template is="dom-if" if="[[!_nativeDateTimeSupport]]">
-      <calendar-component id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-component>
+      <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-element>
     </template>
   </template>
 
@@ -103,7 +103,7 @@ For ranges between two dates, use it like:
           this.$.date.type = 'text';
           this.$.time.type = 'text';
           this.importHref(
-            this.resolveUrl('calendar-component.html'),
+            this.resolveUrl('calendar-element.html'),
             function() {
               this._addEventListeners();
             }, null, true);

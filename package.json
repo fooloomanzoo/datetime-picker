@@ -1,7 +1,7 @@
 {
   "name": "datetime-picker",
   "version": "1.0.0",
-  "description": "a picker for date and time in Polymer 1.7, that prefers the native input",
+  "description": "A picker for date and time in Polymer 1.7, that prefers the native input",
   "main": "index.html",
   "directories": {
     "test": "test"
