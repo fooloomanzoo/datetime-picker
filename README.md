@@ -25,25 +25,25 @@ You can use it stand-alone or as a range of dates. Examples:
 ```
 -->
 1. Simple example
-```html
-<datetime-picker value="{{value}}"></datetime-picker>
-```
+  ```html
+  <datetime-picker value="{{value}}"></datetime-picker>
+  ```
 
 2. Force to use the polyfill
-```html
-<datetime-picker value="{{value}}" use-not-native></datetime-picker>
-```
+  ```html
+  <datetime-picker value="{{value}}" use-not-native></datetime-picker>
+  ```
 
 3. Stand-alone calendar
-```html
-<calendar-component value="{{value}}" opened></calendar-component>
-```
+  ```html
+  <calendar-component value="{{value}}" opened></calendar-component>
+  ```
 
 4. Periods
-```html
-<datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
-<datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
-```
+  ```html
+  <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
+  <datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
+  ```
 
 ## Installation
 ```
