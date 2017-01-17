@@ -13,35 +13,34 @@ The **[component page](https://fooloomanzoo.github.io/datetime-picker/components
 
 You can use it stand-alone or as a range of dates. Examples:
 
-1. Simple example
-<!--
-```
-<custom-element-demo>
-  <template>
-    <link rel="import" href="datetime-picker.html">
-    <link rel="import" href="calendar-component.html">
-    <next-code-block></next-code-block>
-    <next-code-block></next-code-block>
-    <next-code-block></next-code-block>    
-</template>
-</custom-element-demo>
-```
--->
+⋅⋅⋅Force to use the polyfill
+  <!--
+  ```
+  <custom-element-demo>
+    <template>
+      <link rel="import" href="datetime-picker.html">
+      <link rel="import" href="calendar-component.html">
+      <next-code-block></next-code-block>
+      <next-code-block></next-code-block>
+      <next-code-block></next-code-block>    
+  </template>
+  </custom-element-demo>
+  ```
+  -->
   ```html
   <datetime-picker value="{{value}}"></datetime-picker>
   ```
-
-2. Force to use the polyfill
+⋅⋅⋅Simple example
   ```html
   <datetime-picker value="{{value}}" use-not-native></datetime-picker>
   ```
 
-3. Stand-alone calendar
+⋅⋅⋅Stand-alone calendar
   ```html
   <calendar-component value="{{value}}" opened></calendar-component>
   ```
 
-4. Periods
+⋅⋅⋅Periods
   ```html
   <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
   <datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
