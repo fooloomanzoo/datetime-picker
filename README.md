@@ -2,7 +2,7 @@
 
 a picker for date and time for Polymer, that prefers to use the native input. This element is for using the native date-picker, if it exists, or to polyfill it by a custom element.
 
-[Component Page]{https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/}
+[Component Page][https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/]
 
 You can use it stand-alone or in range of Dates. Example
 
