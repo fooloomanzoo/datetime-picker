@@ -45,7 +45,7 @@ To connect it with inputs, try it like:
       :host > * {
         position: relative;
       }
-      :host {
+      :host([position]) {
         position: absolute;
       }
       :host([position="top"]) {
@@ -298,7 +298,6 @@ To connect it with inputs, try it like:
          */
         position: {
           type: String,
-          value: 'top',
           reflectToAttribute: true
         }
       },

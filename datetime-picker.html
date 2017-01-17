@@ -87,7 +87,10 @@ For ranges between two dates, use it like:
         /**
          * The position of the (polyfill) picker ('top', 'bottom', 'right', 'left', 'center')
          */
-        position: String,
+        position: {
+          type: String,
+          value: 'top'
+        },
         /**
          * Force to not use the native input, even if it exists
          */
