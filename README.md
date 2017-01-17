@@ -29,16 +29,49 @@ You can use it stand-alone or as a range of dates. Examples:
   <datetime-picker value="{{value}}"></datetime-picker>
   ```
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="datetime-picker.html">
+    <link rel="import" href="calendar-component.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 2. Force to use the polyfill
   ```html
   <datetime-picker value="{{value}}" use-not-native></datetime-picker>
   ```
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="datetime-picker.html">
+    <link rel="import" href="calendar-component.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 3. Stand-alone calendar
   ```html
   <calendar-component value="{{value}}" opened></calendar-component>
   ```
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="datetime-picker.html">
+    <link rel="import" href="calendar-component.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 4. Periods
   ```html
   <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
