@@ -1,0 +1,149 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`datetime-picker`
+A minimal picker for date and time, that preferes to use the native input. The 'calender-component' will be just loaded, if the native picker are not available. It is tested for Firefox, IE11, Chrome and Opera.
+
+For ranges between two dates, use it like:
+
+    <datetime-picker id="dateFrom" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
+    <datetime-picker id="dateTo" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
+
+@demo demo/index.html
+-->
+
+<dom-module id="datetime-picker">
+  <template strip-whitespace>
+    <style>
+      :host {
+        display: inline-flex;
+        position: relative;
+      }
+      #date,
+      #time {
+        position: relative;
+        box-sizing: border-box;
+        height: 100%;
+        padding: 0.4em 0.2em;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 0.75em;
+        text-align: center;
+      }
+      #date {
+        width: 50%;
+      }
+      #time {
+        width: 50%;
+      }
+    </style>
+
+    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
+    <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
+
+    <template is="dom-if" if="[[!_nativeDateTimeSupport]]">
+      <calendar-component id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-component>
+    </template>
+  </template>
+
+  <script>
+
+    Polymer({
+      is: 'datetime-picker',
+
+      properties: {
+
+        /**
+         * The value of the selected date
+         */
+        value: {
+          type: Number,
+          notify: true,
+          computed: '_computeValue(dateString, timeString)'
+        },
+        /**
+         * The minimal date (format: 'YYYY-MM-DD')
+         */
+        minDate: String,
+        /**
+         * The maximal date (format: 'YYYY-MM-DD')
+         */
+        maxDate: String,
+        /**
+         * The date as a string of the selected date
+         */
+        dateString: {
+          type: String,
+          notify: true
+        },
+        /**
+         * The time as a string of the selected date
+         */
+        timeString: {
+          type: String,
+          value: '00:00:00',
+          notify: true
+        },
+        /**
+         * The position of the (polyfill) picker ('top', 'bottom', 'right', 'left', 'center')
+         */
+        position: String,
+        /**
+         * Force to not use the native input, even if it exists
+         */
+        useNotNative: Boolean,
+
+        _nativeDateTimeSupport: Boolean
+
+      },
+
+      attached: function() {
+        if (this.useNotNative || this.$.date.type !== 'date' || this.$.time.type !== 'time') {
+          this._nativeDateTimeSupport = false;
+          this.$.date.type = 'text';
+          this.$.time.type = 'text';
+          this.importHref(
+            this.resolveUrl('calendar-component.html'),
+            function() {
+              this._addEventListeners();
+            }, null, true);
+        } else {
+          this._nativeDateTimeSupport = true;
+        }
+      },
+
+      detached: function() {
+        if (this.$.date.type !== 'date' || this.$.time.type !== 'time') {
+          this._removeEventListeners();
+        }
+      },
+
+      _addEventListeners: function(target) {
+        this.async( function() {
+          var calendar = this.$$('#calendar');
+          this.$.date.addEventListener('click', calendar.toggle.bind(calendar), false);
+          this.$.time.addEventListener('click', calendar.toggle.bind(calendar), false);
+        }.bind(this));
+      },
+
+      _removeEventListeners: function(target) {
+        var calendar = this.$$('#calendar');
+        this.$.date.removeEventListener('click', calendar.toggle.bind(calendar), false);
+        this.$.time.removeEventListener('click', calendar.toggle.bind(calendar), false);
+      },
+
+      _computeValue: function(date, time) {
+        if (date === undefined || time === undefined) {
+          return null;
+        }
+        var d = new Date();
+        var t = time.split(':');
+        d.setHours(t[0] || 0);
+        d.setMinutes(t[1] || 0);
+        d.setSeconds(t[2] || 0);
+        return +d || null;
+      },
+
+    });
+  </script>
+</dom-module>

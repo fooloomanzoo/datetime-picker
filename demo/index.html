@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>datetime-picker demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../datetime-picker.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic datetime-picker demo</h3>
+      <demo-snippet>
+        <template>
+          <datetime-picker use-not-native position="right" style="z-index:1;"></datetime-picker>
+        </template>
+      </demo-snippet>
+
+      <h3>datetime-pickers with ranges</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <datetime-picker id="dateFrom" date-string="{{minDate}}" max-date="[[maxDate]]" use-not-native></datetime-picker>
+          <datetime-picker id="dateTo" date-string="{{maxDate}}" min-date="[[minDate]]" use-not-native></datetime-picker>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

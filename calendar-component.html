@@ -1,0 +1,588 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`calendar-component`
+A polyfill date and time picker using Polymer 1.7.
+
+To opened it, add manually event handler:
+
+    _addEventListeners: function(target) {
+      this.async( function() {
+        var calendar = this.$$('#calendar');
+        this.$.date.addEventListener('click', calendar.toggle.bind(calendar), false);
+        this.$.time.addEventListener('click', calendar.toggle.bind(calendar), false);
+      }.bind(this));
+    }
+
+To connect it with inputs, try it like:
+
+    <input id="date" type="date" min="[[minDate]]" max="[[maxDate]]" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
+    <input id="time" type="time" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
+
+    <calendar-component id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-component>
+
+@demo demo/index.html
+-->
+
+<dom-module id="calendar-component">
+  <template strip-whitespace>
+    <style>
+      :host {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-family: inherit;
+        background: var(--calendar-background, #252525);
+        color: var(--calender-color, #ccc);
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: transparent;
+        outline-width: 0;
+        -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+      }
+      :host(:not([opened])) {
+        display: none;
+      }
+      :host > * {
+        position: relative;
+      }
+      :host {
+        position: absolute;
+      }
+      :host([position="top"]) {
+        top: 0;
+        right: 0;
+        transform: translateY(-100%);
+      }
+      :host([position="bottom"]) {
+        bottom: 0;
+        left: 0;
+        transform: translateY(100%);
+      }
+      :host([position="left"]) {
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+      }
+      :host([position="right"]) {
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+      }
+      :host([position="center"]) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #top,
+      #bottom {
+        font-size: 1em;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      #top {
+        width: 100%;
+        justify-content: space-between;
+      }
+      #bottom {
+        justify-content: center;
+      }
+      #calendar {
+        display: table;
+        flex: 1 0 auto;
+        width: 100%;
+      }
+      #header {
+        display: table-header-group;
+      }
+      #dates {
+        display: table-row-group;
+      }
+      .week {
+        font-size: 0.8em;
+        display: table-row;
+      }
+      .day {
+        cursor: pointer;
+        display: table-cell;
+        padding: 0.5em;
+        text-align: center;
+        border-style: solid;
+        border-width: thin;
+        border-color: transparent;
+      }
+      .day.notinmonth {
+        opacity: 0.5;
+      }
+      .day.selected {
+        background: var(--calendar-selected, var(--primary-color, #253EEC));
+      }
+      .day.current {
+        border-style: solid;
+        border-width: thin;
+        border-color: var(--calendar-selected, var(--primary-color, #253EEC));
+      }
+      .day.outofrange {
+        opacity: 0.15;
+        font-style: italic;
+        pointer-events: none;
+      }
+      #top > * {
+        padding: 0.5em;
+      }
+      .button:hover {
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.5);
+        color: black;
+      }
+      #viewYear {
+        font-weight: bold;
+      }
+      input.time {
+        font-size: 0.75em;
+        padding: 0.4em 0.2em;
+        width: 5ch;
+        outline: none;
+        font-family: inherit;
+        text-align: center;
+        border: none;
+        background: var(--calendar-background, #333);
+        color: inherit;
+      }
+    </style>
+
+    <div id="top">
+      <div class="button" on-tap="_prevMonth"><</div>
+      <div id="viewMonth"></div>
+      <div id="viewYear"></div>
+      <div class="button" on-tap="_nextMonth">></div>
+    </div>
+
+    <div id="calendar">
+      <div id="header">
+        <div id="dayCaption" class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+      </div>
+
+      <div id="dates">
+        <div class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+        <div class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+        <div class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+        <div class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+        <div class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+        <div class="week">
+          <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottom">
+      <input class="time" id="hour" type="number" min="0" max="23" step="1" value="{{hour::input}}" placeholder="00">
+      <input class="time" id="minute" type="number" min="0" max="59" step="1" value="{{minute::input}}" placeholder="00">
+      <input class="time" id="second" type="number" min="0" max="59" step="1" value="{{second::input}}" placeholder="00">
+    </div>
+
+  </template>
+
+  <script>
+    if (window._datetimePickerInstances === undefined) {
+      window['_datetimePickerInstances'] = new Set();
+    }
+
+    Polymer({
+      is: 'calendar-component',
+
+      properties: {
+        /**
+         * The value of the selected date
+         */
+        value: {
+          type: Number,
+          notify: true,
+          computed: '_computeValue(dateString, timeString)'
+        },
+        /**
+         * Defines if it is opened
+         */
+        opened: {
+          type: Boolean,
+          reflectToAttribute: true,
+          observer: '_openedChanged'
+        },
+        /**
+         * The date as a string of the selected date
+         */
+        dateString: {
+          type: String,
+          notify: true,
+          observer: '_dateStringChanged'
+        },
+        /**
+         * The time as a string of the selected date
+         */
+        timeString: {
+          type: String,
+          value: '00:00:00',
+          notify: true,
+          observer: '_timeStringChanged'
+        },
+        /**
+         * The hours of the selected date
+         */
+        hour: {
+          type: String,
+          notify: true
+        },
+        /**
+         * The minutes of the selected date
+         */
+        minute: {
+          type: String,
+          notify: true
+        },
+        /**
+         * The seconds of the selected date
+         */
+        second: {
+          type: String,
+          notify: true
+        },
+
+        /**
+         * The minimal date (format: 'YYYY-MM-DD')
+         */
+        minDate: {
+          type: String,
+          observer: '_minDateChanged'
+        },
+        /**
+         * The maximal date (format: 'YYYY-MM-DD')
+         */
+        maxDate: {
+          type: String,
+          observer: '_maxDateChanged'
+        },
+        /**
+         * The date of the view of the month and year
+         */
+        viewDate: {
+          type: Number,
+          value: function() {
+            var d = new Date();
+            d = +(new Date(d.getFullYear(), d.getMonth()));
+            return d;
+          },
+          observer: 'render'
+        },
+        /**
+         * The current locale
+         */
+        locale: {
+          type: String,
+          value: window.navigator.language,
+          observer: '_localeChanged'
+        },
+        /**
+         * The absolute position ('top', 'bottom', 'right', 'left', 'center') to the container, it is put in
+         */
+        position: {
+          type: String,
+          value: 'top',
+          reflectToAttribute: true
+        }
+      },
+
+      listeners: {
+        'dates.tap': '_select'
+      },
+
+      observers: [
+        '_timeChanged(hour, minute, second)'
+      ],
+
+      attached: function() {
+        _datetimePickerInstances.add(this);
+      },
+
+      detached: function() {
+        _datetimePickerInstances.delete(this);
+      },
+      /**
+       * Toggles opened attribute
+       */
+      toggle: function() {
+        if (this.opened) {
+          this.opened = false;
+        } else {
+          if (_datetimePickerInstances) {
+            _datetimePickerInstances.forEach(function(c) {
+              c.opened = false;
+            })
+          }
+          this.opened = true;
+        }
+      },
+
+      _openedChanged: function() {
+        this.render();
+      },
+
+      _dateStringChanged: function(d) {
+        if (d === undefined) {
+          return;
+        }
+        var date = new Date(d);
+        if (isNaN(date)) {
+          if (this.value !== undefined) {
+            this.dateString = this._toDateString(this.value);
+          } else {
+            this.dateString = this._toDateString(+(new Date()));;
+          }
+        } else {
+          this.viewDate = +(new Date(date.getFullYear(), date.getMonth()));
+          this.render();
+        }
+      },
+
+      _timeChanged: function(hours, minutes, seconds) {
+        hours = hours || '';
+        minutes = minutes || '';
+        seconds = seconds || '';
+        var time = '';
+        var p = '00'
+        var s = '' + hours;
+        time = p.substring(0, p.length - s.length) + s + ':';
+        var s = '' + minutes;
+        time += p.substring(0, p.length - s.length) + s + ':';
+        var s = '' + seconds;
+        time += p.substring(0, p.length - s.length) + s;
+        this.timeString = time;
+      },
+
+      _timeStringChanged: function(v) {
+        if (v === undefined) {
+          return;
+        }
+        v = v.split(':');
+        var a;
+        a = parseInt(v[0] || 0);
+        if (isNaN(a) || a < 0 || a > 23) {
+          this.hour = '00';
+          return;
+        } else if (a !== this.hour) {
+          this.hour = a;
+        }
+        a = parseInt(v[1] || 0);
+        if (isNaN(a) || a < 0 || a > 59) {
+          this.minute = '00';
+          return;
+        } else if (a !== this.minute) {
+          this.minute = a;
+        }
+        a = parseInt(v[2] || 0);
+        if (isNaN(a) || a < 0 || a > 59) {
+          this.second = '00';
+          return;
+        } else if (a !== this.second) {
+          this.second = a;
+        }
+      },
+
+      _computeValue: function(date, time) {
+        if (date === undefined || time === undefined) {
+          return null;
+        }
+        var d = new Date();
+        var t = time.split(':');
+        d.setHours(t[0] || 0);
+        d.setMinutes(t[1] || 0);
+        d.setSeconds(t[2] || 0);
+        return +d || null;
+      },
+
+      _prevMonth: function() {
+        var d = new Date(this.viewDate);
+        if (d) {
+          this.viewDate = +(new Date(d.getFullYear(), d.getMonth() - 1));
+        }
+      },
+
+      _nextMonth: function() {
+        var d = new Date(this.viewDate);
+        if (d) {
+          this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + 1));
+        }
+      },
+
+      _select: function(e) {
+        if (e) {
+          var path = e.path || [e.target];
+          for (var i = 0; i < path.length; i++) {
+            if (path[i].dataset && path[i].dataset.date) {
+              if (this._prevSelected) {
+                this._prevSelected.classList.remove('selected');
+              }
+              path[i].classList.add('selected');
+              this.dateString = path[i].dataset.date;
+              this._prevSelected = path[i];
+              break;
+            }
+          }
+        }
+      },
+
+      _localeChanged: function() {
+        var d = new Date(this.viewDate),
+          wd;
+        if (d) {
+          this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
+            month: 'long'
+          });
+          this.$.viewYear.textContent = d.toLocaleDateString(this.locale, {
+            year: 'numeric'
+          });
+        }
+        for (var i = 0; i < 7; i++) {
+          d = new Date(0, 0, i);
+          wd = (d.getDay() - 1 + 7) % 7;
+          if (this.$.dayCaption.children[wd]) {
+            this.$.dayCaption.children[wd].textContent = d.toLocaleDateString(this.locale, {
+              weekday: 'short'
+            });
+          }
+        }
+      },
+      /**
+       * Renders the current view (manually).
+       */
+      render: function() {
+        var d;
+
+        d = new Date(this.viewDate);
+        this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
+          month: 'long'
+        });
+        this.$.viewYear.textContent = d.toLocaleDateString(this.locale, {
+          year: 'numeric'
+        });
+
+        var selectedDay, currentDay, firstDayOfMonth, min, max, year, month;
+        year = d.getFullYear();
+        month = d.getMonth();
+        firstDayOfMonth = Math.round((new Date(year, month, 1).getTime()) / (24 * 60 * 60 * 1000)) - 1;
+        currentDay = Math.round((new Date().getTime()) / (24 * 60 * 60 * 1000)) - firstDayOfMonth;
+
+        if (this.dateString !== undefined) {
+          selectedDay = Math.round((new Date(this.dateString).getTime()) / (24 * 60 * 60 * 1000)) - firstDayOfMonth;
+        }
+        if (this.minDate !== undefined) {
+          min = Math.round((new Date(this.minDate).getTime()) / (24 * 60 * 60 * 1000)) - firstDayOfMonth;
+        }
+        if (this.maxDate !== undefined) {
+          max = Math.round((new Date(this.maxDate).getTime()) / (24 * 60 * 60 * 1000)) - firstDayOfMonth;
+        }
+
+        var prevmonthlength = +new Date(year, month, 0).getDate();
+        var thismonthlength = +new Date(year, month + 1, 0).getDate();
+        var firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
+
+        var counter = -(7 + firstWeekDay) + 1;
+        for (var i = 0; i < this.$.dates.children.length; i++) {
+          for (var j = 0; j < this.$.dates.children[i].children.length; j++) {
+            // Day Numbers
+            if (counter <= 0) {
+              this.$.dates.children[i].children[j].classList.add('notinmonth');
+              this.$.dates.children[i].children[j].textContent = prevmonthlength + counter;
+            } else if (counter > thismonthlength) {
+              this.$.dates.children[i].children[j].classList.add('notinmonth');
+              this.$.dates.children[i].children[j].textContent = counter - thismonthlength;
+            } else {
+              this.$.dates.children[i].children[j].classList.remove('notinmonth');
+              this.$.dates.children[i].children[j].textContent = counter;
+            }
+            // Day is Selected Day
+            if (selectedDay !== undefined && counter === selectedDay) {
+              this.$.dates.children[i].children[j].classList.add('selected');
+            } else {
+              this.$.dates.children[i].children[j].classList.remove('selected');
+            }
+            // Day is Current Day
+            if (counter === currentDay) {
+              this.$.dates.children[i].children[j].classList.add('current');
+            } else {
+              this.$.dates.children[i].children[j].classList.remove('current');
+            }
+            // Day is below Min or above Max
+            if ((min !== undefined && counter < min) || (max !== undefined && counter > max)) {
+              this.$.dates.children[i].children[j].classList.add('outofrange');
+            } else {
+              this.$.dates.children[i].children[j].classList.remove('outofrange');
+            }
+            this.$.dates.children[i].children[j].dataset.date = this._toDateString(year, month, counter);
+            counter++;
+          }
+        }
+      },
+
+      _toDateString: function() {
+        var year = arguments[0],
+          month = arguments[1],
+          date = arguments[2],
+          d;
+        if (date !== undefined)
+          d = new Date(year, month, date);
+        else if (month !== undefined)
+          d = new Date(year, month);
+        else if (year !== undefined)
+          d = new Date(year);
+        else
+          return undefined;
+        if (isNaN(d)) {
+          return undefined;
+        }
+        year = d.getFullYear();
+        month = d.getMonth() + 1;
+        date = d.getDate();
+        var p = '00';
+        month = '' + month;
+        month = p.substring(0, p.length - month.length) + month;
+        p = '00';
+        date = '' + date;
+        date = p.substring(0, p.length - date.length) + date;
+
+        return year + '-' + month + '-' + date;
+      },
+
+      _minDateChanged: function(minDate) {
+        if (minDate === undefined) {
+          return;
+        }
+        var d = +(new Date(minDate));
+        if (isNaN(d)) {
+          this.minDate = undefined;
+        }
+      },
+
+      _maxDateChanged: function(maxDate) {
+        if (maxDate === undefined) {
+          return;
+        }
+        var d = +(new Date(maxDate));
+        if (isNaN(+d)) {
+          this.maxDate = undefined;
+        }
+      }
+    });
+  </script>
+</dom-module>
