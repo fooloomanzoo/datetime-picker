@@ -13,7 +13,7 @@ The **[component page](https://fooloomanzoo.github.io/datetime-picker/components
 
 You can use it stand-alone or as a range of dates. Examples:
 
-* Force to use the polyfill
+### Force to use the polyfill
 <!--
 ```
 <custom-element-demo>
@@ -25,17 +25,18 @@ You can use it stand-alone or as a range of dates. Examples:
 </custom-element-demo>
 ```
 -->
+
 ```html
 <datetime-picker use-not-native></datetime-picker>
 ```
 
-* Simple example
+### Simple example
 
 ```html
 <datetime-picker value="{{value}}"></datetime-picker>
 ```
 
-* Stand-alone calendar
+### Stand-alone calendar
 ```html
 <calendar-component value="{{value}}" opened></calendar-component>
 ```
