@@ -25,6 +25,11 @@ You can use it stand-alone or as a range of dates. Examples:
 <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
 <datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
 ```
+## Installation
+```
+bower install --save fooloomanzoo/datetime-picker
+```
+
 
 ## Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!
