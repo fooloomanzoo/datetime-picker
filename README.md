@@ -32,6 +32,19 @@ You can use it stand-alone or as a range of dates. Examples:
 ```
 
 * Simple example
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="datetime-picker.html">
+    <link rel="import" href="calendar-component.html">
+    <next-code-block></next-code-block>
+    <next-code-block></next-code-block>
+    <next-code-block></next-code-block>    
+</template>
+</custom-element-demo>
+```
+-->
 ```html
 <datetime-picker value="{{value}}" use-not-native></datetime-picker>
 ```
