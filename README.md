@@ -9,7 +9,7 @@ It might be useful for you to use, if you like to keep the native approach of Br
 Because this approach just loads, when it needs to, it is also efficient. Without *gzip* or minifying, *date-picker* got a size of about 3kB and *calendar-component* about 17kB. If you are using it in a minifying process and send them compressed, *date-picker* is about just 1 kB and *calendar-component* about 4kB.
 
 ## How?
-The [component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/) explains, which attributes you can use
+The **[component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)** explains, which of the attributes you can use and how. You can see there a **Demo**, too.
 
 You can use it stand-alone or as a range of dates. Examples:
 
