@@ -9,6 +9,15 @@ For ranges between two dates, use it like:
     <datetime-picker id="dateFrom" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
     <datetime-picker id="dateTo" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
 
+The following custom properties and mixins are also available for styling:
+Custom property | Description | Default
+----------------|-------------|----------
+`--calendar-background` | text-color of the calendar-element | `#252525`
+`--calender-color` | text-color of the calendar-element | `#ccc`
+`--calendar-selected` | background-color of the selected day, focussed time-input, and border-color of the current day | `--primary-color, #253EEC`
+`--calender-element` | Mixin applied to the calendar-element | `{}`
+`--datetime-picker-input` | Mixin applied to the input elements | `{}`
+
 @demo demo/index.html
 -->
 
@@ -18,6 +27,44 @@ For ranges between two dates, use it like:
       :host {
         display: inline-flex;
         position: relative;
+      }
+      #calendar {
+        position: absolute;
+        opacity: 0;
+        will-change: opacity;
+        transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
+        pointer-events: none;
+        @apply(--calendar-element);
+      }
+      #calendar.opened {
+        opacity: 1;
+        z-index: 1;
+        pointer-events: all;
+      }
+      :host([position="top"]) #calendar {
+        top: 0;
+        right: 0;
+        transform: translateY(-100%);
+      }
+      :host([position="bottom"]) #calendar {
+        bottom: 0;
+        left: 0;
+        transform: translateY(100%);
+      }
+      :host([position="left"]) #calendar {
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+      }
+      :host([position="right"]) #calendar {
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+      }
+      :host([position="center"]) #calendar {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       #date,
       #time {
@@ -29,6 +76,7 @@ For ranges between two dates, use it like:
         font-family: inherit;
         font-size: 0.75em;
         text-align: center;
+        @apply(--datetime-picker-input);
       }
       #date {
         width: 50%;
@@ -41,7 +89,7 @@ For ranges between two dates, use it like:
     <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
     <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
 
-    <template is="dom-if" if="[[!_nativeDateTimeSupport]]">
+    <template is="dom-if" if="[[!_nativeDateTime]]">
       <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-element>
     </template>
   </template>
@@ -85,51 +133,52 @@ For ranges between two dates, use it like:
           notify: true
         },
         /**
-         * The position of the (polyfill) picker ('top', 'bottom', 'right', 'left', 'center')
+         * The absolute position of the polyfill calender-element ('top', 'bottom', 'right', 'left', 'center') to the container
          */
-        position: String,
+        position: {
+          type: String,
+          value: 'top',
+          reflectToAttribute: true
+        },
         /**
          * Force to not use the native input, even if it exists
          */
         useNotNative: Boolean,
 
-        _nativeDateTimeSupport: Boolean
+        _nativeDateTime: Boolean
 
+      },
+
+      listeners: {
+        'tap': 'open'
+      },
+
+      hostAttributes: {
+        tabindex: '0'
       },
 
       attached: function() {
         if (this.useNotNative || this.$.date.type !== 'date' || this.$.time.type !== 'time') {
-          this._nativeDateTimeSupport = false;
+          this._nativeDateTime = false;
           this.$.date.type = 'text';
           this.$.time.type = 'text';
           this.importHref(
             this.resolveUrl('calendar-element.html'),
             function() {
-              this._addEventListeners();
-            }, null, true);
+              this._calendar = this.$$('#calendar');
+            }.bind(this), null, true);
         } else {
-          this._nativeDateTimeSupport = true;
+          this._nativeDateTime = true;
         }
       },
 
       detached: function() {
-        if (this.$.date.type !== 'date' || this.$.time.type !== 'time') {
-          this._removeEventListeners();
+        if (this._calendar) {
+          if (_datetimePickerInstances)
+            _datetimePickerInstances.delete(this);
+          this._calendar = null;
+
         }
-      },
-
-      _addEventListeners: function(target) {
-        this.async( function() {
-          var calendar = this.$$('#calendar');
-          this.$.date.addEventListener('click', calendar.toggle.bind(calendar), false);
-          this.$.time.addEventListener('click', calendar.toggle.bind(calendar), false);
-        }.bind(this));
-      },
-
-      _removeEventListeners: function(target) {
-        var calendar = this.$$('#calendar');
-        this.$.date.removeEventListener('click', calendar.toggle.bind(calendar), false);
-        this.$.time.removeEventListener('click', calendar.toggle.bind(calendar), false);
       },
 
       _computeValue: function(date, time) {
@@ -144,6 +193,41 @@ For ranges between two dates, use it like:
         return +d || null;
       },
 
+      /**
+       * Toggles polyfill calendar-element
+       */
+      toggle: function() {
+        if (!this._nativeDateTime && this._calendar) {
+          if (this._calendar.classList.contains('opened')) {
+            this.close();
+          } else {
+            this.open();
+          }
+        }
+      },
+      /**
+       * Opens polyfill calendar-element
+       */
+      open: function() {
+        if (!this._nativeDateTime && this._calendar) {
+          if (_datetimePickerInstances) {
+            _datetimePickerInstances.forEach(function(c) {
+              if (c !== this._calendar) {
+                c.classList.remove('opened');
+              }
+            }.bind(this))
+          }
+          this._calendar.classList.add('opened');
+        }
+      },
+      /**
+       * Close polyfill calendar-element
+       */
+      close: function() {
+        if (!this._nativeDateTime && this._calendar) {
+          this._calendar.classList.remove('opened');
+        }
+      }
     });
   </script>
 </dom-module>

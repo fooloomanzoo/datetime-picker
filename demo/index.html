@@ -14,6 +14,9 @@
     <link rel="import" href="../calendar-element.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
+      :host {
+        --calendar-selected: #1F740A;
+      }
     </style>
   </head>
   <body>
@@ -33,10 +36,18 @@
         </template>
       </demo-snippet>
 
-      <h3>stand-alone calendar</h3>
+      <h3>stand-alone calendar with custom-styles</h3>
       <demo-snippet>
         <template is="dom-bind">
-          <calendar-element opened></calendar-element>
+          <calendar-element></calendar-element>
+
+          <style is="custom-style">
+            calendar-element {
+              --calendar-selected: #F4505D;
+              --calendar-background: #AFB1D1;
+              --calendar-color: #232645;
+            }
+        </style>
         </template>
       </demo-snippet>
     </div>

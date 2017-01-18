@@ -21,6 +21,15 @@ To connect it with inputs, try it like:
 
     <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-element>
 
+The following custom properties and mixins are also available for styling:
+Custom property | Description | Default
+----------------|-------------|----------
+`--calendar-background` | text-color of the calendar-element | `#252525`
+`--calender-color` | text-color of the calendar-element | `#ccc`
+`--calendar-selected` | background-color of the selected day, focussed time-input, and border-color of the current day | `--primary-color, #253EEC`
+`--calender-element` | Mixin applied to the calendar-element | `{}`
+`--datetime-picker-input` | Mixin applied to the input elements | `{}`
+
 @demo demo/index.html
 -->
 
@@ -28,69 +37,36 @@ To connect it with inputs, try it like:
   <template strip-whitespace>
     <style>
       :host {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+        display: inline-block;
         font-family: inherit;
-        background: var(--calendar-background, #252525);
-        color: var(--calender-color, #ccc);
+        background-color: var(--calendar-background, #252525);
+        color: var(--calendar-color, #ccc);
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: transparent;
         outline-width: 0;
         -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-      }
-      :host(:not([opened])) {
-        display: none;
+        --calendar-selected: var(--primary-color, #253EEC);
+        @apply(--calendar-element);
       }
       :host > * {
         position: relative;
       }
-      :host {
-        position: absolute;
-      }
-      :host([position="top"]) {
-        top: 0;
-        right: 0;
-        transform: translateY(-100%);
-      }
-      :host([position="bottom"]) {
-        bottom: 0;
-        left: 0;
-        transform: translateY(100%);
-      }
-      :host([position="left"]) {
-        top: 0;
-        left: 0;
-        transform: translateX(-100%);
-      }
-      :host([position="right"]) {
-        top: 0;
-        right: 0;
-        transform: translateX(100%);
-      }
-      :host([position="center"]) {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
       #top,
       #bottom {
-        font-size: 1em;
+        width: 100%;
         display: inline-flex;
         flex-direction: row;
         align-items: center;
       }
       #top {
-        width: 100%;
         justify-content: space-between;
+        font-size: 1em;
       }
       #bottom {
         justify-content: center;
+        font-size: 0.8em;
       }
       #calendar {
         display: table;
-        flex: 1 0 auto;
-        width: 100%;
       }
       #header {
         display: table-header-group;
@@ -103,24 +79,28 @@ To connect it with inputs, try it like:
         display: table-row;
       }
       .day {
-        cursor: pointer;
         display: table-cell;
         padding: 0.5em;
         text-align: center;
+        border-radius: 50%;
         border-style: solid;
         border-width: thin;
         border-color: transparent;
+      }
+      #dates .day:hover {
+        border-color: rgba(255, 255, 255, 0.25);
       }
       .day.notinmonth {
         opacity: 0.5;
       }
       .day.selected {
-        background: var(--calendar-selected, var(--primary-color, #253EEC));
+        background-color: var(--calendar-selected);
+        border-color: transparent !important;
       }
       .day.current {
         border-style: solid;
         border-width: thin;
-        border-color: var(--calendar-selected, var(--primary-color, #253EEC));
+        border-color: var(--calendar-selected) !important;
       }
       .day.outofrange {
         opacity: 0.15;
@@ -130,32 +110,59 @@ To connect it with inputs, try it like:
       #top > * {
         padding: 0.5em;
       }
+      .day,
+      .button {
+        cursor: pointer;
+        will-change: background-color;
+        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+      }
       .button:hover {
         cursor: pointer;
-        background: rgba(255, 255, 255, 0.5);
-        color: black;
+        background-color: var(--calendar-selected);
+      }
+      #viewMonth {
+        float: left;
+        margin-right: 0.3em;
       }
       #viewYear {
+        float: left;
         font-weight: bold;
       }
       input.time {
-        font-size: 0.75em;
-        padding: 0.4em 0.2em;
-        width: 5ch;
+        border-radius: 2px;
+        padding: 0.2em;
+        width: 2ch;
         outline: none;
         font-family: inherit;
         text-align: center;
         border: none;
-        background: var(--calendar-background, #333);
+        background-color: var(--calendar-background, #333);
         color: inherit;
+      }
+      input::-webkit-input-placeholder {
+        color: currentColor;
+      }
+      input.time:focus {
+        background-color: var(--calendar-selected);
+      }
+      .icon {
+        height: 20px;
+        fill: currentColor;
+        padding-right: 4px;
       }
     </style>
 
     <div id="top">
-      <div class="button" on-tap="_prevMonth"><</div>
-      <div id="viewMonth"></div>
-      <div id="viewYear"></div>
-      <div class="button" on-tap="_nextMonth">></div>
+      <svg class="button icon" on-tap="_prevMonth" aria-label="previous" viewBox="0 0 24 24">
+        <g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g>
+      </svg>
+      <section>
+        <div id="viewMonth"></div>
+        <div id="viewYear"></div>
+      </section>
+      <svg class="button icon" on-tap="_nextMonth" aria-label="next" viewBox="0 0 24 24">
+        <g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g>
+      </svg>
     </div>
 
     <div id="calendar">
@@ -188,18 +195,21 @@ To connect it with inputs, try it like:
     </div>
 
     <div id="bottom">
-      <input class="time" id="hour" type="number" min="0" max="23" step="1" value="{{hour::input}}" placeholder="00">
-      <input class="time" id="minute" type="number" min="0" max="59" step="1" value="{{minute::input}}" placeholder="00">
-      <input class="time" id="second" type="number" min="0" max="59" step="1" value="{{second::input}}" placeholder="00">
+      <svg class="icon" viewBox="0 0 24 24">
+        <g><path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></g>
+      </svg>
+      <input class="time" id="hour" type="text" minlength="2" maxlength="2" on-keydown="_checkNumericInput" pattern="[0-1][0-9]|[2][0-3]" value="{{hour::input}}" placeholder="00">:
+      <input class="time" id="minute" type="text" minlength="2" maxlength="2" on-keydown="_checkNumericInput" pattern="[0-5][0-9]" value="{{minute::input}}" placeholder="00">:
+      <input class="time" id="second" type="text" minlength="2" maxlength="2" on-keydown="_checkNumericInput" pattern="[0-5][0-9]" value="{{second::input}}" placeholder="00">
     </div>
 
   </template>
 
   <script>
+
     if (window._datetimePickerInstances === undefined) {
       window['_datetimePickerInstances'] = new Set();
     }
-
     Polymer({
       is: 'calendar-element',
 
@@ -211,14 +221,6 @@ To connect it with inputs, try it like:
           type: Number,
           notify: true,
           computed: '_computeValue(dateString, timeString)'
-        },
-        /**
-         * Defines if it is opened
-         */
-        opened: {
-          type: Boolean,
-          reflectToAttribute: true,
-          observer: '_openedChanged'
         },
         /**
          * The date as a string of the selected date
@@ -233,10 +235,10 @@ To connect it with inputs, try it like:
          */
         timeString: {
           type: String,
-          value: '00:00:00',
           notify: true,
           observer: '_timeStringChanged'
         },
+
         /**
          * The hours of the selected date
          */
@@ -278,11 +280,6 @@ To connect it with inputs, try it like:
          */
         viewDate: {
           type: Number,
-          value: function() {
-            var d = new Date();
-            d = +(new Date(d.getFullYear(), d.getMonth()));
-            return d;
-          },
           observer: 'render'
         },
         /**
@@ -292,15 +289,8 @@ To connect it with inputs, try it like:
           type: String,
           value: window.navigator.language,
           observer: '_localeChanged'
-        },
-        /**
-         * The absolute position ('top', 'bottom', 'right', 'left', 'center') to the container, it is put in
-         */
-        position: {
-          type: String,
-          value: 'top',
-          reflectToAttribute: true
         }
+
       },
 
       listeners: {
@@ -313,29 +303,15 @@ To connect it with inputs, try it like:
 
       attached: function() {
         _datetimePickerInstances.add(this);
+        this.async( function() {
+          var d = new Date();
+          this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
+          this.timeString = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+        }.bind(this));
       },
 
       detached: function() {
         _datetimePickerInstances.delete(this);
-      },
-      /**
-       * Toggles opened attribute
-       */
-      toggle: function() {
-        if (this.opened) {
-          this.opened = false;
-        } else {
-          if (_datetimePickerInstances) {
-            _datetimePickerInstances.forEach(function(c) {
-              c.opened = false;
-            })
-          }
-          this.opened = true;
-        }
-      },
-
-      _openedChanged: function() {
-        this.render();
       },
 
       _dateStringChanged: function(d) {
@@ -355,48 +331,67 @@ To connect it with inputs, try it like:
         }
       },
 
-      _timeChanged: function(hours, minutes, seconds) {
-        hours = hours || '';
-        minutes = minutes || '';
-        seconds = seconds || '';
+      _timeChanged: function(hour, minute, second) {
         var time = '';
-        var p = '00'
-        var s = '' + hours;
-        time = p.substring(0, p.length - s.length) + s + ':';
-        var s = '' + minutes;
-        time += p.substring(0, p.length - s.length) + s + ':';
-        var s = '' + seconds;
-        time += p.substring(0, p.length - s.length) + s;
-        this.timeString = time;
+        time = hour + ':' + minute + ':' + second;
+        var test = this._checkTimeString(time);
+        var match = test.split(':');
+        if (match[0] !== hour || match[1] !== minute || match[2] !== second ) {
+          this.timeString = test;
+        } else if (this.timeString !== time) {
+          this.timeString = time;
+        }
       },
 
-      _timeStringChanged: function(v) {
-        if (v === undefined) {
-          return;
+      _timeStringChanged: function(ts) {
+        ts = this._checkTimeString(ts || '00:00:00');
+        if (ts !== this.timeString) {
+          ts = ts.split(':');
+          if (ts[0] !== this.hour) {
+            this.hour = ts[0];
+          }
+          if (ts[1] !== this.minute) {
+            this.minute = ts[1];
+          }
+          if (ts[2] !== this.second) {
+            this.second = ts[2];
+          }
         }
-        v = v.split(':');
-        var a;
-        a = parseInt(v[0] || 0);
-        if (isNaN(a) || a < 0 || a > 23) {
-          this.hour = '00';
-          return;
-        } else if (a !== this.hour) {
-          this.hour = a;
+      },
+
+      _checkNumericInput: function(e) {
+        if (isNaN( String.fromCharCode(e.keyCode) )){
+            e.preventDefault();
         }
-        a = parseInt(v[1] || 0);
-        if (isNaN(a) || a < 0 || a > 59) {
-          this.minute = '00';
-          return;
-        } else if (a !== this.minute) {
-          this.minute = a;
+      },
+
+      _checkTimeString: function(str) {
+        var v = str.split(':');
+        var r, a, p = '00';
+        if (v.length !== 3)
+          return '00:00:00';
+        a = parseInt(v[0]);
+        if (isNaN(v[0]) || a < 0 || a > 23) {
+          r = '00:'
+        } else {
+          a = '' + a;
+          r = p.substring(0, 2 - a.length) + a + ':';
         }
-        a = parseInt(v[2] || 0);
-        if (isNaN(a) || a < 0 || a > 59) {
-          this.second = '00';
-          return;
-        } else if (a !== this.second) {
-          this.second = a;
+        a = parseInt(v[1]);
+        if (isNaN(v[1]) || a < 0 || a > 59) {
+          r += '00:'
+        } else {
+          a = '' + a;
+          r += p.substring(0, 2 - a.length) + a + ':';
         }
+        a = parseInt(v[2]);
+        if (isNaN(v[2]) || a < 0 || a > 59) {
+          r += '00:'
+        } else {
+          a = '' + a;
+          r += p.substring(0, 2 - a.length) + a;
+        }
+        return r;
       },
 
       _computeValue: function(date, time) {
@@ -571,6 +566,8 @@ To connect it with inputs, try it like:
         var d = +(new Date(minDate));
         if (isNaN(d)) {
           this.minDate = undefined;
+        } else {
+          this.render();
         }
       },
 
@@ -581,6 +578,8 @@ To connect it with inputs, try it like:
         var d = +(new Date(maxDate));
         if (isNaN(+d)) {
           this.maxDate = undefined;
+        } else {
+          this.render();
         }
       }
     });
