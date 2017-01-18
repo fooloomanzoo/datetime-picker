@@ -99,7 +99,7 @@ Custom property | Description | Default
       }
     </style>
 
-    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])" on-tap="open">
+    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]?\d|1[0-2])-([012]\d|3[0-1])" on-tap="open">
     <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1" on-tap="open">
 
     <template is="dom-if" if="[[!_nativeDateTime]]">
@@ -208,7 +208,10 @@ Custom property | Description | Default
        * Toggles polyfill calendar-element
        */
       toggle: function() {
-        if (!this._nativeDateTime && this._calendar) {
+        if (!this._nativeDateTime) {
+          if (!this._calendar) {
+            this._calendar = this.$$('#calendar');
+          }
           if (this._calendar.classList.contains('opened')) {
             this.close();
           } else {
@@ -220,7 +223,10 @@ Custom property | Description | Default
        * Opens polyfill calendar-element
        */
       open: function() {
-        if (!this._nativeDateTime && this._calendar) {
+        if (!this._nativeDateTime) {
+          if (!this._calendar) {
+            this._calendar = this.$$('#calendar');
+          }
           if (_datetimePickerInstances) {
             _datetimePickerInstances.forEach(function(c) {
               if (c !== this._calendar) {
@@ -235,7 +241,10 @@ Custom property | Description | Default
        * Close polyfill calendar-element
        */
       close: function() {
-        if (!this._nativeDateTime && this._calendar) {
+        if (!this._nativeDateTime) {
+          if (!this._calendar) {
+            this._calendar = this.$$('#calendar');
+          }
           this._calendar.classList.remove('opened');
         }
       }
