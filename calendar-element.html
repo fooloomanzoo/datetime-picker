@@ -306,6 +306,7 @@ Custom property | Description | Default
         this.async( function() {
           var d = new Date();
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
+          this.dateString = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
           this.timeString = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
         }.bind(this));
       },
@@ -335,9 +336,18 @@ Custom property | Description | Default
         var time = '';
         time = hour + ':' + minute + ':' + second;
         var test = this._checkTimeString(time);
-        var match = test.split(':');
-        if (match[0] !== hour || match[1] !== minute || match[2] !== second ) {
-          this.timeString = test;
+        var ts = test.split(':');
+        if (ts[0] !== this.hour) {
+          this.hour = ts[0];
+          return;
+        }
+        if (ts[1] !== this.minute) {
+          this.minute = ts[1];
+          return;
+        }
+        if (ts[2] !== this.second) {
+          this.second = ts[2];
+          return;
         } else if (this.timeString !== time) {
           this.timeString = time;
         }
@@ -345,17 +355,16 @@ Custom property | Description | Default
 
       _timeStringChanged: function(ts) {
         ts = this._checkTimeString(ts || '00:00:00');
-        if (ts !== this.timeString) {
-          ts = ts.split(':');
-          if (ts[0] !== this.hour) {
-            this.hour = ts[0];
-          }
-          if (ts[1] !== this.minute) {
-            this.minute = ts[1];
-          }
-          if (ts[2] !== this.second) {
-            this.second = ts[2];
-          }
+        console.log(ts);
+        ts = ts.split(':');
+        if (ts[0] !== this.hour) {
+          this.hour = ts[0];
+        }
+        if (ts[1] !== this.minute) {
+          this.minute = ts[1];
+        }
+        if (ts[2] !== this.second) {
+          this.second = ts[2];
         }
       },
 

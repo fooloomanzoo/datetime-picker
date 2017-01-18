@@ -27,6 +27,7 @@ Custom property | Description | Default
       :host {
         display: inline-flex;
         position: relative;
+        outline: none;
       }
       #calendar {
         position: absolute;
@@ -84,13 +85,28 @@ Custom property | Description | Default
       #time {
         width: 50%;
       }
+      #icon {
+        display: none;
+        position: absolute;
+        fill: currentColor;
+        height: 16px;
+        bottom: 0;
+        right: 0;
+      }
+      #calendar.opened ~ #icon {
+        display: block;
+        cursor: pointer;
+      }
     </style>
 
-    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
-    <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
+    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])" on-tap="open">
+    <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1" on-tap="open">
 
     <template is="dom-if" if="[[!_nativeDateTime]]">
       <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-element>
+      <svg id="icon" viewBox="0 0 24 24" on-tap="close">
+        <g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
+      </svg>
     </template>
   </template>
 
@@ -122,14 +138,14 @@ Custom property | Description | Default
          */
         dateString: {
           type: String,
-          notify: true
+          notify: true,
+          observer: 'close'
         },
         /**
          * The time as a string of the selected date
          */
         timeString: {
           type: String,
-          value: '00:00:00',
           notify: true
         },
         /**
@@ -147,10 +163,6 @@ Custom property | Description | Default
 
         _nativeDateTime: Boolean
 
-      },
-
-      listeners: {
-        'tap': 'open'
       },
 
       hostAttributes: {
@@ -177,7 +189,6 @@ Custom property | Description | Default
           if (_datetimePickerInstances)
             _datetimePickerInstances.delete(this);
           this._calendar = null;
-
         }
       },
 
