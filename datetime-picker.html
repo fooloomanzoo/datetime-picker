@@ -241,13 +241,6 @@ Custom property | Description | Default
           if (!this._calendar) {
             this._calendar = this.$$('#calendar');
           }
-          if (_datetimePickerInstances) {
-            _datetimePickerInstances.forEach(function(c) {
-              if (c !== this._calendar) {
-                c.opened = false;
-              }
-            }.bind(this))
-          }
           this.opened = true;
         }
       },
