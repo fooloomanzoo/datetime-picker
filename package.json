@@ -1,7 +1,20 @@
 {
   "name": "datetime-picker",
-  "version": "1.0.5",
-  "description": "A picker for date and time in Polymer 1.7, that prefers the native input",
+  "version": "1.0.8",
+  "authors": [
+    "Johannes Brautzsch <johannes.brautzsch@gmail.com>"
+  ],
+  "description": "A picker for date and time, that prefers to use the native input.",
+  "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "datepicker",
+    "datetimepicker",
+    "datetime-picker",
+    "calendar"
+  ],
   "main": "index.html",
   "directories": {
     "test": "test"
@@ -9,13 +22,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "polymer",
-    "date-picker",
-    "time-picker",
-    "datetime-picker",
-    "javascript"
-  ],
-  "author": "fooloomanzoo",
   "license": "MIT"
 }

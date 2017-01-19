@@ -182,14 +182,14 @@ Custom property | Description | Default
           this._nativeDateTime = false;
           this.$.date.type = 'text';
           this.$.time.type = 'text';
-          if (!CustomCalendarElement) {
+          if (window.hasOwnProperty('CustomCalendarElement')) {
+            this._calendar = this.$$('#calendar');
+          } else {
             this.importHref(
               this.resolveUrl('calendar-element.html'),
               function() {
                 this._calendar = this.$$('#calendar');
               }.bind(this), null, true);
-          } else {
-            this._calendar = this.$$('#calendar');
           }
         } else {
           this._nativeDateTime = true;
