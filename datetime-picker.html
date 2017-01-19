@@ -182,11 +182,15 @@ Custom property | Description | Default
           this._nativeDateTime = false;
           this.$.date.type = 'text';
           this.$.time.type = 'text';
-          this.importHref(
-            this.resolveUrl('calendar-element.html'),
-            function() {
-              this._calendar = this.$$('#calendar');
-            }.bind(this), null, true);
+          if (!CustomCalendarElement) {
+            this.importHref(
+              this.resolveUrl('calendar-element.html'),
+              function() {
+                this._calendar = this.$$('#calendar');
+              }.bind(this), null, true);
+          } else {
+            this._calendar = this.$$('#calendar');
+          }
         } else {
           this._nativeDateTime = true;
         }
@@ -194,8 +198,6 @@ Custom property | Description | Default
 
       detached: function() {
         if (this._calendar) {
-          if (_datetimePickerInstances)
-            _datetimePickerInstances.delete(this);
           this._calendar = null;
         }
       },
@@ -252,7 +254,7 @@ Custom property | Description | Default
       /**
        * Close polyfill calendar-element
        */
-      close: function(v) {
+      close: function() {
         if (!this._nativeDateTime) {
           if (!this._calendar) {
             this._calendar = this.$$('#calendar');

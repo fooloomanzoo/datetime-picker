@@ -198,10 +198,7 @@ Custom property | Description | Default
 
   <script>
 
-    if (window._datetimePickerInstances === undefined) {
-      window['_datetimePickerInstances'] = new Set();
-    }
-    Polymer({
+    CustomCalendarElement = Polymer({
       is: 'calendar-element',
 
       properties: {
@@ -295,17 +292,12 @@ Custom property | Description | Default
       ],
 
       attached: function() {
-        _datetimePickerInstances.add(this);
         this.async( function() {
           var d = new Date();
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
           this.dateString = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
           this.timeString = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
         }.bind(this));
-      },
-
-      detached: function() {
-        _datetimePickerInstances.delete(this);
       },
 
       _dateStringChanged: function(d) {
