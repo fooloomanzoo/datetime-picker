@@ -1,7 +1,7 @@
 ##&lt;datetime-picker&gt;
 
 ### What is it for?
-**datetime-picker** is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)**, that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement.
+**datetime-picker** is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The 'calendar-element' will just be loaded if the native picker is not available or is explicitly wanted. It is tested for Firefox, IE11, Chrome and Opera.
 
 ### Motivation
 Internally it uses two input-elements, that are initially set to type *date* and *time*. If the Browser leaves these attributes as they are, then it will be assumed that native *date*- and *time*-inputs are available. If it won't, an element *(calendar-element)* will be loaded and displayed instead. **calendar-element** can also be used separately.
@@ -41,7 +41,7 @@ You can use it stand-alone or as a range of dates. Examples:
 <calendar-element value="{{value}}" opened></calendar-element>
 ```
 
-* Periods
+#### Periods
 ```html
 <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
 <datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>

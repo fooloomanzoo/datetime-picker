@@ -2,14 +2,15 @@
 
 <!--
 `datetime-picker`
-A minimal picker for date and time, that preferes to use the native input. The 'calender-component' will be just loaded, if the native picker are not available. It is tested for Firefox, IE11, Chrome and Opera.
+A minimal picker for date and time that preferes to use native input. The 'calendar-element' will just be loaded if the native picker is not available or is explicitly wanted. It is tested for Firefox, IE11, Chrome and Opera.
 
-For ranges between two dates, use it like:
+For ranges between two dates, use as follows:
 
-    <datetime-picker id="dateFrom" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
-    <datetime-picker id="dateTo" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
+    <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
+    <datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
 
 The following custom properties and mixins are also available for styling:
+
 Custom property | Description | Default
 ----------------|-------------|----------
 `--calendar-background` | text-color of the calendar-element | `#252525`
@@ -26,8 +27,8 @@ Custom property | Description | Default
     <style>
       :host {
         display: inline-flex;
-        position: relative;
         outline: none;
+        position: relative;
       }
       #calendar {
         position: absolute;
@@ -37,14 +38,14 @@ Custom property | Description | Default
         pointer-events: none;
         @apply(--calendar-element);
       }
-      #calendar.opened {
+      :host([opened]) #calendar {
         opacity: 1;
         z-index: 1;
         pointer-events: all;
       }
       :host([position="top"]) #calendar {
         top: 0;
-        right: 0;
+        left: 0;
         transform: translateY(-100%);
       }
       :host([position="bottom"]) #calendar {
@@ -71,19 +72,12 @@ Custom property | Description | Default
       #time {
         position: relative;
         box-sizing: border-box;
-        height: 100%;
         padding: 0.4em 0.2em;
         box-sizing: border-box;
         font-family: inherit;
         font-size: 0.75em;
         text-align: center;
         @apply(--datetime-picker-input);
-      }
-      #date {
-        width: 50%;
-      }
-      #time {
-        width: 50%;
       }
       #icon {
         display: none;
@@ -93,7 +87,7 @@ Custom property | Description | Default
         bottom: 0;
         right: 0;
       }
-      #calendar.opened ~ #icon {
+      :host([opened]) #icon {
         display: block;
         cursor: pointer;
       }
@@ -103,10 +97,11 @@ Custom property | Description | Default
     <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1" on-tap="open">
 
     <template is="dom-if" if="[[!_nativeDateTime]]">
-      <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]"></calendar-element>
-      <svg id="icon" viewBox="0 0 24 24" on-tap="close">
-        <g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
-      </svg>
+      <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]">
+        <svg id="icon" viewBox="0 0 24 24" on-tap="close">
+          <g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
+        </svg>
+      </calendar-element>
     </template>
   </template>
 
@@ -128,11 +123,17 @@ Custom property | Description | Default
         /**
          * The minimal date (format: 'YYYY-MM-DD')
          */
-        minDate: String,
+        minDate: {
+          type: String,
+          notify: true
+        },
         /**
          * The maximal date (format: 'YYYY-MM-DD')
          */
-        maxDate: String,
+        maxDate: {
+          type: String,
+          notify: true
+        },
         /**
          * The date as a string of the selected date
          */
@@ -161,8 +162,15 @@ Custom property | Description | Default
          */
         useNotNative: Boolean,
 
-        _nativeDateTime: Boolean
+        /**
+         * Indicates whether the polyfill calender is opened
+         */
+        opened: {
+          type: Boolean,
+          reflectToAttribute: true
+        },
 
+        _nativeDateTime: Boolean
       },
 
       hostAttributes: {
@@ -193,10 +201,14 @@ Custom property | Description | Default
       },
 
       _computeValue: function(date, time) {
-        if (date === undefined || time === undefined) {
+        if (date === undefined) {
           return null;
         }
-        var d = new Date();
+        if (time === undefined) {
+          this.timeString = '00:00:00';
+          return null;
+        }
+        var d = new Date(date);
         var t = time.split(':');
         d.setHours(t[0] || 0);
         d.setMinutes(t[1] || 0);
@@ -212,7 +224,7 @@ Custom property | Description | Default
           if (!this._calendar) {
             this._calendar = this.$$('#calendar');
           }
-          if (this._calendar.classList.contains('opened')) {
+          if (this.opened) {
             this.close();
           } else {
             this.open();
@@ -230,22 +242,22 @@ Custom property | Description | Default
           if (_datetimePickerInstances) {
             _datetimePickerInstances.forEach(function(c) {
               if (c !== this._calendar) {
-                c.classList.remove('opened');
+                c.opened = false;
               }
             }.bind(this))
           }
-          this._calendar.classList.add('opened');
+          this.opened = true;
         }
       },
       /**
        * Close polyfill calendar-element
        */
-      close: function() {
+      close: function(v) {
         if (!this._nativeDateTime) {
           if (!this._calendar) {
             this._calendar = this.$$('#calendar');
           }
-          this._calendar.classList.remove('opened');
+          this.opened = false;
         }
       }
     });
