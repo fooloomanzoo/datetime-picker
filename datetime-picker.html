@@ -118,7 +118,7 @@ Custom property | Description | Default
         value: {
           type: Number,
           notify: true,
-          computed: '_computeValue(dateString, timeString)'
+          observer: '_valueChanged'
         },
         /**
          * The minimal date (format: 'YYYY-MM-DD')
@@ -139,8 +139,8 @@ Custom property | Description | Default
          */
         dateString: {
           type: String,
-          notify: true,
-          observer: 'close'
+          observer: 'close',
+          notify: true
         },
         /**
          * The time as a string of the selected date
@@ -177,6 +177,10 @@ Custom property | Description | Default
         tabindex: '0'
       },
 
+      observers: [
+        '_computeValue(dateString, timeString)'
+      ],
+
       attached: function() {
         if (this.useNotNative || this.$.date.type !== 'date' || this.$.time.type !== 'time') {
           this._nativeDateTime = false;
@@ -203,19 +207,35 @@ Custom property | Description | Default
       },
 
       _computeValue: function(date, time) {
-        if (date === undefined) {
-          return null;
-        }
-        if (time === undefined) {
-          this.timeString = '00:00:00';
-          return null;
+        if (date === undefined || time === undefined) {
+          return;
         }
         var d = new Date(date);
         var t = time.split(':');
         d.setHours(t[0] || 0);
         d.setMinutes(t[1] || 0);
         d.setSeconds(t[2] || 0);
-        return +d || null;
+        this.value = +d || null;
+      },
+
+      _valueChanged: function(value) {
+        var d = new Date(value);
+        var ds = d.getFullYear() + '-' + this._pad(d.getMonth() + 1) + '-' + this._pad(d.getDate());
+        var ts = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
+        console.log(ds, ts);
+        if (ts !== this.timeString) {
+          this.timeString = ts;
+        }
+        if (ds !== this.dateString) {
+          this.dateString = ds;
+        }
+      },
+
+      _pad: function(n) {
+        if (n < 10) {
+          return '0' + n;
+        }
+        return '' + n;
       },
 
       /**
