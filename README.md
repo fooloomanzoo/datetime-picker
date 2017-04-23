@@ -1,4 +1,4 @@
-##&lt;datetime-picker&gt;
+## &lt;datetime-picker&gt;
 
 ### What is it for?
 **datetime-picker** is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The 'calendar-element' will just be loaded if the native picker is not available or is explicitly wanted. It is tested for Firefox, IE11, Chrome and Opera.
