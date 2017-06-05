@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 
 <!--
 `calendar-element`
@@ -198,10 +198,13 @@ Custom property | Description | Default
 
   <script>
 
-    window.CustomCalendarElement = Polymer({
-      is: 'calendar-element',
+  class CalendarElement extends Polymer.Element {
+    static get is() {
+      return 'calender-element';
+    }
 
-      properties: {
+    static get properties() {
+      return {
         /**
          * The value of the selected date
          */
@@ -281,26 +284,31 @@ Custom property | Description | Default
           observer: '_localeChanged'
         }
 
-      },
+      }
+    }
 
-      listeners: {
+    static get listeners() {
+      return {
         'dates.tap': '_select'
-      },
+      }
+    }
 
-      observers: [
+    static get observers(){ return [
         '_timeChanged(hour, minute, second)'
-      ],
+      ]
+    }
 
-      attached: function() {
-        this.async( function() {
+    connectedCallback() {
+      super.connectedCallback();
+        setTimeout( () => {
           var d = new Date();
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
           this.dateString = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
           this.timeString = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-        }.bind(this));
-      },
+        }, 0);
+      }
 
-      _dateStringChanged: function(d) {
+      _dateStringChanged(d) {
         if (d === undefined) {
           return;
         }
@@ -315,9 +323,9 @@ Custom property | Description | Default
           this.viewDate = +(new Date(date.getFullYear(), date.getMonth()));
           this.render();
         }
-      },
+      }
 
-      _timeChanged: function(hour, minute, second) {
+      _timeChanged(hour, minute, second) {
         var time = '';
         time = hour + ':' + minute + ':' + second;
         var test = this._checkTimeString(time);
@@ -336,9 +344,9 @@ Custom property | Description | Default
         } else if (this.timeString !== time) {
           this.timeString = time;
         }
-      },
+      }
 
-      _timeStringChanged: function(ts) {
+      _timeStringChanged(ts) {
         ts = this._checkTimeString(ts || '00:00:00');
         ts = ts.split(':');
         if (ts[0] !== this.hour) {
@@ -350,9 +358,9 @@ Custom property | Description | Default
         if (ts[2] !== this.second) {
           this.second = ts[2];
         }
-      },
+      }
 
-      _checkKeycode: function(e) {
+      _checkKeycode(e) {
         var step = (e.keyCode === 38) ? 1 : (e.keyCode === 40 ? -1 : 0);
         if (e.target && step) {
           var val;
@@ -380,9 +388,9 @@ Custom property | Description | Default
         if (isNaN( String.fromCharCode(e.keyCode) )){
             e.preventDefault();
         }
-      },
+      }
 
-      _checkTimeString: function(str) {
+      _checkTimeString(str) {
         var v = str.split(':');
         var r, a, p = '00';
         if (v.length !== 3)
@@ -409,9 +417,9 @@ Custom property | Description | Default
           r += p.substring(0, 2 - a.length) + a;
         }
         return r;
-      },
+      }
 
-      _computeValue: function(date, time) {
+      _computeValue(date, time) {
         if (date === undefined || time === undefined) {
           return null;
         }
@@ -421,23 +429,23 @@ Custom property | Description | Default
         d.setMinutes(t[1] || 0);
         d.setSeconds(t[2] || 0);
         return +d || null;
-      },
+      }
 
-      _prevMonth: function() {
+      _prevMonth() {
         var d = new Date(this.viewDate);
         if (d) {
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth() - 1));
         }
-      },
+      }
 
-      _nextMonth: function() {
+      _nextMonth() {
         var d = new Date(this.viewDate);
         if (d) {
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + 1));
         }
-      },
+      }
 
-      _select: function(e) {
+      _select(e) {
         if (e) {
           var path = e.path || [e.target];
           for (var i = 0; i < path.length; i++) {
@@ -452,9 +460,9 @@ Custom property | Description | Default
             }
           }
         }
-      },
+      }
 
-      _localeChanged: function() {
+      _localeChanged() {
         var d = new Date(this.viewDate),
           wd;
         if (d) {
@@ -474,11 +482,11 @@ Custom property | Description | Default
             });
           }
         }
-      },
+      }
       /**
        * Renders the current view (manually).
        */
-      render: function() {
+      render() {
         var d;
 
         d = new Date(this.viewDate);
@@ -545,9 +553,9 @@ Custom property | Description | Default
             counter++;
           }
         }
-      },
+      }
 
-      _toDateString: function() {
+      _toDateString() {
         var year = arguments[0],
           month = arguments[1],
           date = arguments[2],
@@ -574,9 +582,9 @@ Custom property | Description | Default
         date = p.substring(0, p.length - date.length) + date;
 
         return year + '-' + month + '-' + date;
-      },
+      }
 
-      _minDateChanged: function(minDate) {
+      _minDateChanged(minDate) {
         if (minDate === undefined) {
           return;
         }
@@ -586,9 +594,9 @@ Custom property | Description | Default
         } else {
           this.render();
         }
-      },
+      }
 
-      _maxDateChanged: function(maxDate) {
+      _maxDateChanged(maxDate) {
         if (maxDate === undefined) {
           return;
         }
@@ -599,6 +607,7 @@ Custom property | Description | Default
           this.render();
         }
       }
-    });
+    }
+    window.customElements.define(CalendarElement.is, CalendarElement);
   </script>
 </dom-module>
