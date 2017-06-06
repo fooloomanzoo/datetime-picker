@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="calendar-element.html">
+<link rel="import" href="time-element.html">
 
 <dom-module id="datetime-picker">
   <template>
@@ -9,40 +10,50 @@
         outline: none;
         position: relative;
       }
-      #calendar {
+      :host > * {
+        position: relative;
+      }
+      #calendar,
+      #timepicker {
         position: absolute;
         opacity: 0;
         will-change: opacity;
         transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
         pointer-events: none;
-        @apply(--calendar-element);
+        @apply --calendar-element;
       }
-      :host([opened]) #calendar {
+      #calendar[opened],
+      #timepicker[opened] {
         opacity: 1;
         z-index: 1;
         pointer-events: all;
       }
-      :host([position="top"]) #calendar {
+      :host([position="top"]) #calendar,
+      :host([position="top"]) #timepicker {
         top: 0;
         left: 0;
         transform: translateY(-100%);
       }
-      :host([position="bottom"]) #calendar {
+      :host([position="bottom"]) #calendar,
+      :host([position="bottom"]) #timepicker {
         bottom: 0;
         left: 0;
         transform: translateY(100%);
       }
-      :host([position="left"]) #calendar {
+      :host([position="left"]) #calendar,
+      :host([position="left"]) #timepicker {
         top: 0;
         left: 0;
         transform: translateX(-100%);
       }
-      :host([position="right"]) #calendar {
+      :host([position="right"]) #calendar,
+      :host([position="right"]) #timepicker {
         top: 0;
         right: 0;
         transform: translateX(100%);
       }
-      :host([position="center"]) #calendar {
+      :host([position="center"]) #calendar,
+      :host([position="center"]) #timepicker {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -56,30 +67,37 @@
         font-family: inherit;
         font-size: 0.75em;
         text-align: center;
-        @apply(--datetime-picker-input);
+        @apply --datetime-picker-input;
       }
       #icon {
         display: none;
-        position: absolute;
         fill: currentColor;
-        height: 16px;
-        bottom: 0;
-        right: 0;
       }
       :host([opened]) #icon {
         display: block;
-        cursor: pointer;
       }
     </style>
 
-    <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}">
-    <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1">
-
-    <template is="dom-if" if="[[!_useNative]]">
-      <!-- <calendar-element id="calendar" date="{{date}}" time="{{time}}" min="{{min}}" max="{{max}}">
-        <svg id="icon" viewBox="0 0 24 24" on-tap="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
-      </calendar-element> -->
-    </template>
+    <div>
+      <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement">
+      <dom-if if="[[!_useNative]]">
+        <template>
+          <calendar-element id="calendar" date="{{date}}" min="{{min}}" max="{{max}}" opened$="[[_calendarOpened]]">
+            <svg id="icon" viewBox="0 0 24 24" on-click="closeCalendarElement"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+          </calendar-element>
+        </template>
+      </dom-if>
+    </div>
+    <div>
+      <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement">
+      <dom-if if="[[!_useNative]]">
+        <template>
+          <time-element id="timepicker" time="{{time}}" opened$="[[_timeOpened]]">
+            <svg id="icon" viewBox="0 0 24 24" on-click="closeTimeElement"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+          </time-element>
+        </template>
+      </dom-if>
+    </div>
 
   </template>
 
@@ -173,6 +191,14 @@
             type: Boolean
           },
 
+          _timeOpened: {
+            type: Boolean
+          },
+
+          _calendarOpened: {
+            type: Boolean
+          },
+
           _nativeDateTime: {
             type: Boolean
           },
@@ -195,10 +221,8 @@
       connectedCallback() {
         super.connectedCallback();
         if (this.$.date.type !== 'date' || this.$.time.type !== 'time') {
-          console.log('useNotNative');
           this._nativeDateTime = false;
         } else {
-          console.log('useNative');
           this._nativeDateTime = true;
         }
       }
@@ -221,7 +245,7 @@
         if (!datetime)
           return;
         var value = +(new Date(datetime))
-        if (value) {
+        if (value && value !== this.value) {
           this.set('value', value);
         }
       }
@@ -234,52 +258,97 @@
         if (!value) {
           return;
         }
-        var d = new Date(value), ds, ts;
-        ds = d.getFullYear() + '-' + this._pad(d.getMonth() + 1) + '-' + this._pad(d.getDate());
-        ts = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
+        var d = new Date(value),
+          dts = new Date(this.datetime),
+          ds, ts;
 
-
-        if ((new Date(ds).toDateString()) !== (new Date(this.date).toDateString())) {
+        if ((ds = d.toLocaleDateString()) !== (dts.toLocaleDateString())) {
           this.set('date', ds);
         }
-        if (ts !== this.time) {
+        if ((ts = d.toLocaleTimeString()) !== (dts.toLocaleTimeString())) {
           this.set('time', ts);
         }
       }
 
-      _pad(n) {
-        if (n < 10) {
-          return '0' + n;
-        }
-        return '' + n;
+      /**
+       * Toggles polyfill calendar-element and time-element
+       */
+      toggle() {
+        this.toggleCalendarElement();
+        this.toggleTimeElement();
       }
-
+      /**
+       * Opens polyfill calendar-element and time-element
+       */
+      open() {
+        this.openCalendarElement();
+        this.openTimeElement();
+      }
+      /**
+       * Close polyfill calendar-element and time-element
+       */
+      close() {
+        this.closeCalendarElement();
+        this.closeTimeElement();
+      }
       /**
        * Toggles polyfill calendar-element
        */
-      toggle() {
-        if (!this._nativeDateTime) {
-          if (this.opened) {
-            this.close();
+      toggleCalendarElement() {
+        console.log('openCalendarElement');
+        if (!this._useNative) {
+          if (this._calendarOpened && !this._timeOpened) {
+            this.closeCalendarElement();
           } else {
-            this.open();
+            this.openCalendarElement();
           }
         }
       }
       /**
        * Opens polyfill calendar-element
        */
-      open() {
-        if (!this._nativeDateTime) {
-          this.opened = true;
+      openCalendarElement() {
+        console.log('openCalendarElement');
+        if (!this._useNative) {
+          this._calendarOpened = true;
+          this._timeOpened = false;
         }
       }
       /**
        * Close polyfill calendar-element
        */
-      close() {
-        if (!this._nativeDateTime) {
-          this.opened = false;
+      closeCalendarElement() {
+        if (!this._useNative) {
+          this._calendarOpened = false;
+        }
+      }
+      /**
+       * Toggles polyfill time-element
+       */
+      toggleTimeElement() {
+        if (!this._useNative) {
+          if (!this._calendarOpened && this._timeOpened) {
+            this.closeTimeElement();
+          } else {
+            this.openTimeElement();
+          }
+        }
+      }
+      /**
+       * Opens polyfill time-element
+       */
+      openTimeElement() {
+        if (!this._useNative) {
+          this._calendarOpened = false;
+          this._timeOpened = true;
+        }
+      }
+      /**
+       * Close polyfill time-element
+       */
+      closeTimeElement() {
+        if (!this._useNative) {
+          this._timeOpened = false;
         }
       }
 

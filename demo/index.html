@@ -6,10 +6,11 @@
 
     <title>datetime-picker demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
     <link rel="import" href="../datetime-picker.html">
 
     <custom-style>
@@ -42,10 +43,10 @@
     </div>
     <div class="vertical-section-container centered">
       <h3>force non-native datetime-picker</h3>
-      <demo-snippet>
+      <!-- <demo-snippet> -->
         <dom-bind id="non-native">
-          <template>
-            <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}"></datetime-picker>
+          <template id="non-native">
+            <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
             <div class="result">
               <code>numeric value</code>: <b>[[value]]</b>
               <br>
@@ -55,11 +56,11 @@
             </div>
           </template>
         </dom-bind>
-      </demo-snippet>
+      <!-- </demo-snippet> -->
       <script>
         var snippet = document.querySelector('#non-native');
         if (snippet) {
-          snippet.set('value', 123456789000);
+          snippet.value = 1234567891000;
         }
       </script>
     </div>
