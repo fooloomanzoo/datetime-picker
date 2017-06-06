@@ -72,15 +72,13 @@
       }
     </style>
 
-    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{date::input}}">
+    <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}">
     <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1">
 
     <template is="dom-if" if="[[!_useNative]]">
-      <calendar-element id="calendar" date-string="{{date}}" time-string="{{time}}" min-date="[[minDate]]" max-date="[[maxDate]]">
-        <svg id="icon" viewBox="0 0 24 24" on-tap="close">
-          <g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
-        </svg>
-      </calendar-element>
+      <!-- <calendar-element id="calendar" date="{{date}}" time="{{time}}" min="{{min}}" max="{{max}}">
+        <svg id="icon" viewBox="0 0 24 24" on-tap="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+      </calendar-element> -->
     </template>
 
   </template>
@@ -109,11 +107,18 @@
             notify: true
           },
           /**
-           * The time as a string of the selected date
+           * The time as a string of the selected time
            */
           time: {
             type: String,
             notify: true
+          },
+          /**
+           * The datetime as a string of the selected date and time
+           */
+          datetime: {
+            type: String,
+            computed: '_computeDatetime(date, time)'
           },
           /**
            * The value of the selected date
@@ -125,14 +130,14 @@
           /**
            * The minimal date (format: 'YYYY-MM-DD')
            */
-          minDate: {
+          min: {
             type: String,
             notify: true
           },
           /**
            * The maximal date (format: 'YYYY-MM-DD')
            */
-          maxDate: {
+          max: {
             type: String,
             notify: true
           },
@@ -165,69 +170,23 @@
            * disables the input elements
            */
           disabled: {
-            type: Boolean,
-            value: false
-          },
-
-          /**
-           * sets locale for dates
-           */
-          locale: {
-            type: String,
-            value: window.navigator.language
-          },
-          /**
-           * sets options for date formating according to Intl.DateTimeFormat().format
-           */
-          dateFormatOptions: {
-            type: Object,
-            value: function() {
-              return {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric'
-              }
-            }
-          },
-          /**
-           * sets options for time formating according to Intl.DateTimeFormat().format
-           */
-          timeFormatOptions: {
-            type: Object,
-            value: function() {
-              return {
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric'
-              }
-            }
+            type: Boolean
           },
 
           _nativeDateTime: {
-            type: String,
-            notify: true
+            type: Boolean
           },
 
           _useNative: {
             type: Boolean,
             computed: '_computeUseNative(_nativeDateTime, useNotNative)'
-          },
-
-          _dateFormater: {
-            type: Function,
-            computed: '_generateDateFormater(locale, dateFormatOptions)'
-          },
-
-          _timeFormater: {
-            type: Function,
-            computed: '_generateTimeFormater(locale, timeFormatOptions)'
           }
         }
       }
 
       static get observers() {
         return [
-          '_computeValue(date, time)',
+          '_computeValue(datetime)',
           '_valueChanged(value)',
           '_setInputTypes(_useNative)'
         ]
@@ -258,17 +217,15 @@
         }
       }
 
-      _computeValue(date, time) {
-        var t;
-        console.log(date, time);
-        if (!(date && time && (t = time.split(':')).length > 1)) {
+      _computeValue(datetime) {
+        if (!datetime)
           return;
-        }
-        var value = new Date(date);
-        value.setHours(t[0] || 0);
-        value.setMinutes(t[1] || 0);
-        value.setSeconds(t[2] || 0);
-        this.set('value', +value)
+        console.log(new Date(datetime));
+        this.set('value', +(new Date(datetime)));
+      }
+
+      _computeDatetime(date, time) {
+        return date + ' ' + time;
       }
 
       _valueChanged(value) {
@@ -276,21 +233,23 @@
           return;
         }
         var d = new Date(value), ds, ts;
-        if (this._useNative) {
-          var ds = d.getFullYear() + '-' + this._pad(d.getMonth() + 1) + '-' + this._pad(d.getDate());
-          var ts = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
-        } else {
-          ds = this._dateFormater(value);
-          ts = this._timeFormater(value);
-        }
+        ds = d.getFullYear() + '-' + this._pad(d.getMonth() + 1) + '-' + this._pad(d.getDate());
+        ts = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
 
-        console.log(ds, ts);
-        if (ds !== this.date) {
+
+        if ((new Date(ds).toDateString()) !== (new Date(this.date).toDateString())) {
           this.set('date', ds);
         }
         if (ts !== this.time) {
           this.set('time', ts);
         }
+      }
+
+      _pad(n) {
+        if (n < 10) {
+          return '0' + n;
+        }
+        return '' + n;
       }
 
       /**
@@ -324,14 +283,6 @@
 
       _computeUseNative(_nativeDateTime, useNotNative) {
         return _nativeDateTime && !useNotNative;
-      }
-
-      _generateDateFormater(locale, dateFormatOptions) {
-        return new Intl.DateTimeFormat(locale, dateFormatOptions).format
-      }
-
-      _generateTimeFormater(locale, timeFormatOptions) {
-        return new Intl.DateTimeFormat(locale, timeFormatOptions).format
       }
     }
 
