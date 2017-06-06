@@ -220,8 +220,10 @@
       _computeValue(datetime) {
         if (!datetime)
           return;
-        console.log(new Date(datetime));
-        this.set('value', +(new Date(datetime)));
+        var value = +(new Date(datetime))
+        if (value) {
+          this.set('value', value);
+        }
       }
 
       _computeDatetime(date, time) {

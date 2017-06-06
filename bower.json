@@ -1,6 +1,22 @@
 {
   "name": "datetime-picker",
   "main": "datetime-picker.html",
+  "authors": [
+    "Johannes Brautzsch <fooloomanzoo>"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "date",
+    "time",
+    "calendar",
+    "picker"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fooloomanzoo/datetime-picker.git"
+  },
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.1"
   },
@@ -10,6 +26,7 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs"
   },
   "resolutions": {
-    "polymer": "^2.0.1"
+    "polymer": "^2.0.1",
+    "webcomponentsjs": "^1.0.1"
   }
 }

@@ -43,9 +43,9 @@
     <div class="vertical-section-container centered">
       <h3>force non-native datetime-picker</h3>
       <demo-snippet>
-        <dom-bind>
+        <dom-bind id="non-native">
           <template>
-            <datetime-picker use-not-native value="1234564891011" value="{{value}}" date="{{date}}" time="{{time}}"></datetime-picker>
+            <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}"></datetime-picker>
             <div class="result">
               <code>numeric value</code>: <b>[[value]]</b>
               <br>
@@ -56,6 +56,12 @@
           </template>
         </dom-bind>
       </demo-snippet>
+      <script>
+        var snippet = document.querySelector('#non-native');
+        if (snippet) {
+          snippet.set('value', 123456789000);
+        }
+      </script>
     </div>
   </body>
 </html>
