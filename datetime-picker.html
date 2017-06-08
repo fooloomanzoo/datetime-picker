@@ -1,69 +1,59 @@
-<link rel="import" href="../polymer/polymer.html">
-
-<!--
-`datetime-picker`
-A minimal picker for date and time that preferes to use native input. The 'calendar-element' will just be loaded if the native picker is not available or is explicitly wanted. It is tested for Firefox, IE11, Chrome and Opera.
-
-For ranges between two dates, use as follows:
-
-    <datetime-picker id="from" date-string="{{minDate}}" max-date="[[maxDate]]"></datetime-picker>
-    <datetime-picker id="to" date-string="{{maxDate}}" min-date="[[minDate]]"></datetime-picker>
-
-The following custom properties and mixins are also available for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--calendar-background` | text-color of the calendar-element | `#252525`
-`--calender-color` | text-color of the calendar-element | `#ccc`
-`--calendar-selected` | background-color of the selected day, focussed time-input, and border-color of the current day | `--primary-color, #253EEC`
-`--calender-element` | Mixin applied to the calendar-element | `{}`
-`--datetime-picker-input` | Mixin applied to the input elements | `{}`
-
-@demo demo/index.html
--->
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="calendar-element.html">
+<link rel="import" href="time-element.html">
 
 <dom-module id="datetime-picker">
-  <template strip-whitespace>
+  <template>
     <style>
       :host {
         display: inline-flex;
         outline: none;
         position: relative;
       }
-      #calendar {
+      :host > * {
+        position: relative;
+      }
+      #calendar,
+      #timepicker {
         position: absolute;
         opacity: 0;
         will-change: opacity;
         transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
         pointer-events: none;
-        @apply(--calendar-element);
+        @apply --calendar-element;
       }
-      :host([opened]) #calendar {
+      #calendar[opened],
+      #timepicker[opened] {
         opacity: 1;
         z-index: 1;
         pointer-events: all;
       }
-      :host([position="top"]) #calendar {
+      :host([position="top"]) #calendar,
+      :host([position="top"]) #timepicker {
         top: 0;
         left: 0;
         transform: translateY(-100%);
       }
-      :host([position="bottom"]) #calendar {
+      :host([position="bottom"]) #calendar,
+      :host([position="bottom"]) #timepicker {
         bottom: 0;
         left: 0;
         transform: translateY(100%);
       }
-      :host([position="left"]) #calendar {
+      :host([position="left"]) #calendar,
+      :host([position="left"]) #timepicker {
         top: 0;
         left: 0;
         transform: translateX(-100%);
       }
-      :host([position="right"]) #calendar {
+      :host([position="right"]) #calendar,
+      :host([position="right"]) #timepicker {
         top: 0;
         right: 0;
         transform: translateX(100%);
       }
-      :host([position="center"]) #calendar {
+      :host([position="center"]) #calendar,
+      :host([position="center"]) #timepicker {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -77,203 +67,296 @@ Custom property | Description | Default
         font-family: inherit;
         font-size: 0.75em;
         text-align: center;
-        @apply(--datetime-picker-input);
+        @apply --datetime-picker-input;
       }
       #icon {
         display: none;
-        position: absolute;
         fill: currentColor;
-        height: 16px;
-        bottom: 0;
-        right: 0;
       }
       :host([opened]) #icon {
         display: block;
-        cursor: pointer;
       }
     </style>
 
-    <input id="date" type="date" disabled$="[[disabled]]" min="[[minDate]]" max="[[maxDate]]" autocomplete="off" value="{{dateString::input}}" pattern="([0-9]{4})-([0]?\d|1[0-2])-([012]\d|3[0-1])" on-tap="open">
-    <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{timeString::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1" on-tap="open">
+    <div>
+      <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement">
+      <dom-if if="[[!_useNative]]">
+        <template>
+          <calendar-element id="calendar" date="{{date}}" min="{{min}}" max="{{max}}" opened$="[[_calendarOpened]]">
+            <svg id="icon" viewBox="0 0 24 24" on-click="closeCalendarElement"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+          </calendar-element>
+        </template>
+      </dom-if>
+    </div>
+    <div>
+      <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement">
+      <dom-if if="[[!_useNative]]">
+        <template>
+          <time-element id="timepicker" time="{{time}}" opened$="[[_timeOpened]]">
+            <svg id="icon" viewBox="0 0 24 24" on-click="closeTimeElement"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+          </time-element>
+        </template>
+      </dom-if>
+    </div>
 
-    <template is="dom-if" if="[[!_nativeDateTime]]">
-      <calendar-element id="calendar" date-string="{{dateString}}" time-string="{{timeString}}" min-date="[[minDate]]" max-date="[[maxDate]]" position="[[position]]">
-        <svg id="icon" viewBox="0 0 24 24" on-tap="close">
-          <g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
-        </svg>
-      </calendar-element>
-    </template>
   </template>
 
   <script>
+    /**
+     * `datetime-picker`
+     * A picker for date and time, that prefers to use the native input.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class DatetimePicker extends Polymer.Element {
+      static get is() {
+        return 'datetime-picker';
+      }
 
-    Polymer({
-      is: 'datetime-picker',
+      static get properties() {
+        return {
+          /**
+           * The date as a string of the selected date
+           */
+          date: {
+            type: String,
+            notify: true
+          },
+          /**
+           * The time as a string of the selected time
+           */
+          time: {
+            type: String,
+            notify: true
+          },
+          /**
+           * The datetime as a string of the selected date and time
+           */
+          datetime: {
+            type: String,
+            computed: '_computeDatetime(date, time)'
+          },
+          /**
+           * The value of the selected date
+           */
+          value: {
+            type: Number,
+            notify: true
+          },
+          /**
+           * The minimal date (format: 'YYYY-MM-DD')
+           */
+          min: {
+            type: String,
+            notify: true
+          },
+          /**
+           * The maximal date (format: 'YYYY-MM-DD')
+           */
+          max: {
+            type: String,
+            notify: true
+          },
+          /**
+           * The absolute position of the polyfill calender-element ('top', 'bottom', 'right', 'left', 'center') to the container
+           */
+          position: {
+            type: String,
+            value: 'top',
+            reflectToAttribute: true
+          },
 
-      properties: {
+          /**
+           * Force to not use the native input, even if it exists
+           */
+          useNotNative: {
+            type: Boolean,
+            value: false
+          },
 
-        /**
-         * The value of the selected date
-         */
-        value: {
-          type: Number,
-          notify: true,
-          observer: '_valueChanged'
-        },
-        /**
-         * The minimal date (format: 'YYYY-MM-DD')
-         */
-        minDate: {
-          type: String,
-          notify: true
-        },
-        /**
-         * The maximal date (format: 'YYYY-MM-DD')
-         */
-        maxDate: {
-          type: String,
-          notify: true
-        },
-        /**
-         * The date as a string of the selected date
-         */
-        dateString: {
-          type: String,
-          observer: 'close',
-          notify: true
-        },
-        /**
-         * The time as a string of the selected date
-         */
-        timeString: {
-          type: String,
-          notify: true
-        },
-        /**
-         * The absolute position of the polyfill calender-element ('top', 'bottom', 'right', 'left', 'center') to the container
-         */
-        position: {
-          type: String,
-          value: 'top',
-          reflectToAttribute: true
-        },
-        /**
-         * Force to not use the native input, even if it exists
-         */
-        useNotNative: Boolean,
+          /**
+           * Indicates whether the polyfill calender is opened
+           */
+          opened: {
+            type: Boolean,
+            reflectToAttribute: true
+          },
 
-        /**
-         * Indicates whether the polyfill calender is opened
-         */
-        opened: {
-          type: Boolean,
-          reflectToAttribute: true
-        },
+          /**
+           * disables the input elements
+           */
+          disabled: {
+            type: Boolean
+          },
 
-        _nativeDateTime: Boolean
-      },
+          _timeOpened: {
+            type: Boolean
+          },
 
-      hostAttributes: {
-        tabindex: '0'
-      },
+          _calendarOpened: {
+            type: Boolean
+          },
 
-      observers: [
-        '_computeValue(dateString, timeString)'
-      ],
+          _nativeDateTime: {
+            type: Boolean
+          },
 
-      attached: function() {
-        if (this.useNotNative || this.$.date.type !== 'date' || this.$.time.type !== 'time') {
-          this._nativeDateTime = false;
-          this.$.date.type = 'text';
-          this.$.time.type = 'text';
-          if (window.hasOwnProperty('CustomCalendarElement')) {
-            this._calendar = this.$$('#calendar');
-          } else {
-            this.importHref(
-              this.resolveUrl('calendar-element.html'),
-              function() {
-                this._calendar = this.$$('#calendar');
-              }.bind(this), null, true);
+          _useNative: {
+            type: Boolean,
+            computed: '_computeUseNative(_nativeDateTime, useNotNative)'
           }
+        }
+      }
+
+      static get observers() {
+        return [
+          '_computeValue(datetime)',
+          '_valueChanged(value)',
+          '_setInputTypes(_useNative)'
+        ]
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        if (this.$.date.type !== 'date' || this.$.time.type !== 'time') {
+          this._nativeDateTime = false;
         } else {
           this._nativeDateTime = true;
         }
-      },
+      }
 
-      detached: function() {
-        if (this._calendar) {
-          this._calendar = null;
+      disconnectedCallback() {
+        super.disconnectedCallback();
+      }
+
+      _setInputTypes(_useNative) {
+        if (_useNative) {
+          this.$.date.type = 'date';
+          this.$.time.type = 'time';
+        } else {
+          this.$.date.type = 'text';
+          this.$.time.type = 'text';
         }
-      },
+      }
 
-      _computeValue: function(date, time) {
-        if (date === undefined || time === undefined) {
+      _computeValue(datetime) {
+        if (!datetime)
+          return;
+        var value = +(new Date(datetime))
+        if (value && value !== this.value) {
+          this.set('value', value);
+        }
+      }
+
+      _computeDatetime(date, time) {
+        return date + ' ' + time;
+      }
+
+      _valueChanged(value) {
+        if (!value) {
           return;
         }
-        var d = new Date(date);
-        var t = time.split(':');
-        d.setHours(t[0] || 0);
-        d.setMinutes(t[1] || 0);
-        d.setSeconds(t[2] || 0);
-        this.value = +d || null;
-      },
+        var d = new Date(value),
+          dts = new Date(this.datetime),
+          ds, ts;
 
-      _valueChanged: function(value) {
-        var d = new Date(value);
-        var ds = d.getFullYear() + '-' + this._pad(d.getMonth() + 1) + '-' + this._pad(d.getDate());
-        var ts = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
-        if (ts !== this.timeString) {
-          this.timeString = ts;
+        if ((ds = d.toLocaleDateString()) !== (dts.toLocaleDateString())) {
+          this.set('date', ds);
         }
-        if (ds !== this.dateString) {
-          this.dateString = ds;
+        if ((ts = d.toLocaleTimeString()) !== (dts.toLocaleTimeString())) {
+          this.set('time', ts);
         }
-      },
+      }
 
-      _pad: function(n) {
-        if (n < 10) {
-          return '0' + n;
-        }
-        return '' + n;
-      },
-
+      /**
+       * Toggles polyfill calendar-element and time-element
+       */
+      toggle() {
+        this.toggleCalendarElement();
+        this.toggleTimeElement();
+      }
+      /**
+       * Opens polyfill calendar-element and time-element
+       */
+      open() {
+        this.openCalendarElement();
+        this.openTimeElement();
+      }
+      /**
+       * Close polyfill calendar-element and time-element
+       */
+      close() {
+        this.closeCalendarElement();
+        this.closeTimeElement();
+      }
       /**
        * Toggles polyfill calendar-element
        */
-      toggle: function() {
-        if (!this._nativeDateTime) {
-          if (!this._calendar) {
-            this._calendar = this.$$('#calendar');
-          }
-          if (this.opened) {
-            this.close();
+      toggleCalendarElement() {
+        console.log('openCalendarElement');
+        if (!this._useNative) {
+          if (this._calendarOpened && !this._timeOpened) {
+            this.closeCalendarElement();
           } else {
-            this.open();
+            this.openCalendarElement();
           }
         }
-      },
+      }
       /**
        * Opens polyfill calendar-element
        */
-      open: function() {
-        if (!this._nativeDateTime) {
-          if (!this._calendar) {
-            this._calendar = this.$$('#calendar');
-          }
-          this.opened = true;
+      openCalendarElement() {
+        console.log('openCalendarElement');
+        if (!this._useNative) {
+          this._calendarOpened = true;
+          this._timeOpened = false;
         }
-      },
+      }
       /**
        * Close polyfill calendar-element
        */
-      close: function() {
-        if (!this._nativeDateTime) {
-          if (!this._calendar) {
-            this._calendar = this.$$('#calendar');
-          }
-          this.opened = false;
+      closeCalendarElement() {
+        if (!this._useNative) {
+          this._calendarOpened = false;
         }
       }
-    });
+      /**
+       * Toggles polyfill time-element
+       */
+      toggleTimeElement() {
+        if (!this._useNative) {
+          if (!this._calendarOpened && this._timeOpened) {
+            this.closeTimeElement();
+          } else {
+            this.openTimeElement();
+          }
+        }
+      }
+      /**
+       * Opens polyfill time-element
+       */
+      openTimeElement() {
+        if (!this._useNative) {
+          this._calendarOpened = false;
+          this._timeOpened = true;
+        }
+      }
+      /**
+       * Close polyfill time-element
+       */
+      closeTimeElement() {
+        if (!this._useNative) {
+          this._timeOpened = false;
+        }
+      }
+
+      _computeUseNative(_nativeDateTime, useNotNative) {
+        return _nativeDateTime && !useNotNative;
+      }
+    }
+
+    window.customElements.define(DatetimePicker.is, DatetimePicker);
   </script>
 </dom-module>
