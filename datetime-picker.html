@@ -70,11 +70,16 @@
         @apply --datetime-picker-input;
       }
       #icon {
-        display: none;
+        display: block;
+        height: 1em;
+        padding: 0.5em;
+        will-change: background-color;
+        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+        cursor: pointer;
         fill: currentColor;
       }
-      :host([opened]) #icon {
-        display: block;
+      #icon:hover {
+        background-color: var(--calendar-selected);
       }
     </style>
 
@@ -251,23 +256,40 @@
       }
 
       _computeDatetime(date, time) {
+        if (!(date && time)) {
+          return '';
+        }
         return date + ' ' + time;
       }
 
       _valueChanged(value) {
-        if (!value) {
-          return;
-        }
+        if (!value) return;
+
         var d = new Date(value),
-          dts = new Date(this.datetime),
+          dt = new Date(this.datetime),
           ds, ts;
 
-        if ((ds = d.toLocaleDateString()) !== (dts.toLocaleDateString())) {
+        if ((ds = this._toDate(d)) !== this._toDate(dt)) {
           this.set('date', ds);
         }
-        if ((ts = d.toLocaleTimeString()) !== (dts.toLocaleTimeString())) {
+        if ((ts = this._toTime(d)) !== this._toTime(dt)) {
           this.set('time', ts);
         }
+      }
+
+      _toDate(d) {
+        return d.getFullYear() + '-' + this._pad(d.getMonth()) + '-' + this._pad(d.getDate());
+      }
+
+      _toTime(d) {
+        return this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
+      }
+
+      _pad(n) {
+        if (n < 10) {
+          return '0' + n;
+        }
+        return '' + n;
       }
 
       /**
@@ -295,7 +317,6 @@
        * Toggles polyfill calendar-element
        */
       toggleCalendarElement() {
-        console.log('openCalendarElement');
         if (!this._useNative) {
           if (this._calendarOpened && !this._timeOpened) {
             this.closeCalendarElement();
@@ -308,7 +329,6 @@
        * Opens polyfill calendar-element
        */
       openCalendarElement() {
-        console.log('openCalendarElement');
         if (!this._useNative) {
           this._calendarOpened = true;
           this._timeOpened = false;

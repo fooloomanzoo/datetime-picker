@@ -6,9 +6,9 @@ A polyfill date picker using Polymer.
 
 To connect it with inputs, try it like:
 
-    <input id="date" type="date" min="[[min]]" max="[[max]]" value="{{date::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
+    <input id="date" type="text" min="[[min]]" max="[[max]]" value="{{date::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
 
-    <calendar-element id="calendar" date="{{date}}" min-date="[[min]]" max-date="[[max]]"></calendar-element>
+    <calendar-element date="{{date}}" value="{{value}}" min="[[min]]" max="[[max]]"></calendar-element>
 
 The following custom properties and mixins are also available for styling:
 
@@ -16,7 +16,7 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--calendar-background` | text-color of the calendar-element | `#252525`
 `--calender-color` | text-color of the calendar-element | `#ccc`
-`--calendar-selected` | background-color of the selected day, focussed time-input, and border-color of the current day | `--primary-color, #253EEC`
+`--calendar-selected` | background-color of the selected day and border-color of the current day | `--primary-color, #253EEC`
 `--calender-element` | Mixin applied to the calendar-element | `{}`
 `--datetime-picker-input` | Mixin applied to the input elements | `{}`
 
@@ -35,6 +35,7 @@ Custom property | Description | Default
         outline-width: 0;
         -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
         --calendar-selected: var(--primary-color, #253EEC);
+        padding: 6px;
         @apply --calendar-element;
       }
       :host > * {
@@ -53,6 +54,7 @@ Custom property | Description | Default
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
       }
       #calendar {
         display: table;
@@ -97,21 +99,17 @@ Custom property | Description | Default
         pointer-events: none;
       }
       .day,
-      .button,
-      ::slotted(*) {
+      .button {
         cursor: pointer;
         will-change: background-color;
         transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         fill: currentColor;
       }
-      .button,
-      ::slotted(*) {
+      .button {
         height: 1em;
         padding: 0.5em;
       }
-      .button:hover,
-      ::slotted(*:hover) {
-        cursor: pointer;
+      .button:hover {
         background-color: var(--calendar-selected);
       }
       #viewMonth {
@@ -131,7 +129,7 @@ Custom property | Description | Default
       <svg class="button" on-click="_prevMonth" aria-label="previous" viewBox="0 0 24 24">
         <g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g>
       </svg>
-      <section class="view">
+      <section class="view" on-click="_jumpToNow">
         <div id="viewMonth"></div>
         <div id="viewYear"></div>
       </section>
@@ -148,7 +146,7 @@ Custom property | Description | Default
         </div>
       </div>
 
-      <div id="dates" on-click="_select">
+      <div id="dates" on-click="_onClick">
         <div class="week">
           <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
         </div>
@@ -225,23 +223,33 @@ Custom property | Description | Default
       connectedCallback() {
         super.connectedCallback();
         setTimeout(() => {
-          var d = new Date();
-          this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
+          var d;
           if (!this.date) {
-            this.date = d.getFullYear() + '-' + this._pad((d.getMonth() + 1)) + '-' + this._pad(d.getDate());
+            d = new Date();
+          } else {
+            d = new Date(this.date);
           }
+          this.date = this._toDate(d.getFullYear(), d.getMonth() + 1, d.getDate());
         }, 0);
       }
 
       _dateChanged(d) {
-        if (!d) return;
-        var date = new Date(d);
-        if (date) {
-          this.date = this._toDate(+(new Date()));;
-        } else {
-          this.viewDate = +(new Date(date.getFullYear(), date.getMonth()));
-          this.render();
+        var date = new Date(d || null);
+        var min, max;
+        if (this.min) {
+          min = +new Date(this.min);
         }
+        if (this.max) {
+          max = +new Date(this.max);
+        }
+
+        if (date && (!(min && min > date) && !(max && max < date))) {
+          this.set('date', this._toDate(date));
+        } else {
+          this.set('date', null);
+        }
+        this.set('viewDate', +(new Date(date.getFullYear(), date.getMonth())))
+        this.render();
       }
 
       _pad(n) {
@@ -251,21 +259,26 @@ Custom property | Description | Default
         return '' + n;
       }
 
-      _select(e) {
+      _onClick(e) {
         if (e) {
-          var path = e.path || [e.target];
-          for (var i = 0; i < path.length; i++) {
-            if (path[i].dataset && path[i].dataset.date) {
+          var paths = e.path || [e.target];
+          for (var i = 0; i < paths.length; i++) {
+            if (paths[i].dataset && paths[i].dataset.date) {
               if (this._prevSelected) {
                 this._prevSelected.classList.remove('selected');
               }
-              path[i].classList.add('selected');
-              this.date = path[i].dataset.date;
-              this._prevSelected = path[i];
+              paths[i].classList.add('selected');
+              this.date = paths[i].dataset.date;
+              this._prevSelected = paths[i];
               break;
             }
           }
         }
+      }
+
+      _jumpToNow() {
+        var d = new Date();
+        this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
       }
 
       _prevMonth() {
@@ -307,9 +320,10 @@ Custom property | Description | Default
        * Renders the current view (manually).
        */
       render() {
-        var d;
-
-        d = new Date(this.viewDate);
+        if (!this.viewDate) {
+          return;
+        }
+        var d = new Date(this.viewDate);
         this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
           month: 'long'
         });
@@ -320,17 +334,17 @@ Custom property | Description | Default
         var selectedDay, currentDay, firstDayOfMonth, min, max, year, month;
         year = d.getFullYear();
         month = d.getMonth();
-        firstDayOfMonth = Math.round((new Date(year, month, 1).getTime()) / 865E5) - 1;
-        currentDay = Math.round((new Date().getTime()) / 865E5) - firstDayOfMonth;
+        firstDayOfMonth = Math.floor((new Date(year, month, 1).getTime()) / 865E5);
+        currentDay = Math.ceil(new Date().getTime() / 865E5) - firstDayOfMonth;
 
         if (this.date !== undefined) {
-          selectedDay = Math.round((new Date(this.date).getTime()) / 865E5) - firstDayOfMonth;
+          selectedDay = Math.ceil((new Date(this.date).getTime()) / 865E5) - firstDayOfMonth;
         }
         if (this.min !== undefined) {
-          min = Math.round((new Date(this.min).getTime()) / 865E5) - firstDayOfMonth;
+          min = Math.ceil(+(new Date(this.min).getTime()) / 865E5) - firstDayOfMonth;
         }
         if (this.max !== undefined) {
-          max = Math.round((new Date(this.max).getTime()) / 865E5) - firstDayOfMonth;
+          max = Math.floor(+(new Date(this.max).getTime()) / 865E5) - firstDayOfMonth;
         }
 
         var prevmonthlength = +new Date(year, month, 0).getDate();
@@ -378,25 +392,25 @@ Custom property | Description | Default
       _toDate() {
         var year = arguments[0],
           month = arguments[1],
-          date = arguments[2],
+          day = arguments[2],
           d;
-        if (date !== undefined)
-          d = new Date(year, month, date);
+
+        if (day !== undefined)
+          d = new Date(year, month, day);
         else if (month !== undefined)
           d = new Date(year, month);
         else if (year !== undefined)
           d = new Date(year);
         else
           return undefined;
-        if (isNaN(d)) {
-          return undefined;
-        }
+
         year = d.getFullYear();
         month = d.getMonth() + 1;
-        date = d.getDate();
+        day = d.getDate();
         month = this._pad(month);
-        date = this._pad(date);
-        return year + '-' + month + '-' + date;
+        day = this._pad(day);
+
+        return year + '-' + month + '-' + day;
       }
 
       _minChanged(min) {
@@ -404,7 +418,7 @@ Custom property | Description | Default
           return;
         }
         var d = +(new Date(min));
-        if (d) {
+        if (!d) {
           this.min = undefined;
         } else {
           this.render();
@@ -416,7 +430,7 @@ Custom property | Description | Default
           return;
         }
         var d = +(new Date(max));
-        if (d) {
+        if (!d) {
           this.max = undefined;
         } else {
           this.render();
