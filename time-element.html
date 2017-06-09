@@ -1,26 +1,23 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
 
 <!--
-`calendar-element`
-A polyfill date and time picker using Polymer.
+`time-element`
+A polyfill time picker using Polymer.
 
 To connect it with inputs, try it like:
 
-    <input id="date" type="date" min="[[min]]" max="[[max]]" value="{{date::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
-    <input id="time" type="time" value="{{time::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
+    <input id="time" type="text" value="{{time::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
 
-    <calendar-element id="calendar" date-string="{{date}}" time-string="{{time}}" min-date="[[min]]" max-date="[[max]]" position="[[position]]"></calendar-element>
+    <time-element time="{{time}}"></time-element>
 
 The following custom properties and mixins are also available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
-`--calendar-background` | text-color of the calendar-element | `#252525`
-`--calender-color` | text-color of the calendar-element | `#ccc`
-`--calendar-selected` | background-color of the selected day, focussed time-input, and border-color of the current day | `--primary-color, #253EEC`
-`--calender-element` | Mixin applied to the calendar-element | `{}`
-`--datetime-picker-input` | Mixin applied to the input elements | `{}`
+`--calendar-background` | text-color of the time-element | `#252525`
+`--calender-color` | text-color of the time-element | `#ccc`
+`--calendar-selected` | background-color of the focussed time-input | `--primary-color, #253EEC`
+`--calender-element` | Mixin applied to the time-element | `{}`
 
 @demo demo/index.html
 -->
@@ -37,6 +34,7 @@ Custom property | Description | Default
         outline-width: 0;
         -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
         --calendar-selected: var(--primary-color, #253EEC);
+        padding: 6px;
         @apply --calendar-element;
       }
       :host > * {
@@ -49,7 +47,6 @@ Custom property | Description | Default
         align-items: center;
         justify-content: center;
         font-size: 0.8em;
-        padding: 6px;
       }
       #content > * {
         position: relative;
@@ -58,8 +55,7 @@ Custom property | Description | Default
         flex-wrap: nowrap;
         align-items: center;
       }
-      .button,
-      ::slotted(*) {
+      .button {
         cursor: pointer;
         will-change: background-color;
         transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
@@ -68,13 +64,9 @@ Custom property | Description | Default
         height: 1em;
         padding: 0.5em;
       }
-      .button:hover,
-      ::slotted(*:hover) {
+      .button:hover {
         cursor: pointer;
         background-color: var(--calendar-selected);
-      }
-      ::slotted(*) {
-        align-self: flex-start;
       }
       input.time {
         border-radius: 2px;
@@ -95,41 +87,43 @@ Custom property | Description | Default
       }
     </style>
 
-    <div id="content" on-track="_onTrack">
-      <div>
-        <svg class="button" viewBox="0 0 24 24" on-click="_increm" for="hour" step="1">
+    <div id="content">
+      <div id="h">
+        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="hour" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="hour" type="text" tabindex="0" on-keydown="_checkKeycode" pattern="[0-1][0-9]|[2][0-3]" value="{{hour::input}}" placeholder="00">
-        <svg class="button" viewBox="0 0 24 24" on-click="_increm" for="hour" step="-1">
+        <input class="time" id="hour" type="text" tabindex="0" on-keydown="_checkKeycode" pattern="[0-1]?[0-9]|[2][0-3]" value="{{hour::input}}" placeholder="00">
+        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="hour" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
       :
-      <div>
-        <svg class="button" viewBox="0 0 24 24" on-click="_increm" for="minute" step="1">
+      <div id="m">
+        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="minute" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="minute" type="text" tabindex="1" on-keydown="_checkKeycode" pattern="[0-5][0-9]" value="{{minute::input}}" placeholder="00">
-        <svg class="button" viewBox="0 0 24 24" on-click="_increm" for="minute" step="-1">
+        <input class="time" id="minute" type="text" tabindex="1" on-keydown="_checkKeycode" pattern="[0-5]?[0-9]" value="{{minute::input}}" placeholder="00">
+        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="minute" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>:
-      <div>
-        <svg class="button" viewBox="0 0 24 24" on-click="_increm" for="second" step="1">
+      <div id="s">
+        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="second" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="second" type="text" tabindex="2" on-keydown="_checkKeycode" pattern="[0-5][0-9]" value="{{second::input}}" placeholder="00">
-        <svg class="button" viewBox="0 0 24 24" on-click="_increm" for="second" step="-1">
+        <input class="time" id="second" type="text" tabindex="2" on-keydown="_checkKeycode" pattern="[0-5]?[0-9]" value="{{second::input}}" placeholder="00">
+        <svg class="button" viewBox="0 0 24 24" for="second" step="-1" on-click="_onClick">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
-      <slot></slot>
+      <div id="extra">
+        <slot></slot>
+      </div>
     </div>
   </template>
 
   <script>
-    class TimeElement extends Polymer.GestureEventListeners(Polymer.Element) {
+    class TimeElement extends Polymer.Element {
       static get is() {
         return 'time-element';
       }
@@ -166,42 +160,28 @@ Custom property | Description | Default
           second: {
             type: String,
             notify: true
-          },
-
-          /**
-           * time input is propated, when false
-           */
-          _inputMode: {
-            type: Boolean,
-            observer: '_inputModeChanged'
           }
         }
       }
 
       static get observers() {
         return [
-          '_timeChanged(hour, minute, second)'
+          '_timeChanged(hour, minute, second)',
+          '_timeStringChanged(time)'
         ]
       }
 
       connectedCallback() {
         super.connectedCallback();
         setTimeout(() => {
-          var d = new Date();
+          var d;
           if (!this.time) {
-            this.time = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' + this._pad(d.getSeconds());
-          }
-        }, 0);
-      }
-
-      _onTrack(e) {
-      	if (this._inInputMode) {
-
+            d = new Date();
           } else {
-
+            d = new Date(this.time);
           }
-
-          this.$.output.textContent = JSON.parse(e);
+          this.time = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' +  this._pad(d.getSeconds());
+        }, 0);
       }
 
       _pad(n) {
@@ -216,39 +196,21 @@ Custom property | Description | Default
           return;
         }
         var time = this._pad(hour) + ':' + this._pad(minute) + ':' + this._pad(second);
-        var test = this._checktime(time);
-        var ts = test.split(':');
-        if (ts[0] !== this.hour) {
-          this.hour = ts[0];
-          return;
-        }
-        if (ts[1] !== this.minute) {
-          this.minute = ts[1];
-          return;
-        }
-        if (ts[2] !== this.second) {
-          this.second = ts[2];
-          return;
-        }
-        if (this._inputMode === false && this.time !== time) {
+        time = this._checktime(time);
+        if (this.time !== time) {
           this.time = time;
         }
       }
 
-      _inputModeChanged(mode) {
-        var ts = this.time;
-        if (mode === false) {
-          ts = this._checktime(ts || '00:00:00');
-          ts = ts.split(':');
-          if (ts[0] !== this.hour) {
-            this.hour = ts[0];
-          }
-          if (ts[1] !== this.minute) {
-            this.minute = ts[1];
-          }
-          if (ts[2] !== this.second) {
-	          this.second = ts[2];
-          }
+      _timeStringChanged(ts) {
+        ts = this._checktime(ts || '00:00:00');
+        ts = ts.split(':').map(function(v){ return parseInt(v); });
+        if (ts[0] !== this.hour || ts[1] !== this.minute || ts[2] !== this.second) {
+          this.setProperties({
+            hour: ts[0],
+            minute: ts[1],
+            second: ts[2]
+          });
         }
       }
 
@@ -259,13 +221,8 @@ Custom property | Description | Default
         }
         var step = (e.keyCode === 38) ? 1 : (e.keyCode === 40 ? -1 : 0);
         if (step) {
-          switch (e.target.id) {
-            case 'hour':
-              this._pad(this._increm({path: {for: 'hour', step: step}}));
-              break;
-            default:
-              this._pad(this._increm({path: {for: e.target.id, step: step}}));
-          }
+          this._pad(this._increm(e.target.id, step));
+          return;
         }
         step = (e.keyCode === 39) ? 1 : (e.keyCode === 37 ? -1 : 0);
         if (step) {
@@ -273,7 +230,7 @@ Custom property | Description | Default
           var current;
           for (var i = 0; i < elems.length; i++) {
             if (elems[i] === e.target.id) {
-          	current = i;
+          	   current = i;
             }
           }
           this.$[elems[(current + step + 3) % 3]].focus();
@@ -282,50 +239,47 @@ Custom property | Description | Default
 
       _checktime(str) {
         var v = str.split(':');
-        var r, a, p = '00';
+        var r = '', a;
         if (v.length !== 3)
           return '00:00:00';
         a = parseInt(v[0]);
-        if (isNaN(v[0]) || a < 0 || a > 23) {
-          r = '00:'
+        if (isNaN(a) || a < 0 || a > 23) {
+          r += '00:'
         } else {
-          r = this._pad(a) + ':';
+          r += this._pad(a) + ':';
         }
         a = parseInt(v[1]);
-        if (isNaN(v[1]) || a < 0 || a > 59) {
+        if (isNaN(a) || a < 0 || a > 59) {
           r += '00:'
         } else {
           r += this._pad(a) + ':';
         }
         a = parseInt(v[2]);
-        if (isNaN(v[2]) || a < 0 || a > 59) {
-          r += '00:'
+        if (isNaN(a) || a < 0 || a > 59) {
+          r += '00'
         } else {
           r += this._pad(a);
         }
         return r;
       }
 
-      _increm(e) {
-        var path = e.path || [e.target], type, step;
-        if (Array.isArray(path)) {
-          for (var i = 0; i < path.length; i++) {
-            if (path[i].for && path[i].classList.contains('button')) {
-              path = path[i];
-              type = parseInt(path[i].for);
-              step = parseInt(path[i].step);
-            }
-            console.log(path[i].for, path[i].classList);
-          }
+      _onClick(e) {
+        var path = e.currentTarget || e.path[0],
+          type = path.getAttribute('for'),
+          step = parseInt(path.getAttribute('step'));
+        this._increm(type, step);
+      }
+
+      _increm(type, step) {
+        if (!(type && step)) {
+          return;
         }
-        console.log(path, type, step);
-        var type = type || path.for;
-        var step = step || parseInt(path.step);
         switch (type) {
           case "hour":
             this.hour = this._pad((parseInt(this.hour) + step + 24) % 24);
             break;
-          default:
+          case "minute":
+          case "second":
             this[type] = this._pad((parseInt(this[type]) + step + 60) % 60);
         }
       }

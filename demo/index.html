@@ -29,7 +29,7 @@
       <demo-snippet>
         <dom-bind>
           <template>
-            <datetime-picker value="{{value}}" date="{{date}}" time="{{time}}"></datetime-picker>
+            <datetime-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></datetime-picker>
             <div class="result">
               <code>numeric value</code>: <b>[[value]]</b>
               <br>
@@ -43,7 +43,7 @@
     </div>
     <div class="vertical-section-container centered">
       <h3>force non-native datetime-picker</h3>
-      <!-- <demo-snippet> -->
+      <demo-snippet>
         <dom-bind id="non-native">
           <template id="non-native">
             <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
@@ -56,11 +56,11 @@
             </div>
           </template>
         </dom-bind>
-      <!-- </demo-snippet> -->
+      </demo-snippet>
       <script>
         var snippet = document.querySelector('#non-native');
         if (snippet) {
-          snippet.value = 1234567891000;
+          snippet.value = 1500000000000;
         }
       </script>
     </div>
