@@ -278,7 +278,7 @@
       }
 
       _toDate(d) {
-        return d.getFullYear() + '-' + this._pad(d.getMonth()) + '-' + this._pad(d.getDate());
+        return d.getFullYear() + '-' + this._pad(d.getMonth() + 1) + '-' + this._pad(d.getDate());
       }
 
       _toTime(d) {

@@ -405,10 +405,8 @@ Custom property | Description | Default
           return undefined;
 
         year = d.getFullYear();
-        month = d.getMonth() + 1;
-        day = d.getDate();
-        month = this._pad(month);
-        day = this._pad(day);
+        month = this._pad(d.getMonth() + 1);
+        day = this._pad(d.getDate());
 
         return year + '-' + month + '-' + day;
       }
