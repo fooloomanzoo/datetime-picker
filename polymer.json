@@ -1,7 +1,29 @@
 {
+  "entrypoint": "index.html",
+  "shell": "index.html",
+  "fragments": [
+    "datetime-picker.html"
+  ],
+  "extraDependencies": [
+    "bower_components/webcomponentsjs/*",
+    "bower_components/polymer/*"
+  ],
+  "builds": [ {
+    "name": "compiled",
+    "bundle": true,
+    "js": {
+      "minify": true
+    },
+    "css": {
+      "minify": true
+    },
+    "html": {
+      "minify": true
+    }
+  } ],
   "lint": {
     "rules": [
-      "polymer-2-hybrid"
+      "polymer-2"
     ]
   }
 }

@@ -234,7 +234,7 @@ Custom property | Description | Default
       }
 
       _dateChanged(d) {
-        var date = new Date(d || null);
+        var date = new Date(d);
         var min, max;
         if (this.min) {
           min = +new Date(this.min);
