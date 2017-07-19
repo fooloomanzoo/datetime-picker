@@ -1,6 +1,6 @@
 {
   "name": "datetime-picker",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "authors": [
     "Johannes Brautzsch <johannes.brautzsch@gmail.com>"
   ],
@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "polymer build",
+    "start": "polymer serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

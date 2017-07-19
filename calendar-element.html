@@ -126,14 +126,14 @@ Custom property | Description | Default
     </style>
 
     <div id="top">
-      <svg class="button" on-click="_prevMonth" aria-label="previous" viewBox="0 0 24 24">
+      <svg class="button" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24">
         <g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g>
       </svg>
       <section class="view" on-click="_jumpToNow">
         <div id="viewMonth"></div>
         <div id="viewYear"></div>
       </section>
-      <svg class="button" on-click="_nextMonth" aria-label="next" viewBox="0 0 24 24">
+      <svg class="button" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24">
         <g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g>
       </svg>
       <slot></slot>
@@ -282,16 +282,28 @@ Custom property | Description | Default
       }
 
       _prevMonth() {
-        var d = new Date(this.viewDate);
-        if (d) {
-          this.viewDate = +(new Date(d.getFullYear(), d.getMonth() - 1));
-        }
+        this._cancelTimeout();
+        this._activeJob = setInterval(_ => {
+          var d = new Date(this.viewDate);
+          if (d) {
+            this.viewDate = +(new Date(d.getFullYear(), d.getMonth() - 1));
+          }
+        }, 250)
       }
 
       _nextMonth() {
-        var d = new Date(this.viewDate);
-        if (d) {
-          this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + 1));
+        this._cancelTimeout();
+        this._activeJob = setInterval(_ => {
+          var d = new Date(this.viewDate);
+          if (d) {
+            this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + 1));
+          }
+        }, 250)
+      }
+
+      _cancelTimeout() {
+        if (this._activeJob) {
+          clearInterval(this._activeJob)
         }
       }
 

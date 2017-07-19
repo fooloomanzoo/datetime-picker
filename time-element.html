@@ -89,30 +89,30 @@ Custom property | Description | Default
 
     <div id="content">
       <div id="h">
-        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="hour" step="1">
+        <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
         <input class="time" id="hour" type="text" tabindex="0" on-keydown="_checkKeycode" pattern="[0-1]?[0-9]|[2][0-3]" value="{{hour::input}}" placeholder="00">
-        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="hour" step="-1">
+        <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
       :
       <div id="m">
-        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="minute" step="1">
+        <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
         <input class="time" id="minute" type="text" tabindex="1" on-keydown="_checkKeycode" pattern="[0-5]?[0-9]" value="{{minute::input}}" placeholder="00">
-        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="minute" step="-1">
+        <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>:
       <div id="s">
-        <svg class="button" viewBox="0 0 24 24" on-click="_onClick" for="second" step="1">
+        <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="second" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
         <input class="time" id="second" type="text" tabindex="2" on-keydown="_checkKeycode" pattern="[0-5]?[0-9]" value="{{second::input}}" placeholder="00">
-        <svg class="button" viewBox="0 0 24 24" for="second" step="-1" on-click="_onClick">
+        <svg class="button" viewBox="0 0 24 24" for="second" step="-1" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" >
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
@@ -228,7 +228,7 @@ Custom property | Description | Default
         if (step) {
           var elems = ["hour", "minute", "second"];
           var current;
-          for (var i = 0; i < elems.length; i++) {
+         for (var i = 0; i < elems.length; i++) {
             if (elems[i] === e.target.id) {
           	   current = i;
             }
@@ -263,11 +263,20 @@ Custom property | Description | Default
         return r;
       }
 
-      _onClick(e) {
-        var path = e.currentTarget || e.path[0],
-          type = path.getAttribute('for'),
-          step = parseInt(path.getAttribute('step'));
-        this._increm(type, step);
+      _startIncrem(e) {
+        this._stopIncrem();
+        this._activeJob = setInterval(_ => {
+          var path = e.currentTarget || e.path[0],
+            type = path.getAttribute('for'),
+            step = parseInt(path.getAttribute('step'));
+          this._increm(type, step);
+        }, 100)
+      }
+
+      _stopIncrem() {
+        if (this._activeJob) {
+          clearInterval(this._activeJob);
+        }
       }
 
       _increm(type, step) {
