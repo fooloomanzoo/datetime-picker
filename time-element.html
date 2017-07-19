@@ -265,10 +265,10 @@ Custom property | Description | Default
 
       _startIncrem(e) {
         this._stopIncrem();
-        this._activeJob = setInterval(_ => {
-          var path = e.currentTarget || e.path[0],
+        var path = e.currentTarget || e.path[0],
             type = path.getAttribute('for'),
             step = parseInt(path.getAttribute('step'));
+        this._activeJob = setInterval(_ => {
           this._increm(type, step);
         }, 100)
       }

@@ -23,7 +23,8 @@
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers",
     "web-component-tester": "Polymer/web-component-tester",
-    "webcomponentsjs": "webcomponents/webcomponentsjs"
+    "webcomponentsjs": "webcomponents/webcomponentsjs",
+    "datetime-picker": "fooloomanzoo/datetime-picker"
   },
   "resolutions": {
     "polymer": "^2.0.1",
