@@ -8,7 +8,7 @@ Internally it uses two input-elements, that are initially set to type *date* and
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, or you like to have a different look and you are using *Polymer* already.
 
 ### How?
-The **[component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)** explains, which of the attributes you can use and how. You can see there a **Demo**, too.
+The **[component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/demo/)** explains, which of the attributes you can use and how. You can see there a **Demo**, too.
 
 You can use it stand-alone or as a range of dates. Examples:
 
