@@ -18,6 +18,7 @@
     "url": "https://github.com/fooloomanzoo/datetime-picker.git"
   },
   "dependencies": {
+    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#^2.0.0",
     "polymer": "Polymer/polymer#^2.0.1"
   },
   "devDependencies": {
