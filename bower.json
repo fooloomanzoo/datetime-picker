@@ -4,6 +4,12 @@
   "authors": [
     "Johannes Brautzsch <fooloomanzoo>"
   ],
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
   "keywords": [
     "web-components",
     "web-component",
