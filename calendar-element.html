@@ -61,9 +61,11 @@ Custom property | Description | Default
       }
       #header {
         display: table-header-group;
+        @apply --calendar-caption;
       }
       #dates {
         display: table-row-group;
+        @apply --calendar-date;
       }
       .week {
         font-size: 0.8em;
@@ -71,11 +73,16 @@ Custom property | Description | Default
       }
       .day {
         display: table-cell;
-        padding: 0.5em;
+        padding: 0.5ch;
+        margin: 0;
+        min-width: 3ch;
+        height: 3ch;
+        box-sizing: content-box;
+        line-height: 3ch;
         text-align: center;
         border-radius: 50%;
         border-style: solid;
-        border-width: thin;
+        border-width: 1px;
         border-color: transparent;
       }
       #dates .day:hover {
@@ -141,7 +148,7 @@ Custom property | Description | Default
 
     <div id="calendar">
       <div id="header">
-        <div id="dayCaption" class="week">
+        <div id="caption" class="week">
           <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
         </div>
       </div>
@@ -224,21 +231,21 @@ Custom property | Description | Default
         super.connectedCallback();
         setTimeout(() => {
           const d = this.date ? new Date(this.date) : new Date();
-          this.date = this._toDate(d.getFullYear(), d.getMonth() + 1, d.getDate());
+          this.date = this._toDate(d.getFullYear(), d.getMonth(), d.getDate());
         }, 0);
       }
 
-      _dateChanged(d) {
-        const date = new Date(d),
-          min = this.min ? (new Date(this.min)) : null,
-          max = this.min ? (new Date(this.min)) : null;
+      _dateChanged(date) {
+        const d = new Date(date),
+          min = this.min ? (new Date(this.min)) : undefined,
+          max = this.max ? (new Date(this.max)) : undefined;
 
-        if (date && (!(min && min > date) && !(max && max < date))) {
-          this.set('date', this._toDate(date));
+        if (d && (!(min && min > d) && !(max && max < d))) {
+          this.set('date', this._toDate(d));
         } else {
           this.set('date', null);
         }
-        this.set('viewDate', +(new Date(date.getFullYear(), date.getMonth())))
+        this.set('viewDate', +(new Date(d.getFullYear(), d.getMonth())));
         this.render();
       }
 
@@ -314,8 +321,8 @@ Custom property | Description | Default
         for (let i = 0; i < 7; i++) {
           d = new Date(0, 0, i);
           weekday = (d.getDay() - 1 + 7) % 7;
-          if (this.$.dayCaption.children[weekday]) {
-            this.$.dayCaption.children[weekday].textContent = d.toLocaleDateString(this.locale, {
+          if (this.$.caption.children[weekday]) {
+            this.$.caption.children[weekday].textContent = d.toLocaleDateString(this.locale, {
               weekday: 'short'
             });
           }

@@ -1,74 +1,28 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <title>datetime-picker demo</title>
-
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../polymer/polymer-element.html"></script>
-
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-
-    <link rel="import" href="../datetime-picker.html">
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-        .result {
-          margin: 0.75em;
-          padding: 0.5em;
-          line-height: 1.5;
-        }
-      </style>
-    </custom-style>
+    <meta name="description" content="A picker for date and time, that prefers to use the native input">
+    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="/bower_components/datetime-picker/demo/demo-app.html">
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+    <style media="screen">
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: 'Fira Sans';
+        font-size: 0.9em;
+      }
+      demo-app {
+        font-family: inherit;
+      }
+    </style>
   </head>
-  <body unresolved>
-    <div class="vertical-section-container centered">
-      <h3>native datetime-picker, if available</h3>
-      <demo-snippet>
-        <dom-bind>
-          <template>
-            <datetime-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></datetime-picker>
-            <div class="result">
-              <code>numeric value</code>: <b>[[value]]</b>
-              <br>
-              <code>date</code>: <b>[[date]]</b>
-              <br>
-              <code>time</code>: <b>[[time]]</b>
-            </div>
-          </template>
-        </dom-bind>
-      </demo-snippet>
-    </div>
-    <div class="vertical-section-container centered">
-      <h3>force non-native datetime-picker</h3>
-      <demo-snippet>
-        <dom-bind id="non-native">
-          <template id="non-native">
-            <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
-            <div class="result">
-              <code>numeric value</code>: <b>[[value]]</b>
-              <br>
-              <code>date</code>: <b>[[date]]</b>
-              <br>
-              <code>time</code>: <b>[[time]]</b>
-            </div>
-          </template>
-        </dom-bind>
-      </demo-snippet>
-      <script>
-        var snippet = document.querySelector('#non-native');
-        if (snippet) {
-          snippet.value = 1500000000000;
-        }
-      </script>
-    </div>
-    <div class="">
-      <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
-    </div>
+
+  <body>
+    <demo-app></demo-app>
   </body>
 </html>

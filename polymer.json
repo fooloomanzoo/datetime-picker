@@ -1,20 +1,12 @@
 {
   "entrypoint": "index.html",
-  "shell": "index.html",
-  "fragments": [
-    "datetime-picker.html"
-  ],
-  "extraDependencies": [
-    "*/webcomponentsjs/*",
-    "*/polymer/*"
-  ],
+  "shell": "datetime-picker.html",
+  "fragments": [ "datetime-picker.html" ],
+  "extraDependencies": [ "*/bower_components/**/*", "*/polymer/**/*" ],
   "builds": [ {
     "name": "compiled",
     "bundle": {
-      "excludes": [
-        "*/webcomponentsjs/*",
-        "*/polymer/*"
-      ]
+      "excludes": [ "*/bower_components/**/*", "*/polymer/**/*" ]
     },
     "js": {
       "minify": true
@@ -27,8 +19,6 @@
     }
   } ],
   "lint": {
-    "rules": [
-      "polymer-2"
-    ]
+    "rules": [ "polymer-2" ]
   }
 }
