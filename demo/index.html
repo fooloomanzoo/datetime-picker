@@ -1,13 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <title>datetime-picker demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../polymer/polymer.html"></script>
+    <script src="../../polymer/polymer-element.html"></script>
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
@@ -24,7 +26,7 @@
       </style>
     </custom-style>
   </head>
-  <body>
+  <body unresolved>
     <div class="vertical-section-container centered">
       <h3>native datetime-picker, if available</h3>
       <demo-snippet>
@@ -64,6 +66,9 @@
           snippet.value = 1500000000000;
         }
       </script>
+    </div>
+    <div class="">
+      <datetime-picker use-not-native value="{{value}}" value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
     </div>
   </body>
 </html>

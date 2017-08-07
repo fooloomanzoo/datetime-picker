@@ -230,6 +230,7 @@
         } else {
           this._nativeDateTime = true;
         }
+        document.addEventListener("keydown", this._onKeyDown.bind(this), false);
       }
 
       disconnectedCallback() {
@@ -249,7 +250,7 @@
       _computeValue(datetime) {
         if (!datetime)
           return;
-        var value = +(new Date(datetime))
+        const value = +(new Date(datetime))
         if (value && value !== this.value) {
           this.set('value', value);
         }
@@ -265,14 +266,15 @@
       _valueChanged(value) {
         if (!value) return;
 
-        var d = new Date(value),
+        const d = new Date(value),
           dt = new Date(this.datetime),
-          ds, ts;
+          ds = this._toDate(d),
+          ts = this._toTime(d);
 
-        if ((ds = this._toDate(d)) !== this._toDate(dt)) {
+        if (ds !== this._toDate(dt)) {
           this.set('date', ds);
         }
-        if ((ts = this._toTime(d)) !== this._toTime(dt)) {
+        if (ts !== this._toTime(dt)) {
           this.set('time', ts);
         }
       }
@@ -370,6 +372,11 @@
         if (!this._useNative) {
           this._timeOpened = false;
         }
+      }
+
+      _onKeyDown(e) {
+        if (e && e.keyCode === 27)
+          this.close();
       }
 
       _computeUseNative(_nativeDateTime, useNotNative) {

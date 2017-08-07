@@ -1,20 +1,10 @@
 {
   "name": "datetime-picker",
-  "version": "2.0.2",
-  "authors": [
-    "Johannes Brautzsch <johannes.brautzsch@gmail.com>"
-  ],
+  "version": "2.0.4",
+  "authors": [ "Johannes Brautzsch <johannes.brautzsch@gmail.com>" ],
   "description": "A picker for date and time, that prefers to use the native input.",
   "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
-  "keywords": [
-    "web-component",
-    "web-components",
-    "polymer",
-    "datepicker",
-    "datetimepicker",
-    "datetime-picker",
-    "calendar"
-  ],
+  "keywords": [ "web-component", "web-components", "polymer", "datepicker", "datetimepicker", "datetime-picker", "calendar" ],
   "main": "index.html",
   "directories": {
     "test": "test"

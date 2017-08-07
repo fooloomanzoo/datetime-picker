@@ -70,6 +70,7 @@ Custom property | Description | Default
       }
       input.time {
         border-radius: 2px;
+        -moz-appearance: textfield;
         padding: 0.2em;
         width: 2ch;
         outline: none;
@@ -78,6 +79,11 @@ Custom property | Description | Default
         border: none;
         background-color: var(--calendar-background, #333);
         color: inherit;
+      }
+      input.time::-webkit-outer-spin-button,
+      input.time::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
       }
       input::-webkit-input-placeholder {
         color: currentColor;
@@ -92,7 +98,7 @@ Custom property | Description | Default
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="hour" type="text" tabindex="0" on-keydown="_checkKeycode" pattern="[0-1]?[0-9]|[2][0-3]" value="{{hour::input}}" placeholder="00">
+        <input class="time" id="hour" type="number" min="0" max="23" step="1"  tabindex="0" on-keydown="_checkKeycode" pattern="[0-1]?[0-9]|[2][0-3]" value="{{hour::input}}" placeholder="00">
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
@@ -102,7 +108,7 @@ Custom property | Description | Default
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="minute" type="text" tabindex="1" on-keydown="_checkKeycode" pattern="[0-5]?[0-9]" value="{{minute::input}}" placeholder="00">
+        <input class="time" id="minute" type="number" min="0" max="59" step="1" tabindex="1" on-keydown="_checkKeycode" value="{{minute::input}}" placeholder="00">
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
@@ -111,7 +117,7 @@ Custom property | Description | Default
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="second" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="second" type="text" tabindex="2" on-keydown="_checkKeycode" pattern="[0-5]?[0-9]" value="{{second::input}}" placeholder="00">
+        <input class="time" id="second" type="number" min="0" max="59" step="1" tabindex="2" on-keydown="_checkKeycode" value="{{second::input}}" placeholder="00">
         <svg class="button" viewBox="0 0 24 24" for="second" step="-1" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" >
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
@@ -174,12 +180,7 @@ Custom property | Description | Default
       connectedCallback() {
         super.connectedCallback();
         setTimeout(() => {
-          var d;
-          if (!this.time) {
-            d = new Date();
-          } else {
-            d = new Date(this.time);
-          }
+          const d = this.time ? new Date(this.time) : new Date();
           this.time = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' +  this._pad(d.getSeconds());
         }, 0);
       }
@@ -195,8 +196,7 @@ Custom property | Description | Default
         if (hour === undefined || minute === undefined || second === undefined) {
           return;
         }
-        var time = this._pad(hour) + ':' + this._pad(minute) + ':' + this._pad(second);
-        time = this._checktime(time);
+        const time = this._checktime(this._pad(hour) + ':' + this._pad(minute) + ':' + this._pad(second));
         if (this.time !== time) {
           this.time = time;
         }
@@ -219,27 +219,24 @@ Custom property | Description | Default
           if (e && e.preventDefault) e.preventDefault();
           return;
         }
-        var step = (e.keyCode === 38) ? 1 : (e.keyCode === 40 ? -1 : 0);
+        // left or right key press
+        const step = (e.keyCode === 39) ? 1 : (e.keyCode === 37 ? -1 : 0);
         if (step) {
-          this._pad(this._increm(e.target.id, step));
-          return;
-        }
-        step = (e.keyCode === 39) ? 1 : (e.keyCode === 37 ? -1 : 0);
-        if (step) {
-          var elems = ["hour", "minute", "second"];
-          var current;
-         for (var i = 0; i < elems.length; i++) {
+          const elems = ["hour", "minute", "second"];
+          let current;
+          for (let i = 0; i < elems.length; i++) {
             if (elems[i] === e.target.id) {
-          	   current = i;
+              current = i;
             }
           }
           this.$[elems[(current + step + 3) % 3]].focus();
+          return;
         }
       }
 
       _checktime(str) {
-        var v = str.split(':');
-        var r = '', a;
+        const v = str.split(':');
+        let r = '', a;
         if (v.length !== 3)
           return '00:00:00';
         a = parseInt(v[0]);
@@ -265,12 +262,13 @@ Custom property | Description | Default
 
       _startIncrem(e) {
         this._stopIncrem();
-        var path = e.currentTarget || e.path[0],
+        const path = e.currentTarget || e.path[0],
             type = path.getAttribute('for'),
             step = parseInt(path.getAttribute('step'));
-        this._activeJob = setInterval(_ => {
+        this._increm(type, step);
+        this._activeJob = setInterval(() => {
           this._increm(type, step);
-        }, 100)
+        }, 200);
       }
 
       _stopIncrem() {
@@ -285,11 +283,11 @@ Custom property | Description | Default
         }
         switch (type) {
           case "hour":
-            this.hour = this._pad((parseInt(this.hour) + step + 24) % 24);
+            this.set('hour', this._pad((parseInt(this.hour) + step + 24) % 24));
             break;
           case "minute":
           case "second":
-            this[type] = this._pad((parseInt(this[type]) + step + 60) % 60);
+            this.set(type, this._pad((parseInt(this[type]) + step + 60) % 60));
         }
       }
     }

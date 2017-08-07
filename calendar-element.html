@@ -223,25 +223,15 @@ Custom property | Description | Default
       connectedCallback() {
         super.connectedCallback();
         setTimeout(() => {
-          var d;
-          if (!this.date) {
-            d = new Date();
-          } else {
-            d = new Date(this.date);
-          }
+          const d = this.date ? new Date(this.date) : new Date();
           this.date = this._toDate(d.getFullYear(), d.getMonth() + 1, d.getDate());
         }, 0);
       }
 
       _dateChanged(d) {
-        var date = new Date(d);
-        var min, max;
-        if (this.min) {
-          min = +new Date(this.min);
-        }
-        if (this.max) {
-          max = +new Date(this.max);
-        }
+        const date = new Date(d),
+          min = this.min ? (new Date(this.min)) : null,
+          max = this.min ? (new Date(this.min)) : null;
 
         if (date && (!(min && min > date) && !(max && max < date))) {
           this.set('date', this._toDate(date));
@@ -261,8 +251,8 @@ Custom property | Description | Default
 
       _onClick(e) {
         if (e) {
-          var paths = e.path || [e.target];
-          for (var i = 0; i < paths.length; i++) {
+          const paths = e.path || [e.target];
+          for (let i = 0; i < paths.length; i++) {
             if (paths[i].dataset && paths[i].dataset.date) {
               if (this._prevSelected) {
                 this._prevSelected.classList.remove('selected');
@@ -277,28 +267,31 @@ Custom property | Description | Default
       }
 
       _jumpToNow() {
-        var d = new Date();
+        const d = new Date();
         this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
       }
 
       _prevMonth() {
         this._cancelTimeout();
-        this._activeJob = setInterval(_ => {
-          var d = new Date(this.viewDate);
-          if (d) {
-            this.viewDate = +(new Date(d.getFullYear(), d.getMonth() - 1));
-          }
-        }, 250)
+        this._incremMonth(-1);
+        this._activeJob = setInterval(() => {
+          this._incremMonth(-1);
+        }, 200);
       }
 
       _nextMonth() {
         this._cancelTimeout();
-        this._activeJob = setInterval(_ => {
-          var d = new Date(this.viewDate);
-          if (d) {
-            this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + 1));
-          }
-        }, 250)
+        this._incremMonth(1);
+        this._activeJob = setInterval(() => {
+          this._incremMonth(1);
+        }, 200);
+      }
+
+      _incremMonth(i) {
+        const d = new Date(this.viewDate);
+        if (d) {
+          this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + i));
+        }
       }
 
       _cancelTimeout() {
@@ -308,8 +301,8 @@ Custom property | Description | Default
       }
 
       _localeChanged() {
-        var d = new Date(this.viewDate),
-          wd;
+        let d = new Date(this.viewDate),
+         weekday;
         if (d) {
           this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
             month: 'long'
@@ -318,11 +311,11 @@ Custom property | Description | Default
             year: 'numeric'
           });
         }
-        for (var i = 0; i < 7; i++) {
+        for (let i = 0; i < 7; i++) {
           d = new Date(0, 0, i);
-          wd = (d.getDay() - 1 + 7) % 7;
-          if (this.$.dayCaption.children[wd]) {
-            this.$.dayCaption.children[wd].textContent = d.toLocaleDateString(this.locale, {
+          weekday = (d.getDay() - 1 + 7) % 7;
+          if (this.$.dayCaption.children[weekday]) {
+            this.$.dayCaption.children[weekday].textContent = d.toLocaleDateString(this.locale, {
               weekday: 'short'
             });
           }
@@ -335,7 +328,7 @@ Custom property | Description | Default
         if (!this.viewDate) {
           return;
         }
-        var d = new Date(this.viewDate);
+        const d = new Date(this.viewDate);
         this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
           month: 'long'
         });
@@ -343,29 +336,29 @@ Custom property | Description | Default
           year: 'numeric'
         });
 
-        var selectedDay, currentDay, firstDayOfMonth, min, max, year, month;
+        let selectedDay, currentDay, firstDayOfMonth, min, max, year, month;
         year = d.getFullYear();
         month = d.getMonth();
         firstDayOfMonth = Math.floor((new Date(year, month, 1).getTime()) / 865E5);
         currentDay = Math.ceil(new Date().getTime() / 865E5) - firstDayOfMonth;
 
-        if (this.date !== undefined) {
+        if (this.date) {
           selectedDay = Math.ceil((new Date(this.date).getTime()) / 865E5) - firstDayOfMonth;
         }
-        if (this.min !== undefined) {
+        if (this.min) {
           min = Math.ceil(+(new Date(this.min).getTime()) / 865E5) - firstDayOfMonth;
         }
-        if (this.max !== undefined) {
+        if (this.max) {
           max = Math.floor(+(new Date(this.max).getTime()) / 865E5) - firstDayOfMonth;
         }
 
-        var prevmonthlength = +new Date(year, month, 0).getDate();
-        var thismonthlength = +new Date(year, month + 1, 0).getDate();
-        var firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
+        const prevmonthlength = +new Date(year, month, 0).getDate();
+        const thismonthlength = +new Date(year, month + 1, 0).getDate();
+        const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
 
-        var counter = -(7 + firstWeekDay) + 1;
-        for (var i = 0; i < this.$.dates.children.length; i++) {
-          for (var j = 0; j < this.$.dates.children[i].children.length; j++) {
+        let counter = -(7 + firstWeekDay) + 1;
+        for (let i = 0; i < this.$.dates.children.length; i++) {
+          for (let j = 0; j < this.$.dates.children[i].children.length; j++) {
             // Day Numbers
             if (counter <= 0) {
               this.$.dates.children[i].children[j].classList.add('notinmonth');
@@ -402,7 +395,7 @@ Custom property | Description | Default
       }
 
       _toDate() {
-        var year = arguments[0],
+        let year = arguments[0],
           month = arguments[1],
           day = arguments[2],
           d;
@@ -424,10 +417,8 @@ Custom property | Description | Default
       }
 
       _minChanged(min) {
-        if (min === undefined) {
-          return;
-        }
-        var d = +(new Date(min));
+        if (!min) return;
+        const d = +(new Date(min));
         if (!d) {
           this.min = undefined;
         } else {
@@ -436,10 +427,8 @@ Custom property | Description | Default
       }
 
       _maxChanged(max) {
-        if (max === undefined) {
-          return;
-        }
-        var d = +(new Date(max));
+        if (!max) return;
+        const d = +(new Date(max));
         if (!d) {
           this.max = undefined;
         } else {
