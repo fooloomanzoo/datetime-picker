@@ -4,6 +4,12 @@
   "authors": [
     "Johannes Brautzsch <fooloomanzoo>"
   ],
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
   "keywords": [
     "web-components",
     "web-component",
@@ -18,6 +24,7 @@
     "url": "https://github.com/fooloomanzoo/datetime-picker.git"
   },
   "dependencies": {
+    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#^2.0.0",
     "polymer": "Polymer/polymer#^2.0.1"
   },
   "devDependencies": {

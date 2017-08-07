@@ -1,4 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="../iron-a11y-keys/iron-a11y-keys.html">
+
 <link rel="import" href="calendar-element.html">
 <link rel="import" href="time-element.html">
 
@@ -82,6 +85,8 @@
         background-color: var(--calendar-selected);
       }
     </style>
+
+    <iron-a11y-keys id="a11y" keys="esc" on-keys-pressed="_onEscapeKeyPressed"></iron-a11y-keys>
 
     <div>
       <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement">
@@ -313,6 +318,19 @@
         this.closeCalendarElement();
         this.closeTimeElement();
       }
+
+      _onEscapeKeyPressed() {
+        if (!this._useNative) {
+          if (this._calendarOpened) {
+            this.closeCalendarElement();
+          }
+
+          if (this._timeOpened) {
+            this.closeTimeElement();
+          }
+        }
+      }
+
       /**
        * Toggles polyfill calendar-element
        */
