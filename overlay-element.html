@@ -1,0 +1,55 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-overlay-behavior/iron-overlay-behavior.html">
+
+<!--
+`overlay-element`
+A element, that infuses a node to the iron-overlay-behavior implementation of Polymer.
+
+@demo demo/index.html
+-->
+
+<dom-module id="overlay-element">
+  <template strip-whitespace>
+    <slot></slot>
+  </template>
+
+  <script>
+    class OverlayElement extends Polymer.mixinBehaviors([Polymer.IronOverlayBehaviour], Polymer.Element) {
+      static get is() {
+        return 'overlay-element';
+      }
+
+      constructor(node) {
+        super();
+        if (node) {
+          this._node = node;
+        }
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        if (this._node) {
+          this.appendNode(node)
+        }
+      }
+
+      appendNode(node) {
+        setTimeout(() => {
+          this._node = node || this._node;
+          if (this._node && node.cloneNode) {
+            this.clearNodes();
+            this.$.content.appendChild(node.cloneNode(true));
+          }
+          this._node = null;
+        }, 0);
+      }
+
+      clearNodes() {
+        Array.prototype.forEach.call(this.childNodes, el => {
+          this.removeChild(el);
+        })
+      }
+    }
+    window.customElements.define(OverlayElement.is, OverlayElement);
+  </script>
+</dom-module>

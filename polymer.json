@@ -1,22 +1,25 @@
 {
   "entrypoint": "index.html",
   "shell": "datetime-picker.html",
-  "fragments": [ "datetime-picker.html" ],
-  "extraDependencies": [ "*/bower_components/**/*", "*/polymer/**/*" ],
-  "builds": [ {
-    "name": "compiled",
-    "bundle": {
-      "excludes": [ "*/bower_components/**/*", "*/polymer/**/*" ]
-    },
-    "js": {
-      "minify": true
-    },
-    "css": {
-      "minify": true
-    },
-    "html": {
-      "minify": true
-    }
+  "fragments": [
+    "calendar-element.html",
+    "datetime-picker.html",
+    "overlay-element.html"
+  ],
+  "extraDependencies": [ "bower_components/**/*", "polymer/**/*" ],
+  "builds": [   {
+    "name": "es6",
+    "bundle": false,
+    "js": { "compile": false, "minify": true },
+    "css": { "minify": true },
+    "html": { "minify": true }
+  },
+  {
+    "name": "es5",
+    "bundle": false,
+    "js": { "compile": true, "minify": true },
+    "css": { "minify": true },
+    "html": { "minify": true }
   } ],
   "lint": {
     "rules": [ "polymer-2" ]

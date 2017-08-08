@@ -27,6 +27,7 @@
   },
   "env": {
     "browser": true,
+    "node": true,
     "es6": true
   },
   "plugins": [ "html" ],
@@ -37,15 +38,6 @@
     "ShadyDOM": true,
     "ShadyCSS": true,
     "JSCompiler_renameProperty": true,
-    "WorkerGlobalScope": true,
-    "importScripts": true,
-    "ClientDatabase": true,
-    "ClientCache": true,
-    "Store": true,
-    "d3": true,
-    "io": true,
-    "idb": true,
-    "Webvisual": true,
-    "WebvisualMixins": true
+    "WorkerGlobalScope": true
   }
 }
