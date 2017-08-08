@@ -12,7 +12,8 @@
     "polymer": "Polymer/polymer#1.9 - 2"
   },
   "devDependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^3.0.1"
   },
   "variants": {
     "1.x": {
@@ -21,6 +22,10 @@
       },
       "devDependencies": {
         "web-component-tester": "^4.0.0",
+        "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+        "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+        "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
+        "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
       },
       "resolutions": {
