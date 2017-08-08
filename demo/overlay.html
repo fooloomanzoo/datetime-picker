@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>overlay-element demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../import.html">
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        .vertical-section-container {
+          margin: 0.75em;
+          padding: 0.5em;
+          line-height: 1.5;
+        }
+      </style>
+    </custom-style>
+  </head>
+
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>calendar in custom style</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="bind">
+            <template is="dom-bind">
+              <time-element id="timer"></time-element>
+              <overlay-element id="overlay" with-backdrop></overlay-element>
+              <button type="button" name="add" on-click="appendTimer">add a timer to an overlay</button>
+              <button type="button" name="clear" on-click="clearOverlay">clear an overlay</button>
+              <button type="button" name="open" on-click="openOverlay">open the overlay</button>
+            </template>
+            <script>
+              const dombind = document.querySelector('#bind');
+
+              dombind.appendTimer = () => {
+                const timer = document.querySelector('#timer');
+                const overlay = document.querySelector('#overlay');
+                overlay.appendNode(timer);
+              };
+              dombind.clearOverlay = () => {
+                const overlay = document.querySelector('#overlay');
+                overlay.clearNodes();
+              };
+              dombind.openOverlay = () => {
+                const overlay = document.querySelector('#overlay');
+                overlay.open();
+              };
+            </script>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+
+</html>

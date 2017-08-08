@@ -5,7 +5,7 @@
 `overlay-element`
 A element, that infuses a node to the iron-overlay-behavior implementation of Polymer.
 
-@demo demo/index.html
+@demo demo/overlay.html
 -->
 
 <dom-module id="overlay-element">
@@ -14,7 +14,7 @@ A element, that infuses a node to the iron-overlay-behavior implementation of Po
   </template>
 
   <script>
-    class OverlayElement extends Polymer.mixinBehaviors([Polymer.IronOverlayBehaviour], Polymer.Element) {
+    class OverlayElement extends Polymer.mixinBehaviors([Polymer.IronOverlayBehavior], Polymer.Element) {
       static get is() {
         return 'overlay-element';
       }
@@ -29,21 +29,30 @@ A element, that infuses a node to the iron-overlay-behavior implementation of Po
       connectedCallback() {
         super.connectedCallback();
         if (this._node) {
-          this.appendNode(node)
+          this.clearNodes();
+          this.appendNode();
         }
       }
 
+      /**
+       * adds a node to the overlay
+       * @method appendNode
+       * @param {HTMLElement} node [the node, that is it to add to the overlay]
+       */
       appendNode(node) {
         setTimeout(() => {
           this._node = node || this._node;
           if (this._node && node.cloneNode) {
             this.clearNodes();
-            this.$.content.appendChild(node.cloneNode(true));
+            this.appendChild(node.cloneNode(true));
           }
           this._node = null;
         }, 0);
       }
-
+      /**
+       * clears the overlay
+       * @method clearNodes
+       */
       clearNodes() {
         Array.prototype.forEach.call(this.childNodes, el => {
           this.removeChild(el);

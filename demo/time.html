@@ -1,0 +1,73 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>time-element demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../import.html">
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        .result {
+          margin: 0.5em;
+          line-height: 1.5em;
+        }
+        .result * {
+          padding: 0.25em;
+        }
+      </style>
+    </custom-style>
+  </head>
+
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>standalone time-picker</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <time-element time="{{time}}"></time-element>
+              <div class="vertical-section-container result">
+                <div><code>time</code>: <b>[[time]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>time-picker and custom style</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <custom-style>
+                <style is="custom-style">
+                  time-element.custom {
+                    --datetime-background: #A0D49F;
+                    --datetime-color: #082808;
+                    --datetime-selected-background: #8E1079;
+                    --datetime-selected-color: #f1f1f1;
+                  }
+                </style>
+              </custom-style>
+              <time-element class="custom" time="{{time}}"></time-element>
+              <div class="vertical-section-container result">
+                <div><code>time</code>: <b>[[time]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+
+</html>

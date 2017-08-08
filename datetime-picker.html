@@ -1,34 +1,52 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="calendar-element.html">
 <link rel="import" href="time-element.html">
+<link rel="import" href="overlay-element.html">
+<link rel="import" href="datetime-shared-style.html">
+
+<!--
+  `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
+
+  If the `calendar-` or the `time-element` should appear in an overlay then set the `overlay` of the element, else it will appear as a backdrop. The elements are then infused into an element that extends *IronOverlayBehavior* and will reproduce it's attribute-bindings to `datetime-picker`.
+
+  If you build an app using `polymer-cli` or `polymer-build` and bundle your resources and still wnat to maintain the optional load capability, then please note `bower_components/*` in `extraDependencies`.
+
+  Unbundled and minified versions are provided in `build/es5` and in `build/es6`. When you use them, you have to consider the correct location of the dependencies. You can build the sources manually by running `npm run build` or `gulp build`.
+
+  #### Example
+
+  ```html
+  <datetime-picker value="{{value}}"></datetime-picker>
+  ```
+  
+  Custom property | Description | Default
+  ----------------|-------------|----------
+  `--datetime-background` | text-color of the time-element | `#252525`
+  `--datetime-color` | text-color of the time-element | `#ccc`
+  `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #253EEC`
+  `--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f1f1f1`
+  `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
+  `--datetime-button` | Mixin applied to the buttons | `{}`
+  `--datetime-input` | Mixin applied to the inputs | `{}`
+  `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor;}`
+  `--datetime-picker-input` | Mixin applied to the inputs of the datetime-picker| `{padding: 0.5em 0.25em;}`
+
+  @customElement
+  @polymer
+  @demo demo/datetime-picker.html
+-->
 
 <dom-module id="datetime-picker">
   <template>
-    <style>
+    <style include="datetime-shared-style">
       :host {
         display: inline-flex;
-        outline: none;
-        box-sizing: border-box;
-        position: relative;
-        --calendar-icon: {
-          padding: 0.5em;
-          height: 1em;
-          will-change: background-color;
-          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-          cursor: pointer;
-          fill: currentColor;
-        };
-      }
-      :host > * {
-        position: relative;
       }
       .backdrop {
         position: absolute;
         opacity: 0;
-        will-change: opacity;
         transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
         pointer-events: none;
-        @apply --calendar-element;
       }
       .backdrop[opened] {
         opacity: 1;
@@ -60,25 +78,20 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
-      .input {
-        position: relative;
-        box-sizing: content-box;
-        padding: 0.4em 0.2em;
-        font-family: inherit;
-        font-size: 0.75em;
-        text-align: center;
+      input#date,
+      input#time {
         @apply --datetime-picker-input;
       }
     </style>
 
     <div>
-      <input id="date" class="input" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement">
+      <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement" size="10">
       <template is="dom-if" if="[[!_useNative]]">
         <calendar-element class="backdrop" date="{{date}}" min="{{min}}" max="{{max}}" opened$="{{calendarOpened}}" closable></calendar-element>
       </template>
     </div>
     <div>
-      <input id="time" class="input" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement">
+      <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement" size="10">
       <template is="dom-if" if="[[!_useNative]]">
         <time-element class="backdrop" time="{{time}}" opened$="{{timeOpened}}" closable></time-element>
       </template>
@@ -87,14 +100,6 @@
   </template>
 
   <script>
-    /**
-     * `datetime-picker`
-     * A picker for date and time, that prefers to use the native input.
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
     class DatetimePicker extends Polymer.Element {
       static get is() {
         return 'datetime-picker';
@@ -134,15 +139,13 @@
            * The minimal date (format: 'YYYY-MM-DD')
            */
           min: {
-            type: String,
-            notify: true
+            type: String
           },
           /**
            * The maximal date (format: 'YYYY-MM-DD')
            */
           max: {
-            type: String,
-            notify: true
+            type: String
           },
           /**
            * The absolute position of the polyfill calender-element ('top', 'bottom', 'right', 'left', 'center') to the container
@@ -167,11 +170,15 @@
           disabled: {
             type: Boolean
           },
-
+          /**
+           * true if the time-picker is opened
+           */
           timeOpened: {
             type: Boolean
           },
-
+          /**
+           * true if the date-picker is opened
+           */
           calendarOpened: {
             type: Boolean
           },

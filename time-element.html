@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="datetime-shared-style.html">
 
 <!--
 `time-element`
@@ -6,44 +7,40 @@ A polyfill time picker using Polymer.
 
 To connect it with inputs, try it like:
 
+  ```html
     <input id="time" type="text" value="{{time::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
 
     <time-element time="{{time}}"></time-element>
+  ```
 
 The following custom properties and mixins are also available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
-`--calendar-background` | text-color of the time-element | `#252525`
-`--calender-color` | text-color of the time-element | `#ccc`
-`--calendar-selected` | background-color of the focussed time-input | `--primary-color, #253EEC`
-`--calender-element` | Mixin applied to the time-element | `{}`
+`--datetime-background` | text-color of the time-element | `#252525`
+`--datetime-color` | text-color of the time-element | `#ccc`
+`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #253EEC`
+`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f1f1f1`
+`--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
+`--datetime-button` | Mixin applied to the buttons | `{}`
+`--datetime-input` | Mixin applied to the inputs | `{}`
+`--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor;}`
 
-@demo demo/index.html
+@demo demo/time.html
 -->
 
 <dom-module id="time-element">
   <template strip-whitespace>
-    <style>
+    <style include="datetime-shared-style">
       :host {
         display: inline-block;
-        font-family: inherit;
-        background-color: var(--calendar-background, #252525);
-        color: var(--calendar-color, #ccc);
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: transparent;
-        outline-width: 0;
-        -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-        --calendar-selected: var(--primary-color, #253EEC);
-        font-size: 0.8em;
-        padding: 6px;
-        @apply --calendar-element;
-      }
-      :host > * {
-        position: relative;
+        background-color: var(--datetime-background);
+        color: var(--datetime-color);
+        @apply --datetime-element;
       }
       #content {
-        width: 100%;
-        display: inline-flex;
+        position: relative;
+        display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
@@ -55,53 +52,14 @@ Custom property | Description | Default
         flex-wrap: nowrap;
         align-items: center;
       }
-      .field {
-        @apply --calendar-timer-field;
-      }
       .button {
-        cursor: pointer;
-        will-change: background-color;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-        color: inherit;
-        fill: currentColor;
         height: 1.75em;
-        width: 100%;
-        @apply --calendar-timer-button;
+        align-self: stretch;
       }
-      .button:hover {
-        cursor: pointer;
-        background-color: var(--calendar-selected);
-      }
-      input.time {
-        border-radius: 2px;
-        -moz-appearance: textfield;
-        padding: 0.25em;
-        width: 1.5em;
+      input.timer {
+        width: 1.75em;
         height: 1.5em;
-        outline: none;
-        font-family: inherit;
-        text-align: center;
-        border: none;
-        background-color: var(--calendar-background, #333);
-        color: inherit;
-        @apply --calendar-time;
-      }
-      input.time::-webkit-outer-spin-button,
-      input.time::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-      }
-      input::-webkit-input-placeholder {
-        color: currentColor;
-      }
-      input.time:focus {
-        background-color: var(--calendar-selected);
-      }
-      #icon {
-        @apply --calendar-icon;
-      }
-      #icon:hover {
-        background-color: var(--calendar-selected);
+        background-color: var(--datetime-background);
       }
     </style>
 
@@ -110,7 +68,7 @@ Custom property | Description | Default
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="hour" type="number" min="0" max="23" step="1"  tabindex="0" on-keydown="_checkKeycode" value="{{hour::input}}" placeholder="00">
+        <input class="timer" id="hour" type="number" min="0" max="23" step="1"  tabindex="0" on-keydown="_checkKeycode" value="{{hour::input}}" placeholder="00">
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
@@ -120,7 +78,7 @@ Custom property | Description | Default
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="minute" type="number" min="0" max="59" step="1" tabindex="1" on-keydown="_checkKeycode" value="{{minute::input}}" placeholder="00">
+        <input class="timer" id="minute" type="number" min="0" max="59" step="1" tabindex="1" on-keydown="_checkKeycode" value="{{minute::input}}" placeholder="00">
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
@@ -129,13 +87,13 @@ Custom property | Description | Default
         <svg class="button" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="second" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="time" id="second" type="number" min="0" max="59" step="1" tabindex="2" on-keydown="_checkKeycode" value="{{second::input}}" placeholder="00">
+        <input class="timer" id="second" type="number" min="0" max="59" step="1" tabindex="2" on-keydown="_checkKeycode" value="{{second::input}}" placeholder="00">
         <svg class="button" viewBox="0 0 24 24" for="second" step="-1" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" >
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
-      <div>
-        <svg id="icon" hidden$="[[!closable]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+      <div hidden$="[[!closable]]">
+        <svg class="icon" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
       </div>
     </div>
   </template>
@@ -154,15 +112,15 @@ Custom property | Description | Default
           opened: {
             type: Boolean,
             notify: true,
-            reflectToAttribute: true
+            reflectToAttribute: true,
+            value: false
           },
           /**
            * true if the element is closable (then an icon is shown)
            */
           closable: {
             type: Boolean,
-            notify: true,
-            reflectToAttribute: true
+            value: false
           },
           /**
            * The time as a string of the selected date

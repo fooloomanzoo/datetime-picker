@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>datetime-picker demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../import.html">
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        .result {
+          margin: 0.75em;
+          padding: 0.5em;
+          line-height: 1.5;
+        }
+      </style>
+    </custom-style>
+  </head>
+
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>native datetime-picker, if available</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <datetime-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></datetime-picker>
+              <div class="vertical-section-container result">
+                <div><code>numeric value</code>: <b>[[value]]</b></div>
+                <div><code>date</code>: <b>[[date]]</b></div>
+                <div><code>time</code>: <b>[[time]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>force non-native datetime-picker</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <datetime-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
+              <div class="vertical-section-container result">
+                <div><code>numeric value</code>: <b>[[value]]</b></div>
+                <div><code>date</code>: <b>[[date]]</b></div>
+                <div><code>time</code>: <b>[[time]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>range of dates</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <custom-style>
+                <style is="custom-style">
+                  datetime-picker.begin {
+                    --datetime-selected-background: #8E1010;
+                  }
+                  datetime-picker.end {
+                    --datetime-selected-background: #10378E;
+                  }
+                </style>
+              </custom-style>
+              <div class="vertical-section-container">
+                <datetime-picker class="begin" use-not-native value="{{min}}" max="{{max}}"></datetime-picker>
+                <datetime-picker class="end" use-not-native value="{{max}}" min="{{min}}" position="bottom"></datetime-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>min</code>: <b>[[min]]</b></div>
+                <div><code>max</code>: <b>[[max]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+
+</html>
