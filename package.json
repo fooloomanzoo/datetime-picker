@@ -1,18 +1,44 @@
 {
   "name": "datetime-picker",
   "version": "2.0.5",
-  "authors": [ "Johannes Brautzsch <johannes.brautzsch@gmail.com>" ],
+  "authors": [
+    "Johannes Brautzsch <johannes.brautzsch@gmail.com>"
+  ],
   "description": "A picker for date and time, that prefers to use the native input.",
   "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
-  "keywords": [ "web-component", "web-components", "polymer", "datepicker", "datetimepicker", "datetime-picker", "calendar" ],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "datepicker",
+    "datetimepicker",
+    "datetime-picker",
+    "calendar"
+  ],
   "main": "index.html",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "build": "polymer build",
+    "build": "gulp build",
     "start": "polymer serve",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-preset-babili": "*",
+    "babel-preset-es2015": "*",
+    "css-slam": "*",
+    "del": "*",
+    "gulp": "^3.9.1",
+    "gulp-babel": "*",
+    "gulp-debug": "*",
+    "gulp-filter": "*",
+    "gulp-help": "*",
+    "gulp-html-minifier": "*",
+    "gulp-if": "*",
+    "merge-stream": "*",
+    "polymer-build": "*"
   },
   "repository": {
     "type": "git",

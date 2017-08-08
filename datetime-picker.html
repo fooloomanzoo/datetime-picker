@@ -10,12 +10,19 @@
         outline: none;
         box-sizing: border-box;
         position: relative;
+        --calendar-icon: {
+          padding: 0.5em;
+          height: 1em;
+          will-change: background-color;
+          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          cursor: pointer;
+          fill: currentColor;
+        };
       }
       :host > * {
         position: relative;
       }
-      #calendar,
-      #timepicker {
+      .backdrop {
         position: absolute;
         opacity: 0;
         will-change: opacity;
@@ -23,44 +30,37 @@
         pointer-events: none;
         @apply --calendar-element;
       }
-      #calendar[opened],
-      #timepicker[opened] {
+      .backdrop[opened] {
         opacity: 1;
         z-index: 1;
         pointer-events: all;
       }
-      :host([position="top"]) #calendar,
-      :host([position="top"]) #timepicker {
+      :host([position="top"]) .backdrop {
         top: 0;
         left: 0;
         transform: translateY(-100%);
       }
-      :host([position="bottom"]) #calendar,
-      :host([position="bottom"]) #timepicker {
+      :host([position="bottom"]) .backdrop {
         bottom: 0;
         left: 0;
         transform: translateY(100%);
       }
-      :host([position="left"]) #calendar,
-      :host([position="left"]) #timepicker {
+      :host([position="left"]) .backdrop {
         top: 0;
         left: 0;
         transform: translateX(-100%);
       }
-      :host([position="right"]) #calendar,
-      :host([position="right"]) #timepicker {
+      :host([position="right"]) .backdrop {
         top: 0;
         right: 0;
         transform: translateX(100%);
       }
-      :host([position="center"]) #calendar,
-      :host([position="center"]) #timepicker {
+      :host([position="center"]) .backdrop {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
-      #date,
-      #time {
+      .input {
         position: relative;
         box-sizing: content-box;
         padding: 0.4em 0.2em;
@@ -69,33 +69,18 @@
         text-align: center;
         @apply --datetime-picker-input;
       }
-      #icon {
-        padding: 0.5em;
-        height: 1em;
-        will-change: background-color;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-        cursor: pointer;
-        fill: currentColor;
-      }
-      #icon:hover {
-        background-color: var(--calendar-selected);
-      }
     </style>
 
     <div>
-      <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement">
+      <input id="date" class="input" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement">
       <template is="dom-if" if="[[!_useNative]]">
-        <calendar-element id="calendar" date="{{date}}" min="{{min}}" max="{{max}}" opened$="[[_calendarOpened]]">
-          <svg id="icon" viewBox="0 0 24 24" on-click="closeCalendarElement"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
-        </calendar-element>
+        <calendar-element class="backdrop" date="{{date}}" min="{{min}}" max="{{max}}" opened$="{{calendarOpened}}" closable></calendar-element>
       </template>
     </div>
     <div>
-      <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement">
+      <input id="time" class="input" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement">
       <template is="dom-if" if="[[!_useNative]]">
-        <time-element id="timepicker" time="{{time}}" opened$="[[_timeOpened]]">
-          <svg id="icon" viewBox="0 0 24 24" on-click="closeTimeElement"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
-        </time-element>
+        <time-element class="backdrop" time="{{time}}" opened$="{{timeOpened}}" closable></time-element>
       </template>
     </div>
 
@@ -177,25 +162,17 @@
           },
 
           /**
-           * Indicates whether the polyfill calender is opened
-           */
-          opened: {
-            type: Boolean,
-            reflectToAttribute: true
-          },
-
-          /**
            * disables the input elements
            */
           disabled: {
             type: Boolean
           },
 
-          _timeOpened: {
+          timeOpened: {
             type: Boolean
           },
 
-          _calendarOpened: {
+          calendarOpened: {
             type: Boolean
           },
 
@@ -292,43 +269,43 @@
       /**
        * Toggles polyfill calendar-element and time-element
        */
-      toggle() {
-        this.toggleCalendarElement();
-        this.toggleTimeElement();
+      toggle(e) {
+        this.toggleCalendarElement(e);
+        this.toggleTimeElement(e);
       }
       /**
        * Opens polyfill calendar-element and time-element
        */
-      open() {
-        this.openCalendarElement();
-        this.openTimeElement();
+      open(e) {
+        this.openCalendarElement(e);
+        this.openTimeElement(e);
       }
       /**
        * Close polyfill calendar-element and time-element
        */
-      close() {
-        this.closeCalendarElement();
-        this.closeTimeElement();
+      close(e) {
+        this.closeCalendarElement(e);
+        this.closeTimeElement(e);
       }
       /**
        * Toggles polyfill calendar-element
        */
-      toggleCalendarElement() {
-        if (!this._useNative) {
-          if (this._calendarOpened && !this._timeOpened) {
-            this.closeCalendarElement();
-          } else {
-            this.openCalendarElement();
-          }
+      toggleCalendarElement(e) {
+        if (this.calendarOpened && !this.timeOpened) {
+          this.closeCalendarElement(e);
+        } else {
+          this.openCalendarElement(e);
         }
       }
       /**
        * Opens polyfill calendar-element
        */
-      openCalendarElement() {
+      openCalendarElement(e) {
         if (!this._useNative) {
-          this._calendarOpened = true;
-          this._timeOpened = false;
+          this.calendarOpened = true;
+          this.timeOpened = false;
+        } else if (e && e.target && e.target !== this.$.calendar) {
+          this._dispathClickEvent.call(this.$.calendar);
         }
       }
       /**
@@ -336,28 +313,28 @@
        */
       closeCalendarElement() {
         if (!this._useNative) {
-          this._calendarOpened = false;
+          this.calendarOpened = false;
         }
       }
       /**
        * Toggles polyfill time-element
        */
-      toggleTimeElement() {
-        if (!this._useNative) {
-          if (!this._calendarOpened && this._timeOpened) {
-            this.closeTimeElement();
-          } else {
-            this.openTimeElement();
-          }
+      toggleTimeElement(e) {
+        if (!this.calendarOpened && this.timeOpened) {
+          this.closeTimeElement(e);
+        } else {
+          this.openTimeElement(e);
         }
       }
       /**
        * Opens polyfill time-element
        */
-      openTimeElement() {
+      openTimeElement(e) {
         if (!this._useNative) {
-          this._calendarOpened = false;
-          this._timeOpened = true;
+          this.calendarOpened = false;
+          this.timeOpened = true;
+        } else if (e && e.target && e.target !== this.$.time) {
+          this._dispathClickEvent.call(this.$.time);
         }
       }
       /**
@@ -365,13 +342,17 @@
        */
       closeTimeElement() {
         if (!this._useNative) {
-          this._timeOpened = false;
+          this.timeOpened = false;
         }
       }
 
       _onKeyDown(e) {
         if (e && e.keyCode === 27)
           this.close();
+      }
+
+      _dispathClickEvent() {
+        this.dispatchEvent(new MouseEvent('click', { view: window, bubbles: false, cancelable: true }));
       }
 
       _computeUseNative(_nativeDateTime, useNotNative) {

@@ -1,7 +1,4 @@
-# bower_components
-
 bower_components
-build
+node_modules
 
 *.iml
-
