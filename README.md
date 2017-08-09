@@ -74,7 +74,8 @@ bower install --save fooloomanzoo/datetime-picker
 
 ### Polymer Build Considerations
 
-If you build an app using `polymer-cli` or `polymer-build` and bundle your resources, then you need to put `..., "bower_components/datetime-picker/lazy-import.html", "bower_components/datetime-picker/overlay-element.html ,..."` in `"fragments"` and `"bower_components/datetime-picker/datetime-picker.html"` in `"extraDependencies"`, or load them directly, to keep them to be included in the app.
+If you build an app using `polymer-cli` or `polymer-build` and **bundle** your resources, lazy loading won't work, because the project bundler won't recognize the dependencies. You **need** to put: `..,"bower_components/datetime-picker/lazy-import.html", "bower_components/datetime-picker/overlay-element.html,.."` in `"fragments"` 
+and `"..,bower_components/datetime-picker/datetime-picker.html,.."` in `"extraDependencies"` (or load them **directly**) to keep them to be included in your project build and make the polyfill work.
 
 You can build the sources manually unbundled by running `npm run build` or `gulp build` with the provided script.
 
