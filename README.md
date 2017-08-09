@@ -9,16 +9,20 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 <custom-element-demo>
   <template>
+    <link rel="import" href="lazy-import.html">
     <link rel="import" href="datetime-picker.html">
-    <next-code-block></next-code-block>
+    <template is="dom-bind">
+      <next-code-block></next-code-block>
+    </template>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<datetime-picker></datetime-picker>
-
-<datetime-picker use-not-native></datetime-picker>
+<datetime-picker value="{{value}}"></datetime-picker>
+<div>Two pickers can be synchronized:  <b>[[synchronized]]</b></div>
+<div>A number representation is automaticly provided:  <b>[[value]]</b></div>
+<datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
 ```
 
 ### What is it for?
