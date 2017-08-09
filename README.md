@@ -23,7 +23,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 <div>Two pickers can be synchronized:  <b>[[synchronized]]</b></div>
 <div>A number representation is automaticly provided:  <b>[[value]]</b></div>
 
-<datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
+<datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}" overlay></datetime-picker>
 ```
 
 ### What is it for?
