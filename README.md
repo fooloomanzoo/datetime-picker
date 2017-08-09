@@ -10,9 +10,11 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
     <link rel="import" href="calendar-element.html">
     <link rel="import" href="overlay-element.html">
     <link rel="import" href="datetime-picker.html">
-    <template is="dom-bind">
-      <next-code-block></next-code-block>
-    </template>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
   </template>
 </custom-element-demo>
 ```
