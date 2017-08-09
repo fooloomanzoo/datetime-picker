@@ -27,7 +27,7 @@
   <body>
 
     <div class="vertical-section-container centered">
-      <h3>standalone calendar</h3>
+      <h3>Create a standalone calendar</h3>
       <demo-snippet>
         <template>
           <calendar-element></calendar-element>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>calendar and custom style</h3>
+      <h3>Create a calendar with custom style</h3>
       <demo-snippet>
         <template>
           <dom-bind>
@@ -62,13 +62,13 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>range of dates</h3>
+      <h3>Handling a range of dates</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
               <div class="horizontal-section-container">
-                <calendar-element date="{{min}}" max="{{max}}"></calendar-element>
+                <calendar-element date="{{min}}" max="{{max}}" style="margin-right: 6px;"></calendar-element>
                 <calendar-element date="{{max}}" min="{{min}}"></calendar-element>
               </div>
               <div class="vertical-section-container result">

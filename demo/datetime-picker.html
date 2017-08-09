@@ -25,7 +25,7 @@
   <body>
 
     <div class="vertical-section-container centered">
-      <h3>native datetime-picker, if available</h3>
+      <h3>Create a native datetime-picker, if available</h3>
       <demo-snippet>
         <template>
           <dom-bind>
@@ -43,12 +43,12 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>force non-native datetime-picker</h3>
+      <h3>Force to create a non-native datetime-picker</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}" opened></datetime-picker>
+              <datetime-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>range of dates</h3>
+      <h3>Handling range of dates</h3>
       <demo-snippet>
         <template>
           <dom-bind>
@@ -69,20 +69,38 @@
               <custom-style>
                 <style is="custom-style">
                   datetime-picker.begin {
-                    --datetime-selected-background: #8E1010;
+                    --datetime-selected-background: #CC1C1C;
                   }
                   datetime-picker.end {
-                    --datetime-selected-background: #10378E;
+                    --datetime-selected-background: #2362EC;
                   }
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <datetime-picker class="begin" use-not-native value="{{min}}" max="{{max}}"></datetime-picker>
-                <datetime-picker class="end" use-not-native value="{{max}}" min="{{min}}" position="bottom"></datetime-picker>
+                <datetime-picker class="begin" use-not-native value="{{min}}" max="{{max}}" vertical-align="bottom"></datetime-picker>
+                <datetime-picker class="end" use-not-native value="{{max}}" min="{{min}}" vertical-align="top"></datetime-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>min</code>: <b>[[min]]</b></div>
                 <div><code>max</code>: <b>[[max]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Create with overlay and backdrop</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <div class="vertical-section-container">
+                <datetime-picker use-not-native overlay with-backdrop datetime="{{datetime}}"></datetime-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>:  <b>[[datetime]]</b></div>
               </div>
             </template>
           </dom-bind>

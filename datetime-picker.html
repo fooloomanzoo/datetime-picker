@@ -1,32 +1,28 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="calendar-element.html">
-<link rel="import" href="time-element.html">
-<link rel="import" href="overlay-element.html">
 <link rel="import" href="datetime-shared-style.html">
 
 <!--
   `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
 
-  If the `calendar-` or the `time-element` should appear in an overlay then set the `overlay` of the element, else it will appear as a backdrop. The elements are then infused into an element that extends *IronOverlayBehavior* and will reproduce it's attribute-bindings to `datetime-picker`.
+  If the `calendar-` or the `time-element` should appear in an overlay then set the `overlay`-attribute of the element, else it will appear as a backdrop. The elements are then slotted into an element that extends *IronOverlayBehavior* and will create some attribute-bindings to `datetime-picker`.
 
-  If you build an app using `polymer-cli` or `polymer-build` and bundle your resources and still wnat to maintain the optional load capability, then please note `bower_components/*` in `extraDependencies`.
+  If you build an app using `polymer-cli` or `polymer-build` and bundle your resources, then you need to put `..., "bower_components/datetime-picker/lazy-import.html", "bower_components/datetime-picker/overlay-element.html ,..."` in `"fragments"` and "bower_components/datetime-picker/datetime-picker.html" in `"extraDependencies"`, or load them directly, to keep them to be loaded.
 
-  Unbundled and minified versions are provided in `build/es5` and in `build/es6`. When you use them, you have to consider the correct location of the dependencies. You can build the sources manually by running `npm run build` or `gulp build`.
+  You can build the sources manually unbundled by running `npm run build` or `gulp build`.
 
   #### Example
 
   ```html
   <datetime-picker value="{{value}}"></datetime-picker>
   ```
-  
+
   Custom property | Description | Default
   ----------------|-------------|----------
   `--datetime-background` | text-color of the time-element | `#252525`
   `--datetime-color` | text-color of the time-element | `#ccc`
-  `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #253EEC`
-  `--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f1f1f1`
+  `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
+  `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
   `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
-  `--datetime-button` | Mixin applied to the buttons | `{}`
   `--datetime-input` | Mixin applied to the inputs | `{}`
   `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor;}`
   `--datetime-picker-input` | Mixin applied to the inputs of the datetime-picker| `{padding: 0.5em 0.25em;}`
@@ -42,38 +38,72 @@
       :host {
         display: inline-flex;
       }
-      .backdrop {
+      .dropdown {
         position: absolute;
         opacity: 0;
         transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
         pointer-events: none;
       }
-      .backdrop[opened] {
+      .dropdown:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: calc(0.5em + 1px);
+        border-style: solid;
+        border-color: transparent transparent transparent transparent;
+        left: auto;
+        top: auto;
+        bottom: auto;
+        right: auto;
+      }
+      .dropdown[opened] {
         opacity: 1;
         z-index: 1;
         pointer-events: all;
       }
-      :host([position="top"]) .backdrop {
+      :host([vertical-align="bottom"]) .dropdown {
         top: 0;
         left: 0;
         transform: translateY(-100%);
       }
-      :host([position="bottom"]) .backdrop {
+      :host([vertical-align="bottom"]) .dropdown:after {
+        bottom: -1em;
+        left: 1em;
+        border-top-color: var(--datetime-background);
+      }
+      :host([vertical-align="top"]) .dropdown {
         bottom: 0;
         left: 0;
         transform: translateY(100%);
       }
-      :host([position="left"]) .backdrop {
+      :host([vertical-align="top"]) .dropdown:after {
+        top: -1em;
+        left: 1em;
+        border-bottom-color: var(--datetime-background);
+      }
+      :host([horizontal-align="right"]) .dropdown {
         top: 0;
         left: 0;
         transform: translateX(-100%);
       }
-      :host([position="right"]) .backdrop {
+      :host([horizontal-align="right"]) .dropdown:after {
+        top: 1em;
+        right: -1em;
+        border-left-color: var(--datetime-background);
+      }
+      :host([horizontal-align="left"]) .dropdown {
         top: 0;
         right: 0;
         transform: translateX(100%);
       }
-      :host([position="center"]) .backdrop {
+      :host([horizontal-align="left"]) .dropdown:after {
+        top: 1em;
+        left: -1em;
+        border-right-color: var(--datetime-background);
+      }
+      :host([vertical-align="auto"]) .dropdown,
+      :host([horizontal-align="auto"]) .dropdown {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -82,18 +112,39 @@
       input#time {
         @apply --datetime-picker-input;
       }
+      input#date:hover,
+      input#time:hover {
+        background-color: var(--datetime-selected-background);
+        color: var(--datetime-selected-color);
+      }
     </style>
 
     <div>
-      <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="toggleCalendarElement" size="10">
+      <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="_toggleCalendarElement" size="10" placeholder="yyyy-mm-dd">
       <template is="dom-if" if="[[!_useNative]]">
-        <calendar-element class="backdrop" date="{{date}}" min="{{min}}" max="{{max}}" opened$="{{calendarOpened}}" closable></calendar-element>
+        <template is="dom-if" if="[[overlay]]">
+          <overlay-element with-backdrop="[[withBackdrop]]" no-cancel-on-outside-click="[[noCancelOnOutsideClick]]" no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+          no-overlap vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" opened="{{calendarOpened}}">
+            <calendar-element date="{{date}}" min="[[min]]" max="[[max]]" opened="{{calendarOpened}}" closable></calendar-element>
+          </overlay-element>
+        </template>
+        <template is="dom-if" if="[[!overlay]]">
+          <calendar-element class="dropdown" date="{{date}}" min="[[min]]" max="[[max]]" opened="{{calendarOpened}}" closable></calendar-element>
+        </template>
       </template>
     </div>
     <div>
-      <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="toggleTimeElement" size="10">
+      <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="_toggleTimeElement" size="10" placeholder="--:--:--">
       <template is="dom-if" if="[[!_useNative]]">
-        <time-element class="backdrop" time="{{time}}" opened$="{{timeOpened}}" closable></time-element>
+        <template is="dom-if" if="[[overlay]]">
+          <overlay-element with-backdrop="[[withBackdrop]]" no-cancel-on-outside-click="[[noCancelOnOutsideClick]]" no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+          no-overlap vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" opened="{{timeOpened}}">
+            <time-element time="{{time}}" opened="{{timeOpened}}" closable></time-element>
+          </overlay-element>
+        </template>
+        <template is="dom-if" if="[[!overlay]]">
+          <time-element class="dropdown" time="{{time}}" opened="{{timeOpened}}" closable></time-element>
+        </template>
       </template>
     </div>
 
@@ -107,6 +158,7 @@
 
       static get properties() {
         return {
+
           /**
            * The date as a string of the selected date
            */
@@ -114,6 +166,7 @@
             type: String,
             notify: true
           },
+
           /**
            * The time as a string of the selected time
            */
@@ -121,13 +174,16 @@
             type: String,
             notify: true
           },
+
           /**
            * The datetime as a string of the selected date and time
            */
           datetime: {
             type: String,
+            notify: true,
             computed: '_computeDatetime(date, time)'
           },
+
           /**
            * The value of the selected date
            */
@@ -135,25 +191,19 @@
             type: Number,
             notify: true
           },
+
           /**
            * The minimal date (format: 'YYYY-MM-DD')
            */
           min: {
             type: String
           },
+
           /**
            * The maximal date (format: 'YYYY-MM-DD')
            */
           max: {
             type: String
-          },
-          /**
-           * The absolute position of the polyfill calender-element ('top', 'bottom', 'right', 'left', 'center') to the container
-           */
-          position: {
-            type: String,
-            value: 'top',
-            reflectToAttribute: true
           },
 
           /**
@@ -165,17 +215,38 @@
           },
 
           /**
+           * The orientation against which to align the element horizontally
+           * relative to the related input element. Possible values are "left", "right", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
+           */
+          horizontalAlign: {
+            type: String,
+            reflectToAttribute: true
+          },
+          /**
+           * The orientation against which to align the element vertically
+           * relative to the related input element. Possible values are "top", "bottom", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
+           */
+          verticalAlign: {
+            type: String,
+            reflectToAttribute: true,
+            value: 'top'
+          },
+
+          /**
+           * use calender-element and time-element in an overlay
+           */
+          overlay: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
            * disables the input elements
            */
           disabled: {
             type: Boolean
           },
-          /**
-           * true if the time-picker is opened
-           */
-          timeOpened: {
-            type: Boolean
-          },
+
           /**
            * true if the date-picker is opened
            */
@@ -183,13 +254,48 @@
             type: Boolean
           },
 
+          /**
+           * true if the time-picker is opened
+           */
+          timeOpened: {
+            type: Boolean
+          },
+
+          /**
+           * Set to true to display a backdrop behind the overlay. It traps the focus
+           * within the light DOM of the overlay.
+           */
+          withBackdrop: {
+            type: Boolean
+          },
+
+          /**
+           * Set to true to disable canceling the overlay with the ESC key.
+           */
+          noCancelOnEscKey: {
+            type: Boolean,
+            value: false,
+            observer: '_noCancelOnEscKeyChanged'
+          },
+
+          /**
+           * Set to true to disable canceling the overlay by clicking outside it.
+           */
+          noCancelOnOutsideClick: {
+            type: Boolean
+          },
+
           _nativeDateTime: {
             type: Boolean
           },
 
-          _useNative: {
+          _loadComplete: {
             type: Boolean,
-            computed: '_computeUseNative(_nativeDateTime, useNotNative)'
+            value: false
+          },
+
+          _useNative: {
+            type: Boolean
           }
         }
       }
@@ -198,7 +304,9 @@
         return [
           '_computeValue(datetime)',
           '_valueChanged(value)',
-          '_setInputTypes(_useNative)'
+          '_setInputTypes(_useNative)',
+          '_lazyLoad(_nativeDateTime, useNotNative, overlay)',
+          '_computeUseNative(_nativeDateTime, useNotNative, _loadComplete)'
         ]
       }
 
@@ -209,15 +317,14 @@
         } else {
           this._nativeDateTime = true;
         }
-        document.addEventListener("keydown", this._onKeyDown.bind(this), false);
       }
 
       disconnectedCallback() {
         super.disconnectedCallback();
       }
 
-      _setInputTypes(_useNative) {
-        if (_useNative) {
+      _setInputTypes(useNative) {
+        if (useNative) {
           this.$.date.type = 'date';
           this.$.time.type = 'time';
         } else {
@@ -273,97 +380,64 @@
         return '' + n;
       }
 
-      /**
-       * Toggles polyfill calendar-element and time-element
-       */
-      toggle(e) {
-        this.toggleCalendarElement(e);
-        this.toggleTimeElement(e);
-      }
-      /**
-       * Opens polyfill calendar-element and time-element
-       */
-      open(e) {
-        this.openCalendarElement(e);
-        this.openTimeElement(e);
-      }
-      /**
-       * Close polyfill calendar-element and time-element
-       */
-      close(e) {
-        this.closeCalendarElement(e);
-        this.closeTimeElement(e);
-      }
-      /**
-       * Toggles polyfill calendar-element
-       */
-      toggleCalendarElement(e) {
+      _toggleCalendarElement() {
         if (this.calendarOpened && !this.timeOpened) {
-          this.closeCalendarElement(e);
+          this.calendarOpened = false;
         } else {
-          this.openCalendarElement(e);
-        }
-      }
-      /**
-       * Opens polyfill calendar-element
-       */
-      openCalendarElement(e) {
-        if (!this._useNative) {
           this.calendarOpened = true;
           this.timeOpened = false;
-        } else if (e && e.target && e.target !== this.$.calendar) {
-          this._dispathClickEvent.call(this.$.calendar);
         }
       }
-      /**
-       * Close polyfill calendar-element
-       */
-      closeCalendarElement() {
-        if (!this._useNative) {
-          this.calendarOpened = false;
-        }
-      }
-      /**
-       * Toggles polyfill time-element
-       */
-      toggleTimeElement(e) {
-        if (!this.calendarOpened && this.timeOpened) {
-          this.closeTimeElement(e);
+
+      _toggleTimeElement() {
+        if (this.timeOpened && !this.calendarOpened) {
+          this.timeOpened = false;
         } else {
-          this.openTimeElement(e);
-        }
-      }
-      /**
-       * Opens polyfill time-element
-       */
-      openTimeElement(e) {
-        if (!this._useNative) {
           this.calendarOpened = false;
           this.timeOpened = true;
-        } else if (e && e.target && e.target !== this.$.time) {
-          this._dispathClickEvent.call(this.$.time);
         }
       }
-      /**
-       * Close polyfill time-element
-       */
-      closeTimeElement() {
-        if (!this._useNative) {
-          this.timeOpened = false;
+
+      _noCancelOnEscKeyChanged(noCancelOnEscKey) {
+        if (noCancelOnEscKey) {
+          document.removeEventListener("keydown", this._onKeyDown.bind(this), false);
+        } else {
+          document.addEventListener("keydown", this._onKeyDown.bind(this), false);
         }
       }
 
       _onKeyDown(e) {
-        if (e && e.keyCode === 27)
-          this.close();
+        if (e && e.keyCode === 27) {
+          this.calendarOpened = false;
+          this.timeOpened = false;
+        }
       }
 
-      _dispathClickEvent() {
-        this.dispatchEvent(new MouseEvent('click', { view: window, bubbles: false, cancelable: true }));
+      _lazyLoad(nativeDateTime, useNotNative, overlay) {
+        if (!nativeDateTime || useNotNative) {
+          const CalendarElement = customElements.get('calendar-element');
+          const TimeElement = customElements.get('time-element');
+          const OverlayElement = customElements.get('overlay-element');
+          Polymer.RenderStatus.afterNextRender(this, () => {
+            if (!(TimeElement && CalendarElement && OverlayElement)) {
+              Polymer.importHref(this.resolveUrl('lazy-import.html'), () => {
+                if (overlay && !OverlayElement) {
+                  this.loadComplete = false;
+                  Polymer.importHref(this.resolveUrl('overlay-element.html'), () => {
+                      this.loadComplete = true;
+                    });
+                } else {
+                  this.loadComplete = true;
+                }
+              });
+            }
+          });
+        }
       }
 
-      _computeUseNative(_nativeDateTime, useNotNative) {
-        return _nativeDateTime && !useNotNative;
+      _computeUseNative(nativeDateTime, useNotNative, loadComplete) { // eslint-disable-line no-unused-vars
+        if (nativeDateTime === undefined || useNotNative === undefined) return;
+        this._useNative = nativeDateTime && !useNotNative;
       }
     }
 

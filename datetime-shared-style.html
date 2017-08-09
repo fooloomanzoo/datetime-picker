@@ -8,7 +8,7 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--datetime-background` | text-color of the time-element | `#252525`
 `--datetime-color` | text-color of the time-element | `#ccc`
-`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #253EEC`
+`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`
 `--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f1f1f1`
 `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
 `--datetime-button` | Mixin applied to the buttons | `{}`
@@ -24,7 +24,7 @@ Custom property | Description | Default
     html {
       --datetime-background: #252525;
       --datetime-color: #ccc;
-      --datetime-selected-background: var(--primary-color, #253EEC);
+      --datetime-selected-background: var(--primary-color, #394FE8);
       --datetime-selected-color: #f1f1f1;
       --datetime-icon: {
         padding: 8px;
@@ -56,10 +56,10 @@ Custom property | Description | Default
         position: relative;
       }
       .button {
-        cursor: pointer;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         color: inherit;
         fill: currentColor;
+        cursor: pointer;
+        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         @apply --datetime-button;
       }
       .button:hover {
@@ -69,30 +69,22 @@ Custom property | Description | Default
       input[type=number] {
         -moz-appearance: textfield;
       }
-      input[type=number]::-webkit-outer-spin-button,
-      input[type=number]::-webkit-inner-spin-button {
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
       input::-webkit-datetime-edit-text,
-      input::-webkit-input-placeholder {
-        color: currentColor;
-      }
+      input::-webkit-input-placeholder,
       input::-webkit-inner-spin-button,
       input::-webkit-inner-spin-button,
       input::-webkit-clear-button,
       input::-webkit-calendar-picker-indicator,
       input::-webkit-inner-spin-button {
         color: currentColor;
-        mix-blend-mode: screen;
       }
-      input::-webkit-inner-spin-button:hover,
-      input::-webkit-inner-spin-button:hover,
-      input::-webkit-clear-button:hover,
-      input::-webkit-calendar-picker-indicator:hover,
-      input::-webkit-inner-spin-button:hover {
+      input[type="date"]:hover::-webkit-calendar-picker-indicator {
         background: transparent;
-        mix-blend-mode: unset;
       }
       input[type=text],
       input[type=number],
@@ -106,15 +98,8 @@ Custom property | Description | Default
         text-align: center;
         color: inherit;
         box-sizing: content-box;
+        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         @apply --datetime-input;
-      }
-      input[type=text]:focus,
-      input[type=number]:focus,
-      input[type=date]:focus,
-      input[type=time]:focus {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
-        outline: currentColor auto thin;
       }
       input::-webkit-inner-spin-button{
         mix-blend-mode: screen;

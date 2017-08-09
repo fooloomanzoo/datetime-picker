@@ -83,10 +83,8 @@ function build(prefix, compile) {
               console.log(`Creating ${prefix} build files...`);
             });
 
-          // we're not bundling - http/2 server-push manifests TFW !!!
-          // buildStream = buildStream.pipe(polymerProject.bundler());
+          buildStream = buildStream.pipe(polymerProject.bundler());
 
-          // Okay, time to pipe to the build directory
           buildStream = buildStream.pipe(gulp.dest(buildDirectory));
 
           // waitFor the buildStream to complete

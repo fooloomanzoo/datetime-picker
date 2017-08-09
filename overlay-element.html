@@ -3,7 +3,7 @@
 
 <!--
 `overlay-element`
-A element, that infuses a node to the iron-overlay-behavior implementation of Polymer.
+A helper-element, that creates an overlay using iron-overlay-behavior of Polymer.
 
 @demo demo/overlay.html
 -->
@@ -17,46 +17,6 @@ A element, that infuses a node to the iron-overlay-behavior implementation of Po
     class OverlayElement extends Polymer.mixinBehaviors([Polymer.IronOverlayBehavior], Polymer.Element) {
       static get is() {
         return 'overlay-element';
-      }
-
-      constructor(node) {
-        super();
-        if (node) {
-          this._node = node;
-        }
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-        if (this._node) {
-          this.clearNodes();
-          this.appendNode();
-        }
-      }
-
-      /**
-       * adds a node to the overlay
-       * @method appendNode
-       * @param {HTMLElement} node [the node, that is it to add to the overlay]
-       */
-      appendNode(node) {
-        setTimeout(() => {
-          this._node = node || this._node;
-          if (this._node && node.cloneNode) {
-            this.clearNodes();
-            this.appendChild(node.cloneNode(true));
-          }
-          this._node = null;
-        }, 0);
-      }
-      /**
-       * clears the overlay
-       * @method clearNodes
-       */
-      clearNodes() {
-        Array.prototype.forEach.call(this.childNodes, el => {
-          this.removeChild(el);
-        })
       }
     }
     window.customElements.define(OverlayElement.is, OverlayElement);
