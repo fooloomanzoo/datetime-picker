@@ -17,7 +17,8 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 -->
 ```html
 <datetime-picker></datetime-picker>
-<datetime-picker use-not-native align-top="bottom"></datetime-picker>
+
+<datetime-picker use-not-native></datetime-picker>
 ```
 
 ### What is it for?
