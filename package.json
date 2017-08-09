@@ -1,14 +1,11 @@
 {
   "name": "datetime-picker",
-  "version": "2.0.7",
-  "authors": [ "Johannes Brautzsch <johannes.brautzsch@gmail.com>" ],
-  "description": "A picker for date and time, that prefers to use the native input.",
+  "version": "2.0.8",
+  "authors": [ "Johannes Brautzsch <fooloomanzoo>" ],
+  "description": "A picker for date and time, that prefers to use the native input. It includes a calendar and a timer.",
   "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
-  "keywords": [ "web-component", "web-components", "polymer", "datepicker", "datetimepicker", "datetime-picker", "calendar" ],
+  "keywords": [ "web-component", "web-components", "polymer", "datepicker", "datetimepicker", "datetime-picker", "calendar", "timer" ],
   "main": "index.html",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "preinstall": "bower install",
     "prebuild": "polymer analyze > analysis.json",
