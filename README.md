@@ -6,7 +6,9 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 <custom-element-demo>
   <template>
-    <link rel="import" href="lazy-import.html">
+    <link rel="import" href="time-element.html">
+    <link rel="import" href="calendar-element.html">
+    <link rel="import" href="overlay-element.html">
     <link rel="import" href="datetime-picker.html">
     <template is="dom-bind">
       <next-code-block></next-code-block>
