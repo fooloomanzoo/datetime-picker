@@ -30,7 +30,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: Source Sans Pro', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
         line-height: 1.5;
       }
     </style>
@@ -47,8 +47,8 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 <datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
 
-<div><code>Two pickers can be synchronized: </code> <b>[[synchronized]]</b></div>
-<div><code>A number representation is automatically provided: </code> <b>[[value]]</b></div>
+<div style="padding: 8px;"><code>Two pickers can be synchronized: </code> <b>[[synchronized]]</b></div>
+<div style="padding: 8px;"><code>A number representation is automatically provided: </code> <b>[[value]]</b></div>
 
 <datetime-picker value="{{value}}"></datetime-picker>
 
@@ -58,12 +58,12 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 <!--
 ```
-<custom-element-demo height="280">
+<custom-element-demo height="310">
   <template>
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: Source Sans Pro', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
       }
     </style>
     <dom-bind>
@@ -77,17 +77,17 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <calendar-element date="{{date}}"></calendar-element>
-<div><code>date: </code> <b>[[date]]</b></div>
+<div style="padding: 12px;"><code>date: </code> <b>[[date]]</b></div>
 ```
 
 <!--
 ```
-<custom-element-demo height="90">
+<custom-element-demo height="110">
   <template>
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: Source Sans Pro', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
       }
     </style>
     <dom-bind>
@@ -102,7 +102,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 #### Stand-alone time-picker
 ```html
 <time-element time="{{time}}"></time-element>
-<div><code>time: </code> <b>[[time]]</b></div>
+<div style="padding: 12px;"><code>time: </code> <b>[[time]]</b></div>
 ```
 
 #### Periods
@@ -115,12 +115,12 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 #### Overlay
 <!--
 ```
-<custom-element-demo height="330">
+<custom-element-demo height="280">
   <template>
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
-        font-family: Source Sans Pro', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
       }
     </style>
     <dom-bind>
@@ -134,7 +134,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <overlay-datetime-picker value="{{value}}" use-not-native></overlay-datetime-picker>
-<div><code>value: </code> <b>[[value]]</b></div>
+<div style="padding: 12px;"><code>value: </code> <b>[[value]]</b></div>
 ```
 
 
