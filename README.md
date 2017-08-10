@@ -47,8 +47,8 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 <datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
 
-<div>Two pickers can be synchronized:  <b>[[synchronized]]</b></div>
-<div>A number representation is automatically provided:  <b>[[value]]</b></div>
+<div><code>Two pickers can be synchronized: </code> <b>[[synchronized]]</b></div>
+<div><code>A number representation is automatically provided: </code> <b>[[value]]</b></div>
 
 <datetime-picker value="{{value}}"></datetime-picker>
 
@@ -77,6 +77,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <calendar-element date="{{date}}"></calendar-element>
+<div><code>date: </code> <b>[[date]]</b></div>
 ```
 
 <!--
@@ -101,6 +102,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 #### Stand-alone time-picker
 ```html
 <time-element time="{{time}}"></time-element>
+<div><code>time: </code> <b>[[time]]</b></div>
 ```
 
 #### Periods
@@ -131,7 +133,8 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 -->
 ```html
-<overlay-datetime-picker value="{{value}}"></overlay-datetime-picker>
+<overlay-datetime-picker value="{{value}}" use-not-native></overlay-datetime-picker>
+<div><code>value: </code> <b>[[value]]</b></div>
 ```
 
 
