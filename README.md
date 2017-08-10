@@ -58,7 +58,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 <!--
 ```
-<custom-element-demo height="310">
+<custom-element-demo height="300">
   <template>
     <link rel="import" href="datetime-picker.html">
     <style>
@@ -80,9 +80,11 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 <div style="padding: 12px;"><code>date: </code> <b>[[date]]</b></div>
 ```
 
+#### Stand-alone time-picker
+
 <!--
 ```
-<custom-element-demo height="110">
+<custom-element-demo height="100">
   <template>
     <link rel="import" href="datetime-picker.html">
     <style>
@@ -99,7 +101,6 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 </custom-element-demo>
 ```
 -->
-#### Stand-alone time-picker
 ```html
 <time-element time="{{time}}"></time-element>
 <div style="padding: 12px;"><code>time: </code> <b>[[time]]</b></div>
@@ -113,9 +114,10 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 
 #### Overlay
+
 <!--
 ```
-<custom-element-demo height="280">
+<custom-element-demo height="300">
   <template>
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
