@@ -10,8 +10,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
-    <link rel="import" href="../overlay-element.html">
-    <link rel="import" href="../datetime-picker.html">
+    <link rel="import" href="../import.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .vertical-section-container {
@@ -24,9 +23,70 @@
   </head>
 
   <body>
+    <div class="vertical-section-container centered">
+      <h3>Create a datetime-picker with overlay</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <div class="vertical-section-container">
+                <overlay-datetime-picker use-not-native datetime="{{datetime}}"></overlay-datetime-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>:  <b>[[datetime]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
 
     <div class="vertical-section-container centered">
-      <h3>Create an overlay</h3>
+      <h3>Create a datetime-picker with overlay and backdrop and no overlap</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <div class="vertical-section-container">
+                <overlay-datetime-picker use-not-native datetime="{{datetime}}" with-backdrop no-overlap></overlay-datetime-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>:  <b>[[datetime]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Create a datetime-picker with overlay and backdrop and custom-style</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <style>
+                overlay-datetime-picker.custom {
+                  --datetime-background: #2493E3;
+                  --datetime-color: #FFFFFF;
+                  --datetime-selected-background: #E93515;
+                  --datetime-selected-color: #E4E4E4;
+                }
+              </style>
+              <div class="vertical-section-container">
+                <overlay-datetime-picker class="custom" use-not-native datetime="{{datetime}}" with-backdrop vertical-align="" horizontal-align=""></overlay-datetime-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>:  <b>[[datetime]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Using the build-in overlay-element</h3>
       <demo-snippet>
         <template>
           <dom-bind id="bind">
@@ -43,24 +103,6 @@
                 overlay.open();
               };
             </script>
-          </dom-bind>
-        </template>
-      </demo-snippet>
-    </div>
-
-    <div class="vertical-section-container centered">
-      <h3>Create with overlay</h3>
-      <demo-snippet>
-        <template>
-          <dom-bind>
-            <template is="dom-bind">
-              <div class="vertical-section-container">
-                <datetime-picker use-not-native overlay datetime="{{datetime}}"></datetime-picker>
-              </div>
-              <div class="vertical-section-container result">
-                <div><code>datetime</code>:  <b>[[datetime]]</b></div>
-              </div>
-            </template>
           </dom-bind>
         </template>
       </demo-snippet>

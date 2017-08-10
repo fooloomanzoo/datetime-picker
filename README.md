@@ -4,12 +4,13 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ## &lt;datetime-picker&gt;
 <!--
 ```
-<custom-element-demo>
+<custom-element-demo height="500">
   <template>
     <link rel="import" href="time-element.html">
     <link rel="import" href="calendar-element.html">
     <link rel="import" href="overlay-element.html">
     <link rel="import" href="datetime-picker.html">
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
     <dom-bind>
       <template is="dom-bind">
         <next-code-block></next-code-block>
@@ -20,20 +21,21 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 -->
 ```html
-<datetime-picker value="{{value}}"></datetime-picker>
+
+<datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
 
 <div>Two pickers can be synchronized:  <b>[[synchronized]]</b></div>
 <div>A number representation is automatically provided:  <b>[[value]]</b></div>
 
-<datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}" overlay></datetime-picker>
+<datetime-picker value="{{value}}"></datetime-picker>
+
 ```
 
 ### What is it for?
 
 `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
 
-If the `calendar-` or the `time-element` should appear in an overlay then set the `overlay`-attribute of the element, else it will appear as a backdrop. The elements are then slotted into an element that extends *IronOverlayBehavior* and will create some attribute-bindings to `datetime-picker`.
-
+If like an **overlay** then use `overlay-datetime-picker`, what extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
 
 ### Motivation
 
@@ -81,28 +83,16 @@ You can use it stand-alone or as a range of dates. Examples:
 ```
 
 
+#### Overlay
+```html
+<overlay-datetime-picker value="{{value}}"></overlay-datetime-picker>
+```
+
+
 ### Installation
 ```
 bower install --save fooloomanzoo/datetime-picker
 ```
-
-
-### Polymer Build Considerations
-
-If you build an app using `polymer-cli` or `polymer-build` and **bundle** your resources, lazy loading won't work, because the project bundler won't recognize the dependencies. You **need** to adjust your `polymer.json`:
-
-in `"fragments"`:
-* `bower_components/datetime-picker/lazy-import.html`
-* `bower_components/datetime-picker/overlay-element.html`
-
-and in `"extraDependencies"`
-* `bower_components/datetime-picker/datetime-picker.html`
-
-(or load them **directly**)
-
-So you keep the dependencies included in your project build and make the polyfill work.
-
-You can build the sources manually (unbundled) by running `npm run build` or `gulp build` with the provided script.
 
 
 ### Notable Changes
