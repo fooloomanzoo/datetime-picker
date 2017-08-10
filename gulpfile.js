@@ -40,7 +40,8 @@ function build(prefix, compile) {
         .then(() => {
 
           // sources
-          let sourceUntouchables = gulpfilter(['**', '!**/*.min.js', '!**/webcomponentsjs/*', '!**/polymer/*'], {restore: true, passthrough: true});
+          let sourceUntouchables = gulpfilter(['!**/*.min.js', '!**/webcomponentsjs/**/*', '!**/polymer/**/*'], {restore: false, passthrough: true});
+
           let sourcesStream = polymerProject.sources()
             .pipe(sourceUntouchables)
             .pipe(sourcesStreamSplitter.split())
@@ -55,11 +56,11 @@ function build(prefix, compile) {
             .pipe(gulpif(/\.html$/, cssSlam({stripWhitespace: true})))
             .pipe(gulpif(/\.html$/, htmlMinifier({collapseWhitespace: true, removeComments: true})))
             .pipe(sourcesStreamSplitter.rejoin())
-            .pipe(sourceUntouchables.restore)
+            // .pipe(sourceUntouchables.restore)
             .pipe(gulpif(debug, gulpdebug({title: 'source:'})));
 
           // dependencies
-          let dependenciesUntouchables = gulpfilter(['**', '!**/webcomponentsjs/*', '!**/polymer/*'], {restore: true, passthrough: true});
+          let dependenciesUntouchables = gulpfilter(['!**/webcomponentsjs/**/*', '!**/polymer/**/*'], {restore: false, passthrough: true});
           let dependenciesStream = polymerProject.dependencies()
             .pipe(dependenciesUntouchables)
             .pipe(dependenciesStreamSplitter.split())
@@ -74,7 +75,7 @@ function build(prefix, compile) {
             .pipe(gulpif(/\.html$/, cssSlam({stripWhitespace: true})))
             .pipe(gulpif(/\.html$/, htmlMinifier({collapseWhitespace: true, removeComments: true})))
             .pipe(dependenciesStreamSplitter.rejoin())
-            .pipe(dependenciesUntouchables.restore)
+            // .pipe(dependenciesUntouchables.restore)
             .pipe(gulpif(debug, gulpdebug({title: 'dependency:'})));
 
 
