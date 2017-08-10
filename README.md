@@ -7,7 +7,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
 
-If like an **overlay** then use `overlay-datetime-picker`, what extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
+If you like an **overlay** then use `overlay-datetime-picker`, what extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
 
 ### Motivation
 
@@ -31,6 +31,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
     <style>
       html {
         font-family: Source Sans Pro', sans-serif;
+        line-height: 1.5;
       }
     </style>
     <dom-bind>
@@ -80,7 +81,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 <!--
 ```
-<custom-element-demo height="150">
+<custom-element-demo height="90">
   <template>
     <link rel="import" href="datetime-picker.html">
     <style>
@@ -109,11 +110,12 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 <datetime-picker id="to" date="{{max}}" min="[[min]]"></datetime-picker>
 ```
 
+#### Overlay
 <!--
 ```
 <custom-element-demo height="330">
   <template>
-    <link rel="import" href="datetime-picker.html">
+    <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
         font-family: Source Sans Pro', sans-serif;
@@ -128,7 +130,6 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 </custom-element-demo>
 ```
 -->
-#### Overlay
 ```html
 <overlay-datetime-picker value="{{value}}"></overlay-datetime-picker>
 ```
