@@ -1,6 +1,6 @@
 {
   "name": "datetime-picker",
-  "version": "2.0.10",
+  "version": "2.1.0",
   "authors": [ "Johannes Brautzsch <fooloomanzoo>" ],
   "description": "A picker for date and time, that prefers to use the native input. It includes a calendar and a timer.",
   "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
