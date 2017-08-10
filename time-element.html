@@ -6,10 +6,10 @@
 
 A polyfill time picker using Polymer.
 
-To connect it with inputs, try it like:
+If you like to connect it to an input, try it like:
 
   ```html
-    <input id="time" type="text" value="{{time::input}}" pattern="([01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)" step="1">
+    <input type="time" value="{{time::input}}" step="1">
 
     <time-element time="{{time}}"></time-element>
   ```

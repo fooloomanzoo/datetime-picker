@@ -6,12 +6,12 @@
 
 A polyfill date picker using Polymer.
 
-To connect it with inputs, try it like:
+If you like to connect it to an input, try it like:
 
   ```html
-    <input id="date" type="text" min="[[min]]" max="[[max]]" value="{{date::input}}" pattern="([0-9]{4})-([0]\d|1[0-2])-([012]\d|3[0-1])">
+    <input type="date" value="{{date::input}}">
 
-    <calendar-element date="{{date}}" value="{{value}}" min="[[min]]" max="[[max]]"></calendar-element>
+    <calendar-element date="{{date}}"></calendar-element>
   ```
 
 The following custom properties and mixins are also available for styling:
