@@ -1,0 +1,253 @@
+<script>
+  window.DatetimeMixin = function(superClass) { // eslint-disable-line no-unused-vars no-undef
+    /**
+     * Mixin that provides datetime-properties
+     *
+     * @mixinClass
+     * @polymer
+     */
+    return class extends superClass {
+
+      static get properties() {
+        return {
+          /**
+           * The date as a string of the selected date (format: iso8061)
+           */
+          date: {
+            type: String,
+            notify: true
+          },
+
+          /**
+           * The time as a string of the selected time
+           */
+          time: {
+            type: String,
+            notify: true
+          },
+
+          /**
+           * The year of the selected date
+           */
+          year: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The month of the selected date (starts with 1)
+           */
+          month: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The day of the selected date
+           */
+          day: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The hours of the selected date
+           */
+          hours: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The minutes of the selected date
+           */
+          minutes: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The seconds of the selected date
+           */
+          seconds: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The milliseconds of the selected date
+           */
+          milliseconds: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The value of the selected date
+           */
+          value: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The minimal date (format: iso8061)
+           */
+          min: {
+            type: String,
+            notify: true
+          },
+
+          /**
+           * The maximal date (format: iso8061)
+           */
+          max: {
+            type: String,
+            notify: true
+          }
+        }
+      }
+
+      static get observers() {
+        return [
+          '_valueChanged(value)',
+          '_computeTime(hours, minutes, seconds, milliseconds)',
+          '_computeDate(year, month, day)',
+          '_computeValue(date, time)',
+          '_minChanged(min)',
+          '_maxChanged(max)'
+        ]
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        setTimeout(() => {
+          const d = new Date();
+          if (this.date || this.time) {
+            this.value = +(new Date((this.date || this._toDate(d)) + 'T' + (this.time || this._toTime(d))));
+          } else {
+            this.value = +d;
+          }
+        }, 0);
+      }
+
+      _computeTime(hours, minutes, seconds, milliseconds) {
+        if (hours === undefined || minutes === undefined || seconds === undefined) return;
+        const time = this._pad(hours, 2) + ':' + this._pad(minutes, 2) + ':' + this._pad(seconds, 2) + '.' + this._pad(milliseconds, 3);
+        if (this.time !== time) {
+          this.time = time;
+        }
+      }
+
+      _computeDate(year, month, day) {
+        if (year === undefined || month === undefined || day === undefined) return;
+        const date = this._pad(year, 4) + '-' + this._pad(month, 2) + '-' + this._pad(day, 2);
+        if (this.date !== date) {
+          this.date = date;
+        }
+      }
+
+      _computeValue(date, time) {
+        if (!(date && time)) return;
+        const d = new Date(date + 'T' + time);
+        if (this._checkMin(d) && this._checkMax(d)) {
+          this.setProperties({
+            year: d.getFullYear(),
+            month: d.getMonth() + 1,
+            day: d.getDate(),
+            hours: d.getHours(),
+            minutes: d.getMinutes(),
+            seconds: d.getSeconds(),
+            milliseconds: d.getMilliseconds(),
+            value: +d
+          });
+        }
+      }
+
+      _valueChanged(value) {
+        if (!value) return;
+        const d = new Date(value),
+          date = this._toDate(d),
+          time = this._toTime(d);
+
+        if (date && date !== this.date) {
+          this.date = date;
+        }
+
+        if (time && time !== this.time) {
+          this.time = time;
+        }
+      }
+
+      _pad(n, targetLength, padString) {
+        let str = '' + n;
+        targetLength = Math.ceil(typeof targetLength === 'number' ? Math.abs(targetLength) : Math.log10(n));
+        padString = padString || '0';
+        if (str.length > targetLength) {
+          return str;
+        } else {
+          targetLength = targetLength - str.length;
+          if (targetLength > padString.length) {
+              padString += padString.repeat(targetLength);
+          }
+          return padString.slice(0,targetLength) + str;
+        }
+      }
+
+      _minChanged(min) {
+        if (min === undefined) return;
+        console.log(min, this.max);
+        if (this.max && min > this.max) {
+          this.setProperties({
+            min: this.max,
+            max: min
+          });
+          return;
+        }
+        if (this.value && !this._checkMin(this.value))
+          this.value = +(new Date(min));
+      }
+
+      _maxChanged(max) {
+        if (max === undefined) return;
+        if (this.min && this.min > max) {
+          this.setProperties({
+            min: max,
+            max: this.min
+          });
+          return;
+        }
+        if (this.value && !this._checkMax(this.value))
+          this.value = +(new Date(max));
+      }
+
+      _checkMax(d) {
+        const max = this.max ? (new Date(this.max)) : undefined;
+        if (max && !isNaN(+d) && d.getTime && max && max < d) {
+          return false;
+        }
+        return true;
+      }
+
+      _checkMin(d) {
+        const min = this.min ? (new Date(this.min)) : undefined;
+        if (min && !isNaN(+d) && d.getTime && min > d) {
+          return false;
+        }
+        return true;
+      }
+
+      _toDate(d) {
+        if (isNaN(+d) || !d.getTime)
+          return null;
+        return d.getFullYear() + '-' + this._pad(d.getMonth() + 1, 2) + '-' + this._pad(d.getDate(), 2);
+      }
+
+      _toTime(d) {
+        if (isNaN(d) || !d.getTime)
+          return null;
+        return this._pad(d.getHours(), 2) + ':' + this._pad(d.getMinutes(), 2) + ':' + this._pad(d.getSeconds(), 2) + '.' + this._pad(d.getMilliseconds(), 3);
+      }
+    }
+  }
+</script>

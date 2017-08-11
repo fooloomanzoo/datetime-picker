@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="datetime-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 
 <!--
@@ -58,43 +59,49 @@ Custom property | Description | Default
         padding-bottom: 4px;
       }
       input.timer {
-        width: 1.75em;
-        height: 1.5em;
+        padding: 0.5em;
         background-color: var(--datetime-background);
       }
       input.timer:focus {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
         outline: currentColor auto thin;
       }
     </style>
 
     <div id="content">
       <div class="field">
-        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="1">
+        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hours" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="timer" id="hour" type="number" min="0" max="23" step="1" tabindex="0" on-keydown="_checkKeycode" value="{{hour::input}}" placeholder="00">
-        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hour" step="-1">
+        <input class="timer l2" id="hours" type="number" min="0" max="23" step="1" tabindex="0" on-keydown="_checkKeycode" value="{{hours::input}}" placeholder="00">
+        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="hours" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
       :
       <div class="field">
-        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="1">
+        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minutes" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="timer" id="minute" type="number" min="0" max="59" step="1" tabindex="1" on-keydown="_checkKeycode" value="{{minute::input}}" placeholder="00">
-        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minute" step="-1">
+        <input class="timer l2" id="minutes" type="number" min="0" max="59" step="1" tabindex="1" on-keydown="_checkKeycode" value="{{minutes::input}}" placeholder="00">
+        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="minutes" step="-1">
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>:
       <div class="field">
-        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="second" step="1">
+        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="seconds" step="1">
           <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
         </svg>
-        <input class="timer" id="second" type="number" min="0" max="59" step="1" tabindex="2" on-keydown="_checkKeycode" value="{{second::input}}" placeholder="00">
-        <svg class="icon switch" viewBox="0 0 24 24" for="second" step="-1" on-mousedown="_startIncrem" on-mouseleave="_stopIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" >
+        <input class="timer l2" id="seconds" type="number" min="0" max="59" step="1" tabindex="2" on-keydown="_checkKeycode" value="{{seconds::input}}" placeholder="00">
+        <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="-1" on-mousedown="_startIncrem" on-mouseleave="_stopIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" >
+          <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
+        </svg>
+      </div>.
+      <div class="field">
+        <svg class="icon switch" viewBox="0 0 24 24" on-mousedown="_startIncrem" on-mouseup="_stopIncrem" on-mouseleave="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" for="milliseconds" step="1">
+          <g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g>
+        </svg>
+        <input class="timer l3" id="milliseconds" type="number" min="0" max="999" step="1" tabindex="2" on-keydown="_checkKeycode" value="{{milliseconds::input}}" placeholder="000">
+        <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="-1" on-mousedown="_startIncrem" on-mouseleave="_stopIncrem" on-mouseup="_stopIncrem" on-touchstart="_startIncrem" on-touchend="_stopIncrem" >
           <g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g>
         </svg>
       </div>
@@ -105,7 +112,8 @@ Custom property | Description | Default
   </template>
 
   <script>
-    class TimeElement extends Polymer.Element {
+    class TimeElement extends DatetimeMixin(Polymer.Element) { // eslint-disable-line no-undef
+
       static get is() {
         return 'time-element';
       }
@@ -127,83 +135,7 @@ Custom property | Description | Default
           closable: {
             type: Boolean,
             value: false
-          },
-          /**
-           * The time as a string of the selected date
-           */
-          time: {
-            type: String,
-            notify: true
-          },
-
-          /**
-           * The hours of the selected date
-           */
-          hour: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The minutes of the selected date
-           */
-          minute: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The seconds of the selected date
-           */
-          second: {
-            type: Number,
-            notify: true
           }
-        }
-      }
-
-      static get observers() {
-        return [
-          '_timeChanged(hour, minute, second)',
-          '_timeStringChanged(time)'
-        ]
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-        setTimeout(() => {
-          const date = new Date('1970-01-01 ' + this.time);
-          const d = +date ? date : new Date();
-          this.time = this._pad(d.getHours()) + ':' + this._pad(d.getMinutes()) + ':' +  this._pad(d.getSeconds());
-        }, 0);
-      }
-
-      _pad(n) {
-        if (n < 10) {
-          return '0' + n;
-        }
-        return '' + n;
-      }
-
-      _timeChanged(hour, minute, second) {
-        if (hour === undefined || minute === undefined || second === undefined) {
-          return;
-        }
-        const time = this._checktime(this._pad(hour) + ':' + this._pad(minute) + ':' + this._pad(second));
-        if (this.time !== time) {
-          this.time = time;
-        }
-      }
-
-      _timeStringChanged(ts) {
-        ts = this._checktime(ts || '00:00:00');
-        ts = ts.split(':').map(function(v){ return parseInt(v); });
-        if (ts[0] !== this.hour || ts[1] !== this.minute || ts[2] !== this.second) {
-          this.setProperties({
-            hour: ts[0],
-            minute: ts[1],
-            second: ts[2]
-          });
         }
       }
 
@@ -215,42 +147,16 @@ Custom property | Description | Default
         // left or right key press
         const step = (e.keyCode === 39) ? 1 : (e.keyCode === 37 ? -1 : 0);
         if (step) {
-          const elems = ["hour", "minute", "second"];
+          const elems = ["hours", "minutes", "seconds", "milliseconds"];
           let current;
           for (let i = 0; i < elems.length; i++) {
             if (elems[i] === e.target.id) {
               current = i;
             }
           }
-          this.$[elems[(current + step + 3) % 3]].focus();
+          this.$[elems[(current + step + 4) % 4]].focus();
           return;
         }
-      }
-
-      _checktime(str) {
-        const v = str.split(':');
-        let r = '', a;
-        if (v.length !== 3)
-          return '00:00:00';
-        a = parseInt(v[0]);
-        if (isNaN(a) || a < 0 || a > 23) {
-          r += '00:'
-        } else {
-          r += this._pad(a) + ':';
-        }
-        a = parseInt(v[1]);
-        if (isNaN(a) || a < 0 || a > 59) {
-          r += '00:'
-        } else {
-          r += this._pad(a) + ':';
-        }
-        a = parseInt(v[2]);
-        if (isNaN(a) || a < 0 || a > 59) {
-          r += '00'
-        } else {
-          r += this._pad(a);
-        }
-        return r;
       }
 
       _startIncrem(e) {
@@ -261,7 +167,7 @@ Custom property | Description | Default
         this._increm(type, step);
         this._activeJob = setInterval(() => {
           this._increm(type, step);
-        }, 200);
+        }, 150);
       }
 
       _stopIncrem() {
@@ -275,12 +181,15 @@ Custom property | Description | Default
           return;
         }
         switch (type) {
-          case "hour":
-            this.set('hour', (parseInt(this.hour) + step + 24) % 24);
+          case "hours":
+            this.set(type, (this[type] + step + 24) % 24);
             break;
-          case "minute":
-          case "second":
-            this.set(type, (parseInt(this[type]) + step + 60) % 60);
+          case "minutes":
+          case "seconds":
+            this.set(type, (this[type] + step + 60) % 60);
+            break;
+          case "milliseconds":
+            this.set(type, (this[type] + step + 1000) % 1000);
         }
       }
       /**

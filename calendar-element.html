@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="datetime-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 
 <!--
@@ -159,13 +160,15 @@ Custom property | Description | Default
   </template>
 
   <script>
-    class CalendarElement extends Polymer.Element {
+    class CalendarElement extends DatetimeMixin(Polymer.Element) { // eslint-disable-line no-undef
+
       static get is() {
         return 'calendar-element';
       }
 
       static get properties() {
         return {
+
           /**
            * true if the element is opened
            */
@@ -175,6 +178,7 @@ Custom property | Description | Default
             reflectToAttribute: true,
             value: false
           },
+
           /**
            * true if the element is closable (then an icon is shown)
            */
@@ -182,38 +186,7 @@ Custom property | Description | Default
             type: Boolean,
             value: false
           },
-          /**
-           * The date as a string of the selected date
-           */
-          date: {
-            type: String,
-            notify: true,
-            observer: '_dateChanged'
-          },
 
-          /**
-           * The minimal date (format: 'YYYY-MM-DD')
-           */
-          min: {
-            type: String,
-            notify: true,
-            observer: '_minChanged'
-          },
-          /**
-           * The maximal date (format: 'YYYY-MM-DD')
-           */
-          max: {
-            type: String,
-            notify: true,
-            observer: '_maxChanged'
-          },
-          /**
-           * The date of the view of the month and year
-           */
-          viewDate: {
-            type: Number,
-            observer: 'render'
-          },
           /**
            * The current locale
            */
@@ -221,37 +194,22 @@ Custom property | Description | Default
             type: String,
             value: window.navigator.language,
             observer: '_localeChanged'
+          },
+
+          /**
+           * The date of the view of the month and year
+           */
+          viewDate: {
+            type: Number
           }
         }
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-        setTimeout(() => {
-          const d = this.date ? new Date(this.date) : new Date();
-          this.date = this._toDate(d.getFullYear(), d.getMonth(), d.getDate());
-        }, 0);
-      }
-
-      _dateChanged(date) {
-        const d = new Date(date),
-          min = this.min ? (new Date(this.min)) : undefined,
-          max = this.max ? (new Date(this.max)) : undefined;
-
-        if (d && (!(min && min > d) && !(max && max < d))) {
-          this.set('date', this._toDate(d));
-        } else {
-          this.set('date', null);
-        }
-        this.set('viewDate', +(new Date(d.getFullYear(), d.getMonth())));
-        this.render();
-      }
-
-      _pad(n) {
-        if (n < 10) {
-          return '0' + n;
-        }
-        return '' + n;
+      static get observers() {
+        return [
+          'render(viewDate)',
+          '_computeViewDate(year, month)'
+        ]
       }
 
       _onClick(e) {
@@ -263,7 +221,7 @@ Custom property | Description | Default
                 this._prevSelected.classList.remove('selected');
               }
               paths[i].classList.add('selected');
-              this.date = paths[i].dataset.date;
+              this.date = this._toDate(new Date(paths[i].dataset.date));
               this._prevSelected = paths[i];
               break;
             }
@@ -271,9 +229,13 @@ Custom property | Description | Default
         }
       }
 
+      _computeViewDate(year, month) {
+        this.viewDate = +(new Date(year, month - 1));
+      }
+
       _jumpToNow() {
         const d = new Date();
-        this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
+        this.viewDate = new Date(d.getFullYear(), d.getMonth());
       }
 
       _prevMonth() {
@@ -293,8 +255,8 @@ Custom property | Description | Default
       }
 
       _incremMonth(i) {
-        const d = new Date(this.viewDate);
-        if (d) {
+        if (this.viewDate) {
+          const d = new Date(this.viewDate);
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + i));
         }
       }
@@ -306,19 +268,17 @@ Custom property | Description | Default
       }
 
       _localeChanged() {
-        let d = new Date(this.viewDate),
-         weekday;
-        if (d) {
-          this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
+        if (this.viewDate) {
+          this.$.viewMonth.textContent = this.viewDate.toLocaleDateString(this.locale, {
             month: 'long'
           });
-          this.$.viewYear.textContent = d.toLocaleDateString(this.locale, {
+          this.$.viewYear.textContent = this.viewDate.toLocaleDateString(this.locale, {
             year: 'numeric'
           });
         }
         for (let i = 0; i < 7; i++) {
-          d = new Date(0, 0, i);
-          weekday = (d.getDay() - 1 + 7) % 7;
+          let d = new Date(0, 0, i);
+          let weekday = (d.getDay() - 1 + 7) % 7;
           if (this.$.caption.children[weekday]) {
             this.$.caption.children[weekday].textContent = d.toLocaleDateString(this.locale, {
               weekday: 'short'
@@ -328,12 +288,12 @@ Custom property | Description | Default
       }
       /**
        * Renders the current view (manually).
+       * @param {number} viewDate The value of the date of the current view.
        */
-      render() {
-        if (!this.viewDate) {
-          return;
-        }
-        const d = new Date(this.viewDate);
+      render(viewDate) {
+        if (viewDate === undefined) return;
+        const d = new Date(viewDate);
+
         this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
           month: 'long'
         });
@@ -341,20 +301,21 @@ Custom property | Description | Default
           year: 'numeric'
         });
 
-        let selectedDay, currentDay, firstDayOfMonth, min, max, year, month;
-        year = d.getFullYear();
-        month = d.getMonth();
-        firstDayOfMonth = Math.floor((new Date(year, month, 1).getTime()) / 865E5);
-        currentDay = Math.floor(new Date().getTime() / 865E5) - firstDayOfMonth;
+        const year = d.getFullYear(),
+          month = d.getMonth(),
+          current = new Date();
+        let selectedDay, currentDay, firstDayOfMonth, min, max;
 
-        if (this.date) {
-          selectedDay = Math.ceil((new Date(this.date).getTime()) / 865E5) - firstDayOfMonth;
+        firstDayOfMonth = new Date(year, month, 0);
+        currentDay = Math.ceil(this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth));
+        if (this.value) {
+          selectedDay = Math.ceil(this._dayDiff(new Date(this.year, this.month - 1, this.day), firstDayOfMonth));
         }
         if (this.min) {
-          min = Math.ceil(+(new Date(this.min).getTime()) / 865E5) - firstDayOfMonth;
+          min = Math.ceil(this._dayDiff(new Date(this.min), firstDayOfMonth));
         }
         if (this.max) {
-          max = Math.floor(+(new Date(this.max).getTime()) / 865E5) - firstDayOfMonth;
+          max = Math.floor(this._dayDiff(new Date(this.max), firstDayOfMonth));
         }
 
         const prevmonthlength = +new Date(year, month, 0).getDate();
@@ -378,6 +339,7 @@ Custom property | Description | Default
             // Day is Selected Day
             if (selectedDay !== undefined && counter === selectedDay) {
               this.$.dates.children[i].children[j].classList.add('selected');
+              this._prevSelected = this.$.dates.children[i].children[j];
             } else {
               this.$.dates.children[i].children[j].classList.remove('selected');
             }
@@ -393,52 +355,24 @@ Custom property | Description | Default
             } else {
               this.$.dates.children[i].children[j].classList.remove('outofrange');
             }
-            this.$.dates.children[i].children[j].dataset.date = this._toDate(year, month, counter);
+            this.$.dates.children[i].children[j].dataset.date = new Date(year, month, counter);
             counter++;
           }
         }
       }
 
-      _toDate() {
-        let year = arguments[0],
-          month = arguments[1],
-          day = arguments[2],
-          d;
-
-        if (day !== undefined)
-          d = new Date(year, month, day);
-        else if (month !== undefined)
-          d = new Date(year, month);
-        else if (year !== undefined)
-          d = new Date(year);
-        else
-          return undefined;
-
-        year = d.getFullYear();
-        month = this._pad(d.getMonth() + 1);
-        day = this._pad(d.getDate());
-
-        return year + '-' + month + '-' + day;
+      _dayDiff(end, start) {
+        return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 36E5) / 865E5;
       }
 
       _minChanged(min) {
-        if (!min) return;
-        const d = +(new Date(min));
-        if (!d) {
-          this.min = undefined;
-        } else {
-          this.render();
-        }
+        super._minChanged(min);
+        this.render(this.viewDate);
       }
 
       _maxChanged(max) {
-        if (!max) return;
-        const d = +(new Date(max));
-        if (!d) {
-          this.max = undefined;
-        } else {
-          this.render();
-        }
+        super._maxChanged(max);
+        this.render(this.viewDate);
       }
 
       /**

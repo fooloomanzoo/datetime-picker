@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="datetime-picker.html">
 <link rel="import" href="overlay-element.html">
+<link rel="import" href="datetime-picker.html">
 
 <!--
   `overlay-datetime-picker` extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*. Styling the overlay is currently not possible.
@@ -15,66 +15,115 @@
 -->
 
 <dom-module id="overlay-datetime-picker">
+  <template strip-whitespace>
+    <style include="datetime-shared-style dropdown-style">
+      :host {
+        display: inline-flex;
+      }
+      .replacement:hover {
+        background-color: var(--datetime-selected-background);
+        color: var(--datetime-selected-color);
+      }
+      .replacement:hover > * {
+        background-color: transparent;
+        color: var(--datetime-selected-color);
+      }
+      input[type="number"]:first-of-type {
+        text-align: right;
+      }
+      input[type="number"]:last-of-type {
+        text-align: left;
+      }
+      .replacement,
+      input#date,
+      input#time {
+        cursor: pointer;
+        border-radius: 2px;
+        padding: 0.5em;
+        @apply --datetime-native-input;
+      }
+    </style>
+
+    <div>
+      <input id="date" type="date" hidden$="[[!_useNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
+      <template is="dom-if" if="[[!_useNative]]">
+        <div class="replacement" on-click="_toggleCalendarElement">
+          <input class="l4" type="number" disabled$="[[disabled]]" step="1" value="{{year::input}}">
+          <span>-</span>
+          <input class="l2" type="number" disabled$="[[disabled]]" min="1" max="12" step="1" value="{{month::input}}">
+          <span>-</span>
+          <input class="l2" type="number" disabled$="[[disabled]]" min="1" max="31" step="1" value="{{day::input}}">
+        </div>
+        <overlay-element id="calendarPolyfill"
+          always-on-top="[[alwaysOnTop]]"
+          with-backdrop="[[withBackdrop]]"
+          no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
+          no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+          no-overlap="[[noOverlap]]"
+          dynamic-align="[[dynamicAlign]]"
+          vertical-align="[[verticalAlign]]"
+          horizontal-align="[[horizontalAlign]]"
+          opened="{{calendarOpened}}">
+          <calendar-element
+            closable
+            value="{{value}}"
+            year="{{year}}"
+            month="{{month}}"
+            day="{{day}}"
+            min="{{min}}"
+            max="{{max}}"
+            hidden$="[[disabled]]"
+            opened="{{calendarOpened}}">
+          </calendar-element>
+        </overlay-element>
+      </template>
+    </div>
+    <div>
+      <input id="time" type="time" hidden$="[[!_useNative]]" disabled$="[[disabled]]" value="{{time::input}}" step="1">
+      <template is="dom-if" if="[[!_useNative]]">
+        <div class="replacement" on-click="_toggleTimeElement">
+          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="23" step="1" value="{{hours::input}}">
+          <span>:</span>
+          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="59" step="1" value="{{minutes::input}}">
+          <span>:</span>
+          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="59" step="1" value="{{seconds::input}}">
+          <span>.</span>
+          <input class="l3" type="number" disabled$="[[disabled]]" min="0" max="999" step="1" value="{{milliseconds::input}}">
+        </div>
+        <overlay-element id="timePolyfill"
+          always-on-top="[[alwaysOnTop]]"
+          with-backdrop="[[withBackdrop]]"
+          no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
+          no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+          no-overlap="[[noOverlap]]"
+          dynamic-align="[[dynamicAlign]]"
+          vertical-align="[[verticalAlign]]"
+          horizontal-align="[[horizontalAlign]]"
+          opened="{{timeOpened}}">
+          <time-element
+            closable
+            value="{{value}}"
+            hours="{{hours}}"
+            minutes="{{minutes}}"
+            seconds="{{seconds}}"
+            milliseconds="{{milliseconds}}"
+            min="{{min}}"
+            max="{{max}}"
+            hidden$="[[disabled]]"
+            opened="{{timeOpened}}">
+          </time-element>
+        </overlay-element>
+      </template>
+    </div>
+
+  </template>
+
   <script>
 
     class OverlayDatetimePicker extends DatetimePicker { // eslint-disable-line no-undef
+
       static get is() {
         return 'overlay-datetime-picker';
-      }
-
-      static get template() {
-        return `
-          <style include="datetime-shared-style">
-            :host {
-              display: inline-flex;
-            }
-          </style>
-
-          <div>
-            <input id="date" type="date" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" autocomplete="off" value="{{date::input}}" on-click="_toggleCalendarElement" size="10" placeholder="----|--|--">
-            <template is="dom-if" if="[[!_useNative]]">
-              <overlay-element class="custom"
-                always-on-top="[[alwaysOnTop]]"
-                with-backdrop="[[withBackdrop]]"
-                no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
-                no-cancel-on-esc-key="[[noCancelOnEscKey]]"
-                no-overlap="[[noOverlap]]"
-                dynamic-align="[[dynamicAlign]]"
-                vertical-align="[[verticalAlign]]"
-                horizontal-align="[[horizontalAlign]]"
-                opened="{{calendarOpened}}">
-                  <calendar-element
-                    closable
-                    date="{{date}}"
-                    min="[[min]]"
-                    max="[[max]]"
-                    opened="{{calendarOpened}}">
-                  </calendar-element>
-              </overlay-element>
-            </template>
-          </div>
-
-          <div>
-            <input id="time" type="time" disabled$="[[disabled]]" autocomplete="off" value="{{time::input}}" step="1" on-click="_toggleTimeElement" size="10" placeholder="--:--:--">
-            <template is="dom-if" if="[[!_useNative]]">
-              <overlay-element
-                always-on-top="[[alwaysOnTop]]"
-                with-backdrop="[[withBackdrop]]"
-                no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
-                no-cancel-on-esc-key="[[noCancelOnEscKey]]"
-                no-overlap="[[noOverlap]]"
-                dynamic-align="[[dynamicAlign]]"
-                vertical-align="[[verticalAlign]]"
-                horizontal-align="[[horizontalAlign]]"
-                opened="{{timeOpened}}">
-                  <time-element
-                    closable
-                    time="{{time}}"
-                    opened="{{timeOpened}}">
-                  </time-element>
-              </overlay-element>
-            </template>
-          </div>`
       }
 
       static get properties() {

@@ -14,7 +14,6 @@ Custom property | Description | Default
 `--datetime-button` | Mixin applied to the buttons | `{}`
 `--datetime-input` | Mixin applied to the inputs | `{}`
 `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor;}`
-`--datetime-picker-input` | Mixin applied to the inputs of the datetime-picker| `{padding: 0.5em 0.25em;}`
 -->
 
 <custom-style>
@@ -27,15 +26,25 @@ Custom property | Description | Default
       --datetime-element: {
         border-radius: 4px;
       };
+      --datetime-input: {
+        border-radius: 2px;
+        padding: 0;
+        border: none;
+        outline: none;
+        text-align: center;
+        color: inherit;
+        cursor: pointer;
+        box-sizing: content-box;
+        background-color: transparent;
+        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+      };
       --datetime-icon: {
         padding: 8px;
         height: 16px;
+        background-color: transparent;
         transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         cursor: pointer;
         fill: currentColor;
-      };
-      --datetime-picker-input: {
-        padding: 0.5em 0.25em;
       };
     }
   </style>
@@ -46,6 +55,7 @@ Custom property | Description | Default
     <style>
       :host {
         font-family: inherit;
+        font-size: inherit;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: transparent;
         outline-width: 0;
         -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
@@ -55,15 +65,6 @@ Custom property | Description | Default
       }
       :host > * {
         position: relative;
-      }
-      input#date,
-      input#time {
-        @apply --datetime-picker-input;
-      }
-      input#date:hover,
-      input#time:hover {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
       }
       .button {
         color: inherit;
@@ -96,24 +97,27 @@ Custom property | Description | Default
       input[type="date"]:hover::-webkit-calendar-picker-indicator {
         background: transparent;
       }
-      input[type=text],
+      input.l2 {
+        width: 2ch;
+      }
+      input.l3 {
+        width: 3ch;
+      }
+      input.l4 {
+        width: 4ch;
+      }
       input[type=number],
       input[type=date],
       input[type=time] {
-        border-radius: 2px;
-        padding: 0.25em;
-        border: none;
-        outline: none;
-        font-family: inherit !important;
-        text-align: center;
-        color: inherit;
-        cursor: pointer;
-        box-sizing: content-box;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+        font-family: inherit;
+        font-size: inherit;
         @apply --datetime-input;
       }
-      input::-webkit-inner-spin-button{
-        mix-blend-mode: screen;
+      input[type=number]:hover,
+      input[type=date]:hover,
+      input[type=time]:hover {
+        background-color: var(--datetime-selected-background);
+        color: var(--datetime-selected-color);
       }
       .icon {
         @apply --datetime-icon;

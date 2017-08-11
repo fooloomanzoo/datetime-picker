@@ -45,7 +45,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 
-<datetime-picker use-not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
+<datetime-picker use-not-native value="{{value}}" date="{{synchronized}}"></datetime-picker>
 
 <div style="padding: 8px;"><code>Two pickers can be synchronized: </code> <b>[[synchronized]]</b></div>
 <div style="padding: 8px;"><code>A number representation is automatically provided: </code> <b>[[value]]</b></div>
