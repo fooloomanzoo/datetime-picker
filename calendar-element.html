@@ -230,6 +230,7 @@ Custom property | Description | Default
       }
 
       _computeViewDate(year, month) {
+        console.log(year, month);
         this.viewDate = +(new Date(year, month - 1));
       }
 

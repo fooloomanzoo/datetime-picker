@@ -182,14 +182,14 @@ Custom property | Description | Default
         }
         switch (type) {
           case "hours":
-            this.set(type, (this[type] + step + 24) % 24);
+            this.set(type, ((this[type] || 0) + step + 24) % 24);
             break;
           case "minutes":
           case "seconds":
-            this.set(type, (this[type] + step + 60) % 60);
+            this.set(type, ((this[type] || 0) + step + 60) % 60);
             break;
           case "milliseconds":
-            this.set(type, (this[type] + step + 1000) % 1000);
+            this.set(type, ((this[type] || 0) + step + 1000) % 1000);
         }
       }
       /**

@@ -133,7 +133,7 @@
 
       _computeTime(hours, minutes, seconds, milliseconds) {
         if (hours === undefined || minutes === undefined || seconds === undefined) return;
-        const time = this._pad(hours, 2) + ':' + this._pad(minutes, 2) + ':' + this._pad(seconds, 2) + '.' + this._pad(milliseconds, 3);
+        const time = this._pad(hours, 2) + ':' + this._pad(minutes, 2) + ':' + this._pad(seconds, 2) + '.' + this._pad(milliseconds || 0, 3);
         if (this.time !== time) {
           this.time = time;
         }
@@ -150,7 +150,17 @@
       _computeValue(date, time) {
         if (!(date && time)) return;
         const d = new Date(date + 'T' + time);
-        if (this._checkMin(d) && this._checkMax(d)) {
+        console.log(d, {
+          year: d.getFullYear(),
+          month: d.getMonth() + 1,
+          day: d.getDate(),
+          hours: d.getHours(),
+          minutes: d.getMinutes(),
+          seconds: d.getSeconds(),
+          milliseconds: d.getMilliseconds(),
+          value: +d
+        });
+        if (!isNaN(+d) && this._checkMin(d) && this._checkMax(d)) {
           this.setProperties({
             year: d.getFullYear(),
             month: d.getMonth() + 1,
@@ -164,7 +174,25 @@
         }
       }
 
+      now() {
+        const d = new Date();
+        this.setProperties({
+          year: d.getFullYear(),
+          month: d.getMonth() + 1,
+          day: d.getDate(),
+          hours: d.getHours(),
+          minutes: d.getMinutes(),
+          seconds: d.getSeconds(),
+          milliseconds: d.getMilliseconds(),
+          value: +d,
+          time: this._toTime(d),
+          date: this._toDate(d)
+        });
+        return d;
+      }
+
       _valueChanged(value) {
+        console.log(value);
         if (!value) return;
         const d = new Date(value),
           date = this._toDate(d),
@@ -196,7 +224,6 @@
 
       _minChanged(min) {
         if (min === undefined) return;
-        console.log(min, this.max);
         if (this.max && min > this.max) {
           this.setProperties({
             min: this.max,
@@ -204,7 +231,7 @@
           });
           return;
         }
-        if (this.value && !this._checkMin(this.value))
+        if (this.value && this._checkMin(this.value) === false)
           this.value = +(new Date(min));
       }
 
@@ -217,13 +244,16 @@
           });
           return;
         }
-        if (this.value && !this._checkMax(this.value))
+        if (this.value && this._checkMax(this.value) === false)
           this.value = +(new Date(max));
       }
 
       _checkMax(d) {
         const max = this.max ? (new Date(this.max)) : undefined;
-        if (max && !isNaN(+d) && d.getTime && max && max < d) {
+        if (!max || !isNaN(+max)) {
+          return null;
+        }
+        if (d && d.getTime && !isNaN(+d) && max < d) {
           return false;
         }
         return true;
@@ -231,7 +261,10 @@
 
       _checkMin(d) {
         const min = this.min ? (new Date(this.min)) : undefined;
-        if (min && !isNaN(+d) && d.getTime && min > d) {
+        if (!min || !isNaN(+min)) {
+          return null;
+        }
+        if (d && d.getTime && !isNaN(+d) && min > d) {
           return false;
         }
         return true;
@@ -239,13 +272,13 @@
 
       _toDate(d) {
         if (isNaN(+d) || !d.getTime)
-          return null;
+          return '';
         return d.getFullYear() + '-' + this._pad(d.getMonth() + 1, 2) + '-' + this._pad(d.getDate(), 2);
       }
 
       _toTime(d) {
-        if (isNaN(d) || !d.getTime)
-          return null;
+        if (isNaN(+d) || !d.getTime)
+          return '';
         return this._pad(d.getHours(), 2) + ':' + this._pad(d.getMinutes(), 2) + ':' + this._pad(d.getSeconds(), 2) + '.' + this._pad(d.getMilliseconds(), 3);
       }
     }
