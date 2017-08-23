@@ -24,8 +24,8 @@ Custom property | Description | Default
 `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
 `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
 `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
-`--datetime-input` | Mixin applied to the inputs | `{}`
-`--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor;}`
+`--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+`--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
 
 @demo demo/calendar.html
 -->
@@ -52,6 +52,7 @@ Custom property | Description | Default
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        min-height: 1.5em;
       }
       #calendar {
         display: table;
@@ -116,14 +117,14 @@ Custom property | Description | Default
     </style>
 
     <div id="top">
-      <svg class="icon" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24">
+      <svg class="icon switch" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24">
         <g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g>
       </svg>
       <section class="view" on-click="_jumpToNow">
         <div id="viewMonth"></div>
         <div id="viewYear"></div>
       </section>
-      <svg class="icon" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24">
+      <svg class="icon switch" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24">
         <g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g>
       </svg>
       <svg class="icon" hidden$="[[!closable]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
@@ -200,7 +201,8 @@ Custom property | Description | Default
            * The date of the view of the month and year
            */
           viewDate: {
-            type: Number
+            type: Number,
+            notify: true
           }
         }
       }
@@ -210,6 +212,14 @@ Custom property | Description | Default
           'render(viewDate)',
           '_computeViewDate(year, month)'
         ]
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        if (this.value === undefined) {
+          const d = new Date();
+          this.value = +(new Date(d.getFullYear(), d.getMonth(), d.getDate()));
+        }
       }
 
       _onClick(e) {
@@ -230,13 +240,12 @@ Custom property | Description | Default
       }
 
       _computeViewDate(year, month) {
-        console.log(year, month);
         this.viewDate = +(new Date(year, month - 1));
       }
 
       _jumpToNow() {
         const d = new Date();
-        this.viewDate = new Date(d.getFullYear(), d.getMonth());
+        this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
       }
 
       _prevMonth() {
@@ -256,6 +265,7 @@ Custom property | Description | Default
       }
 
       _incremMonth(i) {
+        console.log(i);
         if (this.viewDate) {
           const d = new Date(this.viewDate);
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + i));

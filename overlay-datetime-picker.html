@@ -28,10 +28,10 @@
         background-color: transparent;
         color: var(--datetime-selected-color);
       }
-      input[type="number"]:first-of-type {
+      input[type="text"]:first-of-type {
         text-align: right;
       }
-      input[type="number"]:last-of-type {
+      input[type="text"]:last-of-type {
         text-align: left;
       }
       .replacement,
@@ -48,11 +48,11 @@
       <input id="date" type="date" hidden$="[[!_useNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
       <template is="dom-if" if="[[!_useNative]]">
         <div class="replacement" on-click="_toggleCalendarElement">
-          <input class="l4" type="number" disabled$="[[disabled]]" step="1" value="{{year::input}}">
+          <input class="l4" id="year" on-focus="_connectTextInputs" type="text" min="-271" max="4211" disabled$="[[disabled]]" value="{{year::input}}">
           <span>-</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="1" max="12" step="1" value="{{month::input}}">
+          <input class="l2" id="month" on-focus="_connectTextInputs" type="text" min="1" max="12" disabled$="[[disabled]]" value="{{month::input}}">
           <span>-</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="1" max="31" step="1" value="{{day::input}}">
+          <input class="l2" id="day" on-focus="_connectTextInputs" type="text" min="1" max="31" disabled$="[[disabled]]" value="{{day::input}}">
         </div>
         <overlay-element id="calendarPolyfill"
           always-on-top="[[alwaysOnTop]]"
@@ -82,13 +82,13 @@
       <input id="time" type="time" hidden$="[[!_useNative]]" disabled$="[[disabled]]" value="{{time::input}}" step="1">
       <template is="dom-if" if="[[!_useNative]]">
         <div class="replacement" on-click="_toggleTimeElement">
-          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="23" step="1" value="{{hours::input}}">
+          <input class="l2" id="hours" on-focus="_connectTextInputs" min="0" max="23" type="text" disabled$="[[disabled]]" value="{{hours::input}}">
           <span>:</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="59" step="1" value="{{minutes::input}}">
+          <input class="l2" id="minutes" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{minutes::input}}">
           <span>:</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="59" step="1" value="{{seconds::input}}">
+          <input class="l2" id="seconds" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{seconds::input}}">
           <span>.</span>
-          <input class="l3" type="number" disabled$="[[disabled]]" min="0" max="999" step="1" value="{{milliseconds::input}}">
+          <input class="l3" id="milliseconds" on-focus="_connectTextInputs" min="0" max="999" type="text" disabled$="[[disabled]]" value="{{milliseconds::input}}">
         </div>
         <overlay-element id="timePolyfill"
           always-on-top="[[alwaysOnTop]]"

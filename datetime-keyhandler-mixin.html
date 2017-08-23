@@ -1,0 +1,151 @@
+<script>
+  window.DatetimeKeyhandlerMixin = function(superClass) { // eslint-disable-line no-unused-vars no-undef
+    /**
+     * Mixin that provides for text inputs a numeric behavior and for buttons tap and hold behavior
+     *
+     * A switch needs a `for`-tag, to connect in to the according input, and a `step`-tag to show, how to increment the value
+     *
+     * @mixinClass
+     * @polymer
+     */
+    return class extends superClass {
+
+      _connectTextInputs() {
+        this._inputIds = [];
+
+        const textInputs = this.root.querySelectorAll('input[type=text]');
+        if (textInputs) {
+          Array.prototype.forEach.call(textInputs, input => {
+            input.addEventListener('keyup', this._checkKeycode.bind(this), false);
+            this._inputIds.push(input.id);
+          })
+        }
+
+        const switchs = this.root.querySelectorAll('.switch');
+        if (switchs) {
+          Array.prototype.forEach.call(switchs, s => {
+            s.addEventListener('mousedown', this._startIncrem.bind(this), false);
+            s.addEventListener('touchstart', this._startIncrem.bind(this), false);
+            s.addEventListener('mouseup', this._stopIncrem.bind(this), false);
+            s.addEventListener('mouseleave', this._stopIncrem.bind(this), false);
+            s.addEventListener('touchend', this._stopIncrem.bind(this), false);
+          })
+        }
+
+      }
+
+      disconnectTextInputs() {
+        super.disconnectedCallback();
+
+        const textInputs = this.root.querySelectorAll('input[type=text]');
+        if (textInputs) {
+          Array.prototype.forEach.call(textInputs, input => {
+            input.removeEventListener('keypress', this._checkKeycode.bind(this), false);
+          })
+        }
+
+        const switchs = this.root.querySelectorAll('.switch');
+        if (switchs) {
+          Array.prototype.forEach.call(switchs, s => {
+            s.removeEventListener('mousedown', this._startIncrem.bind(this), false);
+            s.removeEventListener('touchstart', this._startIncrem.bind(this), false);
+            s.removeEventListener('mouseup', this._stopIncrem.bind(this), false);
+            s.removeEventListener('mouseleave', this._stopIncrem.bind(this), false);
+            s.removeEventListener('touchend', this._stopIncrem.bind(this), false);
+          })
+        }
+      }
+
+      _checkKeycode(e) {
+        if (!e.target) {
+          if (e && e.preventDefault) e.preventDefault();
+          return;
+        }
+        const input = e.target;
+        const type = input.id;
+        const value = +input.value;
+        const min = isNaN(+input.min) ? 0 : +input.min;
+        const max = isNaN(+input.max) ? Infinity : +input.max;
+        const step = +(input.step || 1);
+
+        let isSet = false;
+
+        if (isNaN(value)) {
+          this.set(type, !isNaN(min) ? min : (!isNaN(max) ? max : 0));
+          isSet = true;
+        } else if (value < min) {
+          this.set(type, min);
+          isSet = true;
+        } else if (value > max) {
+          this.set(type, max);
+          isSet = true;
+        }
+        if (isSet === true) {
+          if (this._pad) {
+            input.value = this._pad(this[type], ('' + max).length);
+          } else {
+            input.value = this[type];
+          }
+          return;
+        }
+
+        // up or down key press
+        const inc = (e.keyCode === 38) ? step : (e.keyCode === 40 ? -step : 0);
+        if (inc !== 0) {
+          this._increm(input, type, inc, +(input.min || 0), +input.max);
+          return;
+        }
+        // left or right key press
+        let current;
+        for (let i = 0; i < this._inputIds.length; i++) {
+          if (this._inputIds[i] === type) {
+            current = i;
+            break;
+          }
+        }
+        if (current !== undefined) {
+          const jump = (e.keyCode === 39) ? 1 : (e.keyCode === 37 ? -1 : 0);
+          if (jump !== 0) {
+            this.root.querySelector('#' + this._inputIds[(current + jump + this._inputIds.length) % this._inputIds.length]).focus();
+            return;
+          }
+        }
+      }
+
+      _startIncrem(e) {
+        this._stopIncrem();
+        const elem = e.currentTarget || e.path[0],
+            type = elem.getAttribute('for'),
+            inc = +elem.getAttribute('step'),
+            input = this.root.querySelector('#' + type);
+        if (input) {
+          this._increm(input, type, inc, +(input.min || 0), +input.max);
+          this._activeJob = setInterval(() => {
+            this._increm(input, type, inc, +(input.min || 0), +input.max);
+          }, 150);
+        }
+      }
+
+      _stopIncrem() {
+        if (this._activeJob) {
+          clearInterval(this._activeJob);
+        }
+      }
+
+      _increm(input, type, step, min, max) {
+        if (!(input && type && step)) {
+          return;
+        }
+        const diff = max - min + 1;
+        let mod = ((this[type] || min) + step - min) % diff;
+        if (mod < 0)
+          mod += diff;
+        mod += min;
+        this.set(type, mod);
+        if (this._pad) {
+          input.value = this._pad(this[type], ('' + max).length);
+        }
+      }
+    }
+  }
+</script>

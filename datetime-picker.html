@@ -1,4 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
+<link rel="import" href="datetime-keyhandler-mixin.html">
 <link rel="import" href="datetime-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="dropdown-style.html">
@@ -22,9 +25,9 @@
   `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
   `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
   `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
-  `--datetime-input` | Mixin applied to the inputs | `{}`
-  `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor;}`
-  `--datetime-native-input` | Mixin applied to the native inputs of the datetime-picker| `{padding: 0.5em 0.25em;}`
+  `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+  `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
+  `--datetime-native-input` | Mixin applied to the native inputs of the datetime-picker| `{}`
 
   @customElement
   @polymer
@@ -45,10 +48,10 @@
         background-color: transparent;
         color: var(--datetime-selected-color);
       }
-      input[type="number"]:first-of-type {
+      input[type="text"]:first-of-type {
         text-align: right;
       }
-      input[type="number"]:last-of-type {
+      input[type="text"]:last-of-type {
         text-align: left;
       }
       .replacement,
@@ -56,7 +59,7 @@
       input#time {
         cursor: pointer;
         border-radius: 2px;
-        padding: 0.5em;
+        padding: 0.35em;
         @apply --datetime-native-input;
       }
     </style>
@@ -65,14 +68,13 @@
       <input id="date" type="date" hidden$="[[!_useNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
       <template is="dom-if" if="[[!_useNative]]">
         <div class="replacement" on-click="_toggleCalendarElement">
-          <input class="l4" type="number" disabled$="[[disabled]]" step="1" value="{{year::input}}">
+          <input class="l4" id="year" on-focus="_connectTextInputs" type="text" min="-271" max="4211" disabled$="[[disabled]]" value="{{year::input}}">
           <span>-</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="1" max="12" step="1" value="{{month::input}}">
+          <input class="l2" id="month" on-focus="_connectTextInputs" type="text" min="1" max="12" disabled$="[[disabled]]" value="{{month::input}}">
           <span>-</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="1" max="31" step="1" value="{{day::input}}">
+          <input class="l2" id="day" on-focus="_connectTextInputs" type="text" min="1" max="31" disabled$="[[disabled]]" value="{{day::input}}">
         </div>
-        <calendar-element id="calendarPolyfill" class="dropdown"
-          closable
+        <calendar-element id="calendarPolyfill" class="dropdown" closable
           value="{{value}}"
           year="{{year}}"
           month="{{month}}"
@@ -88,16 +90,15 @@
       <input id="time" type="time" hidden$="[[!_useNative]]" disabled$="[[disabled]]" value="{{time::input}}" step="1">
       <template is="dom-if" if="[[!_useNative]]">
         <div class="replacement" on-click="_toggleTimeElement">
-          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="23" step="1" value="{{hours::input}}">
+          <input class="l2" id="hours" on-focus="_connectTextInputs" min="0" max="23" type="text" disabled$="[[disabled]]" value="{{hours::input}}">
           <span>:</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="59" step="1" value="{{minutes::input}}">
+          <input class="l2" id="minutes" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{minutes::input}}">
           <span>:</span>
-          <input class="l2" type="number" disabled$="[[disabled]]" min="0" max="59" step="1" value="{{seconds::input}}">
+          <input class="l2" id="seconds" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{seconds::input}}">
           <span>.</span>
-          <input class="l3" type="number" disabled$="[[disabled]]" min="0" max="999" step="1" value="{{milliseconds::input}}">
+          <input class="l3" id="milliseconds" on-focus="_connectTextInputs" min="0" max="999" type="text" disabled$="[[disabled]]" value="{{milliseconds::input}}">
         </div>
-        <time-element id="timePolyfill" class="dropdown"
-          closable
+        <time-element id="timePolyfill" class="dropdown" closable
           value="{{value}}"
           hours="{{hours}}"
           minutes="{{minutes}}"
@@ -112,7 +113,7 @@
     </div>
   </template>
   <script>
-    class DatetimePicker extends DatetimeMixin(Polymer.Element) { // eslint-disable-line no-undef
+    class DatetimePicker extends DatetimeKeyhandlerMixin(DatetimeMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'datetime-picker';
@@ -183,6 +184,10 @@
           _useNative: {
             type: Boolean,
             computed: '_computeUseNative(_nativeDateTime, useNotNative)'
+          },
+
+          _isPolyfilled: {
+            type: Boolean
           }
         }
       }
@@ -194,6 +199,18 @@
         } else {
           this._nativeDateTime = true;
         }
+      }
+
+      _connectTextInputs() {
+        if (!this._isPolyfilled) {
+          super._connectTextInputs();
+        }
+        this._isPolyfilled = true;
+      }
+
+      _disconnectTextInputs() {
+        super._disconnectTextInputs();
+        this._isPolyfilled = false;
       }
 
       _toggleCalendarElement() {
