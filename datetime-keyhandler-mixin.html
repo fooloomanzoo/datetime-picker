@@ -34,9 +34,9 @@
 
       }
 
-      disconnectTextInputs() {
-        super.disconnectedCallback();
-
+      _disconnectTextInputs() {
+        this._inputIds = [];
+        
         const textInputs = this.root.querySelectorAll('input[type=text]');
         if (textInputs) {
           Array.prototype.forEach.call(textInputs, input => {

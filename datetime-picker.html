@@ -201,6 +201,11 @@
         }
       }
 
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this._disconnectTextInputs();
+      }
+
       _connectTextInputs() {
         if (!this._isPolyfilled) {
           super._connectTextInputs();
