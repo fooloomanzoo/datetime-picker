@@ -41,6 +41,7 @@ Custom property | Description | Default
       --datetime-icon: {
         padding: 8px;
         height: 16px;
+        width: 16px;
         background-color: transparent;
         transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         cursor: pointer;
@@ -66,17 +67,6 @@ Custom property | Description | Default
       :host > * {
         position: relative;
       }
-      .button {
-        color: inherit;
-        fill: currentColor;
-        cursor: pointer;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-        @apply --datetime-button;
-      }
-      .button:hover {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
-      }
       input::-webkit-datetime-edit-text,
       input::-webkit-input-placeholder,
       input::-webkit-inner-spin-button,
@@ -97,11 +87,23 @@ Custom property | Description | Default
       input.l4 {
         width: 4ch;
       }
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        input.l2 {
+          width: 2.5ch;
+        }
+        input.l3 {
+          width: 3.5ch;
+        }
+        input.l4 {
+          width: 4.5ch;
+        }
+      }
       input[type=text],
       input[type=date],
       input[type=time] {
         font-family: inherit;
         font-size: inherit;
+        box-sizing: content-box;
         @apply --datetime-input;
       }
       input[type=text]:focus,

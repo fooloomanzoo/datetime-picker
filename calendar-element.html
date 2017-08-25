@@ -2,34 +2,6 @@
 <link rel="import" href="datetime-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 
-<!--
-`calendar-element`
-
-A polyfill date picker using Polymer.
-
-If you like to connect it to an input, try it like:
-
-  ```html
-    <input type="date" value="{{date::input}}">
-
-    <calendar-element date="{{date}}"></calendar-element>
-  ```
-
-The following custom properties and mixins are also available for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--datetime-background` | text-color of the time-element | `#252525`
-`--datetime-color` | text-color of the time-element | `#ccc`
-`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
-`--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
-`--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
-`--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
-`--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
-
-@demo demo/calendar.html
--->
-
 <dom-module id="calendar-element">
   <template strip-whitespace>
     <style include="datetime-shared-style">
@@ -40,19 +12,20 @@ Custom property | Description | Default
         @apply --datetime-element;
       }
       #top {
-        width: 100%;
-        display: inline-flex;
+        display: flex;
         flex-direction: row;
         align-items: center;
       }
       .view {
-        flex: 1;
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        flex-grow: 1;
+        padding: 0 4px;
         cursor: pointer;
-        min-height: 1.5em;
+      }
+      #month {
+        text-align: right;
+      }
+      #year {
+        font-weight: bold;
       }
       #calendar {
         display: table;
@@ -106,27 +79,14 @@ Custom property | Description | Default
         transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         fill: currentColor;
       }
-      #viewMonth {
-        float: left;
-        margin-right: 0.3em;
-      }
-      #viewYear {
-        float: left;
-        font-weight: bold;
-      }
     </style>
 
     <div id="top">
-      <svg class="icon switch" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24">
-        <g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g>
-      </svg>
-      <section class="view" on-click="_jumpToNow">
-        <div id="viewMonth"></div>
-        <div id="viewYear"></div>
-      </section>
-      <svg class="icon switch" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24">
-        <g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g>
-      </svg>
+      <svg class="icon switch" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
+      <span id="month" class="view" on-click="_jumpToNow"></span>
+      <span id="year" class="view" on-click="_jumpToNow"></span>
+      <svg class="icon switch" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
+      <svg class="icon" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
       <svg class="icon" hidden$="[[!closable]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
     </div>
 
@@ -161,6 +121,35 @@ Custom property | Description | Default
   </template>
 
   <script>
+  /**
+  * A polyfill date picker using Polymer.
+  *
+  * If you like to connect it to an input, try it like:
+  *
+  *   ```html
+  *     <input type="date" value="{{date::input}}">
+  *
+  *     <calendar-element date="{{date}}"></calendar-element>
+  *   ```
+  *
+  * The following custom properties and mixins are also available for styling:
+  *
+  * Custom property | Description | Default
+  * ----------------|-------------|----------
+  * `--datetime-background` | text-color of the time-element | `#252525`
+  * `--datetime-color` | text-color of the time-element | `#ccc`
+  * `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
+  * `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
+  * `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
+  * `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+  * `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
+  *
+  * @polymer
+  * @customElement
+  * @appliesMixin DatetimeMixin
+  *
+  * @demo demo/calendar.html
+  **/
     class CalendarElement extends DatetimeMixin(Polymer.Element) { // eslint-disable-line no-undef
 
       static get is() {
@@ -209,7 +198,7 @@ Custom property | Description | Default
 
       static get observers() {
         return [
-          'render(viewDate)',
+          'render(viewDate, day)',
           '_computeViewDate(year, month)'
         ]
       }
@@ -239,8 +228,13 @@ Custom property | Description | Default
         }
       }
 
-      _computeViewDate(year, month) {
+      _computeViewDate(year, month, day) {
         this.viewDate = +(new Date(year, month - 1));
+      }
+
+      now() {
+        super.now();
+        this._jumpToNow();
       }
 
       _jumpToNow() {
@@ -265,7 +259,6 @@ Custom property | Description | Default
       }
 
       _incremMonth(i) {
-        console.log(i);
         if (this.viewDate) {
           const d = new Date(this.viewDate);
           this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + i));
@@ -280,10 +273,10 @@ Custom property | Description | Default
 
       _localeChanged() {
         if (this.viewDate) {
-          this.$.viewMonth.textContent = this.viewDate.toLocaleDateString(this.locale, {
+          this.$.month.textContent = this.viewDate.toLocaleDateString(this.locale, {
             month: 'long'
           });
-          this.$.viewYear.textContent = this.viewDate.toLocaleDateString(this.locale, {
+          this.$.year.textContent = this.viewDate.toLocaleDateString(this.locale, {
             year: 'numeric'
           });
         }
@@ -305,10 +298,10 @@ Custom property | Description | Default
         if (viewDate === undefined) return;
         const d = new Date(viewDate);
 
-        this.$.viewMonth.textContent = d.toLocaleDateString(this.locale, {
+        this.$.month.textContent = d.toLocaleDateString(this.locale, {
           month: 'long'
         });
-        this.$.viewYear.textContent = d.toLocaleDateString(this.locale, {
+        this.$.year.textContent = d.toLocaleDateString(this.locale, {
           year: 'numeric'
         });
 
@@ -333,7 +326,7 @@ Custom property | Description | Default
         const thismonthlength = +new Date(year, month + 1, 0).getDate();
         const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
 
-        let counter = -(7 + firstWeekDay) + 1;
+        let counter = -(7 + firstWeekDay) % 7 + 1;
         for (let i = 0; i < this.$.dates.children.length; i++) {
           for (let j = 0; j < this.$.dates.children[i].children.length; j++) {
             // Day Numbers

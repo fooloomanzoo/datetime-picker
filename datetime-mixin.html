@@ -1,11 +1,12 @@
 <script>
-  window.DatetimeMixin = function(superClass) { // eslint-disable-line no-unused-vars no-undef
-    /**
-     * Mixin that provides datetime-properties
-     *
-     * @mixinClass
-     * @polymer
-     */
+  /**
+   * Mixin that provides datetime-properties
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const DatetimeMixin = (superClass) => { // eslint-disable-line no-unused-vars no-undef
+
     return class extends superClass {
 
       static get properties() {
@@ -136,6 +137,13 @@
         }, 0);
       }
 
+      /**
+       *  Sets value to the actual date
+       **/
+      now() {
+        this.value = +(new Date());
+      }
+
       _computeTime(hours, minutes, seconds, milliseconds) {
         if (isNaN(+hours) || isNaN(+minutes) || isNaN(+seconds)) return;
         const time = this._pad(+hours, 2) + ':' + this._pad(+minutes, 2) + ':' + this._pad(+seconds, 2) + '.' + this._pad(+milliseconds || 0, 3);
@@ -167,7 +175,7 @@
             milliseconds: d.getMilliseconds(),
             value: +d
           });
-        } else if (Number.isNaN(this.value)){
+        } else if (!isNaN(this.value)){
           this._valueChanged(this.value);
         }
       }
@@ -200,11 +208,11 @@
         if (str.length > targetLength) {
           return str;
         } else {
-          targetLength = targetLength - str.length;
-          if (targetLength > padString.length) {
-              padString += padString.repeat(targetLength);
+          targetLength = targetLength - str.length - padString.length + 1;
+          for (let i = 0; i < targetLength; i++) {
+            str = padString + str;
           }
-          return padString.slice(0,targetLength) + str;
+          return str;
         }
       }
 
@@ -269,4 +277,6 @@
       }
     }
   }
+
+  window.DatetimeMixin = DatetimeMixin;
 </script>

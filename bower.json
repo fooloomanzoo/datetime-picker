@@ -14,7 +14,7 @@
     "iron-overlay-behavior": "PolymerElements/iron-overlay-behavior"
   },
   "devDependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs",
     "iron-component-page": "PolymerElements/iron-component-page#^3.0.1",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0"

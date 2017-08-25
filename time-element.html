@@ -3,34 +3,6 @@
 <link rel="import" href="datetime-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 
-<!--
-`time-element`
-
-A polyfill time picker using Polymer.
-
-If you like to connect it to an input, try it like:
-
-  ```html
-    <input type="time" value="{{time::input}}" step="1">
-
-    <time-element time="{{time}}"></time-element>
-  ```
-
-The following custom properties and mixins are also available for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--datetime-background` | text-color of the time-element | `#252525`
-`--datetime-color` | text-color of the time-element | `#ccc`
-`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
-`--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
-`--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
-`--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
-`--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
-
-@demo demo/time.html
--->
-
 <dom-module id="time-element">
   <template strip-whitespace>
     <style include="datetime-shared-style">
@@ -40,24 +12,26 @@ Custom property | Description | Default
         color: var(--datetime-color);
         @apply --datetime-element;
       }
-      #content {
-        position: relative;
-        display: flex;
+      #picker {
+        display: inline-flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        text-align: center;
       }
-      #content > * {
-        position: relative;
+      .field {
         display: flex;
         flex-direction: column;
-        flex-wrap: nowrap;
         align-items: center;
       }
-      .switch {
-        align-self: stretch;
+      .icon {
         padding-top: 4px;
         padding-bottom: 4px;
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        justify-content: space-between;
       }
       input.timer {
         background-color: var(--datetime-background);
@@ -67,35 +41,73 @@ Custom property | Description | Default
       }
     </style>
 
-    <div id="content">
+    <div id="picker">
       <div class="field">
         <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
         <input class="timer l2" id="hours" min="0" max="23" type="text" tabindex="1" value="{{hours::input}}" placeholder="00">
         <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
       </div>
-      :
+      <span>:</span>
       <div class="field">
         <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
         <input class="timer l2" id="minutes" min="0" max="59" type="text" tabindex="2" value="{{minutes::input}}" placeholder="00">
         <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
-      </div>:
+      </div>
+      <span>:</span>
       <div class="field">
-        <svg class="icon switch" viewBox="0 0 24 24"for="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+        <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
         <input class="timer l2" id="seconds" min="0" max="59" type="text" tabindex="3" value="{{seconds::input}}" placeholder="00">
         <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
-      </div>.
+      </div>
+      <span>.</span>
       <div class="field">
         <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
         <input class="timer l3" id="milliseconds" min="0" max="999" type="text" tabindex="4" value="{{milliseconds::input}}" placeholder="000">
         <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
       </div>
-      <div hidden$="[[!closable]]">
-        <svg class="icon" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+      <div class="buttons">
+        <svg class="icon" hidden$="[[!closable]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+        <svg class="icon" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
       </div>
     </div>
+
   </template>
 
   <script>
+  /**
+   * `time-element`
+   *
+   * A polyfill time picker using Polymer.
+   *
+   * If you like to connect it to an input, try it like:
+   *
+   *  ```html
+   *     <input type="time" value="{{time::input}}" step="1">
+   *
+   *     <time-element time="{{time}}"></time-element>
+   *  ```
+
+   * The following custom properties and mixins are also available for styling:
+
+   * Custom property | Description | Default
+   * ----------------|-------------|----------
+   * `--datetime-background` | text-color of the time-element | `#252525`
+   * `--datetime-color` | text-color of the time-element | `#ccc`
+   * `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
+   * `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
+   * `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
+   * `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+   * `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
+   *
+   * @polymer
+   * @customElement
+   * @implements {DatetimeMixin}
+   * @implements {DatetimeKeyhandlerMixin}
+   * @appliesMixin DatetimeMixin
+   * @appliesMixin DatetimeKeyhandlerMixin
+   *
+   * @demo demo/time.html
+   **/
     class TimeElement extends DatetimeKeyhandlerMixin(DatetimeMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
@@ -130,11 +142,33 @@ Custom property | Description | Default
           this.value = +(new Date());
         }
         this._connectTextInputs();
+
+        const switchs = this.root.querySelectorAll('.switch');
+        if (switchs) {
+          Array.prototype.forEach.call(switchs, s => {
+            s.addEventListener('mousedown', this._startIncrem.bind(this), false);
+            s.addEventListener('touchstart', this._startIncrem.bind(this), false);
+            s.addEventListener('mouseup', this._stopIncrem.bind(this), false);
+            s.addEventListener('mouseleave', this._stopIncrem.bind(this), false);
+            s.addEventListener('touchend', this._stopIncrem.bind(this), false);
+          })
+        }
       }
 
       disconnectedCallback() {
         super.disconnectedCallback();
         this._disconnectTextInputs();
+
+        const switchs = this.root.querySelectorAll('.switch');
+        if (switchs) {
+          Array.prototype.forEach.call(switchs, s => {
+            s.removeEventListener('mousedown', this._startIncrem.bind(this), false);
+            s.removeEventListener('touchstart', this._startIncrem.bind(this), false);
+            s.removeEventListener('mouseup', this._stopIncrem.bind(this), false);
+            s.removeEventListener('mouseleave', this._stopIncrem.bind(this), false);
+            s.removeEventListener('touchend', this._stopIncrem.bind(this), false);
+          })
+        }
       }
       /**
        * toggles opened state

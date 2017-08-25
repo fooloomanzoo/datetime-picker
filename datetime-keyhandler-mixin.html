@@ -1,14 +1,20 @@
 <script>
-  window.DatetimeKeyhandlerMixin = function(superClass) { // eslint-disable-line no-unused-vars no-undef
-    /**
-     * Mixin that provides for text inputs a numeric behavior and for buttons tap and hold behavior
-     *
-     * A switch needs a `for`-tag, to connect in to the according input, and a `step`-tag to show, how to increment the value
-     *
-     * @mixinClass
-     * @polymer
-     */
+  /**
+   * Mixin that provides for text inputs a numeric behavior
+   *
+   * A switch needs a `for`-tag, to connect in to the according input, and a `step`-tag to show, how to increment the value
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const DatetimeKeyhandlerMixin = function(superClass) { // eslint-disable-line no-unused-vars no-undef
+
     return class extends superClass {
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this._disconnectTextInputs();
+      }
 
       _connectTextInputs() {
         this._inputIds = [];
@@ -21,37 +27,15 @@
           })
         }
 
-        const switchs = this.root.querySelectorAll('.switch');
-        if (switchs) {
-          Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mousedown', this._startIncrem.bind(this), false);
-            s.addEventListener('touchstart', this._startIncrem.bind(this), false);
-            s.addEventListener('mouseup', this._stopIncrem.bind(this), false);
-            s.addEventListener('mouseleave', this._stopIncrem.bind(this), false);
-            s.addEventListener('touchend', this._stopIncrem.bind(this), false);
-          })
-        }
-
       }
 
       _disconnectTextInputs() {
         this._inputIds = [];
-        
+
         const textInputs = this.root.querySelectorAll('input[type=text]');
         if (textInputs) {
           Array.prototype.forEach.call(textInputs, input => {
             input.removeEventListener('keypress', this._checkKeycode.bind(this), false);
-          })
-        }
-
-        const switchs = this.root.querySelectorAll('.switch');
-        if (switchs) {
-          Array.prototype.forEach.call(switchs, s => {
-            s.removeEventListener('mousedown', this._startIncrem.bind(this), false);
-            s.removeEventListener('touchstart', this._startIncrem.bind(this), false);
-            s.removeEventListener('mouseup', this._stopIncrem.bind(this), false);
-            s.removeEventListener('mouseleave', this._stopIncrem.bind(this), false);
-            s.removeEventListener('touchend', this._stopIncrem.bind(this), false);
           })
         }
       }
@@ -148,4 +132,6 @@
       }
     }
   }
+  
+  window.DatetimeKeyhandlerMixin = DatetimeKeyhandlerMixin;
 </script>
