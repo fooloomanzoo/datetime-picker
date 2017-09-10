@@ -9,83 +9,6 @@
 <link rel="import" href="time-element.html">
 
 <dom-module id="datetime-picker">
-  <template strip-whitespace>
-    <style include="datetime-shared-style dropdown-style">
-      :host {
-        display: inline-flex;
-      }
-      .replacement:hover {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
-      }
-      .replacement:hover > * {
-        background-color: transparent;
-        color: var(--datetime-selected-color);
-      }
-      input[type="text"]:first-of-type {
-        text-align: right;
-      }
-      input[type="text"]:last-of-type {
-        text-align: left;
-      }
-      .replacement,
-      input#date,
-      input#time {
-        cursor: pointer;
-        border-radius: 2px;
-        padding: 0.35em;
-        @apply --datetime-native-input;
-      }
-    </style>
-
-    <div>
-      <input id="date" type="date" hidden$="[[!_useNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
-      <template is="dom-if" if="[[!_useNative]]">
-        <div class="replacement" on-click="_toggleCalendarElement">
-          <input class="l4" id="year" on-focus="_connectTextInputs" type="text" min="-271" max="4211" disabled$="[[disabled]]" value="{{year::input}}">
-          <span>-</span>
-          <input class="l2" id="month" on-focus="_connectTextInputs" type="text" min="1" max="12" disabled$="[[disabled]]" value="{{month::input}}">
-          <span>-</span>
-          <input class="l2" id="day" on-focus="_connectTextInputs" type="text" min="1" max="31" disabled$="[[disabled]]" value="{{day::input}}">
-        </div>
-        <calendar-element id="calendarPolyfill" class="dropdown" closable
-          value="{{value}}"
-          year="{{year}}"
-          month="{{month}}"
-          day="{{day}}"
-          min="{{min}}"
-          max="{{max}}"
-          hidden$="[[disabled]]"
-          opened="{{calendarOpened}}">
-        </calendar-element>
-      </template>
-    </div>
-    <div>
-      <input id="time" type="time" hidden$="[[!_useNative]]" disabled$="[[disabled]]" value="{{time::input}}" step="1">
-      <template is="dom-if" if="[[!_useNative]]">
-        <div class="replacement" on-click="_toggleTimeElement">
-          <input class="l2" id="hours" on-focus="_connectTextInputs" min="0" max="23" type="text" disabled$="[[disabled]]" value="{{hours::input}}">
-          <span>:</span>
-          <input class="l2" id="minutes" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{minutes::input}}">
-          <span>:</span>
-          <input class="l2" id="seconds" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{seconds::input}}">
-          <span>.</span>
-          <input class="l3" id="milliseconds" on-focus="_connectTextInputs" min="0" max="999" type="text" disabled$="[[disabled]]" value="{{milliseconds::input}}">
-        </div>
-        <time-element id="timePolyfill" class="dropdown" closable
-          value="{{value}}"
-          hours="{{hours}}"
-          minutes="{{minutes}}"
-          seconds="{{seconds}}"
-          milliseconds="{{milliseconds}}"
-          min="{{min}}"
-          max="{{max}}"
-          hidden$="[[disabled]]"
-          opened="{{timeOpened}}">
-        </time-element>
-      </template>
-    </div>
-  </template>
   <script>
   /**
    *  `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
@@ -155,21 +78,24 @@
            * disables the input elements
            */
           disabled: {
-            type: Boolean
+            type: Boolean,
+            value: false
           },
 
           /**
            * true if the date-picker is opened
            */
           calendarOpened: {
-            type: Boolean
+            type: Boolean,
+            value: false
           },
 
           /**
            * true if the time-picker is opened
            */
           timeOpened: {
-            type: Boolean
+            type: Boolean,
+            value: false
           },
 
           /**
@@ -179,30 +105,134 @@
             type: Boolean,
             value: false,
             observer: '_noCancelOnEscKeyChanged'
-          },
-
-          _nativeDateTime: {
-            type: Boolean
-          },
-
-          _useNative: {
-            type: Boolean,
-            computed: '_computeUseNative(_nativeDateTime, useNotNative)'
-          },
-
-          _isPolyfilled: {
-            type: Boolean
           }
+
         }
+      }
+
+      static get nativeDateTime() {
+        const inputDate = document.createElement('input');
+        inputDate.setAttribute('type', 'date');
+        const inputTime = document.createElement('input');
+        inputTime.setAttribute('type', 'time');
+        return inputTime.type === 'time' && inputDate.type === 'date';
+      }
+
+      static get template() {
+        return `
+          ${this.nativeDateTime ? this.native : this.polyfill}
+          ${this.styleTemplate}
+        `
+      }
+
+      static get styleTemplate() {
+        return `
+          <style include="datetime-shared-style dropdown-style">
+            :host {
+              display: inline-flex;
+            }
+            .replacement:hover {
+              background-color: var(--datetime-selected-background);
+              color: var(--datetime-selected-color);
+            }
+            .replacement:hover > * {
+              background-color: transparent;
+              color: var(--datetime-selected-color);
+            }
+            input[type="text"]:first-of-type {
+              text-align: right;
+            }
+            input[type="text"]:last-of-type {
+              text-align: left;
+            }
+            .replacement,
+            input#date,
+            input#time {
+              cursor: pointer;
+              border-radius: 2px;
+              padding: 0.35em;
+              @apply --datetime-native-input;
+            }
+          </style>
+        `
+      }
+
+      static get native() {
+        return `
+          ${this.nativeInputTemplate}
+          <template is="dom-if" if="[[useNotNative]]">
+            ${this.polyfill}
+          </template>
+        `
+      }
+
+      static get nativeInputTemplate() {
+        return `
+          <input id="date" type="date" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
+          <input id="time" type="time" hidden$="[[useNotNative]]" disabled$="[[disabled]]" value="{{time::input}}" step="1">
+        `;
+      }
+
+      static get polyfill() {
+        return `
+          <div>
+            <div class="replacement" on-click="_toggleCalendarElement">
+              <input class="l4" id="year" on-focus="_connectTextInputs" type="text" min="-271" max="4211" disabled$="[[disabled]]" value="{{year::input}}">
+              <span>-</span>
+              <input class="l2" id="month" on-focus="_connectTextInputs" type="text" min="1" max="12" disabled$="[[disabled]]" value="{{month::input}}">
+              <span>-</span>
+              <input class="l2" id="day" on-focus="_connectTextInputs" type="text" min="1" max="31" disabled$="[[disabled]]" value="{{day::input}}">
+            </div>
+            ${this.calendarTemplate}
+          </div>
+          <div>
+            <div class="replacement" on-click="_toggleTimeElement">
+              <input class="l2" id="hours" on-focus="_connectTextInputs" min="0" max="23" type="text" disabled$="[[disabled]]" value="{{hours::input}}">
+              <span>:</span>
+              <input class="l2" id="minutes" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{minutes::input}}">
+              <span>:</span>
+              <input class="l2" id="seconds" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{seconds::input}}">
+              <span>.</span>
+              <input class="l3" id="milliseconds" on-focus="_connectTextInputs" min="0" max="999" type="text" disabled$="[[disabled]]" value="{{milliseconds::input}}">
+            </div>
+            ${this.timeTemplate}
+          </div>
+        `;
+      }
+
+      static get calendarTemplate() {
+        return `
+          <calendar-element class="dropdown" closable
+            value="{{value}}"
+            year="{{year}}"
+            month="{{month}}"
+            day="{{day}}"
+            min="{{min}}"
+            max="{{max}}"
+            hidden$="[[disabled]]"
+            opened="{{calendarOpened}}">
+          </calendar-element>
+        `;
+      }
+
+      static get timeTemplate() {
+        return `
+          <time-element class="dropdown" closable
+            value="{{value}}"
+            hours="{{hours}}"
+            minutes="{{minutes}}"
+            seconds="{{seconds}}"
+            milliseconds="{{milliseconds}}"
+            min="{{min}}"
+            max="{{max}}"
+            hidden$="[[disabled]]"
+            opened="{{timeOpened}}">
+          </time-element>
+        `;
       }
 
       connectedCallback() {
         super.connectedCallback();
-        if (this.$.date.type !== 'date' || this.$.time.type !== 'time') {
-          this._nativeDateTime = false;
-        } else {
-          this._nativeDateTime = true;
-        }
       }
 
       _connectTextInputs() {
@@ -250,9 +280,6 @@
         }
       }
 
-      _computeUseNative(nativeDateTime, useNotNative) { // eslint-disable-line no-unused-vars
-        return nativeDateTime && !useNotNative;
-      }
     }
 
     window.customElements.define(DatetimePicker.is, DatetimePicker);

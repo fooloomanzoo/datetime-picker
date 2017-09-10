@@ -4,109 +4,6 @@
 
 
 <dom-module id="overlay-datetime-picker">
-  <template strip-whitespace>
-    <style include="datetime-shared-style dropdown-style">
-      :host {
-        display: inline-flex;
-      }
-      .replacement:hover {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
-      }
-      .replacement:hover > * {
-        background-color: transparent;
-        color: var(--datetime-selected-color);
-      }
-      input[type="text"]:first-of-type {
-        text-align: right;
-      }
-      input[type="text"]:last-of-type {
-        text-align: left;
-      }
-      .replacement,
-      input#date,
-      input#time {
-        cursor: pointer;
-        border-radius: 2px;
-        padding: 0.35em;
-        @apply --datetime-native-input;
-      }
-    </style>
-
-    <div>
-      <input id="date" type="date" hidden$="[[!_useNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
-      <template is="dom-if" if="[[!_useNative]]">
-        <div class="replacement" on-click="_toggleCalendarElement">
-          <input class="l4" id="year" on-focus="_connectTextInputs" type="text" min="-271" max="4211" disabled$="[[disabled]]" value="{{year::input}}">
-          <span>-</span>
-          <input class="l2" id="month" on-focus="_connectTextInputs" type="text" min="1" max="12" disabled$="[[disabled]]" value="{{month::input}}">
-          <span>-</span>
-          <input class="l2" id="day" on-focus="_connectTextInputs" type="text" min="1" max="31" disabled$="[[disabled]]" value="{{day::input}}">
-        </div>
-        <overlay-element id="calendarPolyfill"
-          always-on-top="[[alwaysOnTop]]"
-          with-backdrop="[[withBackdrop]]"
-          no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
-          no-cancel-on-esc-key="[[noCancelOnEscKey]]"
-          no-overlap="[[noOverlap]]"
-          dynamic-align="[[dynamicAlign]]"
-          vertical-align="[[verticalAlign]]"
-          horizontal-align="[[horizontalAlign]]"
-          opened="{{calendarOpened}}">
-          <calendar-element
-            closable
-            value="{{value}}"
-            year="{{year}}"
-            month="{{month}}"
-            day="{{day}}"
-            min="{{min}}"
-            max="{{max}}"
-            hidden$="[[disabled]]"
-            opened="{{calendarOpened}}">
-          </calendar-element>
-        </overlay-element>
-      </template>
-    </div>
-    <div>
-      <input id="time" type="time" hidden$="[[!_useNative]]" disabled$="[[disabled]]" value="{{time::input}}" step="1">
-      <template is="dom-if" if="[[!_useNative]]">
-        <div class="replacement" on-click="_toggleTimeElement">
-          <input class="l2" id="hours" on-focus="_connectTextInputs" min="0" max="23" type="text" disabled$="[[disabled]]" value="{{hours::input}}">
-          <span>:</span>
-          <input class="l2" id="minutes" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{minutes::input}}">
-          <span>:</span>
-          <input class="l2" id="seconds" on-focus="_connectTextInputs" min="0" max="59" type="text" disabled$="[[disabled]]" value="{{seconds::input}}">
-          <span>.</span>
-          <input class="l3" id="milliseconds" on-focus="_connectTextInputs" min="0" max="999" type="text" disabled$="[[disabled]]" value="{{milliseconds::input}}">
-        </div>
-        <overlay-element id="timePolyfill"
-          always-on-top="[[alwaysOnTop]]"
-          with-backdrop="[[withBackdrop]]"
-          no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
-          no-cancel-on-esc-key="[[noCancelOnEscKey]]"
-          no-overlap="[[noOverlap]]"
-          dynamic-align="[[dynamicAlign]]"
-          vertical-align="[[verticalAlign]]"
-          horizontal-align="[[horizontalAlign]]"
-          opened="{{timeOpened}}">
-          <time-element
-            closable
-            value="{{value}}"
-            hours="{{hours}}"
-            minutes="{{minutes}}"
-            seconds="{{seconds}}"
-            milliseconds="{{milliseconds}}"
-            min="{{min}}"
-            max="{{max}}"
-            hidden$="[[disabled]]"
-            opened="{{timeOpened}}">
-          </time-element>
-        </overlay-element>
-      </template>
-    </div>
-
-  </template>
-
   <script>
 /**
  *   `overlay-datetime-picker` extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*. Styling the overlay is currently not possible.
@@ -125,6 +22,40 @@
 
       static get is() {
         return 'overlay-datetime-picker';
+      }
+
+      static get calendarTemplate() {
+        return `
+          <overlay-element
+            always-on-top="[[alwaysOnTop]]"
+            with-backdrop="[[withBackdrop]]"
+            no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
+            no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+            no-overlap="[[noOverlap]]"
+            dynamic-align="[[dynamicAlign]]"
+            vertical-align="[[verticalAlign]]"
+            horizontal-align="[[horizontalAlign]]"
+            opened="{{calendarOpened}}">
+            ${super.calendarTemplate}
+          </overlay-element>
+        `;
+      }
+
+      static get timeTemplate() {
+        return `
+          <overlay-element
+            always-on-top="[[alwaysOnTop]]"
+            with-backdrop="[[withBackdrop]]"
+            no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
+            no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+            no-overlap="[[noOverlap]]"
+            dynamic-align="[[dynamicAlign]]"
+            vertical-align="[[verticalAlign]]"
+            horizontal-align="[[horizontalAlign]]"
+            opened="{{timeOpened}}">
+            ${super.timeTemplate}
+          </overlay-element>
+        `;
       }
 
       static get properties() {
