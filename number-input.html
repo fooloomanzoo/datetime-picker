@@ -1,0 +1,208 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-overlay-behavior/iron-overlay-behavior.html">
+
+<dom-module id="number-input">
+  <template strip-whitespace>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+      input {
+        @apply --datetime-input;
+      }
+      input:hover,
+      input:focus {
+        @apply --datetime-focus;
+      }
+      :host([pad-length="2"]) input {
+        width: 2ch;
+      }
+      :host([pad-length="3"]) input {
+        width: 3ch;
+      }
+      :host([pad-length="4"]) input {
+        width: 4ch;
+      }
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        :host([pad-length="2"]) input {
+          width: 2.5ch;
+        }
+        :host([pad-length="3"]) input {
+          width: 3.5ch;
+        }
+        :host([pad-length="4"]) input {
+          width: 4.5ch;
+        }
+      }
+    </style>
+    <input id="input" type="text" value="{{_value::input}}" placeholder="[[placeholder]]" on-keydown="_checkKeycode" on-keyup="_stopIncrem" disabled="[[disabled]]"></input>
+  </template>
+
+  <script>
+  /**
+   * `number-input`
+   * A number input that prevents false input to be propagated and pads the value
+   *
+   *   @customElement
+   *   @polymer
+   *
+   *   @demo demo/number-input.html
+   */
+    class NumberInput extends Polymer.Element {
+
+      static get is() {
+        return 'number-input';
+      }
+
+      static get properties() {
+        return {
+          min: {
+            type: Number
+          },
+
+          max: {
+            type: Number
+          },
+
+          step: {
+            type: Number,
+            value: 1
+          },
+
+          padLength: {
+            type: Number,
+            reflectToAttribute: true
+          },
+
+          placeholder: {
+            type: String
+          },
+
+          disabled: {
+            type: Boolean
+          },
+
+          value: {
+            type: Number,
+            notify: true,
+            observer: 'valueChanged'
+          },
+
+          _value: {
+            type: String,
+            observer: '_valueChanged'
+          }
+        }
+      }
+
+      _pad(n) {
+        let str = '' + n;
+        let targetLength = this.padLength || (this.placeholder && this.placeholder.length) || Math.log10(+n);
+        const padString = '0';
+        if (str.length > targetLength) {
+          return str;
+        } else {
+          targetLength = targetLength - str.length;
+          for (let i = 0; i < targetLength; i++) {
+            str = padString + str;
+          }
+          return str;
+        }
+      }
+
+      _valueChanged(_value) {
+        let value = Number(_value);
+
+        const min = this.min;
+        const max = this.max;
+        let changed = false;
+
+        if (isNaN(value)) {
+          value = Number(this.value);
+          changed = true;
+        } else if (min !== undefined && value < min) {
+          value = min;
+          changed = true;
+        } else if (max !== undefined && value > max) {
+          value = max;
+          changed = true;
+        }
+
+        if (isNaN(value)) {
+          return;
+        } else if (changed === true) {
+          this._value = this._pad(value);
+        } else {
+          this.value = value
+        }
+      }
+
+      valueChanged(value) {
+        if (value === undefined) return;
+
+        if (this.min !== undefined && value < this.min) {
+          this.value = this.min;
+          return;
+        }
+        if (this.max !== undefined && value > this.max) {
+          this.value = this.max;
+          return;
+        }
+        this._value = this._pad(value);
+      }
+
+      _checkKeycode(e) {
+        if (!e.target) {
+          if (e && e.preventDefault) e.preventDefault();
+          return;
+        }
+        // up or down key press
+        const step = this.step || 1;
+        const inc = (e.keyCode === 38) ? step : (e.keyCode === 40 ? -step : 0);
+        if (inc !== 0) {
+          this._startIncrem(inc);
+          return;
+        }
+        // left or right key press
+        if (e.keyCode === 39) {
+          this.dispatchEvent(new CustomEvent('focus-next-input'));
+          return;
+        }
+
+        if (e.keyCode === 37) {
+          this.dispatchEvent(new CustomEvent('focus-previous-input'));
+          return;
+        }
+      }
+
+      _startIncrem(step) {
+        this._stopIncrem();
+        this._increm(step);
+        this._activeJob = setInterval(() => {
+          this._increm(step);
+        }, 150);
+      }
+
+      _stopIncrem() {
+        if (this._activeJob) {
+          clearInterval(this._activeJob);
+        }
+      }
+
+      _increm(step) {
+        if (!step) return;
+        const min = this.min;
+        const max = this.max;
+        step = step || this.step || 1;
+        const value = (this.value || 0) + step;
+        this.value = (max === undefined || value <= max) ? ((min === undefined || value >= min) ? value : min) : max;
+      }
+
+      focus() {
+        this.$.input.focus();
+      }
+    }
+    window.customElements.define(NumberInput.is, NumberInput);
+  </script>
+</dom-module>

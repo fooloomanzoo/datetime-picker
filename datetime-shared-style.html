@@ -34,9 +34,15 @@ Custom property | Description | Default
         text-align: center;
         color: inherit;
         cursor: pointer;
-        box-sizing: content-box;
         background-color: transparent;
+        font-family: inherit !important;
+        font-size: inherit !important;
+        box-sizing: content-box;
         transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+      };
+      --datetime-focus: {
+        background-color: var(--datetime-selected-background);
+        color: var(--datetime-selected-color);
       };
       --datetime-icon: {
         padding: 8px;
@@ -78,32 +84,9 @@ Custom property | Description | Default
       input[type="date"]:hover::-webkit-calendar-picker-indicator {
         background: transparent;
       }
-      input.l2 {
-        width: 2ch;
-      }
-      input.l3 {
-        width: 3ch;
-      }
-      input.l4 {
-        width: 4ch;
-      }
-      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        input.l2 {
-          width: 2.5ch;
-        }
-        input.l3 {
-          width: 3.5ch;
-        }
-        input.l4 {
-          width: 4.5ch;
-        }
-      }
       input[type=text],
       input[type=date],
       input[type=time] {
-        font-family: inherit;
-        font-size: inherit;
-        box-sizing: content-box;
         @apply --datetime-input;
       }
       input[type=text]:focus,
@@ -112,15 +95,13 @@ Custom property | Description | Default
       input[type=text]:hover,
       input[type=date]:hover,
       input[type=time]:hover {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
+        @apply --datetime-focus;
       }
       .icon {
         @apply --datetime-icon;
       }
       .icon:hover {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
+        @apply --datetime-focus;
       }
       [hidden] {
         display: none !important;
