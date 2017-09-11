@@ -107,6 +107,46 @@
           max: {
             type: String,
             notify: true
+          },
+
+          timeFormat: {
+            type: String,
+            value: 'hh:mm:ss:lll',
+            observer: '_timeFormatChanged'
+          },
+
+          dateFormat: {
+            type: String,
+            value: 'YYYY/MM/DD',
+            observer: '_dateFormatChanged'
+          },
+
+          _hasYear: {
+            type: Boolean
+          },
+
+          _hasMonth: {
+            type: Boolean
+          },
+
+          _hasDay: {
+            type: Boolean
+          },
+
+          _hasHours: {
+            type: Boolean
+          },
+
+          _hasMinutes: {
+            type: Boolean
+          },
+
+          _hasSeconds: {
+            type: Boolean
+          },
+
+          _hasMilliseconds: {
+            type: Boolean
           }
         }
       }
@@ -201,21 +241,21 @@
         }
       }
 
-      _pad(n, targetLength, padString) {
+      _pad(n, padLength) {
         let str = '' + n;
-        targetLength = Math.ceil(typeof targetLength === 'number' ? Math.abs(targetLength) : Math.log10(+n));
-        padString = padString || '0';
+        let targetLength = padLength || this.padLength || (this.placeholder && this.placeholder.length) || Math.log10(+n);
+        const padString = '0';
         if (str.length > targetLength) {
           return str;
         } else {
-          targetLength = targetLength - str.length - padString.length + 1;
+          targetLength = targetLength - str.length;
           for (let i = 0; i < targetLength; i++) {
             str = padString + str;
           }
           return str;
         }
       }
-
+      
       _minChanged(min) {
         if (min === undefined) return;
         if (this.max && min > this.max) {
