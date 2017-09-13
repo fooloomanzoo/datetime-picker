@@ -1,9 +1,21 @@
 {
   "name": "datetime-picker",
-  "authors": [ "Johannes Brautzsch <fooloomanzoo>" ],
+  "authors": [
+    "Johannes Brautzsch <fooloomanzoo>"
+  ],
   "description": "A picker for date and time, that prefers to use the native input. It includes a calendar and a timer.",
   "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
-  "keywords": [ "web-component", "web-components", "polymer", "datepicker", "datetimepicker", "datetime-picker", "calendar", "timer" ],
+  "keywords": [
+    "webcomponents",
+    "polymer",
+    "date picker",
+    "time picker",
+    "datetime picker",
+    "picker",
+    "date",
+    "calendar",
+    "timer"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/fooloomanzoo/datetime-picker.git"
@@ -11,7 +23,8 @@
   "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt",
   "dependencies": {
     "polymer": "Polymer/polymer#1.9 - 2",
-    "iron-overlay-behavior": "PolymerElements/iron-overlay-behavior"
+    "iron-overlay-behavior": "PolymerElements/iron-overlay-behavior",
+    "number-input": "fooloomanzoo/number-input"
   },
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs",
@@ -36,8 +49,5 @@
         "webcomponentsjs": "^0.7"
       }
     }
-  },
-  "resolutions": {
-    "webcomponentsjs": "^1.0.0"
   }
 }

@@ -1,0 +1,185 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
+<link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="dropdown-style.html">
+<link rel="import" href="calendar-element.html">
+
+<dom-module id="date-picker">
+  <script>
+  /**
+   *  `date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
+   *
+   *  ```html
+   *    <date-picker value="{{value}}"></date-picker>
+   *  ```
+   *
+   *  If you need an **overlay** then use `overlay-date-picker`, what extends `date-picker` and create the `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
+   *
+   *
+   *  Custom property | Description | Default
+   *  ----------------|-------------|----------
+   *  `--datetime-background` | text-color of the time-element | `#252525`
+   *  `--datetime-color` | text-color of the time-element | `#ccc`
+   *  `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
+   *  `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
+   *  `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
+   *  `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+   *  `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
+   *  `--datetime-native-input` | Mixin applied to the native inputs of the date-picker| `{}`
+   *
+   *  @polymer
+   *  @customElement
+   *  @implements {DatetimeMixin}
+   *  @extends CalendarElement
+   *  @appliesMixin DatetimeMixin
+   *  @appliesMixin DatetimeKeyhandlerMixin
+   *
+   *  @demo demo/date-picker.html
+   **/
+    class DatePicker extends CalendarElement { // eslint-disable-line no-undef
+
+      static get is() {
+        return 'date-picker';
+      }
+
+      static get properties() {
+        return {
+          /**
+           * Force to not use the native input, even if it exists
+           */
+          useNotNative: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * The orientation against which to align the element horizontally
+           * relative to the related input element. Possible values are "left", "right", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
+           */
+          horizontalAlign: {
+            type: String,
+            reflectToAttribute: true
+          },
+          /**
+           * The orientation against which to align the element vertically
+           * relative to the related input element. Possible values are "top", "bottom", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
+           */
+          verticalAlign: {
+            type: String,
+            reflectToAttribute: true,
+            value: 'top'
+          },
+
+          /**
+           * disables the input elements
+           */
+          disabled: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * makes the polyfill closable
+           */
+          closable: {
+            type: Boolean,
+            value: true
+          },
+
+          /**
+           * Set to true to disable canceling the overlay with the ESC key.
+           */
+          noCancelOnEscKey: {
+            type: Boolean,
+            value: false,
+            observer: '_noCancelOnEscKeyChanged'
+          }
+
+        }
+      }
+
+      static get hasNative() {
+        const inputDate = document.createElement('input');
+        inputDate.setAttribute('type', 'date');
+        return inputDate.type === 'date';
+      }
+
+      static get template() {
+        return `
+          ${this.styleTemplate}
+          ${this.hasNative ? this.native : this.polyfill}
+        `
+      }
+
+      static get styleTemplate() {
+        return `
+          ${super.styleTemplate}
+        `
+      }
+
+      static get native() {
+        return `
+          ${this.nativeInputTemplate}
+          ${this.polyfill}
+        `
+      }
+
+      static get nativeInputTemplate() {
+        return `
+          <input id="date" type="date" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
+        `;
+      }
+
+      static get polyfill() {
+        return `
+          <div>
+            <div class="replacement" on-click="open">
+              <number-input pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}"></number-input>
+              <span>-</span>
+              <number-input pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
+              <span>-</span>
+              <number-input pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}"></number-input>
+            </div>
+            <div class="dropdown" opened$="{{opened}}">
+              ${this.calendarTemplate}
+            </div>
+          </div>
+        `;
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+
+      _connectTextInputs() {
+        if (!this._isPolyfilled) {
+          super._connectTextInputs();
+        }
+        this._isPolyfilled = true;
+      }
+
+      _disconnectTextInputs() {
+        super._disconnectTextInputs();
+        this._isPolyfilled = false;
+      }
+
+      _noCancelOnEscKeyChanged(noCancelOnEscKey) {
+        if (noCancelOnEscKey) {
+          document.removeEventListener("keydown", this._onKeyDown.bind(this), false);
+        } else {
+          document.addEventListener("keydown", this._onKeyDown.bind(this), false);
+        }
+      }
+
+      _onKeyDown(e) {
+        if (e && e.keyCode === 27) {
+          this.opened = false;
+        }
+      }
+
+    }
+
+    window.customElements.define(DatePicker.is, DatePicker);
+  </script>
+</dom-module>
