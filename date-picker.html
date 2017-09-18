@@ -4,6 +4,7 @@
 
 <link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
+<link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="calendar-element.html">
 
 <dom-module id="date-picker">
@@ -42,20 +43,36 @@
         return 'date-picker';
       }
 
+      static get properties() {
+        return {
+          _hideYearOrMonth: {
+            type: Boolean,
+            computed: '_computeHideYearOrMonth(hideYear, hideMonth)'
+          },
+
+          _hideMonthOrDay: {
+            type: Boolean,
+            computed: '_computeHideMonthOrDay(hideMonth, hideDay)'
+          }
+        };
+      }
+
       static get expectedNativeInputType() {
         return 'date';
       }
 
       static get customStyleToInclude() {
-        return 'dropdown-style';
+        return `datetime-shared-style dropdown-style`;
       }
 
       static get customStyleContent() {
         return `
+          ${super.customStyleContent}
           :host {
             display: inline-flex;
           }
           .polyfill {
+            display: -webkit-inline-flex;
             display: inline-flex;
             align-items: center;
             @apply --datetime-element;
@@ -79,11 +96,11 @@
         return `
           <div hidden$="[[!useNotNative]]">
             <div class="polyfill">
-              <number-input pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
-              <span>-</span>
-              <number-input pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
-              <span>-</span>
-              <number-input pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
+              <number-input style="order:[[_orderDate.year]];" hidden$="[[hideYear]]" pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
+              <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideYearOrMonth]]">[[_localDateSeparator]]</span>
+              <number-input style="order:[[_orderDate.month]];" hidden$="[[hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
+              <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideMonthOrDay]]">[[_localDateSeparator]]</span>
+              <number-input style="order:[[_orderDate.day]];" hidden$="[[hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
               ${super.polyfill}
             </div>
             ${this.calendarTemplate}
@@ -97,6 +114,14 @@
             ${super.calendarTemplate}
           </div>
         `;
+      }
+
+      _computeHideMonthOrYear(hideYear, hideMonth) {
+        return hideMonth || hideYear;
+      }
+
+      _computeHideMonthOrDay(hideMonth, hideDay) {
+        return hideMonth || hideDay;
       }
     }
 

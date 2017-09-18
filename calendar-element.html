@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="datetime-mixin.html">
+
+<link rel="import" href="picker-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 
 <dom-module id="calendar-element">
@@ -33,7 +34,7 @@
   *
   * @demo demo/calendar.html
   **/
-    class CalendarElement extends DatetimeMixin(Polymer.Element) { // eslint-disable-line no-undef
+    class CalendarElement extends PickerMixin(Polymer.Element) { // eslint-disable-line no-undef
 
       static get is() {
         return 'calendar-element';
@@ -61,24 +62,35 @@
       static get customStyleContent() {
         return `
           #calendar {
-            display: inline-block;
+            display: -ms-inline-flexbox;
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            flex-direction: column;
             background-color: var(--datetime-background);
             color: var(--datetime-color);
             overflow: hidden;
             @apply --datetime-element;
           }
           #calendar #top {
-            display: flex;
+            display: -ms-inline-flexbox;
+            display: -webkit-inline-flex;
+            display: inline-flex;
             flex-direction: row;
             align-items: center;
           }
           #calendar .view {
+            display: -ms-inline-flexbox;
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
             flex-grow: 1;
             padding: 0 4px;
             cursor: pointer;
           }
-          #calendar #month {
-            text-align: right;
+          #calendar .view > * {
+            flex: 0 0 auto;
           }
           #calendar #year {
             font-weight: bold;
@@ -141,15 +153,17 @@
       static get calendarTemplate() {
         return `
           <div id="calendar">
-            <div id="top">
+            <div id="top" hidden$="[[_hideMonthAndYear]]" >
               <svg class="icon switch" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
-              <span id="month" class="view" on-click="_jumpToNow"></span>
-              <span id="year" class="view" on-click="_jumpToNow"></span>
+              <div class="view">
+                <span id="month" style="order:[[_orderDate.month]];" hidden$="[[hideMonth]]" class="view" on-click="_jumpToNow"></span>
+                <span id="year" style="order:[[_orderDate.year]];" hidden$="[[hideYears]]" class="view" on-click="_jumpToNow"></span>
+              </div>
               <svg class="icon switch" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
               <svg class="icon" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
             </div>
 
-            <div id="content">
+            <div id="content" hidden$="[[hideDay]]">
               <div id="header">
                 <div id="caption" class="week">
                   <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
@@ -189,6 +203,11 @@
           viewDate: {
             type: Number,
             notify: true
+          },
+
+          _hideMonthAndYear: {
+            type: Boolean,
+            computed: '_computeHideMonthAndYear(hideMonth, hideYear)'
           }
         }
       }
@@ -213,12 +232,12 @@
           const paths = e.path || [e.target];
           for (let i = 0; i < paths.length; i++) {
             if (paths[i].dataset && paths[i].dataset.date) {
-              if (this._prevSelected) {
-                this._prevSelected.classList.remove('selected');
+              if (this._currentSelected) {
+                this._currentSelected.classList.remove('selected');
               }
               paths[i].classList.add('selected');
-              this.date = this._toDate(new Date(paths[i].dataset.date));
-              this._prevSelected = paths[i];
+              this.date = paths[i].dataset.date;
+              this._currentSelected = paths[i];
               break;
             }
           }
@@ -278,6 +297,7 @@
             year: 'numeric'
           });
         }
+        // set weekday titles
         for (let i = 0; i < 7; i++) {
           let d = new Date(0, 0, i);
           let weekday = (d.getDay() - 1 + 7) % 7;
@@ -309,15 +329,15 @@
         let selectedDay, currentDay, firstDayOfMonth, min, max;
 
         firstDayOfMonth = new Date(year, month, 0);
-        currentDay = Math.ceil(this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth));
+        currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth);
         if (this.value) {
-          selectedDay = Math.ceil(this._dayDiff(new Date(this.year, this.month - 1, this.day), firstDayOfMonth));
+          selectedDay = this._dayDiff(new Date(this.year, this.month - 1, this.day), firstDayOfMonth);
         }
         if (this.min) {
-          min = Math.ceil(this._dayDiff(new Date(this.min), firstDayOfMonth));
+          min = this._dayDiff(new Date(this.min), firstDayOfMonth);
         }
         if (this.max) {
-          max = Math.floor(this._dayDiff(new Date(this.max), firstDayOfMonth));
+          max = this._dayDiff(new Date(this.max), firstDayOfMonth);
         }
 
         const prevmonthlength = +new Date(year, month, 0).getDate();
@@ -339,9 +359,9 @@
               this.$.dates.children[i].children[j].textContent = counter;
             }
             // Day is Selected Day
-            if (selectedDay !== undefined && counter === selectedDay) {
+            if (counter === selectedDay) {
               this.$.dates.children[i].children[j].classList.add('selected');
-              this._prevSelected = this.$.dates.children[i].children[j];
+              this._currentSelected = this.$.dates.children[i].children[j];
             } else {
               this.$.dates.children[i].children[j].classList.remove('selected');
             }
@@ -357,14 +377,14 @@
             } else {
               this.$.dates.children[i].children[j].classList.remove('outofrange');
             }
-            this.$.dates.children[i].children[j].dataset.date = new Date(year, month, counter);
+            this.$.dates.children[i].children[j].dataset.date = this._toDate(new Date(year, month, counter));
             counter++;
           }
         }
       }
 
       _dayDiff(end, start) {
-        return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 36E5) / 865E5;
+        return Math.round((end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 6E4) / 865E5);
       }
 
       _minChanged(min) {
@@ -375,6 +395,10 @@
       _maxChanged(max) {
         super._maxChanged(max);
         this.render(this.viewDate);
+      }
+
+      _computeHideMonthAndYear(hideMonth, hideYear) {
+        return hideMonth && hideYear;
       }
 
       /**

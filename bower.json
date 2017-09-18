@@ -8,13 +8,13 @@
   "keywords": [
     "webcomponents",
     "polymer",
-    "date picker",
-    "time picker",
-    "datetime picker",
     "picker",
+    "datetime",
     "date",
     "calendar",
-    "timer"
+    "time",
+    "timer",
+    "element-collection"
   ],
   "repository": {
     "type": "git",

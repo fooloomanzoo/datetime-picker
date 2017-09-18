@@ -19,41 +19,11 @@ Custom property | Description | Default
 <custom-style>
   <style is="custom-style">
     html {
+      /* initial values */
       --datetime-background: #252525;
       --datetime-color: #ccc;
       --datetime-selected-background: var(--primary-color, #394FE8);
       --datetime-selected-color: #f1f1f1;
-      --datetime-element: {
-        border-radius: 4px;
-        padding: 4px;
-      };
-      --datetime-input: {
-        border-radius: 2px;
-        padding: 0.35em;
-        border: none;
-        outline: none;
-        text-align: center;
-        color: inherit;
-        cursor: pointer;
-        background-color: transparent;
-        font-family: inherit !important;
-        font-size: inherit !important;
-        box-sizing: content-box;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-      };
-      --datetime-focus: {
-        background-color: var(--datetime-selected-background);
-        color: var(--datetime-selected-color);
-      };
-      --datetime-icon: {
-        padding: 8px;
-        height: 16px;
-        width: 16px;
-        background-color: transparent;
-        transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-        cursor: pointer;
-        fill: currentColor;
-      };
     }
   </style>
 <custom-style>
@@ -70,6 +40,37 @@ Custom property | Description | Default
         position: relative;
         box-sizing: content-box;
         padding: 6px;
+        /* initial mixins */
+        --datetime-input: {
+          border-radius: 3px;
+          padding: 0.3em;
+          border: none;
+          outline: none;
+          text-align: center;
+          color: inherit;
+          cursor: pointer;
+          background-color: transparent;
+          box-sizing: content-box;
+          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+        };
+        --datetime-focus: {
+          background-color: var(--datetime-selected-background);
+          color: var(--datetime-selected-color);
+        };
+        --datetime-element: {
+          border-radius: 4px;
+          padding: 4px;
+        };
+        --datetime-icon: {
+          border-radius: 2px;
+          padding: 8px;
+          height: 16px;
+          width: 16px;
+          background-color: transparent;
+          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          cursor: pointer;
+          fill: currentColor;
+        };
       }
       :host > * {
         position: relative;
@@ -88,6 +89,8 @@ Custom property | Description | Default
       input[type=text],
       input[type=date],
       input[type=time] {
+        font-family: inherit;
+        font-size: inherit;
         @apply --datetime-input;
       }
       input[type=text]:focus,

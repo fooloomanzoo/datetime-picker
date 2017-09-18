@@ -1,8 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../number-input/number-input.html">
 
-<link rel="import" href="datetime-keyhandler-mixin.html">
-<link rel="import" href="datetime-mixin.html">
+<link rel="import" href="picker-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
 
 <dom-module id="time-element">
@@ -110,7 +109,7 @@
    *
    * @demo demo/time.html
    **/
-    class TimeElement extends DatetimeMixin(Polymer.Element) { // eslint-disable-line no-undef
+    class TimeElement extends PickerMixin(Polymer.Element) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';

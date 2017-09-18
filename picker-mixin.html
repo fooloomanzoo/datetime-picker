@@ -1,0 +1,200 @@
+<link rel="import" href="datetime-mixin.html">
+
+<script>
+  /**
+   * mixin to extend an element for picking date or time to locale formating and hiding certain datetime-properties
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const PickerMixin = (superClass) => { // eslint-disable-line no-unused-vars
+
+    return class extends DatetimeMixin(superClass) { // eslint-disable-line no-undef
+
+      static get properties() {
+        return {
+
+          /**
+           * The current locale
+           */
+          locale: {
+            type: String,
+            value: window.navigator.language,
+            observer: '_localeChanged'
+          },
+
+          /**
+           * when true 12-hour local time format, else 24-hour
+           * @type {boolean}
+           */
+          hour12: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * locale representation of 'AM'
+           */
+          _am: {
+            type: String
+          },
+
+          /**
+           * locale representation of 'PM'
+           */
+          _pm: {
+            type: String
+          },
+
+          /**
+           * Separator for local date values (date-string is still in ISO-Format)
+           * @type {string}
+           */
+          _localDateSeparator: {
+            type: String,
+            value: '-'
+          },
+
+          /**
+           * Separator for local time values (time-string is still in ISO-Format)
+           * @type {string}
+           */
+          _localTimeSeparator: {
+            type: String,
+            value: ':'
+          },
+
+          /**
+           * Separator for local decimal values
+           * @type {string}
+           */
+          _localDecimalSeparator: {
+            type: String,
+            value: '.'
+          },
+
+          /**
+           * hide year input
+           */
+          hideYear: {
+            type: Boolean
+          },
+
+          /**
+           * hide month input
+           */
+          hideMonth: {
+            type: Boolean
+          },
+
+          /**
+           * hide day input
+           */
+          hideDay: {
+            type: Boolean
+          },
+
+          /**
+           * hide hours input
+           */
+          hideHours: {
+            type: Boolean
+          },
+
+          /**
+           * hide minutes input
+           */
+          hideMinutes: {
+            type: Boolean
+          },
+
+          /**
+           * hide seconds input
+           */
+          hideSeconds: {
+            type: Boolean
+          },
+
+          /**
+           * hide milliseconds input
+           */
+          hideMilliseconds: {
+            type: Boolean
+          },
+
+          /**
+           * order of date-parts
+           */
+          _orderDate: {
+            type: Object,
+            value: function() {
+              return {
+                year: 1,
+                separatorYearMonth: 2,
+                month: 3,
+                separatorMonthDay: 4,
+                day: 5
+              };
+            }
+          }
+        }
+      }
+
+      _localeChanged(locale) {
+        if (!locale) {
+          return;
+        }
+        // locale = 'zh';
+        // test locale (currently just for Latin letters and Western Arabic/European numerals)
+        locale += '-u-nu-latn-ca-iso8601';
+
+        let date = new Date(1970, 10, 15, 9, 24, 25);
+
+        // check date
+        const dateString = date.toLocaleDateString( locale, { year: 'numeric', month: 'numeric', day: 'numeric' });
+
+        // date separator
+        let dateSeparator = dateString.split(/\d|\s/g).filter(s => { return s !== ''; })[0];
+
+        // order of the date parts
+        let parts = dateString.split(/\D/);
+        parts.splice(1, 0, '');
+        parts.splice(3, 0, '');
+
+        let order = {};
+        order.year = parts.indexOf('1970') + 1;
+        order.month = parts.indexOf('11') + 1;
+        order.day = parts.indexOf('15') + 1;
+        order.separatorYearMonth = order.year > order.month ? order.year - 1 : order.month - 1;
+        order.separatorMonthDay = order.month > order.day ? order.month - 1 : order.day - 1;
+
+        // check time
+        let timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric' });
+
+        // time separator
+        let timeSeparator = timeString.split(/\d|\s/g).filter(s => { return s !== ''; })[0];
+
+        // am-string
+        timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+        let am = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
+
+        // pm-string
+        date = new Date(1970, 10, 15, 23, 24, 25);
+        timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+        let pm = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
+
+        // decimal separator
+        let decimalSeparator = new Intl.NumberFormat(locale).format(1.2).split(/\d/g).filter(s => { return s !== ''; }).pop();
+
+        this.setProperties({
+          _orderDate: order,
+          _localDateSeparator: dateSeparator,
+          _localTimeSeparator: timeSeparator,
+          _localDecimalSeparator: decimalSeparator,
+          _am: am,
+          _pm: pm
+        });
+      }
+    }
+  }
+</script>

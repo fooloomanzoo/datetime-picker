@@ -1,13 +1,23 @@
 <script>
   /**
-   * mixin to extend a test for an expected input type and implement a polyfill, when wanted or needed
+   * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
    *
    * @mixinFunction
    * @polymer
    */
-  const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars no-undef
+  const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
     return class extends superClass {
+
+      connectedCallback() {
+        super.connectedCallback();
+        this.addEventListener('keydown', this._checkKeycode.bind(this), false);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
+      }
 
       static get expectedNativeInputType() {
         return 'datetime-local';
@@ -68,8 +78,7 @@
            */
           noCancelOnEscKey: {
             type: Boolean,
-            value: false,
-            observer: '_noCancelOnEscKeyChanged'
+            value: false
           }
 
         }
@@ -91,7 +100,7 @@
       }
 
       static get customStyleToInclude() {
-        return `${super.customStyleToInclude} datetime-shared-style`;
+        return ``;
       }
 
       static get customStyleContent() {
@@ -104,8 +113,12 @@
             @apply --datetime-input;
           }
           .icon.close {
-            padding: 0 !important;
-            margin-left: 0.5em;
+            position: absolute;
+            right: 0;
+            top: auto;
+            bottom: auto;
+            transform: translate(100%, 0);
+            border-radius: 4px;
           }
         `;
       }
@@ -129,16 +142,11 @@
         `;
       }
 
-      _noCancelOnEscKeyChanged(noCancelOnEscKey) {
-        if (noCancelOnEscKey) {
-          document.removeEventListener("keydown", this._onKeyDown.bind(this), false);
-        } else {
-          document.addEventListener("keydown", this._onKeyDown.bind(this), false);
+      _checkKeycode(e) {
+        if (super._checkKeycode) {
+          super._checkKeycode(e);
         }
-      }
-
-      _onKeyDown(e) {
-        if (e && e.keyCode === 27) {
+        if (e && e.keyCode === 27 && !this.noCancelOnEscKey) {
           this.close();
         }
       }

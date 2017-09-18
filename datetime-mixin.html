@@ -62,7 +62,7 @@
           },
 
           /**
-           * The hours of the selected date
+           * The hours of the selected time
            */
           hours: {
             type: Number,
@@ -70,7 +70,7 @@
           },
 
           /**
-           * The minutes of the selected date
+           * The minutes of the selected time
            */
           minutes: {
             type: Number,
@@ -78,7 +78,7 @@
           },
 
           /**
-           * The seconds of the selected date
+           * The seconds of the selected time
            */
           seconds: {
             type: Number,
@@ -86,10 +86,17 @@
           },
 
           /**
-           * The milliseconds of the selected date
+           * The milliseconds of the selected time
            */
           milliseconds: {
             type: Number,
+            notify: true
+          },
+          /**
+           * The dayPeriod of the selected time
+           */
+          dayPeriod: {
+            type: String,
             notify: true
           },
 
@@ -115,53 +122,6 @@
           max: {
             type: String,
             notify: true
-          },
-
-          /**
-           * The current locale
-           */
-          locale: {
-            type: String,
-            value: window.navigator.language,
-            observer: '_localeChanged'
-          },
-
-          dateFormat: {
-            type: String,
-            value: 'YYYY/MM/DD'
-          },
-
-          timeFormat: {
-            type: String,
-            value: 'hh:mm:ss:lll'
-          },
-
-          _hasYear: {
-            type: Boolean
-          },
-
-          _hasMonth: {
-            type: Boolean
-          },
-
-          _hasDay: {
-            type: Boolean
-          },
-
-          _hasHours: {
-            type: Boolean
-          },
-
-          _hasMinutes: {
-            type: Boolean
-          },
-
-          _hasSeconds: {
-            type: Boolean
-          },
-
-          _hasMilliseconds: {
-            type: Boolean
           }
         }
       }
@@ -255,8 +215,7 @@
             milliseconds: d.getMilliseconds(),
             date: date,
             time: time,
-            datetime: date + 'T' + time,
-            value: +d
+            datetime: date + 'T' + time
           });
         } else if (this.date && this.time){
           this._computeValue(this.date, this.time);
@@ -338,8 +297,6 @@
         return this._pad(d.getHours(), 2) + ':' + this._pad(d.getMinutes(), 2) + ':' + this._pad(d.getSeconds(), 2) + '.' + this._pad(d.getMilliseconds(), 3);
       }
 
-      _localeChanged(locale) { // eslint-disable-line no-unused-vars
-      }
     }
   }
 
