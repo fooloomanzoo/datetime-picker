@@ -12,6 +12,14 @@
       static get properties() {
         return {
           /**
+           * The datetime as a string of the selected date and time (format: iso8061)
+           */
+          datetime: {
+            type: String,
+            reflectToAttribute: true,
+            notify: true
+          },
+          /**
            * The date as a string of the selected date (format: iso8061)
            */
           date: {
@@ -109,16 +117,23 @@
             notify: true
           },
 
-          timeFormat: {
+          /**
+           * The current locale
+           */
+          locale: {
             type: String,
-            value: 'hh:mm:ss:lll',
-            observer: '_timeFormatChanged'
+            value: window.navigator.language,
+            observer: '_localeChanged'
           },
 
           dateFormat: {
             type: String,
-            value: 'YYYY/MM/DD',
-            observer: '_dateFormatChanged'
+            value: 'YYYY/MM/DD'
+          },
+
+          timeFormat: {
+            type: String,
+            value: 'hh:mm:ss:lll'
           },
 
           _hasYear: {
@@ -202,7 +217,8 @@
 
       _computeValue(date, time) {
         if (!(date && time)) return;
-        const d = new Date(date + 'T' + time);
+        const datetime = date + 'T' + time
+        const d = new Date(datetime);
 
         if (!isNaN(+d) && this._checkMin(d) !== false && this._checkMax(d) !== false) {
           this.setProperties({
@@ -213,6 +229,7 @@
             minutes: d.getMinutes(),
             seconds: d.getSeconds(),
             milliseconds: d.getMilliseconds(),
+            datetime: datetime,
             value: +d
           });
         } else if (!isNaN(this.value)){
@@ -225,6 +242,9 @@
         const d = new Date(value);
 
         if (!isNaN(+d) && this._checkMin(d) !== false && this._checkMax(d) !== false) {
+          const date = this._toDate(d);
+          const time = this._toTime(d);
+
           this.setProperties({
             year: d.getFullYear(),
             month: d.getMonth() + 1,
@@ -233,8 +253,10 @@
             minutes: d.getMinutes(),
             seconds: d.getSeconds(),
             milliseconds: d.getMilliseconds(),
-            date: this._toDate(d),
-            time: this._toTime(d)
+            date: date,
+            time: time,
+            datetime: date + 'T' + time,
+            value: +d
           });
         } else if (this.date && this.time){
           this._computeValue(this.date, this.time);
@@ -255,7 +277,7 @@
           return str;
         }
       }
-      
+
       _minChanged(min) {
         if (min === undefined) return;
         if (this.max && min > this.max) {
@@ -314,6 +336,9 @@
         if (isNaN(+d) || !d.getTime)
           return '';
         return this._pad(d.getHours(), 2) + ':' + this._pad(d.getMinutes(), 2) + ':' + this._pad(d.getSeconds(), 2) + '.' + this._pad(d.getMilliseconds(), 3);
+      }
+
+      _localeChanged(locale) { // eslint-disable-line no-unused-vars
       }
     }
   }

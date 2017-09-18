@@ -1,0 +1,162 @@
+<script>
+  /**
+   * mixin to extend a test for an expected input type and implement a polyfill, when wanted or needed
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars no-undef
+
+    return class extends superClass {
+
+      static get expectedNativeInputType() {
+        return 'datetime-local';
+      }
+
+      static get hasNative() {
+        const inputDate = document.createElement('input');
+        inputDate.setAttribute('type', `${this.expectedNativeInputType}`);
+        return inputDate.type === `${this.expectedNativeInputType}`;
+      }
+
+      static get properties() {
+        return {
+          /**
+           * Force to not use the native input, even if it exists
+           */
+          useNotNative: {
+            type: Boolean,
+            value: false
+          },
+          /**
+           * Force to not use the native input, even if it exists
+           */
+          opened: {
+            type: Boolean,
+            reflectToAttribute: true,
+            value: false
+          },
+
+          /**
+           * The orientation against which to align the element horizontally
+           * relative to the related input element. Possible values are "left", "right", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
+           */
+          horizontalAlign: {
+            type: String,
+            reflectToAttribute: true
+          },
+          /**
+           * The orientation against which to align the element vertically
+           * relative to the related input element. Possible values are "top", "bottom", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
+           */
+          verticalAlign: {
+            type: String,
+            reflectToAttribute: true,
+            value: 'top'
+          },
+
+          /**
+           * disables the input elements
+           */
+          disabled: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * Set to true to disable canceling the overlay with the ESC key.
+           */
+          noCancelOnEscKey: {
+            type: Boolean,
+            value: false,
+            observer: '_noCancelOnEscKeyChanged'
+          }
+
+        }
+      }
+
+      static get template() {
+        return `
+          ${this.styleTemplate}
+          ${this.hasNative ? this.native : this.polyfill}
+        `
+      }
+
+      static get styleTemplate() {
+        return `
+          <style include="${this.customStyleToInclude}">
+            ${this.customStyleContent}
+          </style>
+        `;
+      }
+
+      static get customStyleToInclude() {
+        return `${super.customStyleToInclude} datetime-shared-style`;
+      }
+
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent}
+          input.native {
+            cursor: pointer;
+            border-radius: 2px;
+            padding: 0.35em;
+            @apply --datetime-input;
+          }
+          .icon.close {
+            padding: 0 !important;
+            margin-left: 0.5em;
+          }
+        `;
+      }
+
+      static get native() {
+        return `
+          ${this.nativeInputTemplate}
+          ${this.polyfill}
+        `
+      }
+
+      static get nativeInputTemplate() {
+        return `
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}">
+        `;
+      }
+
+      static get polyfill() {
+        return `
+          <svg class="icon close" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
+        `;
+      }
+
+      _noCancelOnEscKeyChanged(noCancelOnEscKey) {
+        if (noCancelOnEscKey) {
+          document.removeEventListener("keydown", this._onKeyDown.bind(this), false);
+        } else {
+          document.addEventListener("keydown", this._onKeyDown.bind(this), false);
+        }
+      }
+
+      _onKeyDown(e) {
+        if (e && e.keyCode === 27) {
+          this.close();
+        }
+      }
+
+      open() {
+        super.open();
+        this.opened = true;
+      }
+
+      close() {
+        super.close();
+        this.opened = false;
+      }
+
+      toggle() {
+        super.toggle();
+        this.opened = !this.opened;
+      }
+    }
+  }
+</script>

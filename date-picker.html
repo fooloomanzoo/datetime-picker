@@ -1,7 +1,8 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/elements/dom-if.html">
 
 <link rel="import" href="../number-input/number-input.html">
+
+<link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
 <link rel="import" href="calendar-element.html">
 
@@ -26,180 +27,77 @@
    *  `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
    *  `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
    *  `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
-   *  `--datetime-native-input` | Mixin applied to the native inputs of the date-picker| `{}`
    *
    *  @polymer
    *  @customElement
-   *  @implements {DatetimeMixin}
+   *
    *  @extends CalendarElement
-   *  @appliesMixin DatetimeMixin
-   *  @appliesMixin DatetimeKeyhandlerMixin
+   *  @appliesMixin PolyfillPickerPattern
    *
    *  @demo demo/date-picker.html
    **/
-    class DatePicker extends CalendarElement { // eslint-disable-line no-undef
+    class DatePicker extends PolyfillPickerPattern(CalendarElement) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-picker';
       }
 
-      static get properties() {
-        return {
-          /**
-           * Force to not use the native input, even if it exists
-           */
-          useNotNative: {
-            type: Boolean,
-            value: false
-          },
+      static get expectedNativeInputType() {
+        return 'date';
+      }
 
-          /**
-           * The orientation against which to align the element horizontally
-           * relative to the related input element. Possible values are "left", "right", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
-           */
-          horizontalAlign: {
-            type: String,
-            reflectToAttribute: true
-          },
-          /**
-           * The orientation against which to align the element vertically
-           * relative to the related input element. Possible values are "top", "bottom", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
-           */
-          verticalAlign: {
-            type: String,
-            reflectToAttribute: true,
-            value: 'top'
-          },
+      static get customStyleToInclude() {
+        return 'dropdown-style';
+      }
 
-          /**
-           * disables the input elements
-           */
-          disabled: {
-            type: Boolean,
-            value: false
-          },
-
-          /**
-           * makes the polyfill closable
-           */
-          closable: {
-            type: Boolean,
-            value: true
-          },
-
-          /**
-           * Set to true to disable canceling the overlay with the ESC key.
-           */
-          noCancelOnEscKey: {
-            type: Boolean,
-            value: false,
-            observer: '_noCancelOnEscKeyChanged'
+      static get customStyleContent() {
+        return `
+          :host {
+            display: inline-flex;
           }
-
-        }
-      }
-
-      static get hasNative() {
-        const inputDate = document.createElement('input');
-        inputDate.setAttribute('type', 'date');
-        return inputDate.type === 'date';
-      }
-
-      static get template() {
-        return `
-          ${this.styleTemplate}
-          ${this.hasNative ? this.native : this.polyfill}
-        `
-      }
-
-      static get styleTemplate() {
-        return `
-          ${super.styleTemplate}
-          <style include="datetime-shared-style dropdown-style">
-            :host {
-              display: inline-flex;
-            }
-            .replacement {
-              display: inline-flex;
-              align-items: center;
-            }
-            .replacement:focus,
-            .replacement:hover {
+          .polyfill {
+            display: inline-flex;
+            align-items: center;
+            @apply --datetime-element;
+          }
+          number-input {
+            --number-input: {
+              @apply --datetime-input;
+            };
+            --number-input-focus: {
               @apply --datetime-focus;
-            }
-            input#date {
-              cursor: pointer;
-              border-radius: 2px;
-              padding: 0.35em;
-              @apply --datetime-native-input;
-            }
-            .replacement {
-              @apply --datetime-element;
-            }
-          </style>
-        `
-      }
-
-      static get native() {
-        return `
-          ${this.nativeInputTemplate}
-          ${this.polyfill}
-        `
-      }
-
-      static get nativeInputTemplate() {
-        return `
-          <input id="date" type="date" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{date::input}}">
+            };
+          }
+          .polyfill:focus,
+          .polyfill:hover {
+            @apply --datetime-focus;
+          }
         `;
       }
 
       static get polyfill() {
         return `
           <div hidden$="[[!useNotNative]]">
-            <div class="replacement" on-click="open">
-              <number-input pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}"></number-input>
+            <div class="polyfill">
+              <number-input pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
               <span>-</span>
-              <number-input pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
+              <number-input pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
               <span>-</span>
-              <number-input pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}"></number-input>
+              <number-input pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
+              ${super.polyfill}
             </div>
-            <div class="dropdown" opened$="{{opened}}">
-              ${super.calendarTemplate}
-            </div>
+            ${this.calendarTemplate}
           </div>
         `;
       }
 
-      connectedCallback() {
-        super.connectedCallback();
+      static get calendarTemplate() {
+        return `
+          <div class="dropdown" opened$="[[opened]]">
+            ${super.calendarTemplate}
+          </div>
+        `;
       }
-
-      _connectTextInputs() {
-        if (!this._isPolyfilled) {
-          super._connectTextInputs();
-        }
-        this._isPolyfilled = true;
-      }
-
-      _disconnectTextInputs() {
-        super._disconnectTextInputs();
-        this._isPolyfilled = false;
-      }
-
-      _noCancelOnEscKeyChanged(noCancelOnEscKey) {
-        if (noCancelOnEscKey) {
-          document.removeEventListener("keydown", this._onKeyDown.bind(this), false);
-        } else {
-          document.addEventListener("keydown", this._onKeyDown.bind(this), false);
-        }
-      }
-
-      _onKeyDown(e) {
-        if (e && e.keyCode === 27) {
-          this.opened = false;
-        }
-      }
-
     }
 
     window.customElements.define(DatePicker.is, DatePicker);

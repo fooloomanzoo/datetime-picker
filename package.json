@@ -21,7 +21,7 @@
   "main": "index.html",
   "scripts": {
     "postinstall": "bower install",
-    "build": "npm i && polymer analyze > analysis.json",
+    "build": "bower update && polymer analyze > analysis.json",
     "prestart": "polymer analyze > analysis.json",
     "start": "polymer serve",
     "test": "echo \"Error: no test specified\" && exit 1"
