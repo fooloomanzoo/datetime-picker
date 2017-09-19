@@ -9,7 +9,7 @@
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -32,7 +32,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -55,7 +55,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -329,17 +329,211 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "viewDate",
-          "type": "number",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "type": "string",
+          "description": "The current locale",
           "privacy": "public",
           "sourceRange": {
+            "file": "picker-mixin.html",
             "start": {
-              "line": 202,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 25,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_localeChanged\""
+            }
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "hour12",
+          "type": "boolean",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_am",
+          "type": "string",
+          "description": "locale representation of 'AM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 39,
+              "column": 10
+            },
+            "end": {
+              "line": 41,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_pm",
+          "type": "string",
+          "description": "locale representation of 'PM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 46,
+              "column": 10
+            },
+            "end": {
+              "line": 48,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDateSeparator",
+          "type": "string",
+          "description": "Separator for local date values (date-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 54,
+              "column": 10
+            },
+            "end": {
+              "line": 57,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"-\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localTimeSeparator",
+          "type": "string",
+          "description": "Separator for local time values (time-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 63,
+              "column": 10
+            },
+            "end": {
+              "line": 66,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\":\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDecimalSeparator",
+          "type": "string",
+          "description": "Separator for local decimal values",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 72,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\".\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 208,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"hours\""
+        },
+        {
+          "name": "_orderDate",
+          "type": "Object",
+          "description": "order of date-parts",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 88,
+              "column": 10
+            },
+            "end": {
+              "line": 99,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_viewYear",
+          "type": "number",
+          "description": "The year of the view",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 216,
+              "column": 10
+            },
+            "end": {
+              "line": 219,
               "column": 11
             }
           },
@@ -350,17 +544,59 @@
           }
         },
         {
-          "name": "_hideMonthAndYear",
+          "name": "_viewMonth",
+          "type": "number",
+          "description": "The month of the view",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 224,
+              "column": 10
+            },
+            "end": {
+              "line": 227,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          }
+        },
+        {
+          "name": "_hideMonth",
           "type": "boolean",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 207,
+              "line": 229,
               "column": 10
             },
             "end": {
-              "line": 210,
+              "line": 232,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          }
+        },
+        {
+          "name": "_hideDay",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 234,
+              "column": 10
+            },
+            "end": {
+              "line": 237,
               "column": 11
             }
           },
@@ -377,17 +613,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
+            "file": "picker-mixin.html",
             "start": {
-              "line": 221,
+              "line": 134,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 139,
               "column": 7
             }
           },
           "metadata": {},
-          "params": []
+          "params": [],
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "now",
@@ -395,11 +633,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 250,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 253,
+              "line": 278,
               "column": 7
             }
           },
@@ -411,13 +649,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 161,
+              "line": 141,
               "column": 6
             },
             "end": {
-              "line": 167,
+              "line": 159,
               "column": 7
             }
           },
@@ -436,16 +674,16 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 169,
+              "line": 161,
               "column": 6
             },
             "end": {
@@ -465,7 +703,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeValue",
@@ -548,11 +786,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 389,
+              "line": 439,
               "column": 6
             },
             "end": {
-              "line": 392,
+              "line": 442,
               "column": 7
             }
           },
@@ -569,11 +807,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 394,
+              "line": 444,
               "column": 6
             },
             "end": {
-              "line": 397,
+              "line": 447,
               "column": 7
             }
           },
@@ -677,16 +915,71 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_hideIfClamped",
+          "description": "hide features",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 183,
+              "column": 6
+            },
+            "end": {
+              "line": 188,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 335,
+              "column": 6
+            },
+            "end": {
+              "line": 364,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "locale"
+            }
+          ]
+        },
+        {
           "name": "_onClick",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 248,
               "column": 6
             },
             "end": {
-              "line": 244,
+              "line": 263,
               "column": 7
             }
           },
@@ -703,11 +996,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 246,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 248,
+              "line": 273,
               "column": 7
             }
           },
@@ -727,11 +1020,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 255,
+              "line": 280,
               "column": 6
             },
             "end": {
-              "line": 258,
+              "line": 283,
               "column": 7
             }
           },
@@ -739,16 +1032,16 @@
           "params": []
         },
         {
-          "name": "_prevMonth",
+          "name": "_prev",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 260,
+              "line": 285,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 298,
               "column": 7
             }
           },
@@ -756,16 +1049,16 @@
           "params": []
         },
         {
-          "name": "_nextMonth",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 268,
+              "line": 300,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 312,
               "column": 7
             }
           },
@@ -778,11 +1071,32 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 276,
+              "line": 314,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ]
+        },
+        {
+          "name": "_incremYear",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 327,
               "column": 7
             }
           },
@@ -799,11 +1113,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 283,
+              "line": 329,
               "column": 6
             },
             "end": {
-              "line": 287,
+              "line": 333,
               "column": 7
             }
           },
@@ -811,44 +1125,28 @@
           "params": []
         },
         {
-          "name": "_localeChanged",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 289,
-              "column": 6
-            },
-            "end": {
-              "line": 309,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "locale"
-            }
-          ]
-        },
-        {
           "name": "render",
           "description": "Renders the current view (manually).",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 314,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 383,
+              "line": 433,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "viewDate",
+              "name": "_viewYear",
+              "type": "number",
+              "description": "The value of the date of the current view."
+            },
+            {
+              "name": "_viewMonth",
               "type": "number",
               "description": "The value of the date of the current view."
             }
@@ -860,11 +1158,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 385,
+              "line": 435,
               "column": 6
             },
             "end": {
-              "line": 387,
+              "line": 437,
               "column": 7
             }
           },
@@ -877,98 +1175,23 @@
               "name": "start"
             }
           ]
-        },
-        {
-          "name": "_computeHideMonthAndYear",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 399,
-              "column": 6
-            },
-            "end": {
-              "line": 401,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "hideMonth"
-            },
-            {
-              "name": "hideYear"
-            }
-          ]
-        },
-        {
-          "name": "toggle",
-          "description": "toggles opened state",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 406,
-              "column": 6
-            },
-            "end": {
-              "line": 408,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "open",
-          "description": "opens element",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 412,
-              "column": 6
-            },
-            "end": {
-              "line": 414,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "close",
-          "description": "closes element",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 418,
-              "column": 6
-            },
-            "end": {
-              "line": 420,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
         }
       ],
       "staticMethods": [],
       "demos": [
         {
-          "url": "demo/calendar.html",
+          "url": "demo/date-picker.html",
           "description": ""
         }
       ],
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 36,
+          "line": 38,
           "column": 4
         },
         "end": {
-          "line": 421,
+          "line": 449,
           "column": 5
         }
       },
@@ -978,7 +1201,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -996,7 +1219,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -1014,7 +1237,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -1229,30 +1452,59 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "view-date",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "description": "The current locale",
           "sourceRange": {
+            "file": "picker-mixin.html",
             "start": {
-              "line": 202,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "number"
-        }
-      ],
-      "events": [
+          "type": "string",
+          "inheritedFrom": "PickerMixin"
+        },
         {
-          "type": "CustomEvent",
-          "name": "view-date-changed",
-          "description": "Fired when the `viewDate` property changes.",
-          "metadata": {}
+          "name": "hour12",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "start": {
+              "line": 208,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string"
         }
       ],
+      "events": [],
       "styling": {
         "cssVariables": [],
         "selectors": []
@@ -1260,7 +1512,7 @@
       "slots": [],
       "tagname": "calendar-element",
       "mixins": [
-        "DatetimeMixin"
+        "PickerMixin"
       ]
     },
     {
@@ -1271,7 +1523,7 @@
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -1294,7 +1546,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -1317,7 +1569,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -1591,32 +1843,204 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "opened",
-          "type": "boolean",
-          "description": "true if the element is opened",
+          "name": "locale",
+          "type": "string",
+          "description": "The current locale",
           "privacy": "public",
           "sourceRange": {
+            "file": "picker-mixin.html",
             "start": {
-              "line": 122,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 127,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "observer": "\"_localeChanged\""
             }
           },
-          "defaultValue": "false"
+          "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "closable",
+          "name": "hour12",
           "type": "boolean",
-          "description": "true if the element is closable (then an icon is shown)",
+          "description": "when true 12-hour local time format, else 24-hour",
           "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_am",
+          "type": "string",
+          "description": "locale representation of 'AM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 39,
+              "column": 10
+            },
+            "end": {
+              "line": 41,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_pm",
+          "type": "string",
+          "description": "locale representation of 'PM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 46,
+              "column": 10
+            },
+            "end": {
+              "line": 48,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDateSeparator",
+          "type": "string",
+          "description": "Separator for local date values (date-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 54,
+              "column": 10
+            },
+            "end": {
+              "line": 57,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"-\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localTimeSeparator",
+          "type": "string",
+          "description": "Separator for local time values (time-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 63,
+              "column": 10
+            },
+            "end": {
+              "line": 66,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\":\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDecimalSeparator",
+          "type": "string",
+          "description": "Separator for local decimal values",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 72,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\".\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 126,
+              "column": 10
+            },
+            "end": {
+              "line": 129,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"milliseconds\""
+        },
+        {
+          "name": "_orderDate",
+          "type": "Object",
+          "description": "order of date-parts",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 88,
+              "column": 10
+            },
+            "end": {
+              "line": 99,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_hideMinutes",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
           "sourceRange": {
             "start": {
               "line": 131,
@@ -1628,9 +2052,52 @@
             }
           },
           "metadata": {
-            "polymer": {}
+            "polymer": {
+              "readOnly": true
+            }
+          }
+        },
+        {
+          "name": "_hideSeconds",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 136,
+              "column": 10
+            },
+            "end": {
+              "line": 139,
+              "column": 11
+            }
           },
-          "defaultValue": "false"
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          }
+        },
+        {
+          "name": "_hideMilliSeconds",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 141,
+              "column": 10
+            },
+            "end": {
+              "line": 144,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          }
         }
       ],
       "methods": [
@@ -1640,11 +2107,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 138,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 154,
+              "line": 162,
               "column": 7
             }
           },
@@ -1675,13 +2142,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 161,
+              "line": 141,
               "column": 6
             },
             "end": {
-              "line": 167,
+              "line": 159,
               "column": 7
             }
           },
@@ -1700,16 +2167,16 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 169,
+              "line": 161,
               "column": 6
             },
             "end": {
@@ -1729,7 +2196,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeValue",
@@ -1945,16 +2412,73 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_hideIfClamped",
+          "description": "hide features",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 183,
+              "column": 6
+            },
+            "end": {
+              "line": 188,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 190,
+              "column": 6
+            },
+            "end": {
+              "line": 244,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "locale"
+            }
+          ],
+          "inheritedFrom": "PickerMixin"
+        },
+        {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 156,
+              "line": 164,
               "column": 6
             },
             "end": {
-              "line": 169,
+              "line": 177,
               "column": 7
             }
           },
@@ -1967,11 +2491,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 171,
+              "line": 179,
               "column": 6
             },
             "end": {
-              "line": 178,
+              "line": 185,
               "column": 7
             }
           },
@@ -1991,62 +2515,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 180,
-              "column": 6
-            },
-            "end": {
-              "line": 184,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "toggle",
-          "description": "toggles opened state",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 189,
+              "line": 187,
               "column": 6
             },
             "end": {
               "line": 191,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "open",
-          "description": "opens element",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 195,
-              "column": 6
-            },
-            "end": {
-              "line": 197,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "close",
-          "description": "closes element",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 201,
-              "column": 6
-            },
-            "end": {
-              "line": 203,
               "column": 7
             }
           },
@@ -2057,18 +2530,18 @@
       "staticMethods": [],
       "demos": [
         {
-          "url": "demo/time.html",
+          "url": "demo/time-picker.html",
           "description": ""
         }
       ],
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 111,
+          "line": 40,
           "column": 4
         },
         "end": {
-          "line": 204,
+          "line": 192,
           "column": 5
         }
       },
@@ -2078,7 +2551,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -2096,7 +2569,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -2114,7 +2587,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -2329,46 +2802,59 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "opened",
-          "description": "true if the element is opened",
+          "name": "locale",
+          "description": "The current locale",
           "sourceRange": {
+            "file": "picker-mixin.html",
             "start": {
-              "line": 122,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 127,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "string",
+          "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "closable",
-          "description": "true if the element is closable (then an icon is shown)",
+          "name": "hour12",
+          "description": "when true 12-hour local time format, else 24-hour",
           "sourceRange": {
+            "file": "picker-mixin.html",
             "start": {
-              "line": 131,
+              "line": 31,
               "column": 10
             },
             "end": {
-              "line": 134,
+              "line": 34,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "boolean"
-        }
-      ],
-      "events": [
+          "type": "boolean",
+          "inheritedFrom": "PickerMixin"
+        },
         {
-          "type": "CustomEvent",
-          "name": "opened-changed",
-          "description": "Fired when the `opened` property changes.",
-          "metadata": {}
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "start": {
+              "line": 126,
+              "column": 10
+            },
+            "end": {
+              "line": 129,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string"
         }
       ],
+      "events": [],
       "styling": {
         "cssVariables": [],
         "selectors": []
@@ -2376,8 +2862,7 @@
       "slots": [],
       "tagname": "time-element",
       "mixins": [
-        "DatetimeMixin",
-        "DatetimeKeyhandlerMixin"
+        "PickerMixin"
       ]
     },
     {
@@ -2388,7 +2873,7 @@
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -2411,7 +2896,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -2434,7 +2919,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -3448,7 +3933,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -3466,7 +3951,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -3484,7 +3969,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -6094,7 +6579,7 @@
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -6117,7 +6602,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -6140,7 +6625,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -7285,7 +7770,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -7303,7 +7788,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -7321,7 +7806,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -7751,14 +8236,14 @@
       "tagname": "overlay-datetime-picker"
     },
     {
-      "description": "`date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, what extends `date-picker` and create the `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\n\n Custom property | Description | Default\n ----------------|-------------|----------\n `--datetime-background` | text-color of the time-element | `#252525`\n `--datetime-color` | text-color of the time-element | `#ccc`\n `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`\n `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`\n `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`\n `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`",
+      "description": "`date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\n\n Custom property | Description | Default\n ----------------|-------------|----------\n `--datetime-background` | text-color of the time-element | `#252525`\n `--datetime-color` | text-color of the time-element | `#ccc`\n `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`\n `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`\n `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`\n `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`",
       "summary": "",
       "path": "date-picker.html",
       "properties": [
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -7781,7 +8266,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -7804,7 +8289,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -8078,18 +8563,214 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "viewDate",
-          "type": "number",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "type": "string",
+          "description": "The current locale",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 21,
+              "column": 10
+            },
+            "end": {
+              "line": 25,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_localeChanged\""
+            }
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "hour12",
+          "type": "boolean",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_am",
+          "type": "string",
+          "description": "locale representation of 'AM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 39,
+              "column": 10
+            },
+            "end": {
+              "line": 41,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_pm",
+          "type": "string",
+          "description": "locale representation of 'PM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 46,
+              "column": 10
+            },
+            "end": {
+              "line": 48,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDateSeparator",
+          "type": "string",
+          "description": "Separator for local date values (date-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 54,
+              "column": 10
+            },
+            "end": {
+              "line": 57,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"-\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localTimeSeparator",
+          "type": "string",
+          "description": "Separator for local time values (time-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 63,
+              "column": 10
+            },
+            "end": {
+              "line": 66,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\":\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDecimalSeparator",
+          "type": "string",
+          "description": "Separator for local decimal values",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 72,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\".\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 202,
+              "line": 208,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"hours\"",
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_orderDate",
+          "type": "Object",
+          "description": "order of date-parts",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 88,
+              "column": 10
+            },
+            "end": {
+              "line": 99,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_viewYear",
+          "type": "number",
+          "description": "The year of the view",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 216,
+              "column": 10
+            },
+            "end": {
+              "line": 219,
               "column": 11
             }
           },
@@ -8101,18 +8782,64 @@
           "inheritedFrom": "CalendarElement"
         },
         {
-          "name": "_hideMonthAndYear",
+          "name": "_viewMonth",
+          "type": "number",
+          "description": "The month of the view",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 224,
+              "column": 10
+            },
+            "end": {
+              "line": 227,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_hideMonth",
           "type": "boolean",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 207,
+              "line": 229,
               "column": 10
             },
             "end": {
-              "line": 210,
+              "line": 232,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          },
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_hideDay",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 234,
+              "column": 10
+            },
+            "end": {
+              "line": 237,
               "column": 11
             }
           },
@@ -8253,48 +8980,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "_hideYearOrMonth",
-          "type": "boolean",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 47,
-              "column": 10
-            },
-            "end": {
-              "line": 50,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "readOnly": true
-            }
-          }
-        },
-        {
-          "name": "_hideMonthOrDay",
-          "type": "boolean",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 52,
-              "column": 10
-            },
-            "end": {
-              "line": 55,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "readOnly": true
-            }
-          }
         }
       ],
       "methods": [
@@ -8322,32 +9007,32 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 250,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 253,
+              "line": 182,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "CalendarElement"
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "_computeTime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 161,
+              "line": 141,
               "column": 6
             },
             "end": {
-              "line": 167,
+              "line": 159,
               "column": 7
             }
           },
@@ -8366,16 +9051,16 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 169,
+              "line": 161,
               "column": 6
             },
             "end": {
@@ -8395,7 +9080,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeValue",
@@ -8479,11 +9164,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 389,
+              "line": 439,
               "column": 6
             },
             "end": {
-              "line": 392,
+              "line": 442,
               "column": 7
             }
           },
@@ -8502,11 +9187,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 394,
+              "line": 444,
               "column": 6
             },
             "end": {
-              "line": 397,
+              "line": 447,
               "column": 7
             }
           },
@@ -8611,17 +9296,74 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_hideIfClamped",
+          "description": "hide features",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 183,
+              "column": 6
+            },
+            "end": {
+              "line": 188,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 335,
+              "column": 6
+            },
+            "end": {
+              "line": 364,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "locale"
+            }
+          ],
+          "inheritedFrom": "CalendarElement"
+        },
+        {
           "name": "_onClick",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 248,
               "column": 6
             },
             "end": {
-              "line": 244,
+              "line": 263,
               "column": 7
             }
           },
@@ -8640,11 +9382,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 246,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 248,
+              "line": 273,
               "column": 7
             }
           },
@@ -8666,11 +9408,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 280,
               "column": 6
             },
             "end": {
-              "line": 258,
+              "line": 283,
               "column": 7
             }
           },
@@ -8679,17 +9421,17 @@
           "inheritedFrom": "CalendarElement"
         },
         {
-          "name": "_prevMonth",
+          "name": "_prev",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 260,
+              "line": 285,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 298,
               "column": 7
             }
           },
@@ -8698,17 +9440,17 @@
           "inheritedFrom": "CalendarElement"
         },
         {
-          "name": "_nextMonth",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 268,
+              "line": 300,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 312,
               "column": 7
             }
           },
@@ -8723,11 +9465,34 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 276,
+              "line": 314,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_incremYear",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 327,
               "column": 7
             }
           },
@@ -8746,39 +9511,16 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 283,
+              "line": 329,
               "column": 6
             },
             "end": {
-              "line": 287,
+              "line": 333,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_localeChanged",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 289,
-              "column": 6
-            },
-            "end": {
-              "line": 309,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "locale"
-            }
-          ],
           "inheritedFrom": "CalendarElement"
         },
         {
@@ -8788,18 +9530,23 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 314,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 383,
+              "line": 433,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "viewDate",
+              "name": "_viewYear",
+              "type": "number",
+              "description": "The value of the date of the current view."
+            },
+            {
+              "name": "_viewMonth",
               "type": "number",
               "description": "The value of the date of the current view."
             }
@@ -8813,11 +9560,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 385,
+              "line": 435,
               "column": 6
             },
             "end": {
-              "line": 387,
+              "line": 437,
               "column": 7
             }
           },
@@ -8831,89 +9578,6 @@
             }
           ],
           "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_computeHideMonthAndYear",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 399,
-              "column": 6
-            },
-            "end": {
-              "line": 401,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "hideMonth"
-            },
-            {
-              "name": "hideYear"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "toggle",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "polyfill-picker-pattern.html",
-            "start": {
-              "line": 163,
-              "column": 6
-            },
-            "end": {
-              "line": 166,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "open",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "polyfill-picker-pattern.html",
-            "start": {
-              "line": 153,
-              "column": 6
-            },
-            "end": {
-              "line": 156,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "close",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "polyfill-picker-pattern.html",
-            "start": {
-              "line": 158,
-              "column": 6
-            },
-            "end": {
-              "line": 161,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "disconnectedCallback",
@@ -8941,11 +9605,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 144,
+              "line": 169,
               "column": 6
             },
             "end": {
-              "line": 151,
+              "line": 176,
               "column": 7
             }
           },
@@ -8958,52 +9622,61 @@
           "inheritedFrom": "PolyfillPickerPattern"
         },
         {
-          "name": "_computeHideMonthOrYear",
+          "name": "open",
           "description": "",
-          "privacy": "protected",
+          "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 118,
+              "line": 184,
               "column": 6
             },
             "end": {
-              "line": 120,
+              "line": 189,
               "column": 7
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "hideYear"
-            },
-            {
-              "name": "hideMonth"
-            }
-          ]
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
-          "name": "_computeHideMonthOrDay",
+          "name": "close",
           "description": "",
-          "privacy": "protected",
+          "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 122,
+              "line": 191,
               "column": 6
             },
             "end": {
-              "line": 124,
+              "line": 196,
               "column": 7
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "hideMonth"
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 6
             },
-            {
-              "name": "hideDay"
+            "end": {
+              "line": 203,
+              "column": 7
             }
-          ]
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -9016,11 +9689,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 39,
+          "line": 41,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 78,
           "column": 5
         }
       },
@@ -9030,7 +9703,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -9048,7 +9721,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -9066,7 +9739,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -9281,21 +9954,57 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "view-date",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "description": "The current locale",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 202,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "number",
+          "type": "string",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "hour12",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 208,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
           "inheritedFrom": "CalendarElement"
         },
         {
@@ -9407,15 +10116,7 @@
           "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
-      "events": [
-        {
-          "type": "CustomEvent",
-          "name": "view-date-changed",
-          "description": "Fired when the `viewDate` property changes.",
-          "metadata": {},
-          "inheritedFrom": "CalendarElement"
-        }
-      ],
+      "events": [],
       "styling": {
         "cssVariables": [],
         "selectors": []
@@ -9423,6 +10124,7 @@
       "slots": [],
       "tagname": "date-picker",
       "mixins": [
+        "CalendarElement",
         "PolyfillPickerPattern"
       ]
     },
@@ -9434,7 +10136,7 @@
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -9457,7 +10159,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -9480,7 +10182,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -9754,18 +10456,214 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "viewDate",
-          "type": "number",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "type": "string",
+          "description": "The current locale",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 21,
+              "column": 10
+            },
+            "end": {
+              "line": 25,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_localeChanged\""
+            }
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "hour12",
+          "type": "boolean",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_am",
+          "type": "string",
+          "description": "locale representation of 'AM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 39,
+              "column": 10
+            },
+            "end": {
+              "line": 41,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_pm",
+          "type": "string",
+          "description": "locale representation of 'PM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 46,
+              "column": 10
+            },
+            "end": {
+              "line": 48,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDateSeparator",
+          "type": "string",
+          "description": "Separator for local date values (date-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 54,
+              "column": 10
+            },
+            "end": {
+              "line": 57,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"-\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localTimeSeparator",
+          "type": "string",
+          "description": "Separator for local time values (time-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 63,
+              "column": 10
+            },
+            "end": {
+              "line": 66,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\":\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDecimalSeparator",
+          "type": "string",
+          "description": "Separator for local decimal values",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 72,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\".\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 202,
+              "line": 208,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"hours\"",
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_orderDate",
+          "type": "Object",
+          "description": "order of date-parts",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 88,
+              "column": 10
+            },
+            "end": {
+              "line": 99,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_viewYear",
+          "type": "number",
+          "description": "The year of the view",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 216,
+              "column": 10
+            },
+            "end": {
+              "line": 219,
               "column": 11
             }
           },
@@ -9777,18 +10675,64 @@
           "inheritedFrom": "CalendarElement"
         },
         {
-          "name": "_hideMonthAndYear",
+          "name": "_viewMonth",
+          "type": "number",
+          "description": "The month of the view",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 224,
+              "column": 10
+            },
+            "end": {
+              "line": 227,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_hideMonth",
           "type": "boolean",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 207,
+              "line": 229,
               "column": 10
             },
             "end": {
-              "line": 210,
+              "line": 232,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          },
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_hideDay",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 234,
+              "column": 10
+            },
+            "end": {
+              "line": 237,
               "column": 11
             }
           },
@@ -9929,52 +10873,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "_hideYearOrMonth",
-          "type": "boolean",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "date-picker.html",
-            "start": {
-              "line": 47,
-              "column": 10
-            },
-            "end": {
-              "line": 50,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "readOnly": true
-            }
-          },
-          "inheritedFrom": "DatePicker"
-        },
-        {
-          "name": "_hideMonthOrDay",
-          "type": "boolean",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "date-picker.html",
-            "start": {
-              "line": 52,
-              "column": 10
-            },
-            "end": {
-              "line": 55,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "readOnly": true
-            }
-          },
-          "inheritedFrom": "DatePicker"
         }
       ],
       "methods": [
@@ -10002,32 +10900,32 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 250,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 253,
+              "line": 182,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "CalendarElement"
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "_computeTime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 161,
+              "line": 141,
               "column": 6
             },
             "end": {
-              "line": 167,
+              "line": 159,
               "column": 7
             }
           },
@@ -10046,16 +10944,16 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 169,
+              "line": 161,
               "column": 6
             },
             "end": {
@@ -10075,7 +10973,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeValue",
@@ -10159,11 +11057,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 389,
+              "line": 439,
               "column": 6
             },
             "end": {
-              "line": 392,
+              "line": 442,
               "column": 7
             }
           },
@@ -10182,11 +11080,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 394,
+              "line": 444,
               "column": 6
             },
             "end": {
-              "line": 397,
+              "line": 447,
               "column": 7
             }
           },
@@ -10291,17 +11189,74 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_hideIfClamped",
+          "description": "hide features",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 183,
+              "column": 6
+            },
+            "end": {
+              "line": 188,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 335,
+              "column": 6
+            },
+            "end": {
+              "line": 364,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "locale"
+            }
+          ],
+          "inheritedFrom": "CalendarElement"
+        },
+        {
           "name": "_onClick",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 248,
               "column": 6
             },
             "end": {
-              "line": 244,
+              "line": 263,
               "column": 7
             }
           },
@@ -10320,11 +11275,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 246,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 248,
+              "line": 273,
               "column": 7
             }
           },
@@ -10346,11 +11301,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 280,
               "column": 6
             },
             "end": {
-              "line": 258,
+              "line": 283,
               "column": 7
             }
           },
@@ -10359,17 +11314,17 @@
           "inheritedFrom": "CalendarElement"
         },
         {
-          "name": "_prevMonth",
+          "name": "_prev",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 260,
+              "line": 285,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 298,
               "column": 7
             }
           },
@@ -10378,17 +11333,17 @@
           "inheritedFrom": "CalendarElement"
         },
         {
-          "name": "_nextMonth",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 268,
+              "line": 300,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 312,
               "column": 7
             }
           },
@@ -10403,11 +11358,34 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 276,
+              "line": 314,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElement"
+        },
+        {
+          "name": "_incremYear",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 327,
               "column": 7
             }
           },
@@ -10426,39 +11404,16 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 283,
+              "line": 329,
               "column": 6
             },
             "end": {
-              "line": 287,
+              "line": 333,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_localeChanged",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 289,
-              "column": 6
-            },
-            "end": {
-              "line": 309,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "locale"
-            }
-          ],
           "inheritedFrom": "CalendarElement"
         },
         {
@@ -10468,18 +11423,23 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 314,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 383,
+              "line": 433,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "viewDate",
+              "name": "_viewYear",
+              "type": "number",
+              "description": "The value of the date of the current view."
+            },
+            {
+              "name": "_viewMonth",
               "type": "number",
               "description": "The value of the date of the current view."
             }
@@ -10493,11 +11453,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 385,
+              "line": 435,
               "column": 6
             },
             "end": {
-              "line": 387,
+              "line": 437,
               "column": 7
             }
           },
@@ -10511,89 +11471,6 @@
             }
           ],
           "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_computeHideMonthAndYear",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 399,
-              "column": 6
-            },
-            "end": {
-              "line": 401,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "hideMonth"
-            },
-            {
-              "name": "hideYear"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "toggle",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "polyfill-picker-pattern.html",
-            "start": {
-              "line": 163,
-              "column": 6
-            },
-            "end": {
-              "line": 166,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "open",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "polyfill-picker-pattern.html",
-            "start": {
-              "line": 153,
-              "column": 6
-            },
-            "end": {
-              "line": 156,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "close",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "polyfill-picker-pattern.html",
-            "start": {
-              "line": 158,
-              "column": 6
-            },
-            "end": {
-              "line": 161,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "disconnectedCallback",
@@ -10621,11 +11498,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 144,
+              "line": 169,
               "column": 6
             },
             "end": {
-              "line": 151,
+              "line": 176,
               "column": 7
             }
           },
@@ -10638,56 +11515,61 @@
           "inheritedFrom": "PolyfillPickerPattern"
         },
         {
-          "name": "_computeHideMonthOrYear",
+          "name": "open",
           "description": "",
-          "privacy": "protected",
+          "privacy": "public",
           "sourceRange": {
-            "file": "date-picker.html",
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 118,
+              "line": 184,
               "column": 6
             },
             "end": {
-              "line": 120,
+              "line": 189,
               "column": 7
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "hideYear"
-            },
-            {
-              "name": "hideMonth"
-            }
-          ],
-          "inheritedFrom": "DatePicker"
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
-          "name": "_computeHideMonthOrDay",
+          "name": "close",
           "description": "",
-          "privacy": "protected",
+          "privacy": "public",
           "sourceRange": {
-            "file": "date-picker.html",
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 122,
+              "line": 191,
               "column": 6
             },
             "end": {
-              "line": 124,
+              "line": 196,
               "column": 7
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "hideMonth"
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 6
             },
-            {
-              "name": "hideDay"
+            "end": {
+              "line": 203,
+              "column": 7
             }
-          ],
-          "inheritedFrom": "DatePicker"
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -10714,7 +11596,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -10732,7 +11614,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -10750,7 +11632,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -10965,21 +11847,57 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "view-date",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "description": "The current locale",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 202,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "number",
+          "type": "string",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "hour12",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 208,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
           "inheritedFrom": "CalendarElement"
         },
         {
@@ -11091,15 +12009,7 @@
           "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
-      "events": [
-        {
-          "type": "CustomEvent",
-          "name": "view-date-changed",
-          "description": "Fired when the `viewDate` property changes.",
-          "metadata": {},
-          "inheritedFrom": "CalendarElement"
-        }
-      ],
+      "events": [],
       "styling": {
         "cssVariables": [],
         "selectors": []
@@ -11108,14 +12018,14 @@
       "tagname": "overlay-date-picker"
     },
     {
-      "description": "`date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, what extends `date-picker` and create the `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\n\n Custom property | Description | Default\n ----------------|-------------|----------\n `--datetime-background` | text-color of the time-element | `#252525`\n `--datetime-color` | text-color of the time-element | `#ccc`\n `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`\n `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`\n `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`\n `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`\n `--datetime-native-input` | Mixin applied to the native inputs of the date-picker| `{}`",
+      "description": "`time-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* time-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <time-picker value=\"{{value}}\"></time-picker>\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\n\n Custom property | Description | Default\n ----------------|-------------|----------\n `--datetime-background` | text-color of the time-element | `#252525`\n `--datetime-color` | text-color of the time-element | `#ccc`\n `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`\n `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`\n `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`\n `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`",
       "summary": "",
-      "path": "polyfill-picker.html",
+      "path": "time-picker.html",
       "properties": [
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -11138,7 +12048,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -11161,7 +12071,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-mixin.html",
@@ -11435,41 +12345,214 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "viewDate",
-          "type": "number",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "type": "string",
+          "description": "The current locale",
           "privacy": "public",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 202,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {
-              "notify": true
+              "observer": "\"_localeChanged\""
             }
           },
-          "inheritedFrom": "CalendarElement"
+          "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "_hideMonthAndYear",
+          "name": "hour12",
+          "type": "boolean",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_am",
+          "type": "string",
+          "description": "locale representation of 'AM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 39,
+              "column": 10
+            },
+            "end": {
+              "line": 41,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_pm",
+          "type": "string",
+          "description": "locale representation of 'PM'",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 46,
+              "column": 10
+            },
+            "end": {
+              "line": 48,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDateSeparator",
+          "type": "string",
+          "description": "Separator for local date values (date-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 54,
+              "column": 10
+            },
+            "end": {
+              "line": 57,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"-\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localTimeSeparator",
+          "type": "string",
+          "description": "Separator for local time values (time-string is still in ISO-Format)",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 63,
+              "column": 10
+            },
+            "end": {
+              "line": 66,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\":\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localDecimalSeparator",
+          "type": "string",
+          "description": "Separator for local decimal values",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 72,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\".\"",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "time-element.html",
+            "start": {
+              "line": 126,
+              "column": 10
+            },
+            "end": {
+              "line": 129,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"milliseconds\"",
+          "inheritedFrom": "TimeElement"
+        },
+        {
+          "name": "_orderDate",
+          "type": "Object",
+          "description": "order of date-parts",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 88,
+              "column": 10
+            },
+            "end": {
+              "line": 99,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_hideMinutes",
           "type": "boolean",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "time-element.html",
             "start": {
-              "line": 207,
+              "line": 131,
               "column": 10
             },
             "end": {
-              "line": 210,
+              "line": 134,
               "column": 11
             }
           },
@@ -11478,7 +12561,53 @@
               "readOnly": true
             }
           },
-          "inheritedFrom": "CalendarElement"
+          "inheritedFrom": "TimeElement"
+        },
+        {
+          "name": "_hideSeconds",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "time-element.html",
+            "start": {
+              "line": 136,
+              "column": 10
+            },
+            "end": {
+              "line": 139,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          },
+          "inheritedFrom": "TimeElement"
+        },
+        {
+          "name": "_hideMilliSeconds",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "time-element.html",
+            "start": {
+              "line": 141,
+              "column": 10
+            },
+            "end": {
+              "line": 144,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          },
+          "inheritedFrom": "TimeElement"
         },
         {
           "name": "useNotNative",
@@ -11486,19 +12615,43 @@
           "description": "Force to not use the native input, even if it exists",
           "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 50,
+              "line": 36,
               "column": 10
             },
             "end": {
-              "line": 53,
+              "line": 39,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "defaultValue": "false"
+          "defaultValue": "false",
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "Force to not use the native input, even if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 43,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "horizontalAlign",
@@ -11506,18 +12659,20 @@
           "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
           "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 59,
+              "line": 53,
               "column": 10
             },
             "end": {
-              "line": 62,
+              "line": 56,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
-          }
+          },
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "verticalAlign",
@@ -11525,19 +12680,21 @@
           "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
           "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 67,
+              "line": 61,
               "column": 10
             },
             "end": {
-              "line": 71,
+              "line": 65,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "defaultValue": "\"top\""
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "disabled",
@@ -11545,39 +12702,21 @@
           "description": "disables the input elements",
           "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 76,
+              "line": 70,
               "column": 10
             },
             "end": {
-              "line": 79,
+              "line": 73,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "defaultValue": "false"
-        },
-        {
-          "name": "closable",
-          "type": "boolean",
-          "description": "makes the polyfill closable",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 84,
-              "column": 10
-            },
-            "end": {
-              "line": 87,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "true"
+          "defaultValue": "false",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "noCancelOnEscKey",
@@ -11585,21 +12724,21 @@
           "description": "Set to true to disable canceling the overlay with the ESC key.",
           "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 92,
+              "line": 78,
               "column": 10
             },
             "end": {
-              "line": 96,
+              "line": 81,
               "column": 11
             }
           },
           "metadata": {
-            "polymer": {
-              "observer": "\"_noCancelOnEscKeyChanged\""
-            }
+            "polymer": {}
           },
-          "defaultValue": "false"
+          "defaultValue": "false",
+          "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
       "methods": [
@@ -11608,49 +12747,51 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 150,
+              "line": 11,
               "column": 6
             },
             "end": {
-              "line": 152,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "now",
-          "description": "Sets value to the actual date",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "datetime-mixin.html",
-            "start": {
-              "line": 157,
-              "column": 6
-            },
-            "end": {
-              "line": 159,
+              "line": 14,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "now",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 178,
+              "column": 6
+            },
+            "end": {
+              "line": 182,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "_computeTime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 161,
+              "line": 141,
               "column": 6
             },
             "end": {
-              "line": 167,
+              "line": 159,
               "column": 7
             }
           },
@@ -11669,16 +12810,16 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-mixin.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 169,
+              "line": 161,
               "column": 6
             },
             "end": {
@@ -11698,7 +12839,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimeMixin"
+          "inheritedFrom": "PickerMixin"
         },
         {
           "name": "_computeValue",
@@ -11914,13 +13055,47 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_onClick",
+          "name": "_hideIfClamped",
+          "description": "hide features",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 183,
+              "column": 6
+            },
+            "end": {
+              "line": 188,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "_localeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 190,
               "column": 6
             },
             "end": {
@@ -11931,359 +13106,87 @@
           "metadata": {},
           "params": [
             {
-              "name": "e"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_computeViewDate",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 246,
-              "column": 6
-            },
-            "end": {
-              "line": 248,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "year"
-            },
-            {
-              "name": "month"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_jumpToNow",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 255,
-              "column": 6
-            },
-            "end": {
-              "line": 258,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_prevMonth",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 260,
-              "column": 6
-            },
-            "end": {
-              "line": 266,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_nextMonth",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 268,
-              "column": 6
-            },
-            "end": {
-              "line": 274,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_incremMonth",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 276,
-              "column": 6
-            },
-            "end": {
-              "line": 281,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_cancelTimeout",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 283,
-              "column": 6
-            },
-            "end": {
-              "line": 287,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_localeChanged",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 289,
-              "column": 6
-            },
-            "end": {
-              "line": 309,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
               "name": "locale"
             }
           ],
-          "inheritedFrom": "CalendarElement"
+          "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "render",
-          "description": "Renders the current view (manually).",
+          "name": "disconnectedCallback",
+          "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 314,
+              "line": 16,
               "column": 6
             },
             "end": {
-              "line": 383,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "viewDate",
-              "type": "number",
-              "description": "The value of the date of the current view."
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_dayDiff",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 385,
-              "column": 6
-            },
-            "end": {
-              "line": 387,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "end"
-            },
-            {
-              "name": "start"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_computeHideMonthAndYear",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 399,
-              "column": 6
-            },
-            "end": {
-              "line": 401,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "hideMonth"
-            },
-            {
-              "name": "hideYear"
-            }
-          ],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "toggle",
-          "description": "toggles opened state",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 406,
-              "column": 6
-            },
-            "end": {
-              "line": 408,
+              "line": 19,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "CalendarElement"
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
-          "name": "open",
-          "description": "opens element",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 412,
-              "column": 6
-            },
-            "end": {
-              "line": 414,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "close",
-          "description": "closes element",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 418,
-              "column": 6
-            },
-            "end": {
-              "line": 420,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElement"
-        },
-        {
-          "name": "_connectTextInputs",
+          "name": "_startIncrem",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
+            "file": "time-element.html",
             "start": {
-              "line": 154,
+              "line": 179,
               "column": 6
             },
             "end": {
-              "line": 159,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "_disconnectTextInputs",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 161,
-              "column": 6
-            },
-            "end": {
-              "line": 164,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "_noCancelOnEscKeyChanged",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 166,
-              "column": 6
-            },
-            "end": {
-              "line": 172,
+              "line": 185,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "noCancelOnEscKey"
+              "name": "type"
+            },
+            {
+              "name": "step"
             }
-          ]
+          ],
+          "inheritedFrom": "TimeElement"
         },
         {
-          "name": "_onKeyDown",
+          "name": "_stopIncrem",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
+            "file": "time-element.html",
             "start": {
-              "line": 174,
+              "line": 187,
               "column": 6
             },
             "end": {
-              "line": 178,
+              "line": 191,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "TimeElement"
+        },
+        {
+          "name": "_checkKeycode",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 169,
+              "column": 6
+            },
+            "end": {
+              "line": 176,
               "column": 7
             }
           },
@@ -12292,34 +13195,92 @@
             {
               "name": "e"
             }
-          ]
+          ],
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "open",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 184,
+              "column": 6
+            },
+            "end": {
+              "line": 189,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 191,
+              "column": 6
+            },
+            "end": {
+              "line": 196,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 6
+            },
+            "end": {
+              "line": 203,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
       "staticMethods": [],
       "demos": [
         {
-          "url": "demo/date-picker.html",
+          "url": "demo/time-picker.html",
           "description": ""
         }
       ],
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 39,
+          "line": 41,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 80,
           "column": 5
         }
       },
       "privacy": "public",
       "superclass": "HTMLElement",
-      "name": "DatePicker",
+      "name": "TimePicker",
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -12337,7 +13298,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -12355,7 +13316,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
@@ -12570,138 +13531,178 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "view-date",
-          "description": "The date of the view of the month and year",
+          "name": "locale",
+          "description": "The current locale",
           "sourceRange": {
-            "file": "calendar-element.html",
+            "file": "picker-mixin.html",
             "start": {
-              "line": 202,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 205,
+              "line": 25,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "number",
-          "inheritedFrom": "CalendarElement"
+          "type": "string",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "hour12",
+          "description": "when true 12-hour local time format, else 24-hour",
+          "sourceRange": {
+            "file": "picker-mixin.html",
+            "start": {
+              "line": 31,
+              "column": 10
+            },
+            "end": {
+              "line": 34,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PickerMixin"
+        },
+        {
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "file": "time-element.html",
+            "start": {
+              "line": 126,
+              "column": 10
+            },
+            "end": {
+              "line": 129,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "TimeElement"
         },
         {
           "name": "use-not-native",
           "description": "Force to not use the native input, even if it exists",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 50,
+              "line": 36,
               "column": 10
             },
             "end": {
-              "line": 53,
+              "line": 39,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean",
+          "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "Force to not use the native input, even if it exists",
+          "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
+            "start": {
+              "line": 43,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "horizontal-align",
           "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 59,
+              "line": 53,
               "column": 10
             },
             "end": {
-              "line": 62,
+              "line": 56,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "vertical-align",
           "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 67,
+              "line": 61,
               "column": 10
             },
             "end": {
-              "line": 71,
+              "line": 65,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "string",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "disabled",
           "description": "disables the input elements",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 76,
+              "line": 70,
               "column": 10
             },
             "end": {
-              "line": 79,
+              "line": 73,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "closable",
-          "description": "makes the polyfill closable",
-          "sourceRange": {
-            "start": {
-              "line": 84,
-              "column": 10
-            },
-            "end": {
-              "line": 87,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
+          "type": "boolean",
+          "inheritedFrom": "PolyfillPickerPattern"
         },
         {
           "name": "no-cancel-on-esc-key",
           "description": "Set to true to disable canceling the overlay with the ESC key.",
           "sourceRange": {
+            "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 92,
+              "line": 78,
               "column": 10
             },
             "end": {
-              "line": 96,
+              "line": 81,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "boolean"
+          "type": "boolean",
+          "inheritedFrom": "PolyfillPickerPattern"
         }
       ],
-      "events": [
-        {
-          "type": "CustomEvent",
-          "name": "view-date-changed",
-          "description": "Fired when the `viewDate` property changes.",
-          "metadata": {},
-          "inheritedFrom": "CalendarElement"
-        }
-      ],
+      "events": [],
       "styling": {
         "cssVariables": [],
         "selectors": []
       },
       "slots": [],
-      "tagname": "date-picker",
+      "tagname": "time-picker",
       "mixins": [
-        "DatetimeMixin",
-        "DatetimeKeyhandlerMixin"
+        "TimeElement",
+        "PolyfillPickerPattern"
       ]
     }
   ],
@@ -12887,7 +13888,7 @@
         {
           "name": "datetime",
           "type": "string",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -12908,7 +13909,7 @@
         {
           "name": "date",
           "type": "string",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -12929,7 +13930,7 @@
         {
           "name": "time",
           "type": "string",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -13485,7 +14486,7 @@
       "attributes": [
         {
           "name": "datetime",
-          "description": "The datetime as a string of the selected date and time (format: iso8061)",
+          "description": "the selected date and time (format: iso8061)",
           "sourceRange": {
             "start": {
               "line": 16,
@@ -13501,7 +14502,7 @@
         },
         {
           "name": "date",
-          "description": "The date as a string of the selected date (format: iso8061)",
+          "description": "the selected date (format: iso8061)",
           "sourceRange": {
             "start": {
               "line": 24,
@@ -13517,7 +14518,7 @@
         },
         {
           "name": "time",
-          "description": "The time as a string of the selected time",
+          "description": "the selected time (format: iso8061)",
           "sourceRange": {
             "start": {
               "line": 33,
@@ -13721,17 +14722,339 @@
       "path": "picker-mixin.html",
       "properties": [
         {
+          "name": "datetime",
+          "type": "string",
+          "description": "the selected date and time (format: iso8061)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 16,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "date",
+          "type": "string",
+          "description": "the selected date (format: iso8061)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 28,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "time",
+          "type": "string",
+          "description": "the selected time (format: iso8061)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 33,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "year",
+          "type": "number",
+          "description": "The year of the selected date",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 45,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "month",
+          "type": "number",
+          "description": "The month of the selected date (starts with 1)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 50,
+              "column": 10
+            },
+            "end": {
+              "line": 53,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "day",
+          "type": "number",
+          "description": "The day of the selected date",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 58,
+              "column": 10
+            },
+            "end": {
+              "line": 61,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "hours",
+          "type": "number",
+          "description": "The hours of the selected time",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 66,
+              "column": 10
+            },
+            "end": {
+              "line": 69,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "minutes",
+          "type": "number",
+          "description": "The minutes of the selected time",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 74,
+              "column": 10
+            },
+            "end": {
+              "line": 77,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "seconds",
+          "type": "number",
+          "description": "The seconds of the selected time",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 82,
+              "column": 10
+            },
+            "end": {
+              "line": 85,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "milliseconds",
+          "type": "number",
+          "description": "The milliseconds of the selected time",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 90,
+              "column": 10
+            },
+            "end": {
+              "line": 93,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dayPeriod",
+          "type": "string",
+          "description": "The dayPeriod of the selected time",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 97,
+              "column": 10
+            },
+            "end": {
+              "line": 100,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "description": "The value of the selected date",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 105,
+              "column": 10
+            },
+            "end": {
+              "line": 108,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "min",
+          "type": "string",
+          "description": "The minimal date (format: iso8061)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 113,
+              "column": 10
+            },
+            "end": {
+              "line": 116,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "max",
+          "type": "string",
+          "description": "The maximal date (format: iso8061)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 121,
+              "column": 10
+            },
+            "end": {
+              "line": 124,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
           "name": "locale",
           "type": "string",
           "description": "The current locale",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 19,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 23,
+              "line": 25,
               "column": 11
             }
           },
@@ -13748,11 +15071,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 29,
+              "line": 31,
               "column": 10
             },
             "end": {
-              "line": 32,
+              "line": 34,
               "column": 11
             }
           },
@@ -13768,11 +15091,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 37,
+              "line": 39,
               "column": 10
             },
             "end": {
-              "line": 39,
+              "line": 41,
               "column": 11
             }
           },
@@ -13787,11 +15110,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 44,
+              "line": 46,
               "column": 10
             },
             "end": {
-              "line": 46,
+              "line": 48,
               "column": 11
             }
           },
@@ -13806,11 +15129,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 52,
+              "line": 54,
               "column": 10
             },
             "end": {
-              "line": 55,
+              "line": 57,
               "column": 11
             }
           },
@@ -13826,11 +15149,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 61,
+              "line": 63,
               "column": 10
             },
             "end": {
-              "line": 64,
+              "line": 66,
               "column": 11
             }
           },
@@ -13846,11 +15169,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 70,
+              "line": 72,
               "column": 10
             },
             "end": {
-              "line": 73,
+              "line": 75,
               "column": 11
             }
           },
@@ -13860,131 +15183,17 @@
           "defaultValue": "\".\""
         },
         {
-          "name": "hideYear",
-          "type": "boolean",
-          "description": "hide year input",
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 78,
+              "line": 81,
               "column": 10
             },
             "end": {
-              "line": 80,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "hideMonth",
-          "type": "boolean",
-          "description": "hide month input",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 85,
-              "column": 10
-            },
-            "end": {
-              "line": 87,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "hideDay",
-          "type": "boolean",
-          "description": "hide day input",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 92,
-              "column": 10
-            },
-            "end": {
-              "line": 94,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "hideHours",
-          "type": "boolean",
-          "description": "hide hours input",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 99,
-              "column": 10
-            },
-            "end": {
-              "line": 101,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "hideMinutes",
-          "type": "boolean",
-          "description": "hide minutes input",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 106,
-              "column": 10
-            },
-            "end": {
-              "line": 108,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "hideSeconds",
-          "type": "boolean",
-          "description": "hide seconds input",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 113,
-              "column": 10
-            },
-            "end": {
-              "line": 115,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "hideMilliseconds",
-          "type": "boolean",
-          "description": "hide milliseconds input",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 120,
-              "column": 10
-            },
-            "end": {
-              "line": 122,
+              "line": 83,
               "column": 11
             }
           },
@@ -13999,11 +15208,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 127,
+              "line": 88,
               "column": 10
             },
             "end": {
-              "line": 138,
+              "line": 99,
               "column": 11
             }
           },
@@ -14014,16 +15223,354 @@
       ],
       "methods": [
         {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 134,
+              "column": 6
+            },
+            "end": {
+              "line": 139,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "now",
+          "description": "Sets value to the actual date",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 157,
+              "column": 6
+            },
+            "end": {
+              "line": 159,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_computeTime",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 141,
+              "column": 6
+            },
+            "end": {
+              "line": 159,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "hours"
+            },
+            {
+              "name": "minutes"
+            },
+            {
+              "name": "seconds"
+            },
+            {
+              "name": "milliseconds"
+            }
+          ]
+        },
+        {
+          "name": "_computeDate",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 161,
+              "column": 6
+            },
+            "end": {
+              "line": 175,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "year"
+            },
+            {
+              "name": "month"
+            },
+            {
+              "name": "day"
+            }
+          ]
+        },
+        {
+          "name": "_computeValue",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 177,
+              "column": 6
+            },
+            "end": {
+              "line": 197,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "date"
+            },
+            {
+              "name": "time"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_valueChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 199,
+              "column": 6
+            },
+            "end": {
+              "line": 222,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_pad",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 224,
+              "column": 6
+            },
+            "end": {
+              "line": 237,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "n"
+            },
+            {
+              "name": "padLength"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_minChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 239,
+              "column": 6
+            },
+            "end": {
+              "line": 250,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "min"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_maxChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 252,
+              "column": 6
+            },
+            "end": {
+              "line": 263,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "max"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_checkMax",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 265,
+              "column": 6
+            },
+            "end": {
+              "line": 274,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "d"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_checkMin",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 276,
+              "column": 6
+            },
+            "end": {
+              "line": 285,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "d"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_toDate",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 287,
+              "column": 6
+            },
+            "end": {
+              "line": 291,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "d"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_toTime",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 293,
+              "column": 6
+            },
+            "end": {
+              "line": 297,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "d"
+            }
+          ],
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "_hideIfClamped",
+          "description": "hide features",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 183,
+              "column": 6
+            },
+            "end": {
+              "line": 188,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          }
+        },
+        {
           "name": "_localeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 142,
+              "line": 190,
               "column": 6
             },
             "end": {
-              "line": 196,
+              "line": 244,
               "column": 7
             }
           },
@@ -14040,11 +15587,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 9,
+          "line": 11,
           "column": 2
         },
         "end": {
-          "line": 198,
+          "line": 246,
           "column": 3
         }
       },
@@ -14052,15 +15599,267 @@
       "name": "PickerMixin",
       "attributes": [
         {
+          "name": "datetime",
+          "description": "the selected date and time (format: iso8061)",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 16,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "date",
+          "description": "the selected date (format: iso8061)",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 28,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "time",
+          "description": "the selected time (format: iso8061)",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 33,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "year",
+          "description": "The year of the selected date",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 45,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "month",
+          "description": "The month of the selected date (starts with 1)",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 50,
+              "column": 10
+            },
+            "end": {
+              "line": 53,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "day",
+          "description": "The day of the selected date",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 58,
+              "column": 10
+            },
+            "end": {
+              "line": 61,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "hours",
+          "description": "The hours of the selected time",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 66,
+              "column": 10
+            },
+            "end": {
+              "line": 69,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "minutes",
+          "description": "The minutes of the selected time",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 74,
+              "column": 10
+            },
+            "end": {
+              "line": 77,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "seconds",
+          "description": "The seconds of the selected time",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 82,
+              "column": 10
+            },
+            "end": {
+              "line": 85,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "milliseconds",
+          "description": "The milliseconds of the selected time",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 90,
+              "column": 10
+            },
+            "end": {
+              "line": 93,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "day-period",
+          "description": "The dayPeriod of the selected time",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 97,
+              "column": 10
+            },
+            "end": {
+              "line": 100,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "value",
+          "description": "The value of the selected date",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 105,
+              "column": 10
+            },
+            "end": {
+              "line": 108,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "min",
+          "description": "The minimal date (format: iso8061)",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 113,
+              "column": 10
+            },
+            "end": {
+              "line": 116,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "max",
+          "description": "The maximal date (format: iso8061)",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 121,
+              "column": 10
+            },
+            "end": {
+              "line": 124,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
           "name": "locale",
           "description": "The current locale",
           "sourceRange": {
             "start": {
-              "line": 19,
+              "line": 21,
               "column": 10
             },
             "end": {
-              "line": 23,
+              "line": 25,
               "column": 11
             }
           },
@@ -14072,11 +15871,11 @@
           "description": "when true 12-hour local time format, else 24-hour",
           "sourceRange": {
             "start": {
-              "line": 29,
+              "line": 31,
               "column": 10
             },
             "end": {
-              "line": 32,
+              "line": 34,
               "column": 11
             }
           },
@@ -14084,116 +15883,20 @@
           "type": "boolean"
         },
         {
-          "name": "hide-year",
-          "description": "hide year input",
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "sourceRange": {
             "start": {
-              "line": 78,
+              "line": 81,
               "column": 10
             },
             "end": {
-              "line": 80,
+              "line": 83,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "hide-month",
-          "description": "hide month input",
-          "sourceRange": {
-            "start": {
-              "line": 85,
-              "column": 10
-            },
-            "end": {
-              "line": 87,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "hide-day",
-          "description": "hide day input",
-          "sourceRange": {
-            "start": {
-              "line": 92,
-              "column": 10
-            },
-            "end": {
-              "line": 94,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "hide-hours",
-          "description": "hide hours input",
-          "sourceRange": {
-            "start": {
-              "line": 99,
-              "column": 10
-            },
-            "end": {
-              "line": 101,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "hide-minutes",
-          "description": "hide minutes input",
-          "sourceRange": {
-            "start": {
-              "line": 106,
-              "column": 10
-            },
-            "end": {
-              "line": 108,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "hide-seconds",
-          "description": "hide seconds input",
-          "sourceRange": {
-            "start": {
-              "line": 113,
-              "column": 10
-            },
-            "end": {
-              "line": 115,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
-        },
-        {
-          "name": "hide-milliseconds",
-          "description": "hide milliseconds input",
-          "sourceRange": {
-            "start": {
-              "line": 120,
-              "column": 10
-            },
-            "end": {
-              "line": 122,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean"
+          "type": "string"
         }
       ],
       "events": [],
@@ -14201,7 +15904,10 @@
         "cssVariables": [],
         "selectors": []
       },
-      "slots": []
+      "slots": [],
+      "mixins": [
+        "DatetimeMixin"
+      ]
     },
     {
       "description": "mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed",
@@ -14369,11 +16075,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 144,
+              "line": 169,
               "column": 6
             },
             "end": {
-              "line": 151,
+              "line": 176,
               "column": 7
             }
           },
@@ -14385,16 +16091,33 @@
           ]
         },
         {
+          "name": "now",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 178,
+              "column": 6
+            },
+            "end": {
+              "line": 182,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
           "name": "open",
           "description": "",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 153,
+              "line": 184,
               "column": 6
             },
             "end": {
-              "line": 156,
+              "line": 189,
               "column": 7
             }
           },
@@ -14407,11 +16130,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 158,
+              "line": 191,
               "column": 6
             },
             "end": {
-              "line": 161,
+              "line": 196,
               "column": 7
             }
           },
@@ -14424,11 +16147,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 163,
+              "line": 198,
               "column": 6
             },
             "end": {
-              "line": 166,
+              "line": 203,
               "column": 7
             }
           },
@@ -14445,7 +16168,7 @@
           "column": 2
         },
         "end": {
-          "line": 168,
+          "line": 205,
           "column": 3
         }
       },

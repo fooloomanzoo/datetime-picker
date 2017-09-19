@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="picker-mixin.html">
 <link rel="import" href="datetime-shared-style.html">
@@ -28,11 +29,12 @@
   * `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
   * `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
   *
-  * @polymer
   * @customElement
-  * @appliesMixin DatetimeMixin
+  * @polymer
   *
-  * @demo demo/calendar.html
+  * @appliesMixin PickerMixin
+  *
+  * @demo demo/date-picker.html
   **/
     class CalendarElement extends PickerMixin(Polymer.Element) { // eslint-disable-line no-undef
 
@@ -47,20 +49,9 @@
         `
       }
 
-      static get styleTemplate() {
-        return `
-          <style include="${this.customStyleToInclude}">
-            ${this.customStyleContent}
-          </style>
-        `;
-      }
-
-      static get customStyleToInclude() {
-        return 'datetime-shared-style';
-      }
-
       static get customStyleContent() {
         return `
+          ${super.customStyleContent}
           #calendar {
             display: -ms-inline-flexbox;
             display: -webkit-inline-flex;
@@ -68,7 +59,6 @@
             flex-direction: column;
             background-color: var(--datetime-background);
             color: var(--datetime-color);
-            overflow: hidden;
             @apply --datetime-element;
           }
           #calendar #top {
@@ -91,6 +81,21 @@
           }
           #calendar .view > * {
             flex: 0 0 auto;
+          }
+          #calendar #month {
+            -moz-appearance: listitem;
+            -webkit-appearance: listitem;
+            appearance: listitem;
+            text-align-last: center;
+            @apply --datetime-input;
+          }
+          #calendar #month:hover,
+          #calendar #month:focus {
+            @apply --datetime-focus;
+          }
+          #calendar #month option {
+            color: var(--datetime-color);
+            background: var(--datetime-background);
           }
           #calendar #year {
             font-weight: bold;
@@ -153,17 +158,16 @@
       static get calendarTemplate() {
         return `
           <div id="calendar">
-            <div id="top" hidden$="[[_hideMonthAndYear]]" >
-              <svg class="icon switch" on-mousedown="_prevMonth" on-touchstart="_prevMonth" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
+            <div id="top">
+              <svg class="icon switch" on-mousedown="_prev" on-touchstart="_prev" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
               <div class="view">
-                <span id="month" style="order:[[_orderDate.month]];" hidden$="[[hideMonth]]" class="view" on-click="_jumpToNow"></span>
-                <span id="year" style="order:[[_orderDate.year]];" hidden$="[[hideYears]]" class="view" on-click="_jumpToNow"></span>
+                <select id="month" style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" value="{{_viewMonth::change}}"></select>
+                <number-input id="year" style="order:[[_orderDate.year]];" pad-length="4" value="{{_viewYear}}"></number-input>
               </div>
-              <svg class="icon switch" on-mousedown="_nextMonth" on-touchstart="_nextMonth" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
-              <svg class="icon" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
+              <svg class="icon switch" on-mousedown="_next" on-touchstart="_next" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
             </div>
 
-            <div id="content" hidden$="[[hideDay]]">
+            <div id="content" hidden$="[[_hideDay]]">
               <div id="header">
                 <div id="caption" class="week">
                   <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
@@ -197,34 +201,49 @@
 
       static get properties() {
         return {
+
           /**
-           * The date of the view of the month and year
+           * clamp datetime to a property
+           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
            */
-          viewDate: {
+          clamp: {
+            type: String,
+            value: 'hours'
+          },
+
+          /**
+           * The year of the view
+           */
+          _viewYear: {
             type: Number,
             notify: true
           },
 
-          _hideMonthAndYear: {
+          /**
+           * The month of the view
+           */
+          _viewMonth: {
+            type: Number,
+            notify: true
+          },
+
+          _hideMonth: {
             type: Boolean,
-            computed: '_computeHideMonthAndYear(hideMonth, hideYear)'
+            computed: '_hideIfClamped(clamp, "month")'
+          },
+
+          _hideDay: {
+            type: Boolean,
+            computed: '_hideIfClamped(clamp, "day")'
           }
         }
       }
 
       static get observers() {
         return [
-          'render(viewDate, day)',
+          'render(_viewYear, _viewMonth, day)',
           '_computeViewDate(year, month)'
         ]
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-        if (this.value === undefined) {
-          const d = new Date();
-          this.value = +(new Date(d.getFullYear(), d.getMonth(), d.getDate()));
-        }
       }
 
       _onClick(e) {
@@ -245,7 +264,13 @@
       }
 
       _computeViewDate(year, month) {
-        this.viewDate = +(new Date(year, month - 1));
+        if (year === undefined || month === undefined) {
+          return;
+        }
+        this.setProperties({
+          _viewYear: year,
+          _viewMonth: month
+        })
       }
 
       now() {
@@ -255,29 +280,50 @@
 
       _jumpToNow() {
         const d = new Date();
-        this.viewDate = +(new Date(d.getFullYear(), d.getMonth()));
+        this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
       }
 
-      _prevMonth() {
+      _prev() {
         this._cancelTimeout();
-        this._incremMonth(-1);
-        this._activeJob = setInterval(() => {
+        if (this._hideMonth) {
+          this._incremYear(-1);
+          this._activeJob = setInterval(() => {
+            this._incremYear(-1);
+          }, 200);
+        } else {
           this._incremMonth(-1);
-        }, 200);
+          this._activeJob = setInterval(() => {
+            this._incremMonth(-1);
+          }, 200);
+        }
       }
 
-      _nextMonth() {
-        this._cancelTimeout();
-        this._incremMonth(1);
-        this._activeJob = setInterval(() => {
+      _next() {
+        if (this._hideMonth) {
+          this._incremYear(1);
+          this._activeJob = setInterval(() => {
+            this._incremYear(1);
+          }, 200);
+        } else {
           this._incremMonth(1);
-        }, 200);
+          this._activeJob = setInterval(() => {
+            this._incremMonth(1);
+          }, 200);
+        }
       }
 
       _incremMonth(i) {
-        if (this.viewDate) {
-          const d = new Date(this.viewDate);
-          this.viewDate = +(new Date(d.getFullYear(), d.getMonth() + i));
+        const d = new Date(this._viewYear, this._viewMonth - 1 + i);
+        this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
+        if (this._hideMonth || this._hideDay) {
+          this.value = +(d);
+        }
+      }
+
+      _incremYear(i) {
+        this._viewYear += i;
+        if (this._hideMonth || this._hideDay) {
+          this.value = +(new Date(this._viewYear, this._viewMonth - 1));
         }
       }
 
@@ -289,14 +335,23 @@
 
       _localeChanged(locale) {
         super._localeChanged(locale);
-        if (this.viewDate) {
-          this.$.month.textContent = this.viewDate.toLocaleDateString(locale, {
-            month: 'long'
-          });
-          this.$.year.textContent = this.viewDate.toLocaleDateString(locale, {
-            year: 'numeric'
-          });
+
+        const monthSelector = this.root.querySelector('select#month');
+
+        if (monthSelector) {
+          while (monthSelector.hasChildNodes()) {
+            monthSelector.removeChild(monthSelector.lastChild);
+          }
+          for (let i = 1; i <= 12; i++) {
+            let option = document.createElement('option');
+            option.textContent = (new Date(1970, i - 1, 15)).toLocaleDateString(locale, {
+              month: 'long'
+            });
+            option.value = i;
+            monthSelector.appendChild(option);
+          }
         }
+
         // set weekday titles
         for (let i = 0; i < 7; i++) {
           let d = new Date(0, 0, i);
@@ -308,20 +363,15 @@
           }
         }
       }
+
       /**
        * Renders the current view (manually).
-       * @param {number} viewDate The value of the date of the current view.
+       * @param {number} _viewYear The value of the date of the current view.
+       * @param {number} _viewMonth The value of the date of the current view.
        */
-      render(viewDate) {
-        if (viewDate === undefined) return;
-        const d = new Date(viewDate);
-
-        this.$.month.textContent = d.toLocaleDateString(this.locale, {
-          month: 'long'
-        });
-        this.$.year.textContent = d.toLocaleDateString(this.locale, {
-          year: 'numeric'
-        });
+      render(_viewYear, _viewMonth) {
+        if (_viewYear === undefined || _viewMonth === undefined) return;
+        const d = new Date(_viewYear, _viewMonth - 1);
 
         const year = d.getFullYear(),
           month = d.getMonth(),
@@ -389,36 +439,14 @@
 
       _minChanged(min) {
         super._minChanged(min);
-        this.render(this.viewDate);
+        this.render(this._viewYear, this._viewMonth);
       }
 
       _maxChanged(max) {
         super._maxChanged(max);
-        this.render(this.viewDate);
+        this.render(this._viewYear, this._viewMonth);
       }
 
-      _computeHideMonthAndYear(hideMonth, hideYear) {
-        return hideMonth && hideYear;
-      }
-
-      /**
-       * toggles opened state
-       */
-      toggle() {
-        this.opened = !this.opened;
-      }
-      /**
-       * opens element
-       */
-      open() {
-        this.opened = true;
-      }
-      /**
-       * closes element
-       */
-      close() {
-        this.opened = false;
-      }
     }
     window.customElements.define(CalendarElement.is, CalendarElement);
   </script>

@@ -43,7 +43,7 @@ Custom property | Description | Default
         /* initial mixins */
         --datetime-input: {
           border-radius: 3px;
-          padding: 0.3em;
+          padding: 0.3em 0.2em;
           border: none;
           outline: none;
           text-align: center;
@@ -104,6 +104,7 @@ Custom property | Description | Default
       .icon {
         @apply --datetime-icon;
       }
+      .icon:focus,
       .icon:hover {
         @apply --datetime-focus;
       }

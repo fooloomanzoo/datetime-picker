@@ -5,18 +5,18 @@
 <link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
 <link rel="import" href="datetime-shared-style.html">
-<link rel="import" href="calendar-element.html">
+<link rel="import" href="time-element.html">
 
-<dom-module id="date-picker">
+<dom-module id="time-picker">
   <script>
   /**
-   *  `date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
+   *  `time-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* time-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.
    *
    *  ```html
-   *    <date-picker value="{{value}}"></date-picker>
+   *    <time-picker value="{{value}}"></time-picker>
    *  ```
    *
-   *  If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
+   *  If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
    *
    *
    *  Custom property | Description | Default
@@ -32,21 +32,21 @@
    *  @polymer
    *  @customElement
    *
-   *  @extends CalendarElement
+   *  @extends TimeElement
    *
-   *  @appliesMixin CalendarElement
+   *  @appliesMixin TimeElement
    *  @appliesMixin PolyfillPickerPattern
    *
-   *  @demo demo/date-picker.html
+   *  @demo demo/time-picker.html
    **/
-    class DatePicker extends PolyfillPickerPattern(CalendarElement) { // eslint-disable-line no-undef
+    class TimePicker extends PolyfillPickerPattern(TimeElement) { // eslint-disable-line no-undef
 
       static get is() {
-        return 'date-picker';
+        return 'time-picker';
       }
 
       static get expectedNativeInputType() {
-        return 'date';
+        return 'time';
       }
 
       static get customStyleToInclude() {
@@ -57,27 +57,29 @@
         return `
           <div hidden$="[[!useNotNative]]">
             <div class="polyfill">
-              <number-input style="order:[[_orderDate.year]];" pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
-              <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
-              <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
-              <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
-              <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
+              <number-input pad-length="2" min="0" max="23" disabled="[[disabled]]" value="{{hours}}" on-click="open"></number-input>
+              <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
+              <number-input hidden$="[[_hideMonth]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" on-click="open"></number-input>
+              <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
+              <number-input hidden$="[[_hideDay]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" on-click="open"></number-input>
+              <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
+              <number-input hidden$="[[_hideDay]]" pad-length="2" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" on-click="open"></number-input>
               ${super.polyfill}
             </div>
-            ${this.calendarTemplate}
+            ${this.timeTemplate}
           </div>
         `;
       }
 
-      static get calendarTemplate() {
+      static get timeTemplate() {
         return `
           <div class="dropdown" opened$="[[opened]]">
-            ${super.calendarTemplate}
+            ${super.timeTemplate}
           </div>
         `;
       }
     }
 
-    window.customElements.define(DatePicker.is, DatePicker);
+    window.customElements.define(TimePicker.is, TimePicker);
   </script>
 </dom-module>

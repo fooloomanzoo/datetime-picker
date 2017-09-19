@@ -106,19 +106,43 @@
       static get customStyleContent() {
         return `
           ${super.customStyleContent}
+          :host {
+            display: inline-flex;
+          }
           input.native {
-            cursor: pointer;
-            border-radius: 2px;
-            padding: 0.35em;
             @apply --datetime-input;
           }
-          .icon.close {
+          .icon.close,
+          .icon.now {
             position: absolute;
             right: 0;
             top: auto;
             bottom: auto;
-            transform: translate(100%, 0);
+            transform: translate(200%, 0);
             border-radius: 4px;
+            color: initial;
+            background: rgba(255,255,255, 0.5);
+            z-index: 1;
+          }
+          .icon.now {
+            transform: translate(100%, 0);
+          }
+          .icon.close {
+            transform: translate(200%, 0);
+          }
+          .icon:focus,
+          .icon:hover {
+            @apply --datetime-focus;
+          }
+          .polyfill {
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            align-items: center;
+            @apply --datetime-element;
+          }
+          .polyfill:focus,
+          .polyfill:hover {
+            @apply --datetime-focus;
           }
         `;
       }
@@ -132,12 +156,13 @@
 
       static get nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}">
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}" step="1">
         `;
       }
 
       static get polyfill() {
         return `
+          <svg class="icon now" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
           <svg class="icon close" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
         `;
       }
@@ -151,18 +176,30 @@
         }
       }
 
+      now() {
+        if (super.now) {
+          super.now();
+        }
+      }
+
       open() {
-        super.open();
+        if (super.open) {
+          super.open();
+        }
         this.opened = true;
       }
 
       close() {
-        super.close();
+        if (super.close) {
+          super.close();
+        }
         this.opened = false;
       }
 
       toggle() {
-        super.toggle();
+        if (super.toggle) {
+          super.toggle();
+        }
         this.opened = !this.opened;
       }
     }

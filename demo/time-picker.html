@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>date-picker demo</title>
+    <title>time-picker demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
@@ -10,6 +10,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
+    <link rel="import" href="../time-picker.html">
     <link rel="import" href="../date-picker.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -25,21 +26,21 @@
   <body>
 
     <div class="vertical-section-container centered">
-      <h3>Create a standalone calendar-element</h3>
+      <h3>Create a standalone time-element</h3>
       <demo-snippet>
         <template>
-          <calendar-element></calendar-element>
+          <time-element></time-element>
         </template>
       </demo-snippet>
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>Create a native date-picker, if available</h3>
+      <h3>Create a native time-picker, if available</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></date-picker>
+              <time-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -52,12 +53,13 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>Force to create a non-native date-picker</h3>
+      <h3>Force to create a non-native time-picker with milliseconds (unset 'clamp'-attribute)</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}"></date-picker>
+              <date-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></date-picker>
+              <time-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></time-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -77,17 +79,17 @@
             <template is="dom-bind">
               <custom-style>
                 <style is="custom-style">
-                  date-picker.begin {
+                  time-picker.begin {
                     --datetime-selected-background: #CC1C1C;
                   }
-                  date-picker.end {
+                  time-picker.end {
                     --datetime-selected-background: #2362EC;
                   }
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="begin" use-not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" use-not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <time-picker class="begin" use-not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
+                <time-picker class="end" use-not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>min</code>: <b>[[min]]</b></div>
@@ -100,16 +102,16 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>clamp to day to get a month-picker</h3>
+      <h3>clamp to minutes</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section-container">
-                <date-picker use-not-native date="{{date}}" clamp="day" vertical-align="bottom"></date-picker>
+                <time-picker use-not-native time="{{time}}" clamp="minutes" vertical-align="bottom"></time-picker>
               </div>
               <div class="vertical-section-container result">
-                <div><code>date</code>: <b>[[date]]</b></div>
+                <div><code>date</code>: <b>[[time]]</b></div>
               </div>
             </template>
           </dom-bind>
