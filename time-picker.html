@@ -4,7 +4,6 @@
 
 <link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
-<link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="time-element.html">
 
 <dom-module id="time-picker">
@@ -59,22 +58,16 @@
             <div class="polyfill">
               <number-input pad-length="2" min="0" max="23" disabled="[[disabled]]" value="{{hours}}" on-click="open"></number-input>
               <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
-              <number-input hidden$="[[_hideMonth]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" on-click="open"></number-input>
+              <number-input hidden$="[[_hideMinutes]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" on-click="open"></number-input>
               <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
-              <number-input hidden$="[[_hideDay]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" on-click="open"></number-input>
+              <number-input hidden$="[[_hideSeconds]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" on-click="open"></number-input>
               <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
-              <number-input hidden$="[[_hideDay]]" pad-length="2" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" on-click="open"></number-input>
-              ${super.polyfill}
+              <number-input hidden$="[[_hideMilliSeconds]]" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" on-click="open"></number-input>
+              ${this.buttonTemplate}
             </div>
-            ${this.timeTemplate}
-          </div>
-        `;
-      }
-
-      static get timeTemplate() {
-        return `
-          <div class="dropdown" opened$="[[opened]]">
-            ${super.timeTemplate}
+            <div class="dropdown" opened$="[[opened]]">
+              ${this.timeTemplate}
+            </div>
           </div>
         `;
       }

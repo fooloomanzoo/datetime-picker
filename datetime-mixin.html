@@ -178,9 +178,14 @@
       _computeValue(date, time) {
         if (!(date && time)) return;
         const datetime = date + 'T' + time
-        const d = new Date(datetime);
+        let d = new Date(datetime);
 
-        if (!isNaN(+d) && this._checkMin(d) !== false && this._checkMax(d) !== false) {
+        if (!isNaN(+d)) {
+          if (this.min && this._checkMin(d) === false) {
+            d = new Date(this.min);
+          } else if (this.max && this._checkMax(d) === false) {
+            d = new Date(this.max);
+          }
           this.setProperties({
             year: d.getFullYear(),
             month: d.getMonth() + 1,
@@ -199,9 +204,14 @@
 
       _valueChanged(value) {
         if (!value) return;
-        const d = new Date(value);
+        let d = new Date(value);
 
-        if (!isNaN(+d) && this._checkMin(d) !== false && this._checkMax(d) !== false) {
+        if (!isNaN(+d)) {
+          if (this.min && this._checkMin(d) === false) {
+            d = new Date(this.min);
+          } else if (this.max && this._checkMax(d) === false) {
+            d = new Date(this.max);
+          }
           const date = this._toDate(d);
           const time = this._toTime(d);
 
@@ -265,35 +275,43 @@
 
       _checkMax(d) {
         const max = this.max ? (new Date(this.max)) : undefined;
-        if (!max || !isNaN(+max)) {
+
+        if (!max || isNaN(+max)) {
           return null;
         }
-        if (d && d.getTime && !isNaN(+d) && max < d) {
+
+        if (d && d.getTime && max < d) {
           return false;
         }
+
         return true;
       }
 
       _checkMin(d) {
         const min = this.min ? (new Date(this.min)) : undefined;
-        if (!min || !isNaN(+min)) {
+
+        if (!min || isNaN(+min)) {
           return null;
         }
-        if (d && d.getTime && !isNaN(+d) && min > d) {
+
+        if (d && d.getTime && min > d) {
           return false;
         }
+
         return true;
       }
 
       _toDate(d) {
         if (isNaN(+d) || !d.getTime)
           return '';
+
         return d.getFullYear() + '-' + this._pad(d.getMonth() + 1, 2) + '-' + this._pad(d.getDate(), 2);
       }
 
       _toTime(d) {
         if (isNaN(+d) || !d.getTime)
           return '';
+
         return this._pad(d.getHours(), 2) + ':' + this._pad(d.getMinutes(), 2) + ':' + this._pad(d.getSeconds(), 2) + '.' + this._pad(d.getMilliseconds(), 3);
       }
 

@@ -4,7 +4,6 @@
 
 <link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
-<link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="calendar-element.html">
 
 <dom-module id="date-picker">
@@ -62,17 +61,11 @@
               <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
               <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
               <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
-              ${super.polyfill}
+              ${this.buttonTemplate}
             </div>
-            ${this.calendarTemplate}
-          </div>
-        `;
-      }
-
-      static get calendarTemplate() {
-        return `
-          <div class="dropdown" opened$="[[opened]]">
-            ${super.calendarTemplate}
+            <div class="dropdown" opened$="[[opened]]">
+              ${this.calendarTemplate}
+            </div>
           </div>
         `;
       }

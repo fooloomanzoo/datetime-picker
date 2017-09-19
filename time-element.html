@@ -92,25 +92,25 @@
           <div id="timer">
             <div class="field">
               <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" id="hours" min="0" max="23"  pad-length="2" value="{{hours}}" placeholder="00"></number-input>
+              <number-input class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
               <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
             </div>
             <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
             <div class="field" hidden$="[[_hideMinutes]]">
               <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" id="minutes" min="0" max="59" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
+              <number-input class="time" min="0" max="59" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
               <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
             </div>
             <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
             <div class="field" hidden$="[[_hideSeconds]]">
               <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" pad-length="2" id="seconds" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
+              <number-input class="time" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
               <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
             </div>
             <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
             <div class="field" hidden$="[[_hideMilliSeconds]]">
               <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" id="milliseconds" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
+              <number-input class="time" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
               <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
             </div>
           </div>
@@ -150,14 +150,14 @@
       connectedCallback() {
         super.connectedCallback();
 
-        const switchs = this.root.querySelectorAll('.switch');
+        const switchs = this.root.querySelectorAll('.icon.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mousedown', this._startIncrem.bind(this, s.for, s.step), false);
-            s.addEventListener('touchstart', this._startIncrem.bind(this, s.for, s.step), false);
-            s.addEventListener('mouseup', this._stopIncrem.bind(this, s.for, s.step), false);
-            s.addEventListener('mouseleave', this._stopIncrem.bind(this, s.for, s.step), false);
-            s.addEventListener('touchend', this._stopIncrem.bind(this, s.for, s.step), false);
+            s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
+            s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
+            s.addEventListener('mouseup', this._stopIncrem.bind(this, s), false);
+            s.addEventListener('mouseleave', this._stopIncrem.bind(this, s), false);
+            s.addEventListener('touchend', this._stopIncrem.bind(this, s), false);
           })
         }
       }
@@ -177,8 +177,10 @@
         }
       }
 
-      _startIncrem(type, step) {
+      _startIncrem(s) {
         this._stopIncrem();
+        const type = s.getAttribute('for');
+        const step = +(s.getAttribute('step'));
         this[type] += step;
         this._activeJob = setInterval(() => {
           this[type] += step;
