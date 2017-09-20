@@ -53,6 +53,22 @@
     </div>
 
     <div class="vertical-section-container centered">
+      <h3>non-native time-picker in 12-hour-format</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <time-picker use-not-native hour12 time="{{time}}" vertical-align="bottom"></time-picker>
+              <div class="vertical-section-container result">
+                <div><code>time</code>: <b>[[time]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
       <h3>Force to create a non-native time-picker with milliseconds (unset 'clamp'-attribute)</h3>
       <demo-snippet>
         <template>
@@ -88,12 +104,18 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <time-picker class="begin" use-not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
-                <time-picker class="end" use-not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
+                <b>starting time:</b>
+                <time-picker class="begin" use-not-native date="{{date}}" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
+                <b>end time:</b>
+                <time-picker class="end" use-not-native date="{{date}}" datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
+                <b>at date:</b>
+                <date-picker use-not-native date="{{date}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
-                <div><code>min</code>: <b>[[min]]</b></div>
-                <div><code>max</code>: <b>[[max]]</b></div>
+                <code>start:</code>
+                <b>[[min]]</b>
+                <code>end:</code>
+                <b>[[max]]</b>
               </div>
             </template>
           </dom-bind>

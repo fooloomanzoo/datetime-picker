@@ -1,20 +1,20 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="datetime-picker.html">
+<link rel="import" href="time-picker.html">
 <link rel="import" href="overlay-picker-extension.html">
 
-<dom-module id="overlay-datetime-picker">
+<dom-module id="overlay-time-picker">
   <script>
     /**
-     *   `overlay-datetime-picker` extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.
+     *   `overlay-time-picker` extends `datetime-picker` and create the polyfilled element `time-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.
      *
      *   ```html
-     *   <overlay-datetime-picker value="{{value}}" use-not-native></overlay-datetime-picker>
+     *   <overlay-time-picker value="{{value}}" use-not-native></overlay-time-picker>
      *   ```
      *
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.
      *
      *  ```html
-     *    <overlay-datetime-picker use-not-native="[[!isMobile]]"></overlay-datetime-picker>
+     *    <overlay-time-picker use-not-native="[[!isMobile]]"></overlay-time-picker>
      *    ...
      *      isMobile() {
      *        const ua = window.navigator.userAgent;
@@ -23,7 +23,7 @@
      *    ...
      *  ```
      *
-     *  If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
+     *  If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
      *
      *  Custom property | Description | Default
      *  ----------------|-------------|----------
@@ -38,18 +38,17 @@
      *  @customElement
      *  @polymer
      *
-     *  @extends DatetimePicker
-     *
+     *  @extends TimePicker
      *
      *  @demo demo/overlay.html
      **/
-    class OverlayDatetimePicker extends OverlayPickerExtension(DatetimePicker) { // eslint-disable-line no-undef
+    class OverlayTimePicker extends OverlayPickerExtension(TimePicker) { // eslint-disable-line no-undef
 
       static get is() {
-        return 'overlay-datetime-picker';
+        return 'overlay-time-picker';
       }
 
     }
-    window.customElements.define(OverlayDatetimePicker.is, OverlayDatetimePicker);
+    window.customElements.define(OverlayTimePicker.is, OverlayTimePicker);
   </script>
 </dom-module>

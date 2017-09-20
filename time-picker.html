@@ -1,9 +1,9 @@
 <link rel="import" href="../polymer/polymer-element.html">
-
 <link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
+<link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="time-element.html">
 
 <dom-module id="time-picker">
@@ -16,7 +16,6 @@
    *  ```
    *
    *  If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
-   *
    *
    *  Custom property | Description | Default
    *  ----------------|-------------|----------
@@ -31,14 +30,13 @@
    *  @polymer
    *  @customElement
    *
-   *  @extends TimeElement
-   *
-   *  @appliesMixin TimeElement
+   *  @appliesMixin TimeElementPattern
+   *  @appliesMixin PickerMixin
    *  @appliesMixin PolyfillPickerPattern
    *
    *  @demo demo/time-picker.html
    **/
-    class TimePicker extends PolyfillPickerPattern(TimeElement) { // eslint-disable-line no-undef
+    class TimePicker extends PolyfillPickerPattern(TimeElementPattern(PickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-picker';
@@ -52,22 +50,27 @@
         return `datetime-shared-style dropdown-style`;
       }
 
-      static get polyfill() {
+      static get replacementInputTemplate() {
         return `
-          <div hidden$="[[!useNotNative]]">
-            <div class="polyfill">
-              <number-input pad-length="2" min="0" max="23" disabled="[[disabled]]" value="{{hours}}" on-click="open"></number-input>
-              <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
-              <number-input hidden$="[[_hideMinutes]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" on-click="open"></number-input>
-              <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
-              <number-input hidden$="[[_hideSeconds]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" on-click="open"></number-input>
-              <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
-              <number-input hidden$="[[_hideMilliSeconds]]" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" on-click="open"></number-input>
-              ${this.buttonTemplate}
-            </div>
-            <div class="dropdown" opened$="[[opened]]">
-              ${this.timeTemplate}
-            </div>
+          <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00" on-click="open"></number-input>
+          <number-input hidden$="[[!hour12]]" class="time" min="0" max="12" pad-length="2" value="{{hours12}}" placeholder="00" on-click="open"></number-input>
+          <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
+          <number-input hidden$="[[_hideMinutes]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" placeholder="00" on-click="open"></number-input>
+          <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
+          <number-input hidden$="[[_hideSeconds]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" placeholder="00" on-click="open"></number-input>
+          <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
+          <number-input hidden$="[[_hideMilliSeconds]]" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000" on-click="open"></number-input>
+          <div class="am-switch" hidden$="[[!hour12]]" on-click="open">
+            <span hidden$="[[!isAm]]">[[_am]]</span>
+            <span hidden$="[[isAm]]">[[_pm]]</span>
+          </div>
+        `;
+      }
+
+      static get pickerTemplate() {
+        return `
+          <div id="picker" class="dropdown" opened$="[[opened]]">
+            ${this.timeTemplate}
           </div>
         `;
       }

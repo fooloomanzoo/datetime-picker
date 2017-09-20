@@ -9,17 +9,39 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 If you like an **overlay** then use `overlay-datetime-picker`, what extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
 
+In this collection are:
+* `<datetime-picker>`
+* `<date-picker>`
+* `<time-picker>`
+* `<calendar-element>`
+* `<time-element>`
+* `<overlay-datetime-picker>`
+* `<overlay-date-picker>`
+* `<overlay-time-picker>`
+
 ### Motivation
 
 Internally it uses two input-elements, that are initially set to type *date* and *time*. If the Browser leaves these attributes as they are, then it will be assumed that native *date*- and *time*-inputs are available. If it won't, a `calendar-element` and a `time-element` will be displayed instead. `calendar-element` and `time-element` can also be used separately.
+
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, or you like to have a different look and you are using *Polymer* already.
+
+Another use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.
+
+```html
+  <datetime-picker use-not-native="[[!isMobile]]"></datetime-picker>
+  ...
+    isMobile() {
+      const ua = window.navigator.userAgent;
+      return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));
+    }
+  ...
+```
 
 ### How?
 
 The **[component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)** explains, which of the attributes you can use and how. You can see there a **[demo](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html)**, too.
 
 You can use it stand-alone, with overlay or as a range of dates. Examples:
-
 
 #### use the polyfill
 
@@ -159,6 +181,18 @@ bower install --save fooloomanzoo/datetime-picker
   - shared custom-style-element introduced
   - unifying some custom-style-properties
   - renaming `position` to `verticalAlign` and `horizontalAlign`
+
+
+* 2.1.6
+  - all elements are using `template-strings`
+  - using `<number-input>` for all numeric inputs
+  - `<datetime-picker>` uses as native input now `<input type="datetime-local">`
+  - fix for `calendar-element` for daylight-saving time
+  - in `calendar-element` uses a numeric input for `year`-property and a select-box for `month`-property
+  - `clamp`-property allows to clamp the date-value to a lower limit, e.g. `clamp="day"` means that the month will be clamped to it's first day
+  - `clamp`-property for pickers enable to hide certain properties from being pickable, e.g. `clamp="day"` hides the day selector
+  - internationalization/localization for datetime-part-order and separation signs
+  - abstractions of each element leads to smaller file sizes
 
 
 ### Contribute?

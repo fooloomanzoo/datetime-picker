@@ -19,10 +19,18 @@
         this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
       }
 
+      /**
+       * the expected input type, that should be polyfilled, if not available
+       * @type {string}
+       */
       static get expectedNativeInputType() {
         return 'datetime-local';
       }
 
+      /**
+       * test `expectedNativeInputType`, if that native input is supported
+       * @type {string}
+       */
       static get hasNative() {
         const inputDate = document.createElement('input');
         inputDate.setAttribute('type', `${this.expectedNativeInputType}`);
@@ -86,12 +94,16 @@
 
       static get template() {
         return `
-          ${this.styleTemplate}
-          ${this.hasNative ? this.native : this.polyfill}
+          ${this._styleTemplate}
+          ${this.hasNative ? this._native : this._polyfill}
         `
       }
 
-      static get styleTemplate() {
+      /**
+       * custom style template
+       * @type {string}
+       */
+      static get _styleTemplate() {
         return `
           <style include="${this.customStyleToInclude}">
             ${this.customStyleContent}
@@ -99,10 +111,18 @@
         `;
       }
 
+      /**
+       * custom style to include in `<style include="..."`
+       * @type {string}
+       */
       static get customStyleToInclude() {
         return ``;
       }
 
+      /**
+       * custom style content
+       * @type {string}
+       */
       static get customStyleContent() {
         return `
           ${super.customStyleContent}
@@ -121,7 +141,7 @@
             transform: translate(200%, 0);
             border-radius: 4px;
             color: initial;
-            background: rgba(255,255,255, 0.5);
+            background: rgba(255,255,255, 0.66);
             z-index: 1;
           }
           .icon.now {
@@ -144,35 +164,92 @@
           .polyfill:hover {
             @apply --datetime-focus;
           }
+          #picker {
+            display: flex;
+            flex-direction: column;
+          }
+          #picker > :not(:last-child) {
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+          }
+          #picker > :not(:first-child) {
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
+          }
         `;
       }
 
-      static get native() {
+      /**
+       * template for native input is supported including the polyfill
+       * @type {string}
+       */
+      static get _native() {
         return `
-          ${this.nativeInputTemplate}
-          ${this.polyfill}
+          ${this._nativeInputTemplate}
+          ${this._polyfill}
         `
       }
 
-      static get nativeInputTemplate() {
+      /**
+       * template for polyfilled input and picker
+       * @type {string}
+       */
+      static get _polyfill() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}" step="1">
+          <div hidden$="[[!useNotNative]]">
+            <div class="polyfill">
+              ${this.replacementInputTemplate}
+              ${this._buttonTemplate}
+            </div>
+            ${this.pickerTemplate}
+          </div>
         `;
       }
 
-      static get polyfill() {
-        return `
-          ${this.buttonTemplate}
-        `;
-      }
-
-      static get buttonTemplate() {
+      /**
+       * template for control buttons
+       * @type {string}
+       */
+      static get _buttonTemplate() {
         return `
           <svg class="icon now" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
           <svg class="icon close" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
         `;
       }
 
+      /**
+       * template for native input element
+       * @type {string}
+       */
+      static get _nativeInputTemplate() {
+        return `
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}" step="1">
+        `;
+      }
+
+      /**
+       * template for the replacement of the native input elements
+       * @type {string}
+       */
+      static get replacementInputTemplate() {
+        return ``;
+      }
+
+      /**
+       * template for the picker
+       * @type {string}
+       */
+      static get pickerTemplate() {
+        return `
+          <div id="picker">
+          </div>
+        `;
+      }
+
+      /**
+       * key press event handler
+       * @param  {[type]} e Event
+       */
       _checkKeycode(e) {
         if (super._checkKeycode) {
           super._checkKeycode(e);
@@ -188,6 +265,9 @@
         }
       }
 
+      /**
+       * open the picker
+       */
       open() {
         if (super.open) {
           super.open();
@@ -195,6 +275,9 @@
         this.opened = true;
       }
 
+      /**
+       * close the picker
+       */
       close() {
         if (super.close) {
           super.close();
@@ -202,6 +285,9 @@
         this.opened = false;
       }
 
+      /**
+       * toggle the picker
+       */
       toggle() {
         if (super.toggle) {
           super.toggle();

@@ -1,4 +1,5 @@
 <link rel="import" href="datetime-mixin.html">
+<link rel="import" href="datetime-shared-style.html">
 
 <script>
   /**
@@ -23,15 +24,6 @@
             type: String,
             value: window.navigator.language,
             observer: '_localeChanged'
-          },
-
-          /**
-           * when true 12-hour local time format, else 24-hour
-           * @type {boolean}
-           */
-          hour12: {
-            type: Boolean,
-            value: false
           },
 
           /**
@@ -196,7 +188,7 @@
         // test locale (currently just for Latin letters and Western Arabic/European numerals)
         locale += '-u-nu-latn-ca-iso8601';
 
-        let date = new Date(1970, 10, 15, 9, 24, 25);
+        let date = new Date(1970, 10, 15, 6, 24, 25);
 
         // check date
         const dateString = date.toLocaleDateString( locale, { year: 'numeric', month: 'numeric', day: 'numeric' });
@@ -227,7 +219,7 @@
         let am = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
 
         // pm-string
-        date = new Date(1970, 10, 15, 23, 24, 25);
+        date = new Date(1970, 10, 15, 18, 24, 25);
         timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
         let pm = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
 
@@ -243,6 +235,7 @@
           _pm: pm
         });
       }
+
     }
   }
 </script>

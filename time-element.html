@@ -2,43 +2,208 @@
 <link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="picker-mixin.html">
-<link rel="import" href="datetime-shared-style.html">
+
+<script>
+  /**
+   * Mixin for calendar-element
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const TimeElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars
+
+    static get customStyleContent() {
+      return `
+        ${super.customStyleContent}
+        #timer {
+          display: -ms-inline-flexbox;
+          display: -webkit-inline-flex;
+          display: inline-flex;
+          flex-direction: row;
+          align-items: center;
+          background-color: var(--datetime-background);
+          color: var(--datetime-color);
+          @apply --datetime-element;
+        }
+        #timer .field {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        #timer .icon {
+          padding-top: 4px;
+          padding-bottom: 4px;
+        }
+        #timer .buttons {
+          display: flex;
+          flex-direction: column;
+          align-self: stretch;
+          justify-content: space-between;
+        }
+        #timer .time {
+          background-color: var(--datetime-background);
+        }
+        #timer .time:focus {
+          outline: currentColor auto thin;
+        }
+        .am-switch {
+          cursor: pointer;
+        }
+      `;
+    }
+
+    static get timeTemplate() {
+      return `
+        <div id="timer">
+          <div class="field">
+            <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
+            <number-input hidden$="[[!hour12]]" class="time" min="0" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
+            <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+          </div>
+          <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
+          <div class="field" hidden$="[[_hideMinutes]]">
+            <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <number-input class="time" min="0" max="59" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
+            <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+          </div>
+          <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
+          <div class="field" hidden$="[[_hideSeconds]]">
+            <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <number-input class="time" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
+            <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+          </div>
+          <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
+          <div class="field" hidden$="[[_hideMilliSeconds]]">
+            <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <number-input class="time" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
+            <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+          </div>
+          <div class="am-switch" hidden$="[[!hour12]]" on-click="_switchAm">
+            <span hidden$="[[!isAm]]">[[_am]]</span>
+            <span hidden$="[[isAm]]">[[_pm]]</span>
+          </div>
+        </div>
+      `
+    }
+
+    static get properties() {
+      return {
+
+        /**
+         * clamp datetime to a property
+         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+         */
+        clamp: {
+          type: String,
+          value: 'milliseconds'
+        },
+
+        _hideMinutes: {
+          type: Boolean,
+          computed: '_hideIfClamped(clamp, "minutes")'
+        },
+
+        _hideSeconds: {
+          type: Boolean,
+          computed: '_hideIfClamped(clamp, "seconds")'
+        },
+
+        _hideMilliSeconds: {
+          type: Boolean,
+          computed: '_hideIfClamped(clamp, "milliseconds")'
+        }
+
+      }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+
+      const switchs = this.root.querySelectorAll('.icon.switch');
+      if (switchs) {
+        Array.prototype.forEach.call(switchs, s => {
+          s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
+          s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
+          s.addEventListener('mouseup', this._stopIncrem.bind(this, s), false);
+          s.addEventListener('mouseleave', this._stopIncrem.bind(this, s), false);
+          s.addEventListener('touchend', this._stopIncrem.bind(this, s), false);
+        })
+      }
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+
+      const switchs = this.root.querySelectorAll('.switch');
+      if (switchs) {
+        Array.prototype.forEach.call(switchs, s => {
+          s.removeEventListener('mousedown', this._startIncrem.bind(this, s), false);
+          s.removeEventListener('touchstart', this._startIncrem.bind(this, s), false);
+          s.removeEventListener('mouseup', this._stopIncrem.bind(this, s), false);
+          s.removeEventListener('mouseleave', this._stopIncrem.bind(this, s), false);
+          s.removeEventListener('touchend', this._stopIncrem.bind(this, s), false);
+        })
+      }
+    }
+
+    _startIncrem(s) {
+      this._stopIncrem();
+      const type = s.getAttribute('for');
+      const step = +(s.getAttribute('step'));
+      this[type] += step;
+      this._activeJob = setInterval(() => {
+        this[type] += step;
+      }, 150);
+    }
+
+    _stopIncrem() {
+      if (this._activeJob) {
+        clearInterval(this._activeJob);
+      }
+    }
+
+    _switchAm() {
+      this.isAm = !this.isAm;
+    }
+
+  }
+</script>
 
 <dom-module id="time-element">
   <script>
-  /**
-   * `time-element`
-   *
-   * A polyfill time picker using Polymer.
-   *
-   * If you like to connect it to an input, try it like:
-   *
-   *  ```html
-   *     <input type="time" value="{{time::input}}" step="1">
-   *
-   *     <time-element time="{{time}}"></time-element>
-   *  ```
+    /**
+       * `<time-element>` adds a time-input to your page using Polymer.
+       *
+       * If you like to connect it to an input, try it like:
+       *
+       *  ```html
+       *     <input type="time" value="{{time::input}}" step="1">
+       *
+       *     <time-element time="{{time}}"></time-element>
+       *  ```
 
-   * The following custom properties and mixins are also available for styling:
+       * The following custom properties and mixins are also available for styling:
 
-   * Custom property | Description | Default
-   * ----------------|-------------|----------
-   * `--datetime-background` | text-color of the time-element | `#252525`
-   * `--datetime-color` | text-color of the time-element | `#ccc`
-   * `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
-   * `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
-   * `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
-   * `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
-   * `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
-   *
-   * @customElement
-   * @polymer
-   *
-   * @appliesMixin PickerMixin
-   *
-   * @demo demo/time-picker.html
-   **/
-    class TimeElement extends PickerMixin(Polymer.Element) { // eslint-disable-line no-undef
+       * Custom property | Description | Default
+       * ----------------|-------------|----------
+       * `--datetime-background` | text-color of the time-element | `#252525`
+       * `--datetime-color` | text-color of the time-element | `#ccc`
+       * `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons | `--primary-color, #253EEC`
+       * `--datetime-selected-color` | color of the focussed time-input and the hovered icons | `#f1f1f1`
+       * `--datetime-element` | Mixin applied to the time-element and the calender-element | `{}`
+       * `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+       * `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
+       *
+       * @customElement
+       * @polymer
+       *
+       * @appliesMixin TimeElementPattern
+       * @appliesMixin PickerMixin
+       *
+       * @demo demo/time-picker.html
+       **/
+    class TimeElement extends TimeElementPattern(PickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';
@@ -51,147 +216,6 @@
         `
       }
 
-      static get customStyleContent() {
-        return `
-          ${super.customStyleContent}
-          #timer {
-            display: inline-flex;
-            flex-direction: row;
-            align-items: center;
-            text-align: center;
-            background-color: var(--datetime-background);
-            color: var(--datetime-color);
-            @apply --datetime-element;
-          }
-          #timer .field {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-          #timer .icon {
-            padding-top: 4px;
-            padding-bottom: 4px;
-          }
-          #timer .buttons {
-            display: flex;
-            flex-direction: column;
-            align-self: stretch;
-            justify-content: space-between;
-          }
-          #timer .time {
-            background-color: var(--datetime-background);
-          }
-          #timer .time:focus {
-            outline: currentColor auto thin;
-          }
-        `;
-      }
-
-      static get timeTemplate() {
-        return `
-          <div id="timer">
-            <div class="field">
-              <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-              <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
-            </div>
-            <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
-            <div class="field" hidden$="[[_hideMinutes]]">
-              <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" min="0" max="59" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
-              <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
-            </div>
-            <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
-            <div class="field" hidden$="[[_hideSeconds]]">
-              <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
-              <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
-            </div>
-            <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
-            <div class="field" hidden$="[[_hideMilliSeconds]]">
-              <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-              <number-input class="time" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
-              <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
-            </div>
-          </div>
-        `
-      }
-
-      static get properties() {
-        return {
-
-          /**
-           * clamp datetime to a property
-           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-           */
-          clamp: {
-            type: String,
-            value: 'milliseconds'
-          },
-
-          _hideMinutes: {
-            type: Boolean,
-            computed: '_hideIfClamped(clamp, "minutes")'
-          },
-
-          _hideSeconds: {
-            type: Boolean,
-            computed: '_hideIfClamped(clamp, "seconds")'
-          },
-
-          _hideMilliSeconds: {
-            type: Boolean,
-            computed: '_hideIfClamped(clamp, "milliseconds")'
-          }
-
-        }
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-
-        const switchs = this.root.querySelectorAll('.icon.switch');
-        if (switchs) {
-          Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
-            s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
-            s.addEventListener('mouseup', this._stopIncrem.bind(this, s), false);
-            s.addEventListener('mouseleave', this._stopIncrem.bind(this, s), false);
-            s.addEventListener('touchend', this._stopIncrem.bind(this, s), false);
-          })
-        }
-      }
-
-      disconnectedCallback() {
-        super.disconnectedCallback();
-
-        const switchs = this.root.querySelectorAll('.switch');
-        if (switchs) {
-          Array.prototype.forEach.call(switchs, s => {
-            s.removeEventListener('mousedown', this._startIncrem.bind(this, s.for, s.step), false);
-            s.removeEventListener('touchstart', this._startIncrem.bind(this, s.for, s.step), false);
-            s.removeEventListener('mouseup', this._stopIncrem.bind(this, s.for, s.step), false);
-            s.removeEventListener('mouseleave', this._stopIncrem.bind(this, s.for, s.step), false);
-            s.removeEventListener('touchend', this._stopIncrem.bind(this, s.for, s.step), false);
-          })
-        }
-      }
-
-      _startIncrem(s) {
-        this._stopIncrem();
-        const type = s.getAttribute('for');
-        const step = +(s.getAttribute('step'));
-        this[type] += step;
-        this._activeJob = setInterval(() => {
-          this[type] += step;
-        }, 150);
-      }
-
-      _stopIncrem() {
-        if (this._activeJob) {
-          clearInterval(this._activeJob);
-        }
-      }
     }
     window.customElements.define(TimeElement.is, TimeElement);
   </script>

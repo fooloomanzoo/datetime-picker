@@ -16,8 +16,19 @@
      *    <datetime-picker value="{{value}}"></datetime-picker>
      *  ```
      *
-     *  If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
+     *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.
      *
+     *  ```html
+     *    <datetime-picker use-not-native="[[!isMobile]]"></datetime-picker>
+     *    ...
+     *      isMobile() {
+     *        const ua = window.navigator.userAgent;
+     *        return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));
+     *      }
+     *    ...
+     *  ```
+     *
+     *  If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
      *
      *  Custom property | Description | Default
      *  ----------------|-------------|----------
@@ -29,83 +40,61 @@
      *  `--datetime-input` | Mixin applied to the inputs | {border-radius: 2px; padding: 0.35em; border: none; outline: none; text-align: center; box-sizing: content-box; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
      *  `--datetime-icon` | Mixin applied to closing icon | `{padding: 8px; height: 16px; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); fill: currentColor;}`
      *
-     *  @polymer
      *  @customElement
+     *  @polymer
      *
-     *  @extends CalendarElement
-     *
-     *  @appliesMixin CalendarElement
+     *  @appliesMixin CalendarElementPattern
+     *  @appliesMixin TimeElementPattern
+     *  @appliesMixin PickerMixin
      *  @appliesMixin PolyfillPickerPattern
      *
      *  @demo demo/datetime-picker.html
      **/
-
-    class DatetimePicker extends PolyfillPickerPattern(CalendarElement) { // eslint-disable-line no-undef
+    class DatetimePicker extends PolyfillPickerPattern(TimeElementPattern(CalendarElementPattern(PickerMixin(Polymer.Element)))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'datetime-picker';
       }
 
-      static get properties() {
-        let props = TimeElement.properties;
-        props._hideHours = {
-          type: Boolean,
-          computed: '_hideIfClamped(clamp, "hours")'
-        }
-        return props;
-      }
-
       static get expectedNativeInputType() {
-        return 'datetime';
+        return 'datetime-local';
       }
 
       static get customStyleToInclude() {
         return `datetime-shared-style dropdown-style`;
       }
 
-      static get polyfill() {
+      static get replacementInputTemplate() {
         return `
-        <div hidden$="[[!useNotNative]]">
-          <div class="polyfill">
-            <number-input style="order:[[_orderDate.year]];" pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
-            <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
-            <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
-            <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
-            <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
-            <span style="order:6;" hidden$="[[_hideHours]]"> </span>
-            <number-input style="order:7;" hidden$="[[_hideHours]]" pad-length="2" min="0" max="23" disabled="[[disabled]]" value="{{hours}}" on-click="open"></number-input>
-            <span style="order:8;" hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
-            <number-input style="order:9;" hidden$="[[_hideMinutes]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" on-click="open"></number-input>
-            <span style="order:10;" hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
-            <number-input style="order:11;" hidden$="[[_hideSeconds]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" on-click="open"></number-input>
-            <span style="order:12;" hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
-            <number-input style="order:13;" hidden$="[[_hideMilliSeconds]]" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" on-click="open"></number-input>
-            ${this.buttonTemplate}
+          <number-input style="order:[[_orderDate.year]];" pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
+          <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
+          <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
+          <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
+          <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
+          <div style="order:6;" hidden$="[[_hideHours]]">
+            <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00" on-click="open"></number-input>
+            <number-input hidden$="[[!hour12]]" class="time" min="0" max="12" pad-length="2" value="{{hours12}}" placeholder="00" on-click="open"></number-input>
           </div>
-          <div class="dropdown" opened$="[[opened]]">
+          <span style="order:7;" hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
+          <number-input style="order:8;" hidden$="[[_hideMinutes]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" on-click="open"></number-input>
+          <span style="order:9;" hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
+          <number-input style="order:10;" hidden$="[[_hideSeconds]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" on-click="open"></number-input>
+          <span style="order:11;" hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
+          <number-input style="order:12;" hidden$="[[_hideMilliSeconds]]" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" on-click="open"></number-input>
+          <div class="am-switch" style="order:13;" hidden$="[[!hour12]]" on-click="open">
+            <span hidden$="[[!isAm]]">[[_am]]</span>
+            <span hidden$="[[isAm]]">[[_pm]]</span>
+          </div>
+        `;
+      }
+
+      static get pickerTemplate() {
+        return `
+          <div id="picker" class="dropdown" opened$="[[opened]]">
             ${this.calendarTemplate}
-            ${TimeElement.timeTemplate}
+            ${this.timeTemplate}
           </div>
-        </div>
-      `;
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-        TimeElement.connectedCallback.call(this);
-      }
-
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        TimeElement.disconnectedCallback.call(this);
-      }
-
-      _startIncrem(s) {
-        TimeElement._startIncrem.call(this, s);
-      }
-
-      _stopIncrem() {
-        TimeElement._stopIncrem.call(this);
+        `;
       }
     }
 

@@ -92,13 +92,6 @@
             type: Number,
             notify: true
           },
-          /**
-           * The dayPeriod of the selected time
-           */
-          dayPeriod: {
-            type: String,
-            notify: true
-          },
 
           /**
            * The value of the selected date
@@ -122,6 +115,33 @@
           max: {
             type: String,
             notify: true
+          },
+
+          /**
+           * when true 12-hour local time format, else 24-hour
+           * @type {boolean}
+           */
+          hour12: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * true, when A.M. (when `hours` < 12)
+           * @type {boolean}
+           */
+          isAm: {
+            type: Boolean,
+            observer: '_isAmChanged'
+          },
+
+          /**
+           * hours in 12-hour-format
+           * @type {number}
+           */
+          hours12: {
+            type: Number,
+            notify: true
           }
         }
       }
@@ -133,7 +153,9 @@
           '_computeDate(year, month, day)',
           '_computeValue(date, time)',
           '_minChanged(min)',
-          '_maxChanged(max)'
+          '_maxChanged(max)',
+          '_hours12Changed(hours12)',
+          '_hoursChanged(hours)'
         ]
       }
 
@@ -313,6 +335,25 @@
           return '';
 
         return this._pad(d.getHours(), 2) + ':' + this._pad(d.getMinutes(), 2) + ':' + this._pad(d.getSeconds(), 2) + '.' + this._pad(d.getMilliseconds(), 3);
+      }
+
+      _hoursChanged(hours) {
+        this.isAm = hours < 13;
+        this.hours12 = hours > 12 ? hours - 12 : hours;
+      }
+
+      _hours12Changed(hours12) {
+        this.hours = this.isAm ? hours12 : hours12 + 12;
+      }
+
+      _isAmChanged(isAm) {
+        if (isAm === undefined) return;
+
+        if (this.hours > 12 && isAm === true) {
+          this.hours -= 12;
+        } else if (this.hours < 13 && isAm === false) {
+          this.hours += 12;
+        }
       }
 
     }

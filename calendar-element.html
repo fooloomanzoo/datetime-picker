@@ -2,12 +2,418 @@
 <link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="picker-mixin.html">
-<link rel="import" href="datetime-shared-style.html">
+
+<script>
+  /**
+   * Mixin for calendar-element
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const CalendarElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars
+
+    static get customStyleContent() {
+      return `
+        ${super.customStyleContent}
+        #calendar {
+          display: -ms-inline-flexbox;
+          display: -webkit-inline-flex;
+          display: inline-flex;
+          flex-direction: column;
+          background-color: var(--datetime-background);
+          color: var(--datetime-color);
+          @apply --datetime-element;
+        }
+        #calendar #top {
+          display: -ms-inline-flexbox;
+          display: -webkit-inline-flex;
+          display: inline-flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        #calendar .view {
+          display: -ms-inline-flexbox;
+          display: -webkit-inline-flex;
+          display: inline-flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          flex-grow: 1;
+          padding: 0 4px;
+          cursor: pointer;
+        }
+        #calendar .view > * {
+          flex: 0 0 auto;
+        }
+        #calendar #month {
+          -moz-appearance: listitem;
+          -webkit-appearance: listitem;
+          appearance: listitem;
+          text-align-last: center;
+          @apply --datetime-input;
+        }
+        #calendar #month:hover,
+        #calendar #month:focus {
+          @apply --datetime-focus;
+        }
+        #calendar #month option {
+          color: var(--datetime-color);
+          background: var(--datetime-background);
+        }
+        #calendar #year {
+          font-weight: bold;
+        }
+        #calendar #content {
+          display: table;
+        }
+        #calendar #header {
+          display: table-header-group;
+        }
+        #calendar #dates {
+          display: table-row-group;
+        }
+        #calendar .week {
+          font-size: 0.8em;
+          display: table-row;
+        }
+        #calendar .day {
+          cursor: pointer;
+          display: table-cell;
+          padding: 0.5em;
+          min-width: 1.5em;
+          height: 1.5em;
+          line-height: 1.5em;
+          text-align: center;
+          border-radius: 4px;
+          border-style: solid;
+          border-width: thin;
+          border-color: transparent;
+          @apply --datetime-date-cell;
+        }
+        #calendar .day:hover {
+          border-color: rgba(255, 255, 255, 0.25);
+        }
+        #calendar .day.notinmonth {
+          opacity: 0.5;
+        }
+        #calendar .day.selected {
+          background-color: var(--datetime-selected-background);
+          color: var(--datetime-selected-color);
+        }
+        #calendar .day.current {
+          border-style: solid;
+          border-width: thin;
+          border-color: var(--datetime-selected-background) !important;
+        }
+        #calendar .day.outofrange {
+          opacity: 0.15;
+          font-style: italic;
+          pointer-events: none;
+        }
+        #calendar .day {
+          will-change: background-color;
+          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          fill: currentColor;
+        }
+      `;
+    }
+
+    static get calendarTemplate() {
+      return `
+        <div id="calendar">
+          <div id="top">
+            <svg class="icon switch" on-mousedown="_prev" on-touchstart="_prev" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
+            <div class="view">
+              <select id="month" style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" value="{{_viewMonth::change}}"></select>
+              <number-input id="year" style="order:[[_orderDate.year]];" pad-length="4" value="{{_viewYear}}"></number-input>
+            </div>
+            <svg class="icon switch" on-mousedown="_next" on-touchstart="_next" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
+          </div>
+
+          <div id="content" hidden$="[[_hideDay]]">
+            <div id="header">
+              <div id="caption" class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+            </div>
+
+            <div id="dates" on-click="_onClick">
+              <div class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+              <div class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+              <div class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+              <div class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+              <div class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+              <div class="week">
+                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    }
+
+    static get properties() {
+      return {
+
+        /**
+         * clamp datetime to a property
+         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+         */
+        clamp: {
+          type: String,
+          value: 'hours'
+        },
+
+        /**
+         * The year of the view
+         */
+        _viewYear: {
+          type: Number,
+          notify: true
+        },
+
+        /**
+         * The month of the view
+         */
+        _viewMonth: {
+          type: Number,
+          notify: true
+        },
+
+        _hideMonth: {
+          type: Boolean,
+          computed: '_hideIfClamped(clamp, "month")'
+        },
+
+        _hideDay: {
+          type: Boolean,
+          computed: '_hideIfClamped(clamp, "day")'
+        }
+      }
+    }
+
+    static get observers() {
+      return [
+        'render(_viewYear, _viewMonth, day)',
+        '_computeViewDate(year, month)'
+      ]
+    }
+
+    _onClick(e) {
+      if (e) {
+        const paths = e.path || [e.target];
+        for (let i = 0; i < paths.length; i++) {
+          if (paths[i].dataset && paths[i].dataset.date) {
+            if (this._currentSelected) {
+              this._currentSelected.classList.remove('selected');
+            }
+            paths[i].classList.add('selected');
+            this.date = paths[i].dataset.date;
+            this._currentSelected = paths[i];
+            break;
+          }
+        }
+      }
+    }
+
+    _computeViewDate(year, month) {
+      if (year === undefined || month === undefined) {
+        return;
+      }
+      this.setProperties({
+        _viewYear: year,
+        _viewMonth: month,
+        value: (this._hideMonth || this._hideDay) ? +(new Date(year, month - 1)) : this.value
+      })
+    }
+
+    now() {
+      super.now();
+      this._jumpToNow();
+    }
+
+    _jumpToNow() {
+      const d = new Date();
+      this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
+    }
+
+    _prev() {
+      this._cancelTimeout();
+      if (this._hideMonth) {
+        this._incremYear(-1);
+        this._activeJob = setInterval(() => {
+          this._incremYear(-1);
+        }, 200);
+      } else {
+        this._incremMonth(-1);
+        this._activeJob = setInterval(() => {
+          this._incremMonth(-1);
+        }, 200);
+      }
+    }
+
+    _next() {
+      if (this._hideMonth) {
+        this._incremYear(1);
+        this._activeJob = setInterval(() => {
+          this._incremYear(1);
+        }, 200);
+      } else {
+        this._incremMonth(1);
+        this._activeJob = setInterval(() => {
+          this._incremMonth(1);
+        }, 200);
+      }
+    }
+
+    _incremMonth(i) {
+      const d = new Date(this._viewYear, this._viewMonth - 1 + i);
+      this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
+    }
+
+    _incremYear(i) {
+      this._viewYear += i;
+    }
+
+    _cancelTimeout() {
+      if (this._activeJob) {
+        clearInterval(this._activeJob)
+      }
+    }
+
+    _localeChanged(locale) {
+      super._localeChanged(locale);
+
+      const monthSelector = this.root.querySelector('select#month');
+
+      if (monthSelector) {
+        while (monthSelector.hasChildNodes()) {
+          monthSelector.removeChild(monthSelector.lastChild);
+        }
+        for (let i = 1; i <= 12; i++) {
+          let option = document.createElement('option');
+          option.textContent = (new Date(1970, i - 1, 15)).toLocaleDateString(locale, {
+            month: 'long'
+          });
+          option.value = i;
+          monthSelector.appendChild(option);
+        }
+      }
+
+      // set weekday titles
+      for (let i = 0; i < 7; i++) {
+        let d = new Date(0, 0, i);
+        let weekday = (d.getDay() - 1 + 7) % 7;
+        if (this.$.caption.children[weekday]) {
+          this.$.caption.children[weekday].textContent = d.toLocaleDateString(locale, {
+            weekday: 'short'
+          });
+        }
+      }
+    }
+
+    /**
+     * Renders the current view (manually).
+     * @param {number} _viewYear The value of the date of the current view.
+     * @param {number} _viewMonth The value of the date of the current view.
+     */
+    render(_viewYear, _viewMonth) {
+      if (_viewYear === undefined || _viewMonth === undefined) return;
+      const d = new Date(_viewYear, _viewMonth - 1);
+
+      const year = d.getFullYear(),
+        month = d.getMonth(),
+        current = new Date();
+      let selectedDay, currentDay, firstDayOfMonth, min, max;
+
+      firstDayOfMonth = new Date(year, month, 0);
+      currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth);
+
+      if (this.value) {
+        selectedDay = this._dayDiff(new Date(this.year, this.month - 1, this.day), firstDayOfMonth);
+      }
+      if (this.min) {
+        let minDate = new Date(this.min);
+        min = this._dayDiff(new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()), firstDayOfMonth);
+      }
+      if (this.max) {
+        let maxDate = new Date(this.max);
+        max = this._dayDiff(new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate()), firstDayOfMonth);
+      }
+
+      const prevmonthlength = +new Date(year, month, 0).getDate();
+      const thismonthlength = +new Date(year, month + 1, 0).getDate();
+      const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
+
+      let counter = -(7 + firstWeekDay) % 7 + 1;
+      for (let i = 0; i < this.$.dates.children.length; i++) {
+        for (let j = 0; j < this.$.dates.children[i].children.length; j++) {
+          // Day Numbers
+          if (counter <= 0) {
+            this.$.dates.children[i].children[j].classList.add('notinmonth');
+            this.$.dates.children[i].children[j].textContent = prevmonthlength + counter;
+          } else if (counter > thismonthlength) {
+            this.$.dates.children[i].children[j].classList.add('notinmonth');
+            this.$.dates.children[i].children[j].textContent = counter - thismonthlength;
+          } else {
+            this.$.dates.children[i].children[j].classList.remove('notinmonth');
+            this.$.dates.children[i].children[j].textContent = counter;
+          }
+          // Day is Selected Day
+          if (counter === selectedDay) {
+            this.$.dates.children[i].children[j].classList.add('selected');
+            this._currentSelected = this.$.dates.children[i].children[j];
+          } else {
+            this.$.dates.children[i].children[j].classList.remove('selected');
+          }
+          // Day is Current Day
+          if (counter === currentDay) {
+            this.$.dates.children[i].children[j].classList.add('current');
+          } else {
+            this.$.dates.children[i].children[j].classList.remove('current');
+          }
+          // Day is below Min or above Max
+          if ((min !== undefined && counter < min) || (max !== undefined && counter > max)) {
+            this.$.dates.children[i].children[j].classList.add('outofrange');
+          } else {
+            this.$.dates.children[i].children[j].classList.remove('outofrange');
+          }
+          this.$.dates.children[i].children[j].dataset.date = this._toDate(new Date(year, month, counter));
+          counter++;
+        }
+      }
+    }
+
+    _dayDiff(end, start) {
+      return Math.round((end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 6E4) / 865E5);
+    }
+
+    _minChanged(min) {
+      super._minChanged(min);
+      this.render(this._viewYear, this._viewMonth);
+    }
+
+    _maxChanged(max) {
+      super._maxChanged(max);
+      this.render(this._viewYear, this._viewMonth);
+    }
+  }
+</script>
 
 <dom-module id="calendar-element">
   <script>
   /**
-  * A calendar element using Polymer.
+  * `<calendar-element>` adds a calendar to your page using Polymer.
   *
   * If you like to connect it to an input, try it like:
   *
@@ -32,11 +438,12 @@
   * @customElement
   * @polymer
   *
+  * @appliesMixin CalendarElementPattern
   * @appliesMixin PickerMixin
   *
   * @demo demo/date-picker.html
   **/
-    class CalendarElement extends PickerMixin(Polymer.Element) { // eslint-disable-line no-undef
+    class CalendarElement extends CalendarElementPattern(PickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'calendar-element';
@@ -47,404 +454,6 @@
           ${this.styleTemplate}
           ${this.calendarTemplate}
         `
-      }
-
-      static get customStyleContent() {
-        return `
-          ${super.customStyleContent}
-          #calendar {
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
-            display: inline-flex;
-            flex-direction: column;
-            background-color: var(--datetime-background);
-            color: var(--datetime-color);
-            @apply --datetime-element;
-          }
-          #calendar #top {
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
-            display: inline-flex;
-            flex-direction: row;
-            align-items: center;
-          }
-          #calendar .view {
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
-            display: inline-flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-            padding: 0 4px;
-            cursor: pointer;
-          }
-          #calendar .view > * {
-            flex: 0 0 auto;
-          }
-          #calendar #month {
-            -moz-appearance: listitem;
-            -webkit-appearance: listitem;
-            appearance: listitem;
-            text-align-last: center;
-            @apply --datetime-input;
-          }
-          #calendar #month:hover,
-          #calendar #month:focus {
-            @apply --datetime-focus;
-          }
-          #calendar #month option {
-            color: var(--datetime-color);
-            background: var(--datetime-background);
-          }
-          #calendar #year {
-            font-weight: bold;
-          }
-          #calendar #content {
-            display: table;
-          }
-          #calendar #header {
-            display: table-header-group;
-          }
-          #calendar #dates {
-            display: table-row-group;
-          }
-          #calendar .week {
-            font-size: 0.8em;
-            display: table-row;
-          }
-          #calendar .day {
-            cursor: pointer;
-            display: table-cell;
-            padding: 0.5em;
-            min-width: 1.5em;
-            height: 1.5em;
-            line-height: 1.5em;
-            text-align: center;
-            border-radius: 4px;
-            border-style: solid;
-            border-width: thin;
-            border-color: transparent;
-            @apply --datetime-date-cell;
-          }
-          #calendar .day:hover {
-            border-color: rgba(255, 255, 255, 0.25);
-          }
-          #calendar .day.notinmonth {
-            opacity: 0.5;
-          }
-          #calendar .day.selected {
-            background-color: var(--datetime-selected-background);
-            color: var(--datetime-selected-color);
-          }
-          #calendar .day.current {
-            border-style: solid;
-            border-width: thin;
-            border-color: var(--datetime-selected-background) !important;
-          }
-          #calendar .day.outofrange {
-            opacity: 0.15;
-            font-style: italic;
-            pointer-events: none;
-          }
-          #calendar .day {
-            will-change: background-color;
-            transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-            fill: currentColor;
-          }
-        `;
-      }
-
-      static get calendarTemplate() {
-        return `
-          <div id="calendar">
-            <div id="top">
-              <svg class="icon switch" on-mousedown="_prev" on-touchstart="_prev" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
-              <div class="view">
-                <select id="month" style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" value="{{_viewMonth::change}}"></select>
-                <number-input id="year" style="order:[[_orderDate.year]];" pad-length="4" value="{{_viewYear}}"></number-input>
-              </div>
-              <svg class="icon switch" on-mousedown="_next" on-touchstart="_next" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
-            </div>
-
-            <div id="content" hidden$="[[_hideDay]]">
-              <div id="header">
-                <div id="caption" class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-              </div>
-
-              <div id="dates" on-click="_onClick">
-                <div class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-                <div class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-                <div class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-                <div class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-                <div class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-                <div class="week">
-                  <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `
-      }
-
-      static get properties() {
-        return {
-
-          /**
-           * clamp datetime to a property
-           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-           */
-          clamp: {
-            type: String,
-            value: 'hours'
-          },
-
-          /**
-           * The year of the view
-           */
-          _viewYear: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The month of the view
-           */
-          _viewMonth: {
-            type: Number,
-            notify: true
-          },
-
-          _hideMonth: {
-            type: Boolean,
-            computed: '_hideIfClamped(clamp, "month")'
-          },
-
-          _hideDay: {
-            type: Boolean,
-            computed: '_hideIfClamped(clamp, "day")'
-          }
-        }
-      }
-
-      static get observers() {
-        return [
-          'render(_viewYear, _viewMonth, day)',
-          '_computeViewDate(year, month)'
-        ]
-      }
-
-      _onClick(e) {
-        if (e) {
-          const paths = e.path || [e.target];
-          for (let i = 0; i < paths.length; i++) {
-            if (paths[i].dataset && paths[i].dataset.date) {
-              if (this._currentSelected) {
-                this._currentSelected.classList.remove('selected');
-              }
-              paths[i].classList.add('selected');
-              this.date = paths[i].dataset.date;
-              this._currentSelected = paths[i];
-              break;
-            }
-          }
-        }
-      }
-
-      _computeViewDate(year, month) {
-        if (year === undefined || month === undefined) {
-          return;
-        }
-        this.setProperties({
-          _viewYear: year,
-          _viewMonth: month
-        })
-      }
-
-      now() {
-        super.now();
-        this._jumpToNow();
-      }
-
-      _jumpToNow() {
-        const d = new Date();
-        this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
-      }
-
-      _prev() {
-        this._cancelTimeout();
-        if (this._hideMonth) {
-          this._incremYear(-1);
-          this._activeJob = setInterval(() => {
-            this._incremYear(-1);
-          }, 200);
-        } else {
-          this._incremMonth(-1);
-          this._activeJob = setInterval(() => {
-            this._incremMonth(-1);
-          }, 200);
-        }
-      }
-
-      _next() {
-        if (this._hideMonth) {
-          this._incremYear(1);
-          this._activeJob = setInterval(() => {
-            this._incremYear(1);
-          }, 200);
-        } else {
-          this._incremMonth(1);
-          this._activeJob = setInterval(() => {
-            this._incremMonth(1);
-          }, 200);
-        }
-      }
-
-      _incremMonth(i) {
-        const d = new Date(this._viewYear, this._viewMonth - 1 + i);
-        this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
-        if (this._hideMonth || this._hideDay) {
-          this.value = +(d);
-        }
-      }
-
-      _incremYear(i) {
-        this._viewYear += i;
-        if (this._hideMonth || this._hideDay) {
-          this.value = +(new Date(this._viewYear, this._viewMonth - 1));
-        }
-      }
-
-      _cancelTimeout() {
-        if (this._activeJob) {
-          clearInterval(this._activeJob)
-        }
-      }
-
-      _localeChanged(locale) {
-        super._localeChanged(locale);
-
-        const monthSelector = this.root.querySelector('select#month');
-
-        if (monthSelector) {
-          while (monthSelector.hasChildNodes()) {
-            monthSelector.removeChild(monthSelector.lastChild);
-          }
-          for (let i = 1; i <= 12; i++) {
-            let option = document.createElement('option');
-            option.textContent = (new Date(1970, i - 1, 15)).toLocaleDateString(locale, {
-              month: 'long'
-            });
-            option.value = i;
-            monthSelector.appendChild(option);
-          }
-        }
-
-        // set weekday titles
-        for (let i = 0; i < 7; i++) {
-          let d = new Date(0, 0, i);
-          let weekday = (d.getDay() - 1 + 7) % 7;
-          if (this.$.caption.children[weekday]) {
-            this.$.caption.children[weekday].textContent = d.toLocaleDateString(locale, {
-              weekday: 'short'
-            });
-          }
-        }
-      }
-
-      /**
-       * Renders the current view (manually).
-       * @param {number} _viewYear The value of the date of the current view.
-       * @param {number} _viewMonth The value of the date of the current view.
-       */
-      render(_viewYear, _viewMonth) {
-        if (_viewYear === undefined || _viewMonth === undefined) return;
-        const d = new Date(_viewYear, _viewMonth - 1);
-
-        const year = d.getFullYear(),
-          month = d.getMonth(),
-          current = new Date();
-        let selectedDay, currentDay, firstDayOfMonth, min, max;
-
-        firstDayOfMonth = new Date(year, month, 0);
-        currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth);
-        if (this.value) {
-          selectedDay = this._dayDiff(new Date(this.year, this.month - 1, this.day), firstDayOfMonth);
-        }
-        if (this.min) {
-          min = this._dayDiff(new Date(this.min), firstDayOfMonth);
-        }
-        if (this.max) {
-          max = this._dayDiff(new Date(this.max), firstDayOfMonth);
-        }
-
-        const prevmonthlength = +new Date(year, month, 0).getDate();
-        const thismonthlength = +new Date(year, month + 1, 0).getDate();
-        const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
-
-        let counter = -(7 + firstWeekDay) % 7 + 1;
-        for (let i = 0; i < this.$.dates.children.length; i++) {
-          for (let j = 0; j < this.$.dates.children[i].children.length; j++) {
-            // Day Numbers
-            if (counter <= 0) {
-              this.$.dates.children[i].children[j].classList.add('notinmonth');
-              this.$.dates.children[i].children[j].textContent = prevmonthlength + counter;
-            } else if (counter > thismonthlength) {
-              this.$.dates.children[i].children[j].classList.add('notinmonth');
-              this.$.dates.children[i].children[j].textContent = counter - thismonthlength;
-            } else {
-              this.$.dates.children[i].children[j].classList.remove('notinmonth');
-              this.$.dates.children[i].children[j].textContent = counter;
-            }
-            // Day is Selected Day
-            if (counter === selectedDay) {
-              this.$.dates.children[i].children[j].classList.add('selected');
-              this._currentSelected = this.$.dates.children[i].children[j];
-            } else {
-              this.$.dates.children[i].children[j].classList.remove('selected');
-            }
-            // Day is Current Day
-            if (counter === currentDay) {
-              this.$.dates.children[i].children[j].classList.add('current');
-            } else {
-              this.$.dates.children[i].children[j].classList.remove('current');
-            }
-            // Day is below Min or above Max
-            if ((min !== undefined && counter < min) || (max !== undefined && counter > max)) {
-              this.$.dates.children[i].children[j].classList.add('outofrange');
-            } else {
-              this.$.dates.children[i].children[j].classList.remove('outofrange');
-            }
-            this.$.dates.children[i].children[j].dataset.date = this._toDate(new Date(year, month, counter));
-            counter++;
-          }
-        }
-      }
-
-      _dayDiff(end, start) {
-        return Math.round((end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 6E4) / 865E5);
-      }
-
-      _minChanged(min) {
-        super._minChanged(min);
-        this.render(this._viewYear, this._viewMonth);
-      }
-
-      _maxChanged(max) {
-        super._maxChanged(max);
-        this.render(this._viewYear, this._viewMonth);
       }
 
     }

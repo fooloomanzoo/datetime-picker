@@ -1,0 +1,94 @@
+<link rel="import" href="datetime-shared-style.html">
+<link rel="import" href="overlay-element.html">
+
+<script>
+  /**
+   * mixin to extend an picker with an `overlay-element`
+   *
+   * @mixinFunction
+   * @polymer
+   */
+  const OverlayPickerExtension = (superClass) => { // eslint-disable-line no-unused-vars
+
+    return class extends superClass {
+
+      static get properties() {
+        return {
+          /**
+           * Set to true to keep overlay always on top.
+           */
+          alwaysOnTop: {
+            type: Boolean
+          },
+          /**
+           * Will position the element around the positionTarget without overlapping it.
+           */
+          noOverlap: {
+            type: Boolean,
+            value: false
+          },
+          /**
+           * Set to true to display a backdrop behind the overlay. It traps the focus
+           * within the light DOM of the overlay.
+           */
+          withBackdrop: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * Set to true to disable canceling the overlay by clicking outside it.
+           */
+          noCancelOnOutsideClick: {
+            type: Boolean,
+            value: false
+          },
+          /**
+           * If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment
+           * and if there's not enough space, it will pick the values which minimize the cropping.
+           */
+          dynamicAlign: {
+            type: Boolean,
+            value: false
+          }
+        }
+      }
+
+      static get customStyleToInclude() {
+        return `datetime-shared-style`;
+      }
+
+      static get _buttonTemplate() {
+        return ``;
+      }
+
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent}
+          .icon.now,
+          .icon.close {
+            border-radius: 0;
+          }
+        `;
+      }
+
+      static get pickerTemplate() {
+        return `
+          <overlay-element id="picker"
+            always-on-top="[[alwaysOnTop]]"
+            with-backdrop="[[withBackdrop]]"
+            no-cancel-on-outside-click="[[noCancelOnOutsideClick]]"
+            no-cancel-on-esc-key="[[noCancelOnEscKey]]"
+            no-overlap="[[noOverlap]]"
+            dynamic-align="[[dynamicAlign]]"
+            vertical-align="[[verticalAlign]]"
+            horizontal-align="[[horizontalAlign]]"
+            opened="{{opened}}">
+            ${super._buttonTemplate}
+            ${super.pickerTemplate}
+          </overlay-element>
+        `;
+      }
+    }
+  }
+</script>

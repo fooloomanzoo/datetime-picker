@@ -1,9 +1,9 @@
 <link rel="import" href="../polymer/polymer-element.html">
-
 <link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="polyfill-picker-pattern.html">
 <link rel="import" href="dropdown-style.html">
+<link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="calendar-element.html">
 
 <dom-module id="date-picker">
@@ -31,14 +31,13 @@
    *  @polymer
    *  @customElement
    *
-   *  @extends CalendarElement
-   *
-   *  @appliesMixin CalendarElement
+   *  @appliesMixin CalendarElementPattern
+   *  @appliesMixin PickerMixin
    *  @appliesMixin PolyfillPickerPattern
    *
    *  @demo demo/date-picker.html
    **/
-    class DatePicker extends PolyfillPickerPattern(CalendarElement) { // eslint-disable-line no-undef
+    class DatePicker extends PolyfillPickerPattern(CalendarElementPattern(PickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-picker';
@@ -52,20 +51,20 @@
         return `datetime-shared-style dropdown-style`;
       }
 
-      static get polyfill() {
+      static get replacementInputTemplate() {
         return `
-          <div hidden$="[[!useNotNative]]">
-            <div class="polyfill">
-              <number-input style="order:[[_orderDate.year]];" pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
-              <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
-              <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
-              <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
-              <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
-              ${this.buttonTemplate}
-            </div>
-            <div class="dropdown" opened$="[[opened]]">
-              ${this.calendarTemplate}
-            </div>
+          <number-input style="order:[[_orderDate.year]];" pad-length="4" min="-271" max="4211" disabled="[[disabled]]" value="{{year}}" on-click="open"></number-input>
+          <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
+          <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}" on-click="open"></number-input>
+          <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
+          <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="31" disabled="[[disabled]]" value="{{day}}" on-click="open"></number-input>
+        `;
+      }
+
+      static get pickerTemplate() {
+        return `
+          <div id="picker" class="dropdown" opened$="[[opened]]">
+            ${this.calendarTemplate}
           </div>
         `;
       }
