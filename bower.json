@@ -13,8 +13,7 @@
     "date",
     "calendar",
     "time",
-    "timer",
-    "element-collection"
+    "timer"
   ],
   "repository": {
     "type": "git",
