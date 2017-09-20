@@ -37,7 +37,6 @@
           display: inline-flex;
           flex-direction: row;
           align-items: center;
-          justify-content: center;
           flex-grow: 1;
           padding: 0 4px;
           cursor: pointer;
@@ -52,6 +51,7 @@
           text-indent: 0.01px;
           text-overflow: '';
           text-align-last: center;
+          flex: 1 0 auto;
           @apply --datetime-input;
         }
         #calendar #month:hover,
@@ -92,7 +92,7 @@
           border-color: transparent;
           @apply --datetime-date-cell;
         }
-        #calendar .day:hover {
+        #calendar #dates .day:hover {
           border-color: rgba(255, 255, 255, 0.25);
         }
         #calendar .day.notinmonth {
