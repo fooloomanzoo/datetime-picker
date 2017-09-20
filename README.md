@@ -116,15 +116,14 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 
-<datetime-picker not-native value="{{value}}" date="{{synchronized}}"></datetime-picker>
-
-<div style="padding: 8px;"><code>Two pickers can be synchronized: </code> <b>[[synchronized]]</b></div>
-<div style="padding: 8px;"><code>A number representation is automatically provided: </code> <b>[[value]]</b></div>
-
+<h4>Polyfill Picker</h4>
+<datetime-picker not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
+<h4>Native Picker</h4>
 <datetime-picker value="{{value}}"></datetime-picker>
+<div style="padding: 8px;">Two pickers can be synchronized: <b>[[synchronized]]</b></div>
+<div style="padding: 8px;">A number representation is automatically provided: <b>[[value]]</b></div>
 
 ```
-
 
 #### Periods
 ```html

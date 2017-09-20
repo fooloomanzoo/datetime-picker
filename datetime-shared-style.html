@@ -87,6 +87,7 @@ Custom property | Description | Default
         background: transparent;
       }
       input[type=text],
+      input[type=datetime-local],
       input[type=date],
       input[type=time] {
         font-family: inherit;
@@ -94,9 +95,11 @@ Custom property | Description | Default
         @apply --datetime-input;
       }
       input[type=text]:focus,
+      input[type=datetime-local]:focus,
       input[type=date]:focus,
       input[type=time]:focus,
       input[type=text]:hover,
+      input[type=datetime-local]:hover,
       input[type=date]:hover,
       input[type=time]:hover {
         @apply --datetime-focus;
