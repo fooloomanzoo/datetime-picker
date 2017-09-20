@@ -48,7 +48,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}" vertical-align="bottom"></datetime-picker>
+              <datetime-picker not-native value="{{value}}" date="{{date}}" time="{{time}}" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -77,8 +77,8 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <datetime-picker class="begin" use-not-native value="{{min}}" max="{{max}}" vertical-align="bottom"></datetime-picker>
-                <datetime-picker class="end" use-not-native value="{{max}}" min="{{min}}" vertical-align="top"></datetime-picker>
+                <datetime-picker class="begin" not-native value="{{min}}" max="{{max}}" vertical-align="bottom"></datetime-picker>
+                <datetime-picker class="end" not-native value="{{max}}" min="{{min}}" vertical-align="top"></datetime-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>min</code>: <b>[[min]]</b></div>
@@ -96,7 +96,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker use-not-native hour12 value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
+              <datetime-picker not-native hour12 value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
@@ -123,7 +123,7 @@
                 <option value="ja">日本語</option>
                 <option value="zh">中文</option>
               </select>
-              <datetime-picker use-not-native locale="{{locale}}" value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
+              <datetime-picker not-native locale="{{locale}}" value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>locale</code>: <b>[[locale]]</b></div>
                 <div><code>numeric value</code>: <b>[[value]]</b></div>

@@ -57,7 +57,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker use-not-native value="{{value}}" date="{{date}}" time="{{time}}"></date-picker>
+              <date-picker not-native value="{{value}}" date="{{date}}" time="{{time}}"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -86,8 +86,8 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="begin" use-not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" use-not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker class="begin" not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
+                <date-picker class="end" not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>min</code>: <b>[[min]]</b></div>
@@ -100,13 +100,13 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>clamp to day to get a month-picker</h3>
+      <h3>clamp on day to get a month-picker</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section-container">
-                <date-picker use-not-native date="{{date}}" clamp="day" vertical-align="bottom"></date-picker>
+                <date-picker not-native date="{{date}}" clamp="day" vertical-align="bottom"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>date</code>: <b>[[date]]</b></div>

@@ -25,10 +25,10 @@ Internally it uses two input-elements, that are initially set to type *date* and
 
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, or you like to have a different look and you are using *Polymer* already.
 
-Another use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.
+Another use case could be for example, if you want on mobile devices use the `native picker`, when supported, and on desktop devices this polyfill.
 
 ```html
-  <datetime-picker use-not-native="[[!isMobile]]"></datetime-picker>
+  <datetime-picker not-native="[[!isMobile]]"></datetime-picker>
   ...
     isMobile() {
       const ua = window.navigator.userAgent;
@@ -116,7 +116,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 
-<datetime-picker use-not-native value="{{value}}" date="{{synchronized}}"></datetime-picker>
+<datetime-picker not-native value="{{value}}" date="{{synchronized}}"></datetime-picker>
 
 <div style="padding: 8px;"><code>Two pickers can be synchronized: </code> <b>[[synchronized]]</b></div>
 <div style="padding: 8px;"><code>A number representation is automatically provided: </code> <b>[[value]]</b></div>
@@ -153,7 +153,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 -->
 ```html
-<overlay-datetime-picker value="{{value}}" use-not-native></overlay-datetime-picker>
+<overlay-datetime-picker value="{{value}}" not-native></overlay-datetime-picker>
 <div style="padding: 12px;"><code>value: </code> <b>[[value]]</b></div>
 ```
 
@@ -186,6 +186,9 @@ bower install --save fooloomanzoo/datetime-picker
   - `clamp`-property for pickers enable to hide certain properties from being pickable, e.g. `clamp="day"` hides the day selector
   - internationalization/localization for datetime-part-order and separation signs
   - abstractions of each element leads to smaller file sizes
+
+* 2.2.0
+  - `use-not-native` is renamed to `not-native`
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!

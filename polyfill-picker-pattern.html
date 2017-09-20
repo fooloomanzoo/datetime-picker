@@ -42,7 +42,7 @@
           /**
            * Force to not use the native input, even if it exists
            */
-          useNotNative: {
+          notNative: {
             type: Boolean,
             value: false
           },
@@ -186,7 +186,9 @@
       static get _native() {
         return `
           ${this._nativeInputTemplate}
-          ${this._polyfill}
+          <div hidden$="[[!notNative]]">
+            ${this._polyfill}
+          </div>
         `
       }
 
@@ -196,13 +198,11 @@
        */
       static get _polyfill() {
         return `
-          <div hidden$="[[!useNotNative]]">
-            <div class="polyfill">
-              ${this.replacementInputTemplate}
-              ${this._buttonTemplate}
-            </div>
-            ${this.pickerTemplate}
+          <div class="polyfill">
+            ${this.replacementInputTemplate}
+            ${this._buttonTemplate}
           </div>
+          ${this.pickerTemplate}
         `;
       }
 
@@ -223,7 +223,7 @@
        */
       static get _nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[useNotNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}" step="1">
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[notNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}" step="1">
         `;
       }
 
