@@ -43,11 +43,60 @@ The **[component page](https://fooloomanzoo.github.io/datetime-picker/components
 
 You can use it stand-alone, with overlay or as a range of dates. Examples:
 
-#### use the polyfill
-
+#### Stand-alone calendar
 <!--
 ```
-<custom-element-demo height="330">
+<custom-element-demo height="300">
+  <template>
+    <link rel="import" href="datetime-picker.html">
+    <style>
+      html {
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+    </style>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<calendar-element date="{{date}}"></calendar-element>
+<div style="padding: 12px;"><code>date: </code> <b>[[date]]</b></div>
+```
+
+#### Stand-alone time-picker
+<!--
+```
+<custom-element-demo height="100">
+  <template>
+    <link rel="import" href="datetime-picker.html">
+    <style>
+      html {
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+    </style>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<time-element time="{{time}}"></time-element>
+<div style="padding: 12px;"><code>time: </code> <b>[[time]]</b></div>
+```
+
+#### use the polyfill
+<!--
+```
+<custom-element-demo height="410">
   <template>
     <link rel="import" href="datetime-picker.html">
     <style>
@@ -76,70 +125,17 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 ```
 
-#### Stand-alone calendar
-
-<!--
-```
-<custom-element-demo height="300">
-  <template>
-    <link rel="import" href="datetime-picker.html">
-    <style>
-      html {
-        font-family: 'Source Sans Pro', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
-```html
-<calendar-element date="{{date}}"></calendar-element>
-<div style="padding: 12px;"><code>date: </code> <b>[[date]]</b></div>
-```
-
-#### Stand-alone time-picker
-
-<!--
-```
-<custom-element-demo height="100">
-  <template>
-    <link rel="import" href="datetime-picker.html">
-    <style>
-      html {
-        font-family: 'Source Sans Pro', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
-```html
-<time-element time="{{time}}"></time-element>
-<div style="padding: 12px;"><code>time: </code> <b>[[time]]</b></div>
-```
 
 #### Periods
-
 ```html
 <datetime-picker id="from" date="{{min}}" max="[[max]]"></datetime-picker>
 <datetime-picker id="to" date="{{max}}" min="[[min]]"></datetime-picker>
 ```
 
 #### Overlay
-
 <!--
 ```
-<custom-element-demo height="300">
+<custom-element-demo height="380">
   <template>
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
@@ -169,12 +165,10 @@ bower install --save fooloomanzoo/datetime-picker
 
 
 ### Notable Changes
-
 * 2.0.0
   - changed properties `dateString` and `timeString` to `date` and `time`
   - polyfill is split up in two elements ('calendar-element' and 'time-element')
   - minified version available ('build/..', ~18kB)
-
 
 * 2.0.6 - 7
   - `overlay`-element introduced
@@ -182,8 +176,7 @@ bower install --save fooloomanzoo/datetime-picker
   - unifying some custom-style-properties
   - renaming `position` to `verticalAlign` and `horizontalAlign`
 
-
-* 2.1.6
+* 2.1.7
   - all elements are using `template-strings`
   - using `<number-input>` for all numeric inputs
   - `<datetime-picker>` uses as native input now `<input type="datetime-local">`
@@ -193,7 +186,6 @@ bower install --save fooloomanzoo/datetime-picker
   - `clamp`-property for pickers enable to hide certain properties from being pickable, e.g. `clamp="day"` hides the day selector
   - internationalization/localization for datetime-part-order and separation signs
   - abstractions of each element leads to smaller file sizes
-
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!
