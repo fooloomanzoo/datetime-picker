@@ -333,6 +333,11 @@
       if (_viewYear === undefined || _viewMonth === undefined) return;
       const d = new Date(_viewYear, _viewMonth - 1);
 
+      if (this._hideMonth || this._hideDay) {
+        this.value = +d;
+        return;
+      }
+      
       const year = d.getFullYear(),
         month = d.getMonth(),
         current = new Date();
