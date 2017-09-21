@@ -194,7 +194,7 @@
         const dateString = date.toLocaleDateString( locale, { year: 'numeric', month: 'numeric', day: 'numeric' });
 
         // date separator
-        let dateSeparator = dateString.split(/\d|\s/g).filter(s => { return s !== ''; })[0];
+        const dateSeparator = dateString.split(/\d|\s/g).filter(s => { return s !== ''; })[0];
 
         // order of the date parts
         let parts = dateString.split(/\D/);
@@ -212,17 +212,18 @@
         let timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric' });
 
         // time separator
-        let timeSeparator = timeString.split(/\d|\s/g).filter(s => { return s !== ''; })[0];
+        const timeSeparator = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
 
         // am-string
         timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-        let am = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
+        const am = timeString.split(/\d|\s/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
 
         // pm-string
         date = new Date(1970, 10, 15, 18, 24, 25);
         timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-        let pm = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
+        const pm = timeString.split(/\d|\s/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
 
+        // console.log(timeString.split(/\d|\s/g).filter(s => { return s !== ''; }));
         // decimal separator
         let decimalSeparator = new Intl.NumberFormat(locale).format(1.2).split(/\d/g).filter(s => { return s !== ''; }).pop();
 

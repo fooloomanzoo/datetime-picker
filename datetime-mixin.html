@@ -152,6 +152,7 @@
           '_computeTime(hours, minutes, seconds, milliseconds)',
           '_computeDate(year, month, day)',
           '_computeValue(date, time)',
+          '_computeValue(datetime)',
           '_minChanged(min)',
           '_maxChanged(max)',
           '_hours12Changed(hours12)',
@@ -198,8 +199,15 @@
       }
 
       _computeValue(date, time) {
-        if (!(date && time)) return;
-        const datetime = date + 'T' + time
+        if (date === undefined && time === undefined) return;
+        let datetime;
+        if (time !== undefined) {
+          datetime = (date || this.date || this._toDate(new Date()) ) + 'T' + time;
+        } else if (!date.match(/[T]/i)) {
+          datetime = date + 'T' + (this.time || '00:00:00');
+        } else {
+          datetime = date;
+        }
         let d = new Date(datetime);
 
         if (!isNaN(+d)) {

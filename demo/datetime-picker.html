@@ -70,9 +70,13 @@
                 <style is="custom-style">
                   datetime-picker.begin {
                     --datetime-selected-background: #CC1C1C;
+                    --datetime-background: #eec5c5;
+                    --datetime-color: #000000;
                   }
                   datetime-picker.end {
                     --datetime-selected-background: #2362EC;
+                    --datetime-background: #b7c7e9;
+                    --datetime-color: #000000;
                   }
                 </style>
               </custom-style>
@@ -123,12 +127,39 @@
                 <option value="ja">日本語</option>
                 <option value="zh">中文</option>
               </select>
-              <datetime-picker not-native locale="{{locale}}" value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
+              <datetime-picker hour12 not-native locale="{{locale}}" value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>locale</code>: <b>[[locale]]</b></div>
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
               </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>alignment</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              horizontal-align
+              <select value="{{horizontalAlign::change}}">
+                <option value=""></option>
+                <option value="left">left</option>
+                <option value="right">right</option>
+              </select>
+              vertical-align
+              <select value="{{verticalAlign::change}}">
+                <option value="top">top</option>
+                <option value="bottom">bottom</option>
+                <option value="auto">auto</option>
+                <option value=""></option>
+              </select>
+
+              <datetime-picker not-native horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]" style="margin:2em 12em;"></datetime-picker>
             </template>
           </dom-bind>
         </template>

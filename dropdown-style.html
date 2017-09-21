@@ -8,7 +8,7 @@ styles for used for a inner dropdown
 <dom-module id="dropdown-style">
   <template>
     <style>
-      .dropdown {        
+      .dropdown {
         margin: 0;
         padding: 0;
         position: absolute;
@@ -29,57 +29,110 @@ styles for used for a inner dropdown
         bottom: auto;
         right: auto;
       }
-      .dropdown[opened] {
+      :host([opened]) .dropdown {
         opacity: 1;
         z-index: 1;
         pointer-events: all;
       }
+
       :host([vertical-align="bottom"]) .dropdown {
-        top: 0;
-        left: 0;
+        top: 0; left: 0;
         transform: translateY(-100%);
+      }
+
+      :host([vertical-align="top"]) .dropdown {
+        bottom: 0; left: 0;
+        transform: translateY(100%);
+      }
+
+      :host([horizontal-align="left"]) .dropdown {
+        top: 0; left: 0; right: auto; bottom: auto;
+        transform: translateX(-100%);
+      }
+
+      :host([horizontal-align="left"][vertical-align="bottom"]) .dropdown {
+        transform: translate(-100%, -100%);
+      }
+
+      :host([horizontal-align="left"][vertical-align="top"]) .dropdown {
+        top: auto; bottom: 0;
+        transform: translate(-100%, 100%);
+      }
+
+      :host([horizontal-align="left"][vertical-align="auto"]) .dropdown {
+        top: auto; bottom: 50%;
+        transform: translate(-100%, 50%);
+      }
+
+      :host([horizontal-align="right"]) .dropdown {
+        top: 0; right: 0; left: auto; bottom: auto;
+        transform: translateX(100%);
+      }
+
+      :host([horizontal-align="right"][vertical-align="bottom"]) .dropdown {
+        transform: translate(100%, -100%);
+      }
+
+      :host([horizontal-align="right"][vertical-align="top"]) .dropdown {
+        top: auto; bottom: 0;
+        transform: translate(100%, 100%);
+      }
+
+      :host([horizontal-align="right"][vertical-align="auto"]) .dropdown {
+        top: auto; bottom: 50%;
+        transform: translate(100%, 50%);
+      }
+
+      :host([vertical-align="auto"][horizontal-align="auto"]) .dropdown {
+        top: 50%; left: 50%; bottom: auto; right: auto;
+        transform: translate(-50%, -50%);
+      }
+
+      :host([vertical-align="top"]) .dropdown:after {
+        top: -1em;
+        left: 1em;
+        border-bottom-color: var(--datetime-background);
       }
       :host([vertical-align="bottom"]) .dropdown:after {
         bottom: -1em;
         left: 1em;
         border-top-color: var(--datetime-background);
       }
-      :host([vertical-align="top"]) .dropdown {
-        bottom: 0;
-        left: 0;
-        transform: translateY(100%);
-      }
-      :host([vertical-align="top"]) .dropdown:after {
-        top: -1em;
-        left: 1em;
-        border-bottom-color: var(--datetime-background);
-      }
-      :host([horizontal-align="right"]) .dropdown {
-        top: 0;
-        left: 0;
-        transform: translateX(-100%);
-      }
-      :host([horizontal-align="right"]) .dropdown:after {
+      :host([horizontal-align="left"]) .dropdown:after {
         top: 1em;
         right: -1em;
         border-left-color: var(--datetime-background);
       }
-      :host([horizontal-align="left"]) .dropdown {
-        top: 0;
-        right: 0;
-        transform: translateX(100%);
+      :host([horizontal-align="left"][vertical-align="top"]) .dropdown:after {
+        left: auto;
+        border-bottom-color: transparent;
       }
-      :host([horizontal-align="left"]) .dropdown:after {
+      :host([horizontal-align="left"][vertical-align="bottom"]) .dropdown:after {
+        top: auto;
+        bottom: 1em;
+        left: auto;
+        border-top-color: transparent;
+      }
+      :host([horizontal-align="left"][vertical-align="auto"]) .dropdown:after {
+        top: 50%; bottom: auto;
+      }
+      :host([horizontal-align="right"]) .dropdown:after {
         top: 1em;
         left: -1em;
         border-right-color: var(--datetime-background);
       }
-      :host([vertical-align="auto"]) .dropdown,
-      :host([horizontal-align="auto"]) .dropdown {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      :host([horizontal-align="right"][vertical-align="top"]) .dropdown:after {
+        border-bottom-color: transparent;
       }
+      :host([horizontal-align="right"][vertical-align="bottom"]) .dropdown:after {
+        top: auto;
+        bottom: 1em;
+        border-top-color: transparent;
+      }
+      :host([horizontal-align="right"][vertical-align="auto"]) .dropdown:after {
+        top: 50%; bottom: auto;
+      }
+
     </style>
   </template>
 

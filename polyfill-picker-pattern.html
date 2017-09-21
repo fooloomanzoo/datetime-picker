@@ -34,7 +34,8 @@
       static get hasNative() {
         const inputDate = document.createElement('input');
         inputDate.setAttribute('type', `${this.expectedNativeInputType}`);
-        return inputDate.type === `${this.expectedNativeInputType}`;
+        this._hasNative = inputDate.type === `${this.expectedNativeInputType}`;
+        return this._hasNative;
       }
 
       static get properties() {
@@ -46,8 +47,9 @@
             type: Boolean,
             value: false
           },
+
           /**
-           * Force to not use the native input, even if it exists
+           * opens the picker
            */
           opened: {
             type: Boolean,
@@ -223,7 +225,7 @@
        */
       static get _nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[notNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{datetime::input}}" step="1">
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[notNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.nativeInputBinding || this.expectedNativeInputType}::input}}" step="1">
         `;
       }
 

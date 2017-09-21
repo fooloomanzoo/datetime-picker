@@ -63,10 +63,17 @@
 
       static get pickerTemplate() {
         return `
-          <div id="picker" class="dropdown" opened$="[[opened]]">
+          <div id="picker" class="dropdown">
             ${this.calendarTemplate}
           </div>
         `;
+      }
+
+      renderCalendar(_viewYear, _viewMonth, day) {
+        if (DatePicker._hasNative && !this.notNative) {
+          return;
+        }
+        super.renderCalendar(_viewYear, _viewMonth, day);
       }
     }
 

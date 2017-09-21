@@ -206,7 +206,7 @@
 
     static get observers() {
       return [
-        'render(_viewYear, _viewMonth, day)',
+        'renderCalendar(_viewYear, _viewMonth, day)',
         '_computeViewDate(year, month)'
       ]
     }
@@ -325,11 +325,11 @@
     }
 
     /**
-     * Renders the current view (manually).
+     * renderCalendars the current view (manually).
      * @param {number} _viewYear The value of the date of the current view.
      * @param {number} _viewMonth The value of the date of the current view.
      */
-    render(_viewYear, _viewMonth) {
+    renderCalendar(_viewYear, _viewMonth) {
       if (_viewYear === undefined || _viewMonth === undefined) return;
       const d = new Date(_viewYear, _viewMonth - 1);
 
@@ -337,7 +337,7 @@
         this.value = +d;
         return;
       }
-      
+
       const year = d.getFullYear(),
         month = d.getMonth(),
         current = new Date();
@@ -407,12 +407,12 @@
 
     _minChanged(min) {
       super._minChanged(min);
-      this.render(this._viewYear, this._viewMonth);
+      this.renderCalendar(this._viewYear, this._viewMonth);
     }
 
     _maxChanged(max) {
       super._maxChanged(max);
-      this.render(this._viewYear, this._viewMonth);
+      this.renderCalendar(this._viewYear, this._viewMonth);
     }
   }
 </script>

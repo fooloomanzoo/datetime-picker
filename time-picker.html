@@ -46,8 +46,10 @@
         return 'time';
       }
 
-      static get customStyleToInclude() {
-        return `datetime-shared-style dropdown-style`;
+      static get _nativeInputTemplate() {
+        return `
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[notNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{time::input}}" step="1">
+        `;
       }
 
       static get replacementInputTemplate() {
@@ -69,7 +71,7 @@
 
       static get pickerTemplate() {
         return `
-          <div id="picker" class="dropdown" opened$="[[opened]]">
+          <div id="picker" class="dropdown">
             ${this.timeTemplate}
           </div>
         `;

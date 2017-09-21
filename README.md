@@ -46,6 +46,7 @@ The **[component page](https://fooloomanzoo.github.io/datetime-picker/components
 You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 #### Stand-alone calendar
+
 <!--
 ```
 <custom-element-demo height="300">
@@ -65,12 +66,15 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 </custom-element-demo>
 ```
 -->
+
 ```html
 <calendar-element date="{{date}}"></calendar-element>
-<p>date: [[date]]</p>
+
+date: [[date]]
 ```
 
 #### Stand-alone time-picker
+
 <!--
 ```
 <custom-element-demo height="100">
@@ -90,12 +94,16 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 </custom-element-demo>
 ```
 -->
+
 ```html
 <time-element time="{{time}}"></time-element>
-<p>time: [[time]]</p>
+
+time: [[time]]
 ```
 
 #### Use the polyfill or the native picker
+By default it checks if `datetime-local`, `date` or `time` is supported as input. If it is not or you set `not-native`, the polyfill will be used instead of the native:
+
 <!--
 ```
 <custom-element-demo height="410">
@@ -116,20 +124,24 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 </custom-element-demo>
 ```
 -->
-```html
 
+```html
 <h4>Polyfill Picker</h4>
 <datetime-picker not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
+
 <h4>Native Picker</h4>
 <datetime-picker value="{{value}}"></datetime-picker>
-<p>
+
 Two pickers can be synchronized: [[synchronized]]
 A number representation is automatically provided: [[value]]
-</p>
 ```
 
-
 #### Use it in an overlay
+Choose then the related elements:
+* `<overlay-datetime-picker>`
+* `<overlay-date-picker>`
+* `<overlay-time-picker>`
+
 <!--
 ```
 <custom-element-demo height="380">
@@ -149,12 +161,16 @@ A number representation is automatically provided: [[value]]
 </custom-element-demo>
 ```
 -->
+
 ```html
 <overlay-datetime-picker value="{{value}}" not-native></overlay-datetime-picker>
-<p>value: [[value]]</p>
+
+value: [[value]]
 ```
 
 #### Use locale date formats
+The properties `date`, `time`, `datetime` are always in **iso8061** but the visualization will be localized. By default your locale date format from `window.navigator.language` will be used, but you can select another *locale*:
+
 <!--
 ```
 <custom-element-demo height="300">
@@ -174,6 +190,7 @@ A number representation is automatically provided: [[value]]
 </custom-element-demo>
 ```
 -->
+
 ```html
 <select value="{{locale::change}}">
   <option value="en">english</option>
@@ -185,22 +202,24 @@ A number representation is automatically provided: [[value]]
   <option value="ja">日本語</option>
   <option value="zh">中文</option>
 </select>
+
 <calendar-element datetime="{{datetime}}" locale="{{locale}}" not-native></calendar-element>
-<p>datetime: [[datetime]]</p>
+
+datetime: [[datetime]]
 ```
 
 #### Define date ranges
-```html
-<datetime-picker id="from" date="{{min}}" max="[[max]]"></datetime-picker>
-<datetime-picker id="to" date="{{max}}" min="[[min]]"></datetime-picker>
-```
+Set cross data bindings to limit the values of the inputs. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html):
 
+```html
+<datetime-picker id="from" datetime="{{min}}" max="[[max]]"></datetime-picker>
+<datetime-picker id="to" datetime="{{max}}" min="[[min]]"></datetime-picker>
+```
 
 ### Installation
 ```
 bower install --save fooloomanzoo/datetime-picker
 ```
-
 
 ### Notable Changes
 * 2.0.0
