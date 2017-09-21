@@ -5,19 +5,21 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 ### What is it for?
 
-`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
+`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will be used if the native picker is not available or is explicitly wanted. Internationalization of the date-format and date-values are inplemented.
 
 If you like an **overlay** then use `overlay-datetime-picker`, what extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
 
-In this collection are:
+You can use other pickers, too. In this collection are:
 * `<datetime-picker>`
 * `<date-picker>`
 * `<time-picker>`
-* `<calendar-element>`
-* `<time-element>`
 * `<overlay-datetime-picker>`
 * `<overlay-date-picker>`
 * `<overlay-time-picker>`
+* `<calendar-element>`
+* `<time-element>`
+
+Every Element has the same API, so that it would use the native or the polyfill picker.
 
 ### Motivation
 
@@ -65,7 +67,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <calendar-element date="{{date}}"></calendar-element>
-<div style="padding: 12px;"><code>date: </code> <b>[[date]]</b></div>
+<p>date: [[date]]</p>
 ```
 
 #### Stand-alone time-picker
@@ -90,10 +92,10 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <time-element time="{{time}}"></time-element>
-<div style="padding: 12px;"><code>time: </code> <b>[[time]]</b></div>
+<p>time: [[time]]</p>
 ```
 
-#### use the polyfill
+#### Use the polyfill or the native picker
 <!--
 ```
 <custom-element-demo height="410">
@@ -120,18 +122,14 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 <datetime-picker not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
 <h4>Native Picker</h4>
 <datetime-picker value="{{value}}"></datetime-picker>
-<div style="padding: 8px;">Two pickers can be synchronized: <b>[[synchronized]]</b></div>
-<div style="padding: 8px;">A number representation is automatically provided: <b>[[value]]</b></div>
-
+<p>
+Two pickers can be synchronized: [[synchronized]]
+A number representation is automatically provided: [[value]]
+</p>
 ```
 
-#### Periods
-```html
-<datetime-picker id="from" date="{{min}}" max="[[max]]"></datetime-picker>
-<datetime-picker id="to" date="{{max}}" min="[[min]]"></datetime-picker>
-```
 
-#### Overlay
+#### Use it in an overlay
 <!--
 ```
 <custom-element-demo height="380">
@@ -153,7 +151,48 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <overlay-datetime-picker value="{{value}}" not-native></overlay-datetime-picker>
-<div style="padding: 12px;"><code>value: </code> <b>[[value]]</b></div>
+<p>value: [[value]]</p>
+```
+
+#### Use locale date formats
+<!--
+```
+<custom-element-demo height="300">
+  <template>
+    <link rel="import" href="overlay-datetime-picker.html">
+    <style>
+      html {
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+    </style>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<select value="{{locale::change}}">
+  <option value="en">english</option>
+  <option value="fr">français</option>
+  <option value="de">deutsch</option>
+  <option value="es">español</option>
+  <option value="it">italiano</option>
+  <option value="ru">русский</option>
+  <option value="ja">日本語</option>
+  <option value="zh">中文</option>
+</select>
+<calendar-element datetime="{{datetime}}" locale="{{locale}}" not-native></calendar-element>
+<p>datetime: [[datetime]]</p>
+```
+
+#### Define date ranges
+```html
+<datetime-picker id="from" date="{{min}}" max="[[max]]"></datetime-picker>
+<datetime-picker id="to" date="{{max}}" min="[[min]]"></datetime-picker>
 ```
 
 
