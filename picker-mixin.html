@@ -209,7 +209,7 @@
         order.separatorMonthDay = order.month > order.day ? order.month - 1 : order.day - 1;
 
         // check time
-        let timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric' });
+        let timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false });
 
         // time separator
         const timeSeparator = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
