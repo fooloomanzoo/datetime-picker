@@ -212,16 +212,16 @@
         let timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false });
 
         // time separator
-        const timeSeparator = timeString.split(/\d|\s/g).filter(s => { return s !== ''; }).pop();
+        const timeSeparator = timeString.split(/\d/g).filter(s => { return s !== ''; }).pop();
 
         // am-string
         timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-        const am = timeString.split(/\d|\s/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
+        const am = timeString.split(/\d/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
 
         // pm-string
         date = new Date(1970, 10, 15, 18, 24, 25);
         timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-        const pm = timeString.split(/\d|\s/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
+        const pm = timeString.split(/\d/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
 
         // console.log(timeString.split(/\d|\s/g).filter(s => { return s !== ''; }));
         // decimal separator
