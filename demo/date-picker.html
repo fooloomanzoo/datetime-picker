@@ -111,14 +111,16 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <style is="custom-style">
-                date-picker.clamp {
-                  --datetime-selected-background: #9ab6ed;
-                  --datetime-selected-color: #001641;
-                  --datetime-background: #e39f3b;
-                  --datetime-color: #001641;
-                }
-              </style>
+              <custom-style>
+                <style is="custom-style">
+                  date-picker.clamp {
+                    --datetime-selected-background: #9ab6ed;
+                    --datetime-selected-color: #001641;
+                    --datetime-background: #e39f3b;
+                    --datetime-color: #001641;
+                  }
+                </style>
+              </custom-style>
               <div class="vertical-section-container">
                 <date-picker class="clamp" not-native date="{{date}}" clamp="day" vertical-align="top"></date-picker>
               </div>

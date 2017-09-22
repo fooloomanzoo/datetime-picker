@@ -69,8 +69,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 ```html
 <calendar-element date="{{date}}"></calendar-element>
-
-date: [[date]]
+<p>date: [[date]]</p>
 ```
 
 #### Stand-alone time-picker
@@ -97,8 +96,7 @@ date: [[date]]
 
 ```html
 <time-element time="{{time}}"></time-element>
-
-time: [[time]]
+<p> time: [[time]]</p>
 ```
 
 #### Use the polyfill or the native picker
@@ -126,14 +124,14 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 -->
 
 ```html
-<h4>Polyfill Picker</h4>
-<datetime-picker not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
+  <p>Polyfill Picker <datetime-picker not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
 
-<h4>Native Picker</h4>
-<datetime-picker value="{{value}}"></datetime-picker>
+  <p>Native Picker <datetime-picker value="{{value}}"></datetime-picker></p>
 
-Two pickers can be synchronized: [[synchronized]]
-A number representation is automatically provided: [[value]]
+  <p>
+    Two pickers can be synchronized: [[synchronized]]
+    A number representation is automatically provided: [[value]]
+  </p>
 ```
 
 #### Use it in an overlay
@@ -164,8 +162,7 @@ Choose then the related elements:
 
 ```html
 <overlay-datetime-picker value="{{value}}" not-native></overlay-datetime-picker>
-
-value: [[value]]
+<p>value: [[value]]</p>
 ```
 
 #### Use locale date formats
@@ -192,20 +189,27 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 -->
 
 ```html
-<select value="{{locale::change}}">
-  <option value="en">english</option>
-  <option value="fr">français</option>
-  <option value="de">deutsch</option>
-  <option value="es">español</option>
-  <option value="it">italiano</option>
-  <option value="ru">русский</option>
-  <option value="ja">日本語</option>
-  <option value="zh">中文</option>
-</select>
+<p>
+  locale:
+  <select value="{{locale::change}}">
+    <option value=""></option>
+    <option value="en">english</option>
+    <option value="fr">français</option>
+    <option value="de">deutsch</option>
+    <option value="es">español</option>
+    <option value="it">italiano</option>
+    <option value="ru">русский</option>
+    <option value="ja">日本語</option>
+    <option value="zh">中文</option>
+  </select>
+</p>
 
-<calendar-element datetime="{{datetime}}" locale="{{locale}}" not-native></calendar-element>
+<p>
+  <calendar-element datetime="{{datetime}}" locale="{{locale}}" not-native hour12></calendar-element>
+  <time-element datetime="{{datetime}}" locale="{{locale}}" not-native hour12></time-element>
+</p>
 
-datetime: [[datetime]]
+<p>datetime: [[datetime]]</p>
 ```
 
 #### Define date ranges
