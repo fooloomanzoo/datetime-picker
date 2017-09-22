@@ -90,15 +90,6 @@
     static get properties() {
       return {
 
-        /**
-         * clamp datetime to a property
-         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-         */
-        clamp: {
-          type: String,
-          value: 'milliseconds'
-        },
-
         _hideMinutes: {
           type: Boolean,
           computed: '_hideIfClamped(clamp, "minutes")'
@@ -182,7 +173,9 @@
        *
        *     <time-element time="{{time}}"></time-element>
        *  ```
-
+       *
+       * For example if you clamp on `milliseconds`, you can round to `0` milliseconds and hide the input. If you set `clamp="seconds"` the inputs for *seconds* and *milliseconds* are hidden.
+       *
        * The following custom properties and mixins are also available for styling:
 
        * Custom property | Description | Default

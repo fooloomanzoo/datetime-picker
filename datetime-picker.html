@@ -101,6 +101,21 @@
         `;
       }
 
+      static get properties() {
+        return {
+
+          /**
+           * clamp datetime to a property
+           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+           */
+          clamp: {
+            type: String,
+            value: 'milliseconds'
+          }
+
+        }
+      }
+
       renderCalendar(_viewYear, _viewMonth, day) {
         if (DatetimePicker._hasNative && !this.notNative) {
           return;

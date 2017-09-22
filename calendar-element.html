@@ -168,15 +168,6 @@
       return {
 
         /**
-         * clamp datetime to a property
-         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-         */
-        clamp: {
-          type: String,
-          value: 'hours'
-        },
-
-        /**
          * The year of the view
          */
         _viewYear: {
@@ -429,6 +420,8 @@
   *
   *     <calendar-element date="{{date}}"></calendar-element>
   *   ```
+  *
+  * For example if you clamp on `hours`, you can round `datetime` and `value` to `00:00:00`. If you set `clamp="day"` you hide the day-selection.
   *
   * The following custom properties and mixins are also available for styling:
   *
