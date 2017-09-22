@@ -170,9 +170,10 @@
             @apply --datetime-focus;
           }
           #picker {
+            @apply --datetime-element;
             display: flex;
             flex-direction: column;
-            @apply --datetime-element;
+            padding: 0;
             @apply --datetime-picker;
           }
           #picker > :not(:last-child) {
