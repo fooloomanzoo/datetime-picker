@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "elements": [
     {
-      "description": "`<time-element>` adds a time-input to your page using Polymer.\n\nIf you like to connect it to an input, try it like:\n\n ```html\n    <input type=\"time\" value=\"{{time::input}}\" step=\"1\">\n\n    <time-element time=\"{{time}}\"></time-element>\n ```\n\nFor example if you clamp on `milliseconds`, you can round to `0` milliseconds and hide the input. If you set `clamp=\"seconds\"` the inputs for *seconds* and *milliseconds* are hidden.\n\nThe following custom properties and mixins are also available for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`<time-element>` adds a time-input to your page using Polymer.\n\nIf you like to connect it to an input, try it like:\n\n ```html\n    <input type=\"time\" value=\"{{time::input}}\" step=\"1\">\n\n    <time-element time=\"{{time}}\"></time-element>\n ```\n\nFor example if you clamp on `milliseconds`, you can round to `0` milliseconds and hide the input. If you set `clamp=\"seconds\"` the inputs for *seconds* and *milliseconds* are hidden.\n\nThe following custom properties and mixins are also available for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "time-element.html",
       "properties": [
@@ -1139,11 +1139,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 207,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 220,
+          "line": 221,
           "column": 5
         }
       },
@@ -1489,7 +1489,7 @@
       ]
     },
     {
-      "description": "`<calendar-element>` adds a calendar to your page using Polymer.\n\nIf you like to connect it to an input, try it like:\n\n  ```html\n    <input type=\"date\" value=\"{{date::input}}\">\n\n    <calendar-element date=\"{{date}}\"></calendar-element>\n  ```\n\nFor example if you clamp on `hours`, you can round `datetime` and `value` to `00:00:00`. If you set `clamp=\"day\"` you hide the day-selection.\n\nThe following custom properties and mixins are also available for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`<calendar-element>` adds a calendar to your page using Polymer.\n\nIf you like to connect it to an input, try it like:\n\n  ```html\n    <input type=\"date\" value=\"{{date::input}}\">\n\n    <calendar-element date=\"{{date}}\"></calendar-element>\n  ```\n\nFor example if you clamp on `hours`, you can round `datetime` and `value` to `00:00:00`. If you set `clamp=\"day\"` you hide the day-selection.\n\nThe following custom properties and mixins are also available for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "calendar-element.html",
       "properties": [
@@ -2789,11 +2789,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 453,
+          "line": 454,
           "column": 4
         },
         "end": {
-          "line": 466,
+          "line": 467,
           "column": 5
         }
       },
@@ -3139,7 +3139,7 @@
       ]
     },
     {
-      "description": "`datetime-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* datetime-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <datetime-picker value=\"{{value}}\"></datetime-picker>\n ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.\n\n ```html\n   <datetime-picker not-native=\"[[!isMobile]]\"></datetime-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`datetime-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* datetime-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <datetime-picker value=\"{{value}}\"></datetime-picker>\n ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.\n\n ```html\n   <datetime-picker not-native=\"[[!isMobile]]\"></datetime-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "datetime-picker.html",
       "properties": [
@@ -4033,11 +4033,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -4196,11 +4196,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 103,
+              "line": 104,
               "column": 6
             },
             "end": {
-              "line": 108,
+              "line": 109,
               "column": 7
             }
           },
@@ -4726,11 +4726,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -4751,11 +4751,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -4770,11 +4770,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -4789,11 +4789,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -4812,11 +4812,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 52,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 109,
+          "line": 110,
           "column": 5
         }
       },
@@ -5272,7 +5272,7 @@
       ]
     },
     {
-      "description": "`date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{ border-radius: 4px; padding: 4px; }`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | { border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); }`\n`--datetime-icon` | Mixin applied to closing icon | `{ border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "date-picker.html",
       "properties": [
@@ -6097,11 +6097,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -6260,11 +6260,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 70,
+              "line": 71,
               "column": 6
             },
             "end": {
-              "line": 75,
+              "line": 76,
               "column": 7
             }
           },
@@ -6729,11 +6729,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -6754,11 +6754,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -6773,11 +6773,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -6792,11 +6792,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -6815,11 +6815,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 38,
+          "line": 39,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 5
         }
       },
@@ -9537,7 +9537,7 @@
       ]
     },
     {
-      "description": "`overlay-datetime-picker` extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.\n\n  ```html\n  <overlay-datetime-picker value=\"{{value}}\" not-native></overlay-datetime-picker>\n  ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.\n\n ```html\n   <overlay-datetime-picker not-native=\"[[!isMobile]]\"></overlay-datetime-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`overlay-datetime-picker` extends `datetime-picker` and create the polyfilled elements `time-element` and `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.\n\n  ```html\n  <overlay-datetime-picker value=\"{{value}}\" not-native></overlay-datetime-picker>\n  ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.\n\n ```html\n   <overlay-datetime-picker not-native=\"[[!isMobile]]\"></overlay-datetime-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "overlay-datetime-picker.html",
       "properties": [
@@ -10431,11 +10431,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -10595,11 +10595,11 @@
           "sourceRange": {
             "file": "datetime-picker.html",
             "start": {
-              "line": 103,
+              "line": 104,
               "column": 6
             },
             "end": {
-              "line": 108,
+              "line": 109,
               "column": 7
             }
           },
@@ -11126,11 +11126,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -11151,11 +11151,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -11170,11 +11170,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -11189,11 +11189,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -11212,11 +11212,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 45,
+          "line": 46,
           "column": 4
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 5
         }
       },
@@ -11666,7 +11666,7 @@
       "tagname": "overlay-datetime-picker"
     },
     {
-      "description": "`overlay-date-picker` extends `datetime-picker` and create the polyfilled element `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.\n\n  ```html\n  <overlay-date-picker value=\"{{value}}\" not-native></overlay-date-picker>\n  ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.\n\n ```html\n   <overlay-date-picker not-native=\"[[!isMobile]]\"></overlay-date-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`overlay-date-picker` extends `datetime-picker` and create the polyfilled element `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.\n\n  ```html\n  <overlay-date-picker value=\"{{value}}\" not-native></overlay-date-picker>\n  ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.\n\n ```html\n   <overlay-date-picker not-native=\"[[!isMobile]]\"></overlay-date-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "overlay-date-picker.html",
       "properties": [
@@ -12491,11 +12491,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -12655,11 +12655,11 @@
           "sourceRange": {
             "file": "date-picker.html",
             "start": {
-              "line": 70,
+              "line": 71,
               "column": 6
             },
             "end": {
-              "line": 75,
+              "line": 76,
               "column": 7
             }
           },
@@ -13125,11 +13125,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -13150,11 +13150,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -13169,11 +13169,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -13188,11 +13188,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -13211,11 +13211,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 44,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 51,
           "column": 5
         }
       },
@@ -13665,7 +13665,7 @@
       "tagname": "overlay-date-picker"
     },
     {
-      "description": "`time-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* time-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <time-picker value=\"{{value}}\"></time-picker>\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`time-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* time-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.\n\n ```html\n   <time-picker value=\"{{value}}\"></time-picker>\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "time-picker.html",
       "properties": [
@@ -14517,11 +14517,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -14936,11 +14936,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -14961,11 +14961,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -14980,11 +14980,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -14999,11 +14999,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -15022,11 +15022,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 38,
+          "line": 39,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 5
         }
       },
@@ -15481,7 +15481,7 @@
       ]
     },
     {
-      "description": "`overlay-time-picker` extends `datetime-picker` and create the polyfilled element `time-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.\n\n  ```html\n  <overlay-time-picker value=\"{{value}}\" not-native></overlay-time-picker>\n  ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.\n\n ```html\n   <overlay-time-picker not-native=\"[[!isMobile]]\"></overlay-time-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`overlay-time-picker` extends `datetime-picker` and create the polyfilled element `time-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.\n\n  ```html\n  <overlay-time-picker value=\"{{value}}\" not-native></overlay-time-picker>\n  ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.\n\n ```html\n   <overlay-time-picker not-native=\"[[!isMobile]]\"></overlay-time-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "overlay-time-picker.html",
       "properties": [
@@ -16333,11 +16333,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -16752,11 +16752,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -16777,11 +16777,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -16796,11 +16796,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -16815,11 +16815,11 @@
           "sourceRange": {
             "file": "polyfill-picker-pattern.html",
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -16838,11 +16838,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 44,
+          "line": 45,
           "column": 4
         },
         "end": {
-          "line": 50,
+          "line": 51,
           "column": 5
         }
       },
@@ -17459,11 +17459,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 258,
+              "line": 259,
               "column": 6
             },
             "end": {
-              "line": 265,
+              "line": 266,
               "column": 7
             }
           },
@@ -17482,11 +17482,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 267,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 271,
+              "line": 272,
               "column": 7
             }
           },
@@ -17499,11 +17499,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 276,
+              "line": 277,
               "column": 6
             },
             "end": {
-              "line": 281,
+              "line": 282,
               "column": 7
             }
           },
@@ -17516,11 +17516,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 286,
+              "line": 287,
               "column": 6
             },
             "end": {
-              "line": 291,
+              "line": 292,
               "column": 7
             }
           },
@@ -17533,11 +17533,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 296,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 301,
+              "line": 302,
               "column": 7
             }
           },
@@ -17554,7 +17554,7 @@
           "column": 2
         },
         "end": {
-          "line": 303,
+          "line": 304,
           "column": 3
         }
       },
