@@ -205,8 +205,8 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 </p>
 
 <p>
-  <calendar-element datetime="{{datetime}}" locale="{{locale}}" not-native hour12></calendar-element>
-  <time-element datetime="{{datetime}}" locale="{{locale}}" not-native hour12></time-element>
+  <calendar-element date="{{date}}" locale="{{locale}}" not-native hour12></calendar-element>
+  <time-element datetime="{{datetime}}" date="{{date}}" locale="{{locale}}" not-native hour12></time-element>
 </p>
 
 <p>datetime: [[datetime]]</p>

@@ -89,7 +89,15 @@
 
     static get properties() {
       return {
-
+        /**
+         * clamp datetime to a property
+         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+         */
+        clamp: {
+          type: String,
+          value: 'milliseconds'
+        },
+        
         _hideMinutes: {
           type: Boolean,
           computed: '_hideIfClamped(clamp, "minutes")'

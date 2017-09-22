@@ -76,20 +76,6 @@
         super.renderCalendar(_viewYear, _viewMonth, day);
       }
 
-      static get properties() {
-        return {
-
-          /**
-           * clamp datetime to a property
-           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-           */
-          clamp: {
-            type: String,
-            value: 'hours'
-          }
-
-        }
-      }
     }
 
     window.customElements.define(DatePicker.is, DatePicker);
