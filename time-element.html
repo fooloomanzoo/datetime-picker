@@ -48,6 +48,7 @@
         }
         .am-switch {
           cursor: pointer;
+          font-size: 0.8em;
         }
       `;
     }
@@ -97,7 +98,7 @@
           type: String,
           value: 'milliseconds'
         },
-        
+
         _hideMinutes: {
           type: Boolean,
           computed: '_hideIfClamped(clamp, "minutes")'
