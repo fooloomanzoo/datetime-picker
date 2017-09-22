@@ -57,7 +57,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker not-native value="{{value}}" date="{{date}}" time="{{time}}" horizontal-align="right"></date-picker>
+              <date-picker not-native value="{{value}}" date="{{date}}" time="{{time}}" horizontal-align="right" vertical-align></date-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -96,8 +96,8 @@
                 <date-picker class="end" not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
-                <div><code>min</code>: <b>[[min]]</b></div>
-                <div><code>max</code>: <b>[[max]]</b></div>
+                <div><code>start</code>: <b>[[min]]</b></div>
+                <div><code>end</code>: <b>[[max]]</b></div>
               </div>
             </template>
           </dom-bind>

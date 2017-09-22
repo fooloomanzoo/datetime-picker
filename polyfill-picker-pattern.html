@@ -145,22 +145,25 @@
             color: initial;
             background: rgba(255,255,255, 0.66);
             z-index: 1;
-          }
-          .icon.now {
             transform: translate(100%, 0);
           }
           .icon.close {
             transform: translate(200%, 0);
+          }
+          :host([horizontal-align=right][vertical-align=""]) .icon.close {
+            right: auto;
+            left: 0;
+            transform: translate(-100%, 0);
           }
           .icon:focus,
           .icon:hover {
             @apply --datetime-focus;
           }
           .polyfill {
+            @apply --datetime-input;
             display: -webkit-inline-flex;
             display: inline-flex;
             align-items: center;
-            @apply --datetime-element;
           }
           .polyfill:focus,
           .polyfill:hover {
@@ -169,6 +172,7 @@
           #picker {
             display: flex;
             flex-direction: column;
+            @apply --datetime-picker;
           }
           #picker > :not(:last-child) {
             border-bottom-left-radius: 0 !important;
