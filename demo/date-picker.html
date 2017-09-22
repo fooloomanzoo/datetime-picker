@@ -78,16 +78,22 @@
               <custom-style>
                 <style is="custom-style">
                   date-picker.begin {
-                    --datetime-selected-background: #CC1C1C;
+                    --datetime-selected-background: #1cccac;
+                    --datetime-selected-color: #fff;
+                    --datetime-background: #448b7e;
+                    --datetime-color: #fff;
                   }
                   date-picker.end {
-                    --datetime-selected-background: #2362EC;
+                    --datetime-selected-background: #5123ec;
+                    --datetime-selected-color: #fff;
+                    --datetime-background: #594894;
+                    --datetime-color: #fff;
                   }
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="begin" opened not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" opened not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker class="begin" not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
+                <date-picker class="end" not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>min</code>: <b>[[min]]</b></div>
@@ -105,8 +111,16 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
+              <style is="custom-style">
+                date-picker.clamp {
+                  --datetime-selected-background: #9ab6ed;
+                  --datetime-selected-color: #001641;
+                  --datetime-background: #e39f3b;
+                  --datetime-color: #001641;
+                }
+              </style>
               <div class="vertical-section-container">
-                <date-picker not-native date="{{date}}" clamp="day" vertical-align="top"></date-picker>
+                <date-picker class="clamp" not-native date="{{date}}" clamp="day" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>date</code>: <b>[[date]]</b></div>

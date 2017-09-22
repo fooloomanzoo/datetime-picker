@@ -129,8 +129,18 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
+              <custom-style>
+                <style is="custom-style">
+                  time-picker.clamp {
+                    --datetime-selected-background: #9ab6ed;
+                    --datetime-selected-color: #001641;
+                    --datetime-background: #cc851c;
+                    --datetime-color: #001641;
+                  }
+                </style>
+              </custom-style>
               <div class="vertical-section-container">
-                <time-picker not-native time="{{time}}" clamp="seconds" vertical-align="bottom"></time-picker>
+                <time-picker class="clamp" not-native time="{{time}}" clamp="seconds" vertical-align="bottom"></time-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>time</code>: <b>[[time]]</b></div>
