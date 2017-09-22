@@ -224,6 +224,10 @@ Set cross data bindings to limit the values of the inputs. Please also visit the
 ```
 bower install --save fooloomanzoo/datetime-picker
 ```
+or
+```
+npm install --save @fooloomanzoo/datetime-picker
+```
 
 ### Notable Changes
 * 2.0.0
