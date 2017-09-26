@@ -66,7 +66,7 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <datetime-picker opened="{{opened}}" not-native date="{{date}}" current-hovered-day="{{currentHoveredDay}}" vertical-align="bottom"></datetime-picker>
+                <datetime-picker opened="{{opened}}" not-native date="{{date}}" current-hovered-day-node="{{currentHoveredDay}}" vertical-align="bottom"></datetime-picker>
                 <template is="dom-if" if="[[currentHoveredDay]]">
                   <overlay-element class="overlay" opened$="[[opened]]" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">

@@ -179,7 +179,16 @@
          * current hovered day node
          * to access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString
          */
-        currentHoveredDay: {
+        currentSelectedDayNode: {
+          type: Node,
+          notify: true
+        },
+
+        /**
+         * node of the last selected day (warning: if view changes )
+         * to access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString
+         */
+        currentHoveredDayNode: {
           type: Node,
           notify: true
         },
@@ -235,9 +244,9 @@
 
     _onClickDay(e) {
       this._onMouseMoveDay(e);
-      if (this.currentHoveredDay) {
-        this.date = this.currentHoveredDay.dataset.date;
-        this._currentSelected = this.currentHoveredDay;
+      if (this.currentHoveredDayNode) {
+        this.date = this.currentHoveredDayNode.dataset.date;
+        this.currentSelectedDayNode = this.currentHoveredDayNode;
       }
     }
 
@@ -246,11 +255,11 @@
         const paths = e.path || [e.target];
         for (let i = 0; i < paths.length; i++) {
           if (paths[i].dataset && paths[i].dataset.date) {
-            if (this.currentHoveredDay) {
-              this.currentHoveredDay.classList.remove('hovered');
+            if (this.currentHoveredDayNode) {
+              this.currentHoveredDayNode.classList.remove('hovered');
             }
             paths[i].classList.add('hovered');
-            this.currentHoveredDay = paths[i];
+            this.currentHoveredDayNode = paths[i];
             break;
           }
         }
@@ -381,6 +390,7 @@
       const prevmonthlength = +new Date(year, month, 0).getDate();
       const thismonthlength = +new Date(year, month + 1, 0).getDate();
       const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
+      let currentDayInView;
 
       let counter = -(7 + firstWeekDay) % 7 + 1;
       for (let i = 0; i < this.$.dates.children.length; i++) {
@@ -399,7 +409,8 @@
           // Day is Selected Day
           if (counter === selectedDay) {
             this.$.dates.children[i].children[j].classList.add('selected');
-            this._currentSelected = this.$.dates.children[i].children[j];
+            this.currentSelectedDayNode = this.$.dates.children[i].children[j];
+            currentDayInView = true;
           } else {
             this.$.dates.children[i].children[j].classList.remove('selected');
           }
@@ -418,6 +429,10 @@
           this.$.dates.children[i].children[j].dataset.date = this._toDate(new Date(year, month, counter));
           counter++;
         }
+      }
+
+      if (!currentDayInView) {
+        this.currentSelectedDayNode = null;
       }
     }
 

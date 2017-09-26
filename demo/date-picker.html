@@ -81,13 +81,13 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker id="eventPicker" opened="{{opened}}" not-native date="{{date}}" current-hovered-day="{{currentHoveredDay}}" vertical-align="bottom"></date-picker>
-                <template is="dom-if" if="[[currentHoveredDay]]">
-                  <overlay-element class="overlay" opened$="[[opened]]" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                <date-picker id="eventPicker" opened="{{opened}}" not-native date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
+                <template is="dom-if" if="[[currentSelectedDayNode]]">
+                  <overlay-element class="overlay" opened$="[[opened]]" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">
-                      <div><b>[[_toLocaleDateString(currentHoveredDay.dataset.date)]]</b></div>
+                      <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
                       <ul>
-                        <template is="dom-repeat" items="[[_generateEventList(currentHoveredDay.dataset.date)]]">
+                        <template is="dom-repeat" items="[[_generateEventList(currentSelectedDayNode.dataset.date)]]">
                           <li><b>[[item.time]]:  </b>[[item.detail]]</li>
                         </template>
                       </ul>

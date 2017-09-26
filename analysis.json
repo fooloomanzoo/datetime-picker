@@ -28,7 +28,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "currentHoveredDay",
+          "name": "currentSelectedDayNode",
           "type": "Node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
@@ -50,17 +50,39 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
+          "name": "currentHoveredDayNode",
+          "type": "Node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
           "name": "_viewYear",
           "type": "number",
           "description": "The year of the view",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 189,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 192,
+              "line": 201,
               "column": 9
             }
           },
@@ -78,11 +100,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 197,
+              "line": 206,
               "column": 8
             },
             "end": {
-              "line": 200,
+              "line": 209,
               "column": 9
             }
           },
@@ -100,11 +122,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 202,
+              "line": 211,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 214,
               "column": 9
             }
           },
@@ -122,11 +144,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 207,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 210,
+              "line": 219,
               "column": 9
             }
           },
@@ -144,11 +166,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 212,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 214,
+              "line": 223,
               "column": 9
             }
           },
@@ -727,11 +749,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 235,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 241,
+              "line": 250,
               "column": 5
             }
           },
@@ -749,11 +771,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 243,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 257,
+              "line": 266,
               "column": 5
             }
           },
@@ -771,11 +793,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 259,
+              "line": 268,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 278,
               "column": 5
             }
           },
@@ -815,11 +837,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 277,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 288,
               "column": 5
             }
           },
@@ -833,11 +855,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 281,
+              "line": 290,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 292,
               "column": 5
             }
           },
@@ -851,11 +873,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 285,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 298,
+              "line": 307,
               "column": 5
             }
           },
@@ -873,11 +895,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 300,
+              "line": 309,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 312,
               "column": 5
             }
           },
@@ -895,11 +917,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 305,
+              "line": 314,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 316,
               "column": 5
             }
           },
@@ -917,11 +939,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 309,
+              "line": 318,
               "column": 4
             },
             "end": {
-              "line": 313,
+              "line": 322,
               "column": 5
             }
           },
@@ -958,11 +980,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 351,
+              "line": 360,
               "column": 4
             },
             "end": {
-              "line": 421,
+              "line": 436,
               "column": 5
             }
           },
@@ -987,11 +1009,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 423,
+              "line": 438,
               "column": 4
             },
             "end": {
-              "line": 425,
+              "line": 440,
               "column": 5
             }
           },
@@ -1419,11 +1441,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 497,
+          "line": 512,
           "column": 4
         },
         "end": {
-          "line": 510,
+          "line": 525,
           "column": 5
         }
       },
@@ -1450,7 +1472,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "current-hovered-day",
+          "name": "current-selected-day-node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
@@ -1459,6 +1481,23 @@
             },
             "end": {
               "line": 184,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Node",
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "current-hovered-day-node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "sourceRange": {
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
               "column": 9
             }
           },
@@ -1812,7 +1851,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "currentHoveredDay",
+          "name": "currentSelectedDayNode",
           "type": "Node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
@@ -1835,6 +1874,29 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
+          "name": "currentHoveredDayNode",
+          "type": "Node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
           "name": "_viewYear",
           "type": "number",
           "description": "The year of the view",
@@ -1842,11 +1904,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 189,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 192,
+              "line": 201,
               "column": 9
             }
           },
@@ -1865,11 +1927,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 197,
+              "line": 206,
               "column": 8
             },
             "end": {
-              "line": 200,
+              "line": 209,
               "column": 9
             }
           },
@@ -1888,11 +1950,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 202,
+              "line": 211,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 214,
               "column": 9
             }
           },
@@ -1911,11 +1973,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 207,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 210,
+              "line": 219,
               "column": 9
             }
           },
@@ -1934,11 +1996,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 212,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 214,
+              "line": 223,
               "column": 9
             }
           },
@@ -2651,11 +2713,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 235,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 241,
+              "line": 250,
               "column": 5
             }
           },
@@ -2674,11 +2736,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 243,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 257,
+              "line": 266,
               "column": 5
             }
           },
@@ -2697,11 +2759,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 259,
+              "line": 268,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 278,
               "column": 5
             }
           },
@@ -2742,11 +2804,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 277,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 288,
               "column": 5
             }
           },
@@ -2761,11 +2823,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 281,
+              "line": 290,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 292,
               "column": 5
             }
           },
@@ -2780,11 +2842,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 285,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 298,
+              "line": 307,
               "column": 5
             }
           },
@@ -2803,11 +2865,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 300,
+              "line": 309,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 312,
               "column": 5
             }
           },
@@ -2826,11 +2888,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 305,
+              "line": 314,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 316,
               "column": 5
             }
           },
@@ -2849,11 +2911,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 309,
+              "line": 318,
               "column": 4
             },
             "end": {
-              "line": 313,
+              "line": 322,
               "column": 5
             }
           },
@@ -2918,11 +2980,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 423,
+              "line": 438,
               "column": 4
             },
             "end": {
-              "line": 425,
+              "line": 440,
               "column": 5
             }
           },
@@ -3450,7 +3512,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "current-hovered-day",
+          "name": "current-selected-day-node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -3460,6 +3522,24 @@
             },
             "end": {
               "line": 184,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Node",
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "current-hovered-day-node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
               "column": 9
             }
           },
@@ -7727,7 +7807,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "currentHoveredDay",
+          "name": "currentSelectedDayNode",
           "type": "Node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
@@ -7750,6 +7830,29 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
+          "name": "currentHoveredDayNode",
+          "type": "Node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
           "name": "_viewYear",
           "type": "number",
           "description": "The year of the view",
@@ -7757,11 +7860,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 189,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 192,
+              "line": 201,
               "column": 9
             }
           },
@@ -7780,11 +7883,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 197,
+              "line": 206,
               "column": 8
             },
             "end": {
-              "line": 200,
+              "line": 209,
               "column": 9
             }
           },
@@ -7803,11 +7906,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 202,
+              "line": 211,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 214,
               "column": 9
             }
           },
@@ -7826,11 +7929,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 207,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 210,
+              "line": 219,
               "column": 9
             }
           },
@@ -7849,11 +7952,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 212,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 214,
+              "line": 223,
               "column": 9
             }
           },
@@ -8635,11 +8738,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 235,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 241,
+              "line": 250,
               "column": 5
             }
           },
@@ -8658,11 +8761,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 243,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 257,
+              "line": 266,
               "column": 5
             }
           },
@@ -8681,11 +8784,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 259,
+              "line": 268,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 278,
               "column": 5
             }
           },
@@ -8726,11 +8829,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 277,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 288,
               "column": 5
             }
           },
@@ -8745,11 +8848,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 281,
+              "line": 290,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 292,
               "column": 5
             }
           },
@@ -8764,11 +8867,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 285,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 298,
+              "line": 307,
               "column": 5
             }
           },
@@ -8787,11 +8890,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 300,
+              "line": 309,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 312,
               "column": 5
             }
           },
@@ -8810,11 +8913,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 305,
+              "line": 314,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 316,
               "column": 5
             }
           },
@@ -8833,11 +8936,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 309,
+              "line": 318,
               "column": 4
             },
             "end": {
-              "line": 313,
+              "line": 322,
               "column": 5
             }
           },
@@ -8902,11 +9005,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 423,
+              "line": 438,
               "column": 4
             },
             "end": {
-              "line": 425,
+              "line": 440,
               "column": 5
             }
           },
@@ -9495,7 +9598,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "current-hovered-day",
+          "name": "current-selected-day-node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -9505,6 +9608,24 @@
             },
             "end": {
               "line": 184,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Node",
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "current-hovered-day-node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
               "column": 9
             }
           },
@@ -9968,7 +10089,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "currentHoveredDay",
+          "name": "currentSelectedDayNode",
           "type": "Node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
@@ -9991,6 +10112,29 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
+          "name": "currentHoveredDayNode",
+          "type": "Node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
           "name": "_viewYear",
           "type": "number",
           "description": "The year of the view",
@@ -9998,11 +10142,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 189,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 192,
+              "line": 201,
               "column": 9
             }
           },
@@ -10021,11 +10165,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 197,
+              "line": 206,
               "column": 8
             },
             "end": {
-              "line": 200,
+              "line": 209,
               "column": 9
             }
           },
@@ -10044,11 +10188,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 202,
+              "line": 211,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 214,
               "column": 9
             }
           },
@@ -10067,11 +10211,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 207,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 210,
+              "line": 219,
               "column": 9
             }
           },
@@ -10090,11 +10234,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 212,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 214,
+              "line": 223,
               "column": 9
             }
           },
@@ -10876,11 +11020,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 235,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 241,
+              "line": 250,
               "column": 5
             }
           },
@@ -10899,11 +11043,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 243,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 257,
+              "line": 266,
               "column": 5
             }
           },
@@ -10922,11 +11066,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 259,
+              "line": 268,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 278,
               "column": 5
             }
           },
@@ -10967,11 +11111,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 277,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 288,
               "column": 5
             }
           },
@@ -10986,11 +11130,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 281,
+              "line": 290,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 292,
               "column": 5
             }
           },
@@ -11005,11 +11149,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 285,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 298,
+              "line": 307,
               "column": 5
             }
           },
@@ -11028,11 +11172,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 300,
+              "line": 309,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 312,
               "column": 5
             }
           },
@@ -11051,11 +11195,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 305,
+              "line": 314,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 316,
               "column": 5
             }
           },
@@ -11074,11 +11218,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 309,
+              "line": 318,
               "column": 4
             },
             "end": {
-              "line": 313,
+              "line": 322,
               "column": 5
             }
           },
@@ -11145,11 +11289,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 423,
+              "line": 438,
               "column": 4
             },
             "end": {
-              "line": 425,
+              "line": 440,
               "column": 5
             }
           },
@@ -11738,7 +11882,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "current-hovered-day",
+          "name": "current-selected-day-node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -11748,6 +11892,24 @@
             },
             "end": {
               "line": 184,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Node",
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "current-hovered-day-node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
               "column": 9
             }
           },
@@ -12205,7 +12367,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "currentHoveredDay",
+          "name": "currentSelectedDayNode",
           "type": "Node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
@@ -12228,6 +12390,29 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
+          "name": "currentHoveredDayNode",
+          "type": "Node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
           "name": "_viewYear",
           "type": "number",
           "description": "The year of the view",
@@ -12235,11 +12420,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 189,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 192,
+              "line": 201,
               "column": 9
             }
           },
@@ -12258,11 +12443,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 197,
+              "line": 206,
               "column": 8
             },
             "end": {
-              "line": 200,
+              "line": 209,
               "column": 9
             }
           },
@@ -12281,11 +12466,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 202,
+              "line": 211,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 214,
               "column": 9
             }
           },
@@ -12304,11 +12489,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 207,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 210,
+              "line": 219,
               "column": 9
             }
           },
@@ -12327,11 +12512,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 212,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 214,
+              "line": 223,
               "column": 9
             }
           },
@@ -13044,11 +13229,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 235,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 241,
+              "line": 250,
               "column": 5
             }
           },
@@ -13067,11 +13252,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 243,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 257,
+              "line": 266,
               "column": 5
             }
           },
@@ -13090,11 +13275,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 259,
+              "line": 268,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 278,
               "column": 5
             }
           },
@@ -13135,11 +13320,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 277,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 288,
               "column": 5
             }
           },
@@ -13154,11 +13339,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 281,
+              "line": 290,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 292,
               "column": 5
             }
           },
@@ -13173,11 +13358,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 285,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 298,
+              "line": 307,
               "column": 5
             }
           },
@@ -13196,11 +13381,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 300,
+              "line": 309,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 312,
               "column": 5
             }
           },
@@ -13219,11 +13404,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 305,
+              "line": 314,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 316,
               "column": 5
             }
           },
@@ -13242,11 +13427,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 309,
+              "line": 318,
               "column": 4
             },
             "end": {
-              "line": 313,
+              "line": 322,
               "column": 5
             }
           },
@@ -13313,11 +13498,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 423,
+              "line": 438,
               "column": 4
             },
             "end": {
-              "line": 425,
+              "line": 440,
               "column": 5
             }
           },
@@ -13845,7 +14030,7 @@
           "inheritedFrom": "PickerMixin"
         },
         {
-          "name": "current-hovered-day",
+          "name": "current-selected-day-node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -13855,6 +14040,24 @@
             },
             "end": {
               "line": 184,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Node",
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "current-hovered-day-node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
               "column": 9
             }
           },
@@ -20693,7 +20896,7 @@
           "defaultValue": "\"hours\""
         },
         {
-          "name": "currentHoveredDay",
+          "name": "currentSelectedDayNode",
           "type": "Node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
@@ -20714,17 +20917,38 @@
           }
         },
         {
+          "name": "currentHoveredDayNode",
+          "type": "Node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          }
+        },
+        {
           "name": "_viewYear",
           "type": "number",
           "description": "The year of the view",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 189,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 192,
+              "line": 201,
               "column": 9
             }
           },
@@ -20741,11 +20965,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 197,
+              "line": 206,
               "column": 8
             },
             "end": {
-              "line": 200,
+              "line": 209,
               "column": 9
             }
           },
@@ -20762,11 +20986,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 202,
+              "line": 211,
               "column": 8
             },
             "end": {
-              "line": 205,
+              "line": 214,
               "column": 9
             }
           },
@@ -20783,11 +21007,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 207,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 210,
+              "line": 219,
               "column": 9
             }
           },
@@ -20804,11 +21028,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 212,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 214,
+              "line": 223,
               "column": 9
             }
           },
@@ -20824,11 +21048,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 225,
+              "line": 234,
               "column": 4
             },
             "end": {
-              "line": 228,
+              "line": 237,
               "column": 5
             }
           },
@@ -20841,11 +21065,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 230,
+              "line": 239,
               "column": 4
             },
             "end": {
-              "line": 233,
+              "line": 242,
               "column": 5
             }
           },
@@ -20858,11 +21082,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 235,
+              "line": 244,
               "column": 4
             },
             "end": {
-              "line": 241,
+              "line": 250,
               "column": 5
             }
           },
@@ -20879,11 +21103,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 243,
+              "line": 252,
               "column": 4
             },
             "end": {
-              "line": 257,
+              "line": 266,
               "column": 5
             }
           },
@@ -20900,11 +21124,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 259,
+              "line": 268,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 278,
               "column": 5
             }
           },
@@ -20924,11 +21148,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 271,
+              "line": 280,
               "column": 4
             },
             "end": {
-              "line": 275,
+              "line": 284,
               "column": 5
             }
           },
@@ -20941,11 +21165,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 277,
+              "line": 286,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 288,
               "column": 5
             }
           },
@@ -20958,11 +21182,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 281,
+              "line": 290,
               "column": 4
             },
             "end": {
-              "line": 283,
+              "line": 292,
               "column": 5
             }
           },
@@ -20975,11 +21199,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 285,
+              "line": 294,
               "column": 4
             },
             "end": {
-              "line": 298,
+              "line": 307,
               "column": 5
             }
           },
@@ -20996,11 +21220,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 300,
+              "line": 309,
               "column": 4
             },
             "end": {
-              "line": 303,
+              "line": 312,
               "column": 5
             }
           },
@@ -21017,11 +21241,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 305,
+              "line": 314,
               "column": 4
             },
             "end": {
-              "line": 307,
+              "line": 316,
               "column": 5
             }
           },
@@ -21038,11 +21262,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 309,
+              "line": 318,
               "column": 4
             },
             "end": {
-              "line": 313,
+              "line": 322,
               "column": 5
             }
           },
@@ -21055,11 +21279,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 315,
+              "line": 324,
               "column": 4
             },
             "end": {
-              "line": 344,
+              "line": 353,
               "column": 5
             }
           },
@@ -21076,11 +21300,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 351,
+              "line": 360,
               "column": 4
             },
             "end": {
-              "line": 421,
+              "line": 436,
               "column": 5
             }
           },
@@ -21104,11 +21328,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 423,
+              "line": 438,
               "column": 4
             },
             "end": {
-              "line": 425,
+              "line": 440,
               "column": 5
             }
           },
@@ -21128,11 +21352,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 427,
+              "line": 442,
               "column": 4
             },
             "end": {
-              "line": 430,
+              "line": 445,
               "column": 5
             }
           },
@@ -21149,11 +21373,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 432,
+              "line": 447,
               "column": 4
             },
             "end": {
-              "line": 435,
+              "line": 450,
               "column": 5
             }
           },
@@ -21170,11 +21394,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 441,
+              "line": 456,
               "column": 4
             },
             "end": {
-              "line": 456,
+              "line": 471,
               "column": 5
             }
           },
@@ -21197,7 +21421,7 @@
           "column": 2
         },
         "end": {
-          "line": 458,
+          "line": 473,
           "column": 3
         }
       },
@@ -21221,7 +21445,7 @@
           "type": "string"
         },
         {
-          "name": "current-hovered-day",
+          "name": "current-selected-day-node",
           "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
@@ -21230,6 +21454,22 @@
             },
             "end": {
               "line": 184,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Node"
+        },
+        {
+          "name": "current-hovered-day-node",
+          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "sourceRange": {
+            "start": {
+              "line": 190,
+              "column": 8
+            },
+            "end": {
+              "line": 193,
               "column": 9
             }
           },
