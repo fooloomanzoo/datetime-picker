@@ -73,26 +73,32 @@
                     padding: 1em;
                     padding-bottom: 0.25em;
                     font-size: 0.75em;
+                    position: absolute;
+                    opacity: 0;
+                    transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
+                    bottom: 0; left: 0;
+                    transform: translateY(100%);
+                    z-index: 1;
                   }
-                  .overlay {
-                    max-width: 100% !important;
-                    max-height: 100% !important;
+                  .info[opened] {
+                    opacity: 1;
+                  }
+                  .vertical-section-container {
+                    position: relative;
                   }
                 </style>
               </custom-style>
               <div class="vertical-section-container">
                 <date-picker id="eventPicker" opened="{{opened}}" not-native date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
                 <template is="dom-if" if="[[currentSelectedDayNode]]">
-                  <overlay-element class="overlay" opened$="[[opened]]" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
-                    <div class="info">
-                      <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
-                      <ul>
-                        <template is="dom-repeat" items="[[_generateEventList(currentSelectedDayNode.dataset.date)]]">
-                          <li><b>[[item.time]]:  </b>[[item.detail]]</li>
-                        </template>
-                      </ul>
-                    </div>
-                  </overlay-element>
+                  <div class="info" opened$="[[opened]]">
+                    <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
+                    <ul>
+                      <template is="dom-repeat" items="[[_generateEventList(currentSelectedDayNode.dataset.date)]]">
+                        <li><b>[[item.time]]:  </b>[[item.detail]]</li>
+                      </template>
+                    </ul>
+                  </div>
                 </template>
               </div>
             </template>
@@ -100,6 +106,7 @@
           <script>
             const bind = document.querySelector('#eventPickerDemo');
             bind._toLocaleDateString = function(datestr) {
+              console.log(datestr);
               return new Date(datestr).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             }
             bind._generateEventList = function() {
