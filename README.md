@@ -1,4 +1,6 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker)
+[![API](https://img.shields.io/badge/API-available-green.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/elements/atetime-picker)
+[![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/demo/demo/datetime-picker.html)
 
 _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)_
 ## &lt;datetime-picker&gt;
@@ -227,6 +229,12 @@ bower install --save fooloomanzoo/datetime-picker
 or
 ```
 npm install --save @fooloomanzoo/datetime-picker
+```
+
+### Update
+to last version
+```
+bower update
 ```
 
 ### Notable Changes

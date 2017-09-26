@@ -199,6 +199,10 @@
         _hideDay: {
           type: Boolean,
           computed: '_hideIfClamped(clamp, "day")'
+        },
+
+        _maxDayOfMonth: {
+          type: Number
         }
       }
     }
@@ -234,6 +238,7 @@
       this.setProperties({
         _viewYear: year,
         _viewMonth: month,
+        _maxDayOfMonth: (new Date(year, month, 0)).getDate(),
         value: (this._hideMonth || this._hideDay) ? +(new Date(year, month - 1)) : this.value
       })
     }
@@ -251,38 +256,42 @@
     _prev() {
       this._cancelTimeout();
       if (this._hideMonth) {
-        this._incremYear(-1);
+        this._incremViewYear(-1);
         this._activeJob = setInterval(() => {
-          this._incremYear(-1);
+          this._incremViewYear(-1);
         }, 200);
       } else {
-        this._incremMonth(-1);
+        this._incremViewMonth(-1);
         this._activeJob = setInterval(() => {
-          this._incremMonth(-1);
+          this._incremViewMonth(-1);
         }, 200);
       }
     }
 
-    _next() {
-      if (this._hideMonth) {
-        this._incremYear(1);
-        this._activeJob = setInterval(() => {
-          this._incremYear(1);
-        }, 200);
-      } else {
-        this._incremMonth(1);
-        this._activeJob = setInterval(() => {
-          this._incremMonth(1);
-        }, 200);
+    _next(e) {
+      console.log(e, e.target);
+      this._cancelTimeout();
+      if (e) {
+        if (this._hideMonth) {
+          this._incremViewYear(1);
+          this._activeJob = setInterval(() => {
+            this._incremViewYear(1);
+          }, 200);
+        } else {
+          this._incremViewMonth(1);
+          this._activeJob = setInterval(() => {
+            this._incremViewMonth(1);
+          }, 200);
+        }
       }
     }
 
-    _incremMonth(i) {
+    _incremViewMonth(i) {
       const d = new Date(this._viewYear, this._viewMonth - 1 + i);
       this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
     }
 
-    _incremYear(i) {
+    _incremViewYear(i) {
       this._viewYear += i;
     }
 
@@ -413,6 +422,7 @@
       super._maxChanged(max);
       this.renderCalendar(this._viewYear, this._viewMonth);
     }
+
   }
 </script>
 

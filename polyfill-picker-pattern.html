@@ -8,17 +8,6 @@
   const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
     return class extends superClass {
-
-      connectedCallback() {
-        super.connectedCallback();
-        this.addEventListener('keydown', this._checkKeycode.bind(this), false);
-      }
-
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
-      }
-
       /**
        * the expected input type, that should be polyfilled, if not available
        * @type {string}

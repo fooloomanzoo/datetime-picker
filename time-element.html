@@ -59,7 +59,7 @@
           <div class="field">
             <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-            <number-input hidden$="[[!hour12]]" class="time" min="0" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
+            <number-input hidden$="[[!hour12]]" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
@@ -165,6 +165,21 @@
 
     _switchAm() {
       this.isAm = !this.isAm;
+    }
+
+    /**
+     * key press event handler
+     * @param  {[type]} e Event
+     */
+    _checkKeycode(e) {
+      if (super._checkKeycode) {
+        super._checkKeycode(e);
+      }
+
+      console.log(e.keyCode, this.hours, this.hours12);
+      if (e && e.keyCode === 27) {
+        this.close();
+      }
     }
 
   }

@@ -126,9 +126,15 @@
 
       connectedCallback() {
         super.connectedCallback();
+        this.addEventListener('keydown', this._checkKeycode.bind(this), false);
         if (this.value === undefined) {
           this.value = +(new Date());
         }
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
       }
 
       _computeTime(hours, minutes, seconds, milliseconds) {
@@ -235,6 +241,16 @@
           _am: am,
           _pm: pm
         });
+      }
+
+      /**
+       * key press event handler
+       * @param  {[type]} e Event
+       */
+      _checkKeycode(e) {
+        if (super._checkKeycode) {
+          super._checkKeycode(e);
+        }
       }
 
     }

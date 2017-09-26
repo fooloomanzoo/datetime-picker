@@ -66,7 +66,8 @@
            */
           hours: {
             type: Number,
-            notify: true
+            notify: true,
+            observer: '_hoursChanged'
           },
 
           /**
@@ -98,7 +99,8 @@
            */
           value: {
             type: Number,
-            notify: true
+            notify: true,
+            observer: '_valueChanged'
           },
 
           /**
@@ -106,7 +108,8 @@
            */
           min: {
             type: String,
-            notify: true
+            notify: true,
+            observer: '_minChanged'
           },
 
           /**
@@ -114,7 +117,8 @@
            */
           max: {
             type: String,
-            notify: true
+            notify: true,
+            observer: '_maxChanged'
           },
 
           /**
@@ -141,22 +145,18 @@
            */
           hours12: {
             type: Number,
-            notify: true
+            notify: true,
+            observer: '_hours12Changed'
           }
         }
       }
 
       static get observers() {
         return [
-          '_valueChanged(value)',
           '_computeTime(hours, minutes, seconds, milliseconds)',
           '_computeDate(year, month, day)',
           '_computeValue(date, time)',
-          '_computeValue(datetime)',
-          '_minChanged(min)',
-          '_maxChanged(max)',
-          '_hours12Changed(hours12)',
-          '_hoursChanged(hours)'
+          '_computeValue(datetime)'
         ]
       }
 
@@ -346,20 +346,20 @@
       }
 
       _hoursChanged(hours) {
-        this.isAm = hours < 13;
-        this.hours12 = hours > 12 ? hours - 12 : hours;
+        this.isAm = hours < 12;
+        this.hours12 = (hours === 0) ? 12 : (hours > 12 ? hours - 12 : hours);
       }
 
       _hours12Changed(hours12) {
-        this.hours = this.isAm ? hours12 : hours12 + 12;
+        this.hours = (hours12 === 12) ? (this.isAm ? 0 : 12) : (this.isAm ? hours12 : hours12 + 12);
       }
 
       _isAmChanged(isAm) {
         if (isAm === undefined) return;
 
-        if (this.hours > 12 && isAm === true) {
+        if (this.hours >= 12 && isAm === true) {
           this.hours -= 12;
-        } else if (this.hours < 13 && isAm === false) {
+        } else if (this.hours <= 12 && isAm === false) {
           this.hours += 12;
         }
       }
