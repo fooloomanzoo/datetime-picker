@@ -22,6 +22,18 @@
       static get is() {
         return 'overlay-element';
       }
+
+      static get observers() {
+        return [
+          '_fitIntoChanged(fitInto, positionTarget)'
+        ]
+      }
+
+      _fitIntoChanged(fitInto, positionTarget) {
+        if (fitInto && positionTarget) {
+          this.fit();
+        }
+      }
     }
     window.customElements.define(OverlayElement.is, OverlayElement);
   </script>

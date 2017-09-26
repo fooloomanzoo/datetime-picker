@@ -11,6 +11,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
     <link rel="import" href="../date-picker.html">
+    <link rel="import" href="../overlay-element.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .result {
@@ -52,18 +53,73 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>Force to create a non-native date-picker</h3>
+      <h3>use the properties to extend a picker to a custom event lists</h3>
       <demo-snippet>
         <template>
-          <dom-bind>
+          <dom-bind id="eventPickerDemo">
             <template is="dom-bind">
-              <date-picker not-native value="{{value}}" date="{{date}}" time="{{time}}" vertical-align="bottom"></date-picker>
-              <div class="vertical-section-container result">
-                <div><code>numeric value</code>: <b>[[value]]</b></div>
-                <div><code>date</code>: <b>[[date]]</b></div>
+              <custom-style>
+                <style is="custom-style">
+                  #eventPicker {
+                    --datetime-selected-background: #ddcd7e;
+                    --datetime-selected-color: #202020;
+                    --datetime-background: #b07143;
+                    --datetime-color: #f1f1f1;
+                  }
+                  .info {
+                    background: #e9bd9d;
+                    color: #1d1d1d;
+                    border-radius: 8px;
+                    padding: 1em;
+                    padding-bottom: 0.25em;
+                    font-size: 0.75em;
+                  }
+                  .overlay {
+                    max-width: 100% !important;
+                    max-height: 100% !important;
+                  }
+                </style>
+              </custom-style>
+              <div class="vertical-section-container">
+                <date-picker id="eventPicker" opened="{{opened}}" not-native date="{{date}}" current-hovered-day="{{currentHoveredDay}}" vertical-align="bottom"></date-picker>
+                <template is="dom-if" if="[[currentHoveredDay]]">
+                  <overlay-element class="overlay" opened$="[[opened]]" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                    <div class="info">
+                      <div><b>[[_toLocaleDateString(currentHoveredDay.dataset.date)]]</b></div>
+                      <ul>
+                        <template is="dom-repeat" items="[[_generateEventList(currentHoveredDay.dataset.date)]]">
+                          <li><b>[[item.time]]:  </b>[[item.detail]]</li>
+                        </template>
+                      </ul>
+                    </div>
+                  </overlay-element>
+                </template>
               </div>
             </template>
           </dom-bind>
+          <script>
+            const bind = document.querySelector('#eventPickerDemo');
+            bind._toLocaleDateString = function(datestr) {
+              return new Date(datestr).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            }
+            bind._generateEventList = function() {
+              const list = [];
+              const startHour = 8;
+              const endHour = 21;
+              const where = ['at the bar', 'at the beach', 'at the forest', 'at the zoo', 'in the cinema', 'on the moon', 'in the trunk'];
+              const who = ['Mom', 'Peter', 'Paul', 'Mary', 'Sally', 'my dog', 'my lawyer'];
+              const what = ['see', 'put', 'swim with', 'walk with', 'watch', 'meet with'];
+              for (let i = startHour; i < endHour; i++) {
+                if (Math.random() > 0.75) {
+                  list.push( {
+                    time: i + ':00',
+                    detail: what[Math.floor(what.length*Math.random())] + ' ' + who[Math.floor(who.length*Math.random())] + ' ' + where[Math.floor(where.length*Math.random())]
+                  })
+                }
+              }
+              return list;
+            }
+          </script>
         </template>
       </demo-snippet>
     </div>

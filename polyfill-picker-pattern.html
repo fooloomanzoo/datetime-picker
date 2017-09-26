@@ -43,7 +43,8 @@
           opened: {
             type: Boolean,
             reflectToAttribute: true,
-            value: false
+            value: false,
+            notify: true
           },
 
           /**
@@ -243,6 +244,16 @@
         `;
       }
 
+      connectedCallback() {
+        super.connectedCallback();
+        this.addEventListener('click', this.open, false);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.removeEventListener('click', this.open, false);
+      }
+
       /**
        * key press event handler
        * @param  {[type]} e Event
@@ -274,8 +285,12 @@
 
       /**
        * close the picker
+       * @param  {[type]} e Event
        */
-      close() {
+      close(e) {
+        if (e && e.stopPropagation) {
+          e.stopPropagation();
+        }
         if (super.close) {
           super.close();
         }
@@ -284,8 +299,12 @@
 
       /**
        * toggle the picker
+       * @param  {[type]} e Event
        */
-      toggle() {
+      toggle(e) {
+        if (e && e.stopPropagation) {
+          e.stopPropagation();
+        }
         if (super.toggle) {
           super.toggle();
         }

@@ -139,7 +139,7 @@
               </div>
             </div>
 
-            <div id="dates" on-click="_onClick">
+            <div id="dates" on-click="_onClickDay" on-mousemove="_onMouseMoveDay">
               <div class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
               </div>
@@ -173,6 +173,15 @@
         clamp: {
           type: String,
           value: 'hours'
+        },
+
+        /**
+         * current hovered day node
+         * to access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString
+         */
+        currentHoveredDay: {
+          type: Node,
+          notify: true
         },
 
         /**
@@ -214,17 +223,34 @@
       ]
     }
 
-    _onClick(e) {
+    connectedCallback() {
+      super.connectedCallback();
+      this.addEventListener('keyup', this._cancelTimeout.bind(this), false);
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      this.removeEventListener('keyup', this._cancelTimeout.bind(this), false);
+    }
+
+    _onClickDay(e) {
+      this._onMouseMoveDay(e);
+      if (this.currentHoveredDay) {
+        this.date = this.currentHoveredDay.dataset.date;
+        this._currentSelected = this.currentHoveredDay;
+      }
+    }
+
+    _onMouseMoveDay(e) {
       if (e) {
         const paths = e.path || [e.target];
         for (let i = 0; i < paths.length; i++) {
           if (paths[i].dataset && paths[i].dataset.date) {
-            if (this._currentSelected) {
-              this._currentSelected.classList.remove('selected');
+            if (this.currentHoveredDay) {
+              this.currentHoveredDay.classList.remove('hovered');
             }
-            paths[i].classList.add('selected');
-            this.date = paths[i].dataset.date;
-            this._currentSelected = paths[i];
+            paths[i].classList.add('hovered');
+            this.currentHoveredDay = paths[i];
             break;
           }
         }
@@ -245,44 +271,30 @@
 
     now() {
       super.now();
-      this._jumpToNow();
-    }
-
-    _jumpToNow() {
       const d = new Date();
       this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
     }
 
     _prev() {
-      this._cancelTimeout();
-      if (this._hideMonth) {
-        this._incremViewYear(-1);
-        this._activeJob = setInterval(() => {
-          this._incremViewYear(-1);
-        }, 200);
-      } else {
-        this._incremViewMonth(-1);
-        this._activeJob = setInterval(() => {
-          this._incremViewMonth(-1);
-        }, 200);
-      }
+      this._increm(-1);
     }
 
-    _next(e) {
-      console.log(e, e.target);
+    _next() {
+      this._increm(1);
+    }
+
+    _increm(i) {
       this._cancelTimeout();
-      if (e) {
-        if (this._hideMonth) {
-          this._incremViewYear(1);
-          this._activeJob = setInterval(() => {
-            this._incremViewYear(1);
-          }, 200);
-        } else {
-          this._incremViewMonth(1);
-          this._activeJob = setInterval(() => {
-            this._incremViewMonth(1);
-          }, 200);
-        }
+      if (this._hideMonth) {
+        this._incremViewYear(i);
+        this._activeJob = setInterval(() => {
+          this._incremViewYear(i);
+        }, 200);
+      } else {
+        this._incremViewMonth(i);
+        this._activeJob = setInterval(() => {
+          this._incremViewMonth(i);
+        }, 200);
       }
     }
 
@@ -421,6 +433,27 @@
     _maxChanged(max) {
       super._maxChanged(max);
       this.renderCalendar(this._viewYear, this._viewMonth);
+    }
+
+    /**
+     * key press event handler
+     * @param  {[type]} e Event
+     */
+    _checkKeycode(e) {
+      if (super._checkKeycode) {
+        super._checkKeycode(e);
+      }
+
+      if (e && e.keyCode) {
+        switch (e.keyCode) {
+          case 37:
+            this._prev();
+            break;
+          case 39:
+            this._next();
+            break;
+        }
+      }
     }
 
   }
