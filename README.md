@@ -104,7 +104,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 
 #### Use the polyfill or the native picker
-By default it checks if `datetime-local`, `date` or `time` is supported as input. If it is not or you set ``, the polyfill will be used instead of the native:
+By default it checks if `datetime-local`, `date` or `time` is supported as input. If `native` is set, the native picker will be used instead of the polyfill:
 
 <!--
 ```
