@@ -13,7 +13,10 @@
     "date",
     "calendar",
     "time",
-    "timer"
+    "timer",
+    "range",
+    "input",
+    "polyfill"
   ],
   "repository": {
     "type": "git",
@@ -23,7 +26,8 @@
   "dependencies": {
     "polymer": "Polymer/polymer#1.9 - 2",
     "iron-overlay-behavior": "PolymerElements/iron-overlay-behavior",
-    "number-input": "fooloomanzoo/number-input"
+    "number-input": "fooloomanzoo/number-input",
+    "input-picker-pattern": "fooloomanzoo/input-picker-pattern"
   },
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs",
@@ -34,7 +38,9 @@
   "variants": {
     "1.x": {
       "dependencies": {
-        "polymer": "Polymer/polymer#^1.9"
+        "polymer": "Polymer/polymer#^1.9",
+        "number-input": "fooloomanzoo/number-input",
+        "input-picker-pattern": "fooloomanzoo/input-picker-pattern"
       },
       "devDependencies": {
         "web-component-tester": "^4.0.0",

@@ -1,8 +1,8 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="../input-picker-pattern/dropdown-style.html">
 
 <link rel="import" href="polyfill-picker-pattern.html">
-<link rel="import" href="dropdown-style.html">
 <link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="calendar-element.html">
 
@@ -32,12 +32,12 @@
    *  @customElement
    *
    *  @appliesMixin CalendarElementPattern
-   *  @appliesMixin PickerMixin
+   *  @appliesMixin DatetimePickerMixin
    *  @appliesMixin PolyfillPickerPattern
    *
    *  @demo demo/date-picker.html
    **/
-    class DatePicker extends PolyfillPickerPattern(CalendarElementPattern(PickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
+    class DatePicker extends PolyfillPickerPattern(CalendarElementPattern(DatetimePickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-picker';
@@ -70,7 +70,7 @@
       }
 
       renderCalendar(_viewYear, _viewMonth, day) {
-        if (DatePicker._hasNative && !this.notNative) {
+        if (DatePicker._hasNative && !!this.native) {
           return;
         }
         super.renderCalendar(_viewYear, _viewMonth, day);

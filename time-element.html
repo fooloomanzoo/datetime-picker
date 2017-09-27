@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../number-input/number-input.html">
 
-<link rel="import" href="picker-mixin.html">
+<link rel="import" href="datetime-picker-mixin.html">
 
 <script>
   /**
@@ -167,21 +167,6 @@
       this.isAm = !this.isAm;
     }
 
-    /**
-     * key press event handler
-     * @param  {[type]} e Event
-     */
-    _checkKeycode(e) {
-      if (super._checkKeycode) {
-        super._checkKeycode(e);
-      }
-
-      console.log(e.keyCode, this.hours, this.hours12);
-      if (e && e.keyCode === 27) {
-        this.close();
-      }
-    }
-
   }
 </script>
 
@@ -217,11 +202,11 @@
        * @polymer
        *
        * @appliesMixin TimeElementPattern
-       * @appliesMixin PickerMixin
+       * @appliesMixin DatetimePickerMixin
        *
        * @demo demo/time-picker.html
        **/
-    class TimeElement extends TimeElementPattern(PickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
+    class TimeElement extends TimeElementPattern(DatetimePickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';

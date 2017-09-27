@@ -279,10 +279,12 @@
 
       _minChanged(min) {
         if (min === undefined) return;
-        if (this.max && min > this.max) {
+        min = new Date(min);
+        const max = new Date(this.max);
+        if (max && min > max) {
           this.setProperties({
-            min: this.max,
-            max: min
+            min: max.toISOString(),
+            max: min.toISOString()
           });
           return;
         }
@@ -292,10 +294,12 @@
 
       _maxChanged(max) {
         if (max === undefined) return;
-        if (this.min && this.min > max) {
+        max = new Date(max);
+        const min = new Date(this.min);
+        if (min && min > max) {
           this.setProperties({
-            min: max,
-            max: this.min
+            min: max.toISOString(),
+            max: min.toISOString()
           });
           return;
         }

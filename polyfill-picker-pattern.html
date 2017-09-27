@@ -1,115 +1,17 @@
+<link rel="import" href="../input-picker-pattern/input-picker-pattern.html">
+
 <script>
   /**
    * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
+   *
+   * @appliesMixin InputPickerPattern
    *
    * @mixinFunction
    * @polymer
    */
   const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
-    return class extends superClass {
-      /**
-       * the expected input type, that should be polyfilled, if not available
-       * @type {string}
-       */
-      static get expectedNativeInputType() {
-        return 'datetime-local';
-      }
-
-      /**
-       * test `expectedNativeInputType`, if that native input is supported
-       * @type {string}
-       */
-      static get hasNative() {
-        const inputDate = document.createElement('input');
-        inputDate.setAttribute('type', `${this.expectedNativeInputType}`);
-        this._hasNative = inputDate.type === `${this.expectedNativeInputType}`;
-        return this._hasNative;
-      }
-
-      static get properties() {
-        return {
-          /**
-           * Force to not use the native input, even if it exists
-           */
-          notNative: {
-            type: Boolean,
-            value: false
-          },
-
-          /**
-           * opens the picker
-           */
-          opened: {
-            type: Boolean,
-            reflectToAttribute: true,
-            value: false,
-            notify: true
-          },
-
-          /**
-           * The orientation against which to align the element horizontally
-           * relative to the related input element. Possible values are "left", "right", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
-           */
-          horizontalAlign: {
-            type: String,
-            reflectToAttribute: true
-          },
-          /**
-           * The orientation against which to align the element vertically
-           * relative to the related input element. Possible values are "top", "bottom", "auto". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)
-           */
-          verticalAlign: {
-            type: String,
-            reflectToAttribute: true,
-            value: 'top'
-          },
-
-          /**
-           * disables the input elements
-           */
-          disabled: {
-            type: Boolean,
-            value: false
-          },
-
-          /**
-           * Set to true to disable canceling the overlay with the ESC key.
-           */
-          noCancelOnEscKey: {
-            type: Boolean,
-            value: false
-          }
-
-        }
-      }
-
-      static get template() {
-        return `
-          ${this._styleTemplate}
-          ${this.hasNative ? this._native : this._polyfill}
-        `
-      }
-
-      /**
-       * custom style template
-       * @type {string}
-       */
-      static get _styleTemplate() {
-        return `
-          <style include="${this.customStyleToInclude}">
-            ${this.customStyleContent}
-          </style>
-        `;
-      }
-
-      /**
-       * custom style to include in `<style include="..."`
-       * @type {string}
-       */
-      static get customStyleToInclude() {
-        return ``;
-      }
+    return class extends InputPickerPattern(superClass) {  // eslint-disable-line no-undef
 
       /**
        * custom style content
@@ -118,197 +20,31 @@
       static get customStyleContent() {
         return `
           ${super.customStyleContent}
-          :host {
-            display: inline-flex;
-          }
-          input.native {
-            @apply --datetime-input;
-          }
-          .icon.close,
-          .icon.now {
-            position: absolute;
-            right: 0;
-            top: auto;
-            bottom: auto;
-            transform: translate(200%, 0);
-            border-radius: 4px;
-            color: initial;
-            background: rgba(255,255,255, 0.66);
-            z-index: 1;
-            transform: translate(100%, 0);
-          }
-          .icon.close {
-            transform: translate(200%, 0);
-          }
-          :host([horizontal-align=right][vertical-align=""]) .icon.close {
-            right: auto;
-            left: 0;
-            transform: translate(-100%, 0);
-          }
           .icon:focus,
           .icon:hover {
             @apply --datetime-focus;
           }
           .polyfill {
             @apply --datetime-input;
-            display: -webkit-inline-flex;
-            display: inline-flex;
-            align-items: center;
           }
           .polyfill:focus,
           .polyfill:hover {
             @apply --datetime-focus;
           }
+          input.native {
+            @apply --datetime-input;
+          }
           #picker {
             @apply --datetime-element;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
             @apply --datetime-picker;
+            padding: 0;
           }
-          #picker > :not(:last-child) {
-            border-bottom-left-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-          }
-          #picker > :not(:first-child) {
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
+          :host([horizontal-align=right][vertical-align=""]) .icon.close {
+            right: auto;
+            left: 0;
+            transform: translate(-100%, 0);
           }
         `;
-      }
-
-      /**
-       * template for native input is supported including the polyfill
-       * @type {string}
-       */
-      static get _native() {
-        return `
-          ${this._nativeInputTemplate}
-          <div hidden$="[[!notNative]]">
-            ${this._polyfill}
-          </div>
-        `
-      }
-
-      /**
-       * template for polyfilled input and picker
-       * @type {string}
-       */
-      static get _polyfill() {
-        return `
-          <div class="polyfill">
-            ${this.replacementInputTemplate}
-            ${this._buttonTemplate}
-          </div>
-          ${this.pickerTemplate}
-        `;
-      }
-
-      /**
-       * template for control buttons
-       * @type {string}
-       */
-      static get _buttonTemplate() {
-        return `
-          <svg class="icon now" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
-          <svg class="icon close" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="close"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></svg>
-        `;
-      }
-
-      /**
-       * template for native input element
-       * @type {string}
-       */
-      static get _nativeInputTemplate() {
-        return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[notNative]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.nativeInputBinding || this.expectedNativeInputType}::input}}" step="1">
-        `;
-      }
-
-      /**
-       * template for the replacement of the native input elements
-       * @type {string}
-       */
-      static get replacementInputTemplate() {
-        return ``;
-      }
-
-      /**
-       * template for the picker
-       * @type {string}
-       */
-      static get pickerTemplate() {
-        return `
-          <div id="picker">
-          </div>
-        `;
-      }
-
-      connectedCallback() {
-        super.connectedCallback();
-        this.addEventListener('click', this.open, false);
-      }
-
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        this.removeEventListener('click', this.open, false);
-      }
-
-      /**
-       * key press event handler
-       * @param  {[type]} e Event
-       */
-      _checkKeycode(e) {
-        if (super._checkKeycode) {
-          super._checkKeycode(e);
-        }
-        if (e && e.keyCode === 27 && !this.noCancelOnEscKey) {
-          this.close();
-        }
-      }
-
-      now() {
-        if (super.now) {
-          super.now();
-        }
-      }
-
-      /**
-       * open the picker
-       */
-      open() {
-        if (super.open) {
-          super.open();
-        }
-        this.opened = true;
-      }
-
-      /**
-       * close the picker
-       * @param  {[type]} e Event
-       */
-      close(e) {
-        if (e && e.stopPropagation) {
-          e.stopPropagation();
-        }
-        if (super.close) {
-          super.close();
-        }
-        this.opened = false;
-      }
-
-      /**
-       * toggle the picker
-       * @param  {[type]} e Event
-       */
-      toggle(e) {
-        if (e && e.stopPropagation) {
-          e.stopPropagation();
-        }
-        if (super.toggle) {
-          super.toggle();
-        }
-        this.opened = !this.opened;
       }
     }
   }

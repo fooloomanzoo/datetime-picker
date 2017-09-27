@@ -7,16 +7,17 @@
   "description": "A picker for date and time, that prefers to use the native input. It includes a calendar and a timer.",
   "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
   "keywords": [
-    "web-component",
-    "web-components",
+    "webcomponents",
     "polymer",
-    "datepicker",
-    "datetimepicker",
-    "datetime-picker",
-    "calendar",
+    "picker",
     "datetime",
+    "date",
+    "calendar",
     "time",
-    "date"
+    "timer",
+    "range",
+    "input",
+    "polyfill"
   ],
   "main": "index.html",
   "scripts": {

@@ -1,5 +1,5 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker)
-[![API](https://img.shields.io/badge/API-available-green.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/elements/atetime-picker)
+[![API](https://img.shields.io/badge/API-available-green.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/elements/datetime-picker)
 [![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/demo/demo/datetime-picker.html)
 
 _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)_
@@ -7,7 +7,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 ### What is it for?
 
-`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `<calendar-element>` and the `<time-element>` will be used if the native picker is not available or is explicitly wanted.
+`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element use the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
 
@@ -25,14 +25,14 @@ Every Element has the same API, so that it would use the native or the polyfill 
 
 ### Motivation
 
-Internally it tests the browser, if **native** input-types `datetime-local`, `date` or `time` are supported. If it is not, a `<calendar-element>` or a `<time-element>` will be displayed instead, according to the kind of picker. You can decide to use the native or the replacements during runtime. calendar-element and time-element can also be used separately. **Internationalization** of the view in the pickers is inplemented and the attributes remain in **iso8061**-format.
+Internally it tests the browser, if **native** input-types `datetime-local`, `date` or `time` are supported. If it is not, a `<calendar-element>` or a `<time-element>` will be displayed instead, according to the kind of picker you choose. You can decide to use the native or the replacements during runtime. calendar-element and time-element can also be used separately. **Internationalization** of the view in the pickers is inplemented and the attributes remain in **iso8061**-format.
 
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, you like to have a different look or you would like to have a guaranteed working **datetime-picker**.
 
 Another use case could be for example, if you want on *mobile devices* use the native picker, when supported, and on *desktop devices* this polyfill.
 
 ```html
-  <datetime-picker not-native="[[!isMobile]]"></datetime-picker>
+  <datetime-picker native="[[isMobile]]"></datetime-picker>
   ...
     isMobile() {
       const ua = window.navigator.userAgent;
@@ -53,6 +53,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 <custom-element-demo height="300">
   <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
@@ -80,6 +81,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 <custom-element-demo height="100">
   <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
@@ -102,12 +104,13 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 
 #### Use the polyfill or the native picker
-By default it checks if `datetime-local`, `date` or `time` is supported as input. If it is not or you set `not-native`, the polyfill will be used instead of the native:
+By default it checks if `datetime-local`, `date` or `time` is supported as input. If it is not or you set ``, the polyfill will be used instead of the native:
 
 <!--
 ```
 <custom-element-demo height="410">
   <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
@@ -126,14 +129,49 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 -->
 
 ```html
-  <p>Polyfill Picker <datetime-picker not-native value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
+  <p>Polyfill Picker <datetime-picker  value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
 
-  <p>Native Picker <datetime-picker value="{{value}}"></datetime-picker></p>
+  <p>Native Picker <datetime-picker native value="{{value}}"></datetime-picker></p>
 
   <p>
     Two pickers can be synchronized: [[synchronized]]
     A number representation is automatically provided: [[value]]
   </p>
+```
+
+#### Define date ranges
+Set cross data bindings to limit the values of the inputs. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html):
+
+<!--
+```
+<custom-element-demo height="300">
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="datetime-picker.html">
+    <style>
+      html {
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+    </style>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
+  </template>
+</custom-element-demo>
+```
+-->
+
+```html
+<div class="vertical-section-container">
+  <date-picker class="begin" datetime="{{min}}" max="{{max}}"></date-picker>
+  <date-picker class="end" datetime="{{max}}" min="{{min}}"></date-picker>
+</div>
+<div class="vertical-section-container result">
+  <div><code>start</code>: <b>[[min]]</b></div>
+  <div><code>end</code>: <b>[[max]]</b></div>
+</div>
 ```
 
 #### Use it in an overlay
@@ -146,6 +184,7 @@ Choose then the related elements:
 ```
 <custom-element-demo height="380">
   <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
@@ -163,7 +202,7 @@ Choose then the related elements:
 -->
 
 ```html
-<overlay-datetime-picker value="{{value}}" not-native></overlay-datetime-picker>
+<overlay-datetime-picker value="{{value}}" ></overlay-datetime-picker>
 <p>value: [[value]]</p>
 ```
 
@@ -174,6 +213,7 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 ```
 <custom-element-demo height="300">
   <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
@@ -207,19 +247,11 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 </p>
 
 <p>
-  <calendar-element locale="{{locale}}" date="{{date}}" not-native></calendar-element>
-  <time-element locale="{{locale}}" hour12 datetime="{{datetime}}" date="{{date}}" not-native></time-element>
+  <calendar-element locale="{{locale}}" date="{{date}}" ></calendar-element>
+  <time-element locale="{{locale}}" hour12 datetime="{{datetime}}" date="{{date}}" ></time-element>
 </p>
 
 <p>datetime: [[datetime]]</p>
-```
-
-#### Define date ranges
-Set cross data bindings to limit the values of the inputs. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html):
-
-```html
-<datetime-picker id="from" datetime="{{min}}" max="[[max]]"></datetime-picker>
-<datetime-picker id="to" datetime="{{max}}" min="[[min]]"></datetime-picker>
 ```
 
 ### Installation
@@ -260,8 +292,9 @@ bower update
   - internationalization/localization for datetime-part-order and separation signs
   - abstractions of each element leads to smaller file sizes
 
-* 2.2.0
-  - `use-not-native` is renamed to `not-native`
+* 2.3.5
+  - `not-native` is deprecated, use `native` to get a native picker
+  - `dropdown-style.html` moved to `input-picker-pattern`
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!

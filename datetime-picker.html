@@ -1,9 +1,8 @@
 <link rel="import" href="../polymer/polymer-element.html">
-
 <link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="../input-picker-pattern/dropdown-style.html">
 
 <link rel="import" href="polyfill-picker-pattern.html">
-<link rel="import" href="dropdown-style.html">
 <link rel="import" href="time-element.html">
 <link rel="import" href="calendar-element.html">
 
@@ -19,7 +18,7 @@
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.
      *
      *  ```html
-     *    <datetime-picker not-native="[[!isMobile]]"></datetime-picker>
+     *    <datetime-picker ="[[!isMobile]]"></datetime-picker>
      *    ...
      *      isMobile() {
      *        const ua = window.navigator.userAgent;
@@ -46,12 +45,12 @@
      *
      *  @appliesMixin CalendarElementPattern
      *  @appliesMixin TimeElementPattern
-     *  @appliesMixin PickerMixin
+     *  @appliesMixin DatetimePickerMixin
      *  @appliesMixin PolyfillPickerPattern
      *
      *  @demo demo/datetime-picker.html
      **/
-    class DatetimePicker extends PolyfillPickerPattern(TimeElementPattern(CalendarElementPattern(PickerMixin(Polymer.Element)))) { // eslint-disable-line no-undef
+    class DatetimePicker extends PolyfillPickerPattern(TimeElementPattern(CalendarElementPattern(DatetimePickerMixin(Polymer.Element)))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'datetime-picker';
@@ -103,7 +102,7 @@
       }
 
       renderCalendar(_viewYear, _viewMonth, day) {
-        if (DatetimePicker._hasNative && !this.notNative) {
+        if (DatetimePicker._hasNative && !!this.native) {
           return;
         }
         super.renderCalendar(_viewYear, _viewMonth, day);

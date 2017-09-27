@@ -40,7 +40,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></date-picker>
+              <date-picker native value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -48,85 +48,6 @@
               </div>
             </template>
           </dom-bind>
-        </template>
-      </demo-snippet>
-    </div>
-
-    <div class="vertical-section-container centered">
-      <h3>use the properties to extend a picker to a custom event lists</h3>
-      <demo-snippet>
-        <template>
-          <dom-bind id="eventPickerDemo">
-            <template is="dom-bind">
-              <custom-style>
-                <style is="custom-style">
-                  #eventPicker {
-                    --datetime-selected-background: #ddcd7e;
-                    --datetime-selected-color: #202020;
-                    --datetime-background: #b07143;
-                    --datetime-color: #f1f1f1;
-                  }
-                  .info {
-                    background: #e9bd9d;
-                    color: #1d1d1d;
-                    border-radius: 8px;
-                    padding: 1em;
-                    padding-bottom: 0.25em;
-                    font-size: 0.75em;
-                    position: absolute;
-                    opacity: 0;
-                    transition: opacity 150ms cubic-bezier(0.6, 1, 0.2, 1);
-                    bottom: 0; left: 0;
-                    transform: translateY(100%);
-                    z-index: 1;
-                  }
-                  .info[opened] {
-                    opacity: 1;
-                  }
-                  .vertical-section-container {
-                    position: relative;
-                  }
-                </style>
-              </custom-style>
-              <div class="vertical-section-container">
-                <date-picker id="eventPicker" opened="{{opened}}" not-native date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
-                <template is="dom-if" if="[[currentSelectedDayNode]]">
-                  <div class="info" opened$="[[opened]]">
-                    <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
-                    <ul>
-                      <template is="dom-repeat" items="[[_generateEventList(currentSelectedDayNode.dataset.date)]]">
-                        <li><b>[[item.time]]:  </b>[[item.detail]]</li>
-                      </template>
-                    </ul>
-                  </div>
-                </template>
-              </div>
-            </template>
-          </dom-bind>
-          <script>
-            const bind = document.querySelector('#eventPickerDemo');
-            bind._toLocaleDateString = function(datestr) {
-              console.log(datestr);
-              return new Date(datestr).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            }
-            bind._generateEventList = function() {
-              const list = [];
-              const startHour = 8;
-              const endHour = 21;
-              const where = ['at the bar', 'at the beach', 'at the forest', 'at the zoo', 'in the cinema', 'on the moon', 'in the trunk'];
-              const who = ['Mom', 'Peter', 'Paul', 'Mary', 'Sally', 'my dog', 'my lawyer'];
-              const what = ['see', 'put', 'swim with', 'walk with', 'watch', 'meet with'];
-              for (let i = startHour; i < endHour; i++) {
-                if (Math.random() > 0.75) {
-                  list.push( {
-                    time: i + ':00',
-                    detail: what[Math.floor(what.length*Math.random())] + ' ' + who[Math.floor(who.length*Math.random())] + ' ' + where[Math.floor(where.length*Math.random())]
-                  })
-                }
-              }
-              return list;
-            }
-          </script>
         </template>
       </demo-snippet>
     </div>
@@ -154,8 +75,8 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="begin" not-native datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" not-native datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker class="begin"  datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
+                <date-picker class="end"  datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>start</code>: <b>[[min]]</b></div>
@@ -163,6 +84,81 @@
               </div>
             </template>
           </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>use the properties to extend a picker to a custom event lists</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="eventPickerDemo">
+            <template is="dom-bind">
+              <custom-style>
+                <style is="custom-style">
+                  #eventPicker {
+                    --datetime-selected-background: #ddcd7e;
+                    --datetime-selected-color: #202020;
+                    --datetime-background: #b07143;
+                    --datetime-color: #f1f1f1;
+                  }
+                  .info {
+                    background: #e9bd9d;
+                    color: #1d1d1d;
+                    border-radius: 4px;
+                    padding: 1em;
+                    padding-bottom: 0.25em;
+                    font-size: 0.75em;
+                  }
+                  .overlay {
+                    max-width: 100% !important;
+                    max-height: 100% !important;
+                  }
+                </style>
+              </custom-style>
+              <div class="vertical-section-container">
+                <date-picker id="eventPicker" opened="{{opened}}"  date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
+                <template is="dom-if" if="[[currentSelectedDayNode]]">
+                  <overlay-element class="overlay" opened$="[[opened]]" on-click="close" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                    <div class="info">
+                      <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
+                      <ul>
+                        <template is="dom-repeat" items="[[_generateEventList(currentSelectedDayNode.dataset.date)]]">
+                          <li><b>[[item.time]]:  </b>[[item.detail]]</li>
+                        </template>
+                      </ul>
+                    </div>
+                  </overlay-element>
+                </template>
+              </div>
+            </template>
+          </dom-bind>
+          <script>
+            const bind = document.querySelector('#eventPickerDemo');
+            bind._toLocaleDateString = function(datestr) {
+              return new Date(datestr).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            }
+            bind._generateEventList = function() {
+              const list = [];
+              const startHour = 8;
+              const endHour = 21;
+              const where = ['at the bar', 'at the beach', 'at the forest', 'at the zoo', 'in the cinema', 'on the moon', 'in the trunk'];
+              const who = ['Mom', 'Peter', 'Paul', 'Mary', 'Sally', 'my dog', 'my lawyer'];
+              const what = ['see', 'put', 'swim with', 'walk with', 'watch', 'meet with'];
+              for (let i = startHour; i < endHour; i++) {
+                if (Math.random() > 0.75) {
+                  list.push( {
+                    time: i + ':00',
+                    detail: what[Math.floor(what.length*Math.random())] + ' ' + who[Math.floor(who.length*Math.random())] + ' ' + where[Math.floor(where.length*Math.random())]
+                  })
+                }
+              }
+              return list;
+            }
+            bind.close = function() {
+              this.opened = false;
+            }
+          </script>
         </template>
       </demo-snippet>
     </div>
@@ -184,7 +180,7 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="clamp" not-native date="{{date}}" clamp="day" vertical-align="top"></date-picker>
+                <date-picker class="clamp"  date="{{date}}" clamp="day" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>date</code>: <b>[[date]]</b></div>

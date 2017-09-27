@@ -40,7 +40,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></time-picker>
+              <time-picker native value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -58,7 +58,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker not-native hour12 time="{{time}}" vertical-align="bottom"></time-picker>
+              <time-picker  hour12 time="{{time}}" vertical-align="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>time</code>: <b>[[time]]</b></div>
               </div>
@@ -74,8 +74,8 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker not-native value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></date-picker>
-              <time-picker not-native value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></time-picker>
+              <date-picker  value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></date-picker>
+              <time-picker  value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></time-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -105,11 +105,11 @@
               </custom-style>
               <div class="vertical-section-container">
                 <b>starting time:</b>
-                <time-picker class="begin" not-native date="{{date}}" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
+                <time-picker class="begin"  date="{{date}}" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
                 <b>end time:</b>
-                <time-picker class="end" not-native date="{{date}}" datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
+                <time-picker class="end"  date="{{date}}" datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
                 <b>at date:</b>
-                <date-picker not-native date="{{date}}" vertical-align="top"></date-picker>
+                <date-picker  date="{{date}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <code>start:</code>
@@ -140,7 +140,7 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <time-picker class="clamp" not-native time="{{time}}" clamp="seconds" vertical-align="bottom"></time-picker>
+                <time-picker class="clamp"  time="{{time}}" clamp="seconds" vertical-align="bottom"></time-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>time</code>: <b>[[time]]</b></div>

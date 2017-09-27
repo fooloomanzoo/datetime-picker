@@ -1,8 +1,8 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="../input-picker-pattern/dropdown-style.html">
 
 <link rel="import" href="polyfill-picker-pattern.html">
-<link rel="import" href="dropdown-style.html">
 <link rel="import" href="datetime-shared-style.html">
 <link rel="import" href="time-element.html">
 
@@ -32,12 +32,12 @@
    *  @customElement
    *
    *  @appliesMixin TimeElementPattern
-   *  @appliesMixin PickerMixin
+   *  @appliesMixin DatetimePickerMixin
    *  @appliesMixin PolyfillPickerPattern
    *
    *  @demo demo/time-picker.html
    **/
-    class TimePicker extends PolyfillPickerPattern(TimeElementPattern(PickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
+    class TimePicker extends PolyfillPickerPattern(TimeElementPattern(DatetimePickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-picker';

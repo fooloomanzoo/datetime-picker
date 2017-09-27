@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../number-input/number-input.html">
 
-<link rel="import" href="picker-mixin.html">
+<link rel="import" href="datetime-picker-mixin.html">
 
 <script>
   /**
@@ -506,11 +506,11 @@
   * @polymer
   *
   * @appliesMixin CalendarElementPattern
-  * @appliesMixin PickerMixin
+  * @appliesMixin DatetimePickerMixin
   *
   * @demo demo/date-picker.html
   **/
-    class CalendarElement extends CalendarElementPattern(PickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
+    class CalendarElement extends CalendarElementPattern(DatetimePickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'calendar-element';
