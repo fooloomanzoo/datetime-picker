@@ -165,8 +165,8 @@ Set cross data bindings to limit the values of the inputs. Please also visit the
 
 ```html
 <div class="vertical-section-container">
-  <date-picker class="begin" datetime="{{min}}" max="{{max}}"></date-picker>
-  <date-picker class="end" datetime="{{max}}" min="{{min}}"></date-picker>
+  <datetime-picker class="begin" datetime="{{min}}" max="{{max}}"></datetime-picker>
+  <datetime-picker class="end" datetime="{{max}}" min="{{min}}"></datetime-picker>
 </div>
 <div class="vertical-section-container result">
   <div><code>start</code>: <b>[[min]]</b></div>
