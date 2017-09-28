@@ -9,7 +9,7 @@
 <dom-module id="datetime-picker">
   <script>
     /**
-     *  `datetime-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* datetime-picker, if it exists, or to replace it by a CustomElement. The the `time-element` will just be used if the native picker is not available or is explicitly wanted.
+     *  `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** datetime-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
      *
      *  ```html
      *    <datetime-picker value="{{value}}"></datetime-picker>
@@ -18,7 +18,7 @@
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.
      *
      *  ```html
-     *    <datetime-picker ="[[!isMobile]]"></datetime-picker>
+     *    <datetime-picker native="[[isMobile]]"></datetime-picker>
      *    ...
      *      isMobile() {
      *        const ua = window.navigator.userAgent;
@@ -47,6 +47,7 @@
      *  @appliesMixin TimeElementPattern
      *  @appliesMixin DatetimePickerMixin
      *  @appliesMixin PolyfillPickerPattern
+     *  @appliesMixin InputPickerPattern
      *
      *  @demo demo/datetime-picker.html
      **/

@@ -5,7 +5,7 @@
 <dom-module id="overlay-date-picker">
   <script>
     /**
-     *   `overlay-date-picker` extends `datetime-picker` and create the polyfilled element `calendar-element` in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings. *IronOverlayBehavior* itself extends also *IronFitBehavior* and *IronResizableBehavior*.
+     *   `overlay-date-picker` extends `date-picker` in an overlay.
      *
      *   ```html
      *   <overlay-date-picker value="{{value}}" ></overlay-date-picker>
@@ -14,7 +14,7 @@
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.
      *
      *  ```html
-     *    <overlay-date-picker ="[[!isMobile]]"></overlay-date-picker>
+     *    <overlay-date-picker native="[[isMobile]]"></overlay-date-picker>
      *    ...
      *      isMobile() {
      *        const ua = window.navigator.userAgent;
@@ -22,8 +22,6 @@
      *      }
      *    ...
      *  ```
-     *
-     *  If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
      *
      * Custom property | Description | Default
      * ----------------|-------------|----------

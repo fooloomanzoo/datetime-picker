@@ -9,7 +9,7 @@
 <dom-module id="date-picker">
   <script>
   /**
-   *  `date-picker` is a picker for date for **[Polymer](https://github.com/Polymer/polymer)** that prefers to use the native input. This element is for using the *native* date-picker, if it exists, or to replace it by a CustomElement. The `calendar-element` and the `time-element` will just be used if the native picker is not available or is explicitly wanted.
+   *  `date-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
    *
    *  ```html
    *    <date-picker value="{{value}}"></date-picker>
