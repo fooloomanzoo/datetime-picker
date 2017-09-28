@@ -2532,6 +2532,139 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -2540,38 +2673,38 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 139,
+              "line": 223,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 226,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 147,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 150,
+              "line": 231,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_onClickDay",
@@ -2917,13 +3050,13 @@
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 262,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 244,
               "column": 7
             }
           },
@@ -2935,7 +3068,7 @@
               "description": "Event"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeTime",
@@ -3267,6 +3400,75 @@
             "desc": "true when should be hidden"
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -3650,6 +3852,114 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -8247,6 +8557,139 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -8255,38 +8698,38 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 139,
+              "line": 223,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 226,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 147,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 150,
+              "line": 231,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_onClickDay",
@@ -8632,13 +9075,13 @@
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 262,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 244,
               "column": 7
             }
           },
@@ -8650,7 +9093,7 @@
               "description": "Event"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_startIncrem",
@@ -9043,6 +9486,75 @@
             "desc": "true when should be hidden"
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -9426,6 +9938,114 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -10220,6 +10840,139 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -10228,38 +10981,38 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 139,
+              "line": 223,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 226,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 147,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 150,
+              "line": 231,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_onClickDay",
@@ -10607,13 +11360,13 @@
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 262,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 244,
               "column": 7
             }
           },
@@ -10625,7 +11378,7 @@
               "description": "Event"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_startIncrem",
@@ -11018,6 +11771,75 @@
             "desc": "true when should be hidden"
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -11401,6 +12223,114 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -12119,6 +13049,139 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -12127,38 +13190,38 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 139,
+              "line": 223,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 226,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 147,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 150,
+              "line": 231,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_onClickDay",
@@ -12506,13 +13569,13 @@
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 262,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 244,
               "column": 7
             }
           },
@@ -12524,7 +13587,7 @@
               "description": "Event"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeTime",
@@ -12856,6 +13919,75 @@
             "desc": "true when should be hidden"
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -13239,6 +14371,114 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -13867,6 +15107,139 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -13875,38 +15248,38 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 139,
+              "line": 223,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 226,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 147,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 150,
+              "line": 231,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_startIncrem",
@@ -14393,13 +15766,13 @@
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 262,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 244,
               "column": 7
             }
           },
@@ -14411,7 +15784,76 @@
               "description": "Event"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -14759,6 +16201,114 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -15392,6 +16942,139 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -15400,38 +17083,38 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 139,
+              "line": 223,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 226,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 147,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 150,
+              "line": 231,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_startIncrem",
@@ -15918,13 +17601,13 @@
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 262,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 266,
+              "line": 244,
               "column": 7
             }
           },
@@ -15936,7 +17619,76 @@
               "description": "Event"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "staticMethods": [],
@@ -16284,6 +18036,114 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -16300,8 +18160,275 @@
       "description": "mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed",
       "summary": "",
       "path": "polyfill-picker-pattern.html",
-      "properties": [],
-      "methods": [],
+      "properties": [
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        }
+      ],
+      "methods": [
+        {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 6
+            },
+            "end": {
+              "line": 226,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disconnectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 228,
+              "column": 6
+            },
+            "end": {
+              "line": 231,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_checkKeycode",
+          "description": "key press event handler",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 237,
+              "column": 6
+            },
+            "end": {
+              "line": 244,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 249,
+              "column": 6
+            },
+            "end": {
+              "line": 254,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 260,
+              "column": 6
+            },
+            "end": {
+              "line": 268,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 274,
+              "column": 6
+            },
+            "end": {
+              "line": 282,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        }
+      ],
       "staticMethods": [],
       "demos": [],
       "metadata": {},
@@ -16317,7 +18444,116 @@
       },
       "privacy": "public",
       "name": "PolyfillPickerPattern",
-      "attributes": [],
+      "attributes": [
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 34,
+              "column": 10
+            },
+            "end": {
+              "line": 37,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 42,
+              "column": 10
+            },
+            "end": {
+              "line": 47,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 53,
+              "column": 10
+            },
+            "end": {
+              "line": 56,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 61,
+              "column": 10
+            },
+            "end": {
+              "line": 65,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 70,
+              "column": 10
+            },
+            "end": {
+              "line": 73,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 78,
+              "column": 10
+            },
+            "end": {
+              "line": 81,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        }
+      ],
       "events": [],
       "styling": {
         "cssVariables": [],
