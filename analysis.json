@@ -30,7 +30,7 @@
         {
           "name": "currentSelectedDayNode",
           "type": "Node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -52,7 +52,7 @@
         {
           "name": "currentHoveredDayNode",
           "type": "Node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -1473,7 +1473,7 @@
         },
         {
           "name": "current-selected-day-node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
               "line": 182,
@@ -1490,7 +1490,7 @@
         },
         {
           "name": "current-hovered-day-node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
               "line": 191,
@@ -1825,7 +1825,7 @@
       ]
     },
     {
-      "description": "`date-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{ border-radius: 4px; padding: 4px; }`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | { border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); }`\n`--datetime-icon` | Mixin applied to closing icon | `{ border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`&lt;date-picker&gt;` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.\n\n ```html\n   <date-picker value=\"{{value}}\"></date-picker>\n ```\n\n If you need an **overlay** then use `overlay-date-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{ border-radius: 4px; padding: 4px; }`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | { border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); }`\n`--datetime-icon` | Mixin applied to closing icon | `{ border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "date-picker.html",
       "properties": [
@@ -1853,7 +1853,7 @@
         {
           "name": "currentSelectedDayNode",
           "type": "Node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -1876,7 +1876,7 @@
         {
           "name": "currentHoveredDayNode",
           "type": "Node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -3513,7 +3513,7 @@
         },
         {
           "name": "current-selected-day-node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -3531,7 +3531,7 @@
         },
         {
           "name": "current-hovered-day-node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -5494,7 +5494,7 @@
       ]
     },
     {
-      "description": "`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** datetime-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.\n\n ```html\n   <datetime-picker value=\"{{value}}\"></datetime-picker>\n ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.\n\n ```html\n   <datetime-picker native=\"[[isMobile]]\"></datetime-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`&lt;datetime-picker&gt;` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** datetime-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.\n\n ```html\n   <datetime-picker value=\"{{value}}\"></datetime-picker>\n ```\n\n A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.\n\n ```html\n   <datetime-picker native=\"[[isMobile]]\"></datetime-picker>\n   ...\n     isMobile() {\n       const ua = window.navigator.userAgent;\n       return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));\n     }\n   ...\n ```\n\n If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "datetime-picker.html",
       "properties": [
@@ -5522,7 +5522,7 @@
         {
           "name": "currentSelectedDayNode",
           "type": "Node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -5545,7 +5545,7 @@
         {
           "name": "currentHoveredDayNode",
           "type": "Node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -7312,7 +7312,7 @@
         },
         {
           "name": "current-selected-day-node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -7330,7 +7330,7 @@
         },
         {
           "name": "current-hovered-day-node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -7805,7 +7805,7 @@
         {
           "name": "currentSelectedDayNode",
           "type": "Node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -7828,7 +7828,7 @@
         {
           "name": "currentHoveredDayNode",
           "type": "Node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -9597,7 +9597,7 @@
         },
         {
           "name": "current-selected-day-node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -9615,7 +9615,7 @@
         },
         {
           "name": "current-hovered-day-node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -10083,7 +10083,7 @@
         {
           "name": "currentSelectedDayNode",
           "type": "Node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -10106,7 +10106,7 @@
         {
           "name": "currentHoveredDayNode",
           "type": "Node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "file": "calendar-element.html",
@@ -11745,7 +11745,7 @@
         },
         {
           "name": "current-selected-day-node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -11763,7 +11763,7 @@
         },
         {
           "name": "current-hovered-day-node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
@@ -12203,7 +12203,7 @@
       "tagname": "overlay-date-picker"
     },
     {
-      "description": "`time-picker` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** time-picker. The `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.\n\n ```html\n   <time-picker value=\"{{value}}\"></time-picker>\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
+      "description": "`&lt;time-picker&gt;` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** time-picker. The `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.\n\n ```html\n   <time-picker value=\"{{value}}\"></time-picker>\n ```\n\n If you need an **overlay** then use `overlay-time-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--datetime-background` | text-color of the time-element | `#2b2b2b`\n`--datetime-color` | text-color of the time-element | `#dadada`\n`--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`\n`--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`\n`--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`\n`--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`\n`--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`\n`--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`",
       "summary": "",
       "path": "time-picker.html",
       "properties": [
@@ -17255,7 +17255,7 @@
       "slots": []
     },
     {
-      "description": "mixin to extend an element for picking date or time to locale formating and hiding certain datetime-properties",
+      "description": "Mixin to extend an element for picking date or time to locale formating and hiding certain datetime-properties",
       "summary": "",
       "path": "datetime-picker-mixin.html",
       "properties": [
@@ -18614,7 +18614,7 @@
         {
           "name": "clamp",
           "type": "string",
-          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "description": "Clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -18634,7 +18634,7 @@
         {
           "name": "currentSelectedDayNode",
           "type": "Node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -18655,7 +18655,7 @@
         {
           "name": "currentHoveredDayNode",
           "type": "Node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -19166,7 +19166,7 @@
       "attributes": [
         {
           "name": "clamp",
-          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "description": "Clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "sourceRange": {
             "start": {
               "line": 173,
@@ -19182,7 +19182,7 @@
         },
         {
           "name": "current-selected-day-node",
-          "description": "current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
               "line": 182,
@@ -19198,7 +19198,7 @@
         },
         {
           "name": "current-hovered-day-node",
-          "description": "node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
+          "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
               "line": 191,
@@ -19228,7 +19228,7 @@
         {
           "name": "clamp",
           "type": "string",
-          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "description": "Clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -19418,7 +19418,7 @@
       "attributes": [
         {
           "name": "clamp",
-          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "description": "Clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
           "sourceRange": {
             "start": {
               "line": 96,
