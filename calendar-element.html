@@ -168,7 +168,7 @@
     static get properties() {
       return {
         /**
-         * clamp datetime to a property
+         * Clamp datetime to a property
          * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
          */
         clamp: {
@@ -177,7 +177,7 @@
         },
 
         /**
-         * current hovered day node
+         * Current hovered day node
          * to access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString
          */
         currentSelectedDayNode: {
@@ -186,7 +186,7 @@
         },
 
         /**
-         * node of the last selected day (warning: if view changes )
+         * Node of the last selected day (warning: if view changes )
          * to access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString
          */
         currentHoveredDayNode: {

@@ -17,13 +17,28 @@ Custom property | Description | Default
 -->
 
 <custom-style>
-  <style is="custom-style">
+  <style is="custom-style" include="input-picker-shared-style">
     html {
       /* initial values */
       --datetime-background: var(--input-background);
       --datetime-color: var(--input-color);
       --datetime-selected-background: var(--input-selected-background);
       --datetime-selected-color: var(--input-selected-color);
+      --datetime-input: {
+        @apply --input-style;
+      };
+      --datetime-focus: {
+        @apply --input-focus;
+      };
+      --datetime-element: {
+        @apply --input-element;
+      };
+      --datetime-picker: {
+        @apply --input-picker;
+      };
+      --datetime-icon: {
+        @apply --input-icon;
+      };
     }
   </style>
 <custom-style>
@@ -53,6 +68,7 @@ Custom property | Description | Default
           @apply --input-icon;
         };
       }
+      input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator,
       input[type="date"]:hover::-webkit-calendar-picker-indicator {
         background: transparent;
       }
