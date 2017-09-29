@@ -12,6 +12,15 @@
   const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
     return class extends InputPickerPattern(superClass) {  // eslint-disable-line no-undef
+      /**
+       * template for native input element
+       * @type {string}
+       */
+      static get _nativeInputTemplate() {
+        return `
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.nativeInputBinding || this.expectedNativeInputType}::input}}" step="1">
+        `;
+      }
 
       /**
        * custom style content
@@ -19,7 +28,7 @@
        */
       static get customStyleContent() {
         return `
-          ${super.customStyleContent}
+          ${super.customStyleContent || ''}
           .icon:focus,
           .icon:hover {
             @apply --datetime-focus;

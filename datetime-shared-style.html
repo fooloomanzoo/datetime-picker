@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 
 <!--
 `datetime-shared-style`
@@ -19,78 +20,42 @@ Custom property | Description | Default
   <style is="custom-style">
     html {
       /* initial values */
-      --datetime-background: #2b2b2b;
-      --datetime-color: #dadada;
-      --datetime-selected-background: var(--primary-color, #394FE8);
-      --datetime-selected-color: #f5f5f5;
+      --datetime-background: var(--input-background);
+      --datetime-color: var(--input-color);
+      --datetime-selected-background: var(--input-selected-background);
+      --datetime-selected-color: var(--input-selected-color);
     }
   </style>
 <custom-style>
 
 <dom-module id="datetime-shared-style">
   <template>
-    <style>
+    <style include="input-picker-shared-style">
       :host {
-        font-family: inherit;
-        font-size: inherit;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: transparent;
-        outline-width: 0;
-        -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
-        position: relative;
-        box-sizing: content-box;
-        padding: 6px;
+        --input-background: var(--datetime-background);
+        --input-color: var(--datetime-color);
+        --input-selected-background: var(--datetime-selected-background);
+        --input-selected-color: var(--datetime-selected-color);
         /* initial mixins */
         --datetime-input: {
-          border-radius: 4px;
-          padding: 0.3em 0.2em;
-          border: none;
-          outline: none;
-          text-align: center;
-          color: inherit;
-          cursor: pointer;
-          background-color: transparent;
-          box-sizing: content-box;
-          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          @apply --input-style;
         };
         --datetime-focus: {
-          background-color: var(--datetime-selected-background);
-          color: var(--datetime-selected-color);
+          @apply --input-focus;
         };
         --datetime-element: {
-          border-radius: 4px;
-          padding: 4px;
+          @apply --input-element;
         };
         --datetime-picker: {
-          box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
-                      0 1px 8px 0 rgba(0, 0, 0, 0.12),
-                      0 3px 3px -2px rgba(0, 0, 0, 0.4);
+          @apply --input-picker;
         };
         --datetime-icon: {
-          border-radius: 2px;
-          padding: 8px;
-          height: 16px;
-          width: 16px;
-          background-color: transparent;
-          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-          cursor: pointer;
-          fill: currentColor;
+          @apply --input-icon;
         };
-      }
-      :host > * {
-        position: relative;
-      }
-      input::-webkit-datetime-edit-text,
-      input::-webkit-input-placeholder,
-      input::-webkit-inner-spin-button,
-      input::-webkit-outer-spin-button,
-      input::-webkit-clear-button,
-      input::-webkit-calendar-picker-indicator {
-        color: currentColor;
       }
       input[type="date"]:hover::-webkit-calendar-picker-indicator {
         background: transparent;
       }
-      input[type=text],
       input[type=datetime-local],
       input[type=date],
       input[type=time] {
@@ -98,25 +63,13 @@ Custom property | Description | Default
         font-size: inherit;
         @apply --datetime-input;
       }
-      input[type=text]:focus,
       input[type=datetime-local]:focus,
       input[type=date]:focus,
       input[type=time]:focus,
-      input[type=text]:hover,
       input[type=datetime-local]:hover,
       input[type=date]:hover,
       input[type=time]:hover {
         @apply --datetime-focus;
-      }
-      .icon {
-        @apply --datetime-icon;
-      }
-      .icon:focus,
-      .icon:hover {
-        @apply --datetime-focus;
-      }
-      [hidden] {
-        display: none !important;
       }
     </style>
   </template>

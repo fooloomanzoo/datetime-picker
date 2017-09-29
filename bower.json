@@ -25,7 +25,6 @@
   "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt",
   "dependencies": {
     "polymer": "Polymer/polymer#1.9 - 2",
-    "iron-overlay-behavior": "PolymerElements/iron-overlay-behavior",
     "number-input": "fooloomanzoo/number-input",
     "input-picker-pattern": "fooloomanzoo/input-picker-pattern"
   },

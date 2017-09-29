@@ -113,6 +113,7 @@
 
       static get customStyleContent() {
         return `
+          ${super.customStyleToInclude || ''}
           number-input {
             --number-input: {
               @apply --datetime-input;
