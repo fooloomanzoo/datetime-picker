@@ -324,6 +324,10 @@
     }
 
     _localeChanged(locale) {
+      if (!locale) {
+        this.locale = window.navigator.language;
+        return;
+      }
       super._localeChanged(locale);
 
       const monthSelector = this.root.querySelector('select#month');

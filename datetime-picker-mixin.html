@@ -200,6 +200,7 @@
 
       _localeChanged(locale) {
         if (!locale) {
+          this.locale = window.navigator.language;
           return;
         }
         // locale = 'zh';
