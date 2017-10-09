@@ -212,12 +212,12 @@
 
         _hideMonth: {
           type: Boolean,
-          computed: '_hideIfClamped(clamp, "month")'
+          computed: '_ifClamped(clamp, "month")'
         },
 
         _hideDay: {
           type: Boolean,
-          computed: '_hideIfClamped(clamp, "day")'
+          computed: '_ifClamped(clamp, "day")'
         },
 
         _maxDayOfMonth: {

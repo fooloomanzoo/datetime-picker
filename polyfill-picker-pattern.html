@@ -33,11 +33,11 @@
           .icon:hover {
             @apply --datetime-focus;
           }
-          .polyfill {
+          #polyfill {
             @apply --datetime-input;
           }
-          .polyfill:focus,
-          .polyfill:hover {
+          #polyfill:focus,
+          #polyfill:hover {
             @apply --datetime-focus;
           }
           input.native {
@@ -48,10 +48,13 @@
             @apply --datetime-picker;
             padding: 0;
           }
-          :host([horizontal-align=left][vertical-align=""]) .icon.close {
-            right: auto;
-            left: 0;
-            transform: translate(-100%, 0);
+          #picker #buttons {
+            @apply --datetime-element;
+            background-color: var(--datetime-background);
+            color: var(--datetime-color);
+          }
+          #picker > * {
+            border-radius: 0 !important;
           }
         `;
       }

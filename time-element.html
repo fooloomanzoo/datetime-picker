@@ -101,17 +101,17 @@
 
         _hideMinutes: {
           type: Boolean,
-          computed: '_hideIfClamped(clamp, "minutes")'
+          computed: '_ifClamped(clamp, "minutes")'
         },
 
         _hideSeconds: {
           type: Boolean,
-          computed: '_hideIfClamped(clamp, "seconds")'
+          computed: '_ifClamped(clamp, "seconds")'
         },
 
         _hideMilliSeconds: {
           type: Boolean,
-          computed: '_hideIfClamped(clamp, "milliseconds")'
+          computed: '_ifClamped(clamp, "milliseconds")'
         }
 
       }

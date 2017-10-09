@@ -102,7 +102,7 @@
               <div class="vertical-section-container">
                 <datetime-picker opened="{{opened}}"  date="{{date}}" current-hovered-day-node="{{currentHoveredDay}}" vertical-align="bottom"></datetime-picker>
                 <template is="dom-if" if="[[currentHoveredDay]]">
-                  <overlay-element class="overlay" opened$="[[opened]]" on-click="close" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentHoveredDay)]]" on-click="close" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentHoveredDay.dataset.date)]]</b></div>
                       <ul>
@@ -138,8 +138,18 @@
               }
               return list;
             }
-            bind.close = function() {
-              this.opened = false;
+            bind._enshureOpened = function(opened) {
+              return opened;
+            }
+            bind.close = function(e) {
+              let paths = e.path;
+              while (paths.length) {
+                if (paths[0] && paths[0].opened === true) {
+                  paths[0].removeAttribute('opened');
+                  break;
+                }
+                paths.shift();
+              }
             }
           </script>
         </template>
@@ -211,8 +221,9 @@
                 <option value="auto">auto</option>
                 <option value=""></option>
               </select>
-
-              <datetime-picker  horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]" style="margin:2em 12em;"></datetime-picker>
+              <div class="spacer" style="position:relative;padding:12em;">
+                <datetime-picker  horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></datetime-picker>
+              </div>
             </template>
           </dom-bind>
         </template>

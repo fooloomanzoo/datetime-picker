@@ -1,11 +1,13 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../input-picker-pattern/overlay-picker-mixin.html">
+
 <link rel="import" href="date-picker.html">
-<link rel="import" href="overlay-picker-extension.html">
+<link rel="import" href="datetime-shared-style.html">
 
 <dom-module id="overlay-date-picker">
   <script>
     /**
-     *   `overlay-date-picker` extends `date-picker` in an overlay.
+     *   `<overlay-date-picker>` extends `date-picker` in an overlay.
      *
      *   ```html
      *   <overlay-date-picker value="{{value}}" ></overlay-date-picker>
@@ -41,10 +43,14 @@
      *
      *  @demo demo/overlay.html
      **/
-    class OverlayDatePicker extends OverlayPickerExtension(DatePicker) { // eslint-disable-line no-undef
+    class OverlayDatePicker extends OverlayPickerMixin(DatePicker) { // eslint-disable-line no-undef
 
       static get is() {
         return 'overlay-date-picker';
+      }
+
+      static get customStyleToInclude() {
+        return 'datetime-shared-style';
       }
 
     }

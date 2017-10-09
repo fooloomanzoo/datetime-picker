@@ -122,9 +122,6 @@
               @apply --datetime-focus;
             };
           }
-          .icon.button.now {
-            transform: translate(200%, 0);
-          }
         `;
       }
 
@@ -134,6 +131,7 @@
        */
       static get _buttonTemplate() {
         return `
+          ${super._buttonTemplate || ''}
           <svg class="icon button now" hidden$="[[!opened]]" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
         `;
       }
@@ -193,7 +191,7 @@
        * @param  {string} comp the property to compare to
        * @return {boolean}     true when should be hidden
        */
-      _hideIfClamped(clamp, comp) {
+      _ifClamped(clamp, comp) {
         const features = ['month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'];
         const pos = features.indexOf(clamp);
         const index = features.indexOf(comp);

@@ -117,9 +117,9 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker id="eventPicker" opened="{{opened}}"  date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
+                <date-picker id="eventPicker" opened="{{opened}}" date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
                 <template is="dom-if" if="[[currentSelectedDayNode]]">
-                  <overlay-element class="overlay" opened$="[[opened]]" on-click="close" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentSelectedDayNode)]]" on-click="close" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
                       <ul>
@@ -155,8 +155,18 @@
               }
               return list;
             }
-            bind.close = function() {
-              this.opened = false;
+            bind._enshureOpened = function(opened) {
+              return opened;
+            }
+            bind.close = function(e) {
+              let paths = e.path;
+              while (paths.length) {
+                if (paths[0] && paths[0].opened === true) {
+                  paths[0].removeAttribute('opened');
+                  break;
+                }
+                paths.shift();
+              }
             }
           </script>
         </template>
