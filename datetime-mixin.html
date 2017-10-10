@@ -16,7 +16,6 @@
            */
           datetime: {
             type: String,
-            reflectToAttribute: true,
             notify: true
           },
           /**
@@ -24,7 +23,6 @@
            */
           date: {
             type: String,
-            reflectToAttribute: true,
             notify: true
           },
 
@@ -33,7 +31,6 @@
            */
           time: {
             type: String,
-            reflectToAttribute: true,
             notify: true
           },
 
@@ -224,7 +221,7 @@
             minutes: d.getMinutes(),
             seconds: d.getSeconds(),
             milliseconds: d.getMilliseconds(),
-            datetime: datetime,
+            datetime: this._toDate(d) + 'T' + this._toTime(d),
             value: +d
           });
         } else if (!isNaN(this.value)){

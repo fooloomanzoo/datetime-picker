@@ -53,11 +53,11 @@
 
       static get replacementInputTemplate() {
         return `
-          <number-input style="order:[[_orderDate.year]];" pad-length="4" disabled="[[disabled]]" value="{{year}}"></number-input>
+          <number-input style="order:[[_orderDate.year]];" tab-index="0" pad-length="4" disabled="[[disabled]]" value="{{year}}"></number-input>
           <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
-          <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
+          <number-input style="order:[[_orderDate.month]];" tab-index="0" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
           <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
-          <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="[[_maxDayOfMonth]]" disabled="[[disabled]]" value="{{day}}"></number-input>
+          <number-input style="order:[[_orderDate.day]];" tab-index="0" hidden$="[[_hideDay]]" pad-length="2" min="1" max="[[_maxDayOfMonth]]" disabled="[[disabled]]" value="{{day}}"></number-input>
         `;
       }
 
@@ -72,13 +72,37 @@
         `;
       }
 
+      _computeDate(year, month, day) {
+        if (isNaN(+year) || isNaN(+month) || isNaN(+day)) return;
+
+        if (this.autoConfirm) {
+          super._computeDate(year, month, day);
+        }
+      }
+
+      _onClickDay(e) {
+        this._onMouseMoveDay(e);
+        if (this.currentHoveredDayNode) {
+          if (this.autoConfirm) {
+            this.date = this.currentHoveredDayNode.dataset.date;
+          } else {
+            const d = new Date(this.currentHoveredDayNode.dataset.date)
+            this.setProperties({
+              year: d.getFullYear(),
+              month: d.getMonth() + 1,
+              day: d.getDate()
+            })
+          }
+          this.currentSelectedDayNode = this.currentHoveredDayNode;
+        }
+      }
+
       renderCalendar(_viewYear, _viewMonth, day) {
         if (DatePicker._hasNative && !!this.native) {
           return;
         }
         super.renderCalendar(_viewYear, _viewMonth, day);
       }
-
     }
 
     window.customElements.define(DatePicker.is, DatePicker);

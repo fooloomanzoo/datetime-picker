@@ -89,6 +89,27 @@
     </div>
 
     <div class="vertical-section-container centered">
+      <h3>Auto-Confirm</h3>
+      <h4>to directly forward the values to date, time, datetime and value</h4>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <div class="vertical-section-container">
+                <date-picker auto-confirm datetime="{{datetime}}" date="{{date}}" value="{{value}}" vertical-align="bottom"></date-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>date</code>: <b>[[date]]</b></div>
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>value</code>: <b>[[value]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
       <h3>Use the properties to extend a picker to a custom event listing</h3>
       <demo-snippet>
         <template>

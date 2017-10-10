@@ -58,6 +58,21 @@
           }
         `;
       }
+      
+      /**
+       * key press event handler
+       * @param  {[type]} e Event
+       */
+      _checkKeycode(e) {
+        if (!e) {
+          return;
+        }
+        if (this.opened) {
+          super._checkKeycode(e);
+        } else {
+          this.open();
+        }
+      }
     }
   }
 </script>

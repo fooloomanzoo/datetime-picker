@@ -71,6 +71,7 @@
         }
         #calendar #header {
           display: table-header-group;
+          cursor: default;
         }
         #calendar #dates {
           display: table-row-group;
@@ -80,43 +81,46 @@
           display: table-row;
         }
         #calendar .day {
-          cursor: pointer;
           display: table-cell;
           padding: 0.5em;
           min-width: 1.5em;
           height: 1.5em;
           line-height: 1.5em;
           text-align: center;
+          @apply --datetime-date-cell;
+        }
+        #calendar #dates .day {
+          cursor: pointer;
           border-radius: 4px;
           border-style: solid;
           border-width: thin;
           border-color: transparent;
-          @apply --datetime-date-cell;
+          will-change: background-color;
+          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day:hover {
           border-color: rgba(255, 255, 255, 0.25);
         }
-        #calendar .day.notinmonth {
-          opacity: 0.5;
-        }
-        #calendar .day.selected {
+        #calendar #dates .day.selected {
           background-color: var(--datetime-selected-background);
           color: var(--datetime-selected-color);
+          border-color: rgba(255, 255, 255, 0.25);
         }
-        #calendar .day.current {
+        #calendar #dates .day.current {
           border-style: solid;
           border-width: thin;
           border-color: var(--datetime-selected-background) !important;
         }
-        #calendar .day.outofrange {
+        #calendar #dates .day.recent {
+          border-color: rgba(255, 255, 255, 0.66);
+        }
+        #calendar #dates .day.notinmonth {
+          opacity: 0.5;
+        }
+        #calendar #dates .day.outofrange {
           opacity: 0.15;
           font-style: italic;
           pointer-events: none;
-        }
-        #calendar .day {
-          will-change: background-color;
-          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
-          fill: currentColor;
         }
       `;
     }
@@ -210,6 +214,14 @@
           notify: true
         },
 
+        /**
+         * The day of the view
+         */
+        _viewDay: {
+          type: Number,
+          notify: true
+        },
+
         _hideMonth: {
           type: Boolean,
           computed: '_ifClamped(clamp, "month")'
@@ -228,18 +240,30 @@
 
     static get observers() {
       return [
-        'renderCalendar(_viewYear, _viewMonth, day)',
-        '_computeViewDate(year, month)'
+        'renderCalendar(_viewYear, _viewMonth, _viewDay)',
+        '_computeViewDate(year, month, day)'
       ]
     }
 
     connectedCallback() {
+      this._ensureAttribute('tabindex', 0);
       super.connectedCallback();
-      this.addEventListener('keyup', this._cancelTimeout.bind(this), false);
+      this._addKeyListener();
     }
 
     disconnectedCallback() {
       super.disconnectedCallback();
+      this._removeKeyListener();
+    }
+
+    _addKeyListener() {
+      this.addEventListener('keydown', this._checkKeycode.bind(this), false);
+      this.addEventListener('keyup', this._cancelTimeout.bind(this), false);
+      console.log('add keyup keydown');
+    }
+
+    _removeKeyListener() {
+      this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
       this.removeEventListener('keyup', this._cancelTimeout.bind(this), false);
     }
 
@@ -267,22 +291,30 @@
       }
     }
 
-    _computeViewDate(year, month) {
-      if (year === undefined || month === undefined) {
+    _computeViewDate(year, month, day) {
+      if (year === undefined || month === undefined || day === undefined) {
         return;
       }
-      this.setProperties({
-        _viewYear: year,
-        _viewMonth: month,
-        _maxDayOfMonth: (new Date(year, month, 0)).getDate(),
-        value: (this._hideMonth || this._hideDay) ? +(new Date(year, month - 1)) : this.value
-      })
+      const d = new Date(year, month - 1, day);
+
+      if (!isNaN(+d)) {
+        year = d.getFullYear();
+        month = d.getMonth() + 1;
+        day = d.getDate();
+        this.setProperties({
+          _viewYear: year,
+          _viewMonth: month,
+          _viewDay: day,
+          _maxDayOfMonth: (new Date(year, month + 1, 0)).getDate(),
+          value: (this._hideMonth || this._hideDay) ? +(new Date(year, month)) : this.value
+        })
+      }
     }
 
     now() {
       super.now();
       const d = new Date();
-      this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
+      this._computeViewDate(d.getFullYear(), d.getMonth() + 1, d.getDate());
     }
 
     _prev() {
@@ -300,21 +332,29 @@
         this._activeJob = setInterval(() => {
           this._incremViewYear(i);
         }, 200);
-      } else {
+      } else if (this._hideDay) {
         this._incremViewMonth(i);
         this._activeJob = setInterval(() => {
           this._incremViewMonth(i);
         }, 200);
+      } else if (this._ifClamped(this.clamp, "hours")) {
+        this._incremViewDay(i);
+        this._activeJob = setInterval(() => {
+          this._incremViewDay(i);
+        }, 200);
       }
     }
 
+    _incremViewDay(i) {
+      this._computeViewDate(this._viewYear, this._viewMonth, this._viewDay + i);
+    }
+
     _incremViewMonth(i) {
-      const d = new Date(this._viewYear, this._viewMonth - 1 + i);
-      this._computeViewDate(d.getFullYear(), d.getMonth() + 1);
+      this._computeViewDate(this._viewYear, this._viewMonth + i, this._viewDay);
     }
 
     _incremViewYear(i) {
-      this._viewYear += i;
+      this._computeViewDate(this._viewYear + i, this._viewMonth, this._viewDay);
     }
 
     _cancelTimeout() {
@@ -360,12 +400,13 @@
 
     /**
      * renderCalendars the current view (manually).
-     * @param {number} _viewYear The value of the date of the current view.
-     * @param {number} _viewMonth The value of the date of the current view.
+     * @param {number} _viewYear The year of the date of the current view.
+     * @param {number} _viewMonth The month of the date of the current view.
+     * @param {number} _viewDay The day of the date of the current view.
      */
-    renderCalendar(_viewYear, _viewMonth) {
-      if (_viewYear === undefined || _viewMonth === undefined) return;
-      const d = new Date(_viewYear, _viewMonth - 1);
+    renderCalendar(_viewYear, _viewMonth, _viewDay) {
+      if (_viewYear === undefined || _viewMonth === undefined || _viewDay === undefined) return;
+      const d = new Date(_viewYear, _viewMonth - 1, _viewDay);
 
       if (this._hideMonth || this._hideDay) {
         this.value = +d;
@@ -375,13 +416,14 @@
       const year = d.getFullYear(),
         month = d.getMonth(),
         current = new Date();
-      let selectedDay, currentDay, firstDayOfMonth, min, max;
 
-      firstDayOfMonth = new Date(year, month, 0);
-      currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth);
+      const firstDayOfMonth = new Date(year, month, 0),
+        currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth),
+        selectedDay = this._dayDiff(d, firstDayOfMonth);
 
-      if (this.value) {
-        selectedDay = this._dayDiff(new Date(this.year, this.month - 1, this.day), firstDayOfMonth);
+      let recentDay, min, max;
+      if (this.date) {
+        recentDay = this._dayDiff(new Date(this.date), firstDayOfMonth);
       }
       if (this.min) {
         let minDate = new Date(this.min);
@@ -395,7 +437,7 @@
       const prevmonthlength = +new Date(year, month, 0).getDate();
       const thismonthlength = +new Date(year, month + 1, 0).getDate();
       const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
-      let currentDayInView;
+      let selectedDayInView;
 
       let counter = -(7 + firstWeekDay) % 7 + 1;
       for (let i = 0; i < this.$.dates.children.length; i++) {
@@ -415,9 +457,15 @@
           if (counter === selectedDay) {
             this.$.dates.children[i].children[j].classList.add('selected');
             this.currentSelectedDayNode = this.$.dates.children[i].children[j];
-            currentDayInView = true;
+            selectedDayInView = true;
           } else {
             this.$.dates.children[i].children[j].classList.remove('selected');
+          }
+          // Day is Recent Selected Day
+          if (counter === recentDay) {
+            this.$.dates.children[i].children[j].classList.add('recent');
+          } else {
+            this.$.dates.children[i].children[j].classList.remove('recent');
           }
           // Day is Current Day
           if (counter === currentDay) {
@@ -436,7 +484,7 @@
         }
       }
 
-      if (!currentDayInView) {
+      if (!selectedDayInView) {
         this.currentSelectedDayNode = null;
       }
     }
@@ -447,12 +495,19 @@
 
     _minChanged(min) {
       super._minChanged(min);
-      this.renderCalendar(this._viewYear, this._viewMonth);
+      this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay);
     }
 
     _maxChanged(max) {
       super._maxChanged(max);
-      this.renderCalendar(this._viewYear, this._viewMonth);
+      this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay);
+    }
+
+    confirm() {
+      console.log(this._viewYear, this._viewMonth, this._viewDay);
+      super._computeDate(this._viewYear, this._viewMonth, this._viewDay);
+      console.log(this.date);
+      this.close();
     }
 
     /**
