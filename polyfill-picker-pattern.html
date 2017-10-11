@@ -73,9 +73,12 @@
           this.open();
         }
       }
-      
-      _viewDateChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds) {
 
+      _computeViewDatetime() {
+        if (this.native) {
+          return;
+        }
+        super._computeViewDatetime(...arguments);
       }
     }
   }

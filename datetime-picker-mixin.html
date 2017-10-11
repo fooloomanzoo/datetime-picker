@@ -150,7 +150,7 @@
           /**
            * Set to true to activate mediation for confirming the input.
            */
-          meditated: {
+          mediated: {
             type: Boolean,
             value: false
           }
@@ -215,9 +215,9 @@
 
       _computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
 
-        const d = new Date(+year, +month - 1, +day, +hours, +minutes, +seconds, +milliseconds);
+        const d = new Date(+(year || 1970), +(month || 1) - 1, +(day || 1), +(hours || 0), +(minutes || 0), +(seconds || 0), +(milliseconds || 0));
 
-        if (!isNaN(+d)) {
+        if (!isNaN(+d) && this._checkMin(d) !== false && this._checkMax(d) !== false) {
           switch (this.clamp) {
             case 'year':
             case 'month':
@@ -253,6 +253,9 @@
           }
 
           if (!this.mediated) {
+            const date = this._toDate(new Date(year, month - 1, day));
+            const time = this._toTime(new Date(hours, minutes, seconds, milliseconds));
+            const datetime = date + 'T' + time;
             toSet.year = year;
             toSet.month = month;
             toSet.day = day;
@@ -260,12 +263,18 @@
             toSet.minutes = minutes;
             toSet.seconds = seconds;
             toSet.milliseconds = milliseconds;
-            toSet.date = this._toDate(new Date(year, month - 1, day));
-            toSet.time = this._toTime(new Date(hours, minutes, seconds, milliseconds));
-            toSet.datetime = toSet.date + 'T' + toSet.time;
+            if (date !== this.date) {
+              toSet.date = date;
+            }
+            if (time !== this.time) {
+              toSet.time = time;
+            }
+            if (datetime !== this.datetime) {
+              toSet.datetime = datetime;
+            }
           }
 
-          this.setProperties(toSet)
+          this.setProperties(toSet);
 
           if (super._computeViewDatetime) {
             super._computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds);
@@ -331,6 +340,23 @@
         });
       }
 
+      _checkKeycode(e) {
+        if (!e) {
+          return;
+        }
+        if (e.keyCode === 13 || e.keyCode === 32) { // space || enter
+          this.confirm();
+          return;
+        }
+        if (super._checkKeycode) {
+          super._checkKeycode(e);
+        }
+      }
+
+      /**
+       * confirms the input
+       * @param  {[type]} e Event
+       */
       confirm() {
         if (super.confirm) {
           super.confirm();
@@ -341,6 +367,7 @@
           this.close();
         }
       }
+
       /**
        * cancels the input
        * @param  {[type]} e Event

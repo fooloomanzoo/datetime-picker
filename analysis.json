@@ -72,6 +72,26 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
+          "name": "_maxDayOfMonth",
+          "type": "number",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 200,
+              "column": 8
+            },
+            "end": {
+              "line": 202,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
           "name": "datetime",
           "type": "string",
           "description": "the selected date and time (format: iso8061)",
@@ -757,24 +777,25 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 149,
+              "line": 152,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 155,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
+          "defaultValue": "false",
           "inheritedFrom": "DatetimePickerMixin"
         }
       ],
@@ -786,11 +807,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 204,
+              "line": 208,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 213,
               "column": 7
             }
           },
@@ -804,11 +825,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 214,
+              "line": 218,
               "column": 4
             },
             "end": {
-              "line": 217,
+              "line": 221,
               "column": 5
             }
           },
@@ -822,11 +843,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 219,
+              "line": 223,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 226,
               "column": 5
             }
           },
@@ -840,11 +861,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 224,
+              "line": 228,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 231,
               "column": 5
             }
           },
@@ -858,11 +879,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 233,
               "column": 4
             },
             "end": {
-              "line": 235,
+              "line": 239,
               "column": 5
             }
           },
@@ -880,11 +901,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 237,
+              "line": 241,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 255,
               "column": 5
             }
           },
@@ -903,11 +924,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -944,11 +965,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -958,24 +979,6 @@
         },
         {
           "name": "_prev",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 274,
-              "column": 4
-            },
-            "end": {
-              "line": 276,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElementPattern"
-        },
-        {
-          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -993,7 +996,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_increm",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -1002,25 +1005,21 @@
               "column": 4
             },
             "end": {
-              "line": 300,
+              "line": 284,
               "column": 5
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ],
+          "params": [],
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewDay",
+          "name": "_increm",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 302,
+              "line": 286,
               "column": 4
             },
             "end": {
@@ -1037,7 +1036,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewMonth",
+          "name": "_incremViewDay",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -1059,7 +1058,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewYear",
+          "name": "_incremViewMonth",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -1081,7 +1080,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_cancelTimeout",
+          "name": "_incremViewYear",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -1090,7 +1089,29 @@
               "column": 4
             },
             "end": {
+              "line": 316,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_cancelTimeout",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
               "line": 318,
+              "column": 4
+            },
+            "end": {
+              "line": 322,
               "column": 5
             }
           },
@@ -1105,11 +1126,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -1127,11 +1148,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 361,
+              "line": 365,
               "column": 4
             },
             "end": {
-              "line": 445,
+              "line": 449,
               "column": 5
             }
           },
@@ -1151,6 +1172,9 @@
               "name": "_viewDay",
               "type": "number",
               "description": "The day of the date of the current view."
+            },
+            {
+              "name": "date"
             }
           ],
           "inheritedFrom": "CalendarElementPattern"
@@ -1161,11 +1185,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 447,
+              "line": 451,
               "column": 4
             },
             "end": {
-              "line": 449,
+              "line": 453,
               "column": 5
             }
           },
@@ -1187,11 +1211,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -1210,11 +1234,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -1232,11 +1256,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 465,
+              "line": 469,
               "column": 4
             },
             "end": {
-              "line": 481,
+              "line": 485,
               "column": 5
             }
           },
@@ -1255,13 +1279,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -1280,20 +1304,20 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -1309,7 +1333,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -1318,11 +1342,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -1344,11 +1368,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -1367,11 +1391,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -1393,11 +1417,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -1416,11 +1440,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -1439,11 +1463,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -1462,11 +1486,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -1485,11 +1509,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -1508,11 +1532,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -1531,11 +1555,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -1549,16 +1573,16 @@
         },
         {
           "name": "_ifClamped",
-          "description": "hide features",
+          "description": "clamp to date component",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 288,
+              "line": 410,
               "column": 6
             },
             "end": {
-              "line": 293,
+              "line": 415,
               "column": 7
             }
           },
@@ -1579,7 +1603,7 @@
             "type": "boolean",
             "desc": "true when should be hidden"
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "confirm",
@@ -1588,11 +1612,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 353,
+              "line": 333,
               "column": 6
             },
             "end": {
-              "line": 360,
+              "line": 342,
               "column": 7
             }
           },
@@ -1607,11 +1631,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 365,
+              "line": 347,
               "column": 6
             },
             "end": {
-              "line": 368,
+              "line": 352,
               "column": 7
             }
           },
@@ -1630,11 +1654,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 522,
+          "line": 526,
           "column": 4
         },
         "end": {
-          "line": 535,
+          "line": 539,
           "column": 5
         }
       },
@@ -1999,6 +2023,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 152,
+              "column": 10
+            },
+            "end": {
+              "line": 155,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "DatetimePickerMixin"
         }
       ],
       "events": [],
@@ -2082,6 +2124,27 @@
             "polymer": {
               "notify": true
             }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_maxDayOfMonth",
+          "type": "number",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 200,
+              "column": 8
+            },
+            "end": {
+              "line": 202,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
           },
           "inheritedFrom": "CalendarElementPattern"
         },
@@ -2771,25 +2834,26 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 149,
+              "line": 223,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 226,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "native",
@@ -2923,28 +2987,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "autoConfirm",
-          "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "false",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -2955,11 +2997,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -2974,11 +3016,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 214,
+              "line": 218,
               "column": 4
             },
             "end": {
-              "line": 217,
+              "line": 221,
               "column": 5
             }
           },
@@ -2993,11 +3035,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 223,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 226,
               "column": 5
             }
           },
@@ -3012,11 +3054,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 224,
+              "line": 228,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 231,
               "column": 5
             }
           },
@@ -3052,11 +3094,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 237,
+              "line": 241,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 255,
               "column": 5
             }
           },
@@ -3075,11 +3117,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -3116,11 +3158,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -3130,25 +3172,6 @@
         },
         {
           "name": "_prev",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 274,
-              "column": 4
-            },
-            "end": {
-              "line": 276,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElementPattern"
-        },
-        {
-          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -3167,7 +3190,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_increm",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -3177,26 +3200,22 @@
               "column": 4
             },
             "end": {
-              "line": 300,
+              "line": 284,
               "column": 5
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ],
+          "params": [],
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewDay",
+          "name": "_increm",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 302,
+              "line": 286,
               "column": 4
             },
             "end": {
@@ -3213,7 +3232,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewMonth",
+          "name": "_incremViewDay",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -3236,7 +3255,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewYear",
+          "name": "_incremViewMonth",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -3259,7 +3278,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_cancelTimeout",
+          "name": "_incremViewYear",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -3269,7 +3288,30 @@
               "column": 4
             },
             "end": {
+              "line": 316,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_cancelTimeout",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
               "line": 318,
+              "column": 4
+            },
+            "end": {
+              "line": 322,
               "column": 5
             }
           },
@@ -3284,11 +3326,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -3334,11 +3376,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 447,
+              "line": 451,
               "column": 4
             },
             "end": {
-              "line": 449,
+              "line": 453,
               "column": 5
             }
           },
@@ -3360,11 +3402,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -3383,11 +3425,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -3429,13 +3471,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -3454,7 +3496,7 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
@@ -3490,11 +3532,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -3516,11 +3558,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -3539,11 +3581,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -3565,11 +3607,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -3588,11 +3630,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -3611,11 +3653,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -3634,11 +3676,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -3657,11 +3699,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -3680,11 +3722,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -3703,11 +3745,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -3721,16 +3763,16 @@
         },
         {
           "name": "_ifClamped",
-          "description": "hide features",
+          "description": "clamp to date component",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 288,
+              "line": 410,
               "column": 6
             },
             "end": {
-              "line": 293,
+              "line": 415,
               "column": 7
             }
           },
@@ -3751,7 +3793,7 @@
             "type": "boolean",
             "desc": "true when should be hidden"
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "confirm",
@@ -3760,11 +3802,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -3785,11 +3827,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -3810,11 +3852,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -3829,11 +3871,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -3854,11 +3896,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -4297,6 +4339,24 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 10
+            },
+            "end": {
+              "line": 226,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "native",
           "description": "use the native input, if it exists",
           "sourceRange": {
@@ -4397,24 +4457,6 @@
             },
             "end": {
               "line": 218,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean",
-          "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
               "column": 11
             }
           },
@@ -5214,24 +5256,25 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 149,
+              "line": 152,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 155,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
+          "defaultValue": "false",
           "inheritedFrom": "DatetimePickerMixin"
         }
       ],
@@ -5243,11 +5286,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 204,
+              "line": 208,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 213,
               "column": 7
             }
           },
@@ -5338,11 +5381,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -5355,13 +5398,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -5380,20 +5423,20 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -5409,7 +5452,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -5418,11 +5461,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -5444,11 +5487,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -5467,11 +5510,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -5493,11 +5536,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -5516,11 +5559,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -5539,11 +5582,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -5562,11 +5605,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -5585,11 +5628,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -5608,11 +5651,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -5631,11 +5674,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -5654,11 +5697,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -5677,11 +5720,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -5694,17 +5737,51 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_ifClamped",
+          "description": "clamp to date component",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 410,
+              "column": 6
+            },
+            "end": {
+              "line": 415,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
           "name": "_computeViewDatetime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -5735,51 +5812,17 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_ifClamped",
-          "description": "hide features",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-picker-mixin.html",
-            "start": {
-              "line": 288,
-              "column": 6
-            },
-            "end": {
-              "line": 293,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "clamp",
-              "type": "string",
-              "description": "'clamp'-property"
-            },
-            {
-              "name": "comp",
-              "type": "string",
-              "description": "the property to compare to"
-            }
-          ],
-          "return": {
-            "type": "boolean",
-            "desc": "true when should be hidden"
-          },
-          "inheritedFrom": "DatetimePickerMixin"
-        },
-        {
           "name": "_localeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -5798,11 +5841,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 353,
+              "line": 333,
               "column": 6
             },
             "end": {
-              "line": 360,
+              "line": 342,
               "column": 7
             }
           },
@@ -5817,11 +5860,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 365,
+              "line": 347,
               "column": 6
             },
             "end": {
-              "line": 368,
+              "line": 352,
               "column": 7
             }
           },
@@ -6175,6 +6218,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 152,
+              "column": 10
+            },
+            "end": {
+              "line": 155,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "DatetimePickerMixin"
         }
       ],
       "events": [],
@@ -6258,6 +6319,27 @@
             "polymer": {
               "notify": true
             }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_maxDayOfMonth",
+          "type": "number",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 200,
+              "column": 8
+            },
+            "end": {
+              "line": 202,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
           },
           "inheritedFrom": "CalendarElementPattern"
         },
@@ -7016,25 +7098,26 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 149,
+              "line": 223,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 226,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "native",
@@ -7168,28 +7251,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "autoConfirm",
-          "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "false",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -7200,11 +7261,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -7238,11 +7299,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 223,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 226,
               "column": 5
             }
           },
@@ -7257,11 +7318,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 224,
+              "line": 228,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 231,
               "column": 5
             }
           },
@@ -7276,11 +7337,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 233,
               "column": 4
             },
             "end": {
-              "line": 235,
+              "line": 239,
               "column": 5
             }
           },
@@ -7299,11 +7360,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 237,
+              "line": 241,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 255,
               "column": 5
             }
           },
@@ -7322,11 +7383,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -7363,11 +7424,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -7377,25 +7438,6 @@
         },
         {
           "name": "_prev",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 274,
-              "column": 4
-            },
-            "end": {
-              "line": 276,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElementPattern"
-        },
-        {
-          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7414,7 +7456,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_increm",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7424,26 +7466,22 @@
               "column": 4
             },
             "end": {
-              "line": 300,
+              "line": 284,
               "column": 5
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ],
+          "params": [],
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewDay",
+          "name": "_increm",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 302,
+              "line": 286,
               "column": 4
             },
             "end": {
@@ -7460,7 +7498,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewMonth",
+          "name": "_incremViewDay",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7483,7 +7521,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewYear",
+          "name": "_incremViewMonth",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7506,7 +7544,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_cancelTimeout",
+          "name": "_incremViewYear",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7516,7 +7554,30 @@
               "column": 4
             },
             "end": {
+              "line": 316,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_cancelTimeout",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
               "line": 318,
+              "column": 4
+            },
+            "end": {
+              "line": 322,
               "column": 5
             }
           },
@@ -7531,11 +7592,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -7581,11 +7642,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 447,
+              "line": 451,
               "column": 4
             },
             "end": {
-              "line": 449,
+              "line": 453,
               "column": 5
             }
           },
@@ -7607,11 +7668,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -7630,11 +7691,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -7653,11 +7714,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 239,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 258,
               "column": 7
             }
           },
@@ -7737,13 +7798,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -7762,20 +7823,20 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -7791,7 +7852,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -7800,11 +7861,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -7826,11 +7887,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -7849,11 +7910,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -7875,11 +7936,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -7898,11 +7959,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -7921,11 +7982,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -7944,11 +8005,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -7967,11 +8028,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -7990,11 +8051,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -8013,11 +8074,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -8031,16 +8092,16 @@
         },
         {
           "name": "_ifClamped",
-          "description": "hide features",
+          "description": "clamp to date component",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 288,
+              "line": 410,
               "column": 6
             },
             "end": {
-              "line": 293,
+              "line": 415,
               "column": 7
             }
           },
@@ -8061,7 +8122,7 @@
             "type": "boolean",
             "desc": "true when should be hidden"
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "confirm",
@@ -8070,11 +8131,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -8095,11 +8156,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -8120,11 +8181,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -8139,11 +8200,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -8164,11 +8225,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -8607,6 +8668,24 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 10
+            },
+            "end": {
+              "line": 226,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "native",
           "description": "use the native input, if it exists",
           "sourceRange": {
@@ -8713,24 +8792,6 @@
           "metadata": {},
           "type": "boolean",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -8817,6 +8878,27 @@
             "polymer": {
               "notify": true
             }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_maxDayOfMonth",
+          "type": "number",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 200,
+              "column": 8
+            },
+            "end": {
+              "line": 202,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
           },
           "inheritedFrom": "CalendarElementPattern"
         },
@@ -9575,25 +9657,26 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 149,
+              "line": 223,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 226,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "native",
@@ -9727,28 +9810,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "autoConfirm",
-          "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "false",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -9759,11 +9820,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -9797,11 +9858,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 223,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 226,
               "column": 5
             }
           },
@@ -9816,11 +9877,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 224,
+              "line": 228,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 231,
               "column": 5
             }
           },
@@ -9835,11 +9896,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 233,
               "column": 4
             },
             "end": {
-              "line": 235,
+              "line": 239,
               "column": 5
             }
           },
@@ -9858,11 +9919,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 237,
+              "line": 241,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 255,
               "column": 5
             }
           },
@@ -9881,11 +9942,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -9922,11 +9983,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -9936,25 +9997,6 @@
         },
         {
           "name": "_prev",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 274,
-              "column": 4
-            },
-            "end": {
-              "line": 276,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElementPattern"
-        },
-        {
-          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -9973,7 +10015,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_increm",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -9983,26 +10025,22 @@
               "column": 4
             },
             "end": {
-              "line": 300,
+              "line": 284,
               "column": 5
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ],
+          "params": [],
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewDay",
+          "name": "_increm",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 302,
+              "line": 286,
               "column": 4
             },
             "end": {
@@ -10019,7 +10057,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewMonth",
+          "name": "_incremViewDay",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -10042,7 +10080,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewYear",
+          "name": "_incremViewMonth",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -10065,7 +10103,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_cancelTimeout",
+          "name": "_incremViewYear",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -10075,7 +10113,30 @@
               "column": 4
             },
             "end": {
+              "line": 316,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_cancelTimeout",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
               "line": 318,
+              "column": 4
+            },
+            "end": {
+              "line": 322,
               "column": 5
             }
           },
@@ -10090,11 +10151,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -10142,11 +10203,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 447,
+              "line": 451,
               "column": 4
             },
             "end": {
-              "line": 449,
+              "line": 453,
               "column": 5
             }
           },
@@ -10168,11 +10229,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -10191,11 +10252,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -10214,11 +10275,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 239,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 258,
               "column": 7
             }
           },
@@ -10298,13 +10359,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -10323,20 +10384,20 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -10352,7 +10413,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -10361,11 +10422,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -10387,11 +10448,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -10410,11 +10471,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -10436,11 +10497,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -10459,11 +10520,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -10482,11 +10543,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -10505,11 +10566,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -10528,11 +10589,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -10551,11 +10612,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -10574,11 +10635,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -10592,16 +10653,16 @@
         },
         {
           "name": "_ifClamped",
-          "description": "hide features",
+          "description": "clamp to date component",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 288,
+              "line": 410,
               "column": 6
             },
             "end": {
-              "line": 293,
+              "line": 415,
               "column": 7
             }
           },
@@ -10622,7 +10683,7 @@
             "type": "boolean",
             "desc": "true when should be hidden"
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "confirm",
@@ -10631,11 +10692,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -10656,11 +10717,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -10681,11 +10742,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -10700,11 +10761,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -10725,11 +10786,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -11168,6 +11229,24 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 10
+            },
+            "end": {
+              "line": 226,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "native",
           "description": "use the native input, if it exists",
           "sourceRange": {
@@ -11274,24 +11353,6 @@
           "metadata": {},
           "type": "boolean",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "events": [],
@@ -11371,6 +11432,27 @@
             "polymer": {
               "notify": true
             }
+          },
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_maxDayOfMonth",
+          "type": "number",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
+              "line": 200,
+              "column": 8
+            },
+            "end": {
+              "line": 202,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
           },
           "inheritedFrom": "CalendarElementPattern"
         },
@@ -12060,25 +12142,26 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 149,
+              "line": 223,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 226,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "native",
@@ -12212,28 +12295,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "autoConfirm",
-          "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "false",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -12244,11 +12305,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -12263,11 +12324,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 214,
+              "line": 218,
               "column": 4
             },
             "end": {
-              "line": 217,
+              "line": 221,
               "column": 5
             }
           },
@@ -12282,11 +12343,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 223,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 226,
               "column": 5
             }
           },
@@ -12301,11 +12362,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 224,
+              "line": 228,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 231,
               "column": 5
             }
           },
@@ -12343,11 +12404,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 237,
+              "line": 241,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 255,
               "column": 5
             }
           },
@@ -12366,11 +12427,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -12407,11 +12468,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -12421,25 +12482,6 @@
         },
         {
           "name": "_prev",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "calendar-element.html",
-            "start": {
-              "line": 274,
-              "column": 4
-            },
-            "end": {
-              "line": 276,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "CalendarElementPattern"
-        },
-        {
-          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -12458,7 +12500,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_increm",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -12468,26 +12510,22 @@
               "column": 4
             },
             "end": {
-              "line": 300,
+              "line": 284,
               "column": 5
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ],
+          "params": [],
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewDay",
+          "name": "_increm",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 302,
+              "line": 286,
               "column": 4
             },
             "end": {
@@ -12504,7 +12542,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewMonth",
+          "name": "_incremViewDay",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -12527,7 +12565,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_incremViewYear",
+          "name": "_incremViewMonth",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -12550,7 +12588,7 @@
           "inheritedFrom": "CalendarElementPattern"
         },
         {
-          "name": "_cancelTimeout",
+          "name": "_incremViewYear",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -12560,7 +12598,30 @@
               "column": 4
             },
             "end": {
+              "line": 316,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ],
+          "inheritedFrom": "CalendarElementPattern"
+        },
+        {
+          "name": "_cancelTimeout",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "calendar-element.html",
+            "start": {
               "line": 318,
+              "column": 4
+            },
+            "end": {
+              "line": 322,
               "column": 5
             }
           },
@@ -12575,11 +12636,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -12627,11 +12688,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 447,
+              "line": 451,
               "column": 4
             },
             "end": {
-              "line": 449,
+              "line": 453,
               "column": 5
             }
           },
@@ -12653,11 +12714,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -12676,11 +12737,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -12722,13 +12783,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -12747,7 +12808,7 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
@@ -12785,11 +12846,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -12811,11 +12872,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -12834,11 +12895,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -12860,11 +12921,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -12883,11 +12944,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -12906,11 +12967,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -12929,11 +12990,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -12952,11 +13013,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -12975,11 +13036,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -12998,11 +13059,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -13016,16 +13077,16 @@
         },
         {
           "name": "_ifClamped",
-          "description": "hide features",
+          "description": "clamp to date component",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 288,
+              "line": 410,
               "column": 6
             },
             "end": {
-              "line": 293,
+              "line": 415,
               "column": 7
             }
           },
@@ -13046,7 +13107,7 @@
             "type": "boolean",
             "desc": "true when should be hidden"
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "confirm",
@@ -13055,11 +13116,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -13080,11 +13141,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -13105,11 +13166,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -13124,11 +13185,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -13149,11 +13210,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -13592,6 +13653,24 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 10
+            },
+            "end": {
+              "line": 226,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "native",
           "description": "use the native input, if it exists",
           "sourceRange": {
@@ -13692,24 +13771,6 @@
             },
             "end": {
               "line": 218,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean",
-          "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
               "column": 11
             }
           },
@@ -14507,25 +14568,26 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 149,
+              "line": 223,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 226,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "native",
@@ -14659,28 +14721,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "autoConfirm",
-          "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "false",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -14691,11 +14731,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -14790,11 +14830,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -14807,13 +14847,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -14832,20 +14872,20 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -14861,7 +14901,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -14870,11 +14910,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -14896,11 +14936,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -14919,11 +14959,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -14945,11 +14985,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -14968,11 +15008,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -14991,11 +15031,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -15014,11 +15054,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -15037,11 +15077,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -15060,11 +15100,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -15083,11 +15123,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -15106,11 +15146,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -15129,11 +15169,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -15146,17 +15186,51 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_ifClamped",
+          "description": "clamp to date component",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 410,
+              "column": 6
+            },
+            "end": {
+              "line": 415,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
           "name": "_computeViewDatetime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -15187,51 +15261,17 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_ifClamped",
-          "description": "hide features",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-picker-mixin.html",
-            "start": {
-              "line": 288,
-              "column": 6
-            },
-            "end": {
-              "line": 293,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "clamp",
-              "type": "string",
-              "description": "'clamp'-property"
-            },
-            {
-              "name": "comp",
-              "type": "string",
-              "description": "the property to compare to"
-            }
-          ],
-          "return": {
-            "type": "boolean",
-            "desc": "true when should be hidden"
-          },
-          "inheritedFrom": "DatetimePickerMixin"
-        },
-        {
           "name": "_localeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -15250,11 +15290,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -15275,11 +15315,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -15325,11 +15365,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -15344,11 +15384,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -15369,11 +15409,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -15776,6 +15816,24 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 10
+            },
+            "end": {
+              "line": 226,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "native",
           "description": "use the native input, if it exists",
           "sourceRange": {
@@ -15876,24 +15934,6 @@
             },
             "end": {
               "line": 218,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean",
-          "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
               "column": 11
             }
           },
@@ -16696,25 +16736,26 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 149,
+              "line": 223,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 226,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "inheritedFrom": "DatetimePickerMixin"
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "native",
@@ -16848,28 +16889,6 @@
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "autoConfirm",
-          "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "defaultValue": "false",
-          "inheritedFrom": "InputPickerPattern"
         }
       ],
       "methods": [
@@ -16880,11 +16899,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -16979,11 +16998,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -16996,13 +17015,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -17021,20 +17040,20 @@
               "name": "milliseconds"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -17050,7 +17069,7 @@
               "name": "day"
             }
           ],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -17059,11 +17078,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -17085,11 +17104,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -17108,11 +17127,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -17134,11 +17153,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -17157,11 +17176,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -17180,11 +17199,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -17203,11 +17222,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -17226,11 +17245,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -17249,11 +17268,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -17272,11 +17291,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -17295,11 +17314,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -17318,11 +17337,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -17335,17 +17354,51 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_ifClamped",
+          "description": "clamp to date component",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 410,
+              "column": 6
+            },
+            "end": {
+              "line": 415,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
           "name": "_computeViewDatetime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -17376,51 +17429,17 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "_ifClamped",
-          "description": "hide features",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-picker-mixin.html",
-            "start": {
-              "line": 288,
-              "column": 6
-            },
-            "end": {
-              "line": 293,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "clamp",
-              "type": "string",
-              "description": "'clamp'-property"
-            },
-            {
-              "name": "comp",
-              "type": "string",
-              "description": "the property to compare to"
-            }
-          ],
-          "return": {
-            "type": "boolean",
-            "desc": "true when should be hidden"
-          },
-          "inheritedFrom": "DatetimePickerMixin"
-        },
-        {
           "name": "_localeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -17439,11 +17458,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -17464,11 +17483,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -17514,11 +17533,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -17533,11 +17552,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -17558,11 +17577,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -17965,6 +17984,24 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 223,
+              "column": 10
+            },
+            "end": {
+              "line": 226,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "native",
           "description": "use the native input, if it exists",
           "sourceRange": {
@@ -18065,24 +18102,6 @@
             },
             "end": {
               "line": 218,
-              "column": 11
-            }
-          },
-          "metadata": {},
-          "type": "boolean",
-          "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 223,
-              "column": 10
-            },
-            "end": {
-              "line": 226,
               "column": 11
             }
           },
@@ -18240,9 +18259,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "autoConfirm",
+          "name": "meditated",
           "type": "boolean",
-          "description": "Set to true to automaticly confirm the input.",
+          "description": "Set to true to activate mediation for confirming the input.",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -18270,11 +18289,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 231,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 234,
+              "line": 233,
               "column": 7
             }
           },
@@ -18312,11 +18331,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 264,
+              "line": 263,
               "column": 6
             },
             "end": {
-              "line": 269,
+              "line": 268,
               "column": 7
             }
           },
@@ -18331,11 +18350,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 275,
+              "line": 274,
               "column": 6
             },
             "end": {
-              "line": 283,
+              "line": 282,
               "column": 7
             }
           },
@@ -18356,11 +18375,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 289,
+              "line": 288,
               "column": 6
             },
             "end": {
-              "line": 297,
+              "line": 296,
               "column": 7
             }
           },
@@ -18381,11 +18400,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 303,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 310,
               "column": 7
             }
           },
@@ -18406,11 +18425,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 325,
+              "line": 324,
               "column": 7
             }
           },
@@ -18589,8 +18608,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "auto-confirm",
-          "description": "Set to true to automaticly confirm the input.",
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -18961,6 +18980,25 @@
               "observer": "\"_hours12Changed\""
             }
           }
+        },
+        {
+          "name": "clamp",
+          "type": "string",
+          "description": "Clamp datetime to a property\npossible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 152,
+              "column": 10
+            },
+            "end": {
+              "line": 154,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
         }
       ],
       "methods": [
@@ -18970,11 +19008,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 159,
+              "line": 167,
               "column": 6
             },
             "end": {
-              "line": 172,
+              "line": 180,
               "column": 7
             }
           },
@@ -18987,11 +19025,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -19004,11 +19042,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 181,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 187,
+              "line": 211,
               "column": 7
             }
           },
@@ -19034,11 +19072,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 189,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 195,
+              "line": 232,
               "column": 7
             }
           },
@@ -19061,11 +19099,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -19085,11 +19123,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -19106,11 +19144,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -19130,11 +19168,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -19151,11 +19189,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -19172,11 +19210,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -19193,11 +19231,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -19214,11 +19252,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -19235,11 +19273,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -19256,11 +19294,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -19277,11 +19315,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -19298,11 +19336,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -19312,6 +19350,38 @@
               "name": "isAm"
             }
           ]
+        },
+        {
+          "name": "_ifClamped",
+          "description": "clamp to date component",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 410,
+              "column": 6
+            },
+            "end": {
+              "line": 415,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          }
         }
       ],
       "staticMethods": [],
@@ -19323,7 +19393,7 @@
           "column": 2
         },
         "end": {
-          "line": 368,
+          "line": 418,
           "column": 3
         }
       },
@@ -19585,6 +19655,22 @@
           },
           "metadata": {},
           "type": "number"
+        },
+        {
+          "name": "clamp",
+          "description": "Clamp datetime to a property\npossible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "start": {
+              "line": 152,
+              "column": 10
+            },
+            "end": {
+              "line": 154,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string"
         }
       ],
       "events": [],
@@ -19972,6 +20058,25 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "clamp",
+          "type": "string",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 73,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        },
+        {
           "name": "locale",
           "type": "string",
           "description": "The current locale",
@@ -20089,25 +20194,6 @@
             "polymer": {}
           },
           "defaultValue": "\".\""
-        },
-        {
-          "name": "clamp",
-          "type": "string",
-          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 73,
-              "column": 10
-            },
-            "end": {
-              "line": 75,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
         },
         {
           "name": "_orderDate",
@@ -20276,23 +20362,24 @@
           }
         },
         {
-          "name": "_maxDayOfMonth",
-          "type": "number",
-          "description": "",
-          "privacy": "protected",
+          "name": "meditated",
+          "type": "boolean",
+          "description": "Set to true to activate mediation for confirming the input.",
+          "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 149,
+              "line": 152,
               "column": 10
             },
             "end": {
-              "line": 151,
+              "line": 155,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
-          }
+          },
+          "defaultValue": "false"
         }
       ],
       "methods": [
@@ -20302,11 +20389,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 204,
+              "line": 208,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 213,
               "column": 7
             }
           },
@@ -20320,11 +20407,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 177,
+              "line": 185,
               "column": 6
             },
             "end": {
-              "line": 179,
+              "line": 187,
               "column": 7
             }
           },
@@ -20337,12 +20424,13 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 211,
+              "line": 189,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 211,
               "column": 7
             }
           },
@@ -20360,19 +20448,21 @@
             {
               "name": "milliseconds"
             }
-          ]
+          ],
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeDate",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
+            "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 213,
               "column": 6
             },
             "end": {
-              "line": 245,
+              "line": 232,
               "column": 7
             }
           },
@@ -20387,7 +20477,8 @@
             {
               "name": "day"
             }
-          ]
+          ],
+          "inheritedFrom": "DatetimeMixin"
         },
         {
           "name": "_computeValue",
@@ -20396,11 +20487,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 197,
+              "line": 234,
               "column": 6
             },
             "end": {
-              "line": 229,
+              "line": 266,
               "column": 7
             }
           },
@@ -20422,11 +20513,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 231,
+              "line": 268,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 296,
               "column": 7
             }
           },
@@ -20445,11 +20536,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 261,
+              "line": 298,
               "column": 6
             },
             "end": {
-              "line": 274,
+              "line": 311,
               "column": 7
             }
           },
@@ -20471,11 +20562,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 276,
+              "line": 313,
               "column": 6
             },
             "end": {
-              "line": 289,
+              "line": 326,
               "column": 7
             }
           },
@@ -20494,11 +20585,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 291,
+              "line": 328,
               "column": 6
             },
             "end": {
-              "line": 304,
+              "line": 341,
               "column": 7
             }
           },
@@ -20517,11 +20608,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 306,
+              "line": 343,
               "column": 6
             },
             "end": {
-              "line": 318,
+              "line": 355,
               "column": 7
             }
           },
@@ -20540,11 +20631,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 320,
+              "line": 357,
               "column": 6
             },
             "end": {
-              "line": 332,
+              "line": 369,
               "column": 7
             }
           },
@@ -20563,11 +20654,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 334,
+              "line": 371,
               "column": 6
             },
             "end": {
-              "line": 339,
+              "line": 376,
               "column": 7
             }
           },
@@ -20586,11 +20677,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 341,
+              "line": 378,
               "column": 6
             },
             "end": {
-              "line": 346,
+              "line": 383,
               "column": 7
             }
           },
@@ -20609,11 +20700,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 348,
+              "line": 385,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 388,
               "column": 7
             }
           },
@@ -20632,11 +20723,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 353,
+              "line": 390,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 392,
               "column": 7
             }
           },
@@ -20655,11 +20746,11 @@
           "sourceRange": {
             "file": "datetime-mixin.html",
             "start": {
-              "line": 357,
+              "line": 394,
               "column": 6
             },
             "end": {
-              "line": 365,
+              "line": 402,
               "column": 7
             }
           },
@@ -20672,16 +20763,50 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "_ifClamped",
+          "description": "clamp to date component",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-mixin.html",
+            "start": {
+              "line": 410,
+              "column": 6
+            },
+            "end": {
+              "line": 415,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "clamp",
+              "type": "string",
+              "description": "'clamp'-property"
+            },
+            {
+              "name": "comp",
+              "type": "string",
+              "description": "the property to compare to"
+            }
+          ],
+          "return": {
+            "type": "boolean",
+            "desc": "true when should be hidden"
+          },
+          "inheritedFrom": "DatetimeMixin"
+        },
+        {
           "name": "_computeViewDatetime",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 247,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 280,
+              "line": 273,
               "column": 7
             }
           },
@@ -20711,48 +20836,16 @@
           ]
         },
         {
-          "name": "_ifClamped",
-          "description": "hide features",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 288,
-              "column": 6
-            },
-            "end": {
-              "line": 293,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "clamp",
-              "type": "string",
-              "description": "'clamp'-property"
-            },
-            {
-              "name": "comp",
-              "type": "string",
-              "description": "the property to compare to"
-            }
-          ],
-          "return": {
-            "type": "boolean",
-            "desc": "true when should be hidden"
-          }
-        },
-        {
           "name": "_localeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 295,
+              "line": 275,
               "column": 6
             },
             "end": {
-              "line": 351,
+              "line": 331,
               "column": 7
             }
           },
@@ -20769,11 +20862,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 353,
+              "line": 333,
               "column": 6
             },
             "end": {
-              "line": 360,
+              "line": 342,
               "column": 7
             }
           },
@@ -20786,11 +20879,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 365,
+              "line": 347,
               "column": 6
             },
             "end": {
-              "line": 368,
+              "line": 352,
               "column": 7
             }
           },
@@ -20807,7 +20900,7 @@
           "column": 2
         },
         "end": {
-          "line": 371,
+          "line": 355,
           "column": 3
         }
       },
@@ -21103,6 +21196,22 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "clamp",
+          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "sourceRange": {
+            "start": {
+              "line": 73,
+              "column": 10
+            },
+            "end": {
+              "line": 75,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
           "name": "locale",
           "description": "The current locale",
           "sourceRange": {
@@ -21119,20 +21228,20 @@
           "type": "string"
         },
         {
-          "name": "clamp",
-          "description": "clamp datetime to a property\npossible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'",
+          "name": "meditated",
+          "description": "Set to true to activate mediation for confirming the input.",
           "sourceRange": {
             "start": {
-              "line": 73,
+              "line": 152,
               "column": 10
             },
             "end": {
-              "line": 75,
+              "line": 155,
               "column": 11
             }
           },
           "metadata": {},
-          "type": "string"
+          "type": "boolean"
         }
       ],
       "events": [],
@@ -21211,6 +21320,25 @@
               "notify": true
             }
           }
+        },
+        {
+          "name": "_maxDayOfMonth",
+          "type": "number",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 200,
+              "column": 8
+            },
+            "end": {
+              "line": 202,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
         }
       ],
       "methods": [
@@ -21220,11 +21348,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 208,
+              "line": 212,
               "column": 4
             },
             "end": {
-              "line": 212,
+              "line": 216,
               "column": 5
             }
           },
@@ -21237,11 +21365,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 214,
+              "line": 218,
               "column": 4
             },
             "end": {
-              "line": 217,
+              "line": 221,
               "column": 5
             }
           },
@@ -21254,11 +21382,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 219,
+              "line": 223,
               "column": 4
             },
             "end": {
-              "line": 222,
+              "line": 226,
               "column": 5
             }
           },
@@ -21271,11 +21399,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 224,
+              "line": 228,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 231,
               "column": 5
             }
           },
@@ -21288,11 +21416,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 233,
               "column": 4
             },
             "end": {
-              "line": 235,
+              "line": 239,
               "column": 5
             }
           },
@@ -21309,11 +21437,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 237,
+              "line": 241,
               "column": 4
             },
             "end": {
-              "line": 251,
+              "line": 255,
               "column": 5
             }
           },
@@ -21330,11 +21458,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 253,
+              "line": 257,
               "column": 4
             },
             "end": {
-              "line": 266,
+              "line": 270,
               "column": 5
             }
           },
@@ -21369,24 +21497,7 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 268,
-              "column": 4
-            },
-            "end": {
               "line": 272,
-              "column": 5
-            }
-          },
-          "metadata": {},
-          "params": []
-        },
-        {
-          "name": "_prev",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 274,
               "column": 4
             },
             "end": {
@@ -21398,7 +21509,7 @@
           "params": []
         },
         {
-          "name": "_next",
+          "name": "_prev",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -21415,7 +21526,7 @@
           "params": []
         },
         {
-          "name": "_increm",
+          "name": "_next",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -21424,24 +21535,20 @@
               "column": 4
             },
             "end": {
-              "line": 300,
+              "line": 284,
               "column": 5
             }
           },
           "metadata": {},
-          "params": [
-            {
-              "name": "i"
-            }
-          ]
+          "params": []
         },
         {
-          "name": "_incremViewDay",
+          "name": "_increm",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 302,
+              "line": 286,
               "column": 4
             },
             "end": {
@@ -21457,7 +21564,7 @@
           ]
         },
         {
-          "name": "_incremViewMonth",
+          "name": "_incremViewDay",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -21478,7 +21585,7 @@
           ]
         },
         {
-          "name": "_incremViewYear",
+          "name": "_incremViewMonth",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -21499,7 +21606,7 @@
           ]
         },
         {
-          "name": "_cancelTimeout",
+          "name": "_incremViewYear",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -21508,7 +21615,28 @@
               "column": 4
             },
             "end": {
+              "line": 316,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "i"
+            }
+          ]
+        },
+        {
+          "name": "_cancelTimeout",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
               "line": 318,
+              "column": 4
+            },
+            "end": {
+              "line": 322,
               "column": 5
             }
           },
@@ -21521,11 +21649,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 320,
+              "line": 324,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 357,
               "column": 5
             }
           },
@@ -21542,11 +21670,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 361,
+              "line": 365,
               "column": 4
             },
             "end": {
-              "line": 445,
+              "line": 449,
               "column": 5
             }
           },
@@ -21566,6 +21694,9 @@
               "name": "_viewDay",
               "type": "number",
               "description": "The day of the date of the current view."
+            },
+            {
+              "name": "date"
             }
           ]
         },
@@ -21575,11 +21706,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 447,
+              "line": 451,
               "column": 4
             },
             "end": {
-              "line": 449,
+              "line": 453,
               "column": 5
             }
           },
@@ -21599,11 +21730,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 451,
+              "line": 455,
               "column": 4
             },
             "end": {
-              "line": 454,
+              "line": 458,
               "column": 5
             }
           },
@@ -21620,11 +21751,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 456,
+              "line": 460,
               "column": 4
             },
             "end": {
-              "line": 459,
+              "line": 463,
               "column": 5
             }
           },
@@ -21641,11 +21772,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 465,
+              "line": 469,
               "column": 4
             },
             "end": {
-              "line": 481,
+              "line": 485,
               "column": 5
             }
           },
@@ -21668,7 +21799,7 @@
           "column": 2
         },
         "end": {
-          "line": 483,
+          "line": 487,
           "column": 3
         }
       },

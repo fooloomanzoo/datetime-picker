@@ -234,8 +234,13 @@
     _onClickDay(e) {
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode) {
-        this.date = this.currentHoveredDayNode.dataset.date;
         this.currentSelectedDayNode = this.currentHoveredDayNode;
+        if (!this.mediated) {
+          this.date = this.currentHoveredDayNode.dataset.date;
+        } else {
+          const d = new Date(this.currentHoveredDayNode.dataset.date);
+          this._computeViewDatetime(d.getFullYear(), d.getMonth() + 1, d.getDate())
+        }
       }
     }
 
@@ -261,7 +266,7 @@
         year = d.getFullYear();
         month = d.getMonth() + 1;
         this._maxDayOfMonth = (new Date(year, month, 0)).getDate();
-        if (super._ifClamped(this.clamp,'day')) {
+        if (super._ifClamped(this.clamp, 'day')) {
           this.value = +d;
         }
         if (super._computeViewDatetime) {
@@ -364,13 +369,22 @@
      * @param {number} _viewDay The day of the date of the current view.
      */
     renderCalendar(_viewYear, _viewMonth, _viewDay, date) {
-      console.log(_viewYear, _viewMonth, _viewDay, this.date);
+      console.log(_viewYear, _viewMonth, _viewDay, this.date, this.datetime, this.min);
       if (_viewYear === undefined || _viewMonth === undefined || _viewDay === undefined || date === undefined) return;
-      const d = new Date(_viewYear, _viewMonth - 1, _viewDay);
+      const d = new Date(_viewYear, +_viewMonth - 1, _viewDay);
 
-      if (this._ifClamped(this.clamp,'day')) {
-        this.value = +d;
+      if (this._ifClamped(this.clamp, 'day')) {
+        this.date = this._toDate(d);
         return;
+      }
+
+      if (!this.mediated) {
+        const newDate = this._toDate(d);
+        if (newDate !== date) {
+          this.date = newDate;
+          console.log('return newDate');
+          return;
+        }
       }
 
       const year = d.getFullYear(),
@@ -383,7 +397,7 @@
 
       let recentDay, min, max;
 
-      recentDay = this._dayDiff(this.mediate ? new Date(date): d, firstDayOfMonth);
+      recentDay = this._dayDiff(this.mediated ? new Date(date) : d, firstDayOfMonth);
 
       if (this.min) {
         let minDate = new Date(this.min);
