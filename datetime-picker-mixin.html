@@ -89,6 +89,70 @@
                 day: 5
               };
             }
+          },
+
+          /**
+           * The year of the view
+           */
+          _viewYear: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The month of the view
+           */
+          _viewMonth: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The day of the view
+           */
+          _viewDay: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The hours of the view
+           */
+          _viewHours: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The minutes of the view
+           */
+          _viewMinutes: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The seconds of the view
+           */
+          _viewSeconds: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * The milliseconds of the view
+           */
+          _viewMilliseconds: {
+            type: Number,
+            notify: true
+          },
+
+          /**
+           * Set to true to activate mediation for confirming the input.
+           */
+          meditated: {
+            type: Boolean,
+            value: false
           }
         }
       }
@@ -136,6 +200,12 @@
         `;
       }
 
+      static get observers() {
+        return [
+          '_computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds)'
+        ]
+      }
+
       connectedCallback() {
         super.connectedCallback();
         if (this.value === undefined) {
@@ -143,53 +213,64 @@
         }
       }
 
-      _computeTime(hours, minutes, seconds, milliseconds) {
-        if (isNaN(+hours) || isNaN(+minutes) || isNaN(+seconds)) return;
+      _computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
 
-        switch (this.clamp) {
-          case 'hours':
-            hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
-            break;
-          case 'minutes':
-            minutes = 0; seconds = 0; milliseconds = 0;
-            break;
-          case 'seconds':
-            seconds = 0; milliseconds = 0;
-            break;
-          case 'milliseconds':
-            milliseconds = 0;
-            break;
+        const d = new Date(+year, +month - 1, +day, +hours, +minutes, +seconds, +milliseconds);
+
+        if (!isNaN(+d)) {
+          switch (this.clamp) {
+            case 'year':
+            case 'month':
+              month = 1; day = 1; hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
+              break;
+            case 'day':
+              month = d.getMonth() + 1; day = 1; hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
+              break;
+            case 'hours':
+              month = d.getMonth() + 1; day = d.getDate(); hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
+              break;
+            case 'minutes':
+              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = 0; seconds = 0; milliseconds = 0;
+              break;
+            case 'seconds':
+              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = 0; milliseconds = 0;
+              break;
+            case 'milliseconds':
+              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = d.getSeconds(); milliseconds = 0;
+              break;
+            default:
+              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = d.getSeconds(); milliseconds = d.getMilliseconds();
+          }
+
+          let toSet = {
+            _viewYear: year,
+            _viewMonth: month,
+            _viewDay: day,
+            _viewHours: hours,
+            _viewMinutes: minutes,
+            _viewSeconds: seconds,
+            _viewMilliseconds: milliseconds,
+          }
+
+          if (!this.mediated) {
+            toSet.year = year;
+            toSet.month = month;
+            toSet.day = day;
+            toSet.hours = hours;
+            toSet.minutes = minutes;
+            toSet.seconds = seconds;
+            toSet.milliseconds = milliseconds;
+            toSet.date = this._toDate(new Date(year, month - 1, day));
+            toSet.time = this._toTime(new Date(hours, minutes, seconds, milliseconds));
+            toSet.datetime = toSet.date + 'T' + toSet.time;
+          }
+
+          this.setProperties(toSet)
+
+          if (super._computeViewDatetime) {
+            super._computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds);
+          }
         }
-        super._computeTime(hours, minutes, seconds, milliseconds);
-      }
-
-      _computeDate(year, month, day) {
-        if (isNaN(+year) || isNaN(+month) || isNaN(+day)) return;
-        switch (this.clamp) {
-          case 'year':
-          case 'month':
-            month = 0; day = 1;
-            this._computeTime(0, 0, 0, 0);
-            break;
-          case 'day':
-            day = 1;
-            this._computeTime(0, 0, 0, 0);
-            break;
-        }
-        super._computeDate(year, month, day);
-      }
-
-      /**
-       * hide features
-       * @param  {string} clamp 'clamp'-property
-       * @param  {string} comp the property to compare to
-       * @return {boolean}     true when should be hidden
-       */
-      _ifClamped(clamp, comp) {
-        const features = ['month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'];
-        const pos = features.indexOf(clamp);
-        const index = features.indexOf(comp);
-        return pos !== -1 && index !== -1 && pos <= index;
       }
 
       _localeChanged(locale) {
@@ -250,13 +331,25 @@
         });
       }
 
+      confirm() {
+        if (super.confirm) {
+          super.confirm();
+        } else {
+          this._computeValue(new Date(this._viewYear, this._viewMonth - 1, this._viewDay, this._viewHours, this._viewMinutes, this._viewSeconds, this._viewMilliseconds));
+        }
+        if (this.close) {
+          this.close();
+        }
+      }
       /**
        * cancels the input
        * @param  {[type]} e Event
        */
       cancel() {
         this._computeValue(this.date, this.time);
-        this.close();
+        if (this.close) {
+          this.close();
+        }
       }
 
     }

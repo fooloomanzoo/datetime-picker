@@ -144,6 +144,14 @@
             type: Number,
             notify: true,
             observer: '_hours12Changed'
+          },
+
+          /**
+           * Clamp datetime to a property
+           * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+           */
+          clamp: {
+            type: String
           }
         }
       }
@@ -181,6 +189,22 @@
 
       _computeTime(hours, minutes, seconds, milliseconds) {
         if (isNaN(+hours) || isNaN(+minutes) || isNaN(+seconds)) return;
+
+        switch (this.clamp) {
+          case 'hours':
+            hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
+            break;
+          case 'minutes':
+            minutes = 0; seconds = 0; milliseconds = 0;
+            break;
+          case 'seconds':
+            seconds = 0; milliseconds = 0;
+            break;
+          case 'milliseconds':
+            milliseconds = 0;
+            break;
+        }
+
         const time = this._pad(+hours, 2) + ':' + this._pad(+minutes, 2) + ':' + this._pad(+seconds, 2) + '.' + this._pad(+milliseconds || 0, 3);
         if (this.time !== time) {
           this.time = time;
@@ -189,6 +213,19 @@
 
       _computeDate(year, month, day) {
         if (isNaN(+year) || isNaN(+month) || isNaN(+day)) return;
+
+        switch (this.clamp) {
+          case 'year':
+          case 'month':
+            month = 0; day = 1;
+            this._computeTime(0, 0, 0, 0);
+            break;
+          case 'day':
+            day = 1;
+            this._computeTime(0, 0, 0, 0);
+            break;
+        }
+
         const date = this._pad(+year, 4) + '-' + this._pad(+month, 2) + '-' + this._pad(+day, 2);
         if (this.date !== date) {
           this.date = date;
@@ -200,7 +237,7 @@
         let datetime;
         if (time !== undefined) {
           datetime = (date || this.date || this._toDate(new Date()) ) + 'T' + time;
-        } else if (!date.match(/[T]/i)) {
+        } else if (typeof date === 'string' && !date.match(/[T]/i)) {
           datetime = date + 'T' + (this.time || '00:00:00');
         } else {
           datetime = date;
@@ -363,6 +400,19 @@
         } else if (this.hours <= 12 && isAm === false) {
           this.hours += 12;
         }
+      }
+
+      /**
+       * clamp to date component
+       * @param  {string} clamp 'clamp'-property
+       * @param  {string} comp the property to compare to
+       * @return {boolean}     true when should be hidden
+       */
+      _ifClamped(clamp, comp) {
+        const features = ['month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'];
+        const pos = features.indexOf(clamp);
+        const index = features.indexOf(comp);
+        return pos !== -1 && index !== -1 && pos <= index;
       }
 
     }

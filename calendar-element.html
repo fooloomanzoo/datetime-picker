@@ -131,13 +131,13 @@
           <div id="top">
             <svg class="icon switch" on-mousedown="_prev" on-touchstart="_prev" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
-              <select id="month" style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" value="{{_viewMonth::change}}"></select>
+              <select id='month' style="order:[[_orderDate.month]];" hidden$="[[_ifClamped(clamp,'month')]]" value="{{_viewMonth::change}}"></select>
               <number-input id="year" style="order:[[_orderDate.year]];" pad-length="4" value="{{_viewYear}}"></number-input>
             </div>
             <svg class="icon switch" on-mousedown="_next" on-touchstart="_next" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
           </div>
 
-          <div id="content" hidden$="[[_hideDay]]">
+          <div id="content" hidden$="[[_ifClamped(clamp,'day')]]">
             <div id="header">
               <div id="caption" class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
@@ -173,7 +173,7 @@
       return {
         /**
          * Clamp datetime to a property
-         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+         * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
          */
         clamp: {
           type: String,
@@ -198,40 +198,6 @@
           notify: true
         },
 
-        /**
-         * The year of the view
-         */
-        _viewYear: {
-          type: Number,
-          notify: true
-        },
-
-        /**
-         * The month of the view
-         */
-        _viewMonth: {
-          type: Number,
-          notify: true
-        },
-
-        /**
-         * The day of the view
-         */
-        _viewDay: {
-          type: Number,
-          notify: true
-        },
-
-        _hideMonth: {
-          type: Boolean,
-          computed: '_ifClamped(clamp, "month")'
-        },
-
-        _hideDay: {
-          type: Boolean,
-          computed: '_ifClamped(clamp, "day")'
-        },
-
         _maxDayOfMonth: {
           type: Number
         }
@@ -240,8 +206,7 @@
 
     static get observers() {
       return [
-        'renderCalendar(_viewYear, _viewMonth, _viewDay)',
-        '_computeViewDate(year, month, day)'
+        'renderCalendar(_viewYear, _viewMonth, _viewDay, date)'
       ]
     }
 
@@ -259,7 +224,6 @@
     _addKeyListener() {
       this.addEventListener('keydown', this._checkKeycode.bind(this), false);
       this.addEventListener('keyup', this._cancelTimeout.bind(this), false);
-      console.log('add keyup keydown');
     }
 
     _removeKeyListener() {
@@ -291,30 +255,25 @@
       }
     }
 
-    _computeViewDate(year, month, day) {
-      if (year === undefined || month === undefined || day === undefined) {
-        return;
-      }
-      const d = new Date(year, month - 1, day);
-
+    _computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
+      const d = new Date(year, month - 1);
       if (!isNaN(+d)) {
         year = d.getFullYear();
         month = d.getMonth() + 1;
-        day = d.getDate();
-        this.setProperties({
-          _viewYear: year,
-          _viewMonth: month,
-          _viewDay: day,
-          _maxDayOfMonth: (new Date(year, month + 1, 0)).getDate(),
-          value: (this._hideMonth || this._hideDay) ? +(new Date(year, month)) : this.value
-        })
+        this._maxDayOfMonth = (new Date(year, month, 0)).getDate();
+        if (super._ifClamped(this.clamp,'day')) {
+          this.value = +d;
+        }
+        if (super._computeViewDatetime) {
+          super._computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds);
+        }
       }
     }
 
     now() {
       super.now();
       const d = new Date();
-      this._computeViewDate(d.getFullYear(), d.getMonth() + 1, d.getDate());
+      this._computeViewDatetime(d.getFullYear(), d.getMonth() + 1, d.getDate());
     }
 
     _prev() {
@@ -327,17 +286,17 @@
 
     _increm(i) {
       this._cancelTimeout();
-      if (this._hideMonth) {
+      if (this._ifClamped(this.clamp,'month')) {
         this._incremViewYear(i);
         this._activeJob = setInterval(() => {
           this._incremViewYear(i);
         }, 200);
-      } else if (this._hideDay) {
+      } else if (this._ifClamped(this.clamp,'day')) {
         this._incremViewMonth(i);
         this._activeJob = setInterval(() => {
           this._incremViewMonth(i);
         }, 200);
-      } else if (this._ifClamped(this.clamp, "hours")) {
+      } else if (this._ifClamped(this.clamp,'hours')) {
         this._incremViewDay(i);
         this._activeJob = setInterval(() => {
           this._incremViewDay(i);
@@ -346,15 +305,15 @@
     }
 
     _incremViewDay(i) {
-      this._computeViewDate(this._viewYear, this._viewMonth, this._viewDay + i);
+      this._computeViewDatetime(this._viewYear, this._viewMonth, this._viewDay + i, this._viewHours, this._viewMinutes, this._viewSeconds, this._viewMilliseconds);
     }
 
     _incremViewMonth(i) {
-      this._computeViewDate(this._viewYear, this._viewMonth + i, this._viewDay);
+      this._computeViewDatetime(this._viewYear, this._viewMonth + i, this._viewDay, this._viewHours, this._viewMinutes, this._viewSeconds, this._viewMilliseconds);
     }
 
     _incremViewYear(i) {
-      this._computeViewDate(this._viewYear + i, this._viewMonth, this._viewDay);
+      this._computeViewDatetime(this._viewYear + i, this._viewMonth, this._viewDay, this._viewHours, this._viewMinutes, this._viewSeconds, this._viewMilliseconds);
     }
 
     _cancelTimeout() {
@@ -404,11 +363,12 @@
      * @param {number} _viewMonth The month of the date of the current view.
      * @param {number} _viewDay The day of the date of the current view.
      */
-    renderCalendar(_viewYear, _viewMonth, _viewDay) {
-      if (_viewYear === undefined || _viewMonth === undefined || _viewDay === undefined) return;
+    renderCalendar(_viewYear, _viewMonth, _viewDay, date) {
+      console.log(_viewYear, _viewMonth, _viewDay, this.date);
+      if (_viewYear === undefined || _viewMonth === undefined || _viewDay === undefined || date === undefined) return;
       const d = new Date(_viewYear, _viewMonth - 1, _viewDay);
 
-      if (this._hideMonth || this._hideDay) {
+      if (this._ifClamped(this.clamp,'day')) {
         this.value = +d;
         return;
       }
@@ -422,9 +382,9 @@
         selectedDay = this._dayDiff(d, firstDayOfMonth);
 
       let recentDay, min, max;
-      if (this.date) {
-        recentDay = this._dayDiff(new Date(this.date), firstDayOfMonth);
-      }
+
+      recentDay = this._dayDiff(this.mediate ? new Date(date): d, firstDayOfMonth);
+
       if (this.min) {
         let minDate = new Date(this.min);
         min = this._dayDiff(new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()), firstDayOfMonth);
@@ -503,31 +463,25 @@
       this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay);
     }
 
-    confirm() {
-      console.log(this._viewYear, this._viewMonth, this._viewDay);
-      super._computeDate(this._viewYear, this._viewMonth, this._viewDay);
-      console.log(this.date);
-      this.close();
-    }
-
     /**
      * key press event handler
      * @param  {[type]} e Event
      */
     _checkKeycode(e) {
-      if (super._checkKeycode) {
-        super._checkKeycode(e);
-      }
-
       if (e && e.keyCode) {
         switch (e.keyCode) {
           case 37:
             this._prev();
+            return;
             break;
           case 39:
             this._next();
+            return;
             break;
         }
+      }
+      if (super._checkKeycode) {
+        super._checkKeycode(e);
       }
     }
 
