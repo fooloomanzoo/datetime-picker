@@ -186,115 +186,77 @@
         this.value = +(new Date());
       }
 
-      _computeDate(year, month, day, hours, minutes, seconds, milliseconds) {
-        if (isNaN(+year) || isNaN(+month) || isNaN(+day) || isNaN(+hours) || isNaN(+minutes) || isNaN(+seconds)) return;
-
-        let d = new Date(year, month, day);
-        if (this.min && this._checkMin(d) === false) {
-          d = new Date(this.min);
-        } else if (this.max && this._checkMax(d) === false) {
-          d = new Date(this.max);
-        }
-        d = this._clamp(d, this.clamp);
-
-        const date = this._toDate(d);
-        if (this.date !== date) {
-          this.date = date;
-        }
-      }
-
-      _computeTime(hours, minutes, seconds, milliseconds) {
-        if () return;
-
-        switch (this.clamp) {
-          case 'year':
-          case 'month':
-          case 'day':
-          case 'hours':
-            hours = 0; // falls through
-          case 'minutes':
-            minutes = 0; // falls through
-          case 'seconds':
-            seconds = 0; // falls through
-          case 'milliseconds':
-            milliseconds = 0;
-        }
-
-        const time = this._pad(+hours, 2) + ':' + this._pad(+minutes, 2) + ':' + this._pad(+seconds, 2) + '.' + this._pad(+milliseconds || 0, 3);
-        if (this.time !== time) {
-          this.time = time;
-        }
+      _computeDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
+        this._setDate(new Date(year, month - 1, day, hours, minutes, seconds, milliseconds));
       }
 
       _computeValue(date, time) {
         if (date === undefined && time === undefined) return;
-        let datetime;
-        if (time !== undefined) {
-          datetime = (date || this.date || this._toDate(new Date()) ) + 'T' + time;
+        let d;
+        if (typeof date === 'object') {
+          d = date;
+        } else if (time !== undefined) {
+          d = new Date((date || this.date || this._toDate(new Date()) ) + 'T' + time);
         } else if (typeof date === 'string' && !date.match(/[T]/i)) {
-          datetime = date + 'T' + (this.time || '00:00:00');
+          d = new Date(date + 'T' + (this.time || '00:00:00'));
         } else {
-          datetime = date;
+          d = new Date(date);
         }
-        let d = new Date(datetime);
-
-        if (!isNaN(+d)) {
-          if (this.min && this._checkMin(d) === false) {
-            d = new Date(this.min);
-          } else if (this.max && this._checkMax(d) === false) {
-            d = new Date(this.max);
-          }
-
-          d = this._clamp(d, this.clamp);
-          date = this._toDate(d);
-          time = this._toTime(d);
-          datetime = date + 'T' + time;
-          const value = +d;
-
-          let toSet = {
-            year: d.getFullYear(),
-            month: d.getMonth() + 1,
-            day: d.getDate(),
-            hours: d.getHours(),
-            minutes: d.getMinutes(),
-            seconds: d.getSeconds(),
-            milliseconds: d.getMilliseconds()
-          }
-
-          if (this.date !== date || this.time !== time || this.datetime !== datetime || this.value !== value) {
-            toSet.date = date;
-            toSet.time = time;
-            toSet.datetime = datetime;
-            toSet.value = value;
-          }
-          this.setProperties(toSet);
-        } else if (!isNaN(this.value)){
-          this._valueChanged(this.value);
-        }
+        this._setDate(d);
       }
 
       _valueChanged(value) {
         if (!value) return;
         let d = typeof value === 'object' ? value : new Date(value);
 
+        this._setDate(d);
+      }
+
+      _setDate(d) {
         if (!isNaN(+d)) {
           if (this.min && this._checkMin(d) === false) {
             d = new Date(this.min);
           } else if (this.max && this._checkMax(d) === false) {
             d = new Date(this.max);
           }
-
           d = this._clamp(d, this.clamp);
+          let toSet = {};
 
-          this.setProperties({
-            year: d.getFullYear(),
-            month: d.getMonth() + 1,
-            day: d.getDate(),
-            hours: d.getHours(),
-            minutes: d.getMinutes(),
-            seconds: d.getSeconds(),
-            milliseconds: d.getMilliseconds()
-          });
+          const value = +d,
+            date = this._toDate(d),
+            time = this._toTime(d),
+            datetime = date + 'T' + time;
+
+          if (this.value !== value || this.date !== date || this.time !== time || this.datetime !== datetime) {
+            toSet.value = value;
+            toSet.date = date;
+            toSet.time = time;
+            toSet.datetime = datetime;
+            this.setProperties(toSet);
+            return;
+          }
+
+          const year = d.getFullYear(),
+            month = d.getMonth() + 1,
+            day = d.getDate(),
+            hours = d.getHours(),
+            minutes = d.getMinutes(),
+            seconds = d.getSeconds(),
+            milliseconds = d.getMilliseconds();
+
+          if (this.year !== year || this.month !== month || this.day !== day || this.hours !== hours || this.minutes !== minutes || this.seconds !== seconds || this.milliseconds !== milliseconds) {
+            toSet.year = year;
+            toSet.month = month;
+            toSet.day = day;
+            toSet.hours = hours;
+            toSet.minutes = minutes;
+            toSet.seconds = seconds;
+            toSet.milliseconds = milliseconds;
+            this.setProperties(toSet);
+            return;
+          }
+        } else if (!isNaN(this.value)){
+          this._valueChanged(this.value);
         } else if (this.date && this.time){
           this._computeValue(this.date, this.time);
         }

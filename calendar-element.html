@@ -127,12 +127,12 @@
       return `
         <div id="calendar">
           <div id="top">
-            <svg class="icon switch" on-mousedown="_prev" on-touchstart="_prev" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
+            <svg class="icon switch" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
               <select id='month' style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" value="{{month::change}}"></select>
               <number-input id="year" style="order:[[_orderDate.year]];" pad-length="4" value="{{year}}"></number-input>
             </div>
-            <svg class="icon switch" on-mousedown="_next" on-touchstart="_next" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
+            <svg class="icon switch" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
           </div>
 
           <div id="content" hidden$="[[_hideDay]]">
@@ -214,7 +214,7 @@
 
     static get observers() {
       return [
-        'renderCalendar(year, month, day, date)',
+        'renderCalendar(year, month, day)',
         '_computeMaxDayOfMonth(year, month)'
       ]
     }
@@ -232,24 +232,53 @@
 
     _addKeyListener() {
       this.addEventListener('keydown', this._checkKeycode.bind(this), false);
-      this.addEventListener('keyup', this._cancelTimeout.bind(this), false);
+      this.addEventListener('keyup', this._stopActiveJob.bind(this), false);
     }
 
     _removeKeyListener() {
       this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
-      this.removeEventListener('keyup', this._cancelTimeout.bind(this), false);
+      this.removeEventListener('keyup', this._stopActiveJob.bind(this), false);
+    }
+
+    _addSwitchListener() {
+      super._addSwitchListener();
+      const switchs = this.root.querySelectorAll('#calendar .icon.switch');
+
+      if (switchs) {
+        Array.prototype.forEach.call(switchs, s => {
+          s.addEventListener('mousedown', this._startIncremMonth.bind(this, s), false);
+          s.addEventListener('touchstart', this._startIncremMonth.bind(this, s), false);
+        })
+      }
+    }
+
+    _removeSwitchListener() {
+      super._removeSwitchListener();
+      const switchs = this.root.querySelectorAll('#calendar .icon.switch');
+
+      if (switchs) {
+        Array.prototype.forEach.call(switchs, s => {
+          s.addEventListener('mousedown', this._startIncremMonth.bind(this, s), false);
+          s.addEventListener('touchstart', this._startIncremMonth.bind(this, s), false);
+        })
+      }
+    }
+
+    _startIncremMonth(s) {
+      console.log(s);
+      const step = s.getAttribute('step');
+      if (this._ifClamped(this.clamp, 'month')) {
+        this._incremProp('Year', step);
+      } else {
+        this._incremProp('Month', step);
+      }
     }
 
     _onClickDay(e) {
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode) {
         this.currentSelectedDayNode = this.currentHoveredDayNode;
-        if (!this.mediated) {
-          this.date = this.currentHoveredDayNode.dataset.date;
-        } else {
-          const d = new Date(this.currentHoveredDayNode.dataset.date);
-          this._computeViewDatetime(d.getFullYear(), d.getMonth() + 1, d.getDate())
-        }
+        this.date = this.currentSelectedDayNode.dataset.date;
       }
     }
 
@@ -282,46 +311,13 @@
       this._computeViewDatetime(d.getFullYear(), d.getMonth() + 1, d.getDate());
     }
 
-    _prev() {
-      this._increm(-1);
-    }
-
-    _next() {
-      this._increm(1);
-    }
-
-    _increm(i) {
-      this._cancelTimeout();
-      let year = this.year,
-        month = this.month - 1,
-        day = this.day;
-      if (this._ifClamped(this.clamp, 'month')) {
-        year += i;
-        this._valueChanged(new Date(year, month, day));
-        this._activeJob = setInterval(() => {
-          year += i;
-          this._valueChanged(new Date(year, month, day));
-        }, 200);
-      } else if (this._ifClamped(this.clamp, 'day')) {
-        month += i;
-        this._valueChanged(new Date(year, month, day));
-        this._activeJob = setInterval(() => {
-          month += i;
-          this._valueChanged(new Date(year, month, day));
-        }, 200);
-      } else if (this._ifClamped(this.clamp, 'hours')) {
-        day += i;
-        this._valueChanged(new Date(year, month, day));
-        this._activeJob = setInterval(() => {
-          day += i;
-          this._valueChanged(new Date(year, month, day));
-        }, 200);
-      }
-    }
-
-    _cancelTimeout() {
-      if (this._activeJob) {
-        clearInterval(this._activeJob)
+    _incremView(step, clamp) {
+      if (this._ifClamped(clamp, 'month')) {
+        this._incremProp('Year', step);
+      } else if (this._ifClamped(clamp, 'day')) {
+        this._incremProp('Month', step);
+      } else {
+        this._incremProp('Date', step);
       }
     }
 
@@ -365,11 +361,15 @@
      * @param {number} year The year of the date of the current view.
      * @param {number} month The month of the date of the current view.
      * @param {number} day The day of the date of the current view.
+     * @param {number} date The current selected date.
      */
     renderCalendar(year, month, day, date) {
       if (year === undefined || month === undefined || day === undefined) return;
       const d = new Date(year, +month - 1, day);
 
+      if (date === undefined) {
+        date = this.date;
+      }
       if (isNaN(+d)) {
         return;
       }
@@ -377,14 +377,6 @@
       if (this._ifClamped(this.clamp, 'day')) {
         this.date = this._toDate(d);
         return;
-      }
-
-      if (!this.mediated) {
-        const newDate = this._toDate(d);
-        if (newDate !== date) {
-          this.date = newDate;
-          return;
-        }
       }
 
       year = d.getFullYear();
@@ -397,7 +389,7 @@
 
       let recentDay, min, max;
 
-      recentDay = this._dayDiff(this.mediated ? new Date(date) : d, firstDayOfMonth);
+      recentDay = this._dayDiff(new Date(date), firstDayOfMonth);
 
       if (this.min) {
         let minDate = new Date(this.min);
@@ -485,13 +477,11 @@
       if (e && e.keyCode) {
         switch (e.keyCode) {
           case 37:
-            this._prev();
+            this._incremView(-1, this.clamp);
             return;
-            break;
           case 39:
-            this._next();
+            this._incremView(1, this.clamp);
             return;
-            break;
         }
       }
       if (super._checkKeycode) {

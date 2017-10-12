@@ -22,6 +22,32 @@
         `;
       }
 
+      static get observers() {
+        return [
+          '_computeValue(confirmedDate, confirmedTime)',
+          '_computeValue(confirmedDatetime)'
+        ];
+      }
+
+      static get properties() {
+        return {
+          confirmedDate: {
+            type: String,
+            notify: true
+          },
+
+          confirmedTime: {
+            type: String,
+            notify: true
+          },
+
+          confirmedDateTime: {
+            type: String,
+            notify: true
+          }
+        };
+      }
+
       /**
        * custom style content
        * @type {string}
@@ -72,6 +98,23 @@
         } else {
           this.open();
         }
+      }
+
+      confirm() {
+        this.setProperties({
+          confirmedDate: this.date,
+          confirmedTime: this.time
+        })
+        super.confirm();
+      }
+
+      cancel() {
+        this.setProperties({
+          date: this.confirmedDate,
+          time: this.confirmedTime,
+          datetime: this.confirmedDateTime
+        })
+        super.cancel();
       }
     }
   }

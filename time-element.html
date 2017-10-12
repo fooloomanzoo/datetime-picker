@@ -57,28 +57,28 @@
       return `
         <div id="timer" hidden$="[[_hideHours]]">
           <div class="field">
-            <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
             <number-input hidden$="[[!hour12]]" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
-            <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideMinutes]]">
-            <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <number-input class="time" min="0" max="59" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
-            <svg class="icon switch" viewBox="0 0 24 24" for="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideSeconds]]">
-            <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <number-input class="time" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
-            <svg class="icon switch" viewBox="0 0 24 24" for="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
           <div class="field" hidden$="[[_hideMilliSeconds]]">
-            <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <number-input class="time" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
-            <svg class="icon switch" viewBox="0 0 24 24" for="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <div class="am-switch" hidden$="[[!hour12]]" on-click="_switchAm">
             <span hidden$="[[!_isAm]]">[[_am]]</span>
@@ -122,56 +122,27 @@
       }
     }
 
-    connectedCallback() {
-      super.connectedCallback();
-
-      const switchs = this.root.querySelectorAll('.icon.switch');
+    _addSwitchListener() {
+      super._addSwitchListener();
+      const switchs = this.root.querySelectorAll('#timer .icon.switch');
       if (switchs) {
         Array.prototype.forEach.call(switchs, s => {
           s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
           s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
-          s.addEventListener('mouseup', this._stopIncrem.bind(this, s), false);
-          s.addEventListener('mouseleave', this._stopIncrem.bind(this, s), false);
-          s.addEventListener('touchend', this._stopIncrem.bind(this, s), false);
         })
       }
     }
 
-    disconnectedCallback() {
-      super.disconnectedCallback();
-
-      const switchs = this.root.querySelectorAll('.switch');
+    _removeSwitchListener() {
+      super._removeSwitchListener();
+      const switchs = this.root.querySelectorAll('#timer .icon.switch');
       if (switchs) {
         Array.prototype.forEach.call(switchs, s => {
-          s.removeEventListener('mousedown', this._startIncrem.bind(this, s), false);
-          s.removeEventListener('touchstart', this._startIncrem.bind(this, s), false);
-          s.removeEventListener('mouseup', this._stopIncrem.bind(this, s), false);
-          s.removeEventListener('mouseleave', this._stopIncrem.bind(this, s), false);
-          s.removeEventListener('touchend', this._stopIncrem.bind(this, s), false);
+          s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
+          s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
         })
       }
     }
-
-    _startIncrem(s) {
-      this._stopIncrem();
-      const type = s.getAttribute('for');
-      const step = +(s.getAttribute('step'));
-      this[type] += step;
-      this._activeJob = setInterval(() => {
-        this[type] += step;
-      }, 150);
-    }
-
-    _stopIncrem() {
-      if (this._activeJob) {
-        clearInterval(this._activeJob);
-      }
-    }
-
-    _switchAm() {
-      this._isAm = !this._isAm;
-    }
-
   }
 </script>
 

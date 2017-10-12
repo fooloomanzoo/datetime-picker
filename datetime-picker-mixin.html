@@ -68,14 +68,6 @@
           },
 
           /**
-           * clamp datetime to a property
-           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-           */
-          clamp: {
-            type: String
-          },
-
-          /**
            * order of date-parts
            */
           _orderDate: {
@@ -92,9 +84,9 @@
           },
 
           /**
-           * Set to true to activate mediation for confirming the input.
+           * Set to true to not mediate the confirmation of the input.
            */
-          mediated: {
+          noMediation: {
             type: Boolean,
             value: false
           }
@@ -147,139 +139,35 @@
       connectedCallback() {
         super.connectedCallback();
         if (this.value === undefined) {
-          this._computeValue(new Date());
+          this._setDate(new Date(), true);
+        }
+        this._addSwitchListener();
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this._removeSwitchListener();
+      }
+
+      _addSwitchListener() {
+        const switchs = this.root.querySelectorAll('.icon.switch');
+        if (switchs) {
+          Array.prototype.forEach.call(switchs, s => {
+            s.addEventListener('mouseup', this._stopActiveJob.bind(this, s), false);
+            s.addEventListener('mouseleave', this._stopActiveJob.bind(this, s), false);
+            s.addEventListener('touchend', this._stopActiveJob.bind(this, s), false);
+          })
         }
       }
 
-      _computeTime() {
-        if (!this.mediated) {
-          super._computeTime(...arguments);
-        }
-      }
-
-      _computeDate() {
-        if (!this.mediated) {
-          super._computeDate(...arguments);
-        }
-      }
-
-      _computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
-
-        let d = new Date(+(year || 1970), +(month || 1) - 1, +(day || 1), +(hours || 0), +(minutes || 0), +(seconds || 0), +(milliseconds || 0));
-
-        if (!isNaN(+d)) {
-          let c;
-          if (this._checkMin(d) === false) {
-            c = new Date(this.min);
-          } else if (this._checkMax(d) === false) {
-            c = new Date(this.max);
-          }
-
-          if (c) {
-            year = c.getFullYear(); month = c.getMonth() + 1; day = c.getDate(); hours = c.getHours(); minutes = c.getMinutes(); seconds = c.getSeconds(); milliseconds = c.getMilliseconds();
-          } else {
-            year = d.getFullYear(); month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = d.getSeconds(); milliseconds = d.getMilliseconds();
-          }
-
-          switch (this.clamp) {
-            case 'year':
-            case 'month':
-              month = 1; // falls through
-            case 'day':
-              day = 1; // falls through
-            case 'hours':
-              hours = 0; // falls through
-            case 'minutes':
-              minutes = 0; // falls through
-            case 'seconds':
-              seconds = 0; // falls through
-            case 'milliseconds':
-              milliseconds = 0;
-          }
-
-          const newDate = new Date(year, month - 1, day, hours, minutes, seconds, milliseconds);
-
-          if (+newDate !== +d) {
-            if (!this.mediated) {
-              this.value = +newDate;
-            }
-            return;
-          }
-
-          this.setProperties({
-            _viewYear: year,
-            _viewMonth: month,
-            _viewDay: day,
-            _viewHours: hours,
-            _viewMinutes: minutes,
-            _viewSeconds: seconds,
-            _viewMilliseconds: milliseconds,
-          });
-
-          if (super._computeViewDatetime) {
-            super._computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds);
-          }
-        }
-      }
-
-      _viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds) {
-        let d = new Date(+(_viewYear || 1970), +(_viewMonth || 1) - 1, +(_viewDay || 1), +(_viewHours || 0), +(_viewMinutes || 0), +(_viewSeconds || 0), +(_viewMilliseconds || 0));
-
-        if (!isNaN(+d)) {
-          let c;
-          if (this._checkMin(d) === false) {
-            c = new Date(this.min);
-          } else if (this._checkMax(d) === false) {
-            c = new Date(this.max);
-          }
-
-          if (c) {
-            _viewYear = c.getFullYear(); _viewMonth = c.getMonth() + 1; _viewDay = c.getDate(); _viewHours = c.getHours(); _viewMinutes = c.getMinutes(); _viewSeconds = c.getSeconds(); _viewMilliseconds = c.getMilliseconds();
-          } else {
-            _viewYear = d.getFullYear(); _viewMonth = d.getMonth() + 1; _viewDay = d.getDate(); _viewHours = d.getHours(); _viewMinutes = d.getMinutes(); _viewSeconds = d.getSeconds(); _viewMilliseconds = d.getMilliseconds();
-          }
-
-          switch (this.clamp) {
-            case 'year':
-            case 'month':
-              _viewMonth = 1; // falls through
-            case 'day':
-              _viewDay = 1; // falls through
-            case 'hours':
-              _viewHours = 0; // falls through
-            case 'minutes':
-              _viewMinutes = 0; // falls through
-            case 'seconds':
-              _viewSeconds = 0; // falls through
-            case 'milliseconds':
-              _viewMilliseconds = 0;
-          }
-
-          const newDate = new Date(_viewYear, _viewMonth - 1, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
-
-          if (+newDate !== +d) {
-            this._computeViewDatetime(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
-            return;
-          }
-
-          if (!this.mediated) {
-            const date = this._toDate(new Date(_viewYear, _viewMonth - 1, _viewDay));
-            const time = this._toTime(new Date(_viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds));
-            this.setProperties({
-              year: _viewYear,
-              month: _viewMonth,
-              day: _viewDay,
-              hours: _viewHours,
-              minutes: _viewMinutes,
-              seconds: _viewSeconds,
-              milliseconds: _viewMilliseconds,
-              date: date,
-              time: time
-            });
-          }
-          if (super._viewDaytimeChanged) {
-            super._viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
-          }
+      _removeSwitchListener() {
+        const switchs = this.root.querySelectorAll('.icon.switch');
+        if (switchs) {
+          Array.prototype.forEach.call(switchs, s => {
+            s.addEventListener('mouseup', this._stopActiveJob.bind(this, s), false);
+            s.addEventListener('mouseleave', this._stopActiveJob.bind(this, s), false);
+            s.addEventListener('touchend', this._stopActiveJob.bind(this, s), false);
+          })
         }
       }
 
@@ -352,6 +240,36 @@
         }
       }
 
+      _startIncrem(s) {
+        this._stopActiveJob();
+        const prop = s.getAttribute('prop');
+        const step = +(s.getAttribute('step'));
+        this._incremProp(prop, step);
+      }
+
+      _incremProp(prop, step) {
+        this._stopActiveJob();
+        const getter = Date.prototype['get' + prop],
+          setter = Date.prototype['set' + prop];
+        if (!getter || !setter) {
+          return;
+        }
+        let d = new Date(this.value);
+        setter.call(d, getter.call(d) + step);
+        this._setDate(d);
+        this._activeJob = setInterval(() => {
+          d = new Date(this.value);
+          setter.call(d, getter.call(d) + step);
+          this._setDate(d);
+        }, 200);
+      }
+
+      _stopActiveJob() {
+        if (this._activeJob) {
+          clearInterval(this._activeJob);
+        }
+      }
+
       /**
        * confirms the input
        * @param  {[type]} e Event
@@ -360,7 +278,7 @@
         if (super.confirm) {
           super.confirm();
         } else {
-          this._computeValue(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds));
+          this._setDate(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds), true);
         }
         if (this.close) {
           this.close();
@@ -372,7 +290,7 @@
        * @param  {[type]} e Event
        */
       cancel() {
-        this._computeValue(this.date, this.time);
+        this._computeValue(this.datetime);
         if (this.close) {
           this.close();
         }
