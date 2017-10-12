@@ -116,11 +116,29 @@
           },
 
           /**
-           * The hours of the view
+           * The hours-12 of the view
            */
           _viewHours: {
             type: Number,
-            notify: true
+            notify: true,
+            observer: '_viewHoursChanged'
+          },
+
+          /**
+           * The hours of the view
+           */
+          _viewHours12: {
+            type: Number,
+            notify: true,
+            observer: '_viewHours12Changed'
+          },
+
+          /**
+           * The hours of the view
+           */
+          _isAm: {
+            type: Boolean,
+            observer: '__isAmChanged'
           },
 
           /**
@@ -235,15 +253,15 @@
           switch (this.clamp) {
             case 'year':
             case 'month':
-              month = 1;
+              month = 1; // falls through
             case 'day':
-              day = 1;
+              day = 1; // falls through
             case 'hours':
-              hours = 0;
+              hours = 0; // falls through
             case 'minutes':
-              minutes = 0;
+              minutes = 0; // falls through
             case 'seconds':
-              seconds = 0;
+              seconds = 0; // falls through
             case 'milliseconds':
               milliseconds = 0;
           }
@@ -293,15 +311,15 @@
           switch (this.clamp) {
             case 'year':
             case 'month':
-              _viewMonth = 1;
+              _viewMonth = 1; // falls through
             case 'day':
-              _viewDay = 1;
+              _viewDay = 1; // falls through
             case 'hours':
-              _viewHours = 0;
+              _viewHours = 0; // falls through
             case 'minutes':
-              _viewMinutes = 0;
+              _viewMinutes = 0; // falls through
             case 'seconds':
-              _viewSeconds = 0;
+              _viewSeconds = 0; // falls through
             case 'milliseconds':
               _viewMilliseconds = 0;
           }
@@ -331,6 +349,26 @@
           if (super._viewDaytimeChanged) {
             super._viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
           }
+        }
+      }
+
+      _viewHoursChanged(_viewHours) {
+        console.log(_viewHours);
+        this._isAm = _viewHours < 12;
+        this._viewHours12 = (_viewHours === 0) ? 12 : (_viewHours > 12 ? _viewHours - 12 : _viewHours);
+      }
+
+      _viewHours12Changed(_viewHours12) {
+        this._viewHours = (_viewHours12 === 12) ? (this._isAm ? 0 : 12) : (this._isAm ? _viewHours12 : _viewHours12 + 12);
+      }
+
+      __isAmChanged(_isAm) {
+        if (_isAm === undefined) return;
+
+        if (this._viewHours >= 12 && _isAm === true) {
+          this._viewHours -= 12;
+        } else if (this._viewHours <= 12 && _isAm === false) {
+          this._viewHours += 12;
         }
       }
 
