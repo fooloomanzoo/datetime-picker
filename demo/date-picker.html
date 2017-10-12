@@ -45,11 +45,32 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker native value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></date-picker>
+              <date-picker native value="{{value}}" date="{{date}}" time="{{time}}" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Mediated Input</h3>
+      <h4>to confirm the values for date, time, datetime and value</h4>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <div class="vertical-section-container">
+                <date-picker mediated datetime="{{datetime}}" date="{{date}}" value="{{value}}" vertical-align="bottom"></date-picker>
+              </div>
+              <div class="vertical-section-container result">
+                <div><code>date</code>: <b>[[date]]</b></div>
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>value</code>: <b>[[value]]</b></div>
               </div>
             </template>
           </dom-bind>
@@ -72,7 +93,7 @@
                     --datetime-color: #fff;
                   }
                   date-picker.end {
-                    --datetime-selected-background: #5123ec;
+                    --datetime-selected-background: #7551ee;
                     --datetime-selected-color: #fff;
                     --datetime-background: #594894;
                     --datetime-color: #fff;
@@ -80,33 +101,12 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="begin" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker mediated class="begin" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
+                <date-picker mediated class="end" datetime="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>start</code>: <b>[[min]]</b></div>
                 <div><code>end</code>: <b>[[max]]</b></div>
-              </div>
-            </template>
-          </dom-bind>
-        </template>
-      </demo-snippet>
-    </div>
-<!--
-    <div class="vertical-section-container centered">
-      <h3>Mediated Input</h3>
-      <h4>to confirm the values for date, time, datetime and value</h4>
-      <demo-snippet>
-        <template>
-          <dom-bind>
-            <template is="dom-bind">
-              <div class="vertical-section-container">
-                <date-picker auto-confirm datetime="{{datetime}}" date="{{date}}" value="{{value}}" vertical-align="bottom"></date-picker>
-              </div>
-              <div class="vertical-section-container result">
-                <div><code>date</code>: <b>[[date]]</b></div>
-                <div><code>datetime</code>: <b>[[datetime]]</b></div>
-                <div><code>value</code>: <b>[[value]]</b></div>
               </div>
             </template>
           </dom-bind>
@@ -225,7 +225,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div> -->
+    </div>
 
   </body>
 

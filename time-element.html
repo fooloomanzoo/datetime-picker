@@ -55,7 +55,7 @@
 
     static get timeTemplate() {
       return `
-        <div id="timer">
+        <div id="timer" hidden$="[[_hideHours]]">
           <div class="field">
             <svg class="icon switch" viewBox="0 0 24 24" for="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
@@ -97,6 +97,11 @@
         clamp: {
           type: String,
           value: 'milliseconds'
+        },
+
+        _hideHours: {
+          type: Boolean,
+          computed: '_ifClamped(clamp, "hours")'
         },
 
         _hideMinutes: {

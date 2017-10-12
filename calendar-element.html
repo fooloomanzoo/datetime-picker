@@ -102,17 +102,15 @@
           border-color: rgba(255, 255, 255, 0.25);
         }
         #calendar #dates .day.selected {
+          border-color: var(--datetime-selected-background);
+        }
+        #calendar #dates .day.recent {
           background-color: var(--datetime-selected-background);
           color: var(--datetime-selected-color);
           border-color: rgba(255, 255, 255, 0.25);
         }
         #calendar #dates .day.current {
-          border-style: solid;
-          border-width: thin;
-          border-color: var(--datetime-selected-background) !important;
-        }
-        #calendar #dates .day.recent {
-          border-color: rgba(255, 255, 255, 0.66);
+          border-color: rgba(255, 255, 255, 0.66) !important;
         }
         #calendar #dates .day.notinmonth {
           opacity: 0.5;
@@ -131,13 +129,13 @@
           <div id="top">
             <svg class="icon switch" on-mousedown="_prev" on-touchstart="_prev" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="previous" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
-              <select id='month' style="order:[[_orderDate.month]];" hidden$="[[_ifClamped(clamp,'month')]]" value="{{_viewMonth::change}}"></select>
+              <select id='month' style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" value="{{_viewMonth::change}}"></select>
               <number-input id="year" style="order:[[_orderDate.year]];" pad-length="4" value="{{_viewYear}}"></number-input>
             </div>
             <svg class="icon switch" on-mousedown="_next" on-touchstart="_next" on-mouseleave="_cancelTimeout" on-mouseup="_cancelTimeout" on-touchend="_cancelTimeout" aria-label="next" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
           </div>
 
-          <div id="content" hidden$="[[_ifClamped(clamp,'day')]]">
+          <div id="content" hidden$="[[_hideDay]]">
             <div id="header">
               <div id="caption" class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
@@ -196,6 +194,16 @@
         currentHoveredDayNode: {
           type: Node,
           notify: true
+        },
+
+        _hideMonth: {
+          type: Boolean,
+          computed: '_ifClamped(clamp, "month")'
+        },
+
+        _hideDay: {
+          type: Boolean,
+          computed: '_ifClamped(clamp, "day")'
         },
 
         _maxDayOfMonth: {
@@ -261,7 +269,7 @@
     }
 
     _computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
-      const d = new Date(year, month - 1);
+      const d = new Date(year, month - 1, day, hours, minutes, seconds, milliseconds);
       if (!isNaN(+d)) {
         year = d.getFullYear();
         month = d.getMonth() + 1;
@@ -270,6 +278,7 @@
           this.value = +d;
         }
         if (super._computeViewDatetime) {
+          day = d.getDate();
           super._computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds);
         }
       }
@@ -369,7 +378,7 @@
      * @param {number} _viewDay The day of the date of the current view.
      */
     renderCalendar(_viewYear, _viewMonth, _viewDay, date) {
-      console.log(_viewYear, _viewMonth, _viewDay, this.date, this.datetime, this.min);
+
       if (_viewYear === undefined || _viewMonth === undefined || _viewDay === undefined || date === undefined) return;
       const d = new Date(_viewYear, +_viewMonth - 1, _viewDay);
 
@@ -382,7 +391,6 @@
         const newDate = this._toDate(d);
         if (newDate !== date) {
           this.date = newDate;
-          console.log('return newDate');
           return;
         }
       }
@@ -469,12 +477,12 @@
 
     _minChanged(min) {
       super._minChanged(min);
-      this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay);
+      this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay, this.date);
     }
 
     _maxChanged(max) {
       super._maxChanged(max);
-      this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay);
+      this.renderCalendar(this._viewYear, this._viewMonth, this._viewDay, this.date);
     }
 
     /**

@@ -202,7 +202,8 @@
 
       static get observers() {
         return [
-          '_computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds)'
+          '_computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds)',
+          '_viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds)'
         ]
       }
 
@@ -215,34 +216,48 @@
 
       _computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
 
-        const d = new Date(+(year || 1970), +(month || 1) - 1, +(day || 1), +(hours || 0), +(minutes || 0), +(seconds || 0), +(milliseconds || 0));
+        let d = new Date(+(year || 1970), +(month || 1) - 1, +(day || 1), +(hours || 0), +(minutes || 0), +(seconds || 0), +(milliseconds || 0));
 
-        if (!isNaN(+d) && this._checkMin(d) !== false && this._checkMax(d) !== false) {
+        if (!isNaN(+d)) {
+          let c;
+          if (this._checkMin(d) === false) {
+            c = new Date(this.min);
+          } else if (this._checkMax(d) === false) {
+            c = new Date(this.max);
+          }
+
+          if (c) {
+            year = c.getFullYear(); month = c.getMonth() + 1; day = c.getDate(); hours = c.getHours(); minutes = c.getMinutes(); seconds = c.getSeconds(); milliseconds = c.getMilliseconds();
+          } else {
+            year = d.getFullYear(); month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = d.getSeconds(); milliseconds = d.getMilliseconds();
+          }
+
           switch (this.clamp) {
             case 'year':
             case 'month':
-              month = 1; day = 1; hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
-              break;
+              month = 1;
             case 'day':
-              month = d.getMonth() + 1; day = 1; hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
-              break;
+              day = 1;
             case 'hours':
-              month = d.getMonth() + 1; day = d.getDate(); hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
-              break;
+              hours = 0;
             case 'minutes':
-              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = 0; seconds = 0; milliseconds = 0;
-              break;
+              minutes = 0;
             case 'seconds':
-              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = 0; milliseconds = 0;
-              break;
+              seconds = 0;
             case 'milliseconds':
-              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = d.getSeconds(); milliseconds = 0;
-              break;
-            default:
-              month = d.getMonth() + 1; day = d.getDate(); hours = d.getHours(); minutes = d.getMinutes(); seconds = d.getSeconds(); milliseconds = d.getMilliseconds();
+              milliseconds = 0;
           }
 
-          let toSet = {
+          const newDate = new Date(year, month - 1, day, hours, minutes, seconds, milliseconds);
+
+          if (+newDate !== +d) {
+            if (!this.mediated) {
+              this.value = +newDate;
+            }
+            return;
+          }
+
+          this.setProperties({
             _viewYear: year,
             _viewMonth: month,
             _viewDay: day,
@@ -250,34 +265,71 @@
             _viewMinutes: minutes,
             _viewSeconds: seconds,
             _viewMilliseconds: milliseconds,
-          }
-
-          if (!this.mediated) {
-            const date = this._toDate(new Date(year, month - 1, day));
-            const time = this._toTime(new Date(hours, minutes, seconds, milliseconds));
-            const datetime = date + 'T' + time;
-            toSet.year = year;
-            toSet.month = month;
-            toSet.day = day;
-            toSet.hours = hours;
-            toSet.minutes = minutes;
-            toSet.seconds = seconds;
-            toSet.milliseconds = milliseconds;
-            if (date !== this.date) {
-              toSet.date = date;
-            }
-            if (time !== this.time) {
-              toSet.time = time;
-            }
-            if (datetime !== this.datetime) {
-              toSet.datetime = datetime;
-            }
-          }
-
-          this.setProperties(toSet);
+          });
 
           if (super._computeViewDatetime) {
             super._computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds);
+          }
+        }
+      }
+
+      _viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds) {
+        let d = new Date(+(_viewYear || 1970), +(_viewMonth || 1) - 1, +(_viewDay || 1), +(_viewHours || 0), +(_viewMinutes || 0), +(_viewSeconds || 0), +(_viewMilliseconds || 0));
+
+        if (!isNaN(+d)) {
+          let c;
+          if (this._checkMin(d) === false) {
+            c = new Date(this.min);
+          } else if (this._checkMax(d) === false) {
+            c = new Date(this.max);
+          }
+
+          if (c) {
+            _viewYear = c.getFullYear(); _viewMonth = c.getMonth() + 1; _viewDay = c.getDate(); _viewHours = c.getHours(); _viewMinutes = c.getMinutes(); _viewSeconds = c.getSeconds(); _viewMilliseconds = c.getMilliseconds();
+          } else {
+            _viewYear = d.getFullYear(); _viewMonth = d.getMonth() + 1; _viewDay = d.getDate(); _viewHours = d.getHours(); _viewMinutes = d.getMinutes(); _viewSeconds = d.getSeconds(); _viewMilliseconds = d.getMilliseconds();
+          }
+
+          switch (this.clamp) {
+            case 'year':
+            case 'month':
+              _viewMonth = 1;
+            case 'day':
+              _viewDay = 1;
+            case 'hours':
+              _viewHours = 0;
+            case 'minutes':
+              _viewMinutes = 0;
+            case 'seconds':
+              _viewSeconds = 0;
+            case 'milliseconds':
+              _viewMilliseconds = 0;
+          }
+
+          const newDate = new Date(_viewYear, _viewMonth - 1, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
+
+          if (+newDate !== +d) {
+            this._computeViewDatetime(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
+            return;
+          }
+
+          if (!this.mediated) {
+            const date = this._toDate(new Date(_viewYear, _viewMonth - 1, _viewDay));
+            const time = this._toTime(new Date(_viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds));
+            this.setProperties({
+              year: _viewYear,
+              month: _viewMonth,
+              day: _viewDay,
+              hours: _viewHours,
+              minutes: _viewMinutes,
+              seconds: _viewSeconds,
+              milliseconds: _viewMilliseconds,
+              date: date,
+              time: time
+            });
+          }
+          if (super._viewDaytimeChanged) {
+            super._viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds);
           }
         }
       }
@@ -287,7 +339,6 @@
           this.locale = window.navigator.language;
           return;
         }
-        // locale = 'zh';
         // test locale (currently just for Latin letters and Western Arabic/European numerals)
         locale += '-u-nu-latn-ca-iso8601';
 
@@ -326,7 +377,6 @@
         timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
         const pm = timeString.split(/\d/g).filter(s => { return /[^\s:\|\/,;\.]{1}/.test(s); }).pop();
 
-        // console.log(timeString.split(/\d|\s/g).filter(s => { return s !== ''; }));
         // decimal separator
         let decimalSeparator = new Intl.NumberFormat(locale).format(1.2).split(/\d/g).filter(s => { return s !== ''; }).pop();
 
