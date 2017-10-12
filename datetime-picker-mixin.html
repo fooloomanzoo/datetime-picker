@@ -92,80 +92,6 @@
           },
 
           /**
-           * The year of the view
-           */
-          _viewYear: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The month of the view
-           */
-          _viewMonth: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The day of the view
-           */
-          _viewDay: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The hours-12 of the view
-           */
-          _viewHours: {
-            type: Number,
-            notify: true,
-            observer: '_viewHoursChanged'
-          },
-
-          /**
-           * The hours of the view
-           */
-          _viewHours12: {
-            type: Number,
-            notify: true,
-            observer: '_viewHours12Changed'
-          },
-
-          /**
-           * The hours of the view
-           */
-          _isAm: {
-            type: Boolean,
-            observer: '__isAmChanged'
-          },
-
-          /**
-           * The minutes of the view
-           */
-          _viewMinutes: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The seconds of the view
-           */
-          _viewSeconds: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * The milliseconds of the view
-           */
-          _viewMilliseconds: {
-            type: Number,
-            notify: true
-          },
-
-          /**
            * Set to true to activate mediation for confirming the input.
            */
           mediated: {
@@ -218,17 +144,22 @@
         `;
       }
 
-      static get observers() {
-        return [
-          '_computeViewDatetime(year, month, day, hours, minutes, seconds, milliseconds)',
-          '_viewDaytimeChanged(_viewYear, _viewMonth, _viewDay, _viewHours, _viewMinutes, _viewSeconds, _viewMilliseconds)'
-        ]
-      }
-
       connectedCallback() {
         super.connectedCallback();
         if (this.value === undefined) {
-          this.value = +(new Date());
+          this._computeValue(new Date());
+        }
+      }
+
+      _computeTime() {
+        if (!this.mediated) {
+          super._computeTime(...arguments);
+        }
+      }
+
+      _computeDate() {
+        if (!this.mediated) {
+          super._computeDate(...arguments);
         }
       }
 
@@ -352,26 +283,6 @@
         }
       }
 
-      _viewHoursChanged(_viewHours) {
-        console.log(_viewHours);
-        this._isAm = _viewHours < 12;
-        this._viewHours12 = (_viewHours === 0) ? 12 : (_viewHours > 12 ? _viewHours - 12 : _viewHours);
-      }
-
-      _viewHours12Changed(_viewHours12) {
-        this._viewHours = (_viewHours12 === 12) ? (this._isAm ? 0 : 12) : (this._isAm ? _viewHours12 : _viewHours12 + 12);
-      }
-
-      __isAmChanged(_isAm) {
-        if (_isAm === undefined) return;
-
-        if (this._viewHours >= 12 && _isAm === true) {
-          this._viewHours -= 12;
-        } else if (this._viewHours <= 12 && _isAm === false) {
-          this._viewHours += 12;
-        }
-      }
-
       _localeChanged(locale) {
         if (!locale) {
           this.locale = window.navigator.language;
@@ -449,7 +360,7 @@
         if (super.confirm) {
           super.confirm();
         } else {
-          this._computeValue(new Date(this._viewYear, this._viewMonth - 1, this._viewDay, this._viewHours, this._viewMinutes, this._viewSeconds, this._viewMilliseconds));
+          this._computeValue(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds));
         }
         if (this.close) {
           this.close();

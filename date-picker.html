@@ -97,11 +97,11 @@
         }
       }
 
-      renderCalendar(_viewYear, _viewMonth, _viewDay, date) {
+      renderCalendar(year, month, day, date) {
         if (DatePicker._hasNative && !!this.native) {
           return;
         }
-        super.renderCalendar(_viewYear, _viewMonth, _viewDay, date);
+        super.renderCalendar(year, month, day, date);
       }
     }
 

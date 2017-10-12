@@ -158,8 +158,7 @@
 
       static get observers() {
         return [
-          '_computeTime(hours, minutes, seconds, milliseconds)',
-          '_computeDate(year, month, day)',
+          '_computeDatetime(year, month, day, hours, minutes, seconds, milliseconds)',
           '_computeValue(date, time)',
           '_computeValue(datetime)'
         ]
@@ -187,51 +186,43 @@
         this.value = +(new Date());
       }
 
+      _computeDate(year, month, day, hours, minutes, seconds, milliseconds) {
+        if (isNaN(+year) || isNaN(+month) || isNaN(+day) || isNaN(+hours) || isNaN(+minutes) || isNaN(+seconds)) return;
+
+        let d = new Date(year, month, day);
+        if (this.min && this._checkMin(d) === false) {
+          d = new Date(this.min);
+        } else if (this.max && this._checkMax(d) === false) {
+          d = new Date(this.max);
+        }
+        d = this._clamp(d, this.clamp);
+
+        const date = this._toDate(d);
+        if (this.date !== date) {
+          this.date = date;
+        }
+      }
+
       _computeTime(hours, minutes, seconds, milliseconds) {
-        if (isNaN(+hours) || isNaN(+minutes) || isNaN(+seconds)) return;
+        if () return;
 
         switch (this.clamp) {
           case 'year':
           case 'month':
           case 'day':
           case 'hours':
-            hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
-            break;
+            hours = 0; // falls through
           case 'minutes':
-            minutes = 0; seconds = 0; milliseconds = 0;
-            break;
+            minutes = 0; // falls through
           case 'seconds':
-            seconds = 0; milliseconds = 0;
-            break;
+            seconds = 0; // falls through
           case 'milliseconds':
             milliseconds = 0;
-            break;
         }
 
         const time = this._pad(+hours, 2) + ':' + this._pad(+minutes, 2) + ':' + this._pad(+seconds, 2) + '.' + this._pad(+milliseconds || 0, 3);
         if (this.time !== time) {
           this.time = time;
-        }
-      }
-
-      _computeDate(year, month, day) {
-        if (isNaN(+year) || isNaN(+month) || isNaN(+day)) return;
-
-        switch (this.clamp) {
-          case 'year':
-          case 'month':
-            month = 0; day = 1;
-            this._computeTime(0, 0, 0, 0);
-            break;
-          case 'day':
-            day = 1;
-            this._computeTime(0, 0, 0, 0);
-            break;
-        }
-
-        const date = this._pad(+year, 4) + '-' + this._pad(+month, 2) + '-' + this._pad(+day, 2);
-        if (this.date !== date) {
-          this.date = date;
         }
       }
 
@@ -253,17 +244,30 @@
           } else if (this.max && this._checkMax(d) === false) {
             d = new Date(this.max);
           }
-          this.setProperties({
+
+          d = this._clamp(d, this.clamp);
+          date = this._toDate(d);
+          time = this._toTime(d);
+          datetime = date + 'T' + time;
+          const value = +d;
+
+          let toSet = {
             year: d.getFullYear(),
             month: d.getMonth() + 1,
             day: d.getDate(),
             hours: d.getHours(),
             minutes: d.getMinutes(),
             seconds: d.getSeconds(),
-            milliseconds: d.getMilliseconds(),
-            datetime: this._toDate(d) + 'T' + this._toTime(d),
-            value: +d
-          });
+            milliseconds: d.getMilliseconds()
+          }
+
+          if (this.date !== date || this.time !== time || this.datetime !== datetime || this.value !== value) {
+            toSet.date = date;
+            toSet.time = time;
+            toSet.datetime = datetime;
+            toSet.value = value;
+          }
+          this.setProperties(toSet);
         } else if (!isNaN(this.value)){
           this._valueChanged(this.value);
         }
@@ -271,7 +275,7 @@
 
       _valueChanged(value) {
         if (!value) return;
-        let d = new Date(value);
+        let d = typeof value === 'object' ? value : new Date(value);
 
         if (!isNaN(+d)) {
           if (this.min && this._checkMin(d) === false) {
@@ -279,8 +283,8 @@
           } else if (this.max && this._checkMax(d) === false) {
             d = new Date(this.max);
           }
-          const date = this._toDate(d);
-          const time = this._toTime(d);
+
+          d = this._clamp(d, this.clamp);
 
           this.setProperties({
             year: d.getFullYear(),
@@ -289,14 +293,30 @@
             hours: d.getHours(),
             minutes: d.getMinutes(),
             seconds: d.getSeconds(),
-            milliseconds: d.getMilliseconds(),
-            date: date,
-            time: time,
-            datetime: date + 'T' + time
+            milliseconds: d.getMilliseconds()
           });
         } else if (this.date && this.time){
           this._computeValue(this.date, this.time);
         }
+      }
+
+      _clamp(d, clamp) {
+        switch (clamp) {
+          case 'year':
+          case 'month':
+            d.setMonth(0); // falls through
+          case 'day':
+            d.setDate(1); // falls through
+          case 'hours':
+            d.setHours(0); // falls through
+          case 'minutes':
+            d.setMinutes(0); // falls through
+          case 'seconds':
+            d.setSeconds(0); // falls through
+          case 'milliseconds':
+            d.setMilliseconds(0);
+        }
+        return d;
       }
 
       _pad(n, padLength) {
