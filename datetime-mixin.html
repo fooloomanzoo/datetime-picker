@@ -4,6 +4,9 @@
    *
    * @mixinFunction
    * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
    */
   const DatetimeMixin = (superClass) => { // eslint-disable-line no-unused-vars no-undef
 
@@ -152,6 +155,72 @@
            */
           clamp: {
             type: String
+          },
+
+          /**
+           * The current locale
+           */
+          locale: {
+            type: String,
+            value: window.navigator.language,
+            observer: '_localeChanged'
+          },
+
+          /**
+           * locale representation of 'AM'
+           */
+          _am: {
+            type: String
+          },
+
+          /**
+           * locale representation of 'PM'
+           */
+          _pm: {
+            type: String
+          },
+
+          /**
+           * Separator for local date values (date-string is still in ISO-Format)
+           * @type {string}
+           */
+          _localDateSeparator: {
+            type: String,
+            value: '-'
+          },
+
+          /**
+           * Separator for local time values (time-string is still in ISO-Format)
+           * @type {string}
+           */
+          _localTimeSeparator: {
+            type: String,
+            value: ':'
+          },
+
+          /**
+           * Separator for local decimal values
+           * @type {string}
+           */
+          _localDecimalSeparator: {
+            type: String,
+            value: '.'
+          },
+
+          /**
+           * order of date-parts
+           */
+          _orderDate: {
+            type: Object,
+            value: function() {
+              return {
+                year: 1,
+                separatorYearMonth: 2,
+                month: 3,
+                separatorMonthDay: 4,
+                day: 5
+              };
+            }
           }
         }
       }
@@ -164,26 +233,11 @@
         ]
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-        setTimeout(() => {
-          if (this.date) {
-            if (this.time) {
-              this.value = +(new Date(this.date + 'T' + this.time));
-            } else {
-              this.value = +(new Date(this.date));
-            }
-          } else if (this.time) {
-            this.value = +(new Date(this._toDate(new Date())) + 'T' + this.time);
-          }
-        }, 0);
-      }
-
       /**
        *  Sets value to the actual date
        **/
       now() {
-        this.value = +(new Date());
+        this._computeValue(new Date());
       }
 
       _computeDatetime(year, month, day, hours, minutes, seconds, milliseconds) {
@@ -212,6 +266,10 @@
         this._setDate(d);
       }
 
+      /**
+       * [_setDate sets date to all necessary properties]
+       * @param {[Date]} d [the date to set]
+       */
       _setDate(d) {
         if (!isNaN(+d)) {
           if (this.min && this._checkMin(d) === false) {
@@ -255,9 +313,9 @@
             this.setProperties(toSet);
             return;
           }
-        } else if (!isNaN(this.value)){
+        } else if (!isNaN(this.value)) {
           this._valueChanged(this.value);
-        } else if (this.date && this.time){
+        } else if (this.date && this.time) {
           this._computeValue(this.date, this.time);
         }
       }
@@ -308,7 +366,7 @@
           return;
         }
         if (this.value && this._checkMin(this.value) === false)
-          this.value = +(new Date(min));
+          this._computeValue(new Date(min));
       }
 
       _maxChanged(max) {
@@ -323,7 +381,7 @@
           return;
         }
         if (this.value && this._checkMax(this.value) === false)
-          this.value = +(new Date(max));
+          this._computeValue(new Date(max));
       }
 
       _checkMax(d) {
@@ -400,6 +458,61 @@
         return pos !== -1 && index !== -1 && pos <= index;
       }
 
+      _localeChanged(locale) {
+        if (!locale) {
+          this.locale = window.navigator.language;
+          return;
+        }
+        // test locale (currently just for Latin letters and Western Arabic/European numerals)
+        locale += '-u-nu-latn-ca-iso8601';
+
+        let date = new Date(1970, 10, 15, 6, 24, 25);
+
+        // check date
+        const dateString = date.toLocaleDateString( locale, { year: 'numeric', month: 'numeric', day: 'numeric' });
+
+        // date separator
+        const dateSeparator = dateString.split(/\d|\s/g).filter(s => { return s !== ''; })[0];
+
+        // order of the date parts
+        let parts = dateString.split(/\D/);
+        parts.splice(1, 0, '');
+        parts.splice(3, 0, '');
+
+        let order = {};
+        order.year = parts.indexOf('1970') + 1;
+        order.month = parts.indexOf('11') + 1;
+        order.day = parts.indexOf('15') + 1;
+        order.separatorYearMonth = order.year > order.month ? order.year - 1 : order.month - 1;
+        order.separatorMonthDay = order.month > order.day ? order.month - 1 : order.day - 1;
+
+        // check time
+        let timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false });
+
+        // time separator
+        const timeSeparator = timeString.split(/\d/g).filter(s => { return s !== ''; }).pop();
+
+        // am-string
+        timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+        const am = timeString.split(/\d/g).filter(s => { return /[^\s:|\/,;\.]{1}/.test(s); }).pop();
+
+        // pm-string
+        date = new Date(1970, 10, 15, 18, 24, 25);
+        timeString = date.toLocaleTimeString( locale, { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+        const pm = timeString.split(/\d/g).filter(s => { return /[^\s:|\/,;\.]{1}/.test(s); }).pop();
+
+        // decimal separator
+        let decimalSeparator = new Intl.NumberFormat(locale).format(1.2).split(/\d/g).filter(s => { return s !== ''; }).pop();
+
+        this.setProperties({
+          _orderDate: order,
+          _localDateSeparator: dateSeparator,
+          _localTimeSeparator: timeSeparator,
+          _localDecimalSeparator: decimalSeparator,
+          _am: am,
+          _pm: pm
+        });
+      }
     }
   }
 

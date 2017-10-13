@@ -8,6 +8,9 @@
    *
    * @mixinFunction
    * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
    */
   const PolyfillPickerPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
@@ -41,7 +44,7 @@
             notify: true
           },
 
-          confirmedDateTime: {
+          confirmedDatetime: {
             type: String,
             notify: true
           }

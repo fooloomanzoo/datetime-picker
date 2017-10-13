@@ -10,6 +10,7 @@
       "typeof": true
     } ],
     "no-console": "off",
+    "no-useless-escape": "off",
     "valid-jsdoc": [ "error", {
       "requireReturn": false,
       "prefer": {

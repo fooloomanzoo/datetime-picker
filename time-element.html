@@ -9,6 +9,9 @@
    *
    * @mixinFunction
    * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
    */
   const TimeElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars
 
@@ -127,8 +130,8 @@
       const switchs = this.root.querySelectorAll('#timer .icon.switch');
       if (switchs) {
         Array.prototype.forEach.call(switchs, s => {
-          s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
-          s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
+          s.addEventListener('mousedown', this._increm.bind(this, s), false);
+          s.addEventListener('touchstart', this._increm.bind(this, s), false);
         })
       }
     }
@@ -138,8 +141,8 @@
       const switchs = this.root.querySelectorAll('#timer .icon.switch');
       if (switchs) {
         Array.prototype.forEach.call(switchs, s => {
-          s.addEventListener('mousedown', this._startIncrem.bind(this, s), false);
-          s.addEventListener('touchstart', this._startIncrem.bind(this, s), false);
+          s.addEventListener('mousedown', this._increm.bind(this, s), false);
+          s.addEventListener('touchstart', this._increm.bind(this, s), false);
         })
       }
     }

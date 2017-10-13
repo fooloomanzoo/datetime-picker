@@ -1,0 +1,148 @@
+<link rel="import" href="datetime-mixin.html">
+<link rel="import" href="datetime-shared-style.html">
+
+<script>
+  /**
+   * Mixin to extend an element for picking date or time to locale formating and hiding certain datetime-properties
+   *
+   * @appliesMixin DatetimeMixin
+   *
+   * @mixinFunction
+   * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
+   */
+  const DatetimeInputMixin = (superClass) => { // eslint-disable-line no-unused-vars
+
+    return class extends DatetimeMixin(superClass) { // eslint-disable-line no-undef
+
+      static get template() {
+        return `
+          ${this.styleTemplate}
+          ${this.inputTemplate}
+        `
+      }
+
+      static get styleTemplate() {
+        return `
+          <style include="${this.customStyleToInclude}">
+            ${this.customStyleContent}
+          </style>
+        `;
+      }
+
+      static get customStyleToInclude() {
+        return 'datetime-shared-style';
+      }
+
+      static get customStyleContent() {
+        return `
+          ${super.customStyleToInclude || ''}
+          :host {
+            display: inline-flex;
+            align-items: center;
+          }
+          number-input {
+            --number-input: {
+              @apply --datetime-input;
+            };
+            --number-input-focus: {
+              @apply --datetime-focus;
+            };
+          }
+        `;
+      }
+
+      /**
+       * template for the inputs
+       * @type {string}
+       */
+      static get inputTemplate() {
+        return '';
+      }
+
+      connectedCallback() {
+        this._ensureAttribute('tabindex', 0);
+        if (isNaN(this.value)) {
+          this._computeValue(new Date());
+        }
+        super.connectedCallback();
+        this._addKeyListener();
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this._removeKeyListener();
+      }
+
+      _addKeyListener() {
+        if (super._addKeyListener) {
+          super._addKeyListener();
+        }
+        this.addEventListener('keydown', this._checkKeycode.bind(this), false);
+      }
+
+      _removeKeyListener() {
+        if (super._removeKeyListener) {
+          super._removeKeyListener();
+        }
+        this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
+      }
+
+      /**
+       * key press event handler
+       * @param  {[type]} e Event
+       */
+      _checkKeycode(e) {
+        if (!e) {
+          return;
+        }
+        if (e && e.keyCode) {
+          switch (e.keyCode) {
+            case 37: // left
+              this._focusNumberInput(e, -2);
+              return;
+            case 39: // right
+              this._focusNumberInput(e, 2);
+              return;
+          }
+        }
+        if (super._checkKeycode) {
+          super._checkKeycode(e);
+        }
+      }
+
+      _focusNumberInput(e, step) {
+        let currentIndex;
+
+        for (let i = 0; i < e.path.length; i++) {
+          if (e.path[i].nodeName === 'NUMBER-INPUT') {
+            currentIndex = +e.path[i].getAttribute('index');
+            break;
+          }
+        }
+
+        if (currentIndex !== undefined) {
+          const inputs = this.root.querySelectorAll('number-input');
+          if (inputs) {
+            const maxIndex = 2 * inputs.length - 1;
+            let newIndex = currentIndex + step;
+            if (newIndex > maxIndex) {
+              newIndex = 1;
+            } else if (newIndex < 1) {
+              newIndex = maxIndex;
+            }
+            for (let i = 0; i < inputs.length; i++) {
+              if (+inputs[i].getAttribute('index') === newIndex) {
+                inputs[i].focus();
+                return;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+</script>

@@ -11,17 +11,23 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
 
-You can use other pickers, too. In this collection are:
-* `<datetime-picker>`
-* `<date-picker>`
-* `<time-picker>`
-* `<overlay-datetime-picker>`
-* `<overlay-date-picker>`
-* `<overlay-time-picker>`
-* `<calendar-element>`
-* `<time-element>`
+You can use other pickers and elements, too. In this collection are for:
+* **datetime**
+  * `<overlay-datetime-picker>`
+  * `<datetime-picker>`
+  * `<datetime-input>`
+* **date**
+  * `<overlay-date-picker>`
+  * `<date-picker>`
+  * `<date-input>`
+  * `<calendar-element>`
+* **time**
+  * `<overlay-time-picker>`
+  * `<time-picker>`
+  * `<time-element>`
+  * `<time-input>`
 
-Every Element has the same API, so that it would use the native or the polyfill picker.
+Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
 ### Motivation
 

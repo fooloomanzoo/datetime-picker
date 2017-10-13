@@ -9,6 +9,9 @@
    *
    * @mixinFunction
    * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
    */
   const CalendarElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars
 
@@ -125,6 +128,7 @@
 
     static get calendarTemplate() {
       return `
+        ${super.contentTemplate || ''}
         <div id="calendar">
           <div id="top">
             <svg class="icon switch" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
@@ -219,35 +223,14 @@
       ]
     }
 
-    connectedCallback() {
-      this._ensureAttribute('tabindex', 0);
-      super.connectedCallback();
-      this._addKeyListener();
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback();
-      this._removeKeyListener();
-    }
-
-    _addKeyListener() {
-      this.addEventListener('keydown', this._checkKeycode.bind(this), false);
-      this.addEventListener('keyup', this._stopActiveJob.bind(this), false);
-    }
-
-    _removeKeyListener() {
-      this.removeEventListener('keydown', this._checkKeycode.bind(this), false);
-      this.removeEventListener('keyup', this._stopActiveJob.bind(this), false);
-    }
-
     _addSwitchListener() {
       super._addSwitchListener();
       const switchs = this.root.querySelectorAll('#calendar .icon.switch');
 
       if (switchs) {
         Array.prototype.forEach.call(switchs, s => {
-          s.addEventListener('mousedown', this._startIncremMonth.bind(this, s), false);
-          s.addEventListener('touchstart', this._startIncremMonth.bind(this, s), false);
+          s.addEventListener('mousedown', this._incremMonth.bind(this, s), false);
+          s.addEventListener('touchstart', this._incremMonth.bind(this, s), false);
         })
       }
     }
@@ -258,19 +241,28 @@
 
       if (switchs) {
         Array.prototype.forEach.call(switchs, s => {
-          s.addEventListener('mousedown', this._startIncremMonth.bind(this, s), false);
-          s.addEventListener('touchstart', this._startIncremMonth.bind(this, s), false);
+          s.removeEventListener('mousedown', this._incremMonth.bind(this, s), false);
+          s.removeEventListener('touchstart', this._incremMonth.bind(this, s), false);
         })
       }
     }
 
-    _startIncremMonth(s) {
-      console.log(s);
+    _incremMonth(s) {
       const step = s.getAttribute('step');
       if (this._ifClamped(this.clamp, 'month')) {
         this._incremProp('Year', step);
       } else {
         this._incremProp('Month', step);
+      }
+    }
+
+    _incremView(clamp, step) {
+      if (this._ifClamped(clamp, 'month')) {
+        this._incremProp('Year', step);
+      } else if (this._ifClamped(clamp, 'day')) {
+        this._incremProp('Month', step);
+      } else {
+        this._incremProp('Date', step);
       }
     }
 
@@ -309,16 +301,6 @@
       super.now();
       const d = new Date();
       this._computeViewDatetime(d.getFullYear(), d.getMonth() + 1, d.getDate());
-    }
-
-    _incremView(step, clamp) {
-      if (this._ifClamped(clamp, 'month')) {
-        this._incremProp('Year', step);
-      } else if (this._ifClamped(clamp, 'day')) {
-        this._incremProp('Month', step);
-      } else {
-        this._incremProp('Date', step);
-      }
     }
 
     _localeChanged(locale) {
@@ -477,10 +459,10 @@
       if (e && e.keyCode) {
         switch (e.keyCode) {
           case 37:
-            this._incremView(-1, this.clamp);
+            this._incremView(this.clamp, -1);
             return;
           case 39:
-            this._incremView(1, this.clamp);
+            this._incremView(this.clamp, 1);
             return;
         }
       }

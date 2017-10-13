@@ -26,13 +26,13 @@
   <body>
 
     <div class="vertical-section-container centered">
-      <h3>Create a standalone calendar-element</h3>
+      <h3>Create a standalone calendar-element and date-input</h3>
       <demo-snippet>
         <dom-bind>
           <template is="dom-bind">
             <calendar-element date="{{date}}"></calendar-element>
             <div class="vertical-section-container result">
-              <div>date: <b>[[date]]</b></div>
+              <date-input date="{{date}}"></date-input>
             </div>
           </template>
         </dom-bind>
