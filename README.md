@@ -304,7 +304,7 @@ bower update
   - `not-native` is deprecated, use `native` to get a native picker
   - `dropdown-style.html` moved to `input-picker-pattern`
 
-* 2.4.1
+* 2.4.2
   - new elements: `datetime-input`, `date-input` and `date-input`
   - extended keyboard navigation support
   - `auto-confirm`-attribute for using `confirmed-datetime`, `confirmed-date` and `confirmed-time`
