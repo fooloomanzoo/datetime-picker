@@ -129,7 +129,6 @@
           if (window.getComputedStyle(inp, null).getPropertyValue('display') !== 'none') {
             let index = +inp.getAttribute('index');
             if (index !== undefined) {
-              console.log(index);
               min = (min && min < index ) ? min : index;
               max = (max && max > index ) ? max : index;
               return true;
