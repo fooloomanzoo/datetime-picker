@@ -17,10 +17,11 @@
    *
    *  @appliesMixin DateInputPattern
    *  @appliesMixin TimeInputPattern
+   *  @appliesMixin DatetimeInputMixin
    *
    *  @demo demo/datetime-picker.html
    **/
-    class DatetimeInput extends DateInputPattern(TimeInputPattern(Polymer.Element)) { // eslint-disable-line no-undef
+    class DatetimeInput extends TimeInputPattern(DateInputPattern(DatetimeInputMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'datetime-input';

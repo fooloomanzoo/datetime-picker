@@ -32,7 +32,7 @@
       static get customStyleToInclude() {
         return `datetime-shared-style dropdown-style`;
       }
-      
+
       static get observers() {
         return [
           '_computeValue(confirmedDate, confirmedTime)',
@@ -101,7 +101,7 @@
 
       static get replacementInputTemplate() {
         return `
-          <${this.nativeInputBinding}-input class="replacement" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}"></${this.nativeInputBinding}-input>
+          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}"></${this.nativeInputBinding}-input>
         `;
       }
 

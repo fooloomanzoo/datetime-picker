@@ -3,26 +3,22 @@
 
 <link rel="import" href="datetime-input-mixin.html">
 
-<dom-module id="date-input">
-  <script>
+<script>
   /**
    *
-    * Mixin to extend an element for to a date input
-    *
-   *  @polymer
-   *  @customElement
-   *  @mixin
+   * Mixin to extend an element to a date input
    *
-   *  @appliesMixin DatetimeInputMixin
+   * @mixinFunction
+   * @polymer
    *
-   *  @demo demo/date-picker.html
+   * @demo demo/date-picker.html
    **/
-    DateInputPattern = (superClass) => { // eslint-disable-line no-unused-vars
+  DateInputPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
-      return class extends DatetimeInputMixin(superClass) { // eslint-disable-line no-undef
+    return class extends superClass { // eslint-disable-line no-undef
 
-        static get inputTemplate() {
-          return `
+      static get inputTemplate() {
+        return `
             <number-input style="order:[[_orderDate.year]];" index$="[[_orderDate.year]]" pad-length="4" disabled="[[disabled]]" value="{{year}}"></number-input>
             <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
             <number-input style="order:[[_orderDate.month]];" index$="[[_orderDate.month]]" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
@@ -30,33 +26,36 @@
             <number-input style="order:[[_orderDate.day]];" index$="[[_orderDate.day]]" hidden$="[[_hideDay]]" pad-length="2" min="1" max="[[_maxDayOfMonth]]" disabled="[[disabled]]" value="{{day}}"></number-input>
             ${super.inputTemplate || ''}
           `;
-        }
+      }
 
-        static get properties() {
-          return {
-            /**
-             * Clamp datetime to a property
-             * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-             */
-            clamp: {
-              type: String,
-              value: 'hours'
-            },
+      static get properties() {
+        return {
+          /**
+           * Clamp datetime to a property
+           * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+           */
+          clamp: {
+            type: String,
+            value: 'hours'
+          },
 
-            _hideMonth: {
-              type: Boolean,
-              computed: '_ifClamped(clamp, "month")'
-            },
+          _hideMonth: {
+            type: Boolean,
+            computed: '_ifClamped(clamp, "month")'
+          },
 
-            _hideDay: {
-              type: Boolean,
-              computed: '_ifClamped(clamp, "day")'
-            }
+          _hideDay: {
+            type: Boolean,
+            computed: '_ifClamped(clamp, "day")'
           }
         }
       }
     }
+  }
+</script>
 
+<dom-module id="date-input">
+  <script>
     /**
      *  `<date-input>` is a input for time for **[Polymer](https://github.com/Polymer/polymer)**
      *
@@ -68,10 +67,11 @@
      *  @customElement
      *
      *  @appliesMixin DateInputPattern
+     *  @appliesMixin DatetimeInputMixin
      *
      *  @demo demo/date-picker.html
      **/
-    class DateInput extends DateInputPattern(Polymer.Element) { // eslint-disable-line no-undef
+    class DateInput extends DatetimeInputMixin(DateInputPattern(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-input';

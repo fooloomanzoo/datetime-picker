@@ -3,95 +3,102 @@
 
 <link rel="import" href="datetime-input-mixin.html">
 
-<dom-module id="time-input">
-  <script>
+<script>
   /**
    *
-    * Mixin to extend an element for to a time input
-    *
-   *  @polymer
-   *  @customElement
-   *  @mixin
+   * Mixin to extend an element to a tim
    *
-   *  @appliesMixin DatetimeInputMixin
-   *
-   *  @demo demo/date-picker.html
+   * @demo demo/time-picker.html
    **/
-    TimeInputPattern = (superClass) => { // eslint-disable-line no-unused-vars
+  TimeInputPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
-      return class extends DatetimeInputMixin(superClass) { // eslint-disable-line no-undef
+    return class extends superClass { // eslint-disable-line no-undef
 
-        static get inputTemplate() {
-          return `
-            ${super.inputTemplate || ''}
-            <div hidden$="[[_hideHours]]" style="order:7;">
-              <number-input hidden$="[[hour12]]" index="7" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-              <number-input hidden$="[[!hour12]]" index="7" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
-            </div>
-            <span hidden$="[[_hideMinutes]]" style="order:8;">[[_localTimeSeparator]]</span>
-            <number-input hidden$="[[_hideMinutes]]" style="order:9;" index="9" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" placeholder="00"></number-input>
-            <span hidden$="[[_hideSeconds]]" style="order:10;">[[_localTimeSeparator]]</span>
-            <number-input hidden$="[[_hideSeconds]]" style="order:10;" index="11" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" placeholder="00"></number-input>
-            <span hidden$="[[_hideMilliseconds]]" style="order:11;">[[_localDecimalSeparator]]</span>
-            <number-input hidden$="[[_hideMilliseconds]]" style="order:12;" index="12" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000"></number-input>
-            <div class="am-switch" hidden$="[[!hour12]]" style="order:13;">
-              <span hidden$="[[!isAm]]">[[_am]]</span>
-              <span hidden$="[[isAm]]">[[_pm]]</span>
-            </div>
-          `;
-        }
+      static get inputTemplate() {
+        return `
+          ${super.inputTemplate || ''}
+          <div hidden$="[[_hideHours]]" style="order:7;">
+            <number-input hidden$="[[hour12]]" index="7" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
+            <number-input hidden$="[[!hour12]]" index="7" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
+          </div>
+          <span hidden$="[[_hideMinutes]]" style="order:8;">[[_localTimeSeparator]]</span>
+          <number-input hidden$="[[_hideMinutes]]" style="order:9;" index="9" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" placeholder="00"></number-input>
+          <span hidden$="[[_hideSeconds]]" style="order:10;">[[_localTimeSeparator]]</span>
+          <number-input hidden$="[[_hideSeconds]]" style="order:10;" index="11" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" placeholder="00"></number-input>
+          <span hidden$="[[_hideMilliseconds]]" style="order:11;">[[_localDecimalSeparator]]</span>
+          <number-input hidden$="[[_hideMilliseconds]]" style="order:12;" index="12" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000"></number-input>
+          <div class="am-switch" hidden$="[[!hour12]]" style="order:13;">
+            <span hidden$="[[!isAm]]">[[_am]]</span>
+            <span hidden$="[[isAm]]">[[_pm]]</span>
+          </div>
+        `;
+      }
 
-        static get properties() {
-          return {
-            /**
-             * Clamp timetime to a property
-             * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
-             */
-            clamp: {
-              type: String,
-              value: 'milliseconds'
-            },
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent}
+          .am-switch {
+            cursor: pointer;
+            font-size: 0.8em;
+            margin: 0 0.2em;
+          }
+        `
+      }
 
-            _hideHours: {
-              type: Boolean,
-              computed: '_ifClamped(clamp, "hours")'
-            },
+      static get properties() {
+        return {
+          /**
+           * Clamp timetime to a property
+           * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+           */
+          clamp: {
+            type: String,
+            value: 'milliseconds'
+          },
 
-            _hideMinutes: {
-              type: Boolean,
-              computed: '_ifClamped(clamp, "minutes")'
-            },
+          _hideHours: {
+            type: Boolean,
+            computed: '_ifClamped(clamp, "hours")'
+          },
 
-            _hideSeconds: {
-              type: Boolean,
-              computed: '_ifClamped(clamp, "seconds")'
-            },
+          _hideMinutes: {
+            type: Boolean,
+            computed: '_ifClamped(clamp, "minutes")'
+          },
 
-            _hideMilliseconds: {
-              type: Boolean,
-              computed: '_ifClamped(clamp, "milliseconds")'
-            }
+          _hideSeconds: {
+            type: Boolean,
+            computed: '_ifClamped(clamp, "seconds")'
+          },
+
+          _hideMilliseconds: {
+            type: Boolean,
+            computed: '_ifClamped(clamp, "milliseconds")'
           }
         }
       }
     }
+  }
+</script>
 
-
-  /**
-   *  `<time-input>` is a input for time for **[Polymer](https://github.com/Polymer/polymer)**
-   *
-   *  ```html
-   *    <time-input value="{{value}}"></time-input>
-   *  ```
-   *
-   *  @polymer
-   *  @customElement
-   *
-   *  @appliesMixin TimeInputPattern
-   *
-   *  @demo demo/time-picker.html
-   **/
-    class TimeInput extends TimeInputPattern(Polymer.Element) { // eslint-disable-line no-undef
+<dom-module id="time-input">
+  <script>
+    /**
+     *  `<time-input>` is a input for time for **[Polymer](https://github.com/Polymer/polymer)**
+     *
+     *  ```html
+     *    <time-input value="{{value}}"></time-input>
+     *  ```
+     *
+     *  @polymer
+     *  @customElement
+     *
+     *  @appliesMixin TimeInputPattern
+     *  @appliesMixin DatetimeInputMixin
+     *
+     *  @demo demo/time-picker.html
+     **/
+    class TimeInput extends TimeInputPattern(DatetimeInputMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-input';
