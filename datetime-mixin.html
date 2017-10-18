@@ -221,6 +221,10 @@
                 day: 5
               };
             }
+          },
+
+          _maxDayOfMonth: {
+            type: Number
           }
         }
       }
@@ -229,7 +233,8 @@
         return [
           '_computeDatetime(year, month, day, hours, minutes, seconds, milliseconds)',
           '_computeValue(date, time)',
-          '_computeValue(datetime)'
+          '_computeValue(datetime)',
+          '_computeMaxDayOfMonth(year, month)'
         ]
       }
 
@@ -512,6 +517,13 @@
           _am: am,
           _pm: pm
         });
+      }
+
+      _computeMaxDayOfMonth(year, month) {
+        const d = new Date(year, month - 1);
+        if (!isNaN(+d)) {
+          this._maxDayOfMonth = (new Date(year, month, 0)).getDate();
+        }
       }
     }
   }

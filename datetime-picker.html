@@ -76,16 +76,18 @@
           .lower {
             display: inline-flex;
             flex-direction: row;
-            background-color: var(--datetime-background);
-            color: var(--datetime-color);
+            @apply --datetime-element;
+            padding: 0;
+            overflow: hidden;
           }
           .lower > * {
             border-radius: 0 !important;
           }
           .lower > #buttons {
-            flex: 1 0 auto;
+            flex: 1 0 1px;
             align-self: stretch;
             align-items: flex-end;
+            flex-wrap: wrap;
           }
         `;
       }
@@ -102,6 +104,13 @@
             <div>
           </div>
         `;
+      }
+
+      _onDblClickDay(e) {
+        if (this.mediated) {
+          super.renderCalendar(this.year, this.month, this.day, this.date);
+          this.confirm();
+        }
       }
 
       renderCalendar(year, month, day) {

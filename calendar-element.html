@@ -146,7 +146,7 @@
               </div>
             </div>
 
-            <div id="dates" on-click="_onClickDay" on-mousemove="_onMouseMoveDay">
+            <div id="dates" on-click="_onClickDay" on-dblclick="_onDblClickDay" on-mousemove="_onMouseMoveDay">
               <div class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
               </div>
@@ -208,18 +208,8 @@
         _hideDay: {
           type: Boolean,
           computed: '_ifClamped(clamp, "day")'
-        },
-
-        _maxDayOfMonth: {
-          type: Number
         }
       }
-    }
-
-    static get observers() {
-      return [
-        '_computeMaxDayOfMonth(year, month)'
-      ]
     }
 
     _addSwitchListener() {
@@ -273,6 +263,9 @@
       }
     }
 
+    _onDblClickDay(e) {
+    }
+
     _onMouseMoveDay(e) {
       if (e) {
         const paths = e.path || [e.target];
@@ -286,13 +279,6 @@
             break;
           }
         }
-      }
-    }
-
-    _computeMaxDayOfMonth(year, month) {
-      const d = new Date(year, month - 1);
-      if (!isNaN(+d)) {
-        this._maxDayOfMonth = (new Date(year, month, 0)).getDate();
       }
     }
 

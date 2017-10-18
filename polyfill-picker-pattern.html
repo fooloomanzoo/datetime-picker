@@ -93,9 +93,6 @@
             background-color: var(--datetime-background);
             color: var(--datetime-color);
           }
-          #picker > * {
-            border-radius: 0 !important;
-          }
         `;
       }
 
@@ -137,21 +134,25 @@
       }
 
       confirm() {
-        super.confirm();
         this.setProperties({
           confirmedDate: this.date,
           confirmedTime: this.time,
           confirmedDatetime: this.datetime
         })
+        setTimeout(() => {
+          super.confirm();
+        }, 0);
       }
 
       cancel() {
-        super.cancel();
         this.setProperties({
           date: this.confirmedDate,
           time: this.confirmedTime,
           datetime: this.confirmedDatetime
         })
+        setTimeout(() => {
+          super.cancel();
+        }, 0);
       }
     }
   }

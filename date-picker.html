@@ -49,7 +49,7 @@
       }
 
       static get nativeInputBinding() {
-        return 'time';
+        return 'date';
       }
 
       static get pickerTemplate() {
@@ -61,6 +61,12 @@
             <div>
           </div>
         `;
+      }
+
+      _onDblClickDay(e) {
+        if (this.mediated) {
+          this.confirm();
+        }
       }
 
       renderCalendar(year, month, day) {
@@ -76,10 +82,7 @@
         }
         this.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
       }
-
-
     }
-
     window.customElements.define(DatePicker.is, DatePicker);
   </script>
 </dom-module>

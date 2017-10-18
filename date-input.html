@@ -71,13 +71,12 @@
      *
      *  @demo demo/date-picker.html
      **/
-    class DateInput extends DatetimeInputMixin(DateInputPattern(Polymer.Element)) { // eslint-disable-line no-undef
+    class DateInput extends DateInputPattern(DatetimeInputMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-input';
       }
     }
-
     window.customElements.define(DateInput.is, DateInput);
   </script>
 </dom-module>
