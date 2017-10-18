@@ -60,34 +60,15 @@
     <div class="vertical-section-container centered">
       <h3>Mediated Input</h3>
       <h4>to confirm the values for date, time, datetime and value</h4>
-      <h5>in 12-hour-format</h5>
+      <h5>in 12-hour-format and showing milliseconds (unset 'clamp'-attribute)</h5>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker mediated hour12 time="{{time}}" confirmed-time="{{confirmedTime}}" vertical-align="bottom"></time-picker>
+              <time-picker mediated hour12 time="{{time}}" confirmed-time="{{confirmedTime}}" clamp="" vertical-align="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>current time</code>: <b>[[time]]</b></div>
                 <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
-              </div>
-            </template>
-          </dom-bind>
-        </template>
-      </demo-snippet>
-    </div>
-
-    <div class="vertical-section-container centered">
-      <h3>Force to create a non-native time-picker with milliseconds (unset 'clamp'-attribute)</h3>
-      <demo-snippet>
-        <template>
-          <dom-bind>
-            <template is="dom-bind">
-              <date-picker value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></date-picker>
-              <time-picker value="{{value}}" date="{{date}}" time="{{time}}" clamp=""></time-picker>
-              <div class="vertical-section-container result">
-                <div><code>numeric value</code>: <b>[[value]]</b></div>
-                <div><code>date</code>: <b>[[date]]</b></div>
-                <div><code>time</code>: <b>[[time]]</b></div>
               </div>
             </template>
           </dom-bind>

@@ -48,14 +48,8 @@
         return 'date';
       }
 
-      static get customStyleToInclude() {
-        return `datetime-shared-style dropdown-style`;
-      }
-
-      static get replacementInputTemplate() {
-        return `
-          <date-input clamp="[[clamp]]" datetime="{{confirmedDatetime}}"></date-input>
-        `;
+      static get nativeInputBinding() {
+        return 'time';
       }
 
       static get pickerTemplate() {

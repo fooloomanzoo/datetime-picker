@@ -25,6 +25,14 @@
         `;
       }
 
+      static get nativeInputBinding() {
+        return 'datetime';
+      }
+
+      static get customStyleToInclude() {
+        return `datetime-shared-style dropdown-style`;
+      }
+      
       static get observers() {
         return [
           '_computeValue(confirmedDate, confirmedTime)',
@@ -65,6 +73,9 @@
           #polyfill {
             @apply --datetime-input;
           }
+          #polyfill .replacement {
+            padding: 0;
+          }
           #polyfill:focus,
           #polyfill:hover {
             @apply --datetime-focus;
@@ -85,6 +96,12 @@
           #picker > * {
             border-radius: 0 !important;
           }
+        `;
+      }
+
+      static get replacementInputTemplate() {
+        return `
+          <${this.nativeInputBinding}-input class="replacement" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}"></${this.nativeInputBinding}-input>
         `;
       }
 

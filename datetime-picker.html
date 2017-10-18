@@ -3,6 +3,7 @@
 <link rel="import" href="../input-picker-pattern/dropdown-style.html">
 
 <link rel="import" href="polyfill-picker-pattern.html">
+<link rel="import" href="datetime-input.html">
 <link rel="import" href="time-element.html">
 <link rel="import" href="calendar-element.html">
 
@@ -65,34 +66,6 @@
         return 'datetime';
       }
 
-      static get customStyleToInclude() {
-        return `datetime-shared-style dropdown-style`;
-      }
-
-      static get replacementInputTemplate() {
-        return `
-          <number-input style="order:[[_orderDate.year]];" pad-length="4" disabled="[[disabled]]" value="{{year}}"></number-input>
-          <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
-          <number-input style="order:[[_orderDate.month]];" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
-          <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
-          <number-input style="order:[[_orderDate.day]];" hidden$="[[_hideDay]]" pad-length="2" min="1" max="[[_maxDayOfMonth]]" disabled="[[disabled]]" value="{{day}}"></number-input>
-          <div style="order:6;" hidden$="[[_hideHours]]">
-            <number-input hidden$="[[hour12]]" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-            <number-input hidden$="[[!hour12]]" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
-          </div>
-          <span style="order:7;" hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
-          <number-input style="order:8;" hidden$="[[_hideMinutes]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}"></number-input>
-          <span style="order:9;" hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
-          <number-input style="order:10;" hidden$="[[_hideSeconds]]" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}"></number-input>
-          <span style="order:11;" hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
-          <number-input style="order:12;" hidden$="[[_hideMilliSeconds]]" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}"></number-input>
-          <div class="am-switch" style="order:13;" hidden$="[[!hour12]]">
-            <span hidden$="[[!isAm]]">[[_am]]</span>
-            <span hidden$="[[isAm]]">[[_pm]]</span>
-          </div>
-        `;
-      }
-
       /**
        * custom style content
        * @type {string}
@@ -136,6 +109,13 @@
           return;
         }
         super.renderCalendar(year, month, day, this.confirmedDate);
+      }
+
+      open() {
+        if (super.open) {
+          super.open();
+        }
+        this.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
       }
     }
 

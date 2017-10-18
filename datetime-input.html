@@ -1,0 +1,33 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="date-input.html">
+<link rel="import" href="time-input.html">
+
+<dom-module id="datetime-input">
+  <script>
+  /**
+   *  `<datetime-input>` is a input for datetime for **[Polymer](https://github.com/Polymer/polymer)**
+   *
+   *  ```html
+   *    <datetime-input value="{{value}}"></datetime-input>
+   *  ```
+   *
+   *  @polymer
+   *  @customElement
+   *
+   *  @appliesMixin DateInputPattern
+   *  @appliesMixin TimeInputPattern
+   *
+   *  @demo demo/datetime-picker.html
+   **/
+    class DatetimeInput extends DateInputPattern(TimeInputPattern(Polymer.Element)) { // eslint-disable-line no-undef
+
+      static get is() {
+        return 'datetime-input';
+      }
+
+    }
+
+    window.customElements.define(DatetimeInput.is, DatetimeInput);
+  </script>
+</dom-module>
