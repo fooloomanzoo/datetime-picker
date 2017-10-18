@@ -56,9 +56,9 @@
         const switchs = this.root.querySelectorAll('.icon.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mouseup', this._stopActiveJob.bind(this, s), false);
-            s.addEventListener('mouseleave', this._stopActiveJob.bind(this, s), false);
-            s.addEventListener('touchend', this._stopActiveJob.bind(this, s), false);
+            s.addEventListener('mouseup', this._stopActiveJob.bind(this), false);
+            s.addEventListener('mouseleave', this._stopActiveJob.bind(this), false);
+            s.addEventListener('touchend', this._stopActiveJob.bind(this), false);
           })
         }
       }
@@ -67,9 +67,9 @@
         const switchs = this.root.querySelectorAll('.icon.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mouseup', this._stopActiveJob.bind(this, s), false);
-            s.addEventListener('mouseleave', this._stopActiveJob.bind(this, s), false);
-            s.addEventListener('touchend', this._stopActiveJob.bind(this, s), false);
+            s.addEventListener('mouseup', this._stopActiveJob.bind(this), false);
+            s.addEventListener('mouseleave', this._stopActiveJob.bind(this), false);
+            s.addEventListener('touchend', this._stopActiveJob.bind(this), false);
           })
         }
       }
@@ -78,6 +78,7 @@
         if (!e) {
           return;
         }
+        this._stopActiveJob();
         if (e.keyCode === 13 || e.keyCode === 32) { // space || enter
           this.confirm();
           return;
@@ -95,6 +96,7 @@
 
       _incremProp(prop, step) {
         this._stopActiveJob();
+        console.log(prop, step);
         step = +step;
         const getter = Date.prototype['get' + prop],
           setter = Date.prototype['set' + prop];

@@ -124,7 +124,7 @@
 
       _computeValue(date, time) {
         super._computeValue(date, time);
-        if (this.autoConfirm) {
+        if (this.autoConfirm || this.native) {
           this.setProperties({
             confirmedDate: this.date,
             confirmedTime: this.time,
