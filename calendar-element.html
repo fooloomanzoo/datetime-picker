@@ -105,15 +105,15 @@
           border-color: rgba(255, 255, 255, 0.33);
         }
         #calendar #dates .day.selected {
-          border-color: var(--datetime-selected-background);
+          border-color: var(--datetime-selected-background) !important;
+        }
+        #calendar #dates .day.current {
+          border-color: rgba(255, 255, 255, 0.5) !important;
         }
         #calendar #dates .day.recent {
           background-color: var(--datetime-selected-background);
           color: var(--datetime-selected-color);
           border-color: rgba(255, 255, 255, 0.33);
-        }
-        #calendar #dates .day.current {
-          border-color: rgba(255, 255, 255, 0.5) !important;
         }
         #calendar #dates .day.notinmonth {
           opacity: 0.5;
@@ -218,7 +218,6 @@
 
     static get observers() {
       return [
-        'renderCalendar(year, month, day)',
         '_computeMaxDayOfMonth(year, month)'
       ]
     }
@@ -248,7 +247,7 @@
     }
 
     _incremMonth(s) {
-      const step = s.getAttribute('step');
+      const step = (s && s.getAttribute) ? s.getAttribute('step') : s;
       if (this._ifClamped(this.clamp, 'month')) {
         this._incremProp('Year', step);
       } else {
@@ -297,10 +296,9 @@
       }
     }
 
-    now() {
-      super.now();
-      const d = new Date();
-      this._computeViewDatetime(d.getFullYear(), d.getMonth() + 1, d.getDate());
+    _computeValue(date, time) {
+      super._computeValue(date, time);
+      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date);
     }
 
     _localeChanged(locale) {
@@ -350,7 +348,7 @@
       const d = new Date(year, +month - 1, day);
 
       if (date === undefined) {
-        date = this.date;
+        date = this.confirmedDate || this.date;
       }
       if (isNaN(+d)) {
         return;
@@ -458,11 +456,19 @@
     _checkKeycode(e) {
       if (e && e.keyCode) {
         switch (e.keyCode) {
-          case 37:
+          case 37: // left
             this._incremView(this.clamp, -1);
             return;
-          case 39:
+          case 39: // right
             this._incremView(this.clamp, 1);
+            return;
+          case 38: // up
+            this._incremMonth(1);
+            e.preventDefault();
+            return;
+          case 40: // down
+            this._incremMonth(-1);
+            e.preventDefault();
             return;
         }
       }

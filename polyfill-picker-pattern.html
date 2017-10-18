@@ -88,6 +88,11 @@
         `;
       }
 
+      connectedCallback() {
+        super.connectedCallback();
+        this.confirm();
+      }
+
       /**
        * key press event handler
        * @param  {[type]} e Event
@@ -103,21 +108,33 @@
         }
       }
 
+      _computeValue(date, time) {
+        super._computeValue(date, time);
+        if (!this.mediated) {
+          this.setProperties({
+            confirmedDate: this.date,
+            confirmedTime: this.time,
+            confirmedDatetime: this.datetime
+          })
+        }
+      }
+
       confirm() {
+        super.confirm();
         this.setProperties({
           confirmedDate: this.date,
-          confirmedTime: this.time
+          confirmedTime: this.time,
+          confirmedDatetime: this.datetime
         })
-        super.confirm();
       }
 
       cancel() {
+        super.cancel();
         this.setProperties({
           date: this.confirmedDate,
           time: this.confirmedTime,
-          datetime: this.confirmedDateTime
+          datetime: this.confirmedDatetime
         })
-        super.cancel();
       }
     }
   }

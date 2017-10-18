@@ -98,23 +98,25 @@
         if (!e) {
           return;
         }
+        if (super._checkKeycode) {
+          super._checkKeycode(e);
+        }
         if (e && e.keyCode) {
           switch (e.keyCode) {
             case 37: // left
               this._focusNumberInput(e, -2);
+              e.stopPropagation();
               return;
             case 39: // right
               this._focusNumberInput(e, 2);
+              e.stopPropagation();
               return;
           }
-        }
-        if (super._checkKeycode) {
-          super._checkKeycode(e);
         }
       }
 
       _focusNumberInput(e, step) {
-        let currentIndex;
+        let currentIndex = -1;
 
         for (let i = 0; i < e.path.length; i++) {
           if (e.path[i].nodeName === 'NUMBER-INPUT') {
@@ -123,21 +125,21 @@
           }
         }
 
-        if (currentIndex !== undefined) {
-          const inputs = this.root.querySelectorAll('number-input');
-          if (inputs) {
-            const maxIndex = 2 * inputs.length - 1;
-            let newIndex = currentIndex + step;
-            if (newIndex > maxIndex) {
-              newIndex = 1;
-            } else if (newIndex < 1) {
-              newIndex = maxIndex;
-            }
-            for (let i = 0; i < inputs.length; i++) {
-              if (+inputs[i].getAttribute('index') === newIndex) {
-                inputs[i].focus();
-                return;
-              }
+        const inputs = Array.prototype.filter.call(this.root.querySelectorAll('number-input'), inp => {
+          return inp.getAttribute('index') && window.getComputedStyle(inp, null).getPropertyValue('display') !== 'none';
+        });
+        if (inputs && inputs.length) {
+          const maxIndex = 2 * inputs.length - 1;
+          let newIndex = currentIndex + step;
+          if (newIndex > maxIndex) {
+            newIndex = 1;
+          } else if (newIndex < 1) {
+            newIndex = maxIndex;
+          }
+          for (let i = 0; i < inputs.length; i++) {
+            if (+inputs[i].getAttribute('index') === newIndex) {
+              inputs[i].focus();
+              return;
             }
           }
         }

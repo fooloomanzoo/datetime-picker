@@ -131,11 +131,11 @@
         `;
       }
 
-      renderCalendar(_viewYear, _viewMonth, day) {
+      renderCalendar(year, month, day) {
         if (DatetimePicker._hasNative && !!this.native) {
           return;
         }
-        super.renderCalendar(_viewYear, _viewMonth, day);
+        super.renderCalendar(year, month, day, this.confirmedDate);
       }
     }
 
