@@ -28,14 +28,16 @@
     <div class="vertical-section-container centered">
       <h3>Create a standalone time-element and time-input</h3>
       <demo-snippet>
-        <dom-bind>
-          <template is="dom-bind">
-            <time-element time="{{time}}"></time-element>
-            <div class="vertical-section-container result">
-              <time-input time="{{time}}"></time-input>
-            </div>
-          </template>
-        </dom-bind>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <time-element time="{{time}}"></time-element>
+              <div class="vertical-section-container result">
+                <time-input time="{{time}}"></time-input>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
       </demo-snippet>
     </div>
 

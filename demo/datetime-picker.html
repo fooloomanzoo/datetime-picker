@@ -28,14 +28,16 @@
     <div class="vertical-section-container centered">
       <h3>Create a standalone datetime-input</h3>
       <demo-snippet>
-        <dom-bind>
-          <template is="dom-bind">
-            <datetime-input datetime="{{datetime}}"></datetime-input>
-            <div class="vertical-section-container result">
-              <div><code>datetime</code>: <b>[[datetime]]</b></div>
-            </div>
-          </template>
-        </dom-bind>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <datetime-input datetime="{{datetime}}"></datetime-input>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
       </demo-snippet>
     </div>
 

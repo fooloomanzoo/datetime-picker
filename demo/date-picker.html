@@ -28,14 +28,16 @@
     <div class="vertical-section-container centered">
       <h3>Create a standalone calendar-element and date-input</h3>
       <demo-snippet>
-        <dom-bind>
-          <template is="dom-bind">
-            <calendar-element date="{{date}}"></calendar-element>
-            <div class="vertical-section-container result">
-              <date-input date="{{date}}"></date-input>
-            </div>
-          </template>
-        </dom-bind>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <calendar-element date="{{date}}"></calendar-element>
+              <div class="vertical-section-container result">
+                <date-input date="{{date}}"></date-input>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
       </demo-snippet>
     </div>
 
