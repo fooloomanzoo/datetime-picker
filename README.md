@@ -29,7 +29,7 @@ You can use other pickers and elements, too. In this collection are for:
 
 Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
-The picker-elements can use **mediated**-attribute, so that you can use the `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute for using a mediated and confirmed value. The other attributes will update like the picker is used but will reset to the old attributes when being canceled. If the **mediated**-attribute is not set the `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be auto-confirmed.
+The picker-elements can use **auto-confirm**-attribute, so that all values will be auto-confirmed.  Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will only be set if they are confirmed.
 
 ### Motivation
 
@@ -137,7 +137,7 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 -->
 
 ```html
-  <p>Mediated Polyfill Picker <datetime-picker mediated value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
+  <p>Autoconfirming Polyfill Picker <datetime-picker auto-confirm value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
 
   <p>Native Picker <datetime-picker native value="{{value}}"></datetime-picker></p>
 
@@ -173,8 +173,8 @@ Set cross data bindings to limit the values of the inputs. Please also visit the
 
 ```html
 <div class="vertical-section-container">
-  <datetime-picker mediated class="begin" confirmed-datetime="{{min}}" max="{{max}}"></datetime-picker>
-  <datetime-picker mediated class="end" confirmed-datetime="{{max}}" min="{{min}}"></datetime-picker>
+  <datetime-picker class="begin" confirmed-datetime="{{min}}" max="{{max}}"></datetime-picker>
+  <datetime-picker class="end" confirmed-datetime="{{max}}" min="{{min}}"></datetime-picker>
 </div>
 <div class="vertical-section-container result">
   <div><code>start</code>: <b>[[min]]</b></div>
@@ -304,10 +304,10 @@ bower update
   - `not-native` is deprecated, use `native` to get a native picker
   - `dropdown-style.html` moved to `input-picker-pattern`
 
-* 2.4.0
+* 2.4.1
   - new elements: `datetime-input`, `date-input` and `date-input`
   - extended keyboard navigation support
-  - `mediated`-attribute for using `confirmed-datetime`, `confirmed-date` and `confirmed-time`
+  - `auto-confirm`-attribute for using `confirmed-datetime`, `confirmed-date` and `confirmed-time`
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!

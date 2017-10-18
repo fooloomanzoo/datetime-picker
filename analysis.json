@@ -4307,9 +4307,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -4541,7 +4541,7 @@
               "column": 6
             },
             "end": {
-              "line": 69,
+              "line": 70,
               "column": 7
             }
           },
@@ -4630,11 +4630,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 71,
+              "line": 72,
               "column": 6
             },
             "end": {
-              "line": 76,
+              "line": 77,
               "column": 7
             }
           },
@@ -5317,11 +5317,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 78,
+              "line": 79,
               "column": 6
             },
             "end": {
-              "line": 83,
+              "line": 84,
               "column": 7
             }
           },
@@ -5393,7 +5393,7 @@
           "column": 4
         },
         "end": {
-          "line": 84,
+          "line": 85,
           "column": 5
         }
       },
@@ -5852,8 +5852,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -11699,9 +11699,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -13275,8 +13275,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -14247,9 +14247,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -15829,8 +15829,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -16702,9 +16702,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -16937,7 +16937,7 @@
               "column": 6
             },
             "end": {
-              "line": 69,
+              "line": 70,
               "column": 7
             }
           },
@@ -17028,11 +17028,11 @@
           "sourceRange": {
             "file": "date-picker.html",
             "start": {
-              "line": 71,
+              "line": 72,
               "column": 6
             },
             "end": {
-              "line": 76,
+              "line": 77,
               "column": 7
             }
           },
@@ -17717,11 +17717,11 @@
           "sourceRange": {
             "file": "date-picker.html",
             "start": {
-              "line": 78,
+              "line": 79,
               "column": 6
             },
             "end": {
-              "line": 83,
+              "line": 84,
               "column": 7
             }
           },
@@ -18253,8 +18253,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -19126,9 +19126,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -20487,8 +20487,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -21365,9 +21365,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -22726,8 +22726,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
@@ -22943,9 +22943,9 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
+          "name": "autoConfirm",
           "type": "boolean",
-          "description": "Set to true to make the input mediatable",
+          "description": "Set to true to make the input auto-confirming",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
@@ -23326,8 +23326,8 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
-          "name": "mediated",
-          "description": "Set to true to make the input mediatable",
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {

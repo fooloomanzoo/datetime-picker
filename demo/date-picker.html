@@ -58,13 +58,13 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>Mediated Input</h3>
+      <h3>Autoconfirming Input</h3>
       <h4>to confirm the values for date, time, datetime and value</h4>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker mediated date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
+              <date-picker auto-confirm date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>current date</code>: <b>[[date]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
@@ -98,8 +98,8 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker mediated class="begin" confirmed-date="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker mediated class="end" confirmed-date="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker class="begin" confirmed-date="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
+                <date-picker class="end" confirmed-date="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>start</code>: <b>[[min]]</b></div>

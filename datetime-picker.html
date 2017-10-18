@@ -107,7 +107,7 @@
       }
 
       _onDblClickDay(e) {
-        if (this.mediated) {
+        if (!this.autoConfirm) {
           super.renderCalendar(this.year, this.month, this.day, this.date);
           this.confirm();
         }
