@@ -29,7 +29,7 @@ You can use other pickers and elements, too. In this collection are for:
 
 Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
-The picker-elements can use **auto-confirm**-attribute, so that all values will be auto-confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs.
+The **picker**-elements can use **auto-confirm**-attribute, so that all values will be auto-confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs.
 
 ### Motivation
 
@@ -112,7 +112,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 
 #### Use the polyfill or the native picker
-By default it checks if `datetime-local`, `date` or `time` is supported as input. If `native` is set, the native picker will be used instead of the polyfill:
+By default it checks if `datetime-local`, `date` or `time` is supported as input. Set the ``auto-confirm`` attribute to confirm the input automaticly. If `native` is set, the native picker will be used instead of the polyfill:
 
 <!--
 ```
@@ -148,7 +148,7 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 ```
 
 #### Define date ranges
-Set cross data bindings to limit the values of the inputs. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html):
+Set cross data bindings to limit the values of the inputs. Use the ``confirmed``-attributes to validate only confirmed values. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html):
 
 <!--
 ```
@@ -307,7 +307,8 @@ bower update
 * 2.4.2
   - new elements: `datetime-input`, `date-input` and `date-input`
   - extended keyboard navigation support
-  - `auto-confirm`-attribute for using `confirmed-datetime`, `confirmed-date` and `confirmed-time`
+  - `auto-confirm`-attribute is for auto confirming the actual input
+  - new attributes `confirmed-datetime`, `confirmed-date` and `confirmed-time`
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!
