@@ -104,18 +104,18 @@
           will-change: background-color;
           transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
-        #calendar #dates .day.recent {
+        #calendar #dates .day.selected {
           background-color: var(--datetime-selected-background);
           color: var(--datetime-selected-color);
           border-color: rgba(255, 255, 255, 0.33);
         }
+        #calendar #dates .day:hover {
+          border-color: rgba(255, 255, 255, 0.4);
+        }
         #calendar #dates .day.current {
           border-color: rgba(255, 255, 255, 0.5);
         }
-        #calendar #dates .day:hover {
-          border-color: rgba(255, 255, 255, 0.33);
-        }
-        #calendar #dates .day.selected {
+        #calendar #dates .day.recent {
           border-color: var(--datetime-selected-background);
         }
         #calendar #dates .day.notinmonth {
