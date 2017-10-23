@@ -63,6 +63,10 @@
         `;
       }
 
+      get _hasNative() {
+        return DatePicker._hasNative;
+      }
+
       _onDblClickDay(e) {
         if (!this.autoConfirm) {
           super.renderCalendar(this.year, this.month, this.day, this.date);
@@ -71,7 +75,7 @@
       }
 
       renderCalendar(year, month, day) {
-        if (DatePicker._hasNative && !!this.native) {
+        if (this._hasNative && this.native) {
           return;
         }
         super.renderCalendar(year, month, day, this.confirmedDate);

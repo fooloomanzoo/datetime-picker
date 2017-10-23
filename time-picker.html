@@ -62,6 +62,10 @@
           </div>
         `;
       }
+
+      get _hasNative() {
+        return TimePicker._hasNative;
+      }
     }
     window.customElements.define(TimePicker.is, TimePicker);
   </script>

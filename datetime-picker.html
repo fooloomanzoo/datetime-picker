@@ -66,6 +66,10 @@
         return 'datetime';
       }
 
+      get _hasNative() {
+        return DatetimePicker._hasNative;
+      }
+
       /**
        * custom style content
        * @type {string}
@@ -114,7 +118,7 @@
       }
 
       renderCalendar(year, month, day) {
-        if (DatetimePicker._hasNative && !!this.native) {
+        if (this._hasNative && this.native) {
           return;
         }
         super.renderCalendar(year, month, day, this.confirmedDate);
