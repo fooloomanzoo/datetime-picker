@@ -96,7 +96,6 @@
 
       _incremProp(prop, step) {
         this._stopActiveJob();
-        console.log(prop, step);
         step = +step;
         const getter = Date.prototype['get' + prop],
           setter = Date.prototype['set' + prop];
