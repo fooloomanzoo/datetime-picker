@@ -107,6 +107,8 @@
               this._focusNumberInput(e, -2);
               e.stopPropagation();
               return;
+            case 9: // tab
+              e.preventDefault(); // falls through
             case 39: // right
               this._focusNumberInput(e, 2);
               e.stopPropagation();
@@ -117,16 +119,17 @@
 
       _focusNumberInput(e, step) {
         let currentIndex = -1;
-
-        for (let i = 0; i < e.path.length; i++) {
-          if (e.path[i].nodeName === 'NUMBER-INPUT') {
-            currentIndex = +e.path[i].getAttribute('index');
+        const path = e.composedPath(); // retargeting fix for certain browsers
+        for (let i = 0; i < path.length; i++) {
+          if (path[i].nodeName === 'NUMBER-INPUT') {
+            currentIndex = +path[i].getAttribute('index');
             break;
           }
         }
+
         let min = 0, max = 0;
         const inputs = Array.prototype.filter.call(this.root.querySelectorAll('number-input'), inp => {
-          if (window.getComputedStyle(inp, null).getPropertyValue('display') !== 'none') {
+          if (!(inp.hasAttribute('hidden') || (inp.parentElement && inp.parentElement.hasAttribute('hidden')))) {
             let index = +inp.getAttribute('index');
             if (index !== undefined) {
               min = (min && min < index ) ? min : index;

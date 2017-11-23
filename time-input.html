@@ -18,16 +18,22 @@
         return `
           ${super.inputTemplate || ''}
           <div hidden$="[[_hideHours]]" style="order:7;">
-            <number-input hidden$="[[hour12]]" index="7" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-            <number-input hidden$="[[!hour12]]" index="7" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
+            <number-input hidden$="[[hour12]]" index="7" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
+            <number-input hidden$="[[!hour12]]" index="7" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
           </div>
-          <span hidden$="[[_hideMinutes]]" style="order:8;">[[_localTimeSeparator]]</span>
-          <number-input hidden$="[[_hideMinutes]]" style="order:9;" index="9" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" placeholder="00"></number-input>
-          <span hidden$="[[_hideSeconds]]" style="order:10;">[[_localTimeSeparator]]</span>
-          <number-input hidden$="[[_hideSeconds]]" style="order:11;" index="11" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" placeholder="00"></number-input>
-          <span hidden$="[[_hideMilliseconds]]" style="order:12;">[[_localDecimalSeparator]]</span>
-          <number-input hidden$="[[_hideMilliseconds]]" style="order:13;" index="13" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000"></number-input>
-          <div class="am-switch" hidden$="[[!hour12]]" style="order:14;" on-mouseup="_switchAm">
+          <div hidden$="[[_hideMinutes]]" style="order:8;">
+            <span>[[_localTimeSeparator]]</span>
+            <number-input index="9" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{minutes}}" placeholder="00"></number-input>
+          </div>
+          <div hidden$="[[_hideSeconds]]" style="order:9;">
+            <span>[[_localTimeSeparator]]</span>
+            <number-input index="11" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" placeholder="00"></number-input>
+          </div>
+          <div hidden$="[[_hideMilliseconds]]" style="order:10;">
+            <span>[[_localDecimalSeparator]]</span>
+            <number-input index="13" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000"></number-input>
+          </div>
+          <div class="am-switch" hidden$="[[!hour12]]" style="order:11;" on-mouseup="_switchAm">
             <span hidden$="[[!isAm]]">[[_am]]</span>
             <span hidden$="[[isAm]]">[[_pm]]</span>
           </div>
@@ -37,6 +43,10 @@
       static get customStyleContent() {
         return `
           ${super.customStyleContent}
+          :host > div {
+            display: inline-flex;
+            align-items: center;
+          }
           .am-switch {
             cursor: pointer;
             font-size: 0.8em;

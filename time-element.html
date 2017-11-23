@@ -28,14 +28,10 @@
           color: var(--datetime-color);
           @apply --datetime-element;
         }
-        #timer .field {
+        #timer > .field {
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-        #timer .icon {
-          padding-top: 4px;
-          padding-bottom: 4px;
         }
         #timer .buttons {
           display: flex;
@@ -43,11 +39,15 @@
           align-self: stretch;
           justify-content: space-between;
         }
-        #timer .time {
+        #timer > .field > number-input {
           background-color: var(--datetime-background);
         }
-        #timer .time:focus {
+        #timer > .field > number-input:focus {
           outline: currentColor auto thin;
+        }
+        #timer > .field > .icon {
+          padding-top: 4px;
+          padding-bottom: 4px;
         }
         .am-switch {
           cursor: pointer;
@@ -63,28 +63,28 @@
     static get timeTemplate() {
       return `
         <div id="timer" hidden$="[[_hideHours]]">
-          <div class="field">
+          <div class="field" hidden$="[[_hideHours]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="Hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input hidden$="[[hour12]]" index="1" class="time" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-            <number-input hidden$="[[!hour12]]" index="1" class="time" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
+            <number-input hidden$="[[hour12]]" index="1" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
+            <number-input hidden$="[[!hour12]]" index="1" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideMinutes]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="Minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input class="time" min="0" max="59" index="3" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
+            <number-input min="0" max="59" index="3" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideSeconds]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="Seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input class="time" index="5" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
+            <number-input index="5" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
           <div class="field" hidden$="[[_hideMilliSeconds]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input class="time" index="7" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
+            <number-input index="7" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <div class="am-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm">
