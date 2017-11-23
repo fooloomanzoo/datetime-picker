@@ -26,7 +26,7 @@
           <span hidden$="[[_hideSeconds]]" style="order:10;">[[_localTimeSeparator]]</span>
           <number-input hidden$="[[_hideSeconds]]" style="order:10;" index="11" pad-length="2" min="0" max="59" disabled="[[disabled]]" value="{{seconds}}" placeholder="00"></number-input>
           <span hidden$="[[_hideMilliseconds]]" style="order:11;">[[_localDecimalSeparator]]</span>
-          <number-input hidden$="[[_hideMilliseconds]]" style="order:12;" index="12" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000"></number-input>
+          <number-input hidden$="[[_hideMilliseconds]]" style="order:12;" index="13" pad-length="3" min="0" max="999" disabled="[[disabled]]" value="{{milliseconds}}" placeholder="000"></number-input>
           <div class="am-switch" hidden$="[[!hour12]]" style="order:13;" on-mouseup="_switchAm">
             <span hidden$="[[!isAm]]">[[_am]]</span>
             <span hidden$="[[isAm]]">[[_pm]]</span>
