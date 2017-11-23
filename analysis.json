@@ -659,6 +659,30 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
         }
       ],
       "methods": [
@@ -669,11 +693,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -688,11 +712,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -979,11 +1003,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 76,
+              "line": 92,
               "column": 6
             },
             "end": {
-              "line": 88,
+              "line": 104,
               "column": 7
             }
           },
@@ -1383,11 +1407,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 30,
+              "line": 45,
               "column": 6
             },
             "end": {
-              "line": 33,
+              "line": 49,
               "column": 7
             }
           },
@@ -1402,11 +1426,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -1421,11 +1445,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -1440,11 +1464,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -1459,11 +1483,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -1482,11 +1506,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -1508,16 +1532,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -1527,11 +1574,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 125,
+              "line": 147,
               "column": 6
             },
             "end": {
-              "line": 134,
+              "line": 156,
               "column": 7
             }
           },
@@ -1546,11 +1593,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 140,
+              "line": 162,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 167,
               "column": 7
             }
           },
@@ -1938,6 +1985,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         }
       ],
       "events": [],
@@ -3056,7 +3121,7 @@
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 71,
               "column": 7
             }
           },
@@ -3071,11 +3136,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 74,
+              "line": 73,
               "column": 6
             },
             "end": {
-              "line": 77,
+              "line": 76,
               "column": 7
             }
           },
@@ -3090,11 +3155,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 79,
+              "line": 78,
               "column": 6
             },
             "end": {
-              "line": 84,
+              "line": 83,
               "column": 7
             }
           },
@@ -3109,11 +3174,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 86,
+              "line": 85,
               "column": 6
             },
             "end": {
-              "line": 91,
+              "line": 90,
               "column": 7
             }
           },
@@ -3128,11 +3193,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 97,
+              "line": 96,
               "column": 6
             },
             "end": {
-              "line": 118,
+              "line": 117,
               "column": 7
             }
           },
@@ -3153,11 +3218,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 120,
+              "line": 119,
               "column": 6
             },
             "end": {
-              "line": 156,
+              "line": 155,
               "column": 7
             }
           },
@@ -4196,6 +4261,30 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "native",
           "type": "boolean",
           "description": "use the native input, if it exists",
@@ -4428,11 +4517,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -4447,11 +4536,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -5155,11 +5244,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -5174,11 +5263,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -5193,11 +5282,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -5212,11 +5301,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -5235,11 +5324,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -5261,16 +5350,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -5760,6 +5872,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "native",
@@ -7015,7 +7145,7 @@
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 71,
               "column": 7
             }
           },
@@ -7030,11 +7160,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 74,
+              "line": 73,
               "column": 6
             },
             "end": {
-              "line": 77,
+              "line": 76,
               "column": 7
             }
           },
@@ -7049,11 +7179,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 79,
+              "line": 78,
               "column": 6
             },
             "end": {
-              "line": 84,
+              "line": 83,
               "column": 7
             }
           },
@@ -7068,11 +7198,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 86,
+              "line": 85,
               "column": 6
             },
             "end": {
-              "line": 91,
+              "line": 90,
               "column": 7
             }
           },
@@ -7087,11 +7217,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 97,
+              "line": 96,
               "column": 6
             },
             "end": {
-              "line": 118,
+              "line": 117,
               "column": 7
             }
           },
@@ -7112,11 +7242,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 120,
+              "line": 119,
               "column": 6
             },
             "end": {
-              "line": 156,
+              "line": 155,
               "column": 7
             }
           },
@@ -8597,7 +8727,7 @@
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 71,
               "column": 7
             }
           },
@@ -8612,11 +8742,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 74,
+              "line": 73,
               "column": 6
             },
             "end": {
-              "line": 77,
+              "line": 76,
               "column": 7
             }
           },
@@ -8631,11 +8761,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 79,
+              "line": 78,
               "column": 6
             },
             "end": {
-              "line": 84,
+              "line": 83,
               "column": 7
             }
           },
@@ -8650,11 +8780,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 86,
+              "line": 85,
               "column": 6
             },
             "end": {
-              "line": 91,
+              "line": 90,
               "column": 7
             }
           },
@@ -8669,11 +8799,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 97,
+              "line": 96,
               "column": 6
             },
             "end": {
-              "line": 118,
+              "line": 117,
               "column": 7
             }
           },
@@ -8694,11 +8824,11 @@
           "sourceRange": {
             "file": "datetime-input-mixin.html",
             "start": {
-              "line": 120,
+              "line": 119,
               "column": 6
             },
             "end": {
-              "line": 156,
+              "line": 155,
               "column": 7
             }
           },
@@ -9732,6 +9862,30 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
         }
       ],
       "methods": [
@@ -9742,11 +9896,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -9761,11 +9915,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -10274,11 +10428,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 30,
+              "line": 45,
               "column": 6
             },
             "end": {
-              "line": 33,
+              "line": 49,
               "column": 7
             }
           },
@@ -10293,11 +10447,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -10312,11 +10466,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -10331,11 +10485,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -10350,11 +10504,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 76,
+              "line": 92,
               "column": 6
             },
             "end": {
-              "line": 88,
+              "line": 104,
               "column": 7
             }
           },
@@ -10373,11 +10527,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -10396,11 +10550,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -10422,16 +10576,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -10441,11 +10618,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 125,
+              "line": 147,
               "column": 6
             },
             "end": {
-              "line": 134,
+              "line": 156,
               "column": 7
             }
           },
@@ -10460,11 +10637,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 140,
+              "line": 162,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 167,
               "column": 7
             }
           },
@@ -10818,6 +10995,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         }
       ],
       "events": [],
@@ -11588,6 +11783,30 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "native",
           "type": "boolean",
           "description": "use the native input, if it exists",
@@ -11820,11 +12039,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -11839,11 +12058,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -12566,11 +12785,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -12585,11 +12804,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -12604,11 +12823,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -12623,11 +12842,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -12646,11 +12865,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -12672,16 +12891,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -13183,6 +13425,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "native",
@@ -14136,6 +14396,30 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "native",
           "type": "boolean",
           "description": "use the native input, if it exists",
@@ -14477,11 +14761,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -14496,11 +14780,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -15227,11 +15511,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -15246,11 +15530,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -15265,11 +15549,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -15284,11 +15568,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -15307,11 +15591,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -15333,16 +15617,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -15846,6 +16153,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "native",
@@ -16793,6 +17118,30 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "native",
           "type": "boolean",
           "description": "use the native input, if it exists",
@@ -17134,11 +17483,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -17153,11 +17502,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -17865,11 +18214,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -17884,11 +18233,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -17903,11 +18252,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -17922,11 +18271,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -17945,11 +18294,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -17971,16 +18320,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -18472,6 +18844,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "native",
@@ -19419,6 +19809,30 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "native",
           "type": "boolean",
           "description": "use the native input, if it exists",
@@ -19651,11 +20065,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -19670,11 +20084,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -20203,11 +20617,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -20222,11 +20636,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -20241,11 +20655,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -20285,11 +20699,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -20308,11 +20722,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -20334,16 +20748,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -20799,6 +21236,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "native",
@@ -21658,6 +22113,30 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75",
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "native",
           "type": "boolean",
           "description": "use the native input, if it exists",
@@ -21999,11 +22478,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -22018,11 +22497,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -22551,11 +23030,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -22570,11 +23049,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -22589,11 +23068,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -22633,11 +23112,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -22656,11 +23135,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -22682,16 +23161,39 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ],
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
@@ -23147,6 +23649,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "native",
@@ -25085,7 +25605,7 @@
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 71,
               "column": 7
             }
           },
@@ -25098,11 +25618,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 74,
+              "line": 73,
               "column": 6
             },
             "end": {
-              "line": 77,
+              "line": 76,
               "column": 7
             }
           },
@@ -25115,11 +25635,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 79,
+              "line": 78,
               "column": 6
             },
             "end": {
-              "line": 84,
+              "line": 83,
               "column": 7
             }
           },
@@ -25132,11 +25652,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 86,
+              "line": 85,
               "column": 6
             },
             "end": {
-              "line": 91,
+              "line": 90,
               "column": 7
             }
           },
@@ -25149,11 +25669,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 97,
+              "line": 96,
               "column": 6
             },
             "end": {
-              "line": 118,
+              "line": 117,
               "column": 7
             }
           },
@@ -25172,11 +25692,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 120,
+              "line": 119,
               "column": 6
             },
             "end": {
-              "line": 156,
+              "line": 155,
               "column": 7
             }
           },
@@ -25200,7 +25720,7 @@
           "column": 2
         },
         "end": {
-          "line": 158,
+          "line": 157,
           "column": 3
         }
       },
@@ -26112,6 +26632,28 @@
             "polymer": {}
           },
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwellTime",
+          "type": "number",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_dwellTimeChanged\""
+            }
+          },
+          "defaultValue": "75"
         }
       ],
       "methods": [
@@ -26597,11 +27139,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 30,
+              "line": 45,
               "column": 6
             },
             "end": {
-              "line": 33,
+              "line": 49,
               "column": 7
             }
           },
@@ -26614,11 +27156,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 35,
+              "line": 51,
               "column": 6
             },
             "end": {
-              "line": 38,
+              "line": 54,
               "column": 7
             }
           },
@@ -26631,11 +27173,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 40,
+              "line": 56,
               "column": 6
             },
             "end": {
-              "line": 45,
+              "line": 61,
               "column": 7
             }
           },
@@ -26648,11 +27190,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 47,
+              "line": 63,
               "column": 6
             },
             "end": {
-              "line": 52,
+              "line": 68,
               "column": 7
             }
           },
@@ -26665,11 +27207,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 54,
+              "line": 70,
               "column": 6
             },
             "end": {
-              "line": 63,
+              "line": 79,
               "column": 7
             }
           },
@@ -26682,11 +27224,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 65,
+              "line": 81,
               "column": 6
             },
             "end": {
-              "line": 74,
+              "line": 90,
               "column": 7
             }
           },
@@ -26699,11 +27241,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 76,
+              "line": 92,
               "column": 6
             },
             "end": {
-              "line": 88,
+              "line": 104,
               "column": 7
             }
           },
@@ -26720,11 +27262,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 90,
+              "line": 106,
               "column": 6
             },
             "end": {
-              "line": 94,
+              "line": 110,
               "column": 7
             }
           },
@@ -26741,11 +27283,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 96,
+              "line": 112,
               "column": 6
             },
             "end": {
-              "line": 113,
+              "line": 127,
               "column": 7
             }
           },
@@ -26765,11 +27307,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 115,
+              "line": 129,
               "column": 6
             },
             "end": {
-              "line": 119,
+              "line": 133,
               "column": 7
             }
           },
@@ -26777,16 +27319,37 @@
           "params": []
         },
         {
+          "name": "_dwellTimeChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 135,
+              "column": 6
+            },
+            "end": {
+              "line": 141,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "dwellTime"
+            }
+          ]
+        },
+        {
           "name": "confirm",
           "description": "confirms the input",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 125,
+              "line": 147,
               "column": 6
             },
             "end": {
-              "line": 134,
+              "line": 156,
               "column": 7
             }
           },
@@ -26799,11 +27362,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 140,
+              "line": 162,
               "column": 6
             },
             "end": {
-              "line": 145,
+              "line": 167,
               "column": 7
             }
           },
@@ -26820,7 +27383,7 @@
           "column": 2
         },
         "end": {
-          "line": 148,
+          "line": 170,
           "column": 3
         }
       },
@@ -27150,6 +27713,22 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "dwell-time",
+          "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
+          "sourceRange": {
+            "start": {
+              "line": 26,
+              "column": 10
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "number"
         }
       ],
       "events": [],
