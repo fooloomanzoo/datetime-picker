@@ -55,7 +55,7 @@
       }
 
       /**
-       * template for the inputs
+       * template for the focusable
        * @type {string}
        */
       static get inputTemplate() {
@@ -121,14 +121,14 @@
         let currentIndex = -1;
         const path = e.composedPath(); // retargeting fix for certain browsers
         for (let i = 0; i < path.length; i++) {
-          if (path[i].nodeName === 'NUMBER-INPUT') {
+          if (path[i].getAttribute && path[i].hasAttribute('index')) {
             currentIndex = +path[i].getAttribute('index');
             break;
           }
         }
 
         let min = 0, max = 0;
-        const inputs = Array.prototype.filter.call(this.root.querySelectorAll('number-input'), inp => {
+        const focusable = Array.prototype.filter.call(this.root.querySelectorAll('[index]'), inp => {
           if (!(inp.hasAttribute('hidden') || (inp.parentElement && inp.parentElement.hasAttribute('hidden')))) {
             let index = +inp.getAttribute('index');
             if (index !== undefined) {
@@ -139,16 +139,16 @@
           }
           return false;
         });
-        if (inputs && inputs.length) {
+        if (focusable && focusable.length) {
           let newIndex = currentIndex + step;
           if (newIndex > max) {
             newIndex = min;
           } else if (newIndex < min) {
             newIndex = max;
           }
-          for (let i = 0; i < inputs.length; i++) {
-            if (+inputs[i].getAttribute('index') === newIndex) {
-              inputs[i].focus();
+          for (let i = 0; i < focusable.length; i++) {
+            if (+focusable[i].getAttribute('index') === newIndex) {
+              focusable[i].focus();
               return;
             }
           }
