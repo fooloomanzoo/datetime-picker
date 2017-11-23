@@ -17,6 +17,21 @@
 
     return class extends DatetimeInputMixin(superClass) { // eslint-disable-line no-undef
 
+      static get properties() {
+        return {
+          /**
+           * dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.
+           *
+           * @type {number}
+           */
+          dwellTime: {
+            type: Number,
+            value: 75,
+            observer: '_dwellTimeChanged'
+          }
+        }
+      }
+
       /**
        * template for control buttons
        * @type {string}
@@ -30,6 +45,7 @@
 
       connectedCallback() {
         super.connectedCallback();
+        this._dwellTimeChanged(this._dwellTime);
         this._addSwitchListener();
       }
 
@@ -103,19 +119,25 @@
           return;
         }
         const d = new Date(this.value);
-        let v = +(getter.call(d));
-        setter.call(d, v + step);
+        setter.call(d, +(getter.call(d)) + step);
         this._setDate(d);
         this._activeJob = setInterval(() => {
-          v += step;
-          setter.call(d, v);
+          setter.call(d, +(getter.call(new Date(this.value))) + step);
           this._setDate(d);
-        }, 200);
+        }, this._dwellTime);
       }
 
       _stopActiveJob() {
         if (this._activeJob) {
           clearInterval(this._activeJob);
+        }
+      }
+
+      _dwellTimeChanged(dwellTime) {
+        if (typeof dwellTime !== 'number') {
+          this._dwellTime = 150;
+        } else if (dwellTime < 25) {
+          this._dwellTime = 25;
         }
       }
 
