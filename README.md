@@ -172,14 +172,14 @@ Set cross data bindings to limit the values of the inputs. Use the ``confirmed``
 -->
 
 ```html
-<div class="vertical-section-container">
+<p>
   <datetime-picker class="begin" confirmed-datetime="{{min}}" max="{{max}}"></datetime-picker>
   <datetime-picker class="end" confirmed-datetime="{{max}}" min="{{min}}"></datetime-picker>
-</div>
-<div class="vertical-section-container result">
+</p>
+<p>
   <div><code>start</code>: <b>[[min]]</b></div>
   <div><code>end</code>: <b>[[max]]</b></div>
-</div>
+</p>
 ```
 
 #### Use it in an overlay
