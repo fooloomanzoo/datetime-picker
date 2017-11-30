@@ -26,7 +26,7 @@
            */
           dwellTime: {
             type: Number,
-            value: 75,
+            value: 150,
             observer: '_dwellTimeChanged'
           }
         }
@@ -135,7 +135,7 @@
 
       _dwellTimeChanged(dwellTime) {
         if (typeof dwellTime !== 'number') {
-          this._dwellTime = 75;
+          this._dwellTime = 150;
         } else if (dwellTime < 25) {
           this._dwellTime = 25;
         }
