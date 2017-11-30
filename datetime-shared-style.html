@@ -30,6 +30,9 @@ Custom property | Description | Default
       --datetime-focus: {
         @apply --input-focus;
       };
+      --datetime-disabled: {
+        @apply --input-disabled;
+      };
       --datetime-element: {
         @apply --input-element;
       };
@@ -64,6 +67,9 @@ Custom property | Description | Default
         --datetime-picker: {
           @apply --input-picker;
         };
+        --datetime-disabled: {
+          @apply --input-disabled;
+        };
         --datetime-icon: {
           @apply --input-icon;
         };
@@ -74,17 +80,23 @@ Custom property | Description | Default
       }
       input[type=datetime-local],
       input[type=date],
-      input[type=time] {
+      input[type=time],
+      input[type=tel] {
         font-family: inherit;
         font-size: inherit;
         @apply --datetime-input;
       }
-      input[type=datetime-local]:focus,
-      input[type=date]:focus,
-      input[type=time]:focus,
-      input[type=datetime-local]:hover,
-      input[type=date]:hover,
-      input[type=time]:hover {
+      input[disabled] {
+        @apply --datetime-disabled;
+      }
+      input[type=datetime-local]:not([disabled]):focus,
+      input[type=date]:not([disabled]):focus,
+      input[type=time]:not([disabled]):focus,
+      input[type=tel]:not([disabled]):focus,
+      input[type=datetime-local]:not([disabled]):hover,
+      input[type=date]:not([disabled]):hover,
+      input[type=time]:not([disabled]):hover,
+      input[type=tel]:not([disabled]):focus {
         @apply --datetime-focus;
       }
     </style>

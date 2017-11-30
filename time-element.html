@@ -2,6 +2,7 @@
 <link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="datetime-picker-mixin.html">
+<link rel="import" href="timezone-input-mixin.html">
 
 <script>
   /**
@@ -13,7 +14,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimeElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars
+  const TimeElementPattern = (superClass) => class extends TimezoneInputMixin(superClass) { // eslint-disable-line no-unused-vars
 
     static get customStyleContent() {
       return `
@@ -49,10 +50,15 @@
           padding-top: 4px;
           padding-bottom: 4px;
         }
-        .am-switch {
+        #timer > .single-switch {
           cursor: pointer;
           font-size: 0.8em;
           margin: 0 0.2em;
+        }
+        #timer > div.timezone {
+          display: inline-flex;
+          align-items: center;
+          font-size: 0.75em;
         }
         [hidden] * {
           display: none;
@@ -87,9 +93,12 @@
             <number-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
-          <div class="am-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm">
+          <div class="single-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm">
             <span hidden$="[[!isAm]]">[[_am]]</span>
             <span hidden$="[[isAm]]">[[_pm]]</span>
+          </div>
+          <div class="timezone" hidden$="[[!timezoneVisible]]">
+            ${super._timezoneTemplate || ''}
           </div>
         </div>
       `
@@ -124,6 +133,14 @@
         _hideMilliSeconds: {
           type: Boolean,
           computed: '_ifClamped(clamp, "milliseconds")'
+        },
+
+        /**
+         * when true, the timezone is visible for the user
+         */
+        timezoneVisible: {
+          type: Boolean,
+          value: false
         }
       }
     }

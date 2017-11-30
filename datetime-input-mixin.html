@@ -24,6 +24,19 @@
         `
       }
 
+      static get properties() {
+        return {
+          /**
+           * disables the input
+           * @type {boolean}
+           */
+          disabled: {
+            type: Boolean,
+            value: false
+          }
+        }
+      }
+
       static get styleTemplate() {
         return `
           <style include="${this.customStyleToInclude}">
@@ -63,11 +76,13 @@
       }
 
       connectedCallback() {
-        this._ensureAttribute('tabindex', 0);
-        if (isNaN(this.value)) {
-          this._computeValue(new Date());
-        }
         super.connectedCallback();
+        if (!this.value) {
+          setTimeout( () => {
+            this._setDate(new Date());
+          }, 0)
+        }
+        this._ensureAttribute('tabindex', 0);
         this._addKeyListener();
       }
 
@@ -140,18 +155,31 @@
           return false;
         });
         if (focusable && focusable.length) {
+          focusable.sort( (a, b) => {
+            return +a.getAttribute('index') > +b.getAttribute('index')
+          })
           let newIndex = currentIndex + step;
           if (newIndex > max) {
             newIndex = min;
           } else if (newIndex < min) {
             newIndex = max;
           }
-          for (let i = 0; i < focusable.length; i++) {
-            if (+focusable[i].getAttribute('index') === newIndex) {
-              focusable[i].focus();
-              return;
+          if (step > 0) {
+            for (let i = 0; i < focusable.length; i++) {
+              if (+focusable[i].getAttribute('index') >= newIndex) {
+                focusable[i].focus();
+                return;
+              }
+            }
+          } else {
+            for (let i = focusable.length - 1; i >= 0; i--) {
+              if (+focusable[i].getAttribute('index') <= newIndex) {
+                focusable[i].focus();
+                return;
+              }
             }
           }
+
         }
       }
     }

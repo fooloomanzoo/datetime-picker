@@ -1,0 +1,120 @@
+<link rel="import" href="../property-mixins/datetime-mixin.html">
+<link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="datetime-shared-style.html">
+
+<script>
+  /**
+   * Mixin to extend an element for picking the timezon offset
+   *
+   * @mixinFunction
+   * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
+   */
+  const TimezoneInputMixin = (superClass) => { // eslint-disable-line no-unused-vars
+
+    return class extends superClass { // eslint-disable-line no-undef
+
+      static get properties() {
+        return {
+          /**
+           * The timezone offset in '±hh:mm' format
+           */
+          timezoneOffset: {
+            type: String,
+            notify: true,
+            value: '+00:00',
+            observer: '_timezoneOffsetChanged'
+          },
+
+          _timezoneHours: {
+            type: String
+          },
+
+          _timezoneMinutes: {
+            type: String
+          },
+
+          /**
+           * when true, the timezone is editable by the user (always programmatically)
+           */
+          timezoneEditable: {
+            type: Boolean
+          },
+
+          _computedTimezoneDisabled: {
+            type: Boolean,
+            computed: '_computeTimezoneDisabled(timezoneEditable, disabled)'
+          }
+        }
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        if (this.timezoneOffset === '+00:00') {
+          const offset = (new Date()).getTimezoneOffset(); // in minutes
+          const hours = '' + Math.floor(Math.abs(offset)/60);
+          const minutes = '' + Math.abs(offset)%60;
+          this.timezoneOffset = (offset < 0 ? '-' : '+') + (hours.length < 2 ? '0' + hours : hours) + ':' + (minutes.length < 2 ? '0' + minutes : minutes);
+        }
+      }
+
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent}
+          number-input.timezone {
+            --number-input: {
+              @apply --datetime-input;
+              padding: 0;
+            };
+          }
+        `
+      }
+
+      /**
+       * template for the timezone
+       * @type {string}
+       */
+      static get _timezoneTemplate() {
+        return `
+          <number-input class="timezone" index="15" pad-length="2" min="-13" max="13" disabled="[[_computedTimezoneDisabled]]" always-sign value-string="{{_timezoneHours}}" unit=":"></number-input>
+          <number-input class="timezone" index="17" pad-length="2" min="0" max="59" disabled="[[_computedTimezoneDisabled]]" value-string="{{_timezoneMinutes}}"></number-input>
+        `;
+      }
+
+      static get observers() {
+        return [
+          '_computeTimezoneOffset(_timezoneHours, _timezoneMinutes)'
+        ]
+      }
+
+      _computeTimezoneOffset(_timezoneHours, _timezoneMinutes) {
+        this.timezoneOffset = '' + _timezoneHours + ':' + _timezoneMinutes;
+      }
+
+      _timezoneOffsetChanged(timezoneOffset) {
+        if (timezoneOffset === undefined) {
+          return;
+        }
+        // if timezoneOffset doesn't match the '±hh:mm' format or is not a sting, it will be set to the current timezoneOffset
+        const match = this.timezoneOffset.split(':');
+        if (match.length !== 2) {
+          const offset = (new Date()).getTimezoneOffset(); // in minutes
+          const hours = '' + Math.floor(Math.abs(offset)/60);
+          const minutes = '' + Math.abs(offset)%60;
+          this.timezoneOffset = (offset < 0 ? '-' : '+') + (hours.length < 2 ? '0' + hours : hours) + ':' + (minutes.length < 2 ? '0' + minutes : minutes);
+        } else {
+          this.setProperties({
+            _timezoneHours: match[0],
+            _timezoneMinutes: match[1]
+          });
+        }
+      }
+
+      _computeTimezoneDisabled(timezoneEditable, disabled) {
+        return Boolean(!timezoneEditable || disabled);
+      }
+    }
+  }
+</script>
