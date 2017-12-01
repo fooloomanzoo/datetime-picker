@@ -2,7 +2,6 @@
 <link rel="import" href="../number-input/number-input.html">
 
 <link rel="import" href="datetime-input-mixin.html">
-<link rel="import" href="timezone-input-mixin.html">
 
 <script>
   /**
@@ -13,7 +12,7 @@
    **/
   const TimeInputPattern = (superClass) => { // eslint-disable-line no-unused-vars
 
-    return class extends TimezoneInputMixin(superClass) { // eslint-disable-line no-undef
+    return class extends superClass { // eslint-disable-line no-undef
 
       static get inputTemplate() {
         return `
@@ -38,9 +37,6 @@
             <span hidden$="[[!isAm]]">[[_am]]</span>
             <span hidden$="[[isAm]]">[[_pm]]</span>
           </div>
-          <div class="timezone" hidden$="[[!timezoneVisible]]" style="order:12;">
-            ${super._timezoneTemplate || ''}
-          </div>
         `;
       }
 
@@ -50,10 +46,6 @@
           :host > div {
             display: inline-flex;
             align-items: center;
-          }
-          div.timezone {
-            align-self: stretch;
-            font-size: 0.75em;
           }
           .single-switch {
             align-self: stretch;
@@ -93,14 +85,6 @@
           _hideMilliseconds: {
             type: Boolean,
             computed: '_ifClamped(clamp, "milliseconds")'
-          },
-
-          /**
-           * when true, the timezone is visible for the user
-           */
-          timezoneVisible: {
-            type: Boolean,
-            value: false
           }
         }
       }

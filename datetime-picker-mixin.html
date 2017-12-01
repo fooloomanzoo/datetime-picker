@@ -123,7 +123,7 @@
         this._activeJob = setInterval(() => {
           setter.call(d, +(getter.call(new Date(this.value))) + step);
           this._setDate(d);
-        }, this._dwellTime);
+        }, this._dwellTime || 150);
       }
 
       _stopActiveJob() {
@@ -148,7 +148,7 @@
         if (super.confirm) {
           super.confirm();
         } else {
-          this._setDate(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds), true);
+          this._setDate(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds));
         }
         if (this.close) {
           this.close();

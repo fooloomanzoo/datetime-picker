@@ -31,7 +31,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input datetime="{{datetime}}"></datetime-input>
+              <datetime-input value="{{datetime}}"></datetime-input>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
               </div>
@@ -47,11 +47,12 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker native value="{{value}}" date="{{date}}" time="{{time}}" position="bottom"></datetime-picker>
+              <datetime-picker native value="{{value}}" date="{{date}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" position="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
+                <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
               </div>
             </template>
           </dom-bind>
