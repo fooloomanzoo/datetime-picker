@@ -55,6 +55,11 @@
           confirmedDatetime: {
             type: String,
             notify: true
+          },
+
+          confirmedValue: {
+            type: Number,
+            notify: true
           }
         };
       }
@@ -104,7 +109,9 @@
 
       connectedCallback() {
         super.connectedCallback();
-        this.confirm();
+        setTimeout(() => {
+          this.confirm();
+        }, 0);
       }
 
       /**
@@ -125,11 +132,7 @@
       _computeValue(date, time) {
         super._computeValue(date, time);
         if (this.autoConfirm || (this._hasNative && this.native)) {
-          this.setProperties({
-            confirmedDate: this.date,
-            confirmedTime: this.time,
-            confirmedDatetime: this.datetime
-          })
+          this.confirm();
         }
       }
 
@@ -137,7 +140,8 @@
         this.setProperties({
           confirmedDate: this.date,
           confirmedTime: this.time,
-          confirmedDatetime: this.datetime
+          confirmedDatetime: this.datetime,
+          confirmedValue: this.value
         })
         setTimeout(() => {
           super.confirm();
@@ -148,7 +152,8 @@
         this.setProperties({
           date: this.confirmedDate,
           time: this.confirmedTime,
-          datetime: this.confirmedDatetime
+          datetime: this.confirmedDatetime,
+          value: this.confirmedValue
         })
         setTimeout(() => {
           super.cancel();

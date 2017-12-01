@@ -29,7 +29,7 @@ You can use other pickers and elements, too. In this collection are for:
 
 Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
-The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs.
+The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-value`-, `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs. Be aware of **timezone-offset**-attribute, when you sync datetime, because the Datetime-Object in the browser will use the local time-zone. The consistent value will always be the `value`-attribute for every client.
 
 ### Motivation
 
