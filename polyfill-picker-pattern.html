@@ -77,8 +77,6 @@
           }
           #polyfill {
             @apply --datetime-input;
-          }
-          #polyfill .replacement {
             padding: 0;
           }
           #polyfill:focus,
@@ -119,7 +117,7 @@
        * @param  {[type]} e Event
        */
       _checkKeycode(e) {
-        if (!e || (this._hasNative && this.native)) {
+        if (!e || (!this._hasNative || this.native)) {
           return;
         }
         if (this.opened) {
@@ -131,30 +129,36 @@
 
       _computeValue(date, time) {
         super._computeValue(date, time);
-        if (this.autoConfirm || (this._hasNative && this.native)) {
+        console.log('poly _computeValue', date, time);
+        if (this.autoConfirm || (!this._hasNative || this.native)) {
           this.confirm();
         }
       }
 
       confirm() {
-        this.setProperties({
-          confirmedDate: this.date,
-          confirmedTime: this.time,
-          confirmedDatetime: this.datetime,
-          confirmedValue: this.value
-        })
+        console.log('poly confirm', this.value, this.date, this.time, this.datetime);
+        super.confirm();
         setTimeout(() => {
-          super.confirm();
+          if (this.value !== undefined && this.datetime !== undefined && this.date !== undefined && this.time !== undefined) {
+            this.setProperties({
+              confirmedDate: this.date,
+              confirmedTime: this.time,
+              confirmedDatetime: this.datetime,
+              confirmedValue: this.value
+            })
+          }
         }, 0);
       }
 
       cancel() {
-        this.setProperties({
-          date: this.confirmedDate,
-          time: this.confirmedTime,
-          datetime: this.confirmedDatetime,
-          value: this.confirmedValue
-        })
+        if (this.value !== undefined && this.datetime !== undefined && this.date !== undefined && this.time !== undefined) {
+          this.setProperties({
+            confirmedDate: this.date,
+            confirmedTime: this.time,
+            confirmedDatetime: this.datetime,
+            confirmedValue: this.value
+          })
+        }
         setTimeout(() => {
           super.cancel();
         }, 0);

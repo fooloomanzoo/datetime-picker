@@ -147,8 +147,10 @@
       confirm() {
         if (super.confirm) {
           super.confirm();
-        } else {
+        } else if (this.year !== undefined && this.month !== undefined && this.day !== undefined && this.hours !== undefined && this.minutes !== undefined && this.seconds !== undefined && this.milliseconds !== undefined) {
           this._setDate(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds));
+        } else {
+          this._setDate(new Date());
         }
         if (this.close) {
           this.close();

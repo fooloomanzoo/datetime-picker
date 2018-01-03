@@ -25,13 +25,13 @@
 
   <body>
 
-    <div class="vertical-section-container centered">
+  <div class="vertical-section-container centered">
       <h3>Create a standalone datetime-input</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input value="{{datetime}}"></datetime-input>
+              <datetime-input value="{{datetime}}" date="2001-01-02" hours="13"></datetime-input>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
               </div>
@@ -41,7 +41,7 @@
       </demo-snippet>
     </div>
 
-    <div class="vertical-section-container centered">
+  <!--     <div class="vertical-section-container centered">
       <h3>Create a native datetime-picker, if available</h3>
       <demo-snippet>
         <template>
@@ -58,9 +58,27 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div>
+    </div> -->
 
-    <div class="vertical-section-container centered">
+    <!-- <div class="vertical-section-container centered">
+      <h3>Presetting date</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <datetime-picker datetime="{{datetime}}" date="2005-02-01" time="{{time}}" timezone-offset="{{timezoneOffset}}"></datetime-picker>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>time</code>: <b>[[time]]</b></div>
+                <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div> -->
+
+    <!-- <div class="vertical-section-container centered">
       <h3>Handling range of dates</h3>
       <demo-snippet>
         <template>
@@ -245,7 +263,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div>
+    </div> -->
 
   </body>
 
