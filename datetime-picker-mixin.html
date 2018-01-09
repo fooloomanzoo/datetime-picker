@@ -152,7 +152,7 @@
         } else {
           this._setDate(new Date());
         }
-        if (this.close) {
+        if (!this.autoConfirm && this.close) {
           this.close();
         }
       }

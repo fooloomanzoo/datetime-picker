@@ -113,11 +113,11 @@
               </custom-style>
               <div class="vertical-section-container">
                 <b>starting time:</b>
-                <time-picker class="begin"  date="{{date}}" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
+                <time-picker class="begin" auto-confirm  date="{{date}}" datetime="{{min}}" max="{{max}}" vertical-align="bottom"></time-picker>
                 <b>end time:</b>
-                <time-picker class="end"  date="{{date}}" datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
+                <time-picker class="end" auto-confirm date="{{date}}" datetime="{{max}}" min="{{min}}" vertical-align="top"></time-picker>
                 <b>at date:</b>
-                <date-picker date="{{date}}" vertical-align="top"></date-picker>
+                <date-picker date="{{date}}" vertical-align="top" auto-confirm></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <code>start:</code>
