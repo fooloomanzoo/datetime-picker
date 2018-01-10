@@ -111,12 +111,9 @@
       }
 
       _onDblClickDay(e) {
-        if (!this.autoConfirm) {
-          super.renderCalendar(this.year, this.month, this.day, this.date);
-          setTimeout( () => {
-            this.confirm();
-          }, 0);
-        }
+        super._onDblClickDay(e);
+        this.confirm();
+        this.close();
       }
 
       renderCalendar(year, month, day) {

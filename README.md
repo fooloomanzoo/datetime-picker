@@ -55,7 +55,7 @@ The **[component page](https://fooloomanzoo.github.io/datetime-picker/components
 
 You can use it stand-alone, with overlay or as a range of dates. Examples:
 
-#### Stand-alone calendar and date-input
+#### Stand-alone calendar and date-input (preset by using its attributes)
 
 <!--
 ```
@@ -80,10 +80,11 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 ```html
 <calendar-element date="{{date}}"></calendar-element>
-<p>date: <date-input date="{{date}}"></date-input></p>
+<p>date: <date-input date="{{date}}" datetime="{{datetime}}"></date-input></p>
+<p>datetime: <datetime-input date="2020-05-23" datetime="{{datetime}}"></datetime-input></p>
 ```
 
-#### Stand-alone time-picker and time-input
+#### Stand-alone time-picker and time-input (preset by using its attributes)
 
 <!--
 ```
@@ -108,7 +109,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 ```html
 <time-element time="{{time}}"></time-element>
-<p> time: <time-input time="{{time}}"></time-input></p>
+<p> time: <time-input time="{{time}}" hours="8"></time-input></p>
 ```
 
 #### Use the polyfill or the native picker
@@ -173,8 +174,8 @@ Set cross data bindings to limit the values of the inputs. Use the ``confirmed``
 
 ```html
 <p>
-  <datetime-picker class="begin" confirmed-datetime="{{min}}" max="{{max}}"></datetime-picker>
-  <datetime-picker class="end" confirmed-datetime="{{max}}" min="{{min}}"></datetime-picker>
+  <datetime-picker class="begin" auto-confirm datetime="{{min}}" max="{{max}}"></datetime-picker>
+  <datetime-picker class="end" auto-confirm datetime="{{max}}" min="{{min}}"></datetime-picker>
 </p>
 <p>
   <div><code>start</code>: <b>[[min]]</b></div>

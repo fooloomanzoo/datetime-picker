@@ -47,7 +47,7 @@
         #calendar .view > * {
           flex: 0 0 auto;
         }
-        #calendar #month {
+        #calendar #monthSelector {
           -moz-appearance: none;
           -webkit-appearance: listitem;
           appearance: listitem;
@@ -60,12 +60,12 @@
           font-weight: inherit;
           @apply --datetime-input;
         }
-        #calendar #month:hover,
-        #calendar #month:focus {
+        #calendar #monthSelector:hover,
+        #calendar #monthSelector:focus {
           color: var(--datetime-selected-color);
           background: var(--datetime-selected-background);
         }
-        #calendar #month option {
+        #calendar #monthSelector option {
           color: var(--datetime-color);
           background: var(--datetime-background);
         }
@@ -136,7 +136,7 @@
           <div id="top">
             <svg class="icon switch" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
-              <select id="month" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" index="1" value="{{month::change}}"></select>
+              <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" index="1" value="{{month::change}}"></select>
               <number-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" value="{{year}}"></number-input>
             </div>
             <svg class="icon switch" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
@@ -149,7 +149,7 @@
               </div>
             </div>
 
-            <div id="dates" on-click="_onClickDay" on-dblclick="_onDblClickDay" on-mousemove="_onMouseMoveDay">
+            <div id="dates" on-mousedown="_onClickDay" on-mousemove="_onMouseMoveDay">
               <div class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
               </div>
@@ -264,9 +264,19 @@
         this.currentSelectedDayNode = this.currentHoveredDayNode;
         this.date = this.currentSelectedDayNode.dataset.date;
       }
+      if (this._dayClicked === true) {
+        this._onDblClickDay();
+        this._dayClicked = false;
+        return;
+      }
+      this._dayClicked = true;
+      setTimeout(() => {
+        this._dayClicked = false;
+      }, 250);
     }
 
     _onDblClickDay(e) {
+      this.renderCalendar(this.year, this.month, this.day, this.date);
     }
 
     _onMouseMoveDay(e) {
@@ -297,20 +307,16 @@
       }
       super._localeChanged(locale);
 
-      const monthSelector = this.root.querySelector('select#month');
-
-      if (monthSelector) {
-        while (monthSelector.hasChildNodes()) {
-          monthSelector.removeChild(monthSelector.lastChild);
-        }
-        for (let i = 1; i <= 12; i++) {
-          let option = document.createElement('option');
-          option.textContent = (new Date(1970, i - 1, 15)).toLocaleDateString(locale, {
-            month: 'long'
-          });
-          option.value = i;
-          monthSelector.appendChild(option);
-        }
+      while (this.$.monthSelector.hasChildNodes()) {
+        this.$.monthSelector.removeChild(this.$.monthSelector.lastChild);
+      }
+      for (let i = 1; i <= 12; i++) {
+        let option = document.createElement('option');
+        option.textContent = (new Date(1970, i - 1, 15)).toLocaleDateString(locale, {
+          month: 'long'
+        });
+        option.value = i;
+        this.$.monthSelector.appendChild(option);
       }
 
       // set weekday titles
@@ -422,6 +428,8 @@
       if (!selectedDayInView) {
         this.currentSelectedDayNode = null;
       }
+      // fix for initial view
+      this.$.monthSelector.selectedIndex = this.month - 1;
     }
 
     _dayDiff(end, start) {

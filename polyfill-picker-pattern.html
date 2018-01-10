@@ -77,8 +77,6 @@
           }
           #polyfill {
             @apply --datetime-input;
-          }
-          #polyfill .replacement {
             padding: 0;
           }
           #polyfill:focus,
@@ -107,19 +105,12 @@
         `;
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-        setTimeout(() => {
-          this.confirm();
-        }, 0);
-      }
-
       /**
        * key press event handler
        * @param  {[type]} e Event
        */
       _checkKeycode(e) {
-        if (!e || (this._hasNative && this.native)) {
+        if (!e || (!this._hasNative || this.native)) {
           return;
         }
         if (this.opened) {
@@ -131,33 +122,53 @@
 
       _computeValue(date, time) {
         super._computeValue(date, time);
-        if (this.autoConfirm || (this._hasNative && this.native)) {
-          this.confirm();
+        if (this.autoConfirm || (!this._hasNative || this.native)) {
+          this._setConfirmedValues();
         }
       }
 
       confirm() {
-        this.setProperties({
-          confirmedDate: this.date,
-          confirmedTime: this.time,
-          confirmedDatetime: this.datetime,
-          confirmedValue: this.value
-        })
-        setTimeout(() => {
-          super.confirm();
-        }, 0);
+        super.confirm();
+        this._setConfirmedValues();
       }
 
       cancel() {
-        this.setProperties({
-          date: this.confirmedDate,
-          time: this.confirmedTime,
-          datetime: this.confirmedDatetime,
-          value: this.confirmedValue
-        })
-        setTimeout(() => {
-          super.cancel();
-        }, 0);
+        this._resetValues();
+        super.cancel();
+      }
+
+      _setConfirmedValues() {
+        let toSet = {};
+        if (this.time !== undefined && this.confirmedTime !== this.time) {
+          toSet.confirmedTime = this.time;
+        }
+        if (this.date !== undefined && this.confirmedDate !== this.date) {
+          toSet.confirmedDate = this.date;
+        }
+        if (this.datetime !== undefined && this.confirmedDatetime !== this.datetime) {
+          toSet.confirmedDatetime = this.datetime;
+        }
+        if (this.value !== undefined && this.confirmedValue !== this.value) {
+          toSet.confirmedValue = this.value;
+        }
+        this.setProperties(toSet)
+      }
+
+      _resetValues() {
+        let toSet = {};
+        if (this.confirmedTime !== undefined && this.confirmedTime !== this.time) {
+          toSet.time = this.confirmedTime;
+        }
+        if (this.confirmedDate !== undefined && this.confirmedDate !== this.date) {
+          toSet.date = this.confirmedDate;
+        }
+        if (this.confirmedDatetime !== undefined && this.confirmedDatetime !== this.datetime) {
+          toSet.datetime = this.confirmedDatetime;
+        }
+        if (this.confirmedValue !== undefined && this.confirmedValue !== this.value) {
+          toSet.value = this.confirmedValue;
+        }
+        this.setProperties(toSet)
       }
     }
   }

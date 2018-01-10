@@ -25,13 +25,13 @@
 
   <body>
 
-    <div class="vertical-section-container centered">
-      <h3>Create a standalone datetime-input</h3>
+  <div class="vertical-section-container centered">
+      <h3>Create a standalone datetime-input and preset date and hours</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input value="{{datetime}}"></datetime-input>
+              <datetime-input datetime="{{datetime}}" date="2001-01-02" hours="13"></datetime-input>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
               </div>
@@ -47,10 +47,32 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker native value="{{value}}" date="{{date}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" position="bottom"></datetime-picker>
+              <datetime-picker native value="{{value}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" position="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
+                <div><code>time</code>: <b>[[time]]</b></div>
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>confirmedTime</code>: <b>[[confirmedTime]]</b></div>
+                <div><code>confirmedDate</code>: <b>[[confirmedDate]]</b></div>
+                <div><code>confirmedDatetime</code>: <b>[[confirmedDatetime]]</b></div>
+                <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Presetting date</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <datetime-picker datetime="{{datetime}}" date="2005-02-01" time="{{time}}" timezone-offset="{{timezoneOffset}}"></datetime-picker>
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
               </div>

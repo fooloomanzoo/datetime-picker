@@ -16,7 +16,7 @@
 
       static get inputTemplate() {
         return `
-          ${super.inputTemplate || ''}
+          ${super.inputTemplate === undefined ? '' : (super.inputTemplate + '<span style="order:7;padding-left:0.25ch;"></span>')}
           <div hidden$="[[_hideHours]]" style="order:7;">
             <number-input hidden$="[[hour12]]" index="7" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
             <number-input hidden$="[[!hour12]]" index="7" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
