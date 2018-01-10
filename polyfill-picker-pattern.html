@@ -105,13 +105,6 @@
         `;
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-        setTimeout(() => {
-          this.confirm();
-        }, 0);
-      }
-
       /**
        * key press event handler
        * @param  {[type]} e Event
@@ -136,35 +129,46 @@
 
       confirm() {
         super.confirm();
-        setTimeout(() => {
-          this._setConfirmedValues();
-        }, 0);
+        this._setConfirmedValues();
       }
 
       cancel() {
-        this._setConfirmedValues();
-        setTimeout(() => {
-          super.cancel();
-        }, 0);
+        this._resetValues();
+        super.cancel();
       }
 
       _setConfirmedValues() {
-        if (this.value !== undefined && this.datetime !== undefined && this.date !== undefined && this.time !== undefined) {
-          let toSet = {};
-          if (this.confirmedTime !== this.time) {
-            toSet.confirmedTime = this.time;
-          }
-          if (this.confirmedDate !== this.date) {
-            toSet.confirmedDate = this.date;
-          }
-          if (this.confirmedDatetime !== this.datetime) {
-            toSet.confirmedDatetime = this.datetime;
-          }
-          if (this.confirmedValue !== this.value) {
-            toSet.confirmedValue = this.value;
-          }
-          this.setProperties(toSet)
+        let toSet = {};
+        if (this.time !== undefined && this.confirmedTime !== this.time) {
+          toSet.confirmedTime = this.time;
         }
+        if (this.date !== undefined && this.confirmedDate !== this.date) {
+          toSet.confirmedDate = this.date;
+        }
+        if (this.datetime !== undefined && this.confirmedDatetime !== this.datetime) {
+          toSet.confirmedDatetime = this.datetime;
+        }
+        if (this.value !== undefined && this.confirmedValue !== this.value) {
+          toSet.confirmedValue = this.value;
+        }
+        this.setProperties(toSet)
+      }
+
+      _resetValues() {
+        let toSet = {};
+        if (this.confirmedTime !== undefined && this.confirmedTime !== this.time) {
+          toSet.time = this.confirmedTime;
+        }
+        if (this.confirmedDate !== undefined && this.confirmedDate !== this.date) {
+          toSet.date = this.confirmedDate;
+        }
+        if (this.confirmedDatetime !== undefined && this.confirmedDatetime !== this.datetime) {
+          toSet.datetime = this.confirmedDatetime;
+        }
+        if (this.confirmedValue !== undefined && this.confirmedValue !== this.value) {
+          toSet.value = this.confirmedValue;
+        }
+        this.setProperties(toSet)
       }
     }
   }

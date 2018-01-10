@@ -46,6 +46,9 @@
       connectedCallback() {
         super.connectedCallback();
         this._addSwitchListener();
+        if (this.confirm) {
+          this.confirm();
+        }
       }
 
       disconnectedCallback() {
