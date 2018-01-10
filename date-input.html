@@ -23,7 +23,7 @@
             <span style="order:[[_orderDate.separatorYearMonth]];" hidden$="[[_hideMonth]]">[[_localDateSeparator]]</span>
             <number-input style="order:[[_orderDate.month]];" index$="[[_orderDate.month]]" hidden$="[[_hideMonth]]" pad-length="2" min="1" max="12" disabled="[[disabled]]" value="{{month}}"></number-input>
             <span style="order:[[_orderDate.separatorMonthDay]];" hidden$="[[_hideDay]]">[[_localDateSeparator]]</span>
-            <number-input style="order:[[_orderDate.day]];" index$="[[_orderDate.day]]" hidden$="[[_hideDay]]" pad-length="2" min="0" max="[[_maxDayOfMonth]]" disabled="[[disabled]]" value="{{day}}"></number-input>
+            <number-input style="order:[[_orderDate.day]];" index$="[[_orderDate.day]]" hidden$="[[_hideDay]]" pad-length="2" min="1" max="[[_maxDayOfMonth]]" disabled="[[disabled]]" value="{{day}}"></number-input>
             ${super.inputTemplate || ''}
           `;
       }

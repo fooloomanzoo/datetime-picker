@@ -129,39 +129,42 @@
 
       _computeValue(date, time) {
         super._computeValue(date, time);
-        console.log('poly _computeValue', date, time);
         if (this.autoConfirm || (!this._hasNative || this.native)) {
-          this.confirm();
+          this._setConfirmedValues();
         }
       }
 
       confirm() {
-        console.log('poly confirm', this.value, this.date, this.time, this.datetime);
         super.confirm();
         setTimeout(() => {
-          if (this.value !== undefined && this.datetime !== undefined && this.date !== undefined && this.time !== undefined) {
-            this.setProperties({
-              confirmedDate: this.date,
-              confirmedTime: this.time,
-              confirmedDatetime: this.datetime,
-              confirmedValue: this.value
-            })
-          }
+          this._setConfirmedValues();
         }, 0);
       }
 
       cancel() {
-        if (this.value !== undefined && this.datetime !== undefined && this.date !== undefined && this.time !== undefined) {
-          this.setProperties({
-            confirmedDate: this.date,
-            confirmedTime: this.time,
-            confirmedDatetime: this.datetime,
-            confirmedValue: this.value
-          })
-        }
+        this._setConfirmedValues();
         setTimeout(() => {
           super.cancel();
         }, 0);
+      }
+
+      _setConfirmedValues() {
+        if (this.value !== undefined && this.datetime !== undefined && this.date !== undefined && this.time !== undefined) {
+          let toSet = {};
+          if (this.confirmedTime !== this.time) {
+            toSet.confirmedTime = this.time;
+          }
+          if (this.confirmedDate !== this.date) {
+            toSet.confirmedDate = this.date;
+          }
+          if (this.confirmedDatetime !== this.datetime) {
+            toSet.confirmedDatetime = this.datetime;
+          }
+          if (this.confirmedValue !== this.value) {
+            toSet.confirmedValue = this.value;
+          }
+          this.setProperties(toSet)
+        }
       }
     }
   }

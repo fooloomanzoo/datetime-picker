@@ -139,35 +139,6 @@
           this._dwellTime = 25;
         }
       }
-
-      /**
-       * confirms the input
-       * @param  {[type]} e Event
-       */
-      confirm() {
-        if (super.confirm) {
-          super.confirm();
-        } else if (this.year !== undefined && this.month !== undefined && this.day !== undefined && this.hours !== undefined && this.minutes !== undefined && this.seconds !== undefined && this.milliseconds !== undefined) {
-          this._setDate(new Date(this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milliseconds));
-        } else {
-          this._setDate(new Date());
-        }
-        if (!this.autoConfirm && this.close) {
-          this.close();
-        }
-      }
-
-      /**
-       * cancels the input
-       * @param  {[type]} e Event
-       */
-      cancel() {
-        this._computeValue(this.datetime);
-        if (this.close) {
-          this.close();
-        }
-      }
-
     }
   }
 </script>
