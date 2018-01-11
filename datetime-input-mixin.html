@@ -53,8 +53,10 @@
         return `
           ${super.customStyleToInclude || ''}
           :host {
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
             display: inline-flex;
-            align-items: center;
+            align-items: baseline;
             padding: 0 0.2em;
           }
           number-input {
