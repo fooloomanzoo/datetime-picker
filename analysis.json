@@ -688,6 +688,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -1550,6 +1572,32 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -2038,6 +2086,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "DatetimeInputMixin"
         },
         {
           "name": "dwell-time",
@@ -4472,6 +4538,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -4494,6 +4582,140 @@
           },
           "defaultValue": "150",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmedDate",
@@ -4921,19 +5143,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 45,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 51,
+              "line": 261,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "now",
@@ -5420,6 +5642,32 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -5511,6 +5759,73 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "open",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 82,
+              "column": 6
+            },
+            "end": {
+              "line": 87,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirm",
           "description": "",
           "privacy": "public",
@@ -5585,23 +5900,6 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "open",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 82,
-              "column": 6
-            },
-            "end": {
-              "line": 87,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
         }
       ],
       "staticMethods": [],
@@ -6005,6 +6303,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -6021,6 +6337,114 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmed-date",
@@ -10176,6 +10600,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -10879,6 +11325,32 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -11333,6 +11805,24 @@
           "metadata": {},
           "type": "string",
           "inheritedFrom": "DatetimeMixin"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "DatetimeInputMixin"
         },
         {
           "name": "dwell-time",
@@ -12148,6 +12638,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -12170,6 +12682,140 @@
           },
           "defaultValue": "150",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmedDate",
@@ -12381,11 +13027,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 112,
+              "line": 111,
               "column": 6
             },
             "end": {
-              "line": 116,
+              "line": 115,
               "column": 7
             }
           },
@@ -12474,11 +13120,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 118,
+              "line": 117,
               "column": 6
             },
             "end": {
-              "line": 123,
+              "line": 122,
               "column": 7
             }
           },
@@ -12616,19 +13262,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 45,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 51,
+              "line": 261,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "now",
@@ -13115,6 +13761,32 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -13206,6 +13878,73 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "open",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 124,
+              "column": 6
+            },
+            "end": {
+              "line": 129,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirm",
           "description": "",
           "privacy": "public",
@@ -13280,23 +14019,6 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "open",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "start": {
-              "line": 125,
-              "column": 6
-            },
-            "end": {
-              "line": 130,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": []
         }
       ],
       "staticMethods": [],
@@ -13309,11 +14031,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 54,
+          "line": 53,
           "column": 4
         },
         "end": {
-          "line": 131,
+          "line": 130,
           "column": 5
         }
       },
@@ -13700,6 +14422,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -13716,6 +14456,114 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmed-date",
@@ -13801,8 +14649,7 @@
         "CalendarElementPattern",
         "TimeElementPattern",
         "DatetimePickerMixin",
-        "PolyfillPickerPattern",
-        "InputPickerPattern"
+        "PolyfillPickerPattern"
       ]
     },
     {
@@ -14588,6 +15435,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -14610,6 +15479,140 @@
           },
           "defaultValue": "150",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmedDate",
@@ -14702,6 +15705,115 @@
             }
           },
           "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "alwaysOnTop",
+          "type": "boolean",
+          "description": "Set to true to keep overlay always on top.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 18,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "noOverlap",
+          "type": "boolean",
+          "description": "Will position the element around the positionTarget without overlapping it.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 27,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "withBackdrop",
+          "type": "boolean",
+          "description": "Set to true to display a backdrop behind the overlay. It traps the focus\nwithin the light DOM of the overlay.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "noCancelOnOutsideClick",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay by clicking outside it.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 40,
+              "column": 10
+            },
+            "end": {
+              "line": 43,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "dynamicAlign",
+          "type": "boolean",
+          "description": "If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment\nand if there's not enough space, it will pick the values which minimize the cropping.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 51,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
         }
       ],
       "methods": [
@@ -14822,11 +15934,11 @@
           "sourceRange": {
             "file": "datetime-picker.html",
             "start": {
-              "line": 112,
+              "line": 111,
               "column": 6
             },
             "end": {
-              "line": 116,
+              "line": 115,
               "column": 7
             }
           },
@@ -14917,11 +16029,11 @@
           "sourceRange": {
             "file": "datetime-picker.html",
             "start": {
-              "line": 118,
+              "line": 117,
               "column": 6
             },
             "end": {
-              "line": 123,
+              "line": 122,
               "column": 7
             }
           },
@@ -15060,19 +16172,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 45,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 51,
+              "line": 261,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "now",
@@ -15559,6 +16671,32 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -15650,6 +16788,75 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "open",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker.html",
+            "start": {
+              "line": 124,
+              "column": 6
+            },
+            "end": {
+              "line": 129,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "DatetimePicker"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirm",
           "description": "",
           "privacy": "public",
@@ -15724,25 +16931,6 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "open",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "datetime-picker.html",
-            "start": {
-              "line": 125,
-              "column": 6
-            },
-            "end": {
-              "line": 130,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "DatetimePicker"
         }
       ],
       "staticMethods": [],
@@ -16146,6 +17334,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -16162,6 +17368,114 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmed-date",
@@ -16234,6 +17548,96 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "always-on-top",
+          "description": "Set to true to keep overlay always on top.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 18,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "no-overlap",
+          "description": "Will position the element around the positionTarget without overlapping it.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 27,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "with-backdrop",
+          "description": "Set to true to display a backdrop behind the overlay. It traps the focus\nwithin the light DOM of the overlay.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "no-cancel-on-outside-click",
+          "description": "Set to true to disable canceling the overlay by clicking outside it.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 40,
+              "column": 10
+            },
+            "end": {
+              "line": 43,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "dynamic-align",
+          "description": "If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment\nand if there's not enough space, it will pick the values which minimize the cropping.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 51,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
         }
       ],
       "events": [],
@@ -16938,6 +18342,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -16960,6 +18386,140 @@
           },
           "defaultValue": "150",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmedDate",
@@ -17052,6 +18612,115 @@
             }
           },
           "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "alwaysOnTop",
+          "type": "boolean",
+          "description": "Set to true to keep overlay always on top.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 18,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "noOverlap",
+          "type": "boolean",
+          "description": "Will position the element around the positionTarget without overlapping it.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 27,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "withBackdrop",
+          "type": "boolean",
+          "description": "Set to true to display a backdrop behind the overlay. It traps the focus\nwithin the light DOM of the overlay.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "noCancelOnOutsideClick",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay by clicking outside it.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 40,
+              "column": 10
+            },
+            "end": {
+              "line": 43,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "dynamicAlign",
+          "type": "boolean",
+          "description": "If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment\nand if there's not enough space, it will pick the values which minimize the cropping.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 51,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
         }
       ],
       "methods": [
@@ -17391,19 +19060,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 45,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 51,
+              "line": 261,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "now",
@@ -17890,6 +19559,32 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -17981,6 +19676,75 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "open",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "date-picker.html",
+            "start": {
+              "line": 82,
+              "column": 6
+            },
+            "end": {
+              "line": 87,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "DatePicker"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirm",
           "description": "",
           "privacy": "public",
@@ -18055,25 +19819,6 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "PolyfillPickerPattern"
-        },
-        {
-          "name": "open",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "date-picker.html",
-            "start": {
-              "line": 82,
-              "column": 6
-            },
-            "end": {
-              "line": 87,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "DatePicker"
         }
       ],
       "staticMethods": [],
@@ -18477,6 +20222,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -18493,6 +20256,114 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmed-date",
@@ -18565,6 +20436,96 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "always-on-top",
+          "description": "Set to true to keep overlay always on top.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 18,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "no-overlap",
+          "description": "Will position the element around the positionTarget without overlapping it.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 27,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "with-backdrop",
+          "description": "Set to true to display a backdrop behind the overlay. It traps the focus\nwithin the light DOM of the overlay.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "no-cancel-on-outside-click",
+          "description": "Set to true to disable canceling the overlay by clicking outside it.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 40,
+              "column": 10
+            },
+            "end": {
+              "line": 43,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "dynamic-align",
+          "description": "If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment\nand if there's not enough space, it will pick the values which minimize the cropping.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 51,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
         }
       ],
       "events": [],
@@ -19269,6 +21230,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -19291,6 +21274,140 @@
           },
           "defaultValue": "150",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmedDate",
@@ -19448,19 +21565,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 45,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 51,
+              "line": 261,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "now",
@@ -20067,6 +22184,32 @@
           "inheritedFrom": "PolyfillPickerPattern"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -20156,6 +22299,75 @@
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 291,
+              "column": 6
+            },
+            "end": {
+              "line": 296,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirm",
@@ -20599,6 +22811,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -20615,6 +22845,114 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmed-date",
@@ -21393,6 +23731,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -21415,6 +23775,140 @@
           },
           "defaultValue": "150",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmedDate",
@@ -21507,6 +24001,115 @@
             }
           },
           "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "alwaysOnTop",
+          "type": "boolean",
+          "description": "Set to true to keep overlay always on top.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 18,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "noOverlap",
+          "type": "boolean",
+          "description": "Will position the element around the positionTarget without overlapping it.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 27,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "withBackdrop",
+          "type": "boolean",
+          "description": "Set to true to display a backdrop behind the overlay. It traps the focus\nwithin the light DOM of the overlay.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "noCancelOnOutsideClick",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay by clicking outside it.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 40,
+              "column": 10
+            },
+            "end": {
+              "line": 43,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "dynamicAlign",
+          "type": "boolean",
+          "description": "If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment\nand if there's not enough space, it will pick the values which minimize the cropping.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 51,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "OverlayPickerMixin"
         }
       ],
       "methods": [
@@ -21572,19 +24175,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 45,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 51,
+              "line": 261,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "now",
@@ -22191,6 +24794,32 @@
           "inheritedFrom": "PolyfillPickerPattern"
         },
         {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_increm",
           "description": "",
           "privacy": "protected",
@@ -22280,6 +24909,75 @@
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 291,
+              "column": 6
+            },
+            "end": {
+              "line": 296,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirm",
@@ -22723,6 +25421,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -22739,6 +25455,114 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirmed-date",
@@ -22811,6 +25635,96 @@
           "metadata": {},
           "type": "number",
           "inheritedFrom": "PolyfillPickerPattern"
+        },
+        {
+          "name": "always-on-top",
+          "description": "Set to true to keep overlay always on top.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 18,
+              "column": 10
+            },
+            "end": {
+              "line": 20,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "no-overlap",
+          "description": "Will position the element around the positionTarget without overlapping it.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 24,
+              "column": 10
+            },
+            "end": {
+              "line": 27,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "with-backdrop",
+          "description": "Set to true to display a backdrop behind the overlay. It traps the focus\nwithin the light DOM of the overlay.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "no-cancel-on-outside-click",
+          "description": "Set to true to disable canceling the overlay by clicking outside it.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 40,
+              "column": 10
+            },
+            "end": {
+              "line": 43,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
+        },
+        {
+          "name": "dynamic-align",
+          "description": "If true, it will use `horizontalAlign` and `verticalAlign` values as preferred alignment\nand if there's not enough space, it will pick the values which minimize the cropping.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 51,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "OverlayPickerMixin"
         }
       ],
       "events": [],
@@ -22831,6 +25745,162 @@
       "summary": "",
       "path": "polyfill-picker-pattern.html",
       "properties": [
+        {
+          "name": "native",
+          "type": "boolean",
+          "description": "use the native input, if it exists",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "opens the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"auto\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "verticalAlign",
+          "type": "string",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"top\"",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input elements",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "autoConfirm",
+          "type": "boolean",
+          "description": "Set to true to make the input auto-confirming",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "noCancelOnEscKey",
+          "type": "boolean",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
         {
           "name": "confirmedDate",
           "type": "string",
@@ -22918,6 +25988,25 @@
       ],
       "methods": [
         {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 258,
+              "column": 6
+            },
+            "end": {
+              "line": 261,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "_checkKeycode",
           "description": "key press event handler",
           "privacy": "protected",
@@ -22941,28 +26030,73 @@
           ]
         },
         {
-          "name": "_computeValue",
-          "description": "",
-          "privacy": "protected",
+          "name": "open",
+          "description": "open the picker",
+          "privacy": "public",
           "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 122,
+              "line": 291,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 296,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "close",
+          "description": "close the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 312,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "date"
-            },
-            {
-              "name": "time"
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
             }
-          ]
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "toggle",
+          "description": "toggle the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 318,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e",
+              "type": "[type]",
+              "description": "Event"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "confirm",
@@ -22997,6 +26131,30 @@
           },
           "metadata": {},
           "params": []
+        },
+        {
+          "name": "_computeValue",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 122,
+              "column": 6
+            },
+            "end": {
+              "line": 127,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "date"
+            },
+            {
+              "name": "time"
+            }
+          ]
         },
         {
           "name": "_setConfirmedValues",
@@ -23049,6 +26207,132 @@
       "privacy": "public",
       "name": "PolyfillPickerPattern",
       "attributes": [
+        {
+          "name": "native",
+          "description": "use the native input, if it exists",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 198,
+              "column": 10
+            },
+            "end": {
+              "line": 201,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "opened",
+          "description": "opens the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 206,
+              "column": 10
+            },
+            "end": {
+              "line": 211,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "horizontal-align",
+          "description": "The orientation against which to align the element horizontally\nrelative to the related input element. Possible values are \"left\", \"right\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 217,
+              "column": 10
+            },
+            "end": {
+              "line": 221,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "vertical-align",
+          "description": "The orientation against which to align the element vertically\nrelative to the related input element. Possible values are \"top\", \"bottom\", \"auto\". (comparable to `iron-fit-behavior` and its `no-overlap`-attribute)",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 226,
+              "column": 10
+            },
+            "end": {
+              "line": 230,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "disabled",
+          "description": "disables the input elements",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 235,
+              "column": 10
+            },
+            "end": {
+              "line": 238,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "auto-confirm",
+          "description": "Set to true to make the input auto-confirming",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 243,
+              "column": 10
+            },
+            "end": {
+              "line": 246,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-cancel-on-esc-key",
+          "description": "Set to true to disable canceling the overlay with the ESC key.",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 251,
+              "column": 10
+            },
+            "end": {
+              "line": 254,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
         {
           "name": "confirmed-date",
           "description": "",
@@ -25366,6 +28650,28 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "type": "boolean",
+          "description": "disables the input",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
@@ -25980,6 +29286,53 @@
           "params": []
         },
         {
+          "name": "_checkKeycode",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 94,
+              "column": 6
+            },
+            "end": {
+              "line": 106,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ]
+        },
+        {
+          "name": "_focusNumberInput",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 132,
+              "column": 6
+            },
+            "end": {
+              "line": 180,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            },
+            {
+              "name": "step"
+            }
+          ],
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "_addSwitchListener",
           "description": "",
           "privacy": "protected",
@@ -26012,27 +29365,6 @@
           },
           "metadata": {},
           "params": []
-        },
-        {
-          "name": "_checkKeycode",
-          "description": "",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 94,
-              "column": 6
-            },
-            "end": {
-              "line": 106,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [
-            {
-              "name": "e"
-            }
-          ]
         },
         {
           "name": "_increm",
@@ -26477,6 +29809,24 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
+          "name": "disabled",
+          "description": "disables the input",
+          "sourceRange": {
+            "file": "datetime-input-mixin.html",
+            "start": {
+              "line": 32,
+              "column": 10
+            },
+            "end": {
+              "line": 35,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "DatetimeInputMixin"
+        },
+        {
           "name": "dwell-time",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.",
           "sourceRange": {
@@ -26500,7 +29850,7 @@
       },
       "slots": [],
       "mixins": [
-        "DatetimeMixin"
+        "DatetimeInputMixin"
       ]
     },
     {
