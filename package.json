@@ -23,7 +23,7 @@
   "scripts": {
     "postinstall": "bower install",
     "prepublish": "npm run build && git add . && git commit -m \"publish new version\" && git push && npm version patch",
-    "gh-pages": "git checkout gh-pages && bower update -f && git add . && git commit -m \"update\" && git push",
+    "gh-pages": "git checkout gh-pages && bower update -f && git add . && git commit -m \"update\" && git push && git checkout master",
     "build": "bower update && polymer analyze > analysis.json",
     "prestart": "polymer analyze > analysis.json",
     "start": "polymer serve",
