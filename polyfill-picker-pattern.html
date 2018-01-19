@@ -36,7 +36,8 @@
       static get observers() {
         return [
           '_computeValue(confirmedDate, confirmedTime)',
-          '_computeValue(confirmedDatetime)'
+          '_computeValue(confirmedDatetime)',
+          '_valueChanged(confirmedValue)'
         ];
       }
 
@@ -105,6 +106,13 @@
         `;
       }
 
+      connectedCallback() {
+        super.connectedCallback();
+        setTimeout(() => {
+          this.confirm();
+        })
+      }
+
       /**
        * key press event handler
        * @param  {[type]} e Event
@@ -151,6 +159,7 @@
         if (this.value !== undefined && this.confirmedValue !== this.value) {
           toSet.confirmedValue = this.value;
         }
+        console.log(toSet);
         this.setProperties(toSet)
       }
 

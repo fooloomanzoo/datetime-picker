@@ -47,15 +47,18 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker native value="{{value}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" position="bottom"></datetime-picker>
+              <input type="checkbox" checked="{{native::change}}">native picker<br><br>
+              <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
+              <datetime-picker native="[[native]]" year="1999" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
-                <div><code>confirmedTime</code>: <b>[[confirmedTime]]</b></div>
-                <div><code>confirmedDate</code>: <b>[[confirmedDate]]</b></div>
-                <div><code>confirmedDatetime</code>: <b>[[confirmedDatetime]]</b></div>
+                <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
+                <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
+                <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
+                <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
                 <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
               </div>
             </template>
