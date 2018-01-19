@@ -15,7 +15,6 @@
     "time",
     "timer",
     "range",
-    "input",
     "polyfill"
   ],
   "repository": {
@@ -25,9 +24,10 @@
   "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt",
   "dependencies": {
     "polymer": "Polymer/polymer#2",
-    "number-input": "fooloomanzoo/number-input#1.3.4",
-    "property-mixins": "fooloomanzoo/property-mixins#1.0.12",
-    "input-picker-pattern": "fooloomanzoo/input-picker-pattern#1.0.15"
+    "datetime-input": "fooloomanzoo/datetime-input#2",
+    "number-input": "fooloomanzoo/number-input#2",
+    "property-mixins": "fooloomanzoo/property-mixins#2",
+    "input-picker-pattern": "fooloomanzoo/input-picker-pattern#2"
   },
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs",

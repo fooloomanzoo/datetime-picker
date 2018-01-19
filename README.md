@@ -15,17 +15,14 @@ You can use other pickers and elements, too. In this collection are for:
 * **datetime**
   * `<overlay-datetime-picker>`
   * `<datetime-picker>`
-  * `<datetime-input>`
 * **date**
   * `<overlay-date-picker>`
   * `<date-picker>`
-  * `<date-input>`
   * `<calendar-element>`
 * **time**
   * `<overlay-time-picker>`
   * `<time-picker>`
   * `<time-element>`
-  * `<time-input>`
 
 Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
