@@ -25,9 +25,9 @@
   "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt",
   "dependencies": {
     "polymer": "Polymer/polymer#2",
-    "number-input": "fooloomanzoo/number-input",
-    "property-mixins": "fooloomanzoo/property-mixins",
-    "input-picker-pattern": "fooloomanzoo/input-picker-pattern"
+    "number-input": "fooloomanzoo/number-input#1.3.4",
+    "property-mixins": "fooloomanzoo/property-mixins#1.0.12",
+    "input-picker-pattern": "fooloomanzoo/input-picker-pattern#1.0.15"
   },
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs",
