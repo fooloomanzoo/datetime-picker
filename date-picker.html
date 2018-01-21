@@ -61,6 +61,27 @@
         `;
       }
 
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent || ''}
+          input[type="date"]:hover::-webkit-calendar-picker-indicator {
+            background: transparent;
+          }
+          input[type=date] {
+            font-family: inherit;
+            font-size: inherit;
+            @apply --input-style;
+          }
+          input[disabled] {
+            @apply --input-disabled;
+          }
+          input[type=date]:not([disabled]):focus,
+          input[type=date]:not([disabled]):hover {
+            @apply --input-focus;
+          }
+        `;
+      }
+
       get _hasNative() {
         return DatePicker._hasNative;
       }

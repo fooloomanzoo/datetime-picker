@@ -61,6 +61,24 @@
         `;
       }
 
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent || ''}
+          input[type="time"]:hover::-webkit-calendar-picker-indicator {
+            background: transparent;
+          }
+          input[type=time] {
+            font-family: inherit;
+            font-size: inherit;
+            @apply --input-style;
+          }
+          input[type=time]:not([disabled]):focus,
+          input[type=time]:not([disabled]):hover {
+            @apply --input-focus;
+          }
+        `;
+      }
+
       get _hasNative() {
         return TimePicker._hasNative;
       }

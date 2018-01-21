@@ -89,6 +89,18 @@
             align-self: stretch;
             align-items: flex-end;
           }
+          input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator {
+            background: transparent;
+          }
+          input[type=datetime-local] {
+            font-family: inherit;
+            font-size: inherit;
+            @apply --input-style;
+          }
+          input[type=datetime-local]:not([disabled]):focus,
+          input[type=datetime-local]:not([disabled]):hover {
+            @apply --input-focus;
+          }
         `;
       }
 
