@@ -75,10 +75,12 @@
         return `
           ${super.customStyleContent || ''}
           #polyfill {
-            --input-color: currentColor;
-            --input-background: transparent;
             @apply --input-style;
             padding: 0;
+          }
+          #polyfill > * {
+            --input-color: currentColor;
+            --input-background: transparent;
           }
           #polyfill:hover,
           #polyfill:focus {
