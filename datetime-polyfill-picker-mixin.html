@@ -74,20 +74,17 @@
       static get customStyleContent() {
         return `
           ${super.customStyleContent || ''}
-          .icon:focus,
-          .icon:hover {
-            @apply --input-focus;
-          }
           #polyfill {
+            --input-color: currentColor;
+            --input-background: transparent;
             @apply --input-style;
             padding: 0;
           }
-          #polyfill:focus,
-          #polyfill:hover {
+          #polyfill:hover,
+          #polyfill:focus {
+            color: var(--input-focus-color);
+            background: var(--input-focus-background);
             @apply --input-focus;
-          }
-          input.native {
-            @apply --input-style;
           }
           #picker {
             @apply --input-picker;

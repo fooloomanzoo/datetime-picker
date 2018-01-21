@@ -1,4 +1,5 @@
 <link rel="import" href="../datetime-input/datetime-input-mixin.html">
+<link rel="import" href="../input-picker-pattern/input-shared-style.html">
 
 <script>
   /**
@@ -44,6 +45,10 @@
 
       static get customStyleContent() {
         return '';
+      }
+
+      static get customStyleToInclude() {
+        return 'input-shared-style';
       }
 
       connectedCallback() {

@@ -50,6 +50,7 @@
      *  @appliesMixin DatetimePickerMixin
      *  @appliesMixin DatetimePolyfillPickerMixin
      *
+     *  @demo demo/index.html
      *  @demo demo/datetime-picker.html
      **/
     class DatetimePicker extends DatetimePolyfillPickerMixin(TimeElementPattern(CalendarElementPattern(DatetimePickerMixin(Polymer.Element)))) { // eslint-disable-line no-undef
@@ -85,6 +86,8 @@
           }
           .lower > * {
             border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
           }
           .lower > #buttons {
             flex: 1 0 1px;

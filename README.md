@@ -7,7 +7,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 <!--
 ```
-<custom-element-demo height="500">
+<custom-element-demo height="400">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
@@ -19,9 +19,9 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
     </style>
     <dom-bind>
       <template is="dom-bind">
+        <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br>
         <input type="checkbox" checked="{{native::change}}">native picker<br><br>
-        <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
-        <datetime-picker native="[[native]]" year="1999" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker>
+        <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br>
         <div class="vertical-section-container result">
           <div><code>numeric value</code>: <b>[[value]]</b></div>
           <div><code>date</code>: <b>[[date]]</b></div>
