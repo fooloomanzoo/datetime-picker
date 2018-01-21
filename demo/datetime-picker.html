@@ -94,14 +94,14 @@
               <custom-style>
                 <style is="custom-style">
                   datetime-picker.begin {
-                    --datetime-selected-background: #CC1C1C;
-                    --datetime-background: #531010;
-                    --datetime-color: #eeeeee;
+                    --input-focus-background: #CC1C1C;
+                    --input-background: #531010;
+                    --input-color: #eeeeee;
                   }
                   datetime-picker.end {
-                    --datetime-selected-background: #2362EC;
-                    --datetime-background: #071533;
-                    --datetime-color: #eeeeee;
+                    --input-focus-background: #2362EC;
+                    --input-background: #071533;
+                    --input-color: #eeeeee;
                   }
                 </style>
               </custom-style>
@@ -252,7 +252,7 @@
             <template is="dom-bind">
               horizontal-align
               <select value="{{horizontalAlign::change}}">
-                <option value=""></option>
+                <option value="auto">auto</option>
                 <option value="left">left</option>
                 <option value="right">right</option>
               </select>

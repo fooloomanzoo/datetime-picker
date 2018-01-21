@@ -1,0 +1,182 @@
+<link rel="import" href="../input-picker-pattern/input-picker-pattern.html">
+<link rel="import" href="../input-picker-pattern/dropdown-style.html">
+
+<script>
+  /**
+   * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
+   *
+   * @appliesMixin InputPickerPattern
+   *
+   * @mixinFunction
+   * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
+   */
+  const DatetimePolyfillPickerMixin = (superClass) => { // eslint-disable-line no-unused-vars
+
+    return class extends InputPickerPattern(superClass) {  // eslint-disable-line no-undef
+      /**
+       * template for native input element
+       * @type {string}
+       */
+      static get _nativeInputTemplate() {
+        return `
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.nativeInputBinding || this.expectedNativeInputType}::input}}" step="1">
+        `;
+      }
+
+      static get nativeInputBinding() {
+        return 'datetime';
+      }
+
+      static get customStyleToInclude() {
+        return `datetime-shared-style dropdown-style`;
+      }
+
+      static get observers() {
+        return [
+          '_computeValue(confirmedDate, confirmedTime)',
+          '_computeValue(confirmedDatetime)',
+          '_valueChanged(confirmedValue)'
+        ];
+      }
+
+      static get properties() {
+        return {
+          confirmedDate: {
+            type: String,
+            notify: true
+          },
+
+          confirmedTime: {
+            type: String,
+            notify: true
+          },
+
+          confirmedDatetime: {
+            type: String,
+            notify: true
+          },
+
+          confirmedValue: {
+            type: Number,
+            notify: true
+          }
+        };
+      }
+
+      /**
+       * custom style content
+       * @type {string}
+       */
+      static get customStyleContent() {
+        return `
+          ${super.customStyleContent || ''}
+          .icon:focus,
+          .icon:hover {
+            @apply --input-focus;
+          }
+          #polyfill {
+            @apply --input-style;
+            padding: 0;
+          }
+          #polyfill:focus,
+          #polyfill:hover {
+            @apply --input-focus;
+          }
+          input.native {
+            @apply --input-style;
+          }
+          #picker {
+            @apply --input-picker;
+            padding: 0;
+          }
+          #picker #buttons {
+            background-color: var(--input-background);
+            color: var(--input-color);
+          }
+        `;
+      }
+
+      static get replacementInputTemplate() {
+        return `
+          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" min="[[min]]" max="[[max]]"></${this.nativeInputBinding}-input>
+        `;
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        setTimeout(() => {
+          this.confirm();
+        })
+      }
+
+      /**
+       * key press event handler
+       * @param  {[type]} e Event
+       */
+      _checkKeycode(e) {
+        if (!e || (!this._hasNative || this.native)) {
+          return;
+        }
+        if (this.opened) {
+          super._checkKeycode(e);
+        } else {
+          this.open();
+        }
+      }
+
+      _computeValue(date, time) {
+        super._computeValue(date, time);
+        if (this.autoConfirm || (!this._hasNative || this.native)) {
+          this._setConfirmedValues();
+        }
+      }
+
+      confirm() {
+        super.confirm();
+        this._setConfirmedValues();
+      }
+
+      cancel() {
+        this._resetValues();
+        super.cancel();
+      }
+
+      _setConfirmedValues() {
+        let toSet = {};
+        if (this.time !== undefined && this.confirmedTime !== this.time) {
+          toSet.confirmedTime = this.time;
+        }
+        if (this.date !== undefined && this.confirmedDate !== this.date) {
+          toSet.confirmedDate = this.date;
+        }
+        if (this.datetime !== undefined && this.confirmedDatetime !== this.datetime) {
+          toSet.confirmedDatetime = this.datetime;
+        }
+        if (this.value !== undefined && this.confirmedValue !== this.value) {
+          toSet.confirmedValue = this.value;
+        }
+        this.setProperties(toSet)
+      }
+
+      _resetValues() {
+        let toSet = {};
+        if (this.confirmedTime !== undefined && this.confirmedTime !== this.time) {
+          toSet.time = this.confirmedTime;
+        }
+        if (this.confirmedDate !== undefined && this.confirmedDate !== this.date) {
+          toSet.date = this.confirmedDate;
+        }
+        if (this.confirmedDatetime !== undefined && this.confirmedDatetime !== this.datetime) {
+          toSet.datetime = this.confirmedDatetime;
+        }
+        if (this.confirmedValue !== undefined && this.confirmedValue !== this.value) {
+          toSet.value = this.confirmedValue;
+        }
+        this.setProperties(toSet)
+      }
+    }
+  }
+</script>

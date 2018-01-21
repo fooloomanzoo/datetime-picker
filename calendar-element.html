@@ -23,9 +23,9 @@
           display: -webkit-inline-flex;
           display: inline-flex;
           flex-direction: column;
-          background-color: var(--datetime-background);
-          color: var(--datetime-color);
-          @apply --datetime-element;
+          background-color: var(--input-background);
+          color: var(--input-color);
+          @apply --calendar-element;
         }
         #calendar #top {
           display: -ms-inline-flexbox;
@@ -58,16 +58,16 @@
           font-family: inherit;
           font-size: inherit;
           font-weight: inherit;
-          @apply --datetime-input;
+          @apply --input-style;
         }
         #calendar #monthSelector:hover,
         #calendar #monthSelector:focus {
-          color: var(--datetime-selected-color);
-          background: var(--datetime-selected-background);
+          color: var(--input-focus-color);
+          background: var(--input-focus-background);
         }
         #calendar #monthSelector option {
-          color: var(--datetime-color);
-          background: var(--datetime-background);
+          color: var(--input-color);
+          background: var(--input-background);
         }
         #calendar #year {
           font-weight: bold;
@@ -93,7 +93,7 @@
           height: 1.5em;
           line-height: 1.5em;
           text-align: center;
-          @apply --datetime-date-cell;
+          @apply --calendar-date-cell;
         }
         #calendar #dates .day {
           cursor: pointer;
@@ -105,8 +105,8 @@
           transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day.selected {
-          background-color: var(--datetime-selected-background);
-          color: var(--datetime-selected-color);
+          background-color: var(--input-focus-background);
+          color: var(--input-focus-color);
           border-color: rgba(255, 255, 255, 0.33);
         }
         #calendar #dates .day:hover {
@@ -116,7 +116,7 @@
           border-color: rgba(255, 255, 255, 0.5);
         }
         #calendar #dates .day.recent {
-          border-color: var(--datetime-selected-background);
+          border-color: var(--input-focus-background);
         }
         #calendar #dates .day.notinmonth {
           opacity: 0.5;
@@ -496,14 +496,14 @@
   *
   * Custom property | Description | Default
   * ----------------|-------------|----------
-  * `--datetime-background` | text-color of the time-element | `#2b2b2b`
-  * `--datetime-color` | text-color of the time-element | `#dadada`
-  * `--datetime-selected-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`
-  * `--datetime-selected-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`
-  * `--datetime-element` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`
-  * `--datetime-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`
-  * `--datetime-input` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
-  * `--datetime-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
+  * `--input-background` | text-color of the time-element | `#2b2b2b`
+  * `--input-color` | text-color of the time-element | `#dadada`
+  * `--input-focus-background` | background-color of the focussed time-input and the hovered icons and buttons | `--primary-color, #394FE8`
+  * `--input-focus-color` | color of the focussed time-input and the hovered icons and buttons | `#f5f5f5`
+  * `--input-picker` | Mixin applied to the time-element and the calender-element | `{border-radius: 4px; padding: 4px;}`
+  * `--input-picker` | Mixin applied to the picker | `{ box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); }`
+  * `--input-style` | Mixin applied to the inputs | {border-radius: 4px; padding: 0.3em 0.2em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);}`
+  * `--input-icon` | Mixin applied to closing icon | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
   *
   * @customElement
   * @polymer
