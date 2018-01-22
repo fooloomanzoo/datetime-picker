@@ -13,7 +13,7 @@
     <link rel="import" href="../datetime-picker.html">
     <link rel="import" href="../date-picker.html">
     <link rel="import" href="../time-picker.html">
-    <link rel="import" href="../../input-picker-pattern/overlay-element.html">
+    <link rel="import" href="../../number-input/number-input.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .result {
@@ -29,15 +29,15 @@
 
     <div class="vertical-section-container centered">
       <h3>Create a native datetime-picker, if available</h3>
-      <demo-snippet>
+      <demo-snippet id="dombind">
         <template>
           <dom-bind>
-            <template is="dom-bind">
+            <template>
               <input type="checkbox" checked="{{native::change}}">native picker<br><br>
               <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
-              <datetime-picker native="[[native]]" year="1999" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br>
-              <date-picker native="[[native]]" auto-confirm="[[autoConfirm]]" date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="top" horizontal-align="left"></date-picker><br>
-              <time-picker native="[[native]]" auto-confirm="[[autoConfirm]]" confirmed-time="{{confirmedTime}}" time="{{time}}" vertical-align="top" horizontal-align="left"></time-picker><br>
+              <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br>
+              <date-picker native="[[native]]" auto-confirm="[[autoConfirm]]" date="{{date}}" confirmed-date="{{confirmedDate}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></date-picker><br>
+              <time-picker native="[[native]]" auto-confirm="[[autoConfirm]]" time="{{time}}" confirmed-time="{{confirmedTime}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></time-picker><br>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -47,7 +47,7 @@
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
                 <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
                 <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
-                <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
+                <div><code>timezoneOffset</code>: <b><input pattern="[+-]/d/d:/d/d" value="{{timezoneOffset::change}}"></b></div>
               </div>
             </template>
           </dom-bind>

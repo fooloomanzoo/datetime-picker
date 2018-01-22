@@ -299,8 +299,8 @@
       }
     }
 
-    _computeValue(date, time) {
-      super._computeValue(date, time);
+    _dateTimeChanged(date, time) {
+      super._dateTimeChanged(date, time);
       this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date);
     }
 

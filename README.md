@@ -31,7 +31,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
           <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
           <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
           <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
-          <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
+          <div><code>timezoneOffset</code>: <b><input pattern="[+-]/d/d:/d/d" value="{{timezoneOffset::change}}"></b></div>
         </div>
       </template>
     </dom-bind>

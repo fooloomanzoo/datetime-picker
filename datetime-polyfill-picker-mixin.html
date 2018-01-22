@@ -37,8 +37,8 @@
 
       static get observers() {
         return [
-          '_computeValue(confirmedDate, confirmedTime)',
-          '_computeValue(confirmedDatetime)',
+          '_dateTimeChanged(confirmedDate, confirmedTime)',
+          '_datetimeChanged(confirmedDatetime)',
           '_valueChanged(confirmedValue)'
         ];
       }
@@ -101,7 +101,7 @@
 
       static get replacementInputTemplate() {
         return `
-          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" min="[[min]]" max="[[max]]"></${this.nativeInputBinding}-input>
+          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" value="{{confirmedValue}}" timezone-offset="[[timezoneOffset]]" min="[[min]]" max="[[max]]"></${this.nativeInputBinding}-input>
         `;
       }
 
@@ -127,10 +127,17 @@
         }
       }
 
-      _computeValue(date, time) {
-        super._computeValue(date, time);
+      _setDate(d) {
+        super._setDate(d);
         if (this.autoConfirm || (!this._hasNative || this.native)) {
           this._setConfirmedValues();
+        }
+      }
+
+      _timezoneOffsetChanged(timezoneOffset, o) {
+        super._timezoneOffsetChanged(timezoneOffset, o);
+        if (timezoneOffset.match(this._regexpTimezone)) {
+          this.confirm();
         }
       }
 
