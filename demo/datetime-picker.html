@@ -49,7 +49,10 @@
             <template is="dom-bind">
               <input type="checkbox" checked="{{native::change}}">native picker<br><br>
               <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
-              <datetime-picker native="[[native]]" year="1999" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="bottom"></datetime-picker>
+              <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
+              <datetime-picker native="[[native]]" year="1999" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
+                value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="bottom"
+                confirmed-time="{{confirmedTime}}" confirmed-value="{{confirmedValue}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>

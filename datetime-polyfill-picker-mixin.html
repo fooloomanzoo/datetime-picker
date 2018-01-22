@@ -27,44 +27,18 @@
         `;
       }
 
+      static get replacementInputTemplate() {
+        return `
+          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" value="{{confirmedValue}}" with-timezone="{{withTimezone}}" timezone-offset="[[timezoneOffset]]" min="[[min]]" max="[[max]]"></${this.nativeInputBinding}-input>
+        `;
+      }
+
       static get nativeInputBinding() {
         return 'datetime';
       }
 
       static get customStyleToInclude() {
         return `input-shared-style dropdown-style`;
-      }
-
-      static get observers() {
-        return [
-          '_dateTimeChanged(confirmedDate, confirmedTime)',
-          '_datetimeChanged(confirmedDatetime)',
-          '_valueChanged(confirmedValue)'
-        ];
-      }
-
-      static get properties() {
-        return {
-          confirmedDate: {
-            type: String,
-            notify: true
-          },
-
-          confirmedTime: {
-            type: String,
-            notify: true
-          },
-
-          confirmedDatetime: {
-            type: String,
-            notify: true
-          },
-
-          confirmedValue: {
-            type: Number,
-            notify: true
-          }
-        };
       }
 
       /**
@@ -99,10 +73,36 @@
         `;
       }
 
-      static get replacementInputTemplate() {
-        return `
-          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" value="{{confirmedValue}}" timezone-offset="[[timezoneOffset]]" min="[[min]]" max="[[max]]"></${this.nativeInputBinding}-input>
-        `;
+      static get properties() {
+        return {
+          confirmedDate: {
+            type: String,
+            notify: true
+          },
+
+          confirmedTime: {
+            type: String,
+            notify: true
+          },
+
+          confirmedDatetime: {
+            type: String,
+            notify: true
+          },
+
+          confirmedValue: {
+            type: Number,
+            notify: true
+          }
+        };
+      }
+
+      static get observers() {
+        return [
+          '_dateTimeChanged(confirmedDate, confirmedTime)',
+          '_datetimeChanged(confirmedDatetime)',
+          '_valueChanged(confirmedValue)'
+        ];
       }
 
       connectedCallback() {

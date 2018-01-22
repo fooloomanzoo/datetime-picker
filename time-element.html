@@ -89,7 +89,7 @@
             <number-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
-          <div class="single-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm">
+          <div class="single-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm" style="margin-left:0.167em;">
             <span hidden$="[[!isAm]]">[[_am]]</span>
             <span hidden$="[[isAm]]">[[_pm]]</span>
           </div>
@@ -120,7 +120,8 @@
         },
 
         withTimezone: {
-          type: Boolean
+          type: Boolean,
+          value: false
         },
 
         _timeZoneHours: {

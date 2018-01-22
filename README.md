@@ -10,19 +10,19 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 <custom-element-demo height="370">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     </style>
     <dom-bind>
       <template is="dom-bind">
-        <datetime-picker native="[[native]]" width-timezone="{{widthTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
+        <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
         <input type="checkbox" checked="{{native::change}}">native picker<br>
         <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
-        <input type="checkbox" checked="{{widthTimezon::change}}">with timezone<br><br>
+        <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
         <div class="vertical-section-container result">
           <div><code>numeric value</code>: <b>[[value]]</b></div>
           <div><code>date</code>: <b>[[date]]</b></div>
@@ -95,11 +95,11 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 <custom-element-demo height="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     </style>
     <dom-bind>
@@ -125,11 +125,11 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 <custom-element-demo height="100">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     </style>
     <dom-bind>
@@ -155,11 +155,11 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 <custom-element-demo height="410">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
         line-height: 1.5;
       }
     </style>
@@ -192,11 +192,11 @@ Set cross data bindings to limit the values of the inputs. Use the ``confirmed``
 <custom-element-demo height="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     </style>
     <dom-bind>
@@ -231,11 +231,11 @@ Choose then the related elements:
 <custom-element-demo height="380">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     </style>
     <dom-bind>
@@ -261,11 +261,11 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 <custom-element-demo height="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
-        font-family: 'Fira Sans', sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     </style>
     <dom-bind>
