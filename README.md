@@ -19,9 +19,10 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
     </style>
     <dom-bind>
       <template is="dom-bind">
-        <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
+        <datetime-picker native="[[native]]" width-timezone="{{widthTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
         <input type="checkbox" checked="{{native::change}}">native picker<br>
         <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
+        <input type="checkbox" checked="{{widthTimezon::change}}">with timezone<br><br>
         <div class="vertical-section-container result">
           <div><code>numeric value</code>: <b>[[value]]</b></div>
           <div><code>date</code>: <b>[[date]]</b></div>
@@ -65,7 +66,7 @@ The **picker**-elements can use the **auto-confirm**-attribute, so that all valu
 
 ### Motivation
 
-Internally it tests the browser, if **native** input-types `datetime-local`, `date` or `time` are supported. If it is not, a `<calendar-element>` or a `<time-element>` will be displayed instead, according to the kind of picker you choose. You can decide to use the native or the replacements during runtime. calendar-element and time-element can also be used separately. **Internationalization** of the view in the pickers is inplemented and the attributes remain in **iso8061**-format. You can set the timezone of your datetime-values. 
+Internally it tests the browser, if **native** input-types `datetime-local`, `date` or `time` are supported. If it is not, a `<calendar-element>` or a `<time-element>` will be displayed instead, according to the kind of picker you choose. You can decide to use the native or the replacements during runtime. calendar-element and time-element can also be used separately. **Internationalization** of the view in the pickers is inplemented and the attributes remain in **iso8061**-format. You can set the timezone of your datetime-values.
 
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, you like to have a different look or you would like to have a guaranteed working **datetime-picker**.
 

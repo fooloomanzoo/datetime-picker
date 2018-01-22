@@ -35,9 +35,10 @@
             <template>
               <input type="checkbox" checked="{{native::change}}">native picker<br><br>
               <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
-              <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br>
-              <date-picker native="[[native]]" auto-confirm="[[autoConfirm]]" date="{{date}}" confirmed-date="{{confirmedDate}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></date-picker><br>
-              <time-picker native="[[native]]" auto-confirm="[[autoConfirm]]" time="{{time}}" confirmed-time="{{confirmedTime}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></time-picker><br>
+              <input type="checkbox" checked="{{widthTimezone::change}}">width timezon<br><br>
+              <datetime-picker native="[[native]]" width-timezone="{{widthTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br>
+              <date-picker native="[[native]]" width-timezone="{{widthTimezone}}" auto-confirm="[[autoConfirm]]" date="{{date}}" confirmed-date="{{confirmedDate}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></date-picker><br>
+              <time-picker native="[[native]]" width-timezone="{{widthTimezone}}" auto-confirm="[[autoConfirm]]" time="{{time}}" confirmed-time="{{confirmedTime}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></time-picker><br>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
