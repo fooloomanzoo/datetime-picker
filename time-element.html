@@ -89,6 +89,17 @@
             <number-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="Milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
+          <div class="field" hidden$="[[withTimezone]]" style="margin-left:0.167em;">
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <number-input index="13" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00"></number-input>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+          </div>
+          <span hidden$="[[withTimezone]]">[[_localTimeSeparator]]</span>
+          <div class="field" hidden$="[[withTimezone]]">
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="15"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <number-input index="15" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></number-input>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="-15"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+          </div>
           <div class="single-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm">
             <span hidden$="[[!isAm]]">[[_am]]</span>
             <span hidden$="[[isAm]]">[[_pm]]</span>
@@ -106,6 +117,18 @@
         clamp: {
           type: String,
           value: 'milliseconds'
+        },
+
+        withTimezone: {
+          type: Boolean
+        },
+
+        _timeZoneHours: {
+          type: Number
+        },
+
+        _timeZoneMinutes: {
+          type: Number
         },
 
         _hideHours: {
@@ -130,6 +153,13 @@
       }
     }
 
+    static get observers() {
+      return [
+        '_offsetMinutesChanged(_offsetMinutes)',
+        '_timeZoneHoursMinutesChanged(_timeZoneHours, _timeZoneMinutes) '
+      ]
+    }
+
     _addSwitchListener() {
       super._addSwitchListener();
       const switchs = this.root.querySelectorAll('#timer .icon.switch');
@@ -149,6 +179,26 @@
           s.addEventListener('mousedown', this._increm.bind(this, s), false);
           s.addEventListener('touchstart', this._increm.bind(this, s), false);
         })
+      }
+    }
+
+    _offsetMinutesChanged(offsetMinutes) {
+      if (offsetMinutes === undefined) {
+        return;
+      }
+      this.setProperties({
+        _timeZoneHours: -Math.floor(offsetMinutes) / 60,
+        _timeZoneMinutes: Math.abs(offsetMinutes) % 60
+      });
+    }
+
+    _timeZoneHoursMinutesChanged(_timeZoneHours, _timeZoneMinutes) {
+      if (_timeZoneHours === undefined || _timeZoneMinutes === undefined) {
+        return;
+      }
+      const timezoneOffset = this._computeTimezoneOffset(-(_timeZoneHours*60 + _timeZoneMinutes));
+      if (timezoneOffset) {
+        this.timezoneOffset = timezoneOffset;
       }
     }
 
