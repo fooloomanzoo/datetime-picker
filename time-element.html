@@ -198,6 +198,7 @@
         return;
       }
       const timezoneOffset = this._computeTimezoneOffset(-(_timeZoneHours*60 + _timeZoneMinutes));
+      console.log(timezoneOffset, _timeZoneHours, _timeZoneMinutes);
       if (timezoneOffset) {
         this.timezoneOffset = timezoneOffset;
       }

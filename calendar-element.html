@@ -108,19 +108,19 @@
           will-change: background-color;
           transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
-        #calendar #dates .day.selected {
-          background-color: var(--input-focus-background);
-          color: var(--input-focus-color);
-          border-color: rgba(255, 255, 255, 0.33);
-        }
         #calendar #dates .day:hover {
-          border-color: rgba(255, 255, 255, 0.4);
+          border-color: rgba(255, 255, 255, 0.334);
         }
         #calendar #dates .day.current {
-          border-color: rgba(255, 255, 255, 0.5);
+          border-color: rgba(255, 255, 255, 0.667);
         }
         #calendar #dates .day.recent {
           border-color: var(--input-focus-background);
+        }
+        #calendar #dates .day.selected {
+          background-color: var(--input-focus-background);
+          color: var(--input-focus-color);
+          border-color: rgba(255, 255, 255, 0.5);
         }
         #calendar #dates .day.notinmonth {
           opacity: 0.5;
@@ -266,7 +266,16 @@
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode) {
         this.currentSelectedDayNode = this.currentHoveredDayNode;
-        this.date = this.currentSelectedDayNode.dataset.date;
+        let d = new Date(this.currentSelectedDayNode.dataset.date);
+        const match = this._regexpDatetime.exec(this.currentSelectedDayNode.dataset.date);
+        setTimeout(() => {
+          this.setProperties({
+            year: +match[1],
+            month: +match[2],
+            day: +match[3],
+            date: this.currentSelectedDayNode.dataset.date
+          })
+        }, 0);
       }
       if (this._dayClicked === true) {
         this._onDblClickDay();
@@ -349,6 +358,7 @@
       if (date === undefined) {
         date = this.confirmedDate || this.date;
       }
+      // console.log(year, month, day, date);
       if (isNaN(+d)) {
         return;
       }

@@ -99,17 +99,14 @@
 
       static get observers() {
         return [
-          '_dateTimeChanged(confirmedDate, confirmedTime)',
-          '_datetimeChanged(confirmedDatetime)',
-          '_valueChanged(confirmedValue)'
+          '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
+          '_confirmedDatetimeChanged(confirmedDatetime)',
+          '_confirmedValueChanged(confirmedValue)'
         ];
       }
 
       connectedCallback() {
         super.connectedCallback();
-        setTimeout(() => {
-          this.confirm();
-        })
       }
 
       /**
@@ -151,20 +148,70 @@
         super.cancel();
       }
 
+      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
+        if (!(confirmedDate && confirmedTime)) {
+          return;
+        }
+        this._datetimeChanged(confirmedDate + 'T' + confirmedTime);
+        setTimeout(() => {
+          this._setConfirmedValues();
+        }, 0);
+      }
+
+      _confirmedDatetimeChanged(confirmedDatetime) {
+        if (!confirmedDatetime) {
+          return;
+        }
+        this._datetimeChanged(confirmedDatetime);
+        setTimeout(() => {
+          this._setConfirmedValues();
+        }, 0);
+      }
+
+      _confirmedValueChanged(confirmedValue) {
+        if (isNaN(confirmedValue)) {
+          return;
+        }
+        this._valueChanged(confirmedValue);
+        setTimeout(() => {
+          this._setConfirmedValues();
+        }, 0);
+      }
+
       _setConfirmedValues() {
+        if (isNaN(this.value)) {
+          return;
+        }
+        
+        let d = this._clamp(new Date(this.value), this.clamp);
+        if (this.min && this._checkMin(d) === false) {
+          d = this._fromDatetime(this.min);
+        } else if (this.max && this._checkMax(d) === false) {
+          d = this._fromDatetime(this.max);
+        }
         let toSet = {};
-        if (this.time !== undefined && this.confirmedTime !== this.time) {
-          toSet.confirmedTime = this.time;
+        const value = +d;
+        // transform the date
+        d.setMinutes(d.getMinutes() - this._offsetMinutes + d.getTimezoneOffset());
+        const date = this._toDate(d),
+          time = this._toTime(d),
+          datetime = date + 'T' + time;
+
+        if (time !== undefined && this.confirmedTime !== time) {
+          toSet.confirmedTime = time;
         }
-        if (this.date !== undefined && this.confirmedDate !== this.date) {
-          toSet.confirmedDate = this.date;
+        if (date !== undefined && this.confirmedDate !== date) {
+          toSet.confirmedDate = date;
         }
-        if (this.datetime !== undefined && this.confirmedDatetime !== this.datetime) {
-          toSet.confirmedDatetime = this.datetime;
+        if (datetime !== undefined && this.confirmedDatetime !== datetime) {
+          toSet.confirmedDatetime = datetime;
         }
-        if (this.value !== undefined && this.confirmedValue !== this.value) {
-          toSet.confirmedValue = this.value;
+        if (value !== undefined && this.confirmedValue !== value) {
+          toSet.confirmedValue = value;
         }
+
+
+        console.log(toSet);
         this.setProperties(toSet)
       }
 
