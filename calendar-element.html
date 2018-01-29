@@ -138,12 +138,12 @@
         ${super.contentTemplate || ''}
         <div id="calendar">
           <div id="top">
-            <svg class="icon switch" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
+            <svg class="icon switch" prop="month" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
               <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" index="1" value="{{month::change}}"></select>
               <number-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" value="{{year}}"></number-input>
             </div>
-            <svg class="icon switch" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
+            <svg class="icon switch" prop="month" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
           </div>
 
           <div id="content" hidden$="[[_hideDay]]">
@@ -216,49 +216,6 @@
           type: Boolean,
           computed: '_ifClamped(clamp, "day")'
         }
-      }
-    }
-
-    _addSwitchListener() {
-      super._addSwitchListener();
-      const switchs = this.root.querySelectorAll('#calendar .icon.switch');
-
-      if (switchs) {
-        Array.prototype.forEach.call(switchs, s => {
-          s.addEventListener('mousedown', this._incremMonth.bind(this, s), false);
-          s.addEventListener('touchstart', this._incremMonth.bind(this, s), false);
-        })
-      }
-    }
-
-    _removeSwitchListener() {
-      super._removeSwitchListener();
-      const switchs = this.root.querySelectorAll('#calendar .icon.switch');
-
-      if (switchs) {
-        Array.prototype.forEach.call(switchs, s => {
-          s.removeEventListener('mousedown', this._incremMonth.bind(this, s), false);
-          s.removeEventListener('touchstart', this._incremMonth.bind(this, s), false);
-        })
-      }
-    }
-
-    _incremMonth(s) {
-      const step = (s && s.getAttribute) ? s.getAttribute('step') : s;
-      if (this._ifClamped(this.clamp, 'month')) {
-        this._incremProp('Year', step);
-      } else {
-        this._incremProp('Month', step);
-      }
-    }
-
-    _incremView(clamp, step) {
-      if (this._ifClamped(clamp, 'month')) {
-        this._incremProp('Year', step);
-      } else if (this._ifClamped(clamp, 'day')) {
-        this._incremProp('Month', step);
-      } else {
-        this._incremProp('Date', step);
       }
     }
 
@@ -468,17 +425,17 @@
       if (e && e.keyCode) {
         switch (e.keyCode) {
           case 37: // left
-            this._incremView(this.clamp, -1);
+            this._increm(-1);
             return;
           case 39: // right
-            this._incremView(this.clamp, 1);
+            this._increm(1);
             return;
           case 38: // up
-            this._incremMonth(1);
+            this._incremProp('month', 1);
             e.preventDefault();
             return;
           case 40: // down
-            this._incremMonth(-1);
+            this._incremProp('month', -1);
             e.preventDefault();
             return;
         }

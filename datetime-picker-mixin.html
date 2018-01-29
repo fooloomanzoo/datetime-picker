@@ -76,9 +76,13 @@
       }
 
       _addSwitchListener() {
-        const switchs = this.root.querySelectorAll('.icon.switch');
+        const switchs = this.root.querySelectorAll('.switch');
+        console.log(switchs);
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
+            console.log(s);
+            s.addEventListener('mousedown', this._increm.bind(this, s), false);
+            s.addEventListener('touchstart', this._increm.bind(this, s), false);
             s.addEventListener('mouseup', this._stopActiveJob.bind(this), false);
             s.addEventListener('mouseleave', this._stopActiveJob.bind(this), false);
             s.addEventListener('touchend', this._stopActiveJob.bind(this), false);
@@ -87,12 +91,14 @@
       }
 
       _removeSwitchListener() {
-        const switchs = this.root.querySelectorAll('.icon.switch');
+        const switchs = this.root.querySelectorAll('.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mouseup', this._stopActiveJob.bind(this), false);
-            s.addEventListener('mouseleave', this._stopActiveJob.bind(this), false);
-            s.addEventListener('touchend', this._stopActiveJob.bind(this), false);
+            s.removeEventListener('mousedown', this._increm.bind(this, s), false);
+            s.removeEventListener('touchstart', this._increm.bind(this, s), false);
+            s.removeEventListener('mouseup', this._stopActiveJob.bind(this), false);
+            s.removeEventListener('mouseleave', this._stopActiveJob.bind(this), false);
+            s.removeEventListener('touchend', this._stopActiveJob.bind(this), false);
           })
         }
       }
@@ -112,31 +118,40 @@
       }
 
       _increm(s) {
-        const prop = s.getAttribute('prop');
-        const step = s.getAttribute('step');
-        this._incremProp(prop, step);
+        const prop = s.getAttribute && s.getAttribute('prop');
+        const step = (s.getAttribute && s.getAttribute('step')) || s;
+        
+        if (step) {
+          if (prop) {
+            this._incremProp(prop, +step);
+          } else {
+            switch (this.clamp) {
+              case 'year':
+              case 'month':
+                this._incremProp('year', +step); break;
+              case 'day':
+                this._incremProp('month', +step); break;
+              case 'hours':
+                this._incremProp('day', +step); break;
+              case 'minutes':
+                this._incremProp('hours', +step); break;
+              case 'seconds':
+                this._incremProp('minutes', +step); break;
+              case 'milliseconds':
+                this._incremProp('seconds', +step); break;
+              default:
+                this._incremProp('milliseconds', +step); break;
+            }
+          }
+        }
       }
 
       _incremProp(prop, step) {
+        console.log(prop, );
         this._stopActiveJob();
-        step = +step;
-        const getter = Date.prototype['get' + prop],
-          setter = Date.prototype['set' + prop];
-        if (!getter || !setter) {
-          this[prop] += step;
-          this._activeJob = setInterval(() => {
-            this[prop] += step;
-          }, this._dwellTime || 150);
-          return;
-        }
-        const d = new Date(this.value);
-        setter.call(d, +(getter.call(d)) + step);
-        d.setMinutes(d.getMinutes() + this._offsetMinutes - d.getTimezoneOffset());
-        this._setDate(d);
+        this[prop] += step;
         this._activeJob = setInterval(() => {
-          setter.call(d, +(getter.call(new Date(this.value))) + step);
-          d.setMinutes(d.getMinutes() + this._offsetMinutes - d.getTimezoneOffset());
-          this._setDate(d);
+          this[prop] += step;
         }, this._dwellTime || 150);
       }
 

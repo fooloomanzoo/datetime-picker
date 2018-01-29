@@ -134,7 +134,7 @@
       _timezoneOffsetChanged(timezoneOffset, o) {
         super._timezoneOffsetChanged(timezoneOffset, o);
         if (timezoneOffset.match(this._regexpTimezone)) {
-          this.confirm();
+          this._setConfirmedValues();
         }
       }
 
@@ -182,7 +182,7 @@
         if (isNaN(this.value)) {
           return;
         }
-        
+
         let d = this._clamp(new Date(this.value), this.clamp);
         if (this.min && this._checkMin(d) === false) {
           d = this._fromDatetime(this.min);
@@ -191,8 +191,6 @@
         }
         let toSet = {};
         const value = +d;
-        // transform the date
-        d.setMinutes(d.getMinutes() - this._offsetMinutes + d.getTimezoneOffset());
         const date = this._toDate(d),
           time = this._toTime(d),
           datetime = date + 'T' + time;
@@ -209,9 +207,6 @@
         if (value !== undefined && this.confirmedValue !== value) {
           toSet.confirmedValue = value;
         }
-
-
-        console.log(toSet);
         this.setProperties(toSet)
       }
 
