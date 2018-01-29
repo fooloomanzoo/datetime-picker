@@ -20,7 +20,7 @@
       static get properties() {
         return {
           /**
-           * dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 25 milliseceonds.
+           * dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseceonds.
            *
            * @type {number}
            */
@@ -65,27 +65,26 @@
         if (super._addKeyListener) {
           super._addKeyListener();
         }
-        this.addEventListener('keyup', this._stopActiveJob.bind(this), false);
+        this.addEventListener('keyup', this._stopActiveIncremJob.bind(this), false);
       }
 
       _removeKeyListener() {
         if (super._removeKeyListener) {
           super._removeKeyListener();
         }
-        this.removeEventListener('keyup', this._stopActiveJob.bind(this), false);
+        this.removeEventListener('keyup', this._stopActiveIncremJob.bind(this), false);
       }
 
       _addSwitchListener() {
         const switchs = this.root.querySelectorAll('.switch');
-        console.log(switchs);
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            console.log(s);
-            s.addEventListener('mousedown', this._increm.bind(this, s), false);
-            s.addEventListener('touchstart', this._increm.bind(this, s), false);
-            s.addEventListener('mouseup', this._stopActiveJob.bind(this), false);
-            s.addEventListener('mouseleave', this._stopActiveJob.bind(this), false);
-            s.addEventListener('touchend', this._stopActiveJob.bind(this), false);
+            s.addEventListener('mousedown', this._onPushed.bind(this, s), {passive: true});
+            s.addEventListener('touchstart', this._onPushed.bind(this, s), {passive: true});
+            s.addEventListener('mouseup', this._onReleased.bind(this), {passive: true});
+            s.addEventListener('mouseout', this._onReleased.bind(this), {passive: true});
+            s.addEventListener('touchend', this._onReleased.bind(this), {passive: true});
+            s.addEventListener('touchcancel', this._onReleased.bind(this), {passive: true});
           })
         }
       }
@@ -94,11 +93,12 @@
         const switchs = this.root.querySelectorAll('.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.removeEventListener('mousedown', this._increm.bind(this, s), false);
-            s.removeEventListener('touchstart', this._increm.bind(this, s), false);
-            s.removeEventListener('mouseup', this._stopActiveJob.bind(this), false);
-            s.removeEventListener('mouseleave', this._stopActiveJob.bind(this), false);
-            s.removeEventListener('touchend', this._stopActiveJob.bind(this), false);
+            s.removeEventListener('mousedown', this._onPushed.bind(this, s), {passive: true});
+            s.removeEventListener('touchstart', this._onPushed.bind(this, s), {passive: true});
+            s.removeEventListener('mouseup', this._onReleased.bind(this), {passive: true});
+            s.removeEventListener('mouseout', this._onReleased.bind(this), {passive: true});
+            s.removeEventListener('touchend', this._onReleased.bind(this), {passive: true});
+            s.removeEventListener('touchcancel', this._onReleased.bind(this), {passive: true});
           })
         }
       }
@@ -107,7 +107,7 @@
         if (!e) {
           return;
         }
-        this._stopActiveJob();
+        this._stopActiveIncremJob();
         if (e.keyCode === 13 || e.keyCode === 32) { // space || enter
           this.confirm && this.confirm();
           return;
@@ -117,10 +117,21 @@
         }
       }
 
+      _onPushed(s, e) {
+        console.log(e);
+        if (!this._activeIncremJob) {
+          this._increm(s);
+        }
+      }
+
+      _onReleased(s, e) {
+        this._stopActiveIncremJob();
+      }
+
       _increm(s) {
         const prop = s.getAttribute && s.getAttribute('prop');
         const step = (s.getAttribute && s.getAttribute('step')) || s;
-        
+
         if (step) {
           if (prop) {
             this._incremProp(prop, +step);
@@ -146,26 +157,27 @@
         }
       }
 
-      _incremProp(prop, step) {
-        console.log(prop, );
-        this._stopActiveJob();
+      _incremProp(prop, step, quantifier) {
+        quantifier = quantifier || 1;
+        this._stopActiveIncremJob();
         this[prop] += step;
-        this._activeJob = setInterval(() => {
-          this[prop] += step;
-        }, this._dwellTime || 150);
+        this._activeIncremJob = setTimeout(() => {
+          this._incremProp(prop, step, quantifier + 1);
+        }, (1 + 1/(quantifier*quantifier)) * this.dwellTime);
       }
 
-      _stopActiveJob() {
-        if (this._activeJob) {
-          clearInterval(this._activeJob);
+      _stopActiveIncremJob() {
+        if (this._activeIncremJob) {
+          clearTimeout(this._activeIncremJob);
+          this._activeIncremJob = null;
         }
       }
 
       _dwellTimeChanged(dwellTime) {
         if (typeof dwellTime !== 'number') {
-          this._dwellTime = 150;
-        } else if (dwellTime < 25) {
-          this._dwellTime = 25;
+          this.dwellTime = 150;
+        } else if (dwellTime < 75) {
+          this.dwellTime = 75;
         }
       }
     }
