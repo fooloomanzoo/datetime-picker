@@ -133,51 +133,45 @@
       }
 
       _increm(s) {
+        this._stopActiveIncremJob();
         const prop = s.getAttribute && s.getAttribute('prop');
         const step = (s.getAttribute && s.getAttribute('step')) || 1;
         const immediate = (s.getAttribute && s.hasAttribute('once'));
 
         if (step) {
-          if (prop) {
-            this._incremProp(prop, +step, 1, immediate);
-          } else {
+          if (!prop) {
             switch (this.clamp) {
               case 'year':
               case 'month':
-                this._incremProp('year', +step); break;
+                prop = 'year'; break;
               case 'day':
-                this._incremProp('month', +step); break;
+                prop = 'month'; break;
               case 'hours':
-                this._incremProp('day', +step); break;
+                prop = 'day'; break;
               case 'minutes':
-                this._incremProp('hours', +step); break;
+                prop = 'hours'; break;
               case 'seconds':
-                this._incremProp('minutes', +step); break;
+                prop = 'minutes'; break;
               case 'milliseconds':
-                this._incremProp('seconds', +step); break;
+                prop = 'seconds'; break;
               default:
-                this._incremProp('milliseconds', +step); break;
+                prop = 'milliseconds'; break;
             }
+          }
+          this._incremProp(prop, +step);
+          if (!immediate) {
+            this._activeIncremJob = setInterval(this._incremProp.bind(this, prop, +step), this.dwellTime);
           }
         }
       }
 
-      _incremProp(prop, step, quantifier, once) {
-        quantifier = quantifier || 1;
-        this._stopActiveIncremJob();
+      _incremProp(prop, step) {
         this[prop] += step;
-        if (!once) {
-          this._activeIncremJob = setTimeout(() => {
-            this._incremProp(prop, step, quantifier + 1, once);
-          }, (1 + 1/(quantifier*quantifier)) * this.dwellTime);
-        } else {
-          this._stopActiveIncremJob();
-        }
       }
 
       _stopActiveIncremJob() {
         if (this._activeIncremJob) {
-          clearTimeout(this._activeIncremJob);
+          clearInterval(this._activeIncremJob);
           this._activeIncremJob = null;
         }
       }

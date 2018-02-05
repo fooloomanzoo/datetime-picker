@@ -23,7 +23,7 @@
        */
       static get _nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.expectedNativeInputType}::input}}" step="1">
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{value::input}}" step="1">
         `;
       }
 

@@ -60,16 +60,6 @@
         return 'datetime-picker';
       }
 
-      /**
-       * template for native input element
-       * @type {string}
-       */
-      static get _nativeInputTemplate() {
-        return `
-          <input class="native" type="datetime-local" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{_localDatetime::input}}" step="1">
-        `;
-      }
-
       get _hasNative() {
         return DatetimePicker._hasNative;
       }
@@ -133,27 +123,6 @@
             notify: true
           }
         }
-      }
-
-      static get observers() {
-        return [
-          '_computeLocalDateTime(date, time)',
-          '_localDateTimeChanged(_localDatetime)'
-        ]
-      }
-
-      _computeLocalDateTime(date, time) {
-        if (date === undefined || time === undefined) {
-          return;
-        }
-        this._localDatetime = date + 'T' + time;
-      }
-
-      _localDateTimeChanged(_localDatetime) {
-        if (_localDatetime === undefined) {
-          return;
-        }
-        this.datetime = _localDatetime + this.timezoneOffset;
       }
 
       _onDblClickDay(e) {
