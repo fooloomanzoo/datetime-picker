@@ -50,8 +50,9 @@
      *  @appliesMixin DatetimePickerMixin
      *  @appliesMixin DatetimePolyfillPickerMixin
      *
-     *  @demo demo/datetime-picker.html
      *  @demo demo/index.html
+     *  @demo demo/datetime-picker.html datetime elements
+     *  @demo demo/form.html in a form
      **/
     class DatetimePicker extends DatetimePolyfillPickerMixin(TimeElementPattern(CalendarElementPattern(DatetimePickerMixin(Polymer.Element)))) { // eslint-disable-line no-undef
 
@@ -59,12 +60,14 @@
         return 'datetime-picker';
       }
 
-      static get expectedNativeInputType() {
-        return 'datetime-local';
-      }
-
-      static get nativeInputBinding() {
-        return 'datetime';
+      /**
+       * template for native input element
+       * @type {string}
+       */
+      static get _nativeInputTemplate() {
+        return `
+          <input class="native" type="datetime-local" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{_localDatetime::input}}" step="1">
+        `;
       }
 
       get _hasNative() {
@@ -121,6 +124,36 @@
             <div>
           </div>
         `;
+      }
+
+      static get properties() {
+        return {
+          _localDatetime: {
+            type: String,
+            notify: true
+          }
+        }
+      }
+
+      static get observers() {
+        return [
+          '_computeLocalDateTime(date, time)',
+          '_localDateTimeChanged(_localDatetime)'
+        ]
+      }
+
+      _computeLocalDateTime(date, time) {
+        if (date === undefined || time === undefined) {
+          return;
+        }
+        this._localDatetime = date + 'T' + time;
+      }
+
+      _localDateTimeChanged(_localDatetime) {
+        if (_localDatetime === undefined) {
+          return;
+        }
+        this.datetime = _localDatetime + this.timezoneOffset;
       }
 
       _onDblClickDay(e) {

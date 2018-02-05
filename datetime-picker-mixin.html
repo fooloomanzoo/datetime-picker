@@ -54,6 +54,9 @@
       connectedCallback() {
         super.connectedCallback();
         this._addSwitchListener();
+        if (this.value === undefined) {
+          this._setDate(new Date());
+        }
       }
 
       disconnectedCallback() {
@@ -85,6 +88,7 @@
             s.addEventListener('mouseout', this._onReleased.bind(this), {passive: true});
             s.addEventListener('touchend', this._onReleased.bind(this), {passive: true});
             s.addEventListener('touchcancel', this._onReleased.bind(this), {passive: true});
+            s.addEventListener('keyup', this._onReleased.bind(this), {passive: true});
           })
         }
       }
@@ -99,6 +103,7 @@
             s.removeEventListener('mouseout', this._onReleased.bind(this), {passive: true});
             s.removeEventListener('touchend', this._onReleased.bind(this), {passive: true});
             s.removeEventListener('touchcancel', this._onReleased.bind(this), {passive: true});
+            s.removeEventListener('keyup', this._onReleased.bind(this), {passive: true});
           })
         }
       }
@@ -118,7 +123,6 @@
       }
 
       _onPushed(s, e) {
-        console.log(e);
         if (!this._activeIncremJob) {
           this._increm(s);
         }
@@ -130,11 +134,12 @@
 
       _increm(s) {
         const prop = s.getAttribute && s.getAttribute('prop');
-        const step = (s.getAttribute && s.getAttribute('step')) || s;
+        const step = (s.getAttribute && s.getAttribute('step')) || 1;
+        const immediate = (s.getAttribute && s.hasAttribute('once'));
 
         if (step) {
           if (prop) {
-            this._incremProp(prop, +step);
+            this._incremProp(prop, +step, 1, immediate);
           } else {
             switch (this.clamp) {
               case 'year':
@@ -157,13 +162,17 @@
         }
       }
 
-      _incremProp(prop, step, quantifier) {
+      _incremProp(prop, step, quantifier, once) {
         quantifier = quantifier || 1;
         this._stopActiveIncremJob();
         this[prop] += step;
-        this._activeIncremJob = setTimeout(() => {
-          this._incremProp(prop, step, quantifier + 1);
-        }, (1 + 1/(quantifier*quantifier)) * this.dwellTime);
+        if (!once) {
+          this._activeIncremJob = setTimeout(() => {
+            this._incremProp(prop, step, quantifier + 1, once);
+          }, (1 + 1/(quantifier*quantifier)) * this.dwellTime);
+        } else {
+          this._stopActiveIncremJob();
+        }
       }
 
       _stopActiveIncremJob() {

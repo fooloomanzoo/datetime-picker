@@ -35,8 +35,9 @@
    *  @appliesMixin DatetimePickerMixin
    *  @appliesMixin DatetimePolyfillPickerMixin
    *
-   *  @demo demo/time-picker.html
    *  @demo demo/index.html
+   *  @demo demo/time-picker.html time elements
+   *  @demo demo/form.html in a form
    **/
     class TimePicker extends DatetimePolyfillPickerMixin(TimeElementPattern(DatetimePickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
@@ -48,8 +49,8 @@
         return 'time';
       }
 
-      static get nativeInputBinding() {
-        return 'time';
+      static get replacementInputType() {
+        return 'time-input';
       }
 
       static get pickerTemplate() {

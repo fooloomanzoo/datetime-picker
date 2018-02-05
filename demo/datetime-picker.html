@@ -26,12 +26,12 @@
   <body>
 
   <div class="vertical-section-container centered">
-      <h3>Create a standalone datetime-input and preset date and hours</h3>
+      <h3>Create a standalone datetime-input and preset date</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input datetime="{{datetime}}" date="2001-01-02" hours="13"></datetime-input>
+              <datetime-input datetime="{{datetime}}" date="2001-01-02"></datetime-input>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
               </div>
@@ -50,7 +50,7 @@
               <input type="checkbox" checked="{{native::change}}">native picker<br><br>
               <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
               <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
-              <datetime-picker native="[[native]]" year="1999" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
+              <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
                 value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="bottom"
                 confirmed-time="{{confirmedTime}}" confirmed-value="{{confirmedValue}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}"></datetime-picker>
               <div class="vertical-section-container result">
@@ -76,7 +76,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker datetime="{{datetime}}" date="2005-02-01" time="{{time}}" timezone-offset="{{timezoneOffset}}"></datetime-picker>
+              <datetime-picker datetime="{{datetime}}" default="2005-02-01" time="{{time}}" timezone-offset="{{timezoneOffset}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>

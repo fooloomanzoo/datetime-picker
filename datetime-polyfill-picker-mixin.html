@@ -23,18 +23,22 @@
        */
       static get _nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.nativeInputBinding || this.expectedNativeInputType}::input}}" step="1">
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value="{{${this.expectedNativeInputType}::input}}" step="1">
         `;
       }
 
       static get replacementInputTemplate() {
         return `
-          <${this.nativeInputBinding}-input class="replacement" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" value="{{confirmedValue}}" with-timezone="{{withTimezone}}" timezone-offset="[[timezoneOffset]]" min="[[min]]" max="[[max]]"></${this.nativeInputBinding}-input>
+          <${this.replacementInputType} class="replacement" required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
       }
 
-      static get nativeInputBinding() {
-        return 'datetime';
+      static get expectedNativeInputType() {
+        return 'datetime-local';
+      }
+
+      static get replacementInputType() {
+        return 'datetime-input';
       }
 
       static get customStyleToInclude() {
@@ -70,6 +74,13 @@
             background-color: var(--input-background);
             color: var(--input-color);
           }
+          .replacement {
+            border: thin solid transparent;
+          }
+          .replacement[invalid] {
+            border-color: var(--invalid-color);
+            @apply --input-invalid;
+          }
         `;
       }
 
@@ -99,14 +110,19 @@
 
       static get observers() {
         return [
-          '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
           '_confirmedDatetimeChanged(confirmedDatetime)',
+          '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
           '_confirmedValueChanged(confirmedValue)'
         ];
       }
 
-      connectedCallback() {
-        super.connectedCallback();
+      _computeInvalid(required, value) {
+        return Boolean(this.required && isNaN(this.confirmedValue));
+      }
+
+      validate() {
+        this.value = this.confirmedValue;
+        return !Boolean(this.required && isNaN(this.confirmedValue));
       }
 
       /**
@@ -131,13 +147,6 @@
         }
       }
 
-      _timezoneOffsetChanged(timezoneOffset, o) {
-        super._timezoneOffsetChanged(timezoneOffset, o);
-        if (timezoneOffset.match(this._regexpTimezone)) {
-          this._setConfirmedValues();
-        }
-      }
-
       confirm() {
         super.confirm();
         this._setConfirmedValues();
@@ -148,24 +157,17 @@
         super.cancel();
       }
 
-      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-        if (!(confirmedDate && confirmedTime)) {
-          return;
-        }
-        this._datetimeChanged(confirmedDate + 'T' + confirmedTime);
-        setTimeout(() => {
-          this._setConfirmedValues();
-        }, 0);
-      }
-
       _confirmedDatetimeChanged(confirmedDatetime) {
-        if (!confirmedDatetime) {
+        if (confirmedDatetime === undefined) {
           return;
         }
         this._datetimeChanged(confirmedDatetime);
-        setTimeout(() => {
-          this._setConfirmedValues();
-        }, 0);
+        this._setConfirmedValues();
+      }
+
+      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
+        this._dateTimeChanged(confirmedDate || this.date, confirmedTime || this.time);
+        this._setConfirmedValues();
       }
 
       _confirmedValueChanged(confirmedValue) {
@@ -173,58 +175,31 @@
           return;
         }
         this._valueChanged(confirmedValue);
-        setTimeout(() => {
-          this._setConfirmedValues();
-        }, 0);
+        this._setConfirmedValues();
       }
 
       _setConfirmedValues() {
         if (isNaN(this.value)) {
           return;
         }
-
-        let d = this._clamp(new Date(this.value), this.clamp);
-        if (this.min && this._checkMin(d) === false) {
-          d = this._fromDatetime(this.min);
-        } else if (this.max && this._checkMax(d) === false) {
-          d = this._fromDatetime(this.max);
-        }
-        let toSet = {};
-        const value = +d;
-        const date = this._toDate(d),
-          time = this._toTime(d),
-          datetime = date + 'T' + time;
-
-        if (time !== undefined && this.confirmedTime !== time) {
-          toSet.confirmedTime = time;
-        }
-        if (date !== undefined && this.confirmedDate !== date) {
-          toSet.confirmedDate = date;
-        }
-        if (datetime !== undefined && this.confirmedDatetime !== datetime) {
-          toSet.confirmedDatetime = datetime;
-        }
-        if (value !== undefined && this.confirmedValue !== value) {
-          toSet.confirmedValue = value;
-        }
-        this.setProperties(toSet)
+        this.setProperties({
+          confirmedDatetime: this.datetime,
+          confirmedDate: this.date,
+          confirmedTime: this.time,
+          confirmedValue: this.value
+        })
       }
 
       _resetValues() {
-        let toSet = {};
-        if (this.confirmedTime !== undefined && this.confirmedTime !== this.time) {
-          toSet.time = this.confirmedTime;
+        if (isNaN(this.confirmedValue)) {
+          return;
         }
-        if (this.confirmedDate !== undefined && this.confirmedDate !== this.date) {
-          toSet.date = this.confirmedDate;
-        }
-        if (this.confirmedDatetime !== undefined && this.confirmedDatetime !== this.datetime) {
-          toSet.datetime = this.confirmedDatetime;
-        }
-        if (this.confirmedValue !== undefined && this.confirmedValue !== this.value) {
-          toSet.value = this.confirmedValue;
-        }
-        this.setProperties(toSet)
+        this.setProperties({
+          datetime: this.confirmedDatetime || this.datetime,
+          date: this.confirmedDate ||  this.date,
+          time: this.confirmedTime || this.time,
+          value: this.confirmedValue
+        })
       }
     }
   }

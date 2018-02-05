@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="../number-input/integer-input.html">
 
 <link rel="import" href="datetime-picker-mixin.html">
 
@@ -41,10 +41,10 @@
           align-self: stretch;
           justify-content: space-between;
         }
-        #timer > .field > number-input {
+        #timer > .field > integer-input {
           background-color: var(--input-background);
         }
-        #timer > .field > number-input:focus {
+        #timer > .field > integer-input:focus {
           outline: currentColor auto thin;
         }
         #timer > .field > .icon {
@@ -67,26 +67,26 @@
         <div id="timer" hidden$="[[_hideHours]]">
           <div class="field" hidden$="[[_hideHours]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input hidden$="[[hour12]]" index="5" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></number-input>
-            <number-input hidden$="[[!hour12]]" index="5" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></number-input>
+            <integer-input hidden$="[[hour12]]" index="5" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
+            <integer-input hidden$="[[!hour12]]" index="5" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideMinutes]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input min="0" max="59" index="7" pad-length="2" value="{{minutes}}" placeholder="00"></number-input>
+            <integer-input min="0" max="59" index="7" pad-length="2" value="{{minutes}}" placeholder="00"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideSeconds]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input index="9" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></number-input>
+            <integer-input index="9" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
           <div class="field" hidden$="[[_hideMilliSeconds]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></number-input>
+            <integer-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <div class="single-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm" style="margin-left:0.167em;">
@@ -94,15 +94,15 @@
             <span hidden$="[[isAm]]">[[_pm]]</span>
           </div>
           <div class="field" hidden$="[[!withTimezone]]" style="margin-left:0.167em;">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input index="13" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00"></number-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="1" once><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <integer-input index="13" pad-length="2" always-sign step="1" min="-12" max="14" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="-1" once><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[!withTimezone]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[!withTimezone]]">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="15"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <number-input index="15" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></number-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="-15"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="15" once><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
+            <integer-input index="15" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
+            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="-15" once><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
         </div>
       `
@@ -161,12 +161,18 @@
       ]
     }
 
-    _offsetMinutesChanged(offsetMinutes) {
+    _switchAm() {
+      this.isAm = !this.isAm;
+    }
+
+    offsetMinutesChanged(offsetMinutes) {
       if (offsetMinutes === undefined) {
         return;
       }
+
+      super.offsetMinutesChanged(offsetMinutes);
       this.setProperties({
-        _timeZoneHours: -Math.floor(offsetMinutes) / 60,
+        _timeZoneHours: Math.floor(-offsetMinutes / 60),
         _timeZoneMinutes: Math.abs(offsetMinutes) % 60
       });
     }
@@ -175,14 +181,9 @@
       if (_timeZoneHours === undefined || _timeZoneMinutes === undefined) {
         return;
       }
-      const timezoneOffset = this._computeTimezoneOffset(-(_timeZoneHours*60 + _timeZoneMinutes));
-      if (timezoneOffset) {
-        this.timezoneOffset = timezoneOffset;
+      if (!this.__updatingOffsetMinutes) {
+        this.offsetMinutes = -(_timeZoneHours * 60 + _timeZoneMinutes);
       }
-    }
-
-    _switchAm() {
-      this.isAm = !this.isAm;
     }
   }
 </script>
@@ -222,7 +223,7 @@
        * @appliesMixin TimeElementPattern
        * @appliesMixin DatetimePickerMixin
        *
-       * @demo demo/time-picker.html
+       * @demo demo/time-picker.html time elements
        **/
     class TimeElement extends TimeElementPattern(DatetimePickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
 

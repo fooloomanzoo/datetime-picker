@@ -33,6 +33,7 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs",
     "iron-component-page": "PolymerElements/iron-component-page",
     "iron-flex-layout": "PolymerElements/iron-flex-layout",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers"
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers",
+    "iron-form": "PolymerElements/iron-form"
   }
 }

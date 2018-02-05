@@ -35,8 +35,9 @@
    *  @appliesMixin DatetimePickerMixin
    *  @appliesMixin DatetimePolyfillPickerMixin
    *
-   *  @demo demo/date-picker.html
    *  @demo demo/index.html
+   *  @demo demo/date-picker.html date elements
+   *  @demo demo/form.html in a form
    **/
     class DatePicker extends DatetimePolyfillPickerMixin(CalendarElementPattern(DatetimePickerMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
@@ -48,8 +49,8 @@
         return 'date';
       }
 
-      static get nativeInputBinding() {
-        return 'date';
+      static get replacementInputType() {
+        return 'date-input';
       }
 
       static get pickerTemplate() {

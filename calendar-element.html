@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../number-input/number-input.html">
+<link rel="import" href="../number-input/integer-input.html">
 
 <link rel="import" href="datetime-picker-mixin.html">
 
@@ -141,7 +141,7 @@
             <svg class="icon switch" prop="month" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
               <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" index="1" value="{{month::change}}"></select>
-              <number-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" value="{{year}}"></number-input>
+              <integer-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" value="{{year}}"></integer-input>
             </div>
             <svg class="icon switch" prop="month" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
           </div>
@@ -215,6 +215,11 @@
         _hideDay: {
           type: Boolean,
           computed: '_ifClamped(clamp, "day")'
+        },
+
+        _regexpDate: {
+          type: RegExp,
+          value: /(-?\d+)-(\d\d)-(\d\d)/
         }
       }
     }
@@ -224,7 +229,10 @@
       if (this.currentHoveredDayNode) {
         this.currentSelectedDayNode = this.currentHoveredDayNode;
         let d = new Date(this.currentSelectedDayNode.dataset.date);
-        const match = this._regexpDatetime.exec(this.currentSelectedDayNode.dataset.date);
+        const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
+        if (!match) {
+          return;
+        }
         setTimeout(() => {
           this.setProperties({
             year: +match[1],
@@ -483,7 +491,7 @@
   * @appliesMixin CalendarElementPattern
   * @appliesMixin DatetimePickerMixin
   *
-  * @demo demo/date-picker.html
+  * @demo demo/date-picker.html date elements
   **/
     class CalendarElement extends CalendarElementPattern(DatetimePickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
 
