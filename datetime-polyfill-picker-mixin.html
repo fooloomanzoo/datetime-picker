@@ -23,7 +23,7 @@
        */
       static get _nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{value::input}}" step="1">
+          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
         `;
       }
 
@@ -142,7 +142,7 @@
 
       _setDate(d) {
         super._setDate(d);
-        if (this.autoConfirm || (!this._hasNative || this.native)) {
+        if (this.autoConfirm || (this._hasNative && this.native)) {
           this._setConfirmedValues();
         }
       }
