@@ -130,7 +130,7 @@
        * @param  {[type]} e Event
        */
       _checkKeycode(e) {
-        if (!e || (!this._hasNative || this.native)) {
+        if (!e || (this._hasNative && this.native)) {
           return;
         }
         if (this.opened) {

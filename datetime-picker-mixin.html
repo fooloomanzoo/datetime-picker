@@ -55,7 +55,7 @@
         super.connectedCallback();
         this._addSwitchListener();
         if (this.value === undefined) {
-          this._setDate(new Date());
+          this.now();
         }
       }
 
@@ -68,29 +68,29 @@
         if (super._addKeyListener) {
           super._addKeyListener();
         }
-        this.addEventListener('keyup', this._stopActiveIncremJob.bind(this), false);
-        this.addEventListener('contextmenu', this._stopActiveIncremJob.bind(this), false);
+        this.addEventListener('keyup', this._stopActiveIncremJob.bind(this), {passive: true});
+        this.addEventListener('contextmenu', this._stopActiveIncremJob.bind(this), {passive: true});
       }
 
       _removeKeyListener() {
         if (super._removeKeyListener) {
           super._removeKeyListener();
         }
-        this.removeEventListener('keyup', this._stopActiveIncremJob.bind(this), false);
-        this.removeEventListener('contextmenu', this._stopActiveIncremJob.bind(this), false);
+        this.removeEventListener('keyup', this._stopActiveIncremJob.bind(this), {passive: true});
+        this.removeEventListener('contextmenu', this._stopActiveIncremJob.bind(this), {passive: true});
       }
 
       _addSwitchListener() {
         const switchs = this.root.querySelectorAll('.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.addEventListener('mousedown', this._onPushed.bind(this, s), {passive: true});
-            s.addEventListener('touchstart', this._onPushed.bind(this, s), {passive: true});
-            s.addEventListener('mouseup', this._onReleased.bind(this), {passive: true});
-            s.addEventListener('mouseout', this._onReleased.bind(this), {passive: true});
-            s.addEventListener('touchend', this._onReleased.bind(this), {passive: true});
-            s.addEventListener('touchcancel', this._onReleased.bind(this), {passive: true});
-            s.addEventListener('keyup', this._onReleased.bind(this), {passive: true});
+            s.addEventListener('mousedown', this._increm.bind(this, s), {passive: true});
+            s.addEventListener('touchstart', this._increm.bind(this, s), {passive: true});
+            s.addEventListener('mouseup', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.addEventListener('mouseout', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.addEventListener('touchend', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.addEventListener('touchcancel', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.addEventListener('keyup', this._stopActiveIncremJob.bind(this), {passive: true});
           })
         }
       }
@@ -99,13 +99,13 @@
         const switchs = this.root.querySelectorAll('.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
-            s.removeEventListener('mousedown', this._onPushed.bind(this, s), {passive: true});
-            s.removeEventListener('touchstart', this._onPushed.bind(this, s), {passive: true});
-            s.removeEventListener('mouseup', this._onReleased.bind(this), {passive: true});
-            s.removeEventListener('mouseout', this._onReleased.bind(this), {passive: true});
-            s.removeEventListener('touchend', this._onReleased.bind(this), {passive: true});
-            s.removeEventListener('touchcancel', this._onReleased.bind(this), {passive: true});
-            s.removeEventListener('keyup', this._onReleased.bind(this), {passive: true});
+            s.removeEventListener('mousedown', this._increm.bind(this, s), {passive: true});
+            s.removeEventListener('touchstart', this._increm.bind(this, s), {passive: true});
+            s.removeEventListener('mouseup', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.removeEventListener('mouseout', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.removeEventListener('touchend', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.removeEventListener('touchcancel', this._stopActiveIncremJob.bind(this), {passive: true});
+            s.removeEventListener('keyup', this._stopActiveIncremJob.bind(this), {passive: true});
           })
         }
       }
@@ -122,16 +122,6 @@
         if (super._checkKeycode) {
           super._checkKeycode(e);
         }
-      }
-
-      _onPushed(s) {
-        if (!this._activeIncremJob) {
-          this._increm(s);
-        }
-      }
-
-      _onReleased() {
-        this._stopActiveIncremJob();
       }
 
       _increm(s) {
@@ -160,7 +150,9 @@
                 prop = 'milliseconds'; break;
             }
           }
+
           this._incremProp(prop, +step);
+          
           if (!immediate) {
             this._activeIncremJob = setInterval(this._incremProp.bind(this, prop, +step), this.dwellTime);
           }
