@@ -10,22 +10,7 @@
       "typeof": true
     } ],
     "no-console": "off",
-    "no-useless-escape": "off",
-    "valid-jsdoc": [ "error", {
-      "requireReturn": false,
-      "prefer": {
-        "arg": "param",
-        "argument": "param",
-        "returns": "return"
-      },
-      "requireParamDescription": false,
-      "preferType": {
-        "Boolean": "boolean",
-        "Number": "number",
-        "String": "string",
-        "object": "Object"
-      }
-    } ]
+    "valid-jsdoc": "off"
   },
   "env": {
     "browser": true,

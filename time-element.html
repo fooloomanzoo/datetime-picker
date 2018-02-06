@@ -124,14 +124,6 @@
           value: false
         },
 
-        _timeZoneHours: {
-          type: Number
-        },
-
-        _timeZoneMinutes: {
-          type: Number
-        },
-
         _hideHours: {
           type: Boolean,
           computed: '_ifClamped(clamp, "hours")'
@@ -154,36 +146,8 @@
       }
     }
 
-    static get observers() {
-      return [
-        '_offsetMinutesChanged(_offsetMinutes)',
-        '_timeZoneHoursMinutesChanged(_timeZoneHours, _timeZoneMinutes) '
-      ]
-    }
-
     _switchAm() {
       this.isAm = !this.isAm;
-    }
-
-    offsetMinutesChanged(offsetMinutes) {
-      if (offsetMinutes === undefined) {
-        return;
-      }
-
-      super.offsetMinutesChanged(offsetMinutes);
-      this.setProperties({
-        _timeZoneHours: Math.floor(-offsetMinutes / 60),
-        _timeZoneMinutes: Math.abs(offsetMinutes) % 60
-      });
-    }
-
-    _timeZoneHoursMinutesChanged(_timeZoneHours, _timeZoneMinutes) {
-      if (_timeZoneHours === undefined || _timeZoneMinutes === undefined) {
-        return;
-      }
-      if (!this.__updatingOffsetMinutes) {
-        this.offsetMinutes = -(_timeZoneHours * 60 + _timeZoneMinutes);
-      }
     }
   }
 </script>

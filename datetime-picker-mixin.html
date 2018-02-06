@@ -69,6 +69,7 @@
           super._addKeyListener();
         }
         this.addEventListener('keyup', this._stopActiveIncremJob.bind(this), false);
+        this.addEventListener('contextmenu', this._stopActiveIncremJob.bind(this), false);
       }
 
       _removeKeyListener() {
@@ -76,6 +77,7 @@
           super._removeKeyListener();
         }
         this.removeEventListener('keyup', this._stopActiveIncremJob.bind(this), false);
+        this.removeEventListener('contextmenu', this._stopActiveIncremJob.bind(this), false);
       }
 
       _addSwitchListener() {
@@ -122,13 +124,13 @@
         }
       }
 
-      _onPushed(s, e) {
+      _onPushed(s) {
         if (!this._activeIncremJob) {
           this._increm(s);
         }
       }
 
-      _onReleased(s, e) {
+      _onReleased() {
         this._stopActiveIncremJob();
       }
 
