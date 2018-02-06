@@ -577,7 +577,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -594,7 +594,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -642,7 +642,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -1669,7 +1669,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -1689,7 +1689,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -1721,7 +1721,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -1744,7 +1744,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -3210,7 +3210,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -3227,7 +3227,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -3275,7 +3275,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -4518,7 +4518,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -4538,7 +4538,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -4570,7 +4570,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -4593,7 +4593,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -6460,7 +6460,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -6477,7 +6477,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -6525,7 +6525,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -7439,7 +7439,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7459,7 +7459,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -7491,7 +7491,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -7514,7 +7514,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -9100,7 +9100,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -9117,7 +9117,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -9165,7 +9165,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -10427,7 +10427,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -10447,7 +10447,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -10479,7 +10479,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -10502,7 +10502,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -12393,7 +12393,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -12410,7 +12410,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -12458,7 +12458,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -13597,7 +13597,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -13617,7 +13617,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -13649,7 +13649,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -13672,7 +13672,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -15667,7 +15667,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -15684,7 +15684,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -15732,7 +15732,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -17107,7 +17107,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -17127,7 +17127,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -17159,7 +17159,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -17182,7 +17182,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -19154,7 +19154,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -19171,7 +19171,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -19219,7 +19219,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -20575,7 +20575,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -20595,7 +20595,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -20627,7 +20627,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -20650,7 +20650,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -22604,7 +22604,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -22621,7 +22621,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -22669,7 +22669,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -23917,7 +23917,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -23937,7 +23937,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -23969,7 +23969,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -23992,7 +23992,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -25841,7 +25841,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutes",
+          "name": "_timezoneOffset",
           "type": "number",
           "description": "The offset minutes of the set timezone",
           "privacy": "protected",
@@ -25858,7 +25858,7 @@
           },
           "metadata": {
             "polymer": {
-              "observer": "\"_offsetMinutesChanged\""
+              "observer": "\"_timezoneOffsetChanged\""
             }
           },
           "inheritedFrom": "DatetimeMixin"
@@ -25906,7 +25906,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_recentLocalOffsetMinutes",
+          "name": "_recentLocalTimezoneOffset",
           "type": "number",
           "description": "The offset minutes of the current datetime",
           "privacy": "protected",
@@ -26800,7 +26800,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_offsetMinutesChanged",
+          "name": "_timezoneOffsetChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -26820,7 +26820,7 @@
               "name": "offsetMinutes"
             },
             {
-              "name": "oldOffsetMinutes"
+              "name": "oldTimezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -26852,7 +26852,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeTimezoneOffset",
+          "name": "_computeTimezone",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
@@ -26875,7 +26875,7 @@
           "inheritedFrom": "DatetimeMixin"
         },
         {
-          "name": "_computeOffsetMinutes",
+          "name": "_computeTimezoneOffset",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
