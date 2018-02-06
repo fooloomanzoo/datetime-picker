@@ -134,9 +134,9 @@
 
       _increm(s) {
         this._stopActiveIncremJob();
-        const prop = s.getAttribute && s.getAttribute('prop');
         const step = (s.getAttribute && s.getAttribute('step')) || 1;
         const immediate = (s.getAttribute && s.hasAttribute('once'));
+        let prop = s.getAttribute && s.getAttribute('prop');
 
         if (step) {
           if (!prop) {
