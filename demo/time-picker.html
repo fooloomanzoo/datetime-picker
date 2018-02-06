@@ -47,12 +47,12 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker native value="{{value}}" date="{{date}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" position="bottom"></time-picker>
+              <time-picker native value="{{value}}" date="{{date}}" time="{{time}}" timezone="{{timezone}}" position="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
-                <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
+                <div><code>timezone</code>: <b>[[timezone]]</b></div>
               </div>
             </template>
           </dom-bind>

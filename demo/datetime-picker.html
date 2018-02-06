@@ -51,14 +51,14 @@
               <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
               <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
               <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
-                value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="bottom"
+                value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="bottom"
                 confirmed-time="{{confirmedTime}}" confirmed-value="{{confirmedValue}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
-                <div><code>timezoneOffset</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezoneOffset::change}}"></b></div>
+                <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
                 <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
                 <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
@@ -76,11 +76,11 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker datetime="{{datetime}}" default="2005-02-01" time="{{time}}" timezone-offset="{{timezoneOffset}}"></datetime-picker>
+              <datetime-picker datetime="{{datetime}}" default="2005-02-01" time="{{time}}" timezone="{{timezone}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
-                <div><code>timezoneOffset</code>: <b>[[timezoneOffset]]</b></div>
+                <div><code>timezone</code>: <b>[[timezone]]</b></div>
               </div>
             </template>
           </dom-bind>

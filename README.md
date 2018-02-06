@@ -19,7 +19,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
     </style>
     <dom-bind>
       <template is="dom-bind">
-        <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone-offset="{{timezoneOffset}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
+        <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
         <input type="checkbox" checked="{{native::change}}">native picker<br>
         <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br>
         <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
@@ -28,7 +28,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
           <div><code>date</code>: <b>[[date]]</b></div>
           <div><code>time</code>: <b>[[time]]</b></div>
           <div><code>datetime</code>: <b>[[datetime]]</b></div>
-          <div><code>timezoneOffset</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezoneOffset::change}}"></b></div>
+          <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
           <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
           <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
           <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
@@ -62,7 +62,7 @@ You can use other pickers and elements, too. In this collection are for:
 
 Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
-The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-value`-, `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs. Be aware of **timezone-offset**-attribute, when you sync datetime, because the Datetime-Object in the browser will use the local time-zone. The consistent value will always be the `value`-attribute for every client.
+The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-value`-, `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs. Be aware of **timezone**-attribute, when you sync datetime, because the Datetime-Object in the browser will use the local time-zone. The consistent value will always be the `value`-attribute for every client.
 
 ### Motivation
 
@@ -90,28 +90,6 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 #### Stand-alone calendar and date-input (preset by using its attributes)
 
-<!--
-```
-<custom-element-demo height="300">
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
-    <style>
-      html {
-        font-family: 'Nunito', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
-
 ```html
 <calendar-element date="{{date}}"></calendar-element>
 <p>date: <date-input date="{{date}}" datetime="{{datetime}}"></date-input></p>
@@ -120,28 +98,6 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 #### Stand-alone time-picker and time-input (preset by using its attributes)
 
-<!--
-```
-<custom-element-demo height="100">
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
-    <style>
-      html {
-        font-family: 'Nunito', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
-
 ```html
 <time-element time="{{time}}"></time-element>
 <p> time: <time-input time="{{time}}" hours="8"></time-input></p>
@@ -149,29 +105,6 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 #### Use the polyfill or the native picker
 By default it checks if `datetime-local`, `date` or `time` is supported as input. Set the ``auto-confirm`` attribute to automatically confirm the input. If `native` is set, the native picker will be used instead of the polyfill:
-
-<!--
-```
-<custom-element-demo height="410">
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
-    <style>
-      html {
-        font-family: 'Nunito', sans-serif;
-        line-height: 1.5;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 
 ```html
   <p>Autoconfirming Polyfill Picker <datetime-picker auto-confirm value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
@@ -225,28 +158,6 @@ Choose then the related elements:
 * `<overlay-datetime-picker>`
 * `<overlay-date-picker>`
 * `<overlay-time-picker>`
-
-<!--
-```
-<custom-element-demo height="380">
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="import" href="overlay-datetime-picker.html">
-    <style>
-      html {
-        font-family: 'Nunito', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 
 ```html
 <overlay-datetime-picker value="{{value}}" ></overlay-datetime-picker>
@@ -349,6 +260,9 @@ bower update
   - extended keyboard navigation support
   - `auto-confirm`-attribute is for auto confirming the actual input
   - new attributes `confirmed-datetime`, `confirmed-date` and `confirmed-time`
+
+* 2.7.0
+  - `timezone` attribute
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!
