@@ -29,7 +29,7 @@
 
       static get replacementInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" invalid="{{invalid}}" required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
       }
 
@@ -86,6 +86,11 @@
 
       static get properties() {
         return {
+
+          invalid: {
+            type: Boolean
+          },
+
           confirmedDate: {
             type: String,
             notify: true
@@ -116,13 +121,9 @@
         ];
       }
 
-      _computeInvalid(required, value) {
-        return Boolean(this.required && isNaN(this.confirmedValue));
-      }
-
       validate() {
         this.value = this.confirmedValue;
-        return !Boolean(this.required && isNaN(this.confirmedValue));
+        return !(this.required && isNaN(this.value));
       }
 
       /**
