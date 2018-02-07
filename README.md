@@ -64,6 +64,8 @@ Every Element has the same API, so that it would use the given date-properties o
 
 The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-value`-, `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs. Be aware of **timezone**-attribute, when you sync datetime, because the Datetime-Object in the browser will use the local time-zone. The consistent value will always be the `value`-attribute for every client.
 
+If you are looking just for an input for date and time, please have a look at [datetime-input](https://github.com/fooloomanzoo/datetime-input).
+
 ### Motivation
 
 Internally it tests the browser, if **native** input-types `datetime-local`, `date` or `time` are supported. If it is not, a `<calendar-element>` or a `<time-element>` will be displayed instead, according to the kind of picker you choose. You can decide to use the native or the replacements during runtime. calendar-element and time-element can also be used separately. **Internationalization** of the view in the pickers is inplemented and the attributes remain in **iso8061**-format. You can set the timezone of your datetime-values.

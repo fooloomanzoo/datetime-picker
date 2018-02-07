@@ -228,7 +228,6 @@
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode) {
         this.currentSelectedDayNode = this.currentHoveredDayNode;
-        let d = new Date(this.currentSelectedDayNode.dataset.date);
         const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
         if (!match) {
           return;
@@ -253,7 +252,7 @@
       }, 250);
     }
 
-    _onDblClickDay(e) {
+    _onDblClickDay() {
       this.renderCalendar(this.year, this.month, this.day, this.date);
     }
 
