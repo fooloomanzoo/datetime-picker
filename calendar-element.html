@@ -297,6 +297,10 @@
         this.$.monthSelector.appendChild(option);
       }
 
+      if (this.month !== undefined) {
+        this.$.monthSelector.selectedIndex = this.month - 1;
+      }
+
       // set weekday titles
       for (let i = 0; i < 7; i++) {
         let d = new Date(0, 0, i);
