@@ -87,10 +87,6 @@
       static get properties() {
         return {
 
-          invalid: {
-            type: Boolean
-          },
-
           confirmedDate: {
             type: String,
             notify: true
@@ -119,6 +115,10 @@
           '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
           '_confirmedValueChanged(confirmedValue)'
         ];
+      }
+
+      _computeInvalid(required, value) {
+        return this.required && isNaN(this.value);
       }
 
       validate() {
