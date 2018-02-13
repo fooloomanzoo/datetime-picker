@@ -23,7 +23,7 @@
           display: -webkit-inline-flex;
           display: inline-flex;
           flex-direction: column;
-          background-color: var(--input-background);
+          background: var(--input-background);
           color: var(--input-color);
           padding: 4px;
           @apply --input-picker;
@@ -51,8 +51,8 @@
         }
         #calendar #monthSelector {
           -moz-appearance: none;
-          -webkit-appearance: listitem;
-          appearance: listitem;
+          -webkit-appearance: none;
+          appearance: none;
           text-indent: 0.01px;
           text-overflow: '';
           text-align-last: center;
@@ -105,8 +105,8 @@
           border-style: solid;
           border-width: thin;
           border-color: transparent;
-          will-change: background-color;
-          transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          will-change: background;
+          transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day:hover {
           border-color: rgba(255, 255, 255, 0.334);
@@ -118,7 +118,7 @@
           border-color: var(--input-focus-background);
         }
         #calendar #dates .day.selected {
-          background-color: var(--input-focus-background);
+          background: var(--input-focus-background);
           color: var(--input-focus-color);
           border-color: rgba(255, 255, 255, 0.5);
         }
@@ -230,6 +230,7 @@
         this.currentSelectedDayNode = this.currentHoveredDayNode;
         const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
         if (!match) {
+          this._dayClicked = false;
           return;
         }
         setTimeout(() => {
@@ -242,7 +243,7 @@
         }, 0);
       }
       if (this._dayClicked === true) {
-        this._onDblClickDay();
+        this._onDblClickDay(this.currentSelectedDayNode.dataset.date);
         this._dayClicked = false;
         return;
       }
@@ -252,8 +253,8 @@
       }, 250);
     }
 
-    _onDblClickDay() {
-      this.renderCalendar(this.year, this.month, this.day, this.date);
+    _onDblClickDay(date) {
+      this.renderCalendar(this.year, this.month, this.day, date);
     }
 
     _onMouseMoveDay(e) {
@@ -274,7 +275,7 @@
 
     _dateTimeChanged(date, time) {
       super._dateTimeChanged(date, time);
-      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date);
+      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date|| date);
     }
 
     _localeChanged(locale) {
@@ -434,19 +435,28 @@
      */
     _checkKeycode(e) {
       if (e && e.keyCode) {
+        let prop;
+        switch (this.clamp) {
+          case 'year': // falls through
+          case 'month':
+            prop = 'year';
+            break;
+          case 'day': // falls through
+          case 'hours':
+            prop = 'month';
+            break;
+          default:
+            prop = 'day';
+        }
         switch (e.keyCode) {
-          case 37: // left
-            this._increm(-1);
-            return;
-          case 39: // right
-            this._increm(1);
-            return;
-          case 38: // up
-            this._incremProp('month', 1);
+          case 37: // left // falls through
+          case 40: // down
+            this._incremProp(prop, -1);
             e.preventDefault();
             return;
-          case 40: // down
-            this._incremProp('month', -1);
+          case 39: // right // falls through
+          case 38: // up
+            this._incremProp(prop, 1);
             e.preventDefault();
             return;
         }
@@ -481,10 +491,10 @@
   * `--input-color` | text-color of the element | `#dadada`
   * `--input-background` | text-color of the element | `#2b2b2b`
   * `--input-focus-color` | color of the focussed or hovered inputs and icons | `#f5f5f5`
-  * `--input-focus-background` | background-color of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
-  * `--input-style` | Mixin applied to the inputs | { border-radius: 3px; padding: 0.2em 0.1em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);`
+  * `--input-focus-background` | background of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
+  * `--input-style` | Mixin applied to the inputs | { border-radius: 3px; padding: 0.2em 0.1em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background: transparent; box-sizing: content-box; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1);`
   * `--input-focus` | Mixin applied to the focussed or hovered inputs | {}`
-  * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
+  * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
   * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 4px;}`
   * `--calendar-element` | Mixin applied to the calender | `{}`
   *

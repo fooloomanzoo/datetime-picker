@@ -21,10 +21,10 @@
    * `--input-color` | text-color of the element | `#dadada`
    * `--input-background` | text-color of the element | `#2b2b2b`
    * `--input-focus-color` | color of the focussed or hovered inputs and icons | `#f5f5f5`
-   * `--input-focus-background` | background-color of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
-   * `--input-style` | Mixin applied to the inputs | { border-radius: 3px; padding: 0.2em 0.1em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background-color: transparent; box-sizing: content-box; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1);`
+   * `--input-focus-background` | background of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
+   * `--input-style` | Mixin applied to the inputs | { border-radius: 3px; padding: 0.2em 0.1em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background: transparent; box-sizing: content-box; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1);`
    * `--input-focus` | Mixin applied to the focussed or hovered inputs | {}`
-   * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background-color: transparent; transition: background-color 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
+   * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
    * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 4px;}`
    * `--time-element` | Mixin applied to the time-element | `{}`
    *
@@ -61,24 +61,6 @@
               ${this._buttonTemplate}
             <div>
           </div>
-        `;
-      }
-
-      static get customStyleContent() {
-        return `
-          ${super.customStyleContent || ''}
-          input[type="time"]:hover::-webkit-calendar-picker-indicator {
-            background: transparent;
-          }
-          input[type=time] {
-            font-family: inherit;
-            font-size: inherit;
-            @apply --input-style;
-          }
-          input[type=time]:not([disabled]):focus,
-          input[type=time]:not([disabled]):hover {
-            @apply --input-focus;
-          }
         `;
       }
 

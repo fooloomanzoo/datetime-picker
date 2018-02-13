@@ -44,7 +44,7 @@
       }
 
       static get customStyleContent() {
-        return '';
+        return `${super.customStyleContent || ''}`;
       }
 
       static get customStyleToInclude() {
@@ -126,9 +126,8 @@
 
       _increm(s) {
         this._stopActiveIncremJob();
-        const step = (s.getAttribute && s.getAttribute('step')) || 1;
-        const immediate = (s.getAttribute && s.hasAttribute('once'));
         let prop = s.getAttribute && s.getAttribute('prop');
+        const step = (s.getAttribute && s.getAttribute('step')) || 1;
 
         if (step) {
           if (!prop) {
@@ -152,10 +151,7 @@
           }
 
           this._incremProp(prop, +step);
-          
-          if (!immediate) {
-            this._activeIncremJob = setInterval(this._incremProp.bind(this, prop, +step), this.dwellTime);
-          }
+          this._activeIncremJob = setInterval(this._incremProp.bind(this, prop, +step), this.dwellTime);
         }
       }
 

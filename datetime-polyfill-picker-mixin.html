@@ -56,30 +56,45 @@
             @apply --input-style;
             padding: 0;
           }
-          #polyfill > * {
+          #polyfill:hover,
+          #polyfill:focus,
+          #polyfill:focus-within {
+            @apply --input-focus;
+          }
+          ${this.replacementInputType} {
             --input-color: currentColor;
             --input-background: transparent;
+            border: thin solid transparent;
           }
-          #polyfill:hover,
-          #polyfill:focus {
-            color: var(--input-focus-color);
-            background: var(--input-focus-background);
-            @apply --input-focus;
+          ${this.replacementInputType}[invalid] {
+            border-color: var(--invalid-color);
+            @apply --input-invalid;
           }
           #picker {
             @apply --input-picker;
             padding: 0;
           }
           #picker #buttons {
-            background-color: var(--input-background);
             color: var(--input-color);
+            background: var(--input-background);
           }
-          .replacement {
-            border: thin solid transparent;
+          input::-webkit-calendar-picker-indicator:hover {
+            color: currentColor;
+            fill: currentColor;
+            background: transparent;
+            cursor: pointer;
           }
-          .replacement[invalid] {
-            border-color: var(--invalid-color);
-            @apply --input-invalid;
+          input {
+            font-family: inherit;
+            font-size: inherit;
+            @apply --input-style;
+          }
+          input[disabled] {
+            @apply --input-disabled;
+          }
+          input:not([disabled]):focus,
+          input:not([disabled]):hover {
+            @apply --input-focus;
           }
         `;
       }
@@ -117,13 +132,15 @@
         ];
       }
 
-      _computeInvalid(required, value) {
-        return this.required && isNaN(this.value);
+      _computeInvalid(required) {
+        return required && isNaN(this.confirmedValue);
       }
 
       validate() {
-        this.value = this.confirmedValue;
-        return !(this.required && isNaN(this.value));
+        if (!isNaN(this.confirmedDate)) {
+          this.value = this.confirmedDate;
+        }
+        return this.required && isNaN(this.confirmedValue);
       }
 
       /**
@@ -159,23 +176,34 @@
       }
 
       _confirmedDatetimeChanged(confirmedDatetime) {
+        console.log(this.nodeName, 'confirmedDatetime',confirmedDatetime);
         if (confirmedDatetime === undefined) {
+          this._resetConfirmedValues()
           return;
         }
-        this._datetimeChanged(confirmedDatetime);
+        this.datetime = confirmedDatetime;
         this._setConfirmedValues();
       }
 
       _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-        this._dateTimeChanged(confirmedDate || this.date, confirmedTime || this.time);
+        console.log(this.nodeName, '_confirmedDateTimeChanged',confirmedDate, confirmedTime);
+        if (confirmedDate === undefined || confirmedTime === undefined) {
+          return;
+        }
+        this.setProperties({
+          date: confirmedDate,
+          time: confirmedTime
+        });
         this._setConfirmedValues();
       }
 
       _confirmedValueChanged(confirmedValue) {
-        if (isNaN(confirmedValue)) {
+        console.log(this.nodeName, '_confirmedValueChanged',confirmedValue);
+        if (confirmedValue === undefined) {
+          this._resetConfirmedValues()
           return;
         }
-        this._valueChanged(confirmedValue);
+        this.value = confirmedValue;
         this._setConfirmedValues();
       }
 
@@ -188,6 +216,15 @@
           confirmedDate: this.date,
           confirmedTime: this.time,
           confirmedValue: this.value
+        })
+      }
+
+      _resetConfirmedValues() {
+        this.setProperties({
+          confirmedDatetime: undefined,
+          confirmedDate: undefined,
+          confirmedTime: undefined,
+          confirmedValue: undefined
         })
       }
 
