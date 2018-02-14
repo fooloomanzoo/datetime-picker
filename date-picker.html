@@ -81,29 +81,38 @@
         super.renderCalendar(year, month, day, this.confirmedDate);
       }
 
-      _dateTimeChanged(date) {
+      _dateTimeChanged(date, time) {
         if (this.__updatingTimezoneOffset) {
           return;
         }
-        if (date === undefined || this.timezone === undefined) {
-          if (this.value !== undefined) {
-            this._setDate(new Date(this.value));
-          } else if (this.default !== undefined) {
+        if (date === undefined) {
+          if (this.default !== undefined) {
             this._setDate(new Date(this.default));
+          } else {
+            this._resetDate();
           }
           return;
         }
-        this.datetime = date + 'T00:00' + (this.timezone || 'Z');
+        this.datetime = date + 'T' + (time || '00:00') + (this.timezone || 'Z');
+
+        this.renderCalendar(this.year, this.month, this.day, this.date || date);
       }
 
-      _confirmedDateTimeChanged(confirmedDate) {
+      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
         if (confirmedDate === undefined) {
-          return;
+          this._resetConfirmedValues();
+          return; // return, if resseting, so that the picker is not itself resetted
         }
+
         this.setProperties({
-          date: confirmedDate
+          date: confirmedDate,
+          time: confirmedTime
         });
-        this._setConfirmedValues();
+        // asnyc setting the computed the other confirmed values
+        this.setProperties({
+          confirmedValue: this.value,
+          confirmedDatetime: this.datetime
+        });
       }
 
       open() {

@@ -47,9 +47,9 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker native value="{{value}}" date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
+              <date-picker native confirmed-value="{{value}}" date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
-                <div><code>numeric value</code>: <b>[[value]]</b></div>
+                <div><code>(confirmed) numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
               </div>

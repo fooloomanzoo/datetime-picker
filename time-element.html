@@ -95,7 +95,7 @@
           </div>
           <div class="field" hidden$="[[!withTimezone]]" style="margin-left:0.167em;">
             <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="1" once><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input index="13" pad-length="2" always-sign step="1" min="-12" max="14" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
+            <integer-input index="13" pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="-1" once><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[!withTimezone]]">[[_localTimeSeparator]]</span>
@@ -200,6 +200,22 @@
           ${this.styleTemplate}
           ${this.timeTemplate}
         `
+      }
+
+
+      _dateTimeChanged(date, time) {
+        if (this.__updatingTimezoneOffset) {
+          return;
+        }
+        if (time === undefined) {
+          if (this.default !== undefined) {
+            this._setDate(new Date(this.default));
+          } else {
+            this._resetDate();
+          }
+          return;
+        }
+        this.datetime = (date || '1970-01-01') + 'T' + (time || (this.timezone ? this.timezone.slice(1) : '00:00')) + (this.timezone || 'Z');
       }
     }
     window.customElements.define(TimeElement.is, TimeElement);

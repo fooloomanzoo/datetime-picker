@@ -24,12 +24,17 @@
       static get _nativeInputTemplate() {
         return `
           <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
+          <div hidden$="[[!_computeAnd(withTimezone, native)]]" style="display:inline-flex;align-items:center;">
+            <integer-input class="replacement" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23"></integer-input>
+            <span>[[_localTimeSeparator]]</span>
+            <integer-input class="replacement" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
+          </div>
         `;
       }
 
       static get replacementInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" invalid="{{invalid}}" required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
       }
 
@@ -52,23 +57,9 @@
       static get customStyleContent() {
         return `
           ${super.customStyleContent || ''}
-          #polyfill {
-            @apply --input-style;
-            padding: 0;
-          }
-          #polyfill:hover,
-          #polyfill:focus,
-          #polyfill:focus-within {
-            @apply --input-focus;
-          }
-          ${this.replacementInputType} {
+          .replacement {
             --input-color: currentColor;
             --input-background: transparent;
-            border: thin solid transparent;
-          }
-          ${this.replacementInputType}[invalid] {
-            border-color: var(--invalid-color);
-            @apply --input-invalid;
           }
           #picker {
             @apply --input-picker;
@@ -77,12 +68,6 @@
           #picker #buttons {
             color: var(--input-color);
             background: var(--input-background);
-          }
-          input::-webkit-calendar-picker-indicator:hover {
-            color: currentColor;
-            fill: currentColor;
-            background: transparent;
-            cursor: pointer;
           }
           input {
             font-family: inherit;
@@ -128,19 +113,22 @@
         return [
           '_confirmedDatetimeChanged(confirmedDatetime)',
           '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
-          '_confirmedValueChanged(confirmedValue)'
+          '_confirmedValueChanged(confirmedValue)',
+          '_computeInvalid(required, confirmedValue)'
         ];
       }
 
       _computeInvalid(required) {
-        return required && isNaN(this.confirmedValue);
+        this.invalid = required && isNaN(this.confirmedValue);
       }
 
       validate() {
-        if (!isNaN(this.confirmedDate)) {
-          this.value = this.confirmedDate;
-        }
-        return this.required && isNaN(this.confirmedValue);
+        this.value = this.confirmedValue;
+        return super.validate();
+      }
+
+      _computeAnd(a, b) {
+        return a && b;
       }
 
       /**
@@ -176,41 +164,52 @@
       }
 
       _confirmedDatetimeChanged(confirmedDatetime) {
-        console.log(this.nodeName, 'confirmedDatetime',confirmedDatetime);
         if (confirmedDatetime === undefined) {
-          this._resetConfirmedValues()
-          return;
+          this._resetConfirmedValues();
+          return; // return, if resseting, so that the picker is not itself resetted
         }
         this.datetime = confirmedDatetime;
-        this._setConfirmedValues();
+        // asnyc setting the computed the other confirmed values
+        this.setProperties({
+          confirmedValue: this.value,
+          confirmedDate: this.date,
+          confirmedTime: this.time
+        });
       }
 
       _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-        console.log(this.nodeName, '_confirmedDateTimeChanged',confirmedDate, confirmedTime);
-        if (confirmedDate === undefined || confirmedTime === undefined) {
-          return;
+        if (confirmedDate === undefined && confirmedTime === undefined) {
+          this._resetConfirmedValues();
+          return; // return, if resseting, so that the picker is not itself resetted
         }
+
         this.setProperties({
           date: confirmedDate,
           time: confirmedTime
         });
-        this._setConfirmedValues();
+        // asnyc setting the computed the other confirmed values
+        this.setProperties({
+          confirmedValue: this.value,
+          confirmedDatetime: this.datetime
+        });
       }
 
       _confirmedValueChanged(confirmedValue) {
-        console.log(this.nodeName, '_confirmedValueChanged',confirmedValue);
-        if (confirmedValue === undefined) {
-          this._resetConfirmedValues()
-          return;
+        if (isNaN(confirmedValue)) {
+          this._resetConfirmedValues();
+          return; // return, if resseting, so that the picker is not itself resetted
         }
+
         this.value = confirmedValue;
-        this._setConfirmedValues();
+        // asnyc setting the computed the other confirmed values
+        this.setProperties({
+          confirmedDatetime: this.datetime,
+          confirmedDate: this.date,
+          confirmedTime: this.time
+        });
       }
 
       _setConfirmedValues() {
-        if (isNaN(this.value)) {
-          return;
-        }
         this.setProperties({
           confirmedDatetime: this.datetime,
           confirmedDate: this.date,
@@ -233,9 +232,9 @@
           return;
         }
         this.setProperties({
-          datetime: this.confirmedDatetime || this.datetime,
-          date: this.confirmedDate ||  this.date,
-          time: this.confirmedTime || this.time,
+          datetime: this.confirmedDatetime,
+          date: this.confirmedDate,
+          time: this.confirmedTime,
           value: this.confirmedValue
         })
       }

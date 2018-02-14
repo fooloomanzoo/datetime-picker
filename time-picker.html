@@ -64,6 +64,23 @@
         `;
       }
 
+      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
+        if (confirmedTime === undefined) {
+          this._resetConfirmedValues();
+          return; // return, if resseting, so that the picker is not itself resetted
+        }
+
+        this.setProperties({
+          date: confirmedDate,
+          time: confirmedTime
+        });
+        // asnyc setting the computed the other confirmed values
+        this.setProperties({
+          confirmedValue: this.value,
+          confirmedDatetime: this.datetime
+        });
+      }
+
       get _hasNative() {
         return TimePicker._hasNative;
       }

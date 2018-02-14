@@ -110,17 +110,17 @@
         }
         #calendar #dates .day:hover {
           border-color: rgba(255, 255, 255, 0.334);
-        }
-        #calendar #dates .day.current {
-          border-color: rgba(255, 255, 255, 0.667);
-        }
-        #calendar #dates .day.recent {
-          border-color: var(--input-focus-background);
+          @apply --calendar-date-cell-hovered;
         }
         #calendar #dates .day.selected {
           background: var(--input-focus-background);
           color: var(--input-focus-color);
-          border-color: rgba(255, 255, 255, 0.5);
+        }
+        #calendar #dates .day.current {
+          border-color: currentColor;
+        }
+        #calendar #dates .day.recent {
+          border-color: var(--input-focus-background);
         }
         #calendar #dates .day.notinmonth {
           opacity: 0.5;
@@ -224,6 +224,11 @@
       }
     }
 
+    _dateTimeChanged(date, time) {
+      super._dateTimeChanged(date, time);
+      this.renderCalendar(this.year, this.month, this.day, this.date || date);
+    }
+
     _onClickDay(e) {
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode) {
@@ -273,11 +278,6 @@
       }
     }
 
-    _dateTimeChanged(date, time) {
-      super._dateTimeChanged(date, time);
-      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date|| date);
-    }
-
     _localeChanged(locale) {
       if (!locale) {
         this.locale = window.navigator.language;
@@ -324,14 +324,13 @@
       if (year === undefined || month === undefined || day === undefined) return;
       const d = new Date(year, +month - 1, day);
 
-      if (date === undefined) {
-        date = this.confirmedDate || this.date;
-      }
-      // console.log(year, month, day, date);
       if (isNaN(+d)) {
         return;
       }
 
+      if (date === undefined) {
+        date = this.confirmedDate || this.date;
+      }
       if (this._ifClamped(this.clamp, 'day')) {
         this.date = this._toDate(d);
         return;
@@ -517,6 +516,23 @@
           ${this.styleTemplate}
           ${this.calendarTemplate}
         `
+      }
+
+      _dateTimeChanged(date, time) {
+        if (this.__updatingTimezoneOffset) {
+          return;
+        }
+        if (date === undefined) {
+          if (this.default !== undefined) {
+            this._setDate(new Date(this.default));
+          } else {
+            this._resetDate();
+          }
+          return;
+        }
+        this.datetime = date + 'T' + (time || '00:00') + (this.timezone || 'Z');
+
+        this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date || date);
       }
 
     }

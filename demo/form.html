@@ -29,10 +29,18 @@
         datetime-picker {
           margin-bottom: 4px;
           margin-left: 8px;
+          color: #111;
+          --input-color: #444;
+          --input-background: #ddd;
+          --input-focus-color: #000;
+          --input-focus-background: #649ae9;
+          --input-invalid-color: #e8395e;
+          --calendar-date-cell-hovered: {
+            border-color: rgba(0,0,0,0.5);
+          };
           --input-style: {
-            color: #111;
-            padding: 4px;
-            border-radius: 2px;
+            padding: 2px;
+            border-radius: 4px;
             border-color: rgba(0,0,0,0.2);
             border-width: thin;
             border-style: dotted;
@@ -40,8 +48,21 @@
           };
           --input-focus: {
             border-color: rgba(0,0,0,0.5);
+            border-width: thin;
             border-style: solid;
-            background: rgba(0, 0, 0, 0.15);
+            background: var(--input-focus-background);
+          };
+          --input-icon: {
+            border-radius: 50%;
+            border-color: rgba(0,0,0,0);
+            border-width: thin;
+            border-style: solid;
+          };
+          --input-picker: {
+            border-radius: 12px 12px 12px 24px;
+          };
+          --input-placeholder: {
+            color: rgba(0,0,0,0.5);
           };
         }
         iron-form {
@@ -80,10 +101,10 @@
                   name: <input name="name" required value="Batman"/><br>
                   job: <input name="job" required value="Hero"/><br>
                   <br>
-                  first day: <date-picker name="start" required max="{{end}}" confirmed-value="{{start}}"></date-picker><br>
-                  expected retirement: <date-picker name="end" min="{{start}}" confirmed-value="{{end}}"></date-picker><br>
+                  first day: <date-picker name="first" required max="{{end}}" confirmed-value="{{start}}"></date-picker><br>
+                  last day: <date-picker name="last" min="{{start}}" confirmed-value="{{end}}"></date-picker><br>
                   <br>
-                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" confirmed-value="{{lastjob}}"></datetime-picker><br>
+                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" date="{{lastjob}}"></datetime-picker><br>
                   return: <time-picker name="return" min="[[lastjob]]" max="[[end]]" confirmed-value="{{return}}"></time-picker><br>
                   <br>
                   <button onclick="form1.submit()">Submit</button>
