@@ -104,6 +104,19 @@
         `;
       }
 
+      static get properties() {
+        return {
+          /**
+           * Clamp datetime to a property
+           * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds' or ''
+           */
+          clamp: {
+            type: String,
+            value: 'milliseconds'
+          }
+        }
+      }
+
       _onDblClickDay(date) {
         super._onDblClickDay(date);
         this.confirm();

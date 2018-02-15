@@ -87,40 +87,52 @@
           display: table-row-group;
         }
         #calendar .week {
-          font-size: 0.8em;
           display: table-row;
         }
         #calendar .day {
           display: table-cell;
-          padding: 0.5em;
-          min-width: 1.5em;
-          height: 1.5em;
-          line-height: 1.5em;
+          position: relative;
+          width: calc(100% / 7);
+          -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+          font-size: 0.8em;
           text-align: center;
+          white-space: nowrap;
+          border-radius: 0.3em;
           @apply --calendar-date-cell;
+        }
+        #calendar .day::before {
+          content: '';
+          display: block;
+          width: var(--calendar-date-width, 2.8em);
+          margin-top: 100%;
+        }
+        #calendar .day::after {
+          content: attr(data-day);
+          position: absolute;
+          top: 50%;
+          right: 50%;
+          transform: translate(50%, -50%);
         }
         #calendar #dates .day {
           cursor: pointer;
-          border-radius: 4px;
-          border-style: solid;
-          border-width: thin;
-          border-color: transparent;
           will-change: background;
           transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day:hover {
-          border-color: rgba(255, 255, 255, 0.334);
+          box-shadow: inset 0 0 1px currentColor;
           @apply --calendar-date-cell-hovered;
+        }
+        #calendar #dates .day.current {
+          box-shadow: inset 0 0 1px 1px currentColor;
         }
         #calendar #dates .day.selected {
           background: var(--input-focus-background);
           color: var(--input-focus-color);
-        }
-        #calendar #dates .day.current {
-          border-color: currentColor;
+          box-shadow: inset 0 0 1px 1px var(--input-focus-background);
         }
         #calendar #dates .day.recent {
-          border-color: var(--input-focus-background);
+          box-shadow: inset 0 0 1px 1px var(--input-focus-background);
         }
         #calendar #dates .day.notinmonth {
           opacity: 0.5;
@@ -141,7 +153,7 @@
             <svg class="icon switch" prop="month" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
             <div class="view">
               <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" index="1" value="{{month::change}}"></select>
-              <integer-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" value="{{year}}"></integer-input>
+              <integer-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" placeholder="- - - -" value="{{year}}"></integer-input>
             </div>
             <svg class="icon switch" prop="month" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
           </div>
@@ -182,7 +194,7 @@
       return {
         /**
          * Clamp datetime to a property
-         * possible values:'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+         * possible values: 'month', 'day', 'hours'
          */
         clamp: {
           type: String,
@@ -222,6 +234,18 @@
           value: /(-?\d+)-(\d\d)-(\d\d)/
         }
       }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      let d;
+      if (this.default) {
+        d = new Date(this.default);
+      }
+      if (isNaN(d)) {
+        d = new Date();
+      }
+      this.$.year.startAt = d.getFullYear();
     }
 
     _dateTimeChanged(date, time) {
@@ -306,7 +330,7 @@
         let d = new Date(0, 0, i);
         let weekday = (d.getDay() - 1 + 7) % 7;
         if (this.$.caption.children[weekday]) {
-          this.$.caption.children[weekday].textContent = d.toLocaleDateString(locale, {
+          this.$.caption.children[weekday].dataset.day = d.toLocaleDateString(locale, {
             weekday: 'short'
           });
         }
@@ -368,13 +392,13 @@
           // Day Numbers
           if (counter <= 0) {
             this.$.dates.children[i].children[j].classList.add('notinmonth');
-            this.$.dates.children[i].children[j].textContent = prevmonthlength + counter;
+            this.$.dates.children[i].children[j].dataset.day = prevmonthlength + counter;
           } else if (counter > thismonthlength) {
             this.$.dates.children[i].children[j].classList.add('notinmonth');
-            this.$.dates.children[i].children[j].textContent = counter - thismonthlength;
+            this.$.dates.children[i].children[j].dataset.day = counter - thismonthlength;
           } else {
             this.$.dates.children[i].children[j].classList.remove('notinmonth');
-            this.$.dates.children[i].children[j].textContent = counter;
+            this.$.dates.children[i].children[j].dataset.day = counter;
           }
           // Day is Selected Day
           if (counter === selectedDay) {

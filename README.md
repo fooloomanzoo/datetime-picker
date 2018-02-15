@@ -45,7 +45,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
 
-If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.
+If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
 
 You can use other pickers and elements, too. In this collection are for:
 * **datetime**
@@ -193,6 +193,8 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 
 ```html
 <p>
+  hour12: <input type="checkbox" checked="{{hour12::change}}">
+  <br>
   locale:
   <select value="{{locale::change}}">
     <option value=""></option>
@@ -202,6 +204,9 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
     <option value="es">español</option>
     <option value="it">italiano</option>
     <option value="ru">русский</option>
+    <option value="tr">Türkçe</option>
+    <option value="ar">العربية</option>
+    <option value="he">עברית</option>
     <option value="ja">日本語</option>
     <option value="zh">中文</option>
   </select>
@@ -209,7 +214,7 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 
 <p>
   <calendar-element locale="{{locale}}" date="{{date}}" ></calendar-element>
-  <time-element locale="{{locale}}" hour12 datetime="{{datetime}}" date="{{date}}" ></time-element>
+  <time-element locale="{{locale}}" hour12="[[hour12]]" datetime="{{datetime}}" date="{{date}}"></time-element>
 </p>
 
 <p>datetime: [[datetime]]</p>

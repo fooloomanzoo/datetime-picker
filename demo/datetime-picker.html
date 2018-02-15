@@ -52,7 +52,8 @@
               <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
               <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
                 value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="bottom"
-                confirmed-time="{{confirmedTime}}" confirmed-value="{{confirmedValue}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}"></datetime-picker>
+                confirmed-time="{{confirmedTime}}" confirmed-value="{{confirmedValue}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}"
+                vertical-align="bottom" horizontal-align="left"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -224,6 +225,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
+              hour12: <input type="checkbox" checked="{{hour12::change}}">
               <select value="{{locale::change}}">
                 <option value=""></option>
                 <option value="en">english</option>
@@ -232,10 +234,14 @@
                 <option value="es">español</option>
                 <option value="it">italiano</option>
                 <option value="ru">русский</option>
+                <option value="tr">Türkçe</option>
+                <option value="ar">العربية</option>
+                <option value="he">עברית</option>
                 <option value="ja">日本語</option>
                 <option value="zh">中文</option>
               </select>
-              <datetime-picker hour12  locale="{{locale}}" value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
+              <br>
+              <datetime-picker hour12="[[hour12]]" locale="{{locale}}" value="{{value}}" default="2025-05-05T15:00" datetime="{{datetime}}" vertical-align="bottom" horizontal-align="left"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>locale</code>: <b>[[locale]]</b></div>
                 <div><code>numeric value</code>: <b>[[value]]</b></div>

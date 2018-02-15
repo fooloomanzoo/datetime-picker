@@ -51,7 +51,7 @@
           padding-top: 4px;
           padding-bottom: 4px;
         }
-        #timer > .single-switch {
+        #timer > .hour12-switch {
           cursor: pointer;
           font-size: 0.8em;
           margin: 0 0.2em;
@@ -67,14 +67,14 @@
         <div id="timer" hidden$="[[_hideHours]]">
           <div class="field" hidden$="[[_hideHours]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input hidden$="[[hour12]]" index="5" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
+            <integer-input id="hour" hidden$="[[hour12]]" index="5" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
             <integer-input hidden$="[[!hour12]]" index="5" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideMinutes]]">
             <svg class="icon switch" viewBox="0 0 24 24" prop="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input min="0" max="59" index="7" pad-length="2" value="{{minutes}}" placeholder="00"></integer-input>
+            <integer-input id="minute" min="0" max="59" index="7" pad-length="2" value="{{minutes}}" placeholder="00"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
           <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
@@ -89,10 +89,12 @@
             <integer-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
             <svg class="icon switch" viewBox="0 0 24 24" prop="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
           </div>
-          <div class="single-switch" hidden$="[[!hour12]]" on-mouseup="_switchAm" style="margin-left:0.167em;">
-            <span hidden$="[[!isAm]]">[[_am]]</span>
-            <span hidden$="[[isAm]]">[[_pm]]</span>
-          </div>
+          <template is="dom-if" if="[[hour12]]">
+            <div class="hour12-switch" hidden$="[[!_valueIsSet]]" on-mouseup="_switchAm">
+              <span hidden$="[[!isAm]]">[[_am]]</span>
+              <span hidden$="[[isAm]]">[[_pm]]</span>
+            </div>
+          </template>
           <div class="field" hidden$="[[!withTimezone]]" style="margin-left:0.167em;">
             <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="1" once><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
             <integer-input index="13" pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
@@ -112,11 +114,10 @@
       return {
         /**
          * Clamp datetime to a property
-         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'
+         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds' or ''
          */
         clamp: {
-          type: String,
-          value: 'milliseconds'
+          type: String
         },
 
         withTimezone: {
@@ -144,6 +145,19 @@
           computed: '_ifClamped(clamp, "milliseconds")'
         }
       }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      let d;
+      if (this.default) {
+        d = new Date(this.default);
+      }
+      if (isNaN(d)) {
+        d = new Date();
+      }
+      this.$.hour.startAt = d.getHours();
+      this.$.minute.startAt = d.getMinutes();
     }
 
     _switchAm() {

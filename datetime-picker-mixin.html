@@ -60,7 +60,10 @@
         super.connectedCallback();
         this._addSwitchListener();
         if (this.value === undefined) {
-          this.now();
+          const d = new Date();
+          d.setSeconds(0);
+          d.setMilliseconds(0);
+          this._setDate(d);
         }
       }
 
