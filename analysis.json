@@ -34,11 +34,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -56,11 +56,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -78,11 +78,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 210,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 224,
               "column": 9
             }
           },
@@ -100,11 +100,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 215,
+              "line": 226,
               "column": 8
             },
             "end": {
-              "line": 218,
+              "line": 229,
               "column": 9
             }
           },
@@ -122,11 +122,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 220,
+              "line": 231,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 234,
               "column": 9
             }
           },
@@ -972,11 +972,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -1013,16 +1013,35 @@
       ],
       "methods": [
         {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 58,
+              "column": 6
+            },
+            "end": {
+              "line": 67,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
           "name": "_dateTimeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 521,
+              "line": 544,
               "column": 6
             },
             "end": {
-              "line": 536,
+              "line": 559,
               "column": 7
             }
           },
@@ -1042,11 +1061,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 232,
+              "line": 255,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 282,
               "column": 5
             }
           },
@@ -1064,11 +1083,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 261,
+              "line": 284,
               "column": 4
             },
             "end": {
-              "line": 263,
+              "line": 286,
               "column": 5
             }
           },
@@ -1086,11 +1105,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 265,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 302,
               "column": 5
             }
           },
@@ -1131,11 +1150,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 323,
+              "line": 346,
               "column": 4
             },
             "end": {
-              "line": 415,
+              "line": 438,
               "column": 5
             }
           },
@@ -1170,11 +1189,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 417,
+              "line": 440,
               "column": 4
             },
             "end": {
-              "line": 419,
+              "line": 442,
               "column": 5
             }
           },
@@ -1836,11 +1855,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 158,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 160,
+              "line": 163,
               "column": 7
             }
           },
@@ -1873,25 +1892,6 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "FormElementMixin"
-        },
-        {
-          "name": "connectedCallback",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "datetime-picker-mixin.html",
-            "start": {
-              "line": 58,
-              "column": 6
-            },
-            "end": {
-              "line": 67,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "disconnectedCallback",
@@ -1957,11 +1957,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -1983,11 +1983,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -2139,11 +2139,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 508,
+          "line": 531,
           "column": 4
         },
         "end": {
-          "line": 538,
+          "line": 561,
           "column": 5
         }
       },
@@ -2174,11 +2174,11 @@
           "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -2191,11 +2191,11 @@
           "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -2682,11 +2682,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -2705,11 +2705,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -2728,11 +2728,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 210,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 224,
               "column": 9
             }
           },
@@ -2751,11 +2751,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 215,
+              "line": 226,
               "column": 8
             },
             "end": {
-              "line": 218,
+              "line": 229,
               "column": 9
             }
           },
@@ -2774,11 +2774,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 220,
+              "line": 231,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 234,
               "column": 9
             }
           },
@@ -3624,11 +3624,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -3670,16 +3670,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -3692,11 +3716,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -3716,11 +3740,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -3738,11 +3762,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -3760,11 +3784,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -3782,11 +3806,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -3797,6 +3821,27 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
@@ -3804,11 +3849,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -3827,11 +3872,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -3850,11 +3895,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -3873,11 +3918,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -3890,6 +3935,25 @@
         }
       ],
       "methods": [
+        {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 291,
+              "column": 6
+            },
+            "end": {
+              "line": 295,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
         {
           "name": "_dateTimeChanged",
           "description": "",
@@ -3921,11 +3985,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 232,
+              "line": 255,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 282,
               "column": 5
             }
           },
@@ -3965,11 +4029,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 265,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 302,
               "column": 5
             }
           },
@@ -4038,11 +4102,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 417,
+              "line": 440,
               "column": 4
             },
             "end": {
-              "line": 419,
+              "line": 442,
               "column": 5
             }
           },
@@ -4110,11 +4174,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -4264,11 +4328,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -4704,11 +4768,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -4727,11 +4791,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -4740,42 +4804,23 @@
           "inheritedFrom": "DatetimePolyfillPickerMixin"
         },
         {
-          "name": "connectedCallback",
+          "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 273,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 276,
+              "line": 300,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "disconnectedCallback",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "datetime-picker-mixin.html",
-            "start": {
-              "line": 69,
-              "column": 6
-            },
-            "end": {
-              "line": 72,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "_addKeyListener",
@@ -4822,11 +4867,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -4848,11 +4893,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -4994,6 +5039,90 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "open",
           "description": "",
           "privacy": "public",
@@ -5017,11 +5146,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -5042,11 +5171,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -5067,11 +5196,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -5086,11 +5215,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -5105,11 +5234,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -5131,11 +5260,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -5178,11 +5307,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -5201,11 +5330,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -5220,11 +5349,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -5239,11 +5368,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -5306,11 +5435,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -5324,11 +5453,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -5774,11 +5903,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -5792,11 +5939,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -5810,11 +5957,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -5828,11 +5975,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -5846,11 +5993,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -5864,11 +6011,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -5882,11 +6047,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -5900,11 +6065,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -5918,11 +6083,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -5936,11 +6101,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -6933,11 +7098,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -7681,11 +7846,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 158,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 160,
+              "line": 163,
               "column": 7
             }
           },
@@ -7806,11 +7971,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -7832,11 +7997,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -8513,11 +8678,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -8536,11 +8701,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -8559,11 +8724,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 210,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 224,
               "column": 9
             }
           },
@@ -8582,11 +8747,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 215,
+              "line": 226,
               "column": 8
             },
             "end": {
-              "line": 218,
+              "line": 229,
               "column": 9
             }
           },
@@ -8605,11 +8770,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 220,
+              "line": 231,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 234,
               "column": 9
             }
           },
@@ -9569,11 +9734,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -9615,16 +9780,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -9637,11 +9826,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -9661,11 +9850,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -9683,11 +9872,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -9705,11 +9894,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -9727,11 +9916,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -9742,6 +9931,27 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
@@ -9749,11 +9959,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -9772,11 +9982,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -9795,11 +10005,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -9818,11 +10028,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -9835,6 +10045,25 @@
         }
       ],
       "methods": [
+        {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 291,
+              "column": 6
+            },
+            "end": {
+              "line": 295,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
         {
           "name": "_dateTimeChanged",
           "description": "",
@@ -9868,11 +10097,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 232,
+              "line": 255,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 282,
               "column": 5
             }
           },
@@ -9912,11 +10141,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 265,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 302,
               "column": 5
             }
           },
@@ -9985,11 +10214,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 417,
+              "line": 440,
               "column": 4
             },
             "end": {
-              "line": 419,
+              "line": 442,
               "column": 5
             }
           },
@@ -10057,11 +10286,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -10074,25 +10303,6 @@
             }
           ],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "connectedCallback",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 273,
-              "column": 6
-            },
-            "end": {
-              "line": 276,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_switchAm",
@@ -10249,11 +10459,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -10689,11 +10899,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -10712,11 +10922,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -10729,19 +10939,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 69,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 300,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_addKeyListener",
@@ -10788,11 +10998,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -10814,11 +11024,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -10960,6 +11170,90 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "open",
           "description": "",
           "privacy": "public",
@@ -10983,11 +11277,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -11008,11 +11302,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -11033,11 +11327,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -11052,11 +11346,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -11071,11 +11365,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -11097,11 +11391,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -11120,11 +11414,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 179,
+              "line": 180,
               "column": 6
             },
             "end": {
-              "line": 194,
+              "line": 195,
               "column": 7
             }
           },
@@ -11146,11 +11440,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -11169,11 +11463,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -11188,11 +11482,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -11207,11 +11501,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -11272,11 +11566,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -11290,11 +11584,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -11758,11 +12052,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -11776,11 +12088,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -11794,11 +12106,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -11812,11 +12124,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -11830,11 +12142,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -11848,11 +12160,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -11866,11 +12196,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -11884,11 +12214,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -11902,11 +12232,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -11920,11 +12250,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -12923,11 +13253,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -12969,16 +13299,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -12991,11 +13345,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -13015,11 +13369,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -13037,11 +13391,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -13059,11 +13413,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -13081,11 +13435,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -13096,6 +13450,27 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
@@ -13103,11 +13478,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -13126,11 +13501,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -13149,11 +13524,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -13172,11 +13547,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -13196,11 +13571,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 273,
+              "line": 291,
               "column": 6
             },
             "end": {
-              "line": 276,
+              "line": 295,
               "column": 7
             }
           },
@@ -13389,11 +13764,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -13898,11 +14273,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -13921,11 +14296,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -13938,19 +14313,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 69,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 300,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_addKeyListener",
@@ -13997,11 +14372,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -14022,11 +14397,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -14048,11 +14423,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -14194,17 +14569,101 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "open",
           "description": "open the picker",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 306,
+              "line": 372,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 377,
               "column": 7
             }
           },
@@ -14219,11 +14678,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -14244,11 +14703,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -14269,11 +14728,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -14288,11 +14747,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -14307,11 +14766,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -14333,11 +14792,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -14380,11 +14839,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -14403,11 +14862,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -14422,11 +14881,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -14441,11 +14900,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -14958,11 +15417,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -14976,11 +15453,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -14994,11 +15471,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -15012,11 +15489,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -15030,11 +15507,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -15048,11 +15525,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -15066,11 +15561,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -15084,11 +15579,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -15102,11 +15597,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -15120,11 +15615,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -15181,11 +15676,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -15204,11 +15699,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -15227,11 +15722,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 210,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 224,
               "column": 9
             }
           },
@@ -15250,11 +15745,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 215,
+              "line": 226,
               "column": 8
             },
             "end": {
-              "line": 218,
+              "line": 229,
               "column": 9
             }
           },
@@ -15273,11 +15768,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 220,
+              "line": 231,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 234,
               "column": 9
             }
           },
@@ -16237,11 +16732,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -16283,16 +16778,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -16305,11 +16824,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -16329,11 +16848,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -16351,11 +16870,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -16373,11 +16892,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -16395,11 +16914,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -16410,6 +16929,27 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
@@ -16417,11 +16957,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -16440,11 +16980,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -16463,11 +17003,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -16486,11 +17026,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -16509,11 +17049,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 18,
+              "line": 20,
               "column": 10
             },
             "end": {
-              "line": 20,
+              "line": 22,
               "column": 11
             }
           },
@@ -16530,11 +17070,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 24,
+              "line": 26,
               "column": 10
             },
             "end": {
-              "line": 27,
+              "line": 29,
               "column": 11
             }
           },
@@ -16552,11 +17092,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 10
             },
             "end": {
-              "line": 35,
+              "line": 37,
               "column": 11
             }
           },
@@ -16574,11 +17114,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 42,
               "column": 10
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 11
             }
           },
@@ -16596,11 +17136,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 48,
+              "line": 50,
               "column": 10
             },
             "end": {
-              "line": 51,
+              "line": 53,
               "column": 11
             }
           },
@@ -16612,6 +17152,25 @@
         }
       ],
       "methods": [
+        {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 291,
+              "column": 6
+            },
+            "end": {
+              "line": 295,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
         {
           "name": "_dateTimeChanged",
           "description": "",
@@ -16645,11 +17204,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 232,
+              "line": 255,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 282,
               "column": 5
             }
           },
@@ -16691,11 +17250,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 265,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 302,
               "column": 5
             }
           },
@@ -16766,11 +17325,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 417,
+              "line": 440,
               "column": 4
             },
             "end": {
-              "line": 419,
+              "line": 442,
               "column": 5
             }
           },
@@ -16838,11 +17397,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -16855,25 +17414,6 @@
             }
           ],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "connectedCallback",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
-            "start": {
-              "line": 273,
-              "column": 6
-            },
-            "end": {
-              "line": 276,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_switchAm",
@@ -17030,11 +17570,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -17470,11 +18010,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -17493,11 +18033,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -17510,19 +18050,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 69,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 300,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_addKeyListener",
@@ -17569,11 +18109,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -17595,11 +18135,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -17741,6 +18281,90 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "open",
           "description": "",
           "privacy": "public",
@@ -17766,11 +18390,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -17791,11 +18415,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -17816,11 +18440,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -17835,11 +18459,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -17854,11 +18478,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -17880,11 +18504,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -17903,11 +18527,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 179,
+              "line": 180,
               "column": 6
             },
             "end": {
-              "line": 194,
+              "line": 195,
               "column": 7
             }
           },
@@ -17929,11 +18553,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -17952,11 +18576,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -17971,11 +18595,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -17990,11 +18614,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -18017,12 +18641,12 @@
           "column": 4
         },
         "end": {
-          "line": 57,
+          "line": 53,
           "column": 5
         }
       },
       "privacy": "public",
-      "superclass": "DatetimePicker",
+      "superclass": "HTMLElement",
       "name": "OverlayDatetimePicker",
       "attributes": [
         {
@@ -18049,11 +18673,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -18067,11 +18691,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -18535,11 +19159,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -18553,11 +19195,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -18571,11 +19213,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -18589,11 +19231,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -18607,11 +19249,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -18625,11 +19267,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -18643,11 +19303,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -18661,11 +19321,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -18679,11 +19339,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -18697,11 +19357,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -18715,11 +19375,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 18,
+              "line": 20,
               "column": 10
             },
             "end": {
-              "line": 20,
+              "line": 22,
               "column": 11
             }
           },
@@ -18733,11 +19393,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 24,
+              "line": 26,
               "column": 10
             },
             "end": {
-              "line": 27,
+              "line": 29,
               "column": 11
             }
           },
@@ -18751,11 +19411,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 10
             },
             "end": {
-              "line": 35,
+              "line": 37,
               "column": 11
             }
           },
@@ -18769,11 +19429,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 42,
               "column": 10
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 11
             }
           },
@@ -18787,11 +19447,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 48,
+              "line": 50,
               "column": 10
             },
             "end": {
-              "line": 51,
+              "line": 53,
               "column": 11
             }
           },
@@ -18845,11 +19505,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -18868,11 +19528,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -18891,11 +19551,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 210,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 224,
               "column": 9
             }
           },
@@ -18914,11 +19574,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 215,
+              "line": 226,
               "column": 8
             },
             "end": {
-              "line": 218,
+              "line": 229,
               "column": 9
             }
           },
@@ -18937,11 +19597,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 220,
+              "line": 231,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 234,
               "column": 9
             }
           },
@@ -19787,11 +20447,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -19833,16 +20493,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -19855,11 +20539,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -19879,11 +20563,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -19901,11 +20585,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -19923,11 +20607,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -19945,11 +20629,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -19960,6 +20644,27 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
@@ -19967,11 +20672,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -19990,11 +20695,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -20013,11 +20718,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -20036,11 +20741,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -20059,11 +20764,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 18,
+              "line": 20,
               "column": 10
             },
             "end": {
-              "line": 20,
+              "line": 22,
               "column": 11
             }
           },
@@ -20080,11 +20785,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 24,
+              "line": 26,
               "column": 10
             },
             "end": {
-              "line": 27,
+              "line": 29,
               "column": 11
             }
           },
@@ -20102,11 +20807,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 10
             },
             "end": {
-              "line": 35,
+              "line": 37,
               "column": 11
             }
           },
@@ -20124,11 +20829,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 42,
               "column": 10
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 11
             }
           },
@@ -20146,11 +20851,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 48,
+              "line": 50,
               "column": 10
             },
             "end": {
-              "line": 51,
+              "line": 53,
               "column": 11
             }
           },
@@ -20162,6 +20867,25 @@
         }
       ],
       "methods": [
+        {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 291,
+              "column": 6
+            },
+            "end": {
+              "line": 295,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
         {
           "name": "_dateTimeChanged",
           "description": "",
@@ -20195,11 +20919,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 232,
+              "line": 255,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 282,
               "column": 5
             }
           },
@@ -20241,11 +20965,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 265,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 302,
               "column": 5
             }
           },
@@ -20316,11 +21040,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 417,
+              "line": 440,
               "column": 4
             },
             "end": {
-              "line": 419,
+              "line": 442,
               "column": 5
             }
           },
@@ -20388,11 +21112,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -20542,11 +21266,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -20982,11 +21706,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -21005,11 +21729,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -21018,42 +21742,23 @@
           "inheritedFrom": "DatetimePolyfillPickerMixin"
         },
         {
-          "name": "connectedCallback",
+          "name": "disconnectedCallback",
           "description": "",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 273,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 276,
+              "line": 300,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
           "inheritedFrom": "InputPickerPattern"
-        },
-        {
-          "name": "disconnectedCallback",
-          "description": "",
-          "privacy": "public",
-          "sourceRange": {
-            "file": "datetime-picker-mixin.html",
-            "start": {
-              "line": 69,
-              "column": 6
-            },
-            "end": {
-              "line": 72,
-              "column": 7
-            }
-          },
-          "metadata": {},
-          "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
         },
         {
           "name": "_addKeyListener",
@@ -21100,11 +21805,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -21126,11 +21831,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -21272,6 +21977,90 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "open",
           "description": "",
           "privacy": "public",
@@ -21297,11 +22086,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -21322,11 +22111,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -21347,11 +22136,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -21366,11 +22155,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -21385,11 +22174,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -21411,11 +22200,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -21460,11 +22249,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -21483,11 +22272,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -21502,11 +22291,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -21521,11 +22310,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -21548,12 +22337,12 @@
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 52,
           "column": 5
         }
       },
       "privacy": "public",
-      "superclass": "DatePicker",
+      "superclass": "HTMLElement",
       "name": "OverlayDatePicker",
       "attributes": [
         {
@@ -21580,11 +22369,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -21598,11 +22387,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -22048,11 +22837,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -22066,11 +22873,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -22084,11 +22891,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -22102,11 +22909,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -22120,11 +22927,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -22138,11 +22945,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -22156,11 +22981,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -22174,11 +22999,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -22192,11 +23017,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -22210,11 +23035,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -22228,11 +23053,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 18,
+              "line": 20,
               "column": 10
             },
             "end": {
-              "line": 20,
+              "line": 22,
               "column": 11
             }
           },
@@ -22246,11 +23071,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 24,
+              "line": 26,
               "column": 10
             },
             "end": {
-              "line": 27,
+              "line": 29,
               "column": 11
             }
           },
@@ -22264,11 +23089,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 10
             },
             "end": {
-              "line": 35,
+              "line": 37,
               "column": 11
             }
           },
@@ -22282,11 +23107,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 42,
               "column": 10
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 11
             }
           },
@@ -22300,11 +23125,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 48,
+              "line": 50,
               "column": 10
             },
             "end": {
-              "line": 51,
+              "line": 53,
               "column": 11
             }
           },
@@ -23300,11 +24125,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -23346,16 +24171,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -23368,11 +24217,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -23392,11 +24241,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -23414,11 +24263,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -23436,11 +24285,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -23458,11 +24307,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -23473,6 +24322,27 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
@@ -23480,11 +24350,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -23503,11 +24373,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -23526,11 +24396,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -23549,11 +24419,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -23572,11 +24442,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 18,
+              "line": 20,
               "column": 10
             },
             "end": {
-              "line": 20,
+              "line": 22,
               "column": 11
             }
           },
@@ -23593,11 +24463,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 24,
+              "line": 26,
               "column": 10
             },
             "end": {
-              "line": 27,
+              "line": 29,
               "column": 11
             }
           },
@@ -23615,11 +24485,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 10
             },
             "end": {
-              "line": 35,
+              "line": 37,
               "column": 11
             }
           },
@@ -23637,11 +24507,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 42,
               "column": 10
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 11
             }
           },
@@ -23659,11 +24529,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 48,
+              "line": 50,
               "column": 10
             },
             "end": {
-              "line": 51,
+              "line": 53,
               "column": 11
             }
           },
@@ -23682,11 +24552,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 273,
+              "line": 291,
               "column": 6
             },
             "end": {
-              "line": 276,
+              "line": 295,
               "column": 7
             }
           },
@@ -23875,11 +24745,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -24384,11 +25254,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -24407,11 +25277,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -24424,19 +25294,19 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "datetime-picker-mixin.html",
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 69,
+              "line": 297,
               "column": 6
             },
             "end": {
-              "line": 72,
+              "line": 300,
               "column": 7
             }
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "DatetimePickerMixin"
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_addKeyListener",
@@ -24483,11 +25353,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -24508,11 +25378,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -24534,11 +25404,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -24680,17 +25550,101 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "open",
           "description": "open the picker",
           "privacy": "public",
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 306,
+              "line": 372,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 377,
               "column": 7
             }
           },
@@ -24705,11 +25659,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -24730,11 +25684,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -24755,11 +25709,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -24774,11 +25728,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -24793,11 +25747,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -24819,11 +25773,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -24868,11 +25822,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -24891,11 +25845,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -24910,11 +25864,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -24929,11 +25883,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -24956,12 +25910,12 @@
           "column": 4
         },
         "end": {
-          "line": 56,
+          "line": 52,
           "column": 5
         }
       },
       "privacy": "public",
-      "superclass": "TimePicker",
+      "superclass": "HTMLElement",
       "name": "OverlayTimePicker",
       "attributes": [
         {
@@ -25438,11 +26392,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -25456,11 +26428,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -25474,11 +26446,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -25492,11 +26464,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -25510,11 +26482,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -25528,11 +26500,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -25546,11 +26536,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -25564,11 +26554,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -25582,11 +26572,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -25600,11 +26590,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -25618,11 +26608,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 18,
+              "line": 20,
               "column": 10
             },
             "end": {
-              "line": 20,
+              "line": 22,
               "column": 11
             }
           },
@@ -25636,11 +26626,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 24,
+              "line": 26,
               "column": 10
             },
             "end": {
-              "line": 27,
+              "line": 29,
               "column": 11
             }
           },
@@ -25654,11 +26644,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 10
             },
             "end": {
-              "line": 35,
+              "line": 37,
               "column": 11
             }
           },
@@ -25672,11 +26662,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 40,
+              "line": 42,
               "column": 10
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 11
             }
           },
@@ -25690,11 +26680,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\overlay-picker-mixin.html",
             "start": {
-              "line": 48,
+              "line": 50,
               "column": 10
             },
             "end": {
-              "line": 51,
+              "line": 53,
               "column": 11
             }
           },
@@ -26578,11 +27568,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 133,
+              "line": 136,
               "column": 10
             },
             "end": {
-              "line": 136,
+              "line": 139,
               "column": 11
             }
           },
@@ -27289,11 +28279,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 158,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 160,
+              "line": 163,
               "column": 7
             }
           },
@@ -27423,11 +28413,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 203,
+              "line": 206,
               "column": 6
             },
             "end": {
-              "line": 252,
+              "line": 255,
               "column": 7
             }
           },
@@ -27449,11 +28439,11 @@
           "sourceRange": {
             "file": "bower_components\\datetime-input\\datetime-input-mixin.html",
             "start": {
-              "line": 254,
+              "line": 257,
               "column": 6
             },
             "end": {
-              "line": 256,
+              "line": 259,
               "column": 7
             }
           },
@@ -28071,16 +29061,40 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "nativeOnMobile",
+          "type": "boolean",
+          "description": "use the native input automatically on mobile devices",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_nativeOnMobileChanged\""
+            }
           },
           "defaultValue": "false",
           "inheritedFrom": "InputPickerPattern"
@@ -28093,11 +29107,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -28117,11 +29131,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -28139,11 +29153,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -28161,11 +29175,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -28183,11 +29197,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
               "column": 11
             }
           },
@@ -28198,17 +29212,38 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "noTip",
+          "type": "boolean",
+          "description": "Set to disable the tip of the picker",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
+              "column": 11
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "confirmedDate",
           "type": "string",
           "description": "",
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -28225,11 +29260,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -28246,11 +29281,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -28267,11 +29302,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -28290,11 +29325,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 273,
+              "line": 291,
               "column": 6
             },
             "end": {
-              "line": 276,
+              "line": 295,
               "column": 7
             }
           },
@@ -28303,16 +29338,119 @@
           "inheritedFrom": "InputPickerPattern"
         },
         {
+          "name": "disconnectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 297,
+              "column": 6
+            },
+            "end": {
+              "line": 300,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_addClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 302,
+              "column": 6
+            },
+            "end": {
+              "line": 310,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_removeClickListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 312,
+              "column": 6
+            },
+            "end": {
+              "line": 320,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_clickHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 322,
+              "column": 6
+            },
+            "end": {
+              "line": 326,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "_nativeOnMobileChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 328,
+              "column": 6
+            },
+            "end": {
+              "line": 342,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "nativeOnMobile"
+            }
+          ],
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
           "name": "_checkKeycode",
           "description": "key press event handler",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 137,
+              "line": 138,
               "column": 6
             },
             "end": {
-              "line": 146,
+              "line": 147,
               "column": 7
             }
           },
@@ -28332,11 +29470,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 306,
+              "line": 372,
               "column": 6
             },
             "end": {
-              "line": 311,
+              "line": 377,
               "column": 7
             }
           },
@@ -28351,11 +29489,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 317,
+              "line": 383,
               "column": 6
             },
             "end": {
-              "line": 327,
+              "line": 393,
               "column": 7
             }
           },
@@ -28376,11 +29514,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 333,
+              "line": 399,
               "column": 6
             },
             "end": {
-              "line": 341,
+              "line": 407,
               "column": 7
             }
           },
@@ -28400,11 +29538,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 155,
+              "line": 156,
               "column": 6
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 7
             }
           },
@@ -28417,11 +29555,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 160,
+              "line": 161,
               "column": 6
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 7
             }
           },
@@ -28434,11 +29572,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 120,
+              "line": 121,
               "column": 6
             },
             "end": {
-              "line": 122,
+              "line": 123,
               "column": 7
             }
           },
@@ -28455,11 +29593,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 124,
+              "line": 125,
               "column": 6
             },
             "end": {
-              "line": 127,
+              "line": 128,
               "column": 7
             }
           },
@@ -28472,11 +29610,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 129,
+              "line": 130,
               "column": 6
             },
             "end": {
-              "line": 131,
+              "line": 132,
               "column": 7
             }
           },
@@ -28496,11 +29634,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 6
             },
             "end": {
-              "line": 153,
+              "line": 154,
               "column": 7
             }
           },
@@ -28517,11 +29655,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 165,
+              "line": 166,
               "column": 6
             },
             "end": {
-              "line": 177,
+              "line": 178,
               "column": 7
             }
           },
@@ -28538,11 +29676,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 179,
+              "line": 180,
               "column": 6
             },
             "end": {
-              "line": 194,
+              "line": 195,
               "column": 7
             }
           },
@@ -28562,11 +29700,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 196,
+              "line": 197,
               "column": 6
             },
             "end": {
-              "line": 209,
+              "line": 210,
               "column": 7
             }
           },
@@ -28583,11 +29721,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 211,
+              "line": 212,
               "column": 6
             },
             "end": {
-              "line": 218,
+              "line": 219,
               "column": 7
             }
           },
@@ -28600,11 +29738,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 220,
+              "line": 221,
               "column": 6
             },
             "end": {
-              "line": 227,
+              "line": 228,
               "column": 7
             }
           },
@@ -28617,11 +29755,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 230,
               "column": 6
             },
             "end": {
-              "line": 239,
+              "line": 240,
               "column": 7
             }
           },
@@ -28634,11 +29772,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 16,
+          "line": 17,
           "column": 2
         },
         "end": {
-          "line": 241,
+          "line": 242,
           "column": 3
         }
       },
@@ -28651,11 +29789,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 221,
+              "line": 222,
               "column": 10
             },
             "end": {
-              "line": 224,
+              "line": 225,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "native-on-mobile",
+          "description": "use the native input automatically on mobile devices",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 230,
+              "column": 10
+            },
+            "end": {
+              "line": 234,
               "column": 11
             }
           },
@@ -28669,11 +29825,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 229,
+              "line": 239,
               "column": 10
             },
             "end": {
-              "line": 234,
+              "line": 244,
               "column": 11
             }
           },
@@ -28687,11 +29843,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 240,
+              "line": 250,
               "column": 10
             },
             "end": {
-              "line": 244,
+              "line": 254,
               "column": 11
             }
           },
@@ -28705,11 +29861,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 249,
+              "line": 259,
               "column": 10
             },
             "end": {
-              "line": 253,
+              "line": 263,
               "column": 11
             }
           },
@@ -28723,11 +29879,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 258,
+              "line": 268,
               "column": 10
             },
             "end": {
-              "line": 261,
+              "line": 271,
               "column": 11
             }
           },
@@ -28741,11 +29897,29 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 266,
+              "line": 276,
               "column": 10
             },
             "end": {
-              "line": 269,
+              "line": 279,
+              "column": 11
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "InputPickerPattern"
+        },
+        {
+          "name": "no-tip",
+          "description": "Set to disable the tip of the picker",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 284,
+              "column": 10
+            },
+            "end": {
+              "line": 287,
               "column": 11
             }
           },
@@ -28758,11 +29932,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 89,
+              "line": 90,
               "column": 10
             },
             "end": {
-              "line": 92,
+              "line": 93,
               "column": 11
             }
           },
@@ -28774,11 +29948,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 94,
+              "line": 95,
               "column": 10
             },
             "end": {
-              "line": 97,
+              "line": 98,
               "column": 11
             }
           },
@@ -28790,11 +29964,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 99,
+              "line": 100,
               "column": 10
             },
             "end": {
-              "line": 102,
+              "line": 103,
               "column": 11
             }
           },
@@ -28806,11 +29980,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 104,
+              "line": 105,
               "column": 10
             },
             "end": {
-              "line": 107,
+              "line": 108,
               "column": 11
             }
           },
@@ -28840,11 +30014,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 187,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 190,
+              "line": 201,
               "column": 9
             }
           },
@@ -28860,11 +30034,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -28881,11 +30055,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
@@ -28902,11 +30076,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 210,
+              "line": 221,
               "column": 8
             },
             "end": {
-              "line": 213,
+              "line": 224,
               "column": 9
             }
           },
@@ -28923,11 +30097,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 215,
+              "line": 226,
               "column": 8
             },
             "end": {
-              "line": 218,
+              "line": 229,
               "column": 9
             }
           },
@@ -28944,11 +30118,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 220,
+              "line": 231,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 234,
               "column": 9
             }
           },
@@ -28960,16 +30134,33 @@
       ],
       "methods": [
         {
+          "name": "connectedCallback",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 238,
+              "column": 4
+            },
+            "end": {
+              "line": 248,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
           "name": "_dateTimeChanged",
           "description": "",
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 227,
+              "line": 250,
               "column": 4
             },
             "end": {
-              "line": 230,
+              "line": 253,
               "column": 5
             }
           },
@@ -28989,11 +30180,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 232,
+              "line": 255,
               "column": 4
             },
             "end": {
-              "line": 259,
+              "line": 282,
               "column": 5
             }
           },
@@ -29010,11 +30201,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 261,
+              "line": 284,
               "column": 4
             },
             "end": {
-              "line": 263,
+              "line": 286,
               "column": 5
             }
           },
@@ -29031,11 +30222,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 265,
+              "line": 288,
               "column": 4
             },
             "end": {
-              "line": 279,
+              "line": 302,
               "column": 5
             }
           },
@@ -29052,11 +30243,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 281,
+              "line": 304,
               "column": 4
             },
             "end": {
-              "line": 314,
+              "line": 337,
               "column": 5
             }
           },
@@ -29073,11 +30264,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 323,
+              "line": 346,
               "column": 4
             },
             "end": {
-              "line": 415,
+              "line": 438,
               "column": 5
             }
           },
@@ -29111,11 +30302,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 417,
+              "line": 440,
               "column": 4
             },
             "end": {
-              "line": 419,
+              "line": 442,
               "column": 5
             }
           },
@@ -29135,11 +30326,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 421,
+              "line": 444,
               "column": 4
             },
             "end": {
-              "line": 424,
+              "line": 447,
               "column": 5
             }
           },
@@ -29156,11 +30347,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 426,
+              "line": 449,
               "column": 4
             },
             "end": {
-              "line": 429,
+              "line": 452,
               "column": 5
             }
           },
@@ -29177,11 +30368,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 435,
+              "line": 458,
               "column": 4
             },
             "end": {
-              "line": 466,
+              "line": 489,
               "column": 5
             }
           },
@@ -29204,7 +30395,7 @@
           "column": 2
         },
         "end": {
-          "line": 468,
+          "line": 491,
           "column": 3
         }
       },
@@ -29216,11 +30407,11 @@
           "description": "Clamp datetime to a property\npossible values: 'month', 'day', 'hours'",
           "sourceRange": {
             "start": {
-              "line": 187,
+              "line": 198,
               "column": 8
             },
             "end": {
-              "line": 190,
+              "line": 201,
               "column": 9
             }
           },
@@ -29232,11 +30423,11 @@
           "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 196,
+              "line": 207,
               "column": 8
             },
             "end": {
-              "line": 199,
+              "line": 210,
               "column": 9
             }
           },
@@ -29248,11 +30439,11 @@
           "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 205,
+              "line": 216,
               "column": 8
             },
             "end": {
-              "line": 208,
+              "line": 219,
               "column": 9
             }
           },
