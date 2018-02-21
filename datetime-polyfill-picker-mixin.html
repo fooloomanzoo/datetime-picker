@@ -24,7 +24,7 @@
        */
       static get _nativeInputTemplate() {
         return `
-          <input class="native" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
+          <input class="native" tabindex="0" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
           <div hidden$="[[!_computeAnd(withTimezone, native)]]" style="display:inline-flex;align-items:center;">
             <integer-input class="replacement" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23"></integer-input>
             <span>[[_localTimeSeparator]]</span>
@@ -35,7 +35,7 @@
 
       static get replacementInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" tabindex required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
       }
 
@@ -51,37 +51,56 @@
         return `input-shared-style dropdown-style dropdown-tip-style`;
       }
 
-      /**
-       * custom style content
-       * @type {string}
-       */
       static get customStyleContent() {
         return `
           ${super.customStyleContent || ''}
-          .replacement {
-            --input-color: currentColor;
-            --input-background: transparent;
-          }
-          #picker {
-            @apply --input-picker;
-            padding: 0;
-          }
-          #picker #buttons {
-            color: var(--input-color);
-            background: var(--input-background);
-          }
-          input {
-            font-family: inherit;
-            font-size: inherit;
+          ::-webkit-datetime-edit,
+          ::-webkit-datetime-edit-fields-wrapper,
+          ::-webkit-datetime-edit-ampm-field,
+          ::-webkit-datetime-edit-day-field,
+          ::-webkit-datetime-edit-hour-field,
+          ::-webkit-datetime-edit-millisecond-field,
+          ::-webkit-datetime-edit-minute-field,
+          ::-webkit-datetime-edit-month-field,
+          ::-webkit-datetime-edit-second-field,
+          ::-webkit-datetime-edit-week-field,
+          ::-webkit-datetime-edit-year-field {
+            color: currentColor;
+            cursor: pointer;
             @apply --input-style;
           }
-          input[disabled] {
-            @apply --input-disabled;
-          }
-          input:not([disabled]):focus,
-          input:not([disabled]):hover {
+          ::-webkit-datetime-edit:focus,
+          ::-webkit-datetime-edit-fields-wrapper:focus,
+          ::-webkit-datetime-edit-ampm-field:focus,
+          ::-webkit-datetime-edit-day-field:focus,
+          ::-webkit-datetime-edit-hour-field:focus,
+          ::-webkit-datetime-edit-millisecond-field:focus,
+          ::-webkit-datetime-edit-minute-field:focus,
+          ::-webkit-datetime-edit-month-field:focus,
+          ::-webkit-datetime-edit-second-field:focus,
+          ::-webkit-datetime-edit-week-field:focus,
+          ::-webkit-datetime-edit-year-field:focus {
+            background: transparent;
             @apply --input-focus;
           }
+          ::-webkit-calendar-picker-indicator {
+            fill: currentColor;
+            cursor: pointer;
+          }
+          ::-webkit-calendar-picker-indicator:hover {
+            background: transparent;
+          }
+        `;
+      }
+
+      /**
+       * template for control buttons
+       * @type {string}
+       */
+      static get _buttonTemplate() {
+        return `
+          <button class="icon now" tabindex="0" on-click="now"><svg viewBox="0 0 24 24"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg></button>
+          ${super._buttonTemplate || ''}
         `;
       }
 
@@ -130,21 +149,6 @@
 
       _computeAnd(a, b) {
         return a && b;
-      }
-
-      /**
-       * key press event handler
-       * @param  {[type]} e Event
-       */
-      _checkKeycode(e) {
-        if (!e || (this._hasNative && this.native)) {
-          return;
-        }
-        if (this.opened) {
-          super._checkKeycode(e);
-        } else {
-          this.open();
-        }
       }
 
       _setDate(d) {

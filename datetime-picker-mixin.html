@@ -32,28 +32,24 @@
         }
       }
 
-      /**
-       * template for control buttons
-       * @type {string}
-       */
-      static get _buttonTemplate() {
-        return `
-          ${super._buttonTemplate || ''}
-          <svg class="icon button now" viewBox="0 0 24 24" on-click="now"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>
-        `;
-      }
-
-      static get customStyleContent() {
-        return `
-          ${super.customStyleContent || ''}
-          .icon {
-            @apply --input-icon;
-          }
-        `;
-      }
-
       static get customStyleToInclude() {
         return 'input-shared-style';
+      }
+
+      static get _iconStepUp() {
+        return '<svg viewBox="0 0 24 24"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>';
+      }
+
+      static get _iconStepDown() {
+        return '<svg viewBox="0 0 24 24"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>';
+      }
+
+      static get _iconStepLeft() {
+        return '<svg viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>';
+      }
+
+      static get _iconStepRight() {
+        return '<svg viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>';
       }
 
       connectedCallback() {
@@ -76,7 +72,6 @@
         if (super._addKeyListener) {
           super._addKeyListener();
         }
-        this.addEventListener('keyup', this._stopActiveIncremJob.bind(this), {passive: true});
         this.addEventListener('contextmenu', this._stopActiveIncremJob.bind(this), {passive: true});
       }
 
@@ -84,16 +79,18 @@
         if (super._removeKeyListener) {
           super._removeKeyListener();
         }
-        this.removeEventListener('keyup', this._stopActiveIncremJob.bind(this), {passive: true});
         this.removeEventListener('contextmenu', this._stopActiveIncremJob.bind(this), {passive: true});
       }
 
       _addSwitchListener() {
+        this.addEventListener('focus', this._stopActiveIncremJob.bind(this), {passive: true});
+        this.addEventListener('blur', this._stopActiveIncremJob.bind(this), {passive: true});
         const switchs = this.root.querySelectorAll('.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
             s.addEventListener('mousedown', this._increm.bind(this, s), {passive: true});
             s.addEventListener('touchstart', this._increm.bind(this, s), {passive: true});
+            s.addEventListener('keydown', this._checkKeycodeSwitch.bind(this, s), {passive: true});
             s.addEventListener('mouseup', this._stopActiveIncremJob.bind(this), {passive: true});
             s.addEventListener('mouseout', this._stopActiveIncremJob.bind(this), {passive: true});
             s.addEventListener('touchend', this._stopActiveIncremJob.bind(this), {passive: true});
@@ -104,11 +101,14 @@
       }
 
       _removeSwitchListener() {
+        this.removeEventListener('focus', this._stopActiveIncremJob.bind(this), {passive: true});
+        this.removeEventListener('blur', this._stopActiveIncremJob.bind(this), {passive: true});
         const switchs = this.root.querySelectorAll('.switch');
         if (switchs) {
           Array.prototype.forEach.call(switchs, s => {
             s.removeEventListener('mousedown', this._increm.bind(this, s), {passive: true});
             s.removeEventListener('touchstart', this._increm.bind(this, s), {passive: true});
+            s.removeEventListener('keydown', this._checkKeycodeSwitch.bind(this, s), {passive: true});
             s.removeEventListener('mouseup', this._stopActiveIncremJob.bind(this), {passive: true});
             s.removeEventListener('mouseout', this._stopActiveIncremJob.bind(this), {passive: true});
             s.removeEventListener('touchend', this._stopActiveIncremJob.bind(this), {passive: true});
@@ -118,17 +118,12 @@
         }
       }
 
-      _checkKeycode(e) {
-        if (!e) {
-          return;
-        }
-        this._stopActiveIncremJob();
-        if (e.keyCode === 13 || e.keyCode === 32) { // space || enter
-          this.confirm && this.confirm();
-          return;
-        }
-        if (super._checkKeycode) {
-          super._checkKeycode(e);
+      _checkKeycodeSwitch(s, e) {
+        if (e && (e.keyCode === 13 || e.keyCode === 32)) { // space or enter
+          this._increm(s);
+          e.stopPropagation();
+        } else {
+          this._stopActiveIncremJob();
         }
       }
 

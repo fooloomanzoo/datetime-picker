@@ -86,6 +86,9 @@
         #calendar #dates {
           display: table-row-group;
         }
+        #calendar #dates:focus {
+          outline: none;
+        }
         #calendar .week {
           display: table-row;
         }
@@ -117,7 +120,7 @@
         #calendar #dates .day {
           cursor: pointer;
           will-change: background;
-          transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1), border-color 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1), box-shadow 150ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day:hover {
           box-shadow: inset 0 0 1px currentColor;
@@ -129,7 +132,10 @@
         #calendar #dates .day.selected {
           background: var(--input-focus-background);
           color: var(--input-focus-color);
-          box-shadow: inset 0 0 1px 1px var(--input-focus-background);
+          box-shadow: none;
+        }
+        #calendar #dates:focus .day.selected {
+          box-shadow: inset 0 0 1px 1px currentColor;
         }
         #calendar #dates .day.recent {
           box-shadow: inset 0 0 1px 1px var(--input-focus-background);
@@ -150,12 +156,12 @@
         ${super.contentTemplate || ''}
         <div id="calendar">
           <div id="top">
-            <svg class="icon switch" prop="month" step="-1" viewBox="0 0 24 24"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
+            <button class="icon switch" prop="month" step="-1">${this._iconStepLeft}</button>
             <div class="view">
-              <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" index="1" value="{{month::change}}"></select>
-              <integer-input id="year" style="order:[[_orderDate.year]];" index="3" pad-length="4" placeholder="- - - -" value="{{year}}"></integer-input>
+              <select id="monthSelector" hidden$="[[_hideMonth]]" tabindex="0" style="order:[[_orderDate.month]];" value="{{month::change}}"></select>
+              <integer-input id="year" style="order:[[_orderDate.year]];" pad-length="4" placeholder="- - - -" value="{{year}}"></integer-input>
             </div>
-            <svg class="icon switch" prop="month" step="1" viewBox="0 0 24 24"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
+            <button class="icon switch" prop="month" step="1">${this._iconStepRight}</button>
           </div>
 
           <div id="content" hidden$="[[_hideDay]]">
@@ -165,7 +171,7 @@
               </div>
             </div>
 
-            <div id="dates" on-mousedown="_onClickDay" on-mousemove="_onMouseMoveDay">
+            <div id="dates" tabindex="0" on-mousedown="_onClickDay" on-mousemove="_onMouseMoveDay" on-focus="_addKeylistenerForDates" on-blur="_removeKeylistenerForDates">
               <div class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
               </div>
@@ -246,6 +252,11 @@
         d = new Date();
       }
       this.$.year.startAt = d.getFullYear();
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      this._removeKeylistenerForDates();
     }
 
     _dateTimeChanged(date, time) {
@@ -452,40 +463,42 @@
       this.renderCalendar(this.year, this.month, this.day, this.date);
     }
 
+    _addKeylistenerForDates() {
+      this.$.dates.addEventListener('keydown', this._checkKeycodeForDates.bind(this), false);
+    }
+
+    _removeKeylistenerForDates() {
+      this.$.dates.removeEventListener('keydown', this._checkKeycodeForDates.bind(this), false);
+    }
+
     /**
-     * key press event handler
+     * key press event handler on dates area
      * @param  {[type]} e Event
      */
-    _checkKeycode(e) {
+    _checkKeycodeForDates(e) {
       if (e && e.keyCode) {
-        let prop;
-        switch (this.clamp) {
-          case 'year': // falls through
-          case 'month':
-            prop = 'year';
-            break;
-          case 'day': // falls through
-          case 'hours':
-            prop = 'month';
-            break;
-          default:
-            prop = 'day';
-        }
         switch (e.keyCode) {
-          case 37: // left // falls through
-          case 40: // down
-            this._incremProp(prop, -1);
+          case 37: // left
+            this._incremProp('day', -1);
             e.preventDefault();
+            e.stopPropagation();
             return;
-          case 39: // right // falls through
-          case 38: // up
-            this._incremProp(prop, 1);
+          case 39: // right
+            this._incremProp('day', 1);
             e.preventDefault();
+            e.stopPropagation();
+            return;
+          case 38: // up
+            this._incremProp('month', 1);
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          case 40: // down
+            this._incremProp('month', -1);
+            e.preventDefault();
+            e.stopPropagation();
             return;
         }
-      }
-      if (super._checkKeycode) {
-        super._checkKeycode(e);
       }
     }
 

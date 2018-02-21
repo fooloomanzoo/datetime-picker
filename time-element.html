@@ -51,10 +51,11 @@
           padding-top: 4px;
           padding-bottom: 4px;
         }
-        #timer > .hour12-switch {
-          cursor: pointer;
-          font-size: 0.8em;
-          margin: 0 0.2em;
+        #timer > .hour12 {
+          height: auto;
+          width: auto;
+          font-size: 0.75em;
+          padding: 0.5em 0.25em;
         }
         [hidden] * {
           display: none;
@@ -66,45 +67,45 @@
       return `
         <div id="timer" hidden$="[[_hideHours]]">
           <div class="field" hidden$="[[_hideHours]]">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="hours" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input id="hour" hidden$="[[hour12]]" index="5" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
-            <integer-input hidden$="[[!hour12]]" index="5" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></integer-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="hours" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <button class="icon switch" tabindex="0" prop="hours" step="1">${this._iconStepUp}</button>
+            <integer-input id="hour" hidden$="[[hour12]]" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
+            <integer-input hidden$="[[!hour12]]" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></integer-input>
+            <button class="icon switch" tabindex="0" prop="hours" step="-1">${this._iconStepDown}</button>
           </div>
           <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideMinutes]]">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="minutes" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input id="minute" min="0" max="59" index="7" pad-length="2" value="{{minutes}}" placeholder="00"></integer-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="minutes" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <button class="icon switch" tabindex="0" prop="minutes" step="1">${this._iconStepUp}</button>
+            <integer-input id="minute" min="0" max="59" pad-length="2" value="{{minutes}}" placeholder="00"></integer-input>
+            <button class="icon switch" tabindex="0" prop="minutes" step="-1">${this._iconStepDown}</button>
           </div>
           <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[_hideSeconds]]">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="seconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input index="9" pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></integer-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="seconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <button class="icon switch" tabindex="0" prop="seconds" step="1">${this._iconStepUp}</button>
+            <integer-input pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></integer-input>
+            <button class="icon switch" tabindex="0" prop="seconds" step="-1">${this._iconStepDown}</button>
           </div>
           <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
           <div class="field" hidden$="[[_hideMilliSeconds]]">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="milliseconds" step="1"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input index="11" pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="milliseconds" step="-1"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <button class="icon switch" tabindex="0" prop="milliseconds" step="1">${this._iconStepUp}</button>
+            <integer-input pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
+            <button class="icon switch" tabindex="0" prop="milliseconds" step="-1">${this._iconStepDown}</button>
           </div>
           <template is="dom-if" if="[[hour12]]">
-            <div class="hour12-switch" hidden$="[[!_valueIsSet]]" on-mouseup="_switchAm">
+            <button class="hour12 icon" hidden$="[[!_valueIsSet]]" tabindex="0" style="order:11;" on-click="_switchAm">
               <span hidden$="[[!isAm]]">[[_am]]</span>
               <span hidden$="[[isAm]]">[[_pm]]</span>
-            </div>
+            </button>
           </template>
           <div class="field" hidden$="[[!withTimezone]]" style="margin-left:0.167em;">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="1" once><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input index="13" pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneHours" step="-1" once><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <button class="icon switch" tabindex="0" prop="_timeZoneHours" step="1" once>${this._iconStepUp}</button>
+            <integer-input pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
+            <button class="icon switch" tabindex="0" prop="_timeZoneHours" step="-1" once>${this._iconStepDown}</button>
           </div>
           <span hidden$="[[!withTimezone]]">[[_localTimeSeparator]]</span>
           <div class="field" hidden$="[[!withTimezone]]">
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="15"><g><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></g></svg>
-            <integer-input index="15" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
-            <svg class="icon switch" viewBox="0 0 24 24" prop="_timeZoneMinutes" step="-15"><g><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/></g></svg>
+            <button class="icon switch" tabindex="0" prop="_timeZoneMinutes" step="15">${this._iconStepUp}</button>
+            <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
+            <button class="icon switch" tabindex="0" prop="_timeZoneMinutes" step="-15">${this._iconStepDown}</button>
           </div>
         </div>
       `
