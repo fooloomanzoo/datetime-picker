@@ -1,7 +1,11 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../number-input/integer-input.html">
 
-<link rel="import" href="datetime-picker-mixin.html">
+<link rel="import" href="../property-mixins/datetime-mixin.html">
+<link rel="import" href="../input-picker-pattern/form-element-mixin.html">
+<link rel="import" href="../input-picker-pattern/input-shared-style.html">
+<link rel="import" href="../input-picker-pattern/switch-container-mixin.html">
+
+<link rel="import" href="../number-input/integer-input.html">
 
 <script>
   /**
@@ -13,11 +17,27 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const CalendarElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars
+  const CalendarElementPattern = (superClass) => class extends DatetimeInputMixin(superClass) { // eslint-disable-line no-unused-vars, no-undef
 
+    static get styleTemplate() {
+      return `
+        <style include="${this.customStyleToInclude}" calendar>
+          ${this.customStyleContent}
+        </style>
+      `;
+    }
+
+    static get customStyleToInclude() {
+      return 'input-shared-style';
+    }
+
+    /**
+     * custom style content
+     * @type {string}
+     */
     static get customStyleContent() {
       return `
-        ${super.customStyleContent}
+        ${super.customStyleContent || ''}
         #calendar {
           display: -ms-inline-flexbox;
           display: -webkit-inline-flex;
@@ -44,40 +64,31 @@
           align-items: center;
           flex-grow: 1;
           padding: 0 4px;
-          cursor: pointer;
         }
         #calendar .view > * {
-          flex: 0 0 auto;
+          align-self: stretch;
         }
         #calendar #monthSelector {
-          -moz-appearance: none;
-          -webkit-appearance: none;
-          appearance: none;
-          text-indent: 0.01px;
-          text-overflow: '';
-          text-align-last: center;
-          flex: 1 0 auto;
-          font-family: inherit;
-          font-size: inherit;
-          font-weight: inherit;
-          color: currentColor;
-          background: transparent;
           @apply --input-style;
-        }
-        #calendar #monthSelector:hover,
-        #calendar #monthSelector:focus {
-          color: var(--input-focus-color);
-          background: var(--input-focus-background);
-        }
-        #calendar #monthSelector option {
-          color: var(--input-color);
-          background: var(--input-background);
+          flex: 1 0 auto;
+          padding: 6px;
         }
         #calendar #year {
           font-weight: bold;
+          flex: 0 0 auto;
+          --number-input: {
+            @apply --input-style;
+            padding: 6px;
+          };
         }
         #calendar #content {
           display: table;
+          position: relative;
+          line-height: 1;
+          border-collapse: collapse;
+        }
+        #calendar #content:focus {
+          outline: none;
         }
         #calendar #header {
           display: table-header-group;
@@ -85,9 +96,6 @@
         }
         #calendar #dates {
           display: table-row-group;
-        }
-        #calendar #dates:focus {
-          outline: none;
         }
         #calendar .week {
           display: table-row;
@@ -99,18 +107,28 @@
           -webkit-background-clip: padding-box;
           background-clip: padding-box;
           font-size: 0.8em;
-          text-align: center;
           white-space: nowrap;
-          border-radius: 0.3em;
+          border-radius: 4px;
           @apply --calendar-date-cell;
         }
-        #calendar .day::before {
+        #calendar:hover #content .day.selected,
+        #calendar #content:focus .day.selected {
+          background: var(--input-focus-background);
+          color: var(--input-focus-color);
+        }
+        #calendar .day:before {
           content: '';
           display: block;
-          width: var(--calendar-date-width, 2.8em);
-          margin-top: 100%;
+          will-change: opacity, border-color;
+          opacity: 0;
+          border-radius: inherit;
+          border: 1px solid currentColor;
+          box-sizing: content-box;
+          width: var(--calendar-date-width, 2.6em);
+          padding-top: calc(100% - 2px);
+          transition: border-color 200ms cubic-bezier(0.6, 1, 0.2, 1), opacity 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
-        #calendar .day::after {
+        #calendar .day:after {
           content: attr(data-day);
           position: absolute;
           top: 50%;
@@ -119,31 +137,30 @@
         }
         #calendar #dates .day {
           cursor: pointer;
-          will-change: background;
-          transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1), box-shadow 150ms cubic-bezier(0.6, 1, 0.2, 1);
+          transition: background 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day:hover {
-          box-shadow: inset 0 0 1px currentColor;
+          will-change: background;
           @apply --calendar-date-cell-hovered;
         }
-        #calendar #dates .day.current {
-          box-shadow: inset 0 0 1px 1px currentColor;
+        #calendar #dates .day.selected:before,
+        #calendar #dates .day.recent:before {
+          border-color: var(--input-focus-background);
         }
-        #calendar #dates .day.selected {
-          background: var(--input-focus-background);
-          color: var(--input-focus-color);
-          box-shadow: none;
+        #calendar #content .day.recent:before,
+        #calendar #content .day.current:before {
+          opacity: 0.75;
         }
-        #calendar #dates:focus .day.selected {
-          box-shadow: inset 0 0 1px 1px currentColor;
-        }
-        #calendar #dates .day.recent {
-          box-shadow: inset 0 0 1px 1px var(--input-focus-background);
-        }
-        #calendar #dates .day.notinmonth {
+        #calendar #dates .day:hover:before {
           opacity: 0.5;
         }
-        #calendar #dates .day.outofrange {
+        #calendar #content .day.selected:before {
+          opacity: 1;
+        }
+        #calendar #dates .day.notinmonth:after {
+          opacity: 0.5;
+        }
+        #calendar #dates .day.outofrange:after {
           opacity: 0.15;
           font-style: italic;
           pointer-events: none;
@@ -156,22 +173,22 @@
         ${super.contentTemplate || ''}
         <div id="calendar">
           <div id="top">
-            <button class="icon switch" prop="month" step="-1">${this._iconStepLeft}</button>
+            <button class="icon switch" prop="month" step="-1">${this._iconStepLeftTemplate}</button>
             <div class="view">
-              <select id="monthSelector" hidden$="[[_hideMonth]]" tabindex="0" style="order:[[_orderDate.month]];" value="{{month::change}}"></select>
+              <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" value="{{month::change}}"></select>
               <integer-input id="year" style="order:[[_orderDate.year]];" pad-length="4" placeholder="- - - -" value="{{year}}"></integer-input>
             </div>
-            <button class="icon switch" prop="month" step="1">${this._iconStepRight}</button>
+            <button class="icon switch" prop="month" step="1">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="content" hidden$="[[_hideDay]]">
+          <div id="content" hidden$="[[_hideDay]]" tabindex="0" on-keydown="_checkKeycodeForDates">
             <div id="header">
               <div id="caption" class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
               </div>
             </div>
 
-            <div id="dates" tabindex="0" on-mousedown="_onClickDay" on-mousemove="_onMouseMoveDay" on-focus="_addKeylistenerForDates" on-blur="_removeKeylistenerForDates">
+            <div id="dates" on-mousedown="_onClickDay" on-mousemove="_onMouseMoveDay">
               <div class="week">
                 <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
               </div>
@@ -244,19 +261,14 @@
 
     connectedCallback() {
       super.connectedCallback();
-      let d;
-      if (this.default) {
-        d = new Date(this.default);
-      }
+      let d = new Date(this.value || this.default);
       if (isNaN(d)) {
         d = new Date();
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        this._setDate(d);
       }
       this.$.year.startAt = d.getFullYear();
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback();
-      this._removeKeylistenerForDates();
     }
 
     _dateTimeChanged(date, time) {
@@ -463,14 +475,6 @@
       this.renderCalendar(this.year, this.month, this.day, this.date);
     }
 
-    _addKeylistenerForDates() {
-      this.$.dates.addEventListener('keydown', this._checkKeycodeForDates.bind(this), false);
-    }
-
-    _removeKeylistenerForDates() {
-      this.$.dates.removeEventListener('keydown', this._checkKeycodeForDates.bind(this), false);
-    }
-
     /**
      * key press event handler on dates area
      * @param  {[type]} e Event
@@ -538,11 +542,11 @@
   * @polymer
   *
   * @appliesMixin CalendarElementPattern
-  * @appliesMixin DatetimePickerMixin
+  * @appliesMixin SwitchContainerMixin
   *
   * @demo demo/date-picker.html date elements
   **/
-    class CalendarElement extends CalendarElementPattern(DatetimePickerMixin(Polymer.Element)) { // eslint-disable-line no-undef
+    class CalendarElement extends CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element)))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'calendar-element';

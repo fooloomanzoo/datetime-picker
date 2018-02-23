@@ -1,7 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../datetime-input/datetime-input.html">
-<link rel="import" href="datetime-picker-mixin.html">
 <link rel="import" href="datetime-polyfill-picker-mixin.html">
 <link rel="import" href="time-element.html">
 <link rel="import" href="calendar-element.html">
@@ -47,14 +46,14 @@
      *
      *  @appliesMixin CalendarElementPattern
      *  @appliesMixin TimeElementPattern
-     *  @appliesMixin DatetimePickerMixin
+     *  @appliesMixin SwitchContainerMixin
      *  @appliesMixin DatetimePolyfillPickerMixin
      *
      *  @demo demo/index.html
      *  @demo demo/datetime-picker.html datetime elements
      *  @demo demo/form.html in a form
      **/
-    class DatetimePicker extends DatetimePolyfillPickerMixin(TimeElementPattern(CalendarElementPattern(DatetimePickerMixin(Polymer.Element)))) { // eslint-disable-line no-undef
+    class DatetimePicker extends DatetimePolyfillPickerMixin(TimeElementPattern(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element)))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'datetime-picker';
