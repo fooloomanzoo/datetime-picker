@@ -32,7 +32,7 @@
 
     static get pickerTemplate() {
       return `
-        <div id="picker" class="dropdown" horizontal>
+        <div id="picker" class="dropdown" horizontal on-transitionend="_onTransitionEnd">
           ${this.timeTemplate}
           <div id="buttons">
             ${this._buttonTemplate}

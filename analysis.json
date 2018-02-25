@@ -5165,7 +5165,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -5204,11 +5204,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -5229,11 +5229,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -5284,6 +5284,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -11346,7 +11365,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -11385,11 +11404,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -11410,11 +11429,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -11465,6 +11484,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -14822,7 +14860,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -14843,11 +14881,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 405,
+              "line": 406,
               "column": 6
             },
             "end": {
-              "line": 413,
+              "line": 415,
               "column": 7
             }
           },
@@ -14862,11 +14900,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -14887,11 +14925,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -14942,6 +14980,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -18757,7 +18814,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -18778,11 +18835,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -18803,11 +18860,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -18858,6 +18915,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -22696,7 +22772,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -22717,11 +22793,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -22742,11 +22818,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -22797,6 +22873,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -25362,11 +25457,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 405,
+              "line": 406,
               "column": 6
             },
             "end": {
-              "line": 413,
+              "line": 415,
               "column": 7
             }
           },
@@ -26486,7 +26581,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -26507,11 +26602,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -26532,11 +26627,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -26587,6 +26682,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -28110,7 +28224,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -28131,11 +28245,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 405,
+              "line": 406,
               "column": 6
             },
             "end": {
-              "line": 413,
+              "line": 415,
               "column": 7
             }
           },
@@ -28150,11 +28264,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -28175,11 +28289,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -28226,6 +28340,25 @@
           },
           "metadata": {},
           "params": []
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeInvalid",
@@ -31683,7 +31816,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -31721,11 +31854,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -31746,11 +31879,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -31801,6 +31934,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -35631,7 +35783,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -35669,11 +35821,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -35694,11 +35846,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -35749,6 +35901,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
@@ -39095,7 +39266,7 @@
               "column": 6
             },
             "end": {
-              "line": 400,
+              "line": 401,
               "column": 7
             }
           },
@@ -39116,11 +39287,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 405,
+              "line": 406,
               "column": 6
             },
             "end": {
-              "line": 413,
+              "line": 415,
               "column": 7
             }
           },
@@ -39135,11 +39306,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 419,
+              "line": 421,
               "column": 6
             },
             "end": {
-              "line": 430,
+              "line": 432,
               "column": 7
             }
           },
@@ -39160,11 +39331,11 @@
           "sourceRange": {
             "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
             "start": {
-              "line": 436,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 444,
+              "line": 446,
               "column": 7
             }
           },
@@ -39215,6 +39386,25 @@
           "metadata": {},
           "params": [],
           "inheritedFrom": "DatetimePolyfillPickerMixin"
+        },
+        {
+          "name": "_onTransitionEnd",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components\\input-picker-pattern\\input-picker-pattern.html",
+            "start": {
+              "line": 478,
+              "column": 6
+            },
+            "end": {
+              "line": 482,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "InputPickerPattern"
         },
         {
           "name": "_computeAnd",
