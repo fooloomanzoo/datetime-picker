@@ -4,6 +4,98 @@
 <link rel="import" href="datetime-polyfill-picker-mixin.html">
 <link rel="import" href="calendar-element.html">
 
+<script>
+  /**
+   * Mixin for date-picker
+   *
+   *  @appliesMixin DatetimeMixin
+   *  @appliesMixin FormElementMixin
+   *  @appliesMixin CalendarElementPattern
+   *  @appliesMixin SwitchContainerMixin
+   *  @appliesMixin DatetimePolyfillPickerMixin
+   *
+   * @mixinFunction
+   * @polymer
+   *
+   * @param {Object} superClass class to extend
+   * @return {Object} extended class
+   */
+  const DatePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass))))) { // eslint-disable-line no-unused-vars, no-undef
+    static get expectedNativeInputType() {
+      return 'date';
+    }
+
+    static get replacementInputType() {
+      return 'date-input';
+    }
+
+    static get pickerTemplate() {
+      return `
+        <div id="picker" class="dropdown" horizontal$="[[_hideDay]]">
+          ${this.calendarTemplate}
+          <div id="buttons">
+            ${this._buttonTemplate}
+          <div>
+        </div>
+      `;
+    }
+
+    _onDblClickDay(date) {
+      super._onDblClickDay(date);
+      this.confirm();
+      this.close();
+    }
+
+    renderCalendar(year, month, day) {
+      if (this._hasNative && this.native) {
+        return;
+      }
+      super.renderCalendar(year, month, day, this.confirmedDate);
+    }
+
+    _dateTimeChanged(date, time) {
+      if (this.__updatingTimezoneOffset) {
+        return;
+      }
+      if (date === undefined) {
+        if (this.default !== undefined) {
+          this._setDate(new Date(this.default));
+        } else {
+          this._resetDate();
+        }
+        return;
+      }
+      this.datetime = date + 'T' + (time || '00:00') + (this.timezone || 'Z');
+
+      this.renderCalendar(this.year, this.month, this.day, this.date || date);
+    }
+
+    _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
+      if (confirmedDate === undefined) {
+        this._resetConfirmedValues();
+        return; // return, if resseting, so that the picker is not itself resetted
+      }
+
+      this.setProperties({
+        date: confirmedDate,
+        time: confirmedTime
+      });
+      // asnyc setting the computed the other confirmed values
+      this.setProperties({
+        confirmedValue: this.value,
+        confirmedDatetime: this.datetime
+      });
+    }
+
+    open() {
+      if (super.open) {
+        super.open();
+      }
+      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
+    }
+  }
+</script>
+
 <dom-module id="date-picker">
   <script>
   /**
@@ -17,109 +109,40 @@
    *
    * Custom property | Description | Default
    * ----------------|-------------|----------
-   * `--input-color` | text-color of the element | `#dadada`
-   * `--input-background` | text-color of the element | `#2b2b2b`
-   * `--input-focus-color` | color of the focussed or hovered inputs and icons | `#f5f5f5`
-   * `--input-focus-background` | background of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
-   * `--input-style` | Mixin applied to the inputs | { border-radius: 3px; padding: 0.2em 0.1em; border: none; outline: none; text-align: center; color: inherit; cursor: pointer; background: transparent; box-sizing: content-box; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1);`
-   * `--input-focus` | Mixin applied to the focussed or hovered inputs | {}`
-   * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); cursor: pointer; fill: currentColor; }`
+   * `--input-color` | Text-color of the element | `#dadada`
+   * `--input-background` | Text-color of the element | `#2b2b2b`
+   * `--input-focus-color` | Color of the focussed or hovered inputs and icons | `#f5f5f5`
+   * `--input-focus-background` | Background of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
+   * `--input-style` | Mixin applied to the inputs | { padding: 0.2em; border-radius: 4px; text-align: center; transition: background 250ms cubic-bezier(0.6, 1, 0.2, 1);}`
+   * `--input-focus` | Mixin applied to the focussed or hovered inputs | { color: var(--input-focus-color); background: var(--input-focus-background); }`
+   * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); }`
    * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 4px;}`
-   * `--calendar-element` | Mixin applied to the calendar-element | `{}`
+   * `--input-selection-color` | Text-color of selected texts | `var(--input-focus-color)`
+   * `--input-selection-background` | Background of selected texts | `rgba(255,255,255,0.1)`
+   * `--calendar-element` | Mixin applied to the calender | `{}`
+   * `--calendar-date-cell` | Mixin applied to the date cells | `{}`
+   * `--calendar-date-cell-hovered` | Mixin applied to hovered date cells | `{}`
+   * `--calendar-date-width` | width of a date cell | `2.6em`
    *
    *  @polymer
    *  @customElement
    *
-   *  @appliesMixin CalendarElementPattern
-   *  @appliesMixin SwitchContainerMixin
-   *  @appliesMixin DatetimePolyfillPickerMixin
+   *  @appliesMixin DatePickerPattern
    *
    *  @demo demo/index.html
    *  @demo demo/date-picker.html date elements
    *  @demo demo/form.html in a form
    **/
-    class DatePicker extends DatetimePolyfillPickerMixin(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element))))) { // eslint-disable-line no-undef
+    class DatePicker extends DatePickerPattern(Polymer.Element) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-picker';
-      }
-
-      static get expectedNativeInputType() {
-        return 'date';
-      }
-
-      static get replacementInputType() {
-        return 'date-input';
-      }
-
-      static get pickerTemplate() {
-        return `
-          <div id="picker" class="dropdown" horizontal$="[[_hideDay]]">
-            ${this.calendarTemplate}
-            <div id="buttons">
-              ${this._buttonTemplate}
-            <div>
-          </div>
-        `;
       }
 
       get _hasNative() {
         return DatePicker._hasNative;
       }
 
-      _onDblClickDay(date) {
-        super._onDblClickDay(date);
-        this.confirm();
-        this.close();
-      }
-
-      renderCalendar(year, month, day) {
-        if (this._hasNative && this.native) {
-          return;
-        }
-        super.renderCalendar(year, month, day, this.confirmedDate);
-      }
-
-      _dateTimeChanged(date, time) {
-        if (this.__updatingTimezoneOffset) {
-          return;
-        }
-        if (date === undefined) {
-          if (this.default !== undefined) {
-            this._setDate(new Date(this.default));
-          } else {
-            this._resetDate();
-          }
-          return;
-        }
-        this.datetime = date + 'T' + (time || '00:00') + (this.timezone || 'Z');
-
-        this.renderCalendar(this.year, this.month, this.day, this.date || date);
-      }
-
-      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-        if (confirmedDate === undefined) {
-          this._resetConfirmedValues();
-          return; // return, if resseting, so that the picker is not itself resetted
-        }
-
-        this.setProperties({
-          date: confirmedDate,
-          time: confirmedTime
-        });
-        // asnyc setting the computed the other confirmed values
-        this.setProperties({
-          confirmedValue: this.value,
-          confirmedDatetime: this.datetime
-        });
-      }
-
-      open() {
-        if (super.open) {
-          super.open();
-        }
-        this.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
-      }
     }
     window.customElements.define(DatePicker.is, DatePicker);
   </script>
