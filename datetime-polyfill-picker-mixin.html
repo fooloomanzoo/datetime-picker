@@ -58,15 +58,13 @@
           ::-webkit-datetime-edit-fields-wrapper,
           ::-webkit-datetime-edit-ampm-field,
           ::-webkit-datetime-edit-day-field,
-          ::-webkit-datetime-edit-hour-field,
+          ::-webkit-datetime-edit-second-field,
           ::-webkit-datetime-edit-millisecond-field,
+          ::-webkit-datetime-edit-hour-field,
           ::-webkit-datetime-edit-minute-field,
           ::-webkit-datetime-edit-month-field,
-          ::-webkit-datetime-edit-second-field,
           ::-webkit-datetime-edit-week-field,
           ::-webkit-datetime-edit-year-field {
-            display: inline-flex;
-            align-items: baseline;
             line-height: 1;
             outline: none;
             border-color: transparent;
@@ -74,22 +72,28 @@
             font-size: inherit;
             color: currentColor;
             cursor: pointer;
+            flex: 0 0 auto;
             @apply --input-style;
           }
           ::-webkit-datetime-edit,
           ::-webkit-datetime-edit-fields-wrapper {
+            display: inline-flex;
+            align-items: baseline;
             padding: 0;
+            box-sizing: content-box;
           }
           ::-webkit-datetime-edit-ampm-field,
           ::-webkit-datetime-edit-day-field,
           ::-webkit-datetime-edit-hour-field,
+          ::-webkit-datetime-edit-second-field,
           ::-webkit-datetime-edit-millisecond-field,
           ::-webkit-datetime-edit-minute-field,
           ::-webkit-datetime-edit-month-field,
-          ::-webkit-datetime-edit-second-field,
           ::-webkit-datetime-edit-week-field,
           ::-webkit-datetime-edit-year-field {
             padding: 0.2em;
+            box-sizing: border-box;
+            position: relative;
           }
           ::-webkit-datetime-edit:focus,
           ::-webkit-datetime-edit-fields-wrapper:focus,

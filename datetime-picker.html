@@ -51,7 +51,7 @@
 
     static get pickerTemplate() {
       return `
-        <div id="picker" class="dropdown" horizontal$="[[_hideDay]]" on-transitionend="_onTransitionEnd">
+        <div id="picker" class="dropdown" horizontal$="[[_hideDay]]">
           ${this.calendarTemplate}
           <div class="lower">
             ${this.timeTemplate}
