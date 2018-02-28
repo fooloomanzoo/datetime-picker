@@ -55,6 +55,16 @@
           flex-direction: column;
           align-items: center;
         }
+        #timer > .field integer-input {
+          width: 100%;
+          justify-content: center;
+          @apply --input-style;
+          padding: 0;
+        }
+        #timer > .field integer-input:focus-within,
+        #timer > .field integer-input:hover {
+          @apply --input-focus;
+        }
         #timer .buttons {
           display: flex;
           flex-direction: column;
@@ -178,7 +188,8 @@
       this.invalid = required && isNaN(value);
     }
 
-    _switchAm() {
+    _switchAm(e) {
+      e && e.stopPropagation();
       this.isAm = !this.isAm;
     }
   }

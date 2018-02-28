@@ -22,7 +22,7 @@
        * template for native input element
        * @type {string}
        */
-      static get _nativeInputTemplate() {
+      static get nativeInputTemplate() {
         return `
           <input class="native" tabindex="0" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
           <div hidden$="[[!_computeAnd(withTimezone, native)]]" style="display:inline-flex;align-items:center;">
@@ -33,7 +33,7 @@
         `;
       }
 
-      static get replacementInputTemplate() {
+      static get polyfillInputTemplate() {
         return `
           <${this.replacementInputType} class="replacement" tabindex required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
@@ -116,6 +116,14 @@
           ::-webkit-calendar-picker-indicator:hover {
             background: transparent;
           }
+          #picker > * {
+            color: var(--input-color);
+            background: var(--input-background);
+          }
+          integer-input {
+            --input-color: inherit;
+            --input-background: transparent;
+          }
         `;
       }
 
@@ -123,10 +131,10 @@
        * template for control buttons
        * @type {string}
        */
-      static get _buttonTemplate() {
+      static get buttonTemplate() {
         return `
           <button class="icon now" tabindex="0" on-click="now"><svg viewBox="0 0 24 24"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg></button>
-          ${super._buttonTemplate || ''}
+          ${super.buttonTemplate || ''}
         `;
       }
 
@@ -251,6 +259,7 @@
 
       _resetConfirmedValues() {
         this.setProperties({
+          value: undefined,
           confirmedDatetime: undefined,
           confirmedDate: undefined,
           confirmedTime: undefined,

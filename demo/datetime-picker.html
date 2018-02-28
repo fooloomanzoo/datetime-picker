@@ -264,16 +264,17 @@
                 <option value="auto">auto</option>
                 <option value="left">left</option>
                 <option value="right">right</option>
+                <option value="center">center</option>
               </select>
               vertical-align
               <select value="{{verticalAlign::change}}">
+                <option value="auto">auto</option>
                 <option value="top">top</option>
                 <option value="bottom">bottom</option>
-                <option value="auto">auto</option>
-                <option value=""></option>
-              </select>
-              <div class="spacer" style="position:relative;padding:12em;">
-                <datetime-picker horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></datetime-picker>
+                <option value="middle">middle</option>
+              </select><br><br>
+              <div class="spacer" style="display:flex;justify-content:center;position:relative;">
+                <datetime-picker no-cancel-on-outside-click horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]"></datetime-picker>
               </div>
             </template>
           </dom-bind>

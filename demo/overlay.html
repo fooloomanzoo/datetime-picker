@@ -45,7 +45,7 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>Create a datetime-picker with overlay and backdrop and no overlap</h3>
+      <h3>Create a date-picker with overlay and backdrop and no overlap</h3>
       <demo-snippet>
         <template>
           <dom-bind>
@@ -102,6 +102,46 @@
               </div>
             </template>
           </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>alignment</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind id="alignDemo">
+            <template is="dom-bind">
+              horizontal-align
+              <select value="{{horizontalAlign::change}}">
+                <option value="auto">auto</option>
+                <option value="left">left</option>
+                <option value="right">right</option>
+                <option value="center">center</option>
+              </select>
+              vertical-align
+              <select value="{{verticalAlign::change}}">
+                <option value="auto">auto</option>
+                <option value="top">top</option>
+                <option value="bottom">bottom</option>
+                <option value="middle">middle</option>
+              </select>
+              <input type="checkbox" checked="{{noOverlap::change}}">no overlap
+              <input type="checkbox" checked="{{dynamicAlign::change}}">dynamic align<br><br>
+              <div class="spacer" style="display:flex;justify-content:center;position:relative;">
+                <overlay-datetime-picker id="align" no-cancel-on-outside-click no-overlap="[[noOverlap]]" dynamic-align="[[dynamicAlign]]" horizontal-align="[[updateAlign(noOverlap, dynamicAlign, horizontalAlign)]]" vertical-align="[[updateAlign(noOverlap, dynamicAlign, verticalAlign)]]"></overlay-datetime-picker>
+              </div>
+            </template>
+          </dom-bind>
+          <script>
+            const bind = document.querySelector('#alignDemo');
+            bind.updateAlign = function(noOverlap, dynamicAlign, alignment) {
+              setTimeout(() => {
+                bind.$.align.fit();
+              })
+              return alignment || 'auto';
+            }
+          </script>
         </template>
       </demo-snippet>
     </div>
