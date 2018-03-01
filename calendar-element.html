@@ -106,7 +106,7 @@
           font-size: 0.8em;
           white-space: nowrap;
           border-radius: 4px;
-          @apply --calendar-date-cell;
+          @apply --calendar-cell;
         }
         #calendar:hover #content .day.selected,
         #calendar #content:focus .day.selected {
@@ -121,8 +121,8 @@
           border-radius: inherit;
           border: thin solid currentColor;
           box-sizing: border-box;
-          width: var(--calendar-cell-size, 2.8em);
-          height: var(--calendar-cell-size, 2.8em);
+          width: var(--calendar-cell-size, 2.5em);
+          height: var(--calendar-cell-size, 2.5em);
           transition: border-color 200ms cubic-bezier(0.6, 1, 0.2, 1), opacity 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar .day:after {
@@ -138,7 +138,7 @@
         }
         #calendar #dates .day:hover {
           will-change: background;
-          @apply --calendar-date-cell-hovered;
+          @apply --calendar-cell-hovered;
         }
         #calendar #dates .day.selected:before,
         #calendar #dates .day.recent:before {
@@ -539,8 +539,8 @@
   * `--input-selection-color` | Text-color of selected texts | `var(--input-focus-color)`
   * `--input-selection-background` | Background of selected texts | `rgba(255,255,255,0.1)`
   * `--calendar-element` | Mixin applied to the calender | `{}`
-  * `--calendar-date-cell` | Mixin applied to the date cells | `{}`
-  * `--calendar-date-cell-hovered` | Mixin applied to hovered date cells | `{}`
+  * `--calendar-cell` | Mixin applied to the date cells | `{}`
+  * `--calendar-cell-hovered` | Mixin applied to hovered date cells | `{}`
   * `--calendar-cell-size` | width of a date cell | `2.8em`
   *
   * @customElement

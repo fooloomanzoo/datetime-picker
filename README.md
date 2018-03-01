@@ -5,45 +5,60 @@
 _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)_
 ## &lt;datetime-picker&gt;
 
+### What is it for?
+
+`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
+
 <!--
 ```
-<custom-element-demo height="370">
+<custom-element-demo>
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Roboto', sans-serif;
       }
     </style>
     <dom-bind>
       <template is="dom-bind">
-        <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="top" horizontal-align="left"></datetime-picker><br><br>
-        <input type="checkbox" checked="{{native::change}}">native picker<br>
-        <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br>
-        <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
-        <div class="vertical-section-container result">
-          <div><code>numeric value</code>: <b>[[value]]</b></div>
-          <div><code>date</code>: <b>[[date]]</b></div>
-          <div><code>time</code>: <b>[[time]]</b></div>
-          <div><code>datetime</code>: <b>[[datetime]]</b></div>
-          <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
-          <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
-          <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
-          <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
-          <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
-        </div>
+        <next-code-block></next-code-block>
       </template>
     </dom-bind>
   </template>
 </custom-element-demo>
 ```
 -->
-
-### What is it for?
-
-`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
+```html
+  <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="{{verticalAlign}}" horizontal-align="{{horizontalAlign}}"></datetime-picker><br><br>
+  <input type="checkbox" checked="{{native::change}}">native picker<br>
+  <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br>
+  <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br>
+  horizontal-align: <select value="{{horizontalAlign::change}}">
+    <option value="auto">auto</option>
+    <option value="left">left</option>
+    <option value="right">right</option>
+    <option value="center">center</option>
+  </select><br>
+  vertical-align: <select value="{{verticalAlign::change}}">
+    <option value="auto">auto</option>
+    <option value="top">top</option>
+    <option value="bottom">bottom</option>
+    <option value="middle">middle</option>
+  </select><br><br>
+  <div class="vertical-section-container result">
+    <div><code>numeric value</code>: [[value]]</div>
+    <div><code>date</code>: [[date]]</div>
+    <div><code>time</code>: [[time]]</div>
+    <div><code>datetime</code>: [[datetime]]</div>
+    <div><code>timezone</code>: <input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></div>
+    <div><code>confirmed time</code>: [[confirmedTime]]</div>
+    <div><code>confirmed date</code>: [[confirmedDate]]</div>
+    <div><code>confirmed datetime</code>: [[confirmedDatetime]]</div>
+    <div><code>confirmed numeric value</code>: [[confirmedValue]]</div>
+  </div>
+```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
 
@@ -72,7 +87,7 @@ Internally it tests the browser, if **native** input-types `datetime-local`, `da
 
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, you like to have a different look or you would like to have a guaranteed working **datetime-picker**.
 
-Another use case could be for example, if you want on *mobile devices* use the native picker, when supported, and on *desktop devices* this polyfill.
+Another use case could be for example, if you want on *mobile devices* use the native picker, when supported, and on *desktop devices* this polyfill. For that purpose the attribute `native-on-mobile` is also provided.
 
 ```html
   <datetime-picker native="[[isMobile]]"></datetime-picker>
@@ -92,14 +107,56 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 #### Stand-alone calendar and date-input (preset by using its attributes)
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="import" href="datetime-picker.html">
+    <style>
+      html {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
-<calendar-element date="{{date}}"></calendar-element>
+<p><calendar-element date="{{date}}"></calendar-element></p>
 <p>date: <date-input date="{{date}}" datetime="{{datetime}}"></date-input></p>
-<p>datetime: <datetime-input date="2020-05-23" datetime="{{datetime}}"></datetime-input></p>
+<p>datetime: <datetime-input default="2020-05-23" datetime="{{datetime}}"></datetime-input></p>
 ```
 
 #### Stand-alone time-picker and time-input (preset by using its attributes)
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="import" href="datetime-picker.html">
+    <style>
+      html {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <time-element time="{{time}}"></time-element>
 <p> time: <time-input time="{{time}}" hours="8"></time-input></p>
@@ -108,15 +165,11 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 #### Use the polyfill or the native picker
 By default it checks if `datetime-local`, `date` or `time` is supported as input. Set the ``auto-confirm`` attribute to automatically confirm the input. If `native` is set, the native picker will be used instead of the polyfill:
 
+
 ```html
-  <p>Autoconfirming Polyfill Picker <datetime-picker auto-confirm value="{{value}}" datetime="{{synchronized}}"></datetime-picker></p>
+  Autoconfirming Polyfill Picker <datetime-picker auto-confirm value="{{value}}" datetime="{{synchronized}}"></datetime-picker>
 
-  <p>Native Picker <datetime-picker native value="{{value}}"></datetime-picker></p>
-
-  <p>
-    Two pickers can be synchronized: [[synchronized]]
-    A number representation is automatically provided: [[value]]
-  </p>
+  Native Picker <datetime-picker native value="{{value}}"></datetime-picker>
 ```
 
 #### Define date ranges
@@ -127,11 +180,11 @@ Set cross data bindings to limit the values of the inputs. Use the ``confirmed``
 <custom-element-demo height="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="import" href="datetime-picker.html">
     <style>
       html {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Roboto', sans-serif;
       }
     </style>
     <dom-bind>
@@ -150,13 +203,13 @@ Set cross data bindings to limit the values of the inputs. Use the ``confirmed``
   <datetime-picker class="end" auto-confirm datetime="{{max}}" min="{{min}}"></datetime-picker>
 </p>
 <p>
-  <div><code>start</code>: <b>[[min]]</b></div>
-  <div><code>end</code>: <b>[[max]]</b></div>
+  <div><code>start</code>: [[min]]</div>
+  <div><code>end</code>: [[max]]</div>
 </p>
 ```
 
 #### Use it in an overlay
-Choose then the related elements:
+Choose the related elements:
 * `<overlay-datetime-picker>`
 * `<overlay-date-picker>`
 * `<overlay-time-picker>`
@@ -174,11 +227,11 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 <custom-element-demo height="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="import" href="overlay-datetime-picker.html">
     <style>
       html {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Roboto', sans-serif;
       }
     </style>
     <dom-bind>

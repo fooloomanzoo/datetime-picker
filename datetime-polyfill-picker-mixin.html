@@ -133,9 +133,13 @@
        */
       static get buttonTemplate() {
         return `
-          <button class="icon now" tabindex="0" on-click="now"><svg viewBox="0 0 24 24"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg></button>
+          <button class="icon now" on-click="now" on-keydown="_stopPropagation">${this._iconNowTemplate}</button>
           ${super.buttonTemplate || ''}
         `;
+      }
+
+      static get _iconNowTemplate() {
+        return '<svg viewBox="0 0 24 24"><g><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></g></svg>';
       }
 
       static get properties() {
