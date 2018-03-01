@@ -35,6 +35,17 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@polymer/polymer": "^2.5.0"
+    "@polymer/polymer": "^2",
+    "@fooloomanzoo/datetime-input": "^2",
+    "@fooloomanzoo/number-input": "^2",
+    "@fooloomanzoo/property-mixins": "^2",
+    "@fooloomanzoo/input-picker-pattern": "^2"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "*",
+    "@polymer/iron-component-page": "*",
+    "@polymer/iron-flex-layout": "*",
+    "@polymer/iron-demo-helpers": "*",
+    "@polymer/iron-form": "*"
   }
 }
