@@ -33,12 +33,17 @@
         <template>
           <dom-bind>
             <template>
-              <input type="checkbox" checked="{{native::change}}">native picker<br><br>
-              <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
-              <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
-              <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="top" horizontal-align="left"></datetime-picker><br>
-              <date-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-date="{{confirmedDate}}" timezone="{{timezone}}" vertical-align="top" horizontal-align="left"></date-picker><br>
-              <time-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-time="{{confirmedTime}}" timezone="{{timezone}}" vertical-align="top" horizontal-align="left"></time-picker><br>
+              <p>
+                <input type="checkbox" checked="{{native::change}}">native picker
+                <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm
+                <input type="checkbox" checked="{{withTimezone::change}}">with timezone
+                <input type="checkbox" checked="{{hour12::change}}">hour 12
+              </p>
+              <p>
+                <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" hour12="[[hour12]]"></datetime-picker><br>
+                <date-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-date="{{confirmedDate}}" timezone="{{timezone}}" hour12="[[hour12]]"></date-picker><br>
+                <time-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-time="{{confirmedTime}}" timezone="{{timezone}}" hour12="[[hour12]]"></time-picker><br>
+              </p>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>

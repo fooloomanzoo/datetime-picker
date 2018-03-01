@@ -31,23 +31,23 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 -->
 ```html
-  <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="{{verticalAlign}}" horizontal-align="{{horizontalAlign}}"></datetime-picker><br><br>
-  <input type="checkbox" checked="{{native::change}}">native picker<br>
-  <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br>
-  <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br>
+  <input type="checkbox" checked="{{native::change}}">native picker
+  <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm
+  <input type="checkbox" checked="{{withTimezone::change}}">with timezone
+  <input type="checkbox" checked="{{hour12::change}}">hour 12
   horizontal-align: <select value="{{horizontalAlign::change}}">
     <option value="auto">auto</option>
     <option value="left">left</option>
     <option value="right">right</option>
     <option value="center">center</option>
-  </select><br>
+  </select>
   vertical-align: <select value="{{verticalAlign::change}}">
     <option value="auto">auto</option>
     <option value="top">top</option>
     <option value="bottom">bottom</option>
     <option value="middle">middle</option>
-  </select><br><br>
-  <div class="vertical-section-container result">
+  </select>
+  <p>
     <div><code>numeric value</code>: [[value]]</div>
     <div><code>date</code>: [[date]]</div>
     <div><code>time</code>: [[time]]</div>
@@ -57,7 +57,8 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
     <div><code>confirmed date</code>: [[confirmedDate]]</div>
     <div><code>confirmed datetime</code>: [[confirmedDatetime]]</div>
     <div><code>confirmed numeric value</code>: [[confirmedValue]]</div>
-  </div>
+  </p>
+  <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="{{verticalAlign}}" horizontal-align="{{horizontalAlign}}" hour12="[[hour12]]"></datetime-picker>
 ```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
