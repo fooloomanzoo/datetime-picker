@@ -78,6 +78,7 @@
         #timer > .hour12 {
           height: auto;
           width: auto;
+          flex-shrink: 0;
           font-size: 0.75em;
           padding: 0.5em 0.25em;
         }
@@ -116,8 +117,8 @@
           </div>
           <template is="dom-if" if="[[hour12]]">
             <button class="hour12 icon" hidden$="[[!_valueIsSet]]" style="order:11;" on-click="_switchAm">
-              <span hidden$="[[!isAm]]">[[_am]]</span>
-              <span hidden$="[[isAm]]">[[_pm]]</span>
+              <div hidden$="[[!isAm]]">[[_am]]</div>
+              <div hidden$="[[isAm]]">[[_pm]]</div>
             </button>
           </template>
           <div class="field" hidden$="[[!withTimezone]]" style="margin-left:0.167em;">

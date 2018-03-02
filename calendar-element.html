@@ -42,7 +42,7 @@
           display: -ms-inline-flexbox;
           display: -webkit-inline-flex;
           display: inline-flex;
-          flex-direction: column;
+          flex-flow: column nowrap;
           background: var(--input-background);
           color: var(--input-color);
           padding: 4px;
@@ -50,17 +50,13 @@
           @apply --calendar-element;
         }
         #calendar #top {
-          display: -ms-inline-flexbox;
-          display: -webkit-inline-flex;
           display: inline-flex;
-          flex-direction: row;
+          flex-flow: row nowrap;
           align-items: stretch;
         }
         #calendar .view {
-          display: -ms-inline-flexbox;
-          display: -webkit-inline-flex;
           display: inline-flex;
-          flex-direction: row;
+          flex-flow: row nowrap;
           flex: 1;
         }
         #calendar .view > * {
@@ -80,33 +76,41 @@
           };
         }
         #calendar #content {
-          display: table;
+          display: inline-flex;
+          flex-flow: column nowrap;
           position: relative;
           line-height: 1;
-          border-collapse: collapse;
         }
         #calendar #content:focus {
           outline: none;
         }
         #calendar #header {
-          display: table-header-group;
           cursor: default;
+          display: inline-flex;
+          flex-flow: column nowrap;
         }
         #calendar #dates {
-          display: table-row-group;
+          display: inline-flex;
+          flex-flow: column nowrap;
         }
         #calendar .week {
-          display: table-row;
+          display: inline-flex;
+          flex-flow: row nowrap;
+          position: relative;
+          width: calc(var(--calendar-cell-size, 2.25em) * 7);
+          height: var(--calendar-cell-size, 2.25em);
         }
         #calendar .day {
-          display: table-cell;
           position: relative;
           -webkit-background-clip: padding-box;
           background-clip: padding-box;
-          font-size: 0.8em;
+          font-size: 0.75em;
           white-space: nowrap;
           border-radius: 4px;
           @apply --calendar-cell;
+          box-sizing: content-box;
+          width: calc(100% / 7);
+          height: 100%;
         }
         #calendar:hover #content .day.selected,
         #calendar #content:focus .day.selected {
@@ -115,14 +119,16 @@
         }
         #calendar .day:before {
           content: '';
-          display: block;
+          display: block;          
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           will-change: opacity, border-color;
           opacity: 0;
           border-radius: inherit;
           border: thin solid currentColor;
-          box-sizing: border-box;
-          width: var(--calendar-cell-size, 2.8em);
-          height: var(--calendar-cell-size, 2.8em);
           transition: border-color 200ms cubic-bezier(0.6, 1, 0.2, 1), opacity 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar .day:after {
@@ -541,7 +547,7 @@
   * `--calendar-element` | Mixin applied to the calender | `{}`
   * `--calendar-cell` | Mixin applied to the date cells | `{}`
   * `--calendar-cell-hovered` | Mixin applied to hovered date cells | `{}`
-  * `--calendar-cell-size` | width of a date cell | `2.8em`
+  * `--calendar-cell-size` | width of a date cell | `2.25em`
   *
   * @customElement
   * @polymer

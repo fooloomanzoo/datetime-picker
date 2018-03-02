@@ -31,20 +31,18 @@
       return `
         ${super.customStyleContent || ''}
         .lower {
-          display: inline-flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          overflow: hidden;
+          display: flex;
+          position: relative;
+          flex-flow: row wrap;
         }
         .lower > * {
           border-radius: 0 !important;
           box-shadow: none !important;
           padding: 0 !important;
-        }
-        .lower > #buttons {
+          position: relative;
           flex: 1 0 1px;
-          align-self: stretch;
-          align-items: flex-end;
+        }
+        .lower #timer {
         }
       `;
     }
@@ -57,8 +55,8 @@
             ${this.timeTemplate}
             <div id="buttons">
               ${this.buttonTemplate}
-            <div>
-          <div>
+            </div>
+          </div>
         </div>
       `;
     }
@@ -137,7 +135,7 @@
      * `--calendar-element` | Mixin applied to the calender | `{}`
      * `--calendar-cell` | Mixin applied to the date cells | `{}`
      * `--calendar-cell-hovered` | Mixin applied to hovered date cells | `{}`
-     * `--calendar-cell-size` | width of a date cell | `2.8em`
+     * `--calendar-cell-size` | width of a date cell | `2.25em`
      * `--time-element` | Mixin applied to the time-element | `{}`
      *
      *  @customElement
