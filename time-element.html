@@ -42,7 +42,7 @@
           display: -ms-inline-flexbox;
           display: -webkit-inline-flex;
           display: inline-flex;
-          flex-direction: row;
+          flex-flow: row nowrap;
           align-items: center;
           background: var(--input-background);
           color: var(--input-color);
@@ -50,19 +50,18 @@
           @apply --input-picker;
           @apply --time-element;
         }
-        #timer > .field {
+        #timer .field {
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: stretch;
         }
-        #timer > .field integer-input {
-          width: 100%;
+        #timer .field integer-input {
           justify-content: center;
           @apply --input-style;
           padding: 0;
         }
-        #timer > .field integer-input:focus-within,
-        #timer > .field integer-input:hover {
+        #timer .field integer-input:focus-within,
+        #timer .field integer-input:hover {
           @apply --input-focus;
         }
         #timer .buttons {
@@ -71,14 +70,14 @@
           align-self: stretch;
           justify-content: space-between;
         }
-        #timer > .field > .icon {
+        #timer .field > .icon {
           padding-top: 4px;
           padding-bottom: 4px;
         }
-        #timer > .hour12 {
-          height: auto;
-          width: auto;
+        #timer .hour12 {
           flex-shrink: 0;
+          height: unset;
+          width: unset;
           font-size: 0.75em;
           padding: 0.5em 0.25em;
         }
@@ -115,23 +114,25 @@
             <integer-input pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
             <button class="icon switch" prop="milliseconds" step="-1">${this._iconStepDownTemplate}</button>
           </div>
+          <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
+            <div class="field">
+              <button class="icon switch" prop="_timeZoneHours" step="1" once>${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
+              <button class="icon switch" prop="_timeZoneHours" step="-1" once>${this._iconStepDownTemplate}</button>
+            </div>
+            <span>[[_localTimeSeparator]]</span>
+            <div class="field">
+              <button class="icon switch" prop="_timeZoneMinutes" step="15">${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
+              <button class="icon switch" prop="_timeZoneMinutes" step="-15">${this._iconStepDownTemplate}</button>
+            </div>
+          </div>
           <template is="dom-if" if="[[hour12]]">
-            <button class="hour12 icon" hidden$="[[!_valueIsSet]]" style="order:11;" on-click="_switchAm">
+            <button class="hour12 icon" hidden$="[[!_valueIsSet]]" on-click="_switchAm">
               <div hidden$="[[!isAm]]">[[_am]]</div>
               <div hidden$="[[isAm]]">[[_pm]]</div>
             </button>
           </template>
-          <div class="field" hidden$="[[!withTimezone]]" style="margin-left:0.167em;">
-            <button class="icon switch" prop="_timeZoneHours" step="1" once>${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
-            <button class="icon switch" prop="_timeZoneHours" step="-1" once>${this._iconStepDownTemplate}</button>
-          </div>
-          <span hidden$="[[!withTimezone]]">[[_localTimeSeparator]]</span>
-          <div class="field" hidden$="[[!withTimezone]]">
-            <button class="icon switch" prop="_timeZoneMinutes" step="15">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="_timeZoneMinutes" step="-15">${this._iconStepDownTemplate}</button>
-          </div>
         </div>
       `
     }

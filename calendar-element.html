@@ -53,18 +53,11 @@
           display: inline-flex;
           flex-flow: row nowrap;
           align-items: stretch;
-        }
-        #calendar .view {
-          display: inline-flex;
-          flex-flow: row nowrap;
-          flex: 1;
-        }
-        #calendar .view > * {
           align-self: stretch;
         }
         #calendar #monthSelector {
           @apply --input-style;
-          flex: 1 0 auto;
+          flex: 1 0 1px;
           padding: 6px;
         }
         #calendar #yearInput {
@@ -76,41 +69,29 @@
           };
         }
         #calendar #content {
-          display: inline-flex;
-          flex-flow: column nowrap;
           position: relative;
-          line-height: 1;
+        }
+        #calendar #caption {
+          display: inline-flex;
+          flex-flow: row nowrap;
         }
         #calendar #content:focus {
           outline: none;
-        }
-        #calendar #header {
-          cursor: default;
-          display: inline-flex;
-          flex-flow: column nowrap;
-        }
-        #calendar #dates {
-          display: inline-flex;
-          flex-flow: column nowrap;
-        }
-        #calendar .week {
-          display: inline-flex;
-          flex-flow: row nowrap;
-          position: relative;
-          width: calc(var(--calendar-cell-size, 2.25em) * 7);
-          height: var(--calendar-cell-size, 2.25em);
         }
         #calendar .day {
           position: relative;
           -webkit-background-clip: padding-box;
           background-clip: padding-box;
-          font-size: 0.75em;
           white-space: nowrap;
           border-radius: 4px;
           @apply --calendar-cell;
+          float: left;
+          width: var(--calendar-cell-size, 2.25em);
+          height: var(--calendar-cell-size, 2.25em);
           box-sizing: content-box;
-          width: calc(100% / 7);
-          height: 100%;
+        }
+        #calendar .day:nth-child(7n+1) {
+          clear: left;
         }
         #calendar:hover #content .day.selected,
         #calendar #content:focus .day.selected {
@@ -119,7 +100,7 @@
         }
         #calendar .day:before {
           content: '';
-          display: block;          
+          display: block;
           position: absolute;
           top: 0;
           left: 0;
@@ -132,8 +113,10 @@
           transition: border-color 200ms cubic-bezier(0.6, 1, 0.2, 1), opacity 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar .day:after {
-          content: attr(data-day);
+          content: attr(day);
           position: absolute;
+          font-size: 0.75em;
+          line-height: 1;
           top: 50%;
           right: 50%;
           transform: translate(50%, -50%);
@@ -176,40 +159,23 @@
         ${super.contentTemplate || ''}
         <div id="calendar">
           <div id="top">
-            <button class="icon switch" prop="month" step="-1">${this._iconStepLeftTemplate}</button>
-            <div class="view">
-              <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" placeholder="1234" value="{{month::change}}"></select>
-              <integer-input id="yearInput" style="order:[[_orderDate.year]];" pad-length="4" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
-            </div>
-            <button class="icon switch" prop="month" step="1">${this._iconStepRightTemplate}</button>
+            <button class="icon switch" prop="month" step="-1" style="order:0">${this._iconStepLeftTemplate}</button>
+            <select id="monthSelector" hidden$="[[_hideMonth]]" style="order:[[_orderDate.month]];" placeholder="1234" value="{{month::change}}"></select>
+            <integer-input id="yearInput" style="order:[[_orderDate.year]];" pad-length="4" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
+            <button class="icon switch" prop="month" step="1" style="order:6">${this._iconStepRightTemplate}</button>
           </div>
 
           <div id="content" hidden$="[[_hideDay]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
-            <div id="header">
-              <div id="caption" class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
+            <div id="caption">
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
-
             <div id="dates" on-mousedown="_onClickDay" on-mousemove="_onMouseMoveDay">
-              <div class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
-              <div class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
-              <div class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
-              <div class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
-              <div class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
-              <div class="week">
-                <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div> <div class="day"></div>
-              </div>
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
+              <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
           </div>
         </div>
@@ -358,10 +324,10 @@
         let d = new Date(Date.UTC(1970, 0, 15 + i));
         let weekday = (d.getUTCDay() - 1 + 7) % 7;
         if (this.$.caption.children[weekday]) {
-          this.$.caption.children[weekday].dataset.day = d.toLocaleDateString(locale, {
+          this.$.caption.children[weekday].setAttribute('day', d.toLocaleDateString(locale, {
             timeZone: 'UTC',
             weekday: 'short'
-          });
+          }));
         }
       }
     }
@@ -416,46 +382,52 @@
 
       let counter = -(firstWeekDay + 7) % 7 + 1;
 
-      for (let i = 0; i < this.$.dates.children.length; i++) {
-        for (let j = 0; j < this.$.dates.children[i].children.length; j++) {
+      for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 7; j++) {
           // Day Numbers
           if (counter <= 0) {
-            this.$.dates.children[i].children[j].classList.add('notinmonth');
-            this.$.dates.children[i].children[j].dataset.day = prevmonthlength + counter;
+            this.$.dates.children[7*i + j].classList.add('notinmonth');
+            this.$.dates.children[7*i + j].setAttribute('day', prevmonthlength + counter);
           } else if (counter > thismonthlength) {
-            this.$.dates.children[i].children[j].classList.add('notinmonth');
-            this.$.dates.children[i].children[j].dataset.day = counter - thismonthlength;
+            this.$.dates.children[7*i + j].classList.add('notinmonth');
+            this.$.dates.children[7*i + j].setAttribute('day', counter - thismonthlength);
           } else {
-            this.$.dates.children[i].children[j].classList.remove('notinmonth');
-            this.$.dates.children[i].children[j].dataset.day = counter;
+            this.$.dates.children[7*i + j].classList.remove('notinmonth');
+            this.$.dates.children[7*i + j].setAttribute('day', counter);
           }
           // Day is Selected Day
           if (counter === selectedDay) {
-            this.$.dates.children[i].children[j].classList.add('selected');
-            this.currentSelectedDayNode = this.$.dates.children[i].children[j];
+            this.$.dates.children[7*i + j].classList.add('selected');
+            this.currentSelectedDayNode = this.$.dates.children[7*i + j];
             selectedDayInView = true;
           } else {
-            this.$.dates.children[i].children[j].classList.remove('selected');
+            this.$.dates.children[7*i + j].classList.remove('selected');
           }
           // Day is Recent Selected Day
           if (counter === recentDay) {
-            this.$.dates.children[i].children[j].classList.add('recent');
+            this.$.dates.children[7*i + j].classList.add('recent');
           } else {
-            this.$.dates.children[i].children[j].classList.remove('recent');
+            this.$.dates.children[7*i + j].classList.remove('recent');
           }
           // Day is Current Day
           if (counter === currentDay) {
-            this.$.dates.children[i].children[j].classList.add('current');
+            this.$.dates.children[7*i + j].classList.add('current');
           } else {
-            this.$.dates.children[i].children[j].classList.remove('current');
+            this.$.dates.children[7*i + j].classList.remove('current');
           }
           // Day is below Min or above Max
-          if ((min !== undefined && counter < min) || (max !== undefined && counter > max)) {
-            this.$.dates.children[i].children[j].classList.add('outofrange');
-          } else {
-            this.$.dates.children[i].children[j].classList.remove('outofrange');
+          if (min !== undefined && counter < min) {
+            this.$.dates.children[7*i + j].classList.add('outofrange');
+            this.$.dates.children[7*i + j].classList.add('min');
+          } else if (max !== undefined && counter > max) {
+            this.$.dates.children[7*i + j].classList.add('outofrange');
+            this.$.dates.children[7*i + j].classList.add('max');
+          } else if (this.$.dates.children[7*i + j].classList.contains('outofrange')) {
+            this.$.dates.children[7*i + j].classList.remove('outofrange');
+            this.$.dates.children[7*i + j].classList.remove('min');
+            this.$.dates.children[7*i + j].classList.remove('max');
           }
-          this.$.dates.children[i].children[j].dataset.date = this._toDate(new Date(year, month, counter));
+          this.$.dates.children[7*i + j].dataset.date = this._toDate(new Date(year, month, counter));
           counter++;
         }
       }

@@ -31,18 +31,26 @@
       return `
         ${super.customStyleContent || ''}
         .lower {
-          display: flex;
           position: relative;
-          flex-flow: row wrap;
+          left: 0; right: 0;
         }
-        .lower > * {
+        .lower > .container {
+          display: inline-flex;
+          flex-flow: row wrap;
+          position: relative;
+          width: 100%;
+          border-radius: inherit;
+          /* IE flex-wrap hack */
+          /* position: absolute;
+          top: auto; left: 0; right: 0; bottom: 0;
+          transform: translateY(100%);
+          box-shadow: inherit; */
+        }
+        .container > * {
           border-radius: 0 !important;
           box-shadow: none !important;
           padding: 0 !important;
-          position: relative;
-          flex: 1 0 1px;
-        }
-        .lower #timer {
+          flex: 1 0 auto;
         }
       `;
     }
@@ -52,9 +60,11 @@
         <div id="picker" class="dropdown" horizontal$="[[_hideDay]]">
           ${this.calendarTemplate}
           <div class="lower">
-            ${this.timeTemplate}
-            <div id="buttons">
-              ${this.buttonTemplate}
+            <div class="container">
+              ${this.timeTemplate}
+              <div id="buttons">
+                ${this.buttonTemplate}
+              </div>
             </div>
           </div>
         </div>
@@ -129,7 +139,8 @@
      * `--input-style` | Mixin applied to the inputs | { padding: 0.2em; border-radius: 4px; text-align: center; transition: background 250ms cubic-bezier(0.6, 1, 0.2, 1);}`
      * `--input-focus` | Mixin applied to the focussed or hovered inputs | { color: var(--input-focus-color); background: var(--input-focus-background); }`
      * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); }`
-     * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 4px;}`
+     * `--input-picker` | Mixin applied to the picker | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 4px;}`
+     * `--input-picker-padding` | Padding of the picker | `4px`
      * `--input-selection-color` | Text-color of selected texts | `var(--input-focus-color)`
      * `--input-selection-background` | Background of selected texts | `rgba(255,255,255,0.1)`
      * `--calendar-element` | Mixin applied to the calender | `{}`
