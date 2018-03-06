@@ -106,17 +106,19 @@
       }
 
       .content {
-        margin: 64px 25% 120px;
+        margin: 64px 20% 120px;
         padding: 32px 32px 60px;
-        min-width: 480px;
+        min-width: 400px;
         background-color: #fff;
         color: #333;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+        box-shadow: 0 2px 3px 2px rgba(255, 255, 255, 0.14);
+        border-radius: 32px;
       }
 
       .artist-date {
         @apply --layout-horizontal;
         padding-bottom: 12px;
+        align-items: baseline;
       }
 
       .artist {
@@ -193,7 +195,9 @@
     <div class="content">
       <h2>KIND OF BLUE</h2>
       <div class="artist-date">
-        <div class="artist">Miles Davis</div>
+        <div class="artist">
+          <span>Miles Davis</span>
+        </div>
         <overlay-date-picker default="1959-08-17" no-tip vertical-align="top" disabled></overlay-date-picker>
       </div>
       <summary>
