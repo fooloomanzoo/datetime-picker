@@ -35,7 +35,7 @@
 
       static get polyfillInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" tabindex required="[[required]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" tabindex required="[[required]]" disabled$="[[disabled]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
       }
 
@@ -134,7 +134,7 @@
        */
       static get buttonTemplate() {
         return `
-          <button class="icon now" on-click="now" on-keydown="_stopPropagation">${this._iconNowTemplate}</button>
+          <button class="icon now" hidden$="[[hideNowButton]]" on-click="now" on-keydown="_stopPropagation">${this._iconNowTemplate}</button>
           ${super.buttonTemplate || ''}
         `;
       }
@@ -164,6 +164,10 @@
           confirmedValue: {
             type: Number,
             notify: true
+          },
+
+          hideNowButton: {
+            type: Boolean
           }
         };
       }

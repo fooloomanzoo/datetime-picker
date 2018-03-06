@@ -1,13 +1,14 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker)
 [![API](https://img.shields.io/badge/API-available-green.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/elements/datetime-picker)
 [![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/demo/demo/datetime-picker.html)
+[![Codepen](https://img.shields.io/badge/codepen-demo-black.svg)](https://codepen.io/fooloomanzoo/pen/RxqNOb)
 
 _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)_
 ## &lt;datetime-picker&gt;
 
 ### What is it for?
 
-`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
+`datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes. A codepen demo is available [here](https://codepen.io/fooloomanzoo/pen/RxqNOb).
 
 <!--
 ```

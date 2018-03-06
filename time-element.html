@@ -46,7 +46,7 @@
           align-items: center;
           background: var(--input-background);
           color: var(--input-color);
-          padding: 4px;
+          padding: 0.25em;
           @apply --input-picker;
           @apply --time-element;
         }
@@ -71,8 +71,8 @@
           justify-content: space-between;
         }
         #timer .field > .icon {
-          padding-top: 4px;
-          padding-bottom: 4px;
+          padding-top: 0.25em;
+          padding-bottom: 0.25em;
         }
         #timer .hour12 {
           flex-shrink: 0;
@@ -89,27 +89,28 @@
 
     static get timeTemplate() {
       return `
-        <div id="timer" hidden$="[[_hideHours]]">
-          <div class="field" hidden$="[[_hideHours]]">
+        <div id="timer">
+          <div class="field" hidden$="[[_partsHidden.hours]]">
             <button class="icon switch" prop="hours" step="1">${this._iconStepUpTemplate}</button>
             <integer-input id="hour" hidden$="[[hour12]]" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
             <integer-input hidden$="[[!hour12]]" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="hours" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_hideMinutes]]">[[_localTimeSeparator]]</span>
-          <div class="field" hidden$="[[_hideMinutes]]">
+          <span hidden$="[[_or(_partsHidden.hours, _partsHidden.minutes]]">[[_localTimeSeparator]]</span>
+          <div class="field" hidden$="[[_partsHidden.minutes]]">
             <button class="icon switch" prop="minutes" step="1">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="2" min="0" max="59" value="{{minutes}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="minutes" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_hideSeconds]]">[[_localTimeSeparator]]</span>
-          <div class="field" hidden$="[[_hideSeconds]]">
+          <span hidden$="[[_or(_partsHidden.minutes, _partsHidden.seconds]]">[[_localTimeSeparator]]</span>
+          <div class="field" hidden$="[[_partsHidden.seconds]]">
             <button class="icon switch" prop="seconds" step="1">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="seconds" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_hideMilliSeconds]]">[[_localDecimalSeparator]]</span>
-          <div class="field" hidden$="[[_hideMilliSeconds]]">
+          <span hidden$="[[!_partsHidden.seconds]]">0</span>
+          <span hidden$="[[_partsHidden.milliseconds]]">[[_localDecimalSeparator]]</span>
+          <div class="field" hidden$="[[_partsHidden.milliseconds]]">
             <button class="icon switch" prop="milliseconds" step="1">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
             <button class="icon switch" prop="milliseconds" step="-1">${this._iconStepDownTemplate}</button>
@@ -139,38 +140,12 @@
 
     static get properties() {
       return {
-        /**
-         * Clamp datetime to a property
-         * possible values: 'month', 'day', 'hours', 'minutes', 'seconds', 'milliseconds' or ''
-         */
-        clamp: {
-          type: String
-        },
 
         withTimezone: {
           type: Boolean,
           value: false
-        },
-
-        _hideHours: {
-          type: Boolean,
-          computed: '_ifClamped(clamp, "hours")'
-        },
-
-        _hideMinutes: {
-          type: Boolean,
-          computed: '_ifClamped(clamp, "minutes")'
-        },
-
-        _hideSeconds: {
-          type: Boolean,
-          computed: '_ifClamped(clamp, "seconds")'
-        },
-
-        _hideMilliSeconds: {
-          type: Boolean,
-          computed: '_ifClamped(clamp, "milliseconds")'
         }
+
       }
     }
 
@@ -184,6 +159,15 @@
         this._setDate(d);
       }
       this.$.hour.startAt = d.getHours();
+    }
+
+    _or(a, b) {
+      return a || b;
+    }
+
+    _and(a, b) {
+      console.log(a, b);
+      return a && b;
     }
 
     _computeInvalid(required, value) {
@@ -220,10 +204,10 @@
        * `--input-background` | Text-color of the element | `#2b2b2b`
        * `--input-focus-color` | Color of the focussed or hovered inputs and icons | `#f5f5f5`
        * `--input-focus-background` | Background of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
-       * `--input-style` | Mixin applied to the inputs | { padding: 0.2em; border-radius: 4px; text-align: center; transition: background 250ms cubic-bezier(0.6, 1, 0.2, 1);}`
+       * `--input-style` | Mixin applied to the inputs | { padding: 0.25em; border-radius: 0.25em; text-align: center; transition: background 250ms cubic-bezier(0.6, 1, 0.2, 1);}`
        * `--input-focus` | Mixin applied to the focussed or hovered inputs | { color: var(--input-focus-color); background: var(--input-focus-background); }`
-       * `--input-icon` | Mixin applied to the icons | `{border-radius: 2px; padding: 8px; height: 16px; width: 16px; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); }`
-       * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 4px;}`
+       * `--input-icon` | Mixin applied to the icons | `{ border-radius: 0.25em; padding: 0.5em; height: 1em; width: 1em; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); }`
+       * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 0.25em;}`
        * `--input-selection-color` | Text-color of selected texts | `var(--input-focus-color)`
        * `--input-selection-background` | Background of selected texts | `rgba(255,255,255,0.1)`
        * `--time-element` | Mixin applied to the time-element | `{}`
@@ -250,7 +234,6 @@
           ${this.timeTemplate}
         `
       }
-
 
       _dateTimeChanged(date, time) {
         if (this.__updatingTimezoneOffset) {
