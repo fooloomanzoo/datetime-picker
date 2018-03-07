@@ -90,26 +90,26 @@
     static get timeTemplate() {
       return `
         <div id="timer">
-          <div class="field" hidden$="[[partsHidden.hour]]" style$="order:[[dateOrder.hour]];">
+          <div class="field" hidden$="[[partsHidden.hour]]">
             <button class="icon switch" prop="hour" step="1">${this._iconStepUpTemplate}</button>
             <integer-input id="hour" hidden$="[[hour12Format]]" min="0" max="23" pad-length="2" value="{{hour}}" placeholder="00"></integer-input>
-            <integer-input hidden$="[[!hour12-format]]" min="1" max="12" pad-length="2" value="{{hour12}}" placeholder="00"></integer-input>
+            <integer-input hidden$="[[!hour12Format]]" min="1" max="12" pad-length="2" value="{{hour12}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="hour" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_or(partsHidden.hour, partsHidden.minute]]" style$="order:[[dateOrder.minute]];">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[partsHidden.minute]]" style$="order:[[dateOrder.minute]];">
+          <span hidden$="[[partsHidden.hour]]">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[partsHidden.minute]]">
             <button class="icon switch" prop="minute" step="1">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="2" min="0" max="59" value="{{minute}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="minute" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_or(partsHidden.minute, partsHidden.second]]" style$="order:[[dateOrder.second]];">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[partsHidden.second]]" style$="order:[[dateOrder.second]];">
+          <span hidden$="[[partsHidden.minute]]">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[partsHidden.second]]">
             <button class="icon switch" prop="second" step="1">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="2" min="0" max="59" value="{{second}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="second" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[!partsHidden.second]]" style$="order:[[dateOrder.millisecond]];">0</span>
-          <span hidden$="[[partsHidden.millisecond]]" style$="order:[[dateOrder.millisecond]];">[[decimalSeparator]]</span>
+          <span hidden$="[[!partsHidden.second]]">0</span>
+          <span hidden$="[[partsHidden.millisecond]]">[[decimalSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.millisecond]]">
             <button class="icon switch" prop="millisecond" step="1">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="3" min="0" max="999" value="{{millisecond}}" placeholder="000"></integer-input>

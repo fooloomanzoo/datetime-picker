@@ -164,7 +164,7 @@
         <div id="calendar">
           <div id="top" hidden$="[[_and(partsHidden.month, partsHidden.year)]]" >
             <button class="icon switch" prop$="[[_computeIncremPropTop(partsHidden.month, clamp)]]" step="-1" style="order:0">${this._iconStepLeftTemplate}</button>
-            <select id="monthSelector" hidden$="[[partsHidden.month]]" style="order:[[dateOrder.month]];" placeholder="1234" value="{{month::change}}"></select>
+            <select id="monthSelector" hidden$="[[partsHidden.month]]" style="order:[[dateOrder.month]];" value="{{month::change}}"></select>
             <integer-input id="yearInput" hidden$="[[partsHidden.year]]" style="order:[[dateOrder.year]];" pad-length="4" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
             <button class="icon switch" prop$="[[_computeIncremPropTop(partsHidden.month, clamp)]]" step="1" style="order:6">${this._iconStepRightTemplate}</button>
           </div>
