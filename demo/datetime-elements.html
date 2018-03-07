@@ -208,7 +208,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker  hour12 value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
+              <datetime-picker hour12-format value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
@@ -225,7 +225,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              hour12: <input type="checkbox" checked="{{hour12::change}}">
+              hour12-format: <input type="checkbox" checked="{{hour12Format::change}}">
               <select value="{{locale::change}}">
                 <option value=""></option>
                 <option value="en">english</option>
@@ -241,7 +241,7 @@
                 <option value="zh">中文</option>
               </select>
               <br>
-              <datetime-picker hour12="[[hour12]]" locale="{{locale}}" value="{{value}}" default="2025-05-05T15:00" datetime="{{datetime}}" vertical-align="bottom" horizontal-align="left"></datetime-picker>
+              <datetime-picker hour12-format="[[hour12Format]]" locale="{{locale}}" value="{{value}}" default="2025-05-05T15:00" datetime="{{datetime}}" vertical-align="bottom" horizontal-align="left"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>locale</code>: <b>[[locale]]</b></div>
                 <div><code>numeric value</code>: <b>[[value]]</b></div>

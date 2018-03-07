@@ -27,7 +27,7 @@
           <input class="native" tabindex="0" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
           <div hidden$="[[!_computeAnd(withTimezone, native)]]" style="display:inline-flex;align-items:center;">
             <integer-input class="replacement" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23"></integer-input>
-            <span>[[_localTimeSeparator]]</span>
+            <span>[[timeSeparator]]</span>
             <integer-input class="replacement" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
           </div>
         `;
@@ -35,7 +35,7 @@
 
       static get polyfillInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" tabindex required="[[required]]" disabled$="[[disabled]]" default="[[default]]" locale="[[locale]]" hour12=[[hour12]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" tabindex required="[[required]]" disabled$="[[disabled]]" default="[[default]]" locale="[[locale]]" hour12-format=[[hour12Format]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
         `;
       }
 

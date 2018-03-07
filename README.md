@@ -35,7 +35,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
   <input type="checkbox" checked="{{native::change}}">native picker
   <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm
   <input type="checkbox" checked="{{withTimezone::change}}">with timezone
-  <input type="checkbox" checked="{{hour12::change}}">hour 12
+  <input type="checkbox" checked="{{hour12Format::change}}">hour 12
   horizontal-align: <select value="{{horizontalAlign::change}}">
     <option value="auto">auto</option>
     <option value="left">left</option>
@@ -59,7 +59,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
     <div><code>confirmed datetime</code>: [[confirmedDatetime]]</div>
     <div><code>confirmed numeric value</code>: [[confirmedValue]]</div>
   </p>
-  <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="{{verticalAlign}}" horizontal-align="{{horizontalAlign}}" hour12="[[hour12]]"></datetime-picker>
+  <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="{{verticalAlign}}" horizontal-align="{{horizontalAlign}}" hour12-format="[[hour12Format]]"></datetime-picker>
 ```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
@@ -161,7 +161,7 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <time-element time="{{time}}"></time-element>
-<p> time: <time-input time="{{time}}" hours="8"></time-input></p>
+<p> time: <time-input time="{{time}}" hour="8"></time-input></p>
 ```
 
 #### Use the polyfill or the native picker
@@ -248,7 +248,7 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 
 ```html
 <p>
-  hour12: <input type="checkbox" checked="{{hour12::change}}">
+  hour12-format: <input type="checkbox" checked="{{hour12Format::change}}">
   <br>
   locale:
   <select value="{{locale::change}}">
@@ -269,7 +269,7 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 
 <p>
   <calendar-element locale="{{locale}}" date="{{date}}" ></calendar-element>
-  <time-element locale="{{locale}}" hour12="[[hour12]]" datetime="{{datetime}}" date="{{date}}"></time-element>
+  <time-element locale="{{locale}}" hour12-format="[[hour12Format]]" datetime="{{datetime}}" date="{{date}}"></time-element>
 </p>
 
 <p>datetime: [[datetime]]</p>

@@ -64,12 +64,12 @@
     <div class="vertical-section-container centered">
       <h3>Mediated Input</h3>
       <h4>to confirm the values for date, time, datetime and value</h4>
-      <h5>in 12-hour-format and showing milliseconds (unset 'clamp'-attribute)</h5>
+      <h5>in 12-hour-format and showing millisecond (unset 'clamp'-attribute)</h5>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker hour12 time="{{time}}" confirmed-time="{{confirmedTime}}" clamp="" vertical-align="bottom"></time-picker>
+              <time-picker hour12-format time="{{time}}" confirmed-time="{{confirmedTime}}" clamp="" vertical-align="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>current time</code>: <b>[[time]]</b></div>
                 <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
@@ -133,7 +133,7 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>Clamp on seconds</h3>
+      <h3>Clamp on second</h3>
       <demo-snippet>
         <template>
           <dom-bind>
@@ -149,7 +149,7 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <time-picker class="clamp" time="{{time}}" clamp="seconds" vertical-align="bottom"></time-picker>
+                <time-picker class="clamp" time="{{time}}" clamp="second" vertical-align="bottom"></time-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>time</code>: <b>[[time]]</b></div>

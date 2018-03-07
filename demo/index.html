@@ -37,12 +37,12 @@
                 <input type="checkbox" checked="{{native::change}}">native picker
                 <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm
                 <input type="checkbox" checked="{{withTimezone::change}}">with timezone
-                <input type="checkbox" checked="{{hour12::change}}">hour 12
+                <input type="checkbox" checked="{{hour12Format::change}}">hour 12
               </p>
               <p>
-                <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" hour12="[[hour12]]"></datetime-picker><br>
-                <date-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-date="{{confirmedDate}}" timezone="{{timezone}}" hour12="[[hour12]]"></date-picker><br>
-                <time-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-time="{{confirmedTime}}" timezone="{{timezone}}" hour12="[[hour12]]"></time-picker><br>
+                <datetime-picker native="[[native]]" locale="fa" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></datetime-picker><br>
+                <date-picker native="[[native]]" locale="zh-Hans-CN" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-date="{{confirmedDate}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></date-picker><br>
+                <time-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" confirmed-time="{{confirmedTime}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></time-picker><br>
               </p>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>

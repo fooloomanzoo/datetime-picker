@@ -74,7 +74,7 @@
           padding-top: 0.25em;
           padding-bottom: 0.25em;
         }
-        #timer .hour12 {
+        #timer .hour12-format {
           flex-shrink: 0;
           height: unset;
           width: unset;
@@ -90,30 +90,30 @@
     static get timeTemplate() {
       return `
         <div id="timer">
-          <div class="field" hidden$="[[_partsHidden.hours]]">
-            <button class="icon switch" prop="hours" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input id="hour" hidden$="[[hour12]]" min="0" max="23" pad-length="2" value="{{hours}}" placeholder="00"></integer-input>
-            <integer-input hidden$="[[!hour12]]" min="1" max="12" pad-length="2" value="{{hours12}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="hours" step="-1">${this._iconStepDownTemplate}</button>
+          <div class="field" hidden$="[[partsHidden.hour]]" style$="order:[[dateOrder.hour]];">
+            <button class="icon switch" prop="hour" step="1">${this._iconStepUpTemplate}</button>
+            <integer-input id="hour" hidden$="[[hour12Format]]" min="0" max="23" pad-length="2" value="{{hour}}" placeholder="00"></integer-input>
+            <integer-input hidden$="[[!hour12-format]]" min="1" max="12" pad-length="2" value="{{hour12}}" placeholder="00"></integer-input>
+            <button class="icon switch" prop="hour" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_or(_partsHidden.hours, _partsHidden.minutes]]">[[_localTimeSeparator]]</span>
-          <div class="field" hidden$="[[_partsHidden.minutes]]">
-            <button class="icon switch" prop="minutes" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" min="0" max="59" value="{{minutes}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="minutes" step="-1">${this._iconStepDownTemplate}</button>
+          <span hidden$="[[_or(partsHidden.hour, partsHidden.minute]]" style$="order:[[dateOrder.minute]];">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[partsHidden.minute]]" style$="order:[[dateOrder.minute]];">
+            <button class="icon switch" prop="minute" step="1">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="2" min="0" max="59" value="{{minute}}" placeholder="00"></integer-input>
+            <button class="icon switch" prop="minute" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_or(_partsHidden.minutes, _partsHidden.seconds]]">[[_localTimeSeparator]]</span>
-          <div class="field" hidden$="[[_partsHidden.seconds]]">
-            <button class="icon switch" prop="seconds" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" min="0" max="59" value="{{seconds}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="seconds" step="-1">${this._iconStepDownTemplate}</button>
+          <span hidden$="[[_or(partsHidden.minute, partsHidden.second]]" style$="order:[[dateOrder.second]];">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[partsHidden.second]]" style$="order:[[dateOrder.second]];">
+            <button class="icon switch" prop="second" step="1">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="2" min="0" max="59" value="{{second}}" placeholder="00"></integer-input>
+            <button class="icon switch" prop="second" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[!_partsHidden.seconds]]">0</span>
-          <span hidden$="[[_partsHidden.milliseconds]]">[[_localDecimalSeparator]]</span>
-          <div class="field" hidden$="[[_partsHidden.milliseconds]]">
-            <button class="icon switch" prop="milliseconds" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" min="0" max="999" value="{{milliseconds}}" placeholder="000"></integer-input>
-            <button class="icon switch" prop="milliseconds" step="-1">${this._iconStepDownTemplate}</button>
+          <span hidden$="[[!partsHidden.second]]" style$="order:[[dateOrder.millisecond]];">0</span>
+          <span hidden$="[[partsHidden.millisecond]]" style$="order:[[dateOrder.millisecond]];">[[decimalSeparator]]</span>
+          <div class="field" hidden$="[[partsHidden.millisecond]]">
+            <button class="icon switch" prop="millisecond" step="1">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="3" min="0" max="999" value="{{millisecond}}" placeholder="000"></integer-input>
+            <button class="icon switch" prop="millisecond" step="-1">${this._iconStepDownTemplate}</button>
           </div>
           <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
             <div class="field">
@@ -121,17 +121,17 @@
               <integer-input pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
               <button class="icon switch" prop="_timeZoneHours" step="-1" once>${this._iconStepDownTemplate}</button>
             </div>
-            <span>[[_localTimeSeparator]]</span>
+            <span>[[timeSeparator]]</span>
             <div class="field">
               <button class="icon switch" prop="_timeZoneMinutes" step="15">${this._iconStepUpTemplate}</button>
               <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
               <button class="icon switch" prop="_timeZoneMinutes" step="-15">${this._iconStepDownTemplate}</button>
             </div>
           </div>
-          <template is="dom-if" if="[[hour12]]">
-            <button class="hour12 icon" hidden$="[[!_valueIsSet]]" on-click="_switchAm">
-              <div hidden$="[[!isAm]]">[[_am]]</div>
-              <div hidden$="[[isAm]]">[[_pm]]</div>
+          <template is="dom-if" if="[[hour12Format]]">
+            <button class="hour12-format icon" hidden$="[[!_valueIsSet]]" on-click="_switchAm">
+              <div hidden$="[[!isAm]]">[[amString]]</div>
+              <div hidden$="[[isAm]]">[[pmString]]</div>
             </button>
           </template>
         </div>
@@ -193,7 +193,7 @@
        *     <time-element time="{{time}}"></time-element>
        *  ```
        *
-       * For example if you clamp on `milliseconds`, you can round to `0` milliseconds and hide the input. If you set `clamp="seconds"` the inputs for *seconds* and *milliseconds* are hidden.
+       * For example if you clamp on `millisecond`, you can round to `0` millisecond and hide the input. If you set `clamp="second"` the inputs for *second* and *millisecond* are hidden.
        *
        * The following custom properties and mixins are also available for styling:
        *
@@ -219,7 +219,7 @@
        * @appliesMixin FormElementMixin
        * @appliesMixin DatetimeMixin
        *
-       * @demo demo/time-picker.html time elements
+       * @demo demo/time-elements.html time elements
        **/
     class TimeElement extends TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element)))) { // eslint-disable-line no-undef
 

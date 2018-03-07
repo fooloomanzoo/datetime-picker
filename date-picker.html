@@ -31,7 +31,7 @@
 
     static get pickerTemplate() {
       return `
-        <div id="picker" class="dropdown" horizontal$="[[__partsHidden.day]]">
+        <div id="picker" class="dropdown">
           ${this.calendarTemplate}
           <div id="buttons">
             ${this.buttonTemplate}
@@ -131,7 +131,7 @@
    *  @appliesMixin DatePickerPattern
    *
    *  @demo demo/index.html
-   *  @demo demo/date-picker.html date elements
+   *  @demo demo/date-elements.html date elements
    *  @demo demo/form.html in a form
    *  @demo demo/music-album.html music album demo
    **/

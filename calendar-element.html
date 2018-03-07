@@ -162,14 +162,14 @@
       return `
         ${super.contentTemplate || ''}
         <div id="calendar">
-          <div id="top" hidden$="[[_and(_partsHidden.month, _partsHidden.year)]]" >
-            <button class="icon switch" prop$="[[_computeIncremPropTop(_partsHidden.month, clamp)]]" step="-1" style="order:0">${this._iconStepLeftTemplate}</button>
-            <select id="monthSelector" hidden$="[[_partsHidden.month]]" style="order:[[_orderDate.month]];" placeholder="1234" value="{{month::change}}"></select>
-            <integer-input id="yearInput" hidden$="[[_partsHidden.year]]" style="order:[[_orderDate.year]];" pad-length="4" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
-            <button class="icon switch" prop$="[[_computeIncremPropTop(_partsHidden.month, clamp)]]" step="1" style="order:6">${this._iconStepRightTemplate}</button>
+          <div id="top" hidden$="[[_and(partsHidden.month, partsHidden.year)]]" >
+            <button class="icon switch" prop$="[[_computeIncremPropTop(partsHidden.month, clamp)]]" step="-1" style="order:0">${this._iconStepLeftTemplate}</button>
+            <select id="monthSelector" hidden$="[[partsHidden.month]]" style="order:[[dateOrder.month]];" placeholder="1234" value="{{month::change}}"></select>
+            <integer-input id="yearInput" hidden$="[[partsHidden.year]]" style="order:[[dateOrder.year]];" pad-length="4" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
+            <button class="icon switch" prop$="[[_computeIncremPropTop(partsHidden.month, clamp)]]" step="1" style="order:6">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="content" hidden$="[[_partsHidden.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
+          <div id="content" hidden$="[[partsHidden.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
             <div id="caption">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
@@ -190,11 +190,11 @@
       return {
         /**
          * Clamp datetime to a property
-         * possible values: 'month', 'day', 'hours'
+         * possible values: 'month', 'day', 'hour'
          */
         clamp: {
           type: String,
-          value: 'hours',
+          value: 'hour',
           observer: '_clampChanged'
         },
 
@@ -517,7 +517,7 @@
   *     <calendar-element date="{{date}}"></calendar-element>
   *   ```
   *
-  * For example if you clamp on `hours`, you can round `datetime` and `value` to `00:00:00`. If you set `clamp="day"` you hide the day-selection.
+  * For example if you clamp on `hour`, you can round `datetime` and `value` to `00:00:00`. If you set `clamp="day"` you hide the day-selection.
   *
   * The following custom properties and mixins are also available for styling:
   *
@@ -546,7 +546,7 @@
   * @appliesMixin FormElementMixin
   * @appliesMixin DatetimeMixin
   *
-  * @demo demo/date-picker.html date elements
+  * @demo demo/date-elements.html date elements
   **/
     class CalendarElement extends CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element)))) { // eslint-disable-line no-undef
 
