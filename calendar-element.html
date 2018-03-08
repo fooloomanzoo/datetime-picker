@@ -306,8 +306,6 @@
         return;
       }
       super._localeChanged(locale);
-      // test locale (currently just for Latin letters and Western Arabic/European numerals)
-      locale += '-u-nu-latn-ca-iso8601';
 
       while (this.$.monthSelector.hasChildNodes()) {
         this.$.monthSelector.removeChild(this.$.monthSelector.lastChild);

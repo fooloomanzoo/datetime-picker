@@ -89,7 +89,7 @@
 
     static get timeTemplate() {
       return `
-        <div id="timer">
+        <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
           <div class="field" hidden$="[[partsHidden.hour]]">
             <button class="icon switch" prop="hour" step="1">${this._iconStepUpTemplate}</button>
             <integer-input id="hour" hidden$="[[hour12Format]]" min="0" max="23" pad-length="2" value="{{hour}}" placeholder="00"></integer-input>
@@ -108,7 +108,9 @@
             <integer-input pad-length="2" min="0" max="59" value="{{second}}" placeholder="00"></integer-input>
             <button class="icon switch" prop="second" step="-1">${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[!partsHidden.second]]">0</span>
+          <template is="dom-if" if="[[partsHidden.second]]">
+            <span hidden$="[[partsHidden.millisecond]]">0</span>
+          </template>
           <span hidden$="[[partsHidden.millisecond]]">[[decimalSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.millisecond]]">
             <button class="icon switch" prop="millisecond" step="1">${this._iconStepUpTemplate}</button>
