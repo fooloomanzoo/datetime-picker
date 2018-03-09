@@ -30,22 +30,9 @@
       return 'time-input';
     }
 
-    /**
-     * custom style content
-     * @type {string}
-     */
-    static get customStyleContent() {
-      return `
-        ${super.customStyleContent || ''}
-        #picker {
-          flex-flow: row nowrap;
-        }
-      `;
-    }
-
     static get pickerTemplate() {
       return `
-        <div id="picker" class="dropdown">
+        <div id="picker" class="dropdown" horizontal>
           ${this.timeTemplate}
           <div id="buttons">
             ${this.buttonTemplate}

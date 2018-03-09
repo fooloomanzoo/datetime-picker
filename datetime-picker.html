@@ -40,11 +40,6 @@
           position: relative;
           width: 100%;
           border-radius: inherit;
-          /* IE flex-wrap hack */
-          /* position: absolute;
-          top: auto; left: 0; right: 0; bottom: 0;
-          transform: translateY(100%);
-          box-shadow: inherit; */
         }
         .container > * {
           border-radius: 0 !important;
@@ -57,7 +52,7 @@
 
     static get pickerTemplate() {
       return `
-        <div id="picker" class="dropdown">
+        <div id="picker" class="dropdown" horizontal$="[[_ifClamped(clamp, 'day')]]">
           ${this.calendarTemplate}
           <div class="lower">
             <div class="container">
@@ -146,7 +141,9 @@
      * `--calendar-element` | Mixin applied to the calender | `{}`
      * `--calendar-cell` | Mixin applied to the date cells | `{}`
      * `--calendar-cell-hovered` | Mixin applied to hovered date cells | `{}`
-     * `--calendar-cell-size` | width of a date cell | `2.25em`
+     * `--calendar-cell-size` | width of a date cell | `3em`
+     * `--calendar-cell-border-radius` | border-radius of a date cell | `0.25em`
+     * `--calendar-cell-font-size` | font-size of a date cell | `0.75em`
      * `--time-element` | Mixin applied to the time-element | `{}`
      *
      *  @customElement

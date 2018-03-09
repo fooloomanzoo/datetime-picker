@@ -39,14 +39,14 @@
       return `
         ${super.customStyleContent || ''}
         #calendar {
+          padding: 0.25em;
+          @apply --input-picker;
           display: -ms-inline-flexbox;
           display: -webkit-inline-flex;
           display: inline-flex;
           flex-flow: column nowrap;
           background: var(--input-background);
           color: var(--input-color);
-          padding: 0.25em;
-          @apply --input-picker;
           @apply --calendar-element;
         }
         #calendar #top {
@@ -68,33 +68,36 @@
             padding: 0.3em;
           };
         }
-        #calendar #content {
+        #calendar #days {
           position: relative;
         }
         #calendar #caption {
           display: inline-flex;
           flex-flow: row nowrap;
         }
-        #calendar #content:focus {
+        #calendar #days:focus {
           outline: none;
         }
         #calendar .day {
+          @apply --calendar-cell;
           -webkit-background-clip: padding-box;
           background-clip: padding-box;
-          @apply --calendar-cell;
           line-height: normal;
           float: left;
           position: relative;
-          border-radius: var(--calendar-cell-border-radius, 0.2em);
-          width: var(--calendar-cell-size, 2.25em);
-          height: var(--calendar-cell-size, 2.25em);
+          font-size: var(--calendar-cell-font-size, 0.75em);
+          border-radius: var(--calendar-cell-border-radius, 0.25em);
+          width: var(--calendar-cell-size, 3em);
+          height: var(--calendar-cell-size, 3em);
+          min-width: 2em;
+          min-height: 2em;
           box-sizing: content-box;
         }
         #calendar .day:nth-child(7n+1) {
           clear: left;
         }
-        #calendar:hover #content .day.selected,
-        #calendar #content:focus .day.selected {
+        #calendar:hover .day.selected,
+        #calendar #days:focus .day.selected {
           background: var(--input-focus-background);
           color: var(--input-focus-color);
         }
@@ -108,20 +111,20 @@
           bottom: 0;
           will-change: opacity, border-color;
           opacity: 0;
-          border-radius: var(--calendar-cell-border-radius, 0.2em);
+          border-radius: inherit;
           border: thin solid transparent;
           transition: border-color 200ms cubic-bezier(0.6, 1, 0.2, 1), opacity 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar .day:after {
           content: attr(day);
           position: absolute;
-          font-size: 0.75em;
           white-space: nowrap;
+          border-radius: inherit;
           top: 50%;
           right: 50%;
           transform: translate(50%, -50%);
         }
-        #calendar #dates .day {
+        #calendar  #dates .day {
           cursor: pointer;
           transition: background 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
@@ -130,21 +133,21 @@
           @apply --calendar-cell-hovered;
         }
         #calendar #dates .day:hover:before,
-        #calendar #content .day.current:before {
+        #calendar #days .day.current:before {
           border-color: currentColor;
         }
         #calendar #dates .day.selected:before,
         #calendar #dates .day.recent:before {
           border-color: var(--input-focus-background);
         }
-        #calendar #content .day.recent:before,
-        #calendar #content .day.current:before {
+        #calendar #days .day.recent:before,
+        #calendar #days .day.current:before {
           opacity: 0.75;
         }
         #calendar #dates .day:hover:before {
           opacity: 0.5;
         }
-        #calendar #content .day.selected:before {
+        #calendar #days .day.selected:before {
           opacity: 1;
         }
         #calendar #dates .day.notinmonth:after {
@@ -169,7 +172,7 @@
             <button class="icon switch" prop$="[[_computeIncremPropTop(partsHidden.month, clamp)]]" step="1" style="order:6">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="content" hidden$="[[partsHidden.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
+          <div id="days" hidden$="[[partsHidden.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
             <div id="caption">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
@@ -534,7 +537,9 @@
   * `--calendar-element` | Mixin applied to the calendar | `{}`
   * `--calendar-cell` | Mixin applied to the date cells | `{}`
   * `--calendar-cell-hovered` | Mixin applied to hovered date cells | `{}`
-  * `--calendar-cell-size` | width of a date cell | `2.25em`
+  * `--calendar-cell-size` | width of a date cell | `3em`
+  * `--calendar-cell-border-radius` | border-radius of a date cell | `0.25em`
+  * `--calendar-cell-font-size` | font-size of a date cell | `0.75em`
   *
   * @customElement
   * @polymer

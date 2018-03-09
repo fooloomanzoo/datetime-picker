@@ -56,9 +56,16 @@
           align-items: stretch;
         }
         #timer .field integer-input {
-          justify-content: center;
           @apply --input-style;
+          justify-content: center;
           padding: 0;
+          --number-input: {
+            border-color: transparent;
+          };
+          --number-input-focus: {
+            border-color: transparent;
+          };
+          border-color: transparent;
         }
         #timer .field integer-input:focus-within,
         #timer .field integer-input:hover {
@@ -70,9 +77,17 @@
           align-self: stretch;
           justify-content: space-between;
         }
-        #timer .field > .icon {
+        #timer .field > .switch {
           padding-top: 0.25em;
           padding-bottom: 0.25em;
+        }
+        #timer .field > .switch:first-of-type {
+          border-bottom-left-radius: 1px;
+          border-bottom-right-radius: 1px;
+        }
+        #timer .field > .switch:last-of-type {
+          border-top-left-radius: 1px;
+          border-top-right-radius: 1px;
         }
         #timer .hour12-format {
           flex-shrink: 0;

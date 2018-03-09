@@ -24,12 +24,12 @@
        */
       static get nativeInputTemplate() {
         return `
-          <input class="native" tabindex="0" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="1">
-          <div hidden$="[[!_computeAnd(withTimezone, native)]]" style="display:inline-flex;align-items:center;">
+          <input class="native" tabindex="0" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="[[step]]">
+          <template is="dom-if" if="[[_computeAnd(withTimezone, native)]]">
             <integer-input class="replacement" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23"></integer-input>
             <span>[[timeSeparator]]</span>
             <integer-input class="replacement" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
-          </div>
+          </template>
         `;
       }
 
@@ -65,7 +65,7 @@
           ::-webkit-datetime-edit-month-field,
           ::-webkit-datetime-edit-week-field,
           ::-webkit-datetime-edit-year-field {
-            line-height: 1;
+            line-height: normal;
             outline: none;
             border-color: transparent;
             font-family: inherit;
@@ -80,7 +80,7 @@
             display: inline-flex;
             align-items: baseline;
             padding: 0;
-            box-sizing: content-box;
+            box-sizing: border-box;
           }
           ::-webkit-datetime-edit-ampm-field,
           ::-webkit-datetime-edit-day-field,
@@ -95,7 +95,10 @@
             box-sizing: border-box;
             position: relative;
           }
-          ::-webkit-datetime-edit:focus,
+          ::-webkit-clear-button {
+            background: red;
+          }
+          ::-webkit-datetime-edit-text:focus,
           ::-webkit-datetime-edit-fields-wrapper:focus,
           ::-webkit-datetime-edit-ampm-field:focus,
           ::-webkit-datetime-edit-day-field:focus,
@@ -146,29 +149,45 @@
       static get properties() {
         return {
 
+          /**
+           * The confirmed date. When `auto-confirm` is not set, the date will only change, when you confirm.
+           */
           confirmedDate: {
             type: String,
             notify: true
           },
 
+          /**
+           * The confirmed time. When `auto-confirm` is not set, the time will only change, when you confirm.
+           */
           confirmedTime: {
             type: String,
             notify: true
           },
 
+          /**
+           * The confirmed datetime. When `auto-confirm` is not set, the datetime will only change, when you confirm.
+           */
           confirmedDatetime: {
             type: String,
             notify: true
           },
 
+          /**
+           * The confirmed value. When `auto-confirm` is not set, the value will only change, when you confirm.
+           */
           confirmedValue: {
             type: Number,
             notify: true
           },
 
+          /**
+           * Set to `true` to hide the `now`-button
+           */
           hideNowButton: {
             type: Boolean
           }
+          
         };
       }
 
@@ -192,6 +211,22 @@
 
       _computeAnd(a, b) {
         return a && b;
+      }
+
+      _computeNativeStep(clamp) {
+        switch (clamp) {
+          case 'year':
+          case 'month':
+          case 'day':
+          case 'hour':
+          case 'minute':
+          case 'second':
+            return 60;
+          case 'millisecond':
+            return 1;
+          default:
+            return 0.001;
+        }
       }
 
       _setDate(d) {
