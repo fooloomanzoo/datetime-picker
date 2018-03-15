@@ -39,15 +39,16 @@
       return `
         ${super.customStyleContent || ''}
         #timer {
+          color: var(--input-picker-color, var(--input-color));
+          background: var(--input-picker-background, var(--input-background));
+          border-radius: var(--input-picker-border-radius);
+          padding: var(--input-picker-padding);
+          @apply --input-picker;
           display: -ms-inline-flexbox;
           display: -webkit-inline-flex;
           display: inline-flex;
           flex-flow: row nowrap;
           align-items: center;
-          background: var(--input-background);
-          color: var(--input-color);
-          padding: 0.25em;
-          @apply --input-picker;
           @apply --time-element;
         }
         #timer .field {
@@ -55,27 +56,15 @@
           flex-direction: column;
           align-items: stretch;
         }
-        #timer .field integer-input {
-          @apply --input-style;
-          justify-content: center;
-          padding: 0;
-          --number-input: {
-            border-color: transparent;
-          };
-          --number-input-focus: {
-            border-color: transparent;
-          };
-          border-color: transparent;
-        }
-        #timer .field integer-input:focus-within,
-        #timer .field integer-input:hover {
-          @apply --input-focus;
-        }
         #timer .buttons {
           display: flex;
           flex-direction: column;
           align-self: stretch;
           justify-content: space-between;
+        }
+        #timer .field > integer-input {
+          --input-color: currentColor;
+          --input-background: transparent;
         }
         #timer .field > .switch {
           padding-top: 0.25em;
@@ -106,47 +95,47 @@
       return `
         <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
           <div class="field" hidden$="[[partsHidden.hour]]">
-            <button class="icon switch" prop="hour" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input id="hour" hidden$="[[hour12Format]]" min="0" max="23" pad-length="2" value="{{hour}}" placeholder="00"></integer-input>
-            <integer-input hidden$="[[!hour12Format]]" min="1" max="12" pad-length="2" value="{{hour12}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="hour" step="-1">${this._iconStepDownTemplate}</button>
+            <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
+            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" value="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsDisabled.hour]]"></integer-input>
+            <integer-input hidden$="[[!hour12Format]]" pad-length="2" value="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsDisabled.hour]]"></integer-input>
+            <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <span hidden$="[[partsHidden.hour]]">[[timeSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.minute]]">
-            <button class="icon switch" prop="minute" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" min="0" max="59" value="{{minute}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="minute" step="-1">${this._iconStepDownTemplate}</button>
+            <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="2" value="{{minute}}" placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsDisabled.minute]]"></integer-input>
+            <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <span hidden$="[[partsHidden.minute]]">[[timeSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.second]]">
-            <button class="icon switch" prop="second" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" min="0" max="59" value="{{second}}" placeholder="00"></integer-input>
-            <button class="icon switch" prop="second" step="-1">${this._iconStepDownTemplate}</button>
+            <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="2" value="{{second}}" placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
+            <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <template is="dom-if" if="[[partsHidden.second]]">
             <span hidden$="[[partsHidden.millisecond]]">0</span>
           </template>
           <span hidden$="[[partsHidden.millisecond]]">[[decimalSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.millisecond]]">
-            <button class="icon switch" prop="millisecond" step="1">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" min="0" max="999" value="{{millisecond}}" placeholder="000"></integer-input>
-            <button class="icon switch" prop="millisecond" step="-1">${this._iconStepDownTemplate}</button>
+            <button class="icon switch" prop="millisecond" step$="[[_partsStepMillisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="3" value="{{millisecond}}" placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]" step-mod="1000"></integer-input>
+            <button class="icon switch" prop="millisecond" step$="[[_partsStepMillisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
             <div class="field">
-              <button class="icon switch" prop="_timeZoneHours" step="1" once>${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00"></integer-input>
-              <button class="icon switch" prop="_timeZoneHours" step="-1" once>${this._iconStepDownTemplate}</button>
+              <button class="icon switch" prop="_timeZoneHours" step="1" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="2" hidden$="[[!withTimezone]]" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00" disabled="[[disabled]]"></integer-input>
+              <button class="icon switch" prop="_timeZoneHours" step="-1" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
             </div>
             <span>[[timeSeparator]]</span>
             <div class="field">
-              <button class="icon switch" prop="_timeZoneMinutes" step="15">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
-              <button class="icon switch" prop="_timeZoneMinutes" step="-15">${this._iconStepDownTemplate}</button>
+              <button class="icon switch" prop="_timeZoneMinutes" step="15" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="2" hidden$="[[!withTimezone]]" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00" disabled="[[disabled]]"></integer-input>
+              <button class="icon switch" prop="_timeZoneMinutes" step="-15" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
             </div>
           </div>
           <template is="dom-if" if="[[hour12Format]]">
-            <button class="hour12-format icon" hidden$="[[!_valueIsSet]]" on-click="_switchAm">
+            <button class="hour12-format icon" hidden$="[[!_valueIsSet]]" on-click="_switchAm" disabled$="[[_partsDisabled.hour]]">
               <div hidden$="[[!isAm]]">[[amString]]</div>
               <div hidden$="[[isAm]]">[[pmString]]</div>
             </button>
@@ -161,6 +150,32 @@
         withTimezone: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * date-parts that are hidden, affected by the `clamp`-attribute too
+         * e.g. { second: true } would hide the input for the second
+         */
+        partsHidden: {
+          type: Object,
+          value: function() {
+            return {
+              year: false,
+              month: false,
+              day: false,
+              hour: false,
+              minute: false,
+              second: false,
+              millisecond: false
+            };
+          },
+          notify: true
+        },
+
+        _partsStepMillisecond: {
+          type: Number,
+          notify: true,
+          computed: '_computePartsStepMillisecond(_partsStep.millisecond)'
         }
 
       }
@@ -178,14 +193,6 @@
       this.$.hour.startAt = d.getHours();
     }
 
-    _or(a, b) {
-      return a || b;
-    }
-
-    _and(a, b) {
-      return a && b;
-    }
-
     _computeInvalid(required, value) {
       this.invalid = required && isNaN(value);
     }
@@ -193,6 +200,10 @@
     _switchAm(e) {
       e && e.stopPropagation();
       this.isAm = !this.isAm;
+    }
+
+    _computePartsStepMillisecond(partsStepMillisecond) {
+      return (partsStepMillisecond === undefined) ? 1 : partsStepMillisecond * 1000;
     }
   }
 </script>

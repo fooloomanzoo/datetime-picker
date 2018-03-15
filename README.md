@@ -89,7 +89,7 @@ Internally it tests the browser, if **native** input-types `datetime-local`, `da
 
 It might be useful for you to use, if you like to keep the native approach of Browsers like in Chrome for Desktop or Mobile, you like to have a different look or you would like to have a guaranteed working **datetime-picker**.
 
-Another use case could be for example, if you want on *mobile devices* use the native picker, when supported, and on *desktop devices* this polyfill. For that purpose the attribute `native-on-mobile` is also provided.
+Another use case could be for example, if you want on _mobile devices_ use the native picker, when supported, and on _desktop devices_ this polyfill. For that purpose the attribute `native-on-mobile` is also provided.
 
 ```html
   <datetime-picker native="[[isMobile]]"></datetime-picker>
@@ -133,8 +133,16 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```html
 <p><calendar-element date="{{date}}"></calendar-element></p>
 <p>date: <date-input date="{{date}}" datetime="{{datetime}}"></date-input></p>
-<p>datetime: <datetime-input default="2020-05-23" datetime="{{datetime}}"></datetime-input></p>
+<p>datetime: <datetime-input default="2020-05-23" datetime="{{datetime}}" step="5"></datetime-input></p>
 ```
+
+Use `default` or another attribute to preset the date. If `step` is set on a picker, the attribute defines the step a date should be incremented (in seconds). The input for the most inferior standing, that would create an integer step, is used to increment the value.
+For example, if the `step` is:
+  * `0.05`: the millisecond-input will increment the value by 50 (50 milliseconds), the other inputs behave as expected
+  * `1.05`: the millisecond-input will increment the value by 1050 (1 second and 50 millisecond), the other inputs behave as expected
+  * `2`: the millisecond-input will be disabled, the second-input will increment the value by 2000 (2 seconds), the other inputs behave as expected
+  * `180`: the millisecond-input and the second-input will be disabled, the minute-input will increment the value by 180000 (3 minutes), the other inputs behave as expected
+If `step="0"` all inputs will be disabled, or when the step is below `0.001` the step will be set to `0.001`. The most superior input that will become the given step is the day-input.
 
 #### Stand-alone time-picker and time-input (preset by using its attributes)
 
@@ -287,7 +295,7 @@ npm install --save @fooloomanzoo/datetime-picker
 ### Update
 to last version
 ```
-bower update
+bower update -f
 ```
 
 ### Notable Changes
@@ -325,6 +333,18 @@ bower update
 
 * 2.7.0
   - `timezone` attribute
+  - using `<integer-input>` for the separate parts of the date
+  - every input and button is reachable by using the `tabulator`-key
+
+* 2.8.0
+  - `step` attribute
+  - `parts-hidden` attribute
+  - style-values have been partially renamed and split up, because the style scoping is not working correctly for browsers other than Chromium-browsers. For example:
+    + the picker uses now `--input-picker-color`, `--input-picker-background` instead of `--input-color`, `--input-background` (they stand exclusivly for the polyfill and the native element)
+    + the picker-style-values are further split up to `--input-picker-border-radius`, `--input-picker-padding` etc.
+    + simular for all mixins: by default are `--input-style`, `--input-focus`, `--input-placeholder`, `--input-invalid` etc. from now on empty and their most important values are separately split up in own values which are applied before the mixins. This might not be the final solution, while the behaviours of `shadycss` and `webcomponents` are still changing.
+  - changed internationalization implementation
+  - `default` can also be a `time`-value
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!

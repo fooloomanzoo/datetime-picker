@@ -1,6 +1,6 @@
 {
   "name": "@fooloomanzoo/datetime-picker",
-  "version": "2.7.11",
+  "version": "2.8.0",
   "authors": [
     "Johannes Brautzsch <fooloomanzoo>"
   ],
@@ -22,7 +22,7 @@
   "main": "index.html",
   "scripts": {
     "postinstall": "bower install",
-    "prepublish": "npm run build && git add . && git commit -m \"publish new version\" && git push && npm version patch",
+    "prepublish": "npm run build && git add . && git commit -m \"publish new version\" && npm version patch && git push",
     "gh-pages": "git checkout gh-pages && bower update -f && git add . && git commit -m \"update\" && git push && git checkout master",
     "build": "bower update && polymer analyze > analysis.json",
     "prestart": "polymer analyze > analysis.json",
@@ -35,11 +35,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@polymer/polymer": "^2",
-    "@fooloomanzoo/datetime-input": "^2",
-    "@fooloomanzoo/number-input": "^2",
-    "@fooloomanzoo/property-mixins": "^2",
-    "@fooloomanzoo/input-picker-pattern": "^2"
+    "@fooloomanzoo/datetime-input": "^2.2.4",
+    "@fooloomanzoo/input-picker-pattern": "^2.1.8",
+    "@fooloomanzoo/number-input": "^2.2.2",
+    "@fooloomanzoo/property-mixins": "^2.3.8",
+    "@polymer/polymer": "^2"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "*",

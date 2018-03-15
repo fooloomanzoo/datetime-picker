@@ -24,18 +24,18 @@
        */
       static get nativeInputTemplate() {
         return `
-          <input class="native" tabindex="0" type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="[[step]]">
+          <input class="native" autofocus type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="[[step]]">
           <template is="dom-if" if="[[_computeAnd(withTimezone, native)]]">
-            <integer-input class="replacement" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23"></integer-input>
+            <integer-input pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23" disabled="{{disabled}}"></integer-input>
             <span>[[timeSeparator]]</span>
-            <integer-input class="replacement" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00"></integer-input>
+            <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00" disabled="{{disabled}}"></integer-input>
           </template>
         `;
       }
 
       static get polyfillInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" tabindex required="[[required]]" disabled$="[[disabled]]" default="[[default]]" locale="[[locale]]" hour12-format=[[hour12Format]] clamp="[[clamp]]" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" required="[[required]]" disabled="{{disabled}}" default="[[default]]" locale="[[locale]]" hour12-format=[[hour12Format]] clamp="{{clamp}}" step="{{step}}" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]" parts-disabled="{{_partsDisabled}}" parts-hidden="{{partsHidden}}" parts-step="{{_partsStep}}"></${this.replacementInputType}>
         `;
       }
 
@@ -95,9 +95,6 @@
             box-sizing: border-box;
             position: relative;
           }
-          ::-webkit-clear-button {
-            background: red;
-          }
           ::-webkit-datetime-edit-text:focus,
           ::-webkit-datetime-edit-fields-wrapper:focus,
           ::-webkit-datetime-edit-ampm-field:focus,
@@ -119,14 +116,11 @@
           ::-webkit-calendar-picker-indicator:hover {
             background: transparent;
           }
-          #picker > * {
-            color: var(--input-color);
-            background: var(--input-background);
-          }
-          integer-input {
+          :host > integer-input {
             color: inherit;
             --input-color: currentColor;
             --input-background: transparent;
+            --input-border: thin solid transparent;
           }
         `;
       }
@@ -186,8 +180,54 @@
            */
           hideNowButton: {
             type: Boolean
+          },
+
+          /**
+          * If `step` is set it defines the step a date should be incremented (in seconds). The input for the most inferior standing that would create an integer step is used to increment the value.
+          * For example, if the `step` is:
+          *  + `0.05`: the millisecond-input will increment the value by 50 (50 milliseconds), the other inputs behave as expected
+          *  + `1.05`: the millisecond-input will increment the value by 1050 (1 second and 50 millisecond), the other inputs behave as expected
+          *  + `2`: the millisecond-input will be disabled, the second-input will increment the value by 2000 (2 seconds), the other inputs behave as expected
+          *  + `180`: the millisecond-input and the second-input will be disabled, the minute-input will increment the value by 180000 (3 minutes), the other inputs behave as expected
+          * If `step="0"` all inputs will be disabled, else if the step is below `0.001` the step will be set to `0.001`. The most superior input that will become the given step is the day-input.
+          */
+          step: {
+            type: Number
+          },
+
+          /**
+           * date-parts that are hidden
+           * e.g. { year: true } would hide the input for year
+           */
+          partsHidden: {
+            type: Object,
+            value: function() {
+              return {
+                year: false,
+                month: false,
+                day: false,
+                hour: false,
+                minute: false,
+                second: false,
+                millisecond: false
+              };
+            }
+          },
+
+          /**
+           * date-parts that are disabled
+           */
+          _partsDisabled: {
+            type: Object
+          },
+
+          /**
+           * the computed steps for the date-parts
+           */
+          _partsStep: {
+            type: Object
           }
-          
+
         };
       }
 

@@ -23,44 +23,14 @@
    * @return {Object} extended class
    */
   const DatetimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(TimeElementPattern(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass)))))) { // eslint-disable-line no-unused-vars, no-undef
-    /**
-     * custom style content
-     * @type {string}
-     */
-    static get customStyleContent() {
-      return `
-        ${super.customStyleContent || ''}
-        .lower {
-          position: relative;
-          left: 0; right: 0;
-        }
-        .lower > .container {
-          display: inline-flex;
-          flex-flow: row wrap;
-          position: relative;
-          width: 100%;
-          border-radius: inherit;
-        }
-        .container > * {
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          padding: 0 !important;
-          flex: 1 0 auto;
-        }
-      `;
-    }
 
     static get pickerTemplate() {
       return `
         <div id="picker" class="dropdown" horizontal$="[[_ifClamped(clamp, 'day')]]">
           ${this.calendarTemplate}
-          <div class="lower">
-            <div class="container">
-              ${this.timeTemplate}
-              <div id="buttons">
-                ${this.buttonTemplate}
-              </div>
-            </div>
+          ${this.timeTemplate}
+          <div id="buttons">
+            ${this.buttonTemplate}
           </div>
         </div>
       `;
@@ -74,7 +44,8 @@
          */
         clamp: {
           type: String,
-          value: 'millisecond'
+          value: 'millisecond',
+          notify: true
         }
       }
     }

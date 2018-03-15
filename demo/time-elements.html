@@ -64,12 +64,12 @@
     <div class="vertical-section-container centered">
       <h3>Mediated Input</h3>
       <h4>to confirm the values for date, time, datetime and value</h4>
-      <h5>in 12-hour-format and showing millisecond (unset 'clamp'-attribute)</h5>
+      <h5>using millisecond (unset 'clamp'-attribute or setting the step to a lower value than 1)</h5>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker hour12-format time="{{time}}" confirmed-time="{{confirmedTime}}" clamp="" vertical-align="bottom"></time-picker>
+              <time-picker time="{{time}}" confirmed-time="{{confirmedTime}}" step="0.005" vertical-align="bottom"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>current time</code>: <b>[[time]]</b></div>
                 <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
@@ -86,7 +86,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker datetime="{{datetime}}" time="06:34:56.789"></time-picker>
+              <time-picker datetime="{{datetime}}" default="06:34:56.789" step="0.001"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
               </div>
@@ -143,8 +143,8 @@
                   time-picker.clamp {
                     --input-focus-background: #9ab6ed;
                     --input-focus-color: #001641;
-                    --input-background: #e2ab59;
-                    --input-color: #001641;
+                    --input-picker-background: #e2ab59;
+                    --input-picker-color: #001641;
                   }
                 </style>
               </custom-style>
