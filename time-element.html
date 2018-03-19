@@ -2,7 +2,7 @@
 
 <link rel="import" href="../property-mixins/datetime-mixin.html">
 <link rel="import" href="../input-picker-pattern/form-element-mixin.html">
-<link rel="import" href="../input-picker-pattern/input-shared-style.html">
+<link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 <link rel="import" href="../input-picker-pattern/switch-container-mixin.html">
 <link rel="import" href="../number-input/integer-input.html">
 
@@ -19,25 +19,17 @@
    */
   const TimeElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
-    static get styleTemplate() {
-      return `
-        <style include="${this.customStyleToInclude}" time>
-          ${this.customStyleContent}
-        </style>
-      `;
-    }
-
-    static get customStyleToInclude() {
-      return 'input-shared-style';
+    static get styleToInclude() {
+      return 'input-picker-shared-style';
     }
 
     /**
      * custom style content
      * @type {string}
      */
-    static get customStyleContent() {
+    static get styleTemplate() {
       return `
-        ${super.customStyleContent || ''}
+        ${super.styleTemplate || ''}
         #timer {
           color: var(--input-picker-color, var(--input-color));
           background: var(--input-picker-background, var(--input-background));
@@ -54,7 +46,7 @@
         #timer .field {
           display: flex;
           flex-direction: column;
-          align-items: stretch;
+          align-items: center;
         }
         #timer .buttons {
           display: flex;
@@ -65,6 +57,8 @@
         #timer .field > integer-input {
           --input-color: currentColor;
           --input-background: transparent;
+          --input-border-color: transparent;
+          --input-focus-border-color: transparent;
         }
         #timer .field > .switch {
           padding-top: 0.25em;
@@ -96,20 +90,20 @@
         <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
           <div class="field" hidden$="[[partsHidden.hour]]">
             <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
-            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" value="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsDisabled.hour]]"></integer-input>
-            <integer-input hidden$="[[!hour12Format]]" pad-length="2" value="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsDisabled.hour]]"></integer-input>
+            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+            <integer-input hidden$="[[!hour12Format]]" pad-length="2" no-clamp value="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
             <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[partsHidden.hour]]">[[timeSeparator]]</span>
+          <span hidden$="[[_computeOr(partsHidden.hour, partsHidden.minute)]]">[[timeSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.minute]]">
             <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value="{{minute}}" placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsDisabled.minute]]"></integer-input>
+            <integer-input pad-length="2" value="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
             <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[partsHidden.minute]]">[[timeSeparator]]</span>
+          <span hidden$="[[_computeOr(partsHidden.second, partsHidden.minute)]]">[[timeSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.second]]">
             <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value="{{second}}" placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
+            <integer-input pad-length="2" value="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
             <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <template is="dom-if" if="[[partsHidden.second]]">
@@ -118,7 +112,7 @@
           <span hidden$="[[partsHidden.millisecond]]">[[decimalSeparator]]</span>
           <div class="field" hidden$="[[partsHidden.millisecond]]">
             <button class="icon switch" prop="millisecond" step$="[[_partsStepMillisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" value="{{millisecond}}" placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]" step-mod="1000"></integer-input>
+            <integer-input pad-length="3" value="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]" step-mod="1000"></integer-input>
             <button class="icon switch" prop="millisecond" step$="[[_partsStepMillisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
@@ -189,6 +183,10 @@
       this.invalid = required && isNaN(value);
     }
 
+    _computeOr(a, b) {
+      return a || b;
+    }
+
     _switchAm(e) {
       e && e.stopPropagation();
       this.isAm = !this.isAm;
@@ -219,17 +217,37 @@
        *
        * Custom property | Description | Default
        * ----------------|-------------|----------
-       * `--input-color` | Text-color of the element | `#dadada`
-       * `--input-background` | Text-color of the element | `#2b2b2b`
-       * `--input-focus-color` | Color of the focussed or hovered inputs and icons | `#f5f5f5`
-       * `--input-focus-background` | Background of the focussed or hovered inputs and icons | `--primary-color, #394FE8`
-       * `--input-style` | Mixin applied to the inputs | { padding: 0.25em; border-radius: 0.25em; text-align: center; transition: background 250ms cubic-bezier(0.6, 1, 0.2, 1);}`
-       * `--input-focus` | Mixin applied to the focussed or hovered inputs | { color: var(--input-focus-color); background: var(--input-focus-background); }`
-       * `--input-icon` | Mixin applied to the icons | `{ border-radius: 0.25em; padding: 0.5em; height: 1em; width: 1em; background: transparent; transition: background 150ms cubic-bezier(0.6, 1, 0.2, 1); }`
-       * `--input-picker` | Mixin applied to the element | `{box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4); border-radius: 0.25em;}`
-       * `--input-selection-color` | Text-color of selected texts | `var(--input-focus-color)`
-       * `--input-selection-background` | Background of selected texts | `rgba(255,255,255,0.1)`
-       * `--time-element` | Mixin applied to the time-element | `{}`
+       * `--input-padding`                  | padding of the input                           | 0.3em
+       * `--input-border-radius`            | border-radius of the input                     | 0.3em
+       * `--input-transition`               | transition of the input                        | background 250ms cubic-bezier(0.6, 1, 0.2, 1)
+       * `--input-allign`                   | text-allign of the input input                 | center
+       * `--input-cursor`                   | cursor of the input input                      | pointer
+       * `--input-focus-color`              | color of the focussed and hovered inputs       | #f1f1f1
+       * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
+       * `--input-disabled-color`           | color of the disabled input                    | inherit
+       * `--input-disabled-background`      | background of the disabled input               | transparent
+       * `--input-disabled-font-style`      | font-style of the disabled input               | italic
+       * `--input-disabled-opacity`         | opacity of the disabled input                  | 1
+       * `--input-placeholder-color`        | color of the placeholder                       | currentColor
+       * `--input-placeholder-opacity`      | opacity of the placeholder                     | 0.75
+       * `--input-selection-color`          | color of the selected text                     | inherit
+       * `--input-selection-background`     | background of the selected text                | rgba(255, 255, 255, 0.5)
+       * `--input-picker-color`             | color used in the picker                       | #d5d5d5
+       * `--input-picker-background`        | background of the picker                       | #252525
+       * `--input-picker-padding`           | padding of the picker                          | 0.25em
+       * `--input-picker-border-radius`     | border-radius of the picker                    | 0.5em
+       * `--input-picker-box-shadow`        | shadow of the picker                           | 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4)
+       * `--input-icon-width`               | width of an icon                               | 1em
+       * `--input-icon-height`              | height of an icon                              | 1em
+       * `--input-icon-background`          | background of an icon                          | transparent
+       * `--input-icon-padding`             | padding of an icon                             | 0.5em
+       * `--input-icon-border-radius`       | border-radius of an icon                       | 0.3em
+       * `--time-element`                   | Mixin applied to the time-element              | {}
+       * `--input-style`                    | style of the inputs                            | {}
+       * `--input-focus`                    | style of the focussed and hovered inputs       | {}
+       * `--input-placeholder`              | style of the placeholder                       | {}
+       * `--input-icon`                     | style of the icons                             | {}
+       * `--input-picker`                   | style of the picker                            | {}
        *
        * @customElement
        * @polymer
@@ -249,7 +267,9 @@
 
       static get template() {
         return `
-          ${this.styleTemplate}
+          <style include="${this.styleToInclude || ''}">
+            ${this.styleTemplate}
+          </style>
           ${this.timeTemplate}
         `
       }

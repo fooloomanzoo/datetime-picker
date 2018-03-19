@@ -47,13 +47,13 @@
         return 'datetime-input';
       }
 
-      static get customStyleToInclude() {
-        return `input-shared-style dropdown-style dropdown-tip-style`;
+      static get styleToInclude() {
+        return `input-picker-shared-style dropdown-style dropdown-tip-style`;
       }
 
-      static get customStyleContent() {
+      static get styleTemplate() {
         return `
-          ${super.customStyleContent || ''}
+          ${super.styleTemplate || ''}
           ::-webkit-datetime-edit,
           ::-webkit-datetime-edit-fields-wrapper,
           ::-webkit-datetime-edit-ampm-field,
@@ -115,12 +115,6 @@
           }
           ::-webkit-calendar-picker-indicator:hover {
             background: transparent;
-          }
-          :host > integer-input {
-            color: inherit;
-            --input-color: currentColor;
-            --input-background: transparent;
-            --input-border: thin solid transparent;
           }
         `;
       }

@@ -2,7 +2,7 @@
 
 <link rel="import" href="../property-mixins/datetime-mixin.html">
 <link rel="import" href="../input-picker-pattern/form-element-mixin.html">
-<link rel="import" href="../input-picker-pattern/input-shared-style.html">
+<link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 <link rel="import" href="../input-picker-pattern/switch-container-mixin.html">
 
 <link rel="import" href="../number-input/integer-input.html">
@@ -19,25 +19,17 @@
    */
   const CalendarElementPattern = superClass => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
-    static get styleTemplate() {
-      return `
-        <style include="${this.customStyleToInclude}" calendar>
-          ${this.customStyleContent}
-        </style>
-      `;
-    }
-
-    static get customStyleToInclude() {
-      return 'input-shared-style';
+    static get styleToInclude() {
+      return 'input-picker-shared-style';
     }
 
     /**
      * custom style content
      * @type {string}
      */
-    static get customStyleContent() {
+    static get styleTemplate() {
       return `
-        ${super.customStyleContent || ''}
+        ${super.styleTemplate || ''}
         #calendar {
           color: var(--input-picker-color);
           background: var(--input-picker-background);
@@ -62,6 +54,7 @@
           padding: 0.3em;
           --input-color: currentColor;
           --input-background: transparent;
+          --input-border-color: transparent;
           border: thin solid transparent;
         }
         #calendar #yearInput {
@@ -70,7 +63,8 @@
           --input-color: currentColor;
           --input-background: transparent;
           --input-padding: 0.3em;
-          --input-border: thin solid transparent;
+          --input-border-color: transparent;
+          --input-focus-border-color: transparent;
           border: thin solid transparent;
         }
         #calendar #days {
@@ -91,7 +85,7 @@
           float: left;
           position: relative;
           font-size: var(--calendar-cell-font-size, 0.75em);
-          border-radius: var(--calendar-cell-border-radius, 0.25em);
+          border-radius: var(--calendar-cell-border-radius, 0.3em);
           width: var(--calendar-cell-size, 3em);
           height: var(--calendar-cell-size, 3em);
           min-width: 2em;
@@ -576,7 +570,9 @@
 
       static get template() {
         return `
-          ${this.styleTemplate}
+          <style include="${this.styleToInclude || ''}">
+            ${this.styleTemplate}
+          </style>
           ${this.calendarTemplate}
         `
       }
