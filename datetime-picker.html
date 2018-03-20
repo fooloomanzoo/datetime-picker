@@ -85,13 +85,7 @@
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices this polyfill.
      *
      *  ```html
-     *    <datetime-picker native="[[isMobile]]"></datetime-picker>
-     *    ...
-     *      isMobile() {
-     *        const ua = window.navigator.userAgent;
-     *        return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));
-     *      }
-     *    ...
+     *    <datetime-picker native-on-mobile></datetime-picker>
      *  ```
      *
      *  If you need an **overlay** then use `overlay-datetime-picker`, that creates the element in an `overlay-element`, that extends *IronOverlayBehavior* and will create some of its attribute-bindings.

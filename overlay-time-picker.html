@@ -15,13 +15,7 @@
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.
      *
      *  ```html
-     *    <overlay-time-picker native="[[isMobile]]"></overlay-time-picker>
-     *    ...
-     *      isMobile() {
-     *        const ua = window.navigator.userAgent;
-     *        return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));
-     *      }
-     *    ...
+     *    <overlay-time-picker native-on-mobile></overlay-time-picker>
      *  ```
      *
      * Custom property | Description | Default
@@ -57,6 +51,10 @@
      * `--input-icon`                     | style of the icons                             | {}
      * `--input-picker`                   | style of the picker                            | {}
      * `--time-element`                   | Mixin applied to the time-element              | {}
+     * `--iron-overlay-backdrop-background-color` | Backdrop background color                                     | #000
+     * `--iron-overlay-backdrop-opacity`          | Backdrop opacity                                              | 0.6
+     * `--iron-overlay-backdrop`                  | Mixin applied to `iron-overlay-backdrop`.                     | {}
+     * `--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
      *
      *  @customElement
      *  @polymer

@@ -15,13 +15,7 @@
      *  A use case could be for example, if you want on mobile devices use the `native picker` and on desktop devices the polyfill.
      *
      *  ```html
-     *    <overlay-date-picker native="[[isMobile]]"></overlay-date-picker>
-     *    ...
-     *      isMobile() {
-     *        const ua = window.navigator.userAgent;
-     *        return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));
-     *      }
-     *    ...
+     *    <overlay-date-picker native-on-mobile></overlay-date-picker>
      *  ```
      *
      * Custom property | Description | Default
