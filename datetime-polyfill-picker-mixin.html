@@ -260,7 +260,9 @@
       _setDate(d) {
         super._setDate(d);
         if (this.autoConfirm || (this._hasNative && this.native)) {
-          this._setConfirmedValues();
+          setTimeout(() => {
+            this._setConfirmedValues();
+          })
         }
       }
 
