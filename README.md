@@ -32,34 +32,9 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 -->
 ```html
-  <input type="checkbox" checked="{{native::change}}">native picker
-  <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm
-  <input type="checkbox" checked="{{withTimezone::change}}">with timezone
-  <input type="checkbox" checked="{{hour12Format::change}}">hour 12
-  horizontal-align: <select value="{{horizontalAlign::change}}">
-    <option value="auto">auto</option>
-    <option value="left">left</option>
-    <option value="right">right</option>
-    <option value="center">center</option>
-  </select>
-  vertical-align: <select value="{{verticalAlign::change}}">
-    <option value="auto">auto</option>
-    <option value="top">top</option>
-    <option value="bottom">bottom</option>
-    <option value="middle">middle</option>
-  </select>
-  <p>
-    <div><code>numeric value</code>: [[value]]</div>
-    <div><code>date</code>: [[date]]</div>
-    <div><code>time</code>: [[time]]</div>
-    <div><code>datetime</code>: [[datetime]]</div>
-    <div><code>timezone</code>: <input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></div>
-    <div><code>confirmed time</code>: [[confirmedTime]]</div>
-    <div><code>confirmed date</code>: [[confirmedDate]]</div>
-    <div><code>confirmed datetime</code>: [[confirmedDatetime]]</div>
-    <div><code>confirmed numeric value</code>: [[confirmedValue]]</div>
-  </p>
-  <datetime-picker native="[[native]]" with-timezone="{{withTimezone}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="{{verticalAlign}}" horizontal-align="{{horizontalAlign}}" hour12-format="[[hour12Format]]"></datetime-picker>
+<calendar-element datetime="{{datetime}}"></calendar-element><br>
+<date-input datetime="{{datetime}}"></date-input><br>
+<datetime-picker datetime="{{datetime}}" auto-confirm></datetime-picker>
 ```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
@@ -92,13 +67,7 @@ It might be useful for you to use, if you like to keep the native approach of Br
 Another use case could be for example, if you want on _mobile devices_ use the native picker, when supported, and on _desktop devices_ this polyfill. For that purpose the attribute `native-on-mobile` is also provided.
 
 ```html
-  <datetime-picker native="[[isMobile]]"></datetime-picker>
-  ...
-    isMobile() {
-      const ua = window.navigator.userAgent;
-      return (/[mM]obi/i.test(ua) || /[tT]ablet/i.test(ua) || /[aA]ndroid/i.test(ua));
-    }
-  ...
+  <datetime-picker native-on-mobile></datetime-picker>
 ```
 
 ### How?
