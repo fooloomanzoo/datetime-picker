@@ -12,7 +12,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 <!--
 ```
-<custom-element-demo>
+<custom-element-demo  height="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
