@@ -22,7 +22,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatetimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(TimeElementPattern(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass)))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatetimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(CalendarElementPattern(TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass)))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get pickerTemplate() {
       return `
@@ -70,6 +70,13 @@
       this.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
     }
 
+    /**
+     *  Sets value to the actual date
+     **/
+    now() {
+      this._setDate(new Date());
+    }
+
   }
 </script>
 
@@ -101,8 +108,8 @@
      * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
      * `--input-disabled-color`           | color of the disabled elements                 | inherit
      * `--input-disabled-background`      | background of the disabled elements            | transparent
-     * `--input-disabled-font-style`      | font-style of the disabled elements            | italic
-     * `--input-disabled-opacity`         | opacity of the disabled elements               | 1
+     * `--input-disabled-font-style`      | font-style of the disabled elements            | oblique
+     * `--input-disabled-opacity`         | opacity of the disabled elements               | 0.9
      * `--input-placeholder-color`        | color of the placeholder                       | currentColor
      * `--input-placeholder-opacity`      | opacity of the placeholder                     | 0.75
      * `--input-selection-color`          | color of the selected text                     | inherit

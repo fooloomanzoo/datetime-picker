@@ -164,14 +164,14 @@
       return `
         ${super.contentTemplate || ''}
         <div id="calendar">
-          <div id="top" hidden$="[[_and(partsHidden.month, partsHidden.year)]]" >
+          <div id="top" hidden$="[[_computeMultibleClampExclusive(clamp, 'month', partsHidden.month, 'year', partsHidden.year)]]" >
             <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
-            <select id="monthSelector" hidden$="[[partsHidden.month]]" style="order:[[dateOrder.month]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}"></select>
-            <integer-input id="yearInput" hidden$="[[partsHidden.year]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
+            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month', partsHidden.month)]]" style="order:[[dateOrder.month]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}"></select>
+            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
             <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="days" hidden$="[[partsHidden.day]]" disabled$="[[_partsDisabled.year]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
+          <div id="days" hidden$="[[_ifClamped(clamp, 'day', partsHidden.day)]]" disabled$="[[_partsDisabled.day]]" tabindex="0" autofocus$="[[!_partsDisabled.day]]" on-keydown="_checkKeycodeForDates">
             <div id="caption">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
@@ -249,8 +249,8 @@
       this.startAtYear = d.getFullYear();
     }
 
-    _and(a, b) {
-      return a && b;
+    _computeMultibleClampExclusive(clamp, prop1, hidden1, prop2, hidden2) {
+      return this._ifClamped(clamp, prop1, hidden1) && this._ifClamped(clamp, prop2, hidden2);
     }
 
     _dateTimeChanged(date, time) {
@@ -490,12 +490,12 @@
       if (e && e.keyCode) {
         switch (e.keyCode) {
           case 37: // left
-            this._incremProp('day', -1);
+            this._incremProp('day', -1* ((this._partsStep && this._partsStep.day) || 1));
             e.preventDefault();
             e.stopPropagation();
             return;
           case 39: // right
-            this._incremProp('day', 1);
+            this._incremProp('day', ((this._partsStep && this._partsStep.day) || 1));
             e.preventDefault();
             e.stopPropagation();
             return;
@@ -511,6 +511,13 @@
             return;
         }
       }
+    }
+
+    /**
+     *  Sets value to the actual date
+     **/
+    now() {
+      this._setDate(this._fromDatetime(this._toDate(new Date())));
     }
 
   }
@@ -544,8 +551,8 @@
   * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
   * `--input-disabled-color`           | color of the disabled elements                 | inherit
   * `--input-disabled-background`      | background of the disabled elements            | transparent
-  * `--input-disabled-font-style`      | font-style of the disabled elements            | italic
-  * `--input-disabled-opacity`         | opacity of the disabled elements               | 1
+  * `--input-disabled-font-style`      | font-style of the disabled elements            | oblique
+  * `--input-disabled-opacity`         | opacity of the disabled elements               | 0.9
   * `--input-placeholder-color`        | color of the placeholder                       | currentColor
   * `--input-placeholder-opacity`      | opacity of the placeholder                     | 0.75
   * `--input-selection-color`          | color of the selected text                     | inherit

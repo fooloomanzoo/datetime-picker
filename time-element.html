@@ -88,7 +88,7 @@
     static get timeTemplate() {
       return `
         <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
-          <div class="field" hidden$="[[partsHidden.hour]]">
+          <div class="field" hidden$="[[_ifClamped(clamp, 'hour', partsHidden.hour)]]">
             <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
             <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
             <template is="dom-if" if="[[hour12Format]]">
@@ -96,26 +96,26 @@
             </template>
             <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_computeOr(partsHidden.hour, partsHidden.minute)]]">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[partsHidden.minute]]">
+          <span hidden$="[[_computeMultibleClamp(clamp, 'hour', partsHidden.hour, 'minute', partsHidden.minute)]]">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[_ifClamped(clamp, 'minute', partsHidden.minute)]]">
             <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="2" value="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
             <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_computeOr(partsHidden.second, partsHidden.minute)]]">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[partsHidden.second]]">
+          <span hidden$="[[_computeMultibleClamp(clamp, 'second', partsHidden.second, 'minute', partsHidden.minute)]]">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[_ifClamped(clamp, 'second', partsHidden.second)]]">
             <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
             <integer-input pad-length="2" value="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
             <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <template is="dom-if" if="[[partsHidden.second]]">
-            <span hidden$="[[partsHidden.millisecond]]">0</span>
+          <template is="dom-if" if="[[_ifClamped(clamp, 'second', partsHidden.second)]]">
+            <span hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">0</span>
           </template>
-          <span hidden$="[[partsHidden.millisecond]]">[[decimalSeparator]]</span>
-          <div class="field" hidden$="[[partsHidden.millisecond]]">
-            <button class="icon switch" prop="millisecond" step$="[[_partsStepMillisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" value="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]" step-mod="1000"></integer-input>
-            <button class="icon switch" prop="millisecond" step$="[[_partsStepMillisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
+          <span hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">[[decimalSeparator]]</span>
+          <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">
+            <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="3" value="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
+            <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
             <div class="field">
@@ -160,12 +160,23 @@
           notify: true
         },
 
-        _partsStepMillisecond: {
-          type: Number,
+        /**
+         * the computed steps for the date-parts
+         */
+        _partsStep: {
+          type: Object,
           notify: true,
-          computed: '_computePartsStepMillisecond(_partsStep.millisecond)'
+          readOnly: true,
+          value: function() {
+            return {
+              day: 1,
+              hour: 1,
+              minute: 1,
+              second: 1,
+              millisecond: 1
+            }
+          }
         }
-
       }
     }
 
@@ -174,9 +185,6 @@
       let d = new Date(this.value || this.default);
       if (isNaN(d)) {
         d = new Date();
-        d.setSeconds(0);
-        d.setMilliseconds(0);
-        this._setDate(d);
       }
       this.$.hour.startAt = d.getHours();
     }
@@ -185,8 +193,8 @@
       this.invalid = required && isNaN(value);
     }
 
-    _computeOr(a, b) {
-      return a || b;
+    _computeMultibleClamp(clamp, prop1, hidden1, prop2, hidden2) {
+      return hidden1 || hidden2 || this._ifClamped(clamp, prop1) || this._ifClamped(clamp, prop2);
     }
 
     _switchAm(e) {
@@ -196,7 +204,14 @@
 
     // modified step for millisecond switches
     _computePartsStepMillisecond(partsStepMillisecond) {
-      return (partsStepMillisecond === undefined) ? 1 : partsStepMillisecond * 1000;
+      return (partsStepMillisecond === undefined) ? 1 : window._numberUtilities._safeMult(partsStepMillisecond, 1000);
+    }
+
+    /**
+     *  Sets value to the actual date
+     **/
+    now() {
+      this._setDate(this._fromDatetime((this.date ? this.date + 'T' : '') + this._toTime(new Date()) + (this.date ? this.timezone || 'Z' : 'Z')));
     }
   }
 </script>
@@ -229,8 +244,8 @@
        * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
        * `--input-disabled-color`           | color of the disabled elements                 | inherit
        * `--input-disabled-background`      | background of the disabled elements            | transparent
-       * `--input-disabled-font-style`      | font-style of the disabled elements            | italic
-       * `--input-disabled-opacity`         | opacity of the disabled elements               | 1
+       * `--input-disabled-font-style`      | font-style of the disabled elements            | oblique
+       * `--input-disabled-opacity`         | opacity of the disabled elements               | 0.9
        * `--input-placeholder-color`        | color of the placeholder                       | currentColor
        * `--input-placeholder-opacity`      | opacity of the placeholder                     | 0.75
        * `--input-selection-color`          | color of the selected text                     | inherit
