@@ -99,8 +99,8 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 -->
 ```html
 <p><calendar-element date="{{date}}"></calendar-element></p>
-<p>date: <date-input date="{{date}}" datetime="{{datetime}}"></date-input></p>
-<p>datetime: <datetime-input default="2020-05-23" datetime="{{datetime}}" step="5"></datetime-input></p>
+<p>date: <date-input date="{{date}}"></date-input></p>
+<p>datetime: <datetime-input default="2020-05-23" date="{{date}}" datetime="{{datetime}}" step="5"></datetime-input></p>
 ```
 
 Use `default` or another attribute to preset the date. If `step` is set on a picker, the attribute defines the step a date should be incremented (in seconds). The input for the most inferior standing, that would create an integer step, is used to increment the value.
