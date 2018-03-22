@@ -32,9 +32,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 -->
 ```html
-<calendar-element date="{{date}}"></calendar-element><br>
-<date-input date="{{date}}"></date-input><br>
-<datetime-picker date="{{date}}" datetime="{{datetime}}" auto-confirm></datetime-picker>
+<datetime-picker></datetime-picker>
 ```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
