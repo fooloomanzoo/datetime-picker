@@ -4329,48 +4329,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -4559,11 +4517,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -5042,11 +5000,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -5088,11 +5046,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -5881,11 +5839,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -5900,11 +5858,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -5919,11 +5877,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -5945,11 +5903,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -5968,11 +5926,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -6016,11 +5974,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -6039,11 +5997,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -6058,11 +6016,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -6077,11 +6035,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -7137,29 +7095,6 @@
           "inheritedFrom": "TimeElementPattern"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 165,
-              "column": 8
-            },
-            "end": {
-              "line": 178,
-              "column": 9
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "notify": true,
-              "readOnly": true
-            }
-          },
-          "inheritedFrom": "TimeElementPattern"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -8155,11 +8090,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -8189,11 +8124,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -8211,11 +8146,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -9187,11 +9122,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 279,
+          "line": 261,
           "column": 4
         },
         "end": {
-          "line": 294,
+          "line": 276,
           "column": 5
         }
       },
@@ -10862,27 +10797,6 @@
           "inheritedFrom": "TimeElementPattern"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -11287,27 +11201,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -11495,11 +11388,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -11978,11 +11871,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -12024,11 +11917,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -12340,11 +12233,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -12375,11 +12268,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -12398,11 +12291,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -12898,11 +12791,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -12917,11 +12810,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -12936,11 +12829,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -12962,11 +12855,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -12985,11 +12878,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -13008,11 +12901,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 294,
+              "line": 279,
               "column": 6
             },
             "end": {
-              "line": 309,
+              "line": 294,
               "column": 7
             }
           },
@@ -13034,11 +12927,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -13057,11 +12950,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -13076,11 +12969,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -13095,11 +12988,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -15092,27 +14985,6 @@
           "inheritedFrom": "DatetimePolyfillPickerMixin"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -15517,27 +15389,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -15594,11 +15445,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 212,
+              "line": 194,
               "column": 4
             },
             "end": {
-              "line": 214,
+              "line": 196,
               "column": 5
             }
           },
@@ -15726,11 +15577,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -16209,11 +16060,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -16255,11 +16106,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -16366,11 +16217,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -16401,11 +16252,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -16424,11 +16275,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -16929,11 +16780,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -16948,11 +16799,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -16967,11 +16818,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -16993,11 +16844,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -17016,11 +16867,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -17064,11 +16915,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -17087,11 +16938,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -17106,11 +16957,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -17125,11 +16976,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -19711,48 +19562,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -20017,11 +19826,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -20481,11 +20290,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -20527,11 +20336,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -21304,11 +21113,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -21323,11 +21132,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -21342,11 +21151,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -21368,11 +21177,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -21391,11 +21200,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -21440,11 +21249,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -21463,11 +21272,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -21482,11 +21291,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -21501,11 +21310,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -23864,27 +23673,6 @@
           "inheritedFrom": "TimeElementPattern"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -24267,27 +24055,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -24552,11 +24319,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -25016,11 +24783,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -25062,11 +24829,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -25380,11 +25147,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -25415,11 +25182,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -25438,11 +25205,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -25920,11 +25687,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -25939,11 +25706,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -25958,11 +25725,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -25984,11 +25751,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -26007,11 +25774,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -26030,11 +25797,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 294,
+              "line": 279,
               "column": 6
             },
             "end": {
-              "line": 309,
+              "line": 294,
               "column": 7
             }
           },
@@ -26056,11 +25823,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -26079,11 +25846,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -26098,11 +25865,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -26117,11 +25884,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -28429,27 +28196,6 @@
           "inheritedFrom": "DatetimePolyfillPickerMixin"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -28832,27 +28578,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -28989,11 +28714,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 212,
+              "line": 194,
               "column": 4
             },
             "end": {
-              "line": 214,
+              "line": 196,
               "column": 5
             }
           },
@@ -29121,11 +28846,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -29585,11 +29310,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -29631,11 +29356,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -29742,11 +29467,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -29777,11 +29502,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -29800,11 +29525,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -30282,11 +30007,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -30301,11 +30026,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -30320,11 +30045,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -30346,11 +30071,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -30369,11 +30094,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -30418,11 +30143,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -30441,11 +30166,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -30460,11 +30185,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -30479,11 +30204,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -32146,44 +31871,6 @@
             }
           },
           "defaultValue": "{}"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
-        },
-        {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          }
         }
       ],
       "methods": [
@@ -32212,11 +31899,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -32256,11 +31943,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -32695,11 +32382,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -32712,11 +32399,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -32729,11 +32416,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -32753,11 +32440,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -32774,11 +32461,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -32795,11 +32482,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -32816,11 +32503,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 294,
+              "line": 279,
               "column": 6
             },
             "end": {
-              "line": 309,
+              "line": 294,
               "column": 7
             }
           },
@@ -32840,11 +32527,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -32861,11 +32548,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -32878,11 +32565,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -32895,11 +32582,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -32916,7 +32603,7 @@
           "column": 2
         },
         "end": {
-          "line": 357,
+          "line": 342,
           "column": 3
         }
       },
@@ -35313,48 +35000,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -35543,11 +35188,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -36026,11 +35671,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -36072,11 +35717,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -36862,11 +36507,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -36881,11 +36526,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -36900,11 +36545,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -36926,11 +36571,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -36949,11 +36594,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -36996,11 +36641,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -37019,11 +36664,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -37038,11 +36683,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -37057,11 +36702,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -38098,28 +37743,6 @@
             }
           },
           "defaultValue": "{}"
-        },
-        {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "start": {
-              "line": 165,
-              "column": 8
-            },
-            "end": {
-              "line": 178,
-              "column": 9
-            }
-          },
-          "metadata": {
-            "polymer": {
-              "notify": true,
-              "readOnly": true
-            }
-          }
         }
       ],
       "methods": [
@@ -38129,11 +37752,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 182,
+              "line": 164,
               "column": 4
             },
             "end": {
-              "line": 189,
+              "line": 171,
               "column": 5
             }
           },
@@ -38146,11 +37769,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 191,
+              "line": 173,
               "column": 4
             },
             "end": {
-              "line": 193,
+              "line": 175,
               "column": 5
             }
           },
@@ -38170,11 +37793,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -38203,11 +37826,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -38224,11 +37847,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -38245,11 +37868,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 212,
+              "line": 194,
               "column": 4
             },
             "end": {
-              "line": 214,
+              "line": 196,
               "column": 5
             }
           },
@@ -38266,7 +37889,7 @@
           "column": 2
         },
         "end": {
-          "line": 215,
+          "line": 197,
           "column": 3
         }
       },
@@ -39350,27 +38973,6 @@
           "inheritedFrom": "TimeElementPattern"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -39775,27 +39377,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -39982,11 +39563,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -40465,11 +40046,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -40511,11 +40092,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -40825,11 +40406,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -40860,11 +40441,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -40883,11 +40464,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -41382,11 +40963,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -41401,11 +40982,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -41420,11 +41001,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -41446,11 +41027,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -41469,11 +41050,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -41492,11 +41073,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 294,
+              "line": 279,
               "column": 6
             },
             "end": {
-              "line": 309,
+              "line": 294,
               "column": 7
             }
           },
@@ -41518,11 +41099,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -41541,11 +41122,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -41560,11 +41141,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -41579,11 +41160,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
@@ -43561,27 +43142,6 @@
           "inheritedFrom": "DatetimePolyfillPickerMixin"
         },
         {
-          "name": "_partsStep",
-          "type": "Object",
-          "description": "the computed steps for the date-parts",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 214,
-              "column": 10
-            },
-            "end": {
-              "line": 216,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
           "name": "dwellTime",
           "type": "number",
           "description": "dwell time of incrementing inputs by the buttons in milliseconds. It is minimum 75 milliseconds.",
@@ -43986,27 +43546,6 @@
             }
           },
           "inheritedFrom": "DatetimePolyfillPickerMixin"
-        },
-        {
-          "name": "_partsDisabled",
-          "type": "Object",
-          "description": "date-parts that are disabled",
-          "privacy": "protected",
-          "sourceRange": {
-            "file": "datetime-polyfill-picker-mixin.html",
-            "start": {
-              "line": 207,
-              "column": 10
-            },
-            "end": {
-              "line": 209,
-              "column": 11
-            }
-          },
-          "metadata": {
-            "polymer": {}
-          },
-          "inheritedFrom": "DatetimePolyfillPickerMixin"
         }
       ],
       "methods": [
@@ -44063,11 +43602,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 212,
+              "line": 194,
               "column": 4
             },
             "end": {
-              "line": 214,
+              "line": 196,
               "column": 5
             }
           },
@@ -44195,11 +43734,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 261,
+              "line": 246,
               "column": 6
             },
             "end": {
-              "line": 268,
+              "line": 253,
               "column": 7
             }
           },
@@ -44678,11 +44217,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 230,
+              "line": 215,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 217,
               "column": 7
             }
           },
@@ -44724,11 +44263,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 234,
+              "line": 219,
               "column": 6
             },
             "end": {
-              "line": 237,
+              "line": 222,
               "column": 7
             }
           },
@@ -44835,11 +44374,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 195,
+              "line": 177,
               "column": 4
             },
             "end": {
-              "line": 197,
+              "line": 179,
               "column": 5
             }
           },
@@ -44870,11 +44409,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 199,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 202,
+              "line": 184,
               "column": 5
             }
           },
@@ -44893,11 +44432,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 205,
+              "line": 187,
               "column": 4
             },
             "end": {
-              "line": 207,
+              "line": 189,
               "column": 5
             }
           },
@@ -45398,11 +44937,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 270,
+              "line": 255,
               "column": 6
             },
             "end": {
-              "line": 273,
+              "line": 258,
               "column": 7
             }
           },
@@ -45417,11 +44956,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 275,
+              "line": 260,
               "column": 6
             },
             "end": {
-              "line": 278,
+              "line": 263,
               "column": 7
             }
           },
@@ -45436,11 +44975,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 239,
+              "line": 224,
               "column": 6
             },
             "end": {
-              "line": 241,
+              "line": 226,
               "column": 7
             }
           },
@@ -45462,11 +45001,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 243,
+              "line": 228,
               "column": 6
             },
             "end": {
-              "line": 259,
+              "line": 244,
               "column": 7
             }
           },
@@ -45485,11 +45024,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 280,
+              "line": 265,
               "column": 6
             },
             "end": {
-              "line": 292,
+              "line": 277,
               "column": 7
             }
           },
@@ -45532,11 +45071,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 311,
+              "line": 296,
               "column": 6
             },
             "end": {
-              "line": 324,
+              "line": 309,
               "column": 7
             }
           },
@@ -45555,11 +45094,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 326,
+              "line": 311,
               "column": 6
             },
             "end": {
-              "line": 333,
+              "line": 318,
               "column": 7
             }
           },
@@ -45574,11 +45113,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 335,
+              "line": 320,
               "column": 6
             },
             "end": {
-              "line": 343,
+              "line": 328,
               "column": 7
             }
           },
@@ -45593,11 +45132,11 @@
           "sourceRange": {
             "file": "datetime-polyfill-picker-mixin.html",
             "start": {
-              "line": 345,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 355,
+              "line": 340,
               "column": 7
             }
           },
