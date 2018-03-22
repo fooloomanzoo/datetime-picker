@@ -603,24 +603,6 @@
           ${this.calendarTemplate}
         `
       }
-
-      _dateTimeChanged(date, time) {
-        if (this.__updatingTimezoneOffset) {
-          return;
-        }
-        if (date === undefined) {
-          if (this.default !== undefined) {
-            this._setDate(new Date(this.default));
-          } else {
-            this._resetDate();
-          }
-          return;
-        }
-        this.datetime = date + 'T' + (time || '00:00') + (this.timezone || 'Z');
-
-        this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date || date);
-      }
-
     }
     window.customElements.define(CalendarElement.is, CalendarElement);
   </script>

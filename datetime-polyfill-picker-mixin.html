@@ -35,7 +35,7 @@
 
       static get polyfillInputTemplate() {
         return `
-          <${this.replacementInputType} class="replacement" required="[[required]]" disabled="{{disabled}}" default="[[default]]" locale="[[locale]]" hour12-format=[[hour12Format]] clamp="{{clamp}}" step="{{step}}" datetime="{{confirmedDatetime}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]" parts-disabled="{{_partsDisabled}}" parts-hidden="{{partsHidden}}" parts-step="{{_partsStep}}"></${this.replacementInputType}>
+          <${this.replacementInputType} class="replacement" required="[[required]]" disabled="{{disabled}}" default="[[default]]" locale="[[locale]]" hour12-format=[[hour12Format]] clamp="{{clamp}}" step="{{step}}" value="{{confirmedValue}}" timezone="{{timezone}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]" parts-disabled="{{_partsDisabled}}" parts-hidden="{{partsHidden}}" parts-step="{{_partsStep}}"></${this.replacementInputType}>
         `;
       }
 
@@ -247,7 +247,9 @@
           case 'month':
           case 'day':
           case 'hour':
+            return 86400;
           case 'minute':
+            return 3600;
           case 'second':
             return 60;
           case 'millisecond':

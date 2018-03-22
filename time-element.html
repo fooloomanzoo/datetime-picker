@@ -292,20 +292,6 @@
         `
       }
 
-      _dateTimeChanged(date, time) {
-        if (this.__updatingTimezoneOffset) {
-          return;
-        }
-        if (time === undefined) {
-          if (this.default !== undefined) {
-            this._setDate(new Date(this.default));
-          } else {
-            this._resetDate();
-          }
-          return;
-        }
-        this.datetime = (date || '1970-01-01') + 'T' + (time || (this.timezone ? this.timezone.slice(1) : '00:00')) + (this.timezone || 'Z');
-      }
     }
     window.customElements.define(TimeElement.is, TimeElement);
   </script>

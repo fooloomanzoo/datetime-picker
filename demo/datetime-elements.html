@@ -31,9 +31,13 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input datetime="{{datetime}}" default="2001-01-02"></datetime-input>
+              <!-- <datetime-input datetime="{{datetime}}" default="2001-01-02"></datetime-input> -->
+              <!-- <date-input locale="{{locale}}" date="{{date}}" ></date-input> -->
+              <calendar-element locale="{{locale}}" date="{{date}}" ></calendar-element>
+              <time-element locale="{{locale}}" hour12-format="[[hour12Format]]" datetime="{{datetime}}" date="{{date}}"></time-element>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>date</code>: <b>[[date]]</b></div>
               </div>
             </template>
           </dom-bind>

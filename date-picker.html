@@ -53,23 +53,6 @@
       super.renderCalendar(year, month, day, this.confirmedDate);
     }
 
-    _dateTimeChanged(date, time) {
-      if (this.__updatingTimezoneOffset) {
-        return;
-      }
-      if (date === undefined) {
-        if (this.default !== undefined) {
-          this._setDate(new Date(this.default));
-        } else {
-          this._resetDate();
-        }
-        return;
-      }
-      this.datetime = date + 'T' + (time || '00:00') + (this.timezone || 'Z');
-
-      this.renderCalendar(this.year, this.month, this.day, this.date || date);
-    }
-
     _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
       if (confirmedDate === undefined) {
         this._resetConfirmedValues();
