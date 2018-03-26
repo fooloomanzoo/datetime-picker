@@ -24,31 +24,17 @@
        */
       static get nativeInputTemplate() {
         return `
-          <input class="native" autofocus type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{confirmedValue::input}}" step="[[step]]">
+          <input class="native" autofocus type="${this.expectedNativeInputType}" hidden$="[[!native]]" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{valueAsNumber::input}}" step="[[_computeNativeStep(step, clamp)]]">
           <template is="dom-if" if="[[_computeAnd(withTimezone, native)]]">
-            <integer-input pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23" disabled="{{disabled}}"></integer-input>
+            <integer-input class="native timezone" pad-length="2" always-sign step="1" value="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23" disabled="{{disabled}}"></integer-input>
             <span>[[timeSeparator]]</span>
-            <integer-input pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00" disabled="{{disabled}}"></integer-input>
+            <integer-input class="native timezone" pad-length="2" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00" disabled="{{disabled}}"></integer-input>
           </template>
         `;
       }
 
-      static get polyfillInputTemplate() {
-        return `
-          <${this.replacementInputType} class="replacement" required="[[required]]" disabled="{{disabled}}" default="[[default]]" locale="[[locale]]" hour12-format=[[hour12Format]] clamp="{{clamp}}" step="{{step}}" value="{{confirmedValue}}" timezone="{{timezone}}" with-timezone="[[withTimezone]]" min="[[min]]" max="[[max]]" parts-disabled="{{_partsDisabled}}" parts-hidden="{{partsHidden}}" parts-step="{{_partsStep}}"></${this.replacementInputType}>
-        `;
-      }
-
-      static get expectedNativeInputType() {
-        return 'datetime-local';
-      }
-
-      static get replacementInputType() {
-        return 'datetime-input';
-      }
-
       static get styleToInclude() {
-        return `input-picker-shared-style dropdown-style dropdown-tip-style`;
+        return `${super.styleToInclude || ''} dropdown-style`;
       }
 
       static get styleTemplate() {
@@ -116,6 +102,10 @@
           ::-webkit-calendar-picker-indicator:hover {
             background: transparent;
           }
+          .native.timezone {
+            --input-border-color: transparent;
+            --input-focus-border-color: transparent;
+          }
         `;
       }
 
@@ -165,7 +155,7 @@
            * The confirmed value. When `auto-confirm` is not set, the value will only change, when you confirm.
            */
           confirmedValue: {
-            type: Number,
+            type: Object,
             notify: true
           },
 
@@ -200,6 +190,14 @@
               return {}
             },
             notify: true
+          },
+
+          /**
+           * defines the property that should be used for the value
+           */
+          propertyForValue: {
+            type: String,
+            value: 'valueAsNumber'
           }
         };
       }
@@ -214,7 +212,7 @@
       }
 
       _computeInvalid(required) {
-        this.invalid = required && isNaN(this.confirmedValue);
+        this.invalid = required && isNaN(this._fromDatetime(this.confirmedValue));
       }
 
       validate() {
@@ -226,7 +224,10 @@
         return a && b;
       }
 
-      _computeNativeStep(clamp) {
+      _computeNativeStep(step, clamp) {
+        if (step !== undefined) {
+          return step;
+        }
         switch (clamp) {
           case 'year':
           case 'month':
@@ -241,6 +242,24 @@
             return 1;
           default:
             return 0.001;
+        }
+      }
+
+      _getDefaultForProp(prop) {
+        const d = (this.value && this._fromDatetime(this.value)) || new Date();
+        switch (prop) {
+          case 'year':
+            return d.getFullYear();
+          case 'month':
+            return d.getMonth() + 1;
+          case 'day':
+            return d.getDate();
+          case 'hour':
+            return d.getHours();
+          case 'minute':
+            return d.getMinutes();
+          default:
+            return 0;
         }
       }
 
@@ -329,9 +348,6 @@
       }
 
       _resetValues() {
-        if (isNaN(this.confirmedValue)) {
-          return;
-        }
         this.setProperties({
           datetime: this.confirmedDatetime,
           date: this.confirmedDate,

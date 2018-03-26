@@ -20,13 +20,10 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(DateInputPattern(DatetimeInputMixin(CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
+
     static get expectedNativeInputType() {
       return 'date';
-    }
-
-    static get replacementInputType() {
-      return 'date-input';
     }
 
     static get pickerTemplate() {
@@ -74,7 +71,7 @@
       if (super.open) {
         super.open();
       }
-      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
+      this.renderCalendar(this.year, this.month, this.day, this.confirmedDate || this.date);
     }
   }
 </script>
@@ -95,7 +92,7 @@
    * `--input-padding`                  | padding of the input                           | 0.3em
    * `--input-border-radius`            | border-radius of the input                     | 0.3em
    * `--input-transition`               | transition of the input                        | background 250ms cubic-bezier(0.6, 1, 0.2, 1)
-   * `--input-allign`                   | text-allign of the input input                 | center
+   * `--input-align`                   | text-align of the input input                 | center
    * `--input-cursor`                   | cursor of the input input                      | pointer
    * `--input-focus-color`              | color of the focussed and hovered inputs       | #f1f1f1
    * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);

@@ -20,7 +20,7 @@
   const TimeElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
     static get styleToInclude() {
-      return 'input-picker-shared-style';
+      return `${super.styleToInclude || ''} input-picker-shared-style`;
     }
 
     /**
@@ -31,8 +31,8 @@
       return `
         ${super.styleTemplate || ''}
         #timer {
-          color: var(--input-picker-color, var(--input-color));
-          background: var(--input-picker-background, var(--input-background));
+          color: var(--input-picker-color);
+          background-color: var(--input-picker-background);
           border-radius: var(--input-picker-border-radius);
           padding: var(--input-picker-padding);
           @apply --input-picker;
@@ -162,15 +162,6 @@
       }
     }
 
-    connectedCallback() {
-      super.connectedCallback();
-      let d = new Date(this.value || this.default);
-      if (isNaN(d)) {
-        d = new Date();
-      }
-      this.$.hour.startAt = d.getHours();
-    }
-
     _computeInvalid(required, value) {
       this.invalid = required && isNaN(value);
     }
@@ -220,7 +211,7 @@
        * `--input-padding`                  | padding of the input                           | 0.3em
        * `--input-border-radius`            | border-radius of the input                     | 0.3em
        * `--input-transition`               | transition of the input                        | background 250ms cubic-bezier(0.6, 1, 0.2, 1)
-       * `--input-allign`                   | text-allign of the input input                 | center
+       * `--input-align`                   | text-align of the input input                 | center
        * `--input-cursor`                   | cursor of the input input                      | pointer
        * `--input-focus-color`              | color of the focussed and hovered inputs       | #f1f1f1
        * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);

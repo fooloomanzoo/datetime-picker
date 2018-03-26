@@ -20,7 +20,7 @@
   const CalendarElementPattern = superClass => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
     static get styleToInclude() {
-      return 'input-picker-shared-style';
+      return `${super.styleToInclude || ''} input-picker-shared-style`;
     }
 
     /**
@@ -32,7 +32,7 @@
         ${super.styleTemplate || ''}
         #calendar {
           color: var(--input-picker-color);
-          background: var(--input-picker-background);
+          background-color: var(--input-picker-background);
           border-radius: var(--input-picker-border-radius);
           padding: var(--input-picker-padding);
           @apply --input-picker;
@@ -50,12 +50,10 @@
         }
         #calendar #monthSelector {
           flex: 1 0 1px;
-          border: thin solid transparent;
           padding: 0.3em;
           --input-color: currentColor;
           --input-background: transparent;
           --input-border-color: transparent;
-          border: thin solid transparent;
         }
         #calendar #yearInput {
           font-weight: bold;
@@ -65,7 +63,6 @@
           --input-padding: 0.3em;
           --input-border-color: transparent;
           --input-focus-border-color: transparent;
-          border: thin solid transparent;
         }
         #calendar #days {
           position: relative;
@@ -166,8 +163,21 @@
         <div id="calendar">
           <div id="top" hidden$="[[_computeMultibleClampExclusive(clamp, 'month', partsHidden.month, 'year', partsHidden.year)]]" >
             <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
-            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month', partsHidden.month)]]" style="order:[[dateOrder.month]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}"></select>
-            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
+            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month', partsHidden.month)]]" style="order:[[dateOrder.month]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}">
+              <option value="1"></option>
+              <option value="2"></option>
+              <option value="3"></option>
+              <option value="4"></option>
+              <option value="5"></option>
+              <option value="6"></option>
+              <option value="7"></option>
+              <option value="8"></option>
+              <option value="9"></option>
+              <option value="10"></option>
+              <option value="11"></option>
+              <option value="12"></option>
+            </select>
+            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[_startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
             <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
           </div>
 
@@ -239,14 +249,8 @@
 
     connectedCallback() {
       super.connectedCallback();
-      let d = new Date(this.value || this.default);
-      if (isNaN(d)) {
-        d = new Date();
-        d.setSeconds(0);
-        d.setMilliseconds(0);
-        this._setDate(d);
-      }
-      this.startAtYear = d.getFullYear();
+      this.renderCalendar(this.year, this.month, this.day, this.date);
+      this._startAtYear = (this.year === undefined) ? new Date().getFullYear() : this.year;
     }
 
     _computeMultibleClampExclusive(clamp, prop1, hidden1, prop2, hidden2) {
@@ -321,20 +325,10 @@
       }
       super._localeChanged(locale);
 
-      while (this.$.monthSelector.hasChildNodes()) {
-        this.$.monthSelector.removeChild(this.$.monthSelector.lastChild);
-      }
-      for (let i = 1; i <= 12; i++) {
-        let option = document.createElement('option');
-        option.textContent = (new Date(1970, i - 1, 15)).toLocaleDateString(locale, {
+      for (let i = 0; i < 12; i++) {
+        this.$.monthSelector.options[i].text = (new Date(1970, i, 15)).toLocaleDateString(locale, {
           month: 'long'
         });
-        option.value = i;
-        this.$.monthSelector.appendChild(option);
-      }
-
-      if (this.month !== undefined) {
-        this.$.monthSelector.selectedIndex = this.month - 1;
       }
 
       // set weekday titles
@@ -358,32 +352,24 @@
      * @param {number} date The current selected date.
      */
     renderCalendar(year, month, day, date) {
-      if (year === undefined || month === undefined || day === undefined) return;
-      const d = new Date(year, +month - 1, day);
-      if (isNaN(+d)) {
-        return;
-      }
-
-      if (date === undefined) {
-        date = this.confirmedDate || this.date;
-      }
-      if (this._ifClamped(this.clamp, 'day')) {
-        this.date = this._toDate(d);
-        return;
-      }
+      const d = (year === undefined || month === undefined || day === undefined) ? new Date() : new Date(year, +month - 1, day);
+      d.setHours(0);
+      d.setMinutes(0);
+      d.setSeconds(0);
+      d.setMilliseconds(0);
+      date = date || this.confirmedDate || this.date || this._toDate(new Date());
 
       year = d.getFullYear();
       month = d.getMonth();
-      const current = new Date();
 
-      const firstDayOfMonth = new Date(year, month, 0),
+      const current = new Date(),
+        firstDayOfMonth = new Date(year, month, 0),
         currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth),
         selectedDay = this._dayDiff(d, firstDayOfMonth);
 
-      let recentDay, min, max;
+      let recentDay = this._dayDiff(d, firstDayOfMonth);
 
-      recentDay = this._dayDiff(d, firstDayOfMonth);
-
+      let min, max;
       if (this._min) {
         min = this._dayDiff(new Date(this._min.getFullYear(), this._min.getMonth(), this._min.getDate()), firstDayOfMonth);
       }
@@ -465,7 +451,7 @@
         this.currentSelectedDayNode = null;
       }
       // fix for initial view
-      this.$.monthSelector.selectedIndex = this.month - 1;
+      this.$.monthSelector.selectedIndex = month;
     }
 
     _dayDiff(end, start) {
@@ -545,7 +531,7 @@
   * `--input-padding`                  | padding of the input                           | 0.3em
   * `--input-border-radius`            | border-radius of the input                     | 0.3em
   * `--input-transition`               | transition of the input                        | background 250ms cubic-bezier(0.6, 1, 0.2, 1)
-  * `--input-allign`                   | text-allign of the input input                 | center
+  * `--input-align`                   | text-align of the input input                 | center
   * `--input-cursor`                   | cursor of the input input                      | pointer
   * `--input-focus-color`              | color of the focussed and hovered inputs       | #f1f1f1
   * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
