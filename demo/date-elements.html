@@ -108,6 +108,8 @@
                     --input-picker-background: #448b7e;
                     --input-focus-background: #1cccac;
                     --input-focus-color: #fff;
+                    --inner-input-focus-background: #9bf1e1;
+                    --inner-input-focus-color: #444;
                   }
                   date-picker.end {
                     --input-color: #fff;
@@ -116,12 +118,14 @@
                     --input-picker-background: #594894;
                     --input-focus-color: #fff;
                     --input-focus-background: #7551ee;
+                    --inner-input-focus-background: #b7a4f4;
+                    --inner-input-focus-color: #fff;
                   }
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker class="begin" month="6" day="11" auto-confirm date="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" month="6" day="21" auto-confirm date="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker class="begin" year="2010" month="6" day="11" date="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
+                <date-picker class="end" year="2030" month="6" day="21" date="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>start</code>: <b>[[min]]</b></div>

@@ -2,6 +2,7 @@
 
 <link rel="import" href="../property-mixins/datetime-mixin.html">
 <link rel="import" href="../input-picker-pattern/form-element-mixin.html">
+<link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 <link rel="import" href="../input-picker-pattern/switch-container-mixin.html">
 
@@ -20,7 +21,7 @@
   const CalendarElementPattern = superClass => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
     static get styleToInclude() {
-      return `${super.styleToInclude || ''} input-picker-shared-style`;
+      return `input-picker-shared-style input-shared-style`;
     }
 
     /**
@@ -88,14 +89,17 @@
           min-width: 2em;
           min-height: 2em;
           box-sizing: content-box;
+          transition-property: background;
+          transition-duration: 250ms;
+          transition-timing-function: cubic-bezier(0.5, 1, 0.5, 1);
         }
         #calendar .day:nth-child(7n+1) {
           clear: left;
         }
         #calendar:hover #days:not([disabled]) .day.selected,
         #calendar #days:not([disabled]):focus .day.selected {
-          background: var(--input-focus-background);
-          color: var(--input-focus-color);
+          background-color: var(--inner-input-focus-background);
+          color: var(--inner-input-focus-color);
         }
         #calendar .day:before {
           content: '';
@@ -109,7 +113,9 @@
           opacity: 0;
           border-radius: inherit;
           border: thin solid transparent;
-          transition: border-color 200ms cubic-bezier(0.6, 1, 0.2, 1), opacity 200ms cubic-bezier(0.6, 1, 0.2, 1);
+          transition-property: opacity;
+          transition-duration: var(--input-transition-duration, 250ms);
+          transition-timing-function: cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar .day:after {
           content: attr(day);
@@ -122,7 +128,6 @@
         }
         #calendar #dates .day {
           cursor: pointer;
-          transition: background 200ms cubic-bezier(0.6, 1, 0.2, 1);
         }
         #calendar #dates .day:hover {
           will-change: background;
@@ -134,7 +139,7 @@
         }
         #calendar #dates .day.selected:before,
         #calendar #dates .day.recent:before {
-          border-color: var(--input-focus-background);
+          border-color: var(--inner-input-focus-background);
         }
         #calendar #days .day.recent:before,
         #calendar #days .day.current:before {
@@ -144,15 +149,18 @@
           opacity: 0.5;
         }
         #calendar #days .day.selected:before {
-          opacity: 1;
+          opacity: 0.9;
         }
         #calendar #dates .day.notinmonth:after {
           opacity: 0.5;
         }
+        #calendar #dates .day.outofrange {
+          pointer-events: none !important;
+        }
         #calendar #dates .day.outofrange:after {
           opacity: 0.15;
-          font-style: italic;
-          pointer-events: none;
+          font-style: var(--input-disabled-font-style, oblique);
+          @apply --input-disabled;
         }
       `;
     }
@@ -177,7 +185,7 @@
               <option value="11"></option>
               <option value="12"></option>
             </select>
-            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[_startAtYear]]" placeholder="[[startAtYear]]" value="{{year}}"></integer-input>
+            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[_startAtYear]]" placeholder="[[_startAtYear]]" value-as-number="{{year}}"></integer-input>
             <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
           </div>
 
@@ -250,56 +258,26 @@
     connectedCallback() {
       super.connectedCallback();
       this.renderCalendar(this.year, this.month, this.day, this.date);
-      this._startAtYear = (this.year === undefined) ? new Date().getFullYear() : this.year;
+      let d;
+      if (this.default !== undefined) {
+        d = this._fromDatetime(this.default);
+      }
+      if (isNaN(d) && this.value !== undefined) {
+        d = this._fromDatetime(this.value);
+      }
+      if (isNaN(d)) {
+        d = new Date();
+      }
+      this._startAtYear = d.getFullYear();
     }
 
     _computeMultibleClampExclusive(clamp, prop1, hidden1, prop2, hidden2) {
       return this._ifClamped(clamp, prop1, hidden1) && this._ifClamped(clamp, prop2, hidden2);
     }
 
-    _dateTimeChanged(date, time) {
-      super._dateTimeChanged(date, time);
-      this.renderCalendar(this.year, this.month, this.day, this.date || date);
-    }
-
-    _onClickDay(e) {
-      this._onMouseMoveDay(e);
-      if (this.currentHoveredDayNode) {
-        this.currentSelectedDayNode = this.currentHoveredDayNode;
-        const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
-        if (!match) {
-          this._dayClicked = false;
-          return;
-        }
-        setTimeout(() => {
-          this.setProperties({
-            year: +match[1],
-            month: +match[2],
-            day: +match[3],
-            date: this.currentSelectedDayNode.dataset.date
-          })
-        }, 0);
-      }
-      if (this._dayClicked === true) {
-        this._onDblClickDay(this.currentSelectedDayNode.dataset.date);
-        this._dayClicked = false;
-        return;
-      }
-      this._dayClicked = true;
-      setTimeout(() => {
-        this._dayClicked = false;
-      }, 250);
-    }
-
-    _onDblClickDay(date) {
-      this.renderCalendar(this.year, this.month, this.day, date);
-    }
-
-    _computeIncremPropTop(hideMonth) {
-      if (hideMonth === true) {
-        return 'year';
-      }
-      return 'month';
+    _setDate(d) {
+      super._setDate(d);
+      this.renderCalendar(this.year, this.month, this.day);
     }
 
     _onMouseMoveDay(e) {
@@ -316,6 +294,49 @@
           }
         }
       }
+    }
+
+    _onClickDay(e) {
+      console.log(this._dayClicked, this.currentSelectedDayNode, this.currentHoveredDayNode);
+      if (this._dayClicked === true) {
+        this._onDblClickDay();
+        this._dayClicked = false;
+        return;
+      }
+      this._onMouseMoveDay(e);
+      if (this.currentHoveredDayNode && this.currentHoveredDayNode.dataset.date) {
+        this.currentSelectedDayNode = this.currentHoveredDayNode;
+        const match = this._regexpDate.exec(this.currentHoveredDayNode.dataset.date);
+        if (!match) {
+          this._dayClicked = false;
+          return;
+        }
+        if (this.timezone === undefined) {
+          this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+        }
+        setTimeout(() => {
+          this.setProperties({
+            year: +match[1],
+            month: +match[2],
+            day: +match[3]
+          })
+        }, 0);
+        this._dayClicked = true;
+        setTimeout(() => {
+          this._dayClicked = false;
+        }, 250);
+      }
+    }
+
+    _onDblClickDay() {
+      this.renderCalendar(this.year, this.month, this.day);
+    }
+
+    _computeIncremPropTop(hideMonth) {
+      if (hideMonth === true) {
+        return 'year';
+      }
+      return 'month';
     }
 
     _localeChanged(locale) {
@@ -351,35 +372,39 @@
      * @param {number} day The day of the date of the current view.
      * @param {number} date The current selected date.
      */
-    renderCalendar(year, month, day, date) {
-      const d = (year === undefined || month === undefined || day === undefined) ? new Date() : new Date(year, +month - 1, day);
-      d.setHours(0);
-      d.setMinutes(0);
-      d.setSeconds(0);
-      d.setMilliseconds(0);
-      date = date || this.confirmedDate || this.date || this._toDate(new Date());
+    renderCalendar(year, month, day, date) { // eslint-disable-line
+      // working in UTC-timezone
+      const currentDate = this._clampDay(new Date()),
+        selectedDate = (year === undefined || month === undefined || day === undefined) ? currentDate : this._clampDay(new Date(year, +month - 1, day));
+      let recentDate;
+      if (date || this.date) {
+        const match = this._regexpDate.exec(date || this.date);
+        if (match) {
+          recentDate = new Date(+match[1], +match[2] - 1, +match[3]);
+        }
+      }
+      if (isNaN(recentDate)) {
+        recentDate = selectedDate;
+      }
+      year = year || selectedDate.getFullYear();
+      const monthCounter = month === undefined ? selectedDate.getMonth() : (month - 1);
+      const firstDateOfMonth = new Date(year, monthCounter, 0);
 
-      year = d.getFullYear();
-      month = d.getMonth();
-
-      const current = new Date(),
-        firstDayOfMonth = new Date(year, month, 0),
-        currentDay = this._dayDiff(new Date(current.getFullYear(), current.getMonth(), current.getDate()), firstDayOfMonth),
-        selectedDay = this._dayDiff(d, firstDayOfMonth);
-
-      let recentDay = this._dayDiff(d, firstDayOfMonth);
+      const currentDay = this._dayDiff(currentDate, firstDateOfMonth),
+        selectedDay = this._dayDiff(selectedDate, firstDateOfMonth),
+        recentDay = this._dayDiff(recentDate, firstDateOfMonth);
 
       let min, max;
       if (this._min) {
-        min = this._dayDiff(new Date(this._min.getFullYear(), this._min.getMonth(), this._min.getDate()), firstDayOfMonth);
+        min = this._dayDiff(new Date(this._min.getFullYear(), this._min.getMonth(), this._min.getDate()), firstDateOfMonth);
       }
       if (this._max) {
-        max = this._dayDiff(new Date(this._max.getFullYear(), this._max.getMonth(), this._max.getDate()), firstDayOfMonth);
+        max = this._dayDiff(new Date(this._max.getFullYear(), this._max.getMonth(), this._max.getDate()), firstDateOfMonth);
       }
 
-      const prevmonthlength = +new Date(year, month, 0).getDate();
-      const thismonthlength = +new Date(year, month + 1, 0).getDate();
-      const firstWeekDay = +new Date(year, month, 1).getDay() - 1; // Monday is first day
+      const prevmonthlength = +new Date(year, monthCounter, 0).getDate();
+      const thismonthlength = +new Date(year, monthCounter + 1, 0).getDate();
+      const firstWeekDay = +new Date(year, monthCounter, 1).getDay() - 1; // Monday is first day
       let selectedDayInView;
 
       let counter = -(firstWeekDay + 7) % 7 + 1;
@@ -442,7 +467,7 @@
             this.$.dates.children[7*i + j].classList.remove('outofrange');
           }
 
-          this.$.dates.children[7*i + j].dataset.date = this._toDate(new Date(year, month, counter));
+          this.$.dates.children[7*i + j].dataset.date = this._toUTCDate(Date.UTC(year, monthCounter, counter));
           counter++;
         }
       }
@@ -451,7 +476,15 @@
         this.currentSelectedDayNode = null;
       }
       // fix for initial view
-      this.$.monthSelector.selectedIndex = month;
+      this.$.monthSelector.selectedIndex = monthCounter;
+    }
+
+    _clampDay(d) {
+      d.setHours(0);
+      d.setMinutes(0);
+      d.setSeconds(0);
+      d.setMilliseconds(0);
+      return d;
     }
 
     _dayDiff(end, start) {
@@ -460,12 +493,12 @@
 
     _minChanged(min) {
       super._minChanged(min);
-      this.renderCalendar(this.year, this.month, this.day, this.date);
+      this.renderCalendar(this.year, this.month, this.day);
     }
 
     _maxChanged(max) {
       super._maxChanged(max);
-      this.renderCalendar(this.year, this.month, this.day, this.date);
+      this.renderCalendar(this.year, this.month, this.day);
     }
 
     /**
@@ -498,14 +531,6 @@
         }
       }
     }
-
-    /**
-     *  Sets value to the actual date
-     **/
-    now() {
-      this._setDate(this._fromDatetime(this._toDate(new Date())));
-    }
-
   }
 </script>
 
@@ -528,36 +553,6 @@
   *
   * Custom property | Description | Default
   * ----------------|-------------|----------
-  * `--input-padding`                  | padding of the input                           | 0.3em
-  * `--input-border-radius`            | border-radius of the input                     | 0.3em
-  * `--input-transition`               | transition of the input                        | background 250ms cubic-bezier(0.6, 1, 0.2, 1)
-  * `--input-align`                   | text-align of the input input                 | center
-  * `--input-cursor`                   | cursor of the input input                      | pointer
-  * `--input-focus-color`              | color of the focussed and hovered inputs       | #f1f1f1
-  * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
-  * `--input-disabled-color`           | color of the disabled elements                 | inherit
-  * `--input-disabled-background`      | background of the disabled elements            | transparent
-  * `--input-disabled-font-style`      | font-style of the disabled elements            | oblique
-  * `--input-disabled-opacity`         | opacity of the disabled elements               | 0.9
-  * `--input-placeholder-color`        | color of the placeholder                       | currentColor
-  * `--input-placeholder-opacity`      | opacity of the placeholder                     | 0.75
-  * `--input-selection-color`          | color of the selected text                     | inherit
-  * `--input-selection-background`     | background of the selected text                | rgba(255, 255, 255, 0.5)
-  * `--input-picker-color`             | color used in the picker                       | #d5d5d5
-  * `--input-picker-background`        | background of the picker                       | #252525
-  * `--input-picker-padding`           | padding of the picker                          | 0.25em
-  * `--input-picker-border-radius`     | border-radius of the picker                    | 0.5em
-  * `--input-picker-box-shadow`        | shadow of the picker                           | 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4)
-  * `--input-icon-width`               | width of an icon                               | 1em
-  * `--input-icon-height`              | height of an icon                              | 1em
-  * `--input-icon-background`          | background of an icon                          | transparent
-  * `--input-icon-padding`             | padding of an icon                             | 0.5em
-  * `--input-icon-border-radius`       | border-radius of an icon                       | 0.3em
-  * `--input-style`                    | style of the inputs                            | {}
-  * `--input-focus`                    | style of the focussed and hovered inputs       | {}
-  * `--input-placeholder`              | style of the placeholder                       | {}
-  * `--input-icon`                     | style of the icons                             | {}
-  * `--input-picker`                   | style of the picker                            | {}
   * `--calendar-element`               | Mixin applied to the calendar                  | {}
   * `--calendar-cell`                  | Mixin applied to the date cells                | {}
   * `--calendar-cell-hovered`          | Mixin applied to hovered date cells            | {}
@@ -565,6 +560,8 @@
   * `--calendar-cell-border-radius`    | border-radius of a date cell                   | 0.25em
   * `--calendar-cell-font-size`        | font-size of a date cell                       | 0.75em
   *
+  *  Have a look at [input-picker-pattern](https://github.com/fooloomanzoo/input-picker-pattern) to see how to style the element.
+  *  
   * @customElement
   * @polymer
   *

@@ -31,10 +31,11 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <!-- <datetime-input datetime="{{datetime}}" default="2001-01-02"></datetime-input> -->
+              <datetime-input datetime="{{datetime}}" date="{{date}}" default="2001-01-02"></datetime-input>
               <!-- <date-input locale="{{locale}}" date="{{date}}" ></date-input> -->
-              <calendar-element locale="{{locale}}" date="{{date}}" ></calendar-element>
-              <time-element locale="{{locale}}" hour12-format="[[hour12Format]]" datetime="{{datetime}}" date="{{date}}"></time-element>
+              <calendar-element locale="{{locale}}" date="{{date}}" datetime="{{datetime}}"></calendar-element>
+              <!-- <datetime-picker locale="{{locale}}" date="{{date}}" datetime="{{datetime}}"></datetime-picker> -->
+              <!-- <time-element locale="{{locale}}" hour12-format="[[hour12Format]]" datetime="{{datetime}}" date="{{date}}"></time-element> -->
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -45,7 +46,7 @@
       </demo-snippet>
     </div>
 
-    <div class="vertical-section-container centered">
+    <!-- <div class="vertical-section-container centered">
       <h3>Create a native datetime-picker, if available</h3>
       <demo-snippet>
         <template>
@@ -207,12 +208,12 @@
     </div>
 
     <div class="vertical-section-container centered">
-      <h3>A non-native datetime-picker in 12-hour-format</h3>
+      <h3>A datetime-picker in 12-hour-format</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker hour12-format value="{{value}}" datetime="{{datetime}}" vertical-align="bottom"></datetime-picker>
+              <datetime-picker hour12-format value="{{value}}" datetime="{{datetime}}" default="2019-04-06T17:12" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
@@ -284,7 +285,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div>
+    </div> -->
 
   </body>
 

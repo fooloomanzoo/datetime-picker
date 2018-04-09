@@ -2,6 +2,7 @@
 
 <link rel="import" href="../property-mixins/datetime-mixin.html">
 <link rel="import" href="../input-picker-pattern/form-element-mixin.html">
+<link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 <link rel="import" href="../input-picker-pattern/switch-container-mixin.html">
 <link rel="import" href="../number-input/integer-input.html">
@@ -17,10 +18,10 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimeElementPattern = (superClass) => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
+  const TimeElementPattern = superClass => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
     static get styleToInclude() {
-      return `${super.styleToInclude || ''} input-picker-shared-style`;
+      return `input-picker-shared-style input-shared-style`;
     }
 
     /**
@@ -72,12 +73,14 @@
           border-top-left-radius: 1px;
           border-top-right-radius: 1px;
         }
-        #timer .hour12-format {
+        #timer .hour12 {
           flex-shrink: 0;
           height: unset;
           width: unset;
-          font-size: 0.75em;
+          font-size: 0.8em;
+          margin: 0 0.2em;
           padding: 0.5em 0.25em;
+          border-color: transparent;
         }
         [hidden] * {
           display: none;
@@ -90,22 +93,22 @@
         <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
           <div class="field" hidden$="[[_ifClamped(clamp, 'hour', partsHidden.hour)]]">
             <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
-            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
             <template is="dom-if" if="[[hour12Format]]">
-              <integer-input pad-length="2" no-clamp value="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+              <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
             </template>
             <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <span hidden$="[[_computeMultibleClamp(clamp, 'hour', partsHidden.hour, 'minute', partsHidden.minute)]]">[[timeSeparator]]</span>
           <div class="field" hidden$="[[_ifClamped(clamp, 'minute', partsHidden.minute)]]">
             <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
+            <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
             <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <span hidden$="[[_computeMultibleClamp(clamp, 'second', partsHidden.second, 'minute', partsHidden.minute)]]">[[timeSeparator]]</span>
           <div class="field" hidden$="[[_ifClamped(clamp, 'second', partsHidden.second)]]">
             <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
+            <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
             <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <template is="dom-if" if="[[_ifClamped(clamp, 'second', partsHidden.second)]]">
@@ -114,24 +117,24 @@
           <span hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">[[decimalSeparator]]</span>
           <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">
             <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" value="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
+            <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
             <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
           </div>
           <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
             <div class="field">
               <button class="icon switch" prop="_timeZoneHours" step="1" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" hidden$="[[!withTimezone]]" always-sign step="1" min="-23" max="23" value="{{_timeZoneHours}}" placeholder="+00" disabled="[[disabled]]"></integer-input>
+              <integer-input pad-length="2" hidden$="[[!withTimezone]]" always-sign step="1" min="-23" max="23" value-as-number="{{_timeZoneHours}}" placeholder="+00" disabled="[[disabled]]"></integer-input>
               <button class="icon switch" prop="_timeZoneHours" step="-1" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
             </div>
             <span>[[timeSeparator]]</span>
             <div class="field">
               <button class="icon switch" prop="_timeZoneMinutes" step="15" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" hidden$="[[!withTimezone]]" min="0" max="45" step="15" value="{{_timeZoneMinutes}}" placeholder="00" disabled="[[disabled]]"></integer-input>
+              <integer-input pad-length="2" hidden$="[[!withTimezone]]" min="0" max="45" step="15" value-as-number="{{_timeZoneMinutes}}" placeholder="00" disabled="[[disabled]]"></integer-input>
               <button class="icon switch" prop="_timeZoneMinutes" step="-15" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
             </div>
           </div>
           <template is="dom-if" if="[[hour12Format]]">
-            <button class="hour12-format icon" hidden$="[[!_valueIsSet]]" on-click="_switchAm" disabled$="[[_partsDisabled.hour]]">
+            <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
               <div hidden$="[[!isAm]]">[[amString]]</div>
               <div hidden$="[[isAm]]">[[pmString]]</div>
             </button>
@@ -179,13 +182,6 @@
     _computePartsStepMillisecond(partsStepMillisecond) {
       return (partsStepMillisecond === undefined) ? 1 : window._numberUtilities._safeMult(partsStepMillisecond, 1000);
     }
-
-    /**
-     *  Sets value to the actual date
-     **/
-    now() {
-      this._setDate(this._fromDatetime((this.date ? this.date + 'T' : '') + this._toTime(new Date()) + (this.date ? this.timezone || 'Z' : 'Z')));
-    }
   }
 </script>
 
@@ -197,7 +193,7 @@
        * If you like to connect it to an input, try it like:
        *
        *  ```html
-       *     <input type="time" value="{{time::input}}" step="1">
+       *     <input type="time" value-as-number="{{time::input}}" step="1">
        *
        *     <time-element time="{{time}}"></time-element>
        *  ```
@@ -208,37 +204,9 @@
        *
        * Custom property | Description | Default
        * ----------------|-------------|----------
-       * `--input-padding`                  | padding of the input                           | 0.3em
-       * `--input-border-radius`            | border-radius of the input                     | 0.3em
-       * `--input-transition`               | transition of the input                        | background 250ms cubic-bezier(0.6, 1, 0.2, 1)
-       * `--input-align`                   | text-align of the input input                 | center
-       * `--input-cursor`                   | cursor of the input input                      | pointer
-       * `--input-focus-color`              | color of the focussed and hovered inputs       | #f1f1f1
-       * `--input-focus-background`         | background of the focussed and hovered inputs  | var(--primary-color, #394FE8);
-       * `--input-disabled-color`           | color of the disabled elements                 | inherit
-       * `--input-disabled-background`      | background of the disabled elements            | transparent
-       * `--input-disabled-font-style`      | font-style of the disabled elements            | oblique
-       * `--input-disabled-opacity`         | opacity of the disabled elements               | 0.9
-       * `--input-placeholder-color`        | color of the placeholder                       | currentColor
-       * `--input-placeholder-opacity`      | opacity of the placeholder                     | 0.75
-       * `--input-selection-color`          | color of the selected text                     | inherit
-       * `--input-selection-background`     | background of the selected text                | rgba(255, 255, 255, 0.5)
-       * `--input-picker-color`             | color used in the picker                       | #d5d5d5
-       * `--input-picker-background`        | background of the picker                       | #252525
-       * `--input-picker-padding`           | padding of the picker                          | 0.25em
-       * `--input-picker-border-radius`     | border-radius of the picker                    | 0.5em
-       * `--input-picker-box-shadow`        | shadow of the picker                           | 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4)
-       * `--input-icon-width`               | width of an icon                               | 1em
-       * `--input-icon-height`              | height of an icon                              | 1em
-       * `--input-icon-background`          | background of an icon                          | transparent
-       * `--input-icon-padding`             | padding of an icon                             | 0.5em
-       * `--input-icon-border-radius`       | border-radius of an icon                       | 0.3em
-       * `--input-style`                    | style of the inputs                            | {}
-       * `--input-focus`                    | style of the focussed and hovered inputs       | {}
-       * `--input-placeholder`              | style of the placeholder                       | {}
-       * `--input-icon`                     | style of the icons                             | {}
-       * `--input-picker`                   | style of the picker                            | {}
        * `--time-element`                   | Mixin applied to the time-element              | {}
+       *
+       *  Have a look at [input-picker-pattern](https://github.com/fooloomanzoo/input-picker-pattern) to see how to style the element.
        *
        * @customElement
        * @polymer
