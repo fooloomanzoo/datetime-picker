@@ -46,7 +46,7 @@
       </demo-snippet>
     </div>
 
-    <!-- <div class="vertical-section-container centered">
+    <div class="vertical-section-container centered">
       <h3>Create a native datetime-picker, if available</h3>
       <demo-snippet>
         <template>
@@ -82,7 +82,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker datetime="{{datetime}}" default="2005-02-01" time="{{time}}" timezone="{{timezone}}"></datetime-picker>
+              <datetime-picker datetime="{{datetime}}" default="2005-02-01" time="{{time}}" max="2100-01-02T06:00+11:00" timezone="{{timezone}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
@@ -103,14 +103,22 @@
               <custom-style>
                 <style is="custom-style">
                   datetime-picker.begin {
+                    --inner-input-focus-background: #e36666;
                     --input-focus-background: #CC1C1C;
-                    --input-background: #531010;
+                    --input-focus-color: #eeeeee;
+                    --input-background: #7d1010;
                     --input-color: #eeeeee;
+                    --input-picker-background: #7d1010;
+                    --input-picker-color: #eeeeee;
                   }
                   datetime-picker.end {
+                    --inner-input-focus-background: #6993ee;
                     --input-focus-background: #2362EC;
-                    --input-background: #071533;
+                    --input-background: #102e6f;
+                    --input-focus-color: #eeeeee;
                     --input-color: #eeeeee;
+                    --input-picker-background: #102e6f;
+                    --input-picker-color: #eeeeee;
                   }
                 </style>
               </custom-style>
@@ -285,7 +293,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div> -->
+    </div>
 
   </body>
 

@@ -55,6 +55,9 @@
         super.open();
       }
       this.renderCalendar(this.year, this.month, this.day);
+      if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
+        this.$.days.focus();
+      }
     }
   }
 </script>
@@ -79,7 +82,7 @@
    * `--calendar-cell-border-radius`    | border-radius of a date cell                   | 0.25em
    * `--calendar-cell-font-size`        | font-size of a date cell                       | 0.75em
    *
-   *  Have a look at [input-picker-pattern](https://github.com/fooloomanzoo/input-picker-pattern) to see how to style the element.
+   *  Have a look at [input-picker-pattern#input-picker-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-picker-shared-style) and [input-picker-pattern#input-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-shared-style) to see how to style the element.
    *
    *  @polymer
    *  @customElement
@@ -99,6 +102,10 @@
 
       get _hasNative() {
         return DatePicker._hasNative;
+      }
+
+      static get styleToInclude() {
+        return `${super.styleToInclude || ''} dropdown-style`;
       }
 
       _computeNativeStep(step) {

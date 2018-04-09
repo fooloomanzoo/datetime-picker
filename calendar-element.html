@@ -152,15 +152,20 @@
           opacity: 0.9;
         }
         #calendar #dates .day.notinmonth:after {
-          opacity: 0.5;
+          opacity: 0.6;
         }
         #calendar #dates .day.outofrange {
           pointer-events: none !important;
         }
         #calendar #dates .day.outofrange:after {
-          opacity: 0.15;
           font-style: var(--input-disabled-font-style, oblique);
           @apply --input-disabled;
+        }
+        #calendar #dates .day.outofrange:before {
+          opacity: 0.25;
+        }
+        #calendar #dates .day.outofrange {
+          opacity: 0.5;
         }
       `;
     }
@@ -170,8 +175,8 @@
         ${super.contentTemplate || ''}
         <div id="calendar">
           <div id="top" hidden$="[[_computeMultibleClampExclusive(clamp, 'month', partsHidden.month, 'year', partsHidden.year)]]" >
-            <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
-            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month', partsHidden.month)]]" style="order:[[dateOrder.month]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}">
+            <button class="icon switch" prop$="[[_computeIncremPropTop(partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
+            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month', partsHidden.month)]]" style="order:[[dateOrder.month]];" disabled$="[[partsDisabled.month]]" value="{{month::change}}">
               <option value="1"></option>
               <option value="2"></option>
               <option value="3"></option>
@@ -185,11 +190,11 @@
               <option value="11"></option>
               <option value="12"></option>
             </select>
-            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[_startAtYear]]" placeholder="[[_startAtYear]]" value-as-number="{{year}}"></integer-input>
-            <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
+            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value-as-number="{{year}}"></integer-input>
+            <button class="icon switch" prop$="[[_computeIncremPropTop(partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[partsDisabled.year]]">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="days" hidden$="[[_ifClamped(clamp, 'day', partsHidden.day)]]" disabled$="[[_partsDisabled.day]]" tabindex="0" autofocus$="[[!_partsDisabled.day]]" on-keydown="_checkKeycodeForDates">
+          <div id="days" hidden$="[[_ifClamped(clamp, 'day', partsHidden.day)]]" disabled$="[[partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
             <div id="caption">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
@@ -255,22 +260,6 @@
       }
     }
 
-    connectedCallback() {
-      super.connectedCallback();
-      this.renderCalendar(this.year, this.month, this.day, this.date);
-      let d;
-      if (this.default !== undefined) {
-        d = this._fromDatetime(this.default);
-      }
-      if (isNaN(d) && this.value !== undefined) {
-        d = this._fromDatetime(this.value);
-      }
-      if (isNaN(d)) {
-        d = new Date();
-      }
-      this._startAtYear = d.getFullYear();
-    }
-
     _computeMultibleClampExclusive(clamp, prop1, hidden1, prop2, hidden2) {
       return this._ifClamped(clamp, prop1, hidden1) && this._ifClamped(clamp, prop2, hidden2);
     }
@@ -297,7 +286,6 @@
     }
 
     _onClickDay(e) {
-      console.log(this._dayClicked, this.currentSelectedDayNode, this.currentHoveredDayNode);
       if (this._dayClicked === true) {
         this._onDblClickDay();
         this._dayClicked = false;
@@ -306,7 +294,7 @@
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode && this.currentHoveredDayNode.dataset.date) {
         this.currentSelectedDayNode = this.currentHoveredDayNode;
-        const match = this._regexpDate.exec(this.currentHoveredDayNode.dataset.date);
+        const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
         if (!match) {
           this._dayClicked = false;
           return;
@@ -509,12 +497,42 @@
       if (e && e.keyCode) {
         switch (e.keyCode) {
           case 37: // left
-            this._incremProp('day', -1* ((this._partsStep && this._partsStep.day) || 1));
+            if (this.day === undefined) {
+              if (this.currentSelectedDayNode) {
+                const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
+                if (match) {
+                  if (this.timezone === undefined) {
+                    this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+                  }
+                  this.setProperties({
+                    year: +match[1],
+                    month: +match[2],
+                    day: +match[3]
+                  })
+                }
+              }
+            }
+            this._incremProp('day', -1* ((this.partsStep && this.partsStep.day) || 1));
             e.preventDefault();
             e.stopPropagation();
             return;
           case 39: // right
-            this._incremProp('day', ((this._partsStep && this._partsStep.day) || 1));
+            if (this.day === undefined) {
+              if (this.currentSelectedDayNode) {
+                const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
+                if (match) {
+                  if (this.timezone === undefined) {
+                    this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+                  }
+                  this.setProperties({
+                    year: +match[1],
+                    month: +match[2],
+                    day: +match[3]
+                  })
+                }
+              }
+            }
+            this._incremProp('day', ((this.partsStep && this.partsStep.day) || 1));
             e.preventDefault();
             e.stopPropagation();
             return;
@@ -528,7 +546,35 @@
             e.preventDefault();
             e.stopPropagation();
             return;
+          case 13: // enter
+            if (this.currentSelectedDayNode) {
+              const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
+              if (match) {
+                if (this.timezone === undefined) {
+                  this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+                }
+                this.setProperties({
+                  year: +match[1],
+                  month: +match[2],
+                  day: +match[3]
+                })
+              }
+            }
         }
+      }
+    }
+
+    _getDefaultForProp(prop) {
+      const d = (this.default && this._fromDatetime(this.default)) || new Date();
+      switch (prop) {
+        case 'year':
+          return d.getFullYear();
+        case 'month':
+          return d.getMonth() + 1;
+        case 'day':
+          return d.getDate();
+        default:
+          return 0;
       }
     }
   }
@@ -560,8 +606,8 @@
   * `--calendar-cell-border-radius`    | border-radius of a date cell                   | 0.25em
   * `--calendar-cell-font-size`        | font-size of a date cell                       | 0.75em
   *
-  *  Have a look at [input-picker-pattern](https://github.com/fooloomanzoo/input-picker-pattern) to see how to style the element.
-  *  
+  *  Have a look at [input-picker-pattern#input-picker-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-picker-shared-style) and [input-picker-pattern#input-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-shared-style) to see how to style the element.
+  *
   * @customElement
   * @polymer
   *
@@ -585,6 +631,11 @@
           </style>
           ${this.calendarTemplate}
         `
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        this.renderCalendar(this.year, this.month, this.day, this.date);
       }
     }
     window.customElements.define(CalendarElement.is, CalendarElement);

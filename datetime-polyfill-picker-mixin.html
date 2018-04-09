@@ -35,10 +35,6 @@
         `;
       }
 
-      static get styleToInclude() {
-        return `${super.styleToInclude || ''} dropdown-style`;
-      }
-
       static get styleTemplate() {
         return `
           ${super.styleTemplate || ''}
@@ -258,24 +254,6 @@
         }
       }
 
-      _getDefaultForProp(prop) {
-        const d = (this.value && this._fromDatetime(this.value)) || new Date();
-        switch (prop) {
-          case 'year':
-            return d.getFullYear();
-          case 'month':
-            return d.getMonth() + 1;
-          case 'day':
-            return d.getDate();
-          case 'hour':
-            return d.getHours();
-          case 'minute':
-            return d.getMinutes();
-          default:
-            return 0;
-        }
-      }
-
       _computeNativeValueAsNumber(native, valueAsDate) {
         if (!(native && this._hasNative)) {
           return;
@@ -283,14 +261,20 @@
         if (valueAsDate === undefined) {
           return;
         }
-        // setTimeout(() => {
-          const d = new Date(valueAsDate);
-          this._checkDefaultTimezone(d);
-          console.log(this._nativeValueAsNumber, this._timezoneOffset, arguments);
-          d.setUTCMinutes(d.getUTCMinutes() - this._timezoneOffset);
-          this._nativeValueAsNumber = +d;
-          console.log(+d);
-        // }, 0);
+        const d = new Date(valueAsDate);
+        if (this._timeOnly) {
+          if (!this.timezone || !this.date) {
+            this.__updatingTimezoneOffset = true;
+            this._timezoneOffset = 0;
+            this.__updatingTimezoneOffset = false;
+          }
+        } else {
+          if (!this.timezone) {
+            this._checkDefaultTimezone(d);
+          }
+          d.setMinutes(d.getMinutes() - this._timezoneOffset);
+        }
+        this._nativeValueAsNumber = +d;
       }
 
       _reflectNativeValueAsNumber(native, nativeValueAsNumber) {
@@ -303,15 +287,20 @@
         if (nativeValueAsNumber === undefined) {
           return;
         }
-        // setTimeout(() => {
           const d = new Date(nativeValueAsNumber)
-          this._checkDefaultTimezone(d);
-          // console.log(nativeValueAsNumber, this._timezoneOffset);
-          // console.log(+d, this.valueAsNumber, +d - this.valueAsNumber, this._timezoneOffset, this._recentLocalTimezoneOffset, d.getTimezoneOffset());
-          d.setUTCMinutes(d.getUTCMinutes() + this._timezoneOffset);
-          // console.log(+d);
+          if (this._timeOnly) {
+            if (!this.timezone || !this.date) {
+              this.__updatingTimezoneOffset = true;
+              this._timezoneOffset = 0;
+              this.__updatingTimezoneOffset = false;
+            }
+          } else {
+            if (!this.timezone) {
+              this._checkDefaultTimezone(d);
+            }
+            d.setMinutes(d.getMinutes() + this._timezoneOffset);
+          }
           this._setDate(d);
-        // }, 0)
       }
 
       _setDate(d) {
@@ -348,7 +337,6 @@
       }
 
       _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-        console.log(this.nodeName, confirmedDate, confirmedTime);
         if (confirmedDate === undefined && confirmedTime === undefined) {
           this._resetConfirmedValues();
           return; // return, if resseting, so that the picker is not itself resetted

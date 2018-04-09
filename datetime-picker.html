@@ -73,6 +73,9 @@
         super.open();
       }
       this.renderCalendar(this.year, this.month, this.day);
+      if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
+        this.$.days.focus();
+      }
     }
   }
 </script>
@@ -104,7 +107,7 @@
      * `--calendar-cell-font-size`        | font-size of a date cell                       | 0.75em
      * `--time-element`                   | Mixin applied to the time-element              | {}
      *
-     *  Have a look at [input-picker-pattern](https://github.com/fooloomanzoo/input-picker-pattern) to see how to style the element.
+     *  Have a look at [input-picker-pattern#input-picker-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-picker-shared-style) and [input-picker-pattern#input-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-shared-style) to see how to style the element.
      *
      *  @customElement
      *  @polymer
@@ -122,10 +125,13 @@
         return 'datetime-picker';
       }
 
+      static get styleToInclude() {
+        return `${super.styleToInclude || ''} dropdown-style`;
+      }
+
       get _hasNative() {
         return DatetimePicker._hasNative;
       }
-
     }
 
     window.customElements.define(DatetimePicker.is, DatetimePicker);
