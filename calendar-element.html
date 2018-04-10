@@ -52,9 +52,16 @@
         #calendar #monthSelector {
           flex: 1 0 1px;
           padding: 0.3em;
-          --input-color: currentColor;
-          --input-background: transparent;
-          --input-border-color: transparent;
+          color: currentColor;
+          background: transparent;
+          border-color: transparent;
+          --input-focus-color: var(--inner-input-focus-color, currentColor);
+          --input-focus-background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
+        }
+        #calendar #monthSelector:hover,
+        #calendar #monthSelector:focus {
+          color: var(--inner-input-focus-color, currentColor);
+          background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
         }
         #calendar #yearInput {
           font-weight: bold;
