@@ -58,7 +58,6 @@
     _onDblClickDay() {
       super._onDblClickDay();
       this.confirm();
-      this.close();
     }
 
     renderCalendar(year, month, day) {
@@ -79,6 +78,19 @@
           this.$.days.focus();
         }
       }
+    }
+    
+    _setConfirmedValues() {
+      if (!this.date && this.currentSelectedDayNode) {
+        this.date = this.currentSelectedDayNode.dataset.date;
+        return;
+      }
+      this.setProperties({
+        confirmedDatetime: this.datetime,
+        confirmedDate: this.date,
+        confirmedTime: this.time,
+        confirmedValue: this.value
+      })
     }
   }
 </script>

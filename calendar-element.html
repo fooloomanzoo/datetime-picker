@@ -363,7 +363,7 @@
     renderCalendar(year, month, day, date) { // eslint-disable-line
       // working in UTC-timezone
       const currentDate = this._clampDay(new Date()),
-        selectedDate = (year === undefined || month === undefined || day === undefined) ? currentDate : this._clampDay(new Date(year, +month - 1, day));
+        selectedDate = (year === undefined || month === undefined || day === undefined) ? this._min || currentDate : this._clampDay(new Date(year, +month - 1, day));
       let recentDate;
       if (date || this.date) {
         const match = this._regexpDate.exec(date || this.date);

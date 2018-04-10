@@ -37,6 +37,15 @@
       `;
     }
 
+    static get properties() {
+      return {
+        _timeOnly: {
+          type: Boolean,
+          value: true
+        }
+      }
+    }
+
     _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
       if (confirmedTime === undefined) {
         this._resetConfirmedValues();
@@ -47,11 +56,33 @@
         date: confirmedDate,
         time: confirmedTime
       });
-      // asnyc setting the computed the other confirmed values
+      // asnyc setting the computed other confirmed values
       this.setProperties({
         confirmedValue: this.value,
         confirmedDatetime: this.datetime
       });
+    }
+
+    _setConfirmedValues() {
+      if (!this.time) {
+        if (!this.timezone || !this.date) {
+          this.__updatingTimezoneOffset = true;
+          this._timezoneOffset = 0;
+          this.__updatingTimezoneOffset = false;
+        }
+        this.setProperties({
+          valueAsNumber: 0,
+          time: '00:00',
+          confirmedTime: '00:00'
+        });
+        return;
+      }
+      this.setProperties({
+        confirmedDatetime: this.datetime,
+        confirmedDate: this.date,
+        confirmedTime: this.time,
+        confirmedValue: this.value
+      })
     }
 
   }
@@ -96,15 +127,6 @@
 
       get _hasNative() {
         return TimePicker._hasNative;
-      }
-
-      static get properties() {
-        return {
-          _timeOnly: {
-            type: Boolean,
-            value: true
-          }
-        }
       }
 
     }
