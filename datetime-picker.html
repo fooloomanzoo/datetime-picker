@@ -69,12 +69,15 @@
     }
 
     open() {
+      const oldValue = this.opened;
       if (super.open) {
         super.open();
       }
       this.renderCalendar(this.year, this.month, this.day);
-      if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
-        this.$.days.focus();
+      if (oldValue === false) {
+        if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
+          this.$.days.focus();
+        }
       }
     }
   }

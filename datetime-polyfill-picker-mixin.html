@@ -354,11 +354,6 @@
       }
 
       _confirmedValueChanged(confirmedValue) {
-        if (isNaN(confirmedValue)) {
-          this._resetConfirmedValues();
-          return; // return, if resseting, so that the picker is not itself resetted
-        }
-
         this.value = confirmedValue;
         // asnyc setting the computed the other confirmed values
         this.setProperties({

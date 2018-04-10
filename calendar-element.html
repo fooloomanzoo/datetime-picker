@@ -50,27 +50,20 @@
           align-self: stretch;
         }
         #calendar #monthSelector {
-          flex: 1 0 1px;
-          padding: 0.3em;
-          color: currentColor;
-          background: transparent;
-          border-color: transparent;
-          --input-focus-color: var(--inner-input-focus-color, currentColor);
-          --input-focus-background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
+          flex: 1 0 auto;
+          --inner-input-border-style: solid;
+          --inner-input-focus-border-style: solid;
         }
-        #calendar #monthSelector:hover,
-        #calendar #monthSelector:focus {
+        #monthSelector option {
           color: var(--inner-input-focus-color, currentColor);
           background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
+          text-align: center;
         }
         #calendar #yearInput {
           font-weight: bold;
           flex: 0 0 auto;
-          --input-color: currentColor;
-          --input-background: transparent;
-          --input-padding: 0.3em;
-          --input-border-color: transparent;
-          --input-focus-border-color: transparent;
+          --inner-input-border-style: solid;
+          --inner-input-focus-border-style: solid;
         }
         #calendar #days {
           position: relative;

@@ -100,7 +100,7 @@
                   first day: <date-picker name="first" required max="{{end}}" confirmed-value="{{start}}"></date-picker><br>
                   last day: <date-picker name="last" min="{{start}}" confirmed-value="{{end}}"></date-picker><br>
                   <br>
-                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" date="{{lastjob}}"></datetime-picker><br>
+                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" date="{{lastjob}}" property-for-value="datetime"></datetime-picker><br>
                   return: <time-picker name="return" min="[[lastjob]]" max="[[end]]" confirmed-value="{{return}}"></time-picker><br>
                   <br>
                   <button onclick="form1.submit()">Submit</button>
