@@ -236,11 +236,29 @@
 
       static get properties() {
         return {
+          /**
+           * is true when the value is not undefined
+           */
+          _valueIsSet: {
+            type: Boolean,
+            value: false
+          },
+
           _timeOnly: {
             type: Boolean,
             value: true
           }
         }
+      }
+
+      static get observers() {
+        return [
+          '_computeValueIsSet(valueAsNumber)'
+        ]
+      }
+
+      _computeValueIsSet(value) {
+        this._valueIsSet = value !== undefined;
       }
     }
     window.customElements.define(TimeElement.is, TimeElement);
