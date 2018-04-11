@@ -36,11 +36,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -58,11 +58,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -80,11 +80,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 247,
+              "line": 252,
               "column": 8
             },
             "end": {
-              "line": 253,
+              "line": 258,
               "column": 9
             }
           },
@@ -103,11 +103,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -1114,11 +1114,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -1171,11 +1171,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -1193,11 +1193,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -1215,11 +1215,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 318,
+              "line": 323,
               "column": 4
             },
             "end": {
-              "line": 320,
+              "line": 325,
               "column": 5
             }
           },
@@ -1233,11 +1233,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -1278,11 +1278,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 362,
+              "line": 367,
               "column": 4
             },
             "end": {
-              "line": 467,
+              "line": 472,
               "column": 5
             }
           },
@@ -1317,11 +1317,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -1339,11 +1339,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -1410,11 +1410,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -1457,11 +1457,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 635,
+              "line": 640,
               "column": 6
             },
             "end": {
-              "line": 638,
+              "line": 643,
               "column": 7
             }
           },
@@ -2536,11 +2536,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 620,
+          "line": 625,
           "column": 4
         },
         "end": {
-          "line": 639,
+          "line": 644,
           "column": 5
         }
       },
@@ -2571,11 +2571,11 @@
           "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -2588,11 +2588,11 @@
           "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -2605,11 +2605,11 @@
           "description": "date-parts that are hidden, affected by the `clamp`-attribute too\ne.g. { year: true } would hide the input for year",
           "sourceRange": {
             "start": {
-              "line": 247,
+              "line": 252,
               "column": 8
             },
             "end": {
-              "line": 253,
+              "line": 258,
               "column": 9
             }
           },
@@ -3800,11 +3800,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -4227,11 +4227,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -4250,11 +4250,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -4297,11 +4297,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -4726,11 +4726,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -4992,11 +4992,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -5015,11 +5015,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -5716,11 +5716,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -5751,11 +5751,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -5774,11 +5774,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -5815,11 +5815,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -5866,11 +5866,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -5889,11 +5889,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -5915,11 +5915,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -7172,11 +7172,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -7334,11 +7334,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -7352,11 +7352,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -7745,11 +7745,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -7766,11 +7766,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 157,
+              "line": 158,
               "column": 8
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 9
             }
           },
@@ -8756,11 +8756,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 237,
+              "line": 238,
               "column": 10
             },
             "end": {
-              "line": 240,
+              "line": 241,
               "column": 11
             }
           },
@@ -8826,11 +8826,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -8860,11 +8860,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -8882,11 +8882,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -10074,11 +10074,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 220,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 243,
+          "line": 244,
           "column": 5
         }
       },
@@ -10091,11 +10091,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -10108,11 +10108,11 @@
           "description": "date-parts that are hidden, affected by the `clamp`-attribute too\ne.g. { second: true } would hide the input for the second",
           "sourceRange": {
             "start": {
-              "line": 157,
+              "line": 158,
               "column": 8
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 9
             }
           },
@@ -11747,11 +11747,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -11770,11 +11770,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -11817,11 +11817,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -11839,11 +11839,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -12268,11 +12268,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -12534,11 +12534,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -12557,11 +12557,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -13258,11 +13258,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -13293,11 +13293,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -13316,11 +13316,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -13357,11 +13357,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -13408,11 +13408,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -13431,11 +13431,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -13457,11 +13457,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -13505,11 +13505,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -13540,11 +13540,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -13563,11 +13563,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -14960,11 +14960,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -14978,11 +14978,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -15014,11 +15014,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -16376,11 +16376,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -17819,11 +17819,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -17854,11 +17854,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -17877,11 +17877,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -19302,11 +19302,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -20452,11 +20452,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -20879,11 +20879,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -20902,11 +20902,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -20949,11 +20949,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -21432,11 +21432,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -21698,11 +21698,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -21721,11 +21721,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -22403,11 +22403,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -22438,11 +22438,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -22461,11 +22461,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -22503,11 +22503,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -22555,11 +22555,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -22578,11 +22578,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -22604,11 +22604,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -23981,11 +23981,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -24143,11 +24143,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -24161,11 +24161,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -25721,11 +25721,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -25744,11 +25744,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -25791,11 +25791,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -25813,11 +25813,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -26296,11 +26296,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -26562,11 +26562,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -26585,11 +26585,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -27267,11 +27267,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -27302,11 +27302,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -27325,11 +27325,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -27367,11 +27367,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -27419,11 +27419,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -27442,11 +27442,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -27468,11 +27468,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -27516,11 +27516,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -27551,11 +27551,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -27574,11 +27574,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -29091,11 +29091,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -29109,11 +29109,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -29145,11 +29145,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -30686,11 +30686,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -32168,11 +32168,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -32203,11 +32203,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -32226,11 +32226,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -33766,11 +33766,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -35944,11 +35944,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -35966,11 +35966,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -35987,11 +35987,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -36008,11 +36008,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 247,
+              "line": 252,
               "column": 8
             },
             "end": {
-              "line": 253,
+              "line": 258,
               "column": 9
             }
           },
@@ -36030,11 +36030,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -36051,11 +36051,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -36084,11 +36084,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 266,
+              "line": 271,
               "column": 4
             },
             "end": {
-              "line": 269,
+              "line": 274,
               "column": 5
             }
           },
@@ -36105,11 +36105,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -36126,11 +36126,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -36147,11 +36147,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 318,
+              "line": 323,
               "column": 4
             },
             "end": {
-              "line": 320,
+              "line": 325,
               "column": 5
             }
           },
@@ -36164,11 +36164,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -36185,11 +36185,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -36206,11 +36206,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 362,
+              "line": 367,
               "column": 4
             },
             "end": {
-              "line": 467,
+              "line": 472,
               "column": 5
             }
           },
@@ -36244,11 +36244,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -36265,11 +36265,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -36289,11 +36289,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -36310,11 +36310,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -36331,11 +36331,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -36354,11 +36354,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 566,
+              "line": 571,
               "column": 4
             },
             "end": {
-              "line": 578,
+              "line": 583,
               "column": 5
             }
           },
@@ -36379,7 +36379,7 @@
           "column": 2
         },
         "end": {
-          "line": 579,
+          "line": 584,
           "column": 3
         }
       },
@@ -36391,11 +36391,11 @@
           "description": "Clamp datetime to a property\npossible values: 'month', 'day', 'hour'",
           "sourceRange": {
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -36407,11 +36407,11 @@
           "description": "Current hovered day node\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -36423,11 +36423,11 @@
           "description": "Node of the last selected day (warning: if view changes )\nto access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString",
           "sourceRange": {
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -36439,11 +36439,11 @@
           "description": "date-parts that are hidden, affected by the `clamp`-attribute too\ne.g. { year: true } would hide the input for year",
           "sourceRange": {
             "start": {
-              "line": 247,
+              "line": 252,
               "column": 8
             },
             "end": {
-              "line": 253,
+              "line": 258,
               "column": 9
             }
           },
@@ -37032,11 +37032,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -37459,11 +37459,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -37482,11 +37482,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -37529,11 +37529,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -37958,11 +37958,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -38224,11 +38224,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -38247,11 +38247,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -38948,11 +38948,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -38983,11 +38983,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -39006,11 +39006,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -39046,11 +39046,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -39096,11 +39096,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -39119,11 +39119,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -39145,11 +39145,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -40381,11 +40381,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 219,
+              "line": 224,
               "column": 8
             },
             "end": {
-              "line": 223,
+              "line": 228,
               "column": 9
             }
           },
@@ -40543,11 +40543,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -40561,11 +40561,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -40957,11 +40957,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -40977,11 +40977,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 157,
+              "line": 158,
               "column": 8
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 9
             }
           },
@@ -41000,11 +41000,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 167,
+              "line": 168,
               "column": 4
             },
             "end": {
-              "line": 169,
+              "line": 170,
               "column": 5
             }
           },
@@ -41024,11 +41024,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -41057,11 +41057,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -41078,11 +41078,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -41103,7 +41103,7 @@
           "column": 2
         },
         "end": {
-          "line": 184,
+          "line": 185,
           "column": 3
         }
       },
@@ -41115,11 +41115,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -41131,11 +41131,11 @@
           "description": "date-parts that are hidden, affected by the `clamp`-attribute too\ne.g. { second: true } would hide the input for the second",
           "sourceRange": {
             "start": {
-              "line": 157,
+              "line": 158,
               "column": 8
             },
             "end": {
-              "line": 163,
+              "line": 164,
               "column": 9
             }
           },
@@ -42149,11 +42149,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -42172,11 +42172,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -42219,11 +42219,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 255,
+              "line": 260,
               "column": 8
             },
             "end": {
-              "line": 258,
+              "line": 263,
               "column": 9
             }
           },
@@ -42241,11 +42241,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -42670,11 +42670,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 329,
+              "line": 334,
               "column": 4
             },
             "end": {
-              "line": 353,
+              "line": 358,
               "column": 5
             }
           },
@@ -42936,11 +42936,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 481,
+              "line": 486,
               "column": 4
             },
             "end": {
-              "line": 484,
+              "line": 489,
               "column": 5
             }
           },
@@ -42959,11 +42959,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 486,
+              "line": 491,
               "column": 4
             },
             "end": {
-              "line": 489,
+              "line": 494,
               "column": 5
             }
           },
@@ -43660,11 +43660,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 262,
+              "line": 267,
               "column": 4
             },
             "end": {
-              "line": 264,
+              "line": 269,
               "column": 5
             }
           },
@@ -43695,11 +43695,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 271,
+              "line": 276,
               "column": 4
             },
             "end": {
-              "line": 285,
+              "line": 290,
               "column": 5
             }
           },
@@ -43718,11 +43718,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 287,
+              "line": 292,
               "column": 4
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 5
             }
           },
@@ -43758,11 +43758,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 322,
+              "line": 327,
               "column": 4
             },
             "end": {
-              "line": 327,
+              "line": 332,
               "column": 5
             }
           },
@@ -43808,11 +43808,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 469,
+              "line": 474,
               "column": 4
             },
             "end": {
-              "line": 475,
+              "line": 480,
               "column": 5
             }
           },
@@ -43831,11 +43831,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 477,
+              "line": 482,
               "column": 4
             },
             "end": {
-              "line": 479,
+              "line": 484,
               "column": 5
             }
           },
@@ -43857,11 +43857,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 495,
+              "line": 500,
               "column": 4
             },
             "end": {
-              "line": 564,
+              "line": 569,
               "column": 5
             }
           },
@@ -43905,11 +43905,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -43940,11 +43940,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -43963,11 +43963,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -45339,11 +45339,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 229,
+              "line": 234,
               "column": 8
             },
             "end": {
-              "line": 232,
+              "line": 237,
               "column": 9
             }
           },
@@ -45357,11 +45357,11 @@
           "sourceRange": {
             "file": "calendar-element.html",
             "start": {
-              "line": 238,
+              "line": 243,
               "column": 8
             },
             "end": {
-              "line": 241,
+              "line": 246,
               "column": 9
             }
           },
@@ -45393,11 +45393,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -46759,11 +46759,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
@@ -48202,11 +48202,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 171,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 173,
+              "line": 174,
               "column": 5
             }
           },
@@ -48237,11 +48237,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 175,
+              "line": 176,
               "column": 4
             },
             "end": {
-              "line": 178,
+              "line": 179,
               "column": 5
             }
           },
@@ -48260,11 +48260,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 181,
+              "line": 182,
               "column": 4
             },
             "end": {
-              "line": 183,
+              "line": 184,
               "column": 5
             }
           },
@@ -49665,11 +49665,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 148,
+              "line": 149,
               "column": 8
             },
             "end": {
-              "line": 151,
+              "line": 152,
               "column": 9
             }
           },
