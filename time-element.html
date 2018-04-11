@@ -82,8 +82,9 @@
           padding: 0.5em 0.25em;
           border-color: transparent;
         }
-        [hidden] * {
-          display: none;
+        #timer integer-input {
+          --input-placeholder-color: var(--input-picker-color, inherit);
+          --inner-input-color: var(--input-picker-color, inherit);
         }
       `;
     }

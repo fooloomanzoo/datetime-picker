@@ -51,6 +51,7 @@
         }
         #calendar #monthSelector {
           flex: 1 0 auto;
+          --inner-input-color: var(--input-picker-color, inherit);
           --inner-input-border-style: solid;
           --inner-input-focus-border-style: solid;
         }
@@ -62,6 +63,8 @@
         #calendar #yearInput {
           font-weight: bold;
           flex: 0 0 auto;
+          --input-placeholder-color: var(--input-picker-color, currentColor);
+          --inner-input-color: var(--input-picker-color, inherit);
           --inner-input-border-style: solid;
           --inner-input-focus-border-style: solid;
         }
@@ -78,6 +81,7 @@
         #calendar .day {
           @apply --calendar-cell;
           -webkit-background-clip: padding-box;
+          color: inherit;
           background-clip: padding-box;
           line-height: normal;
           float: left;
@@ -119,6 +123,7 @@
         }
         #calendar .day:after {
           content: attr(day);
+          color: currentColor;
           position: absolute;
           white-space: nowrap;
           border-radius: inherit;
