@@ -51,7 +51,7 @@
         }
         #calendar #monthSelector {
           flex: 1 0 auto;
-          --inner-input-color: var(--input-picker-color, inherit);
+          --inner-input-color: var(--inner-input-color, var(--input-picker-color, inherit));
           --inner-input-border-style: solid;
           --inner-input-focus-border-style: solid;
         }
@@ -63,10 +63,9 @@
         #calendar #yearInput {
           font-weight: bold;
           flex: 0 0 auto;
-          --input-placeholder-color: var(--input-picker-color, currentColor);
-          --inner-input-color: var(--input-picker-color, inherit);
-          --inner-input-border-style: solid;
-          --inner-input-focus-border-style: solid;
+          --input-color: var(--inner-input-color, var(--input-picker-color, inherit));
+          --input-border-style: solid;
+          --input-focus-border-style: solid;
         }
         #calendar #days {
           position: relative;
@@ -127,6 +126,7 @@
           position: absolute;
           white-space: nowrap;
           border-radius: inherit;
+          opacity: 1;
           top: 50%;
           right: 50%;
           transform: translate(50%, -50%);
