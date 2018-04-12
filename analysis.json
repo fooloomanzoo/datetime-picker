@@ -7745,11 +7745,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -7766,11 +7766,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 158,
+              "line": 157,
               "column": 8
             },
             "end": {
-              "line": 164,
+              "line": 163,
               "column": 9
             }
           },
@@ -7925,21 +7925,19 @@
           "description": "is true when the value is not undefined",
           "privacy": "protected",
           "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\form-element-mixin.html",
             "start": {
-              "line": 58,
+              "line": 240,
               "column": 10
             },
             "end": {
-              "line": 61,
+              "line": 243,
               "column": 11
             }
           },
           "metadata": {
             "polymer": {}
           },
-          "defaultValue": "false",
-          "inheritedFrom": "FormElementMixin"
+          "defaultValue": "false"
         },
         {
           "name": "propertyForValue",
@@ -8756,11 +8754,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 238,
+              "line": 245,
               "column": 10
             },
             "end": {
-              "line": 241,
+              "line": 248,
               "column": 11
             }
           },
@@ -8826,11 +8824,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -8860,11 +8858,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -8882,11 +8880,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -9116,13 +9114,12 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "bower_components\\input-picker-pattern\\form-element-mixin.html",
             "start": {
-              "line": 89,
+              "line": 258,
               "column": 6
             },
             "end": {
-              "line": 91,
+              "line": 260,
               "column": 7
             }
           },
@@ -9131,8 +9128,7 @@
             {
               "name": "value"
             }
-          ],
-          "inheritedFrom": "FormElementMixin"
+          ]
         },
         {
           "name": "validate",
@@ -10074,11 +10070,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 221,
+          "line": 220,
           "column": 4
         },
         "end": {
-          "line": 244,
+          "line": 261,
           "column": 5
         }
       },
@@ -10091,11 +10087,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -10108,11 +10104,11 @@
           "description": "date-parts that are hidden, affected by the `clamp`-attribute too\ne.g. { second: true } would hide the input for the second",
           "sourceRange": {
             "start": {
-              "line": 158,
+              "line": 157,
               "column": 8
             },
             "end": {
-              "line": 164,
+              "line": 163,
               "column": 9
             }
           },
@@ -11839,11 +11835,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -13505,11 +13501,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -13540,11 +13536,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -13563,11 +13559,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -15014,11 +15010,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -16376,11 +16372,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -17819,11 +17815,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -17854,11 +17850,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -17877,11 +17873,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -19302,11 +19298,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -25813,11 +25809,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -27516,11 +27512,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -27551,11 +27547,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -27574,11 +27570,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -29145,11 +29141,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -30686,11 +30682,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -32168,11 +32164,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -32203,11 +32199,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -32226,11 +32222,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -33766,11 +33762,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -40957,11 +40953,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -40977,11 +40973,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 158,
+              "line": 157,
               "column": 8
             },
             "end": {
-              "line": 164,
+              "line": 163,
               "column": 9
             }
           },
@@ -41000,11 +40996,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 168,
+              "line": 167,
               "column": 4
             },
             "end": {
-              "line": 170,
+              "line": 169,
               "column": 5
             }
           },
@@ -41024,11 +41020,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -41057,11 +41053,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -41078,11 +41074,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -41103,7 +41099,7 @@
           "column": 2
         },
         "end": {
-          "line": 185,
+          "line": 184,
           "column": 3
         }
       },
@@ -41115,11 +41111,11 @@
           "description": "",
           "sourceRange": {
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -41131,11 +41127,11 @@
           "description": "date-parts that are hidden, affected by the `clamp`-attribute too\ne.g. { second: true } would hide the input for the second",
           "sourceRange": {
             "start": {
-              "line": 158,
+              "line": 157,
               "column": 8
             },
             "end": {
-              "line": 164,
+              "line": 163,
               "column": 9
             }
           },
@@ -42241,11 +42237,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -43905,11 +43901,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -43940,11 +43936,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -43963,11 +43959,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -45393,11 +45389,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -46759,11 +46755,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
@@ -48202,11 +48198,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 172,
+              "line": 171,
               "column": 4
             },
             "end": {
-              "line": 174,
+              "line": 173,
               "column": 5
             }
           },
@@ -48237,11 +48233,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 176,
+              "line": 175,
               "column": 4
             },
             "end": {
-              "line": 179,
+              "line": 178,
               "column": 5
             }
           },
@@ -48260,11 +48256,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 182,
+              "line": 181,
               "column": 4
             },
             "end": {
-              "line": 184,
+              "line": 183,
               "column": 5
             }
           },
@@ -49665,11 +49661,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 149,
+              "line": 148,
               "column": 8
             },
             "end": {
-              "line": 152,
+              "line": 151,
               "column": 9
             }
           },
