@@ -31,6 +31,9 @@
     static get styleTemplate() {
       return `
         ${super.styleTemplate || ''}
+        :host {
+          --computed-reduced-icon-padding: calc(var(--input-icon-padding, 0.5em) / 4);
+        }
         #timer {
           color: var(--input-picker-color);
           background-color: var(--input-picker-background);
@@ -62,8 +65,8 @@
           --input-focus-border-color: transparent;
         }
         #timer .field > .switch {
-          padding-top: 0.25em;
-          padding-bottom: 0.25em;
+          padding-top: var(--computed-reduced-icon-padding);
+          padding-bottom: var(--computed-reduced-icon-padding);
         }
         #timer .field > .switch:first-of-type {
           border-bottom-left-radius: 1px;
