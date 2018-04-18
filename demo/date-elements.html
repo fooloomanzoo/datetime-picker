@@ -172,7 +172,7 @@
               <div class="vertical-section-container">
                 <date-picker id="eventPicker" opened="{{opened}}" date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
                 <template is="dom-if" if="[[currentSelectedDayNode]]">
-                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentSelectedDayNode)]]" on-click="close" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentSelectedDayNode)]]" on-mousedown="close" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click dynamic-align vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
                       <ul>

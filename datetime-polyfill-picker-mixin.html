@@ -159,14 +159,6 @@
           },
 
           /**
-           * The confirmed value. When `auto-confirm` is not set, the value will only change, when you confirm.
-           */
-          confirmedValue: {
-            type: Object,
-            notify: true
-          },
-
-          /**
            * Set to `true` to hide the `now`-button
            */
           hideNowButton: {
@@ -213,8 +205,6 @@
         return [
           '_confirmedDatetimeChanged(confirmedDatetime)',
           '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
-          '_confirmedValueChanged(confirmedValue)',
-          '_computeInvalid(required, confirmedValue)',
           '_computeNativeValueAsNumber(native, valueAsDate, _timezoneOffset)',
           '_reflectNativeValueAsNumber(native, _nativeValueAsNumber, _timezoneOffset)'
         ];
