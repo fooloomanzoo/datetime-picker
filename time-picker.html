@@ -20,7 +20,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(TimeInputPattern(DatetimeInputMixin(TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const TimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(TimeInputPattern(DatetimeInputMixin(TimeElementPattern(SwitchContainerMixin(DatetimeMixin(superClass)))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'time';
@@ -49,7 +49,7 @@
     _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
       if (confirmedTime === undefined) {
         this._resetConfirmedValues();
-        return; // return, if resseting, so that the picker is not itself resetted
+        return; // return, if reseting, so that the picker is not itself resetted
       }
 
       this.setProperties({

@@ -23,7 +23,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatetimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(DateInputPattern(TimeInputPattern(DatetimeInputMixin(CalendarElementPattern(TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(superClass))))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatetimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(DateInputPattern(TimeInputPattern(DatetimeInputMixin(CalendarElementPattern(TimeElementPattern(SwitchContainerMixin(DatetimeMixin(superClass)))))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'datetime-local';
@@ -79,7 +79,7 @@
         }
       }
     }
-    
+
     _setConfirmedValues() {
       if (!this.date && this.currentSelectedDayNode) {
         this.date = this.currentSelectedDayNode.dataset.date;
