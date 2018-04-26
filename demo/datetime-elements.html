@@ -25,18 +25,18 @@
 
   <body>
 
-  <div class="vertical-section-container centered">
+  <!-- <div class="vertical-section-container centered">
       <h3>Create a standalone datetime-input and preset date</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input datetime="{{datetime}}" date="{{date}}" default="2001-01-02"></datetime-input>
+              <datetime-input datetime="{{datetime}}" date="{{date}}" default="2001-01-02"></datetime-input> -->
               <!-- <date-input locale="{{locale}}" date="{{date}}" ></date-input> -->
               <!-- <calendar-element locale="{{locale}}" date="{{date}}" datetime="{{datetime}}"></calendar-element> -->
               <!-- <datetime-picker locale="{{locale}}" date="{{date}}" datetime="{{datetime}}"></datetime-picker> -->
               <!-- <time-element locale="{{locale}}" hour12-format="[[hour12Format]]" datetime="{{datetime}}" date="{{date}}"></time-element> -->
-              <div class="vertical-section-container result">
+              <!-- <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
               </div>
@@ -74,7 +74,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div>
+    </div> -->
 
     <div class="vertical-section-container centered">
       <h3>Presetting date</h3>
@@ -82,11 +82,23 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker datetime="{{datetime}}" default="2005-02-01" time="{{time}}" max="2100-01-02T06:00+11:00" timezone="{{timezone}}"></datetime-picker>
+              <h4>by default</h4>
+              <!-- <datetime-picker default="2005-02-01" datetime="{{datetime1}}" time="{{time1}}" timezone="{{timezone1}}"></datetime-picker> -->
               <div class="vertical-section-container result">
-                <div><code>datetime</code>: <b>[[datetime]]</b></div>
-                <div><code>time</code>: <b>[[time]]</b></div>
-                <div><code>timezone</code>: <b>[[timezone]]</b></div>
+                <div><code>datetime</code>: <b>[[datetime1]]</b></div>
+                <div><code>time</code>: <b>[[time1]]</b></div>
+                <div><code>timezone</code>: <b>[[timezone1]]</b></div>
+              </div>
+              <h4>by value</h4>
+              <h5>auto confirm</h5>
+              <!-- <datetime-picker value="1500000021000" auto-confirm datetime="{{datetime2}}" time="{{time2}}" timezone="{{timezone2}}"></datetime-picker> -->
+              <h5>not auto confirm</h5>
+              <datetime-input value="1500000021000" datetime="{{datetime2}}" time="{{time2}}" timezone="{{timezone2}}"></datetime-input>
+              <!-- <datetime-picker value="1523466123000" datetime="{{datetime2}}" time="{{time2}}" timezone="{{timezone2}}"></datetime-picker> -->
+              <div class="vertical-section-container result">
+                <div><code>datetime</code>: <b>[[datetime2]]</b></div>
+                <div><code>time</code>: <b>[[time2]]</b></div>
+                <div><code>timezone</code>: <b>[[timezone2]]</b></div>
               </div>
             </template>
           </dom-bind>
@@ -94,7 +106,7 @@
       </demo-snippet>
     </div>
 
-    <div class="vertical-section-container centered">
+    <!-- <div class="vertical-section-container centered">
       <h3>Handling range of dates</h3>
       <demo-snippet>
         <template>
@@ -293,7 +305,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div>
+    </div> -->
 
   </body>
 
