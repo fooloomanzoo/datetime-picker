@@ -25,7 +25,7 @@
       super();
 
       /**
-       * simplified Regular Expression for parsing dates
+       * simplified Regular Expression for parsing days
        */
       this._regexpDate = /(-?\d+)-(\d\d)-(\d\d)/;
     }
@@ -65,26 +65,27 @@
           --inner-input-border-style: solid;
           --inner-input-focus-border-style: solid;
         }
-        #monthSelector option {
+        #calendar #monthSelector option {
           color: var(--inner-input-focus-color, currentColor);
           background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
           text-align: center;
         }
-        #calendar #yearInput {
+        #calendar #yearSelector {
           font-weight: bold;
           flex: 0 0 auto;
           --input-color: var(--inner-input-color, var(--input-picker-color, inherit));
           --input-border-style: solid;
           --input-focus-border-style: solid;
+          --input-padding: var(--inner-input-padding, 0.5em);
         }
-        #calendar #days {
+        #calendar #daySelector {
           position: relative;
         }
         #calendar #caption {
           display: inline-flex;
           flex-flow: row nowrap;
         }
-        #calendar #days:focus {
+        #calendar #daySelector:focus {
           outline: none;
         }
         #calendar .day {
@@ -109,8 +110,8 @@
         #calendar .day:nth-child(7n+1) {
           clear: left;
         }
-        #calendar:hover #days:not([disabled]) .day.selected,
-        #calendar #days:not([disabled]):focus .day.selected {
+        #calendar:hover #daySelector:not([disabled]) .day.selected,
+        #calendar #daySelector:not([disabled]):focus .day.selected {
           background-color: var(--inner-input-focus-background);
           color: var(--inner-input-focus-color);
         }
@@ -141,45 +142,45 @@
           right: 50%;
           transform: translate(50%, -50%);
         }
-        #calendar #dates .day {
+        #calendar #days .day {
           cursor: pointer;
         }
-        #calendar #dates .day:hover {
+        #calendar #days .day:hover {
           will-change: background;
           @apply --calendar-cell-hovered;
         }
-        #calendar #dates .day:hover:before,
-        #calendar #days .day.current:before {
+        #calendar #days .day:hover:before,
+        #calendar #daySelector .day.current:before {
           border-color: currentColor;
         }
-        #calendar #dates .day.selected:before,
-        #calendar #dates .day.recent:before {
+        #calendar #days .day.selected:before,
+        #calendar #days .day.recent:before {
           border-color: var(--inner-input-focus-background);
         }
-        #calendar #days .day.recent:before,
-        #calendar #days .day.current:before {
+        #calendar #daySelector .day.recent:before,
+        #calendar #daySelector .day.current:before {
           opacity: 0.75;
         }
-        #calendar #dates .day:hover:before {
+        #calendar #days .day:hover:before {
           opacity: 0.5;
         }
-        #calendar #days .day.selected:before {
+        #calendar #daySelector .day.selected:before {
           opacity: 0.9;
         }
-        #calendar #dates .day.notinmonth:after {
+        #calendar #days .day.notinmonth:after {
           opacity: 0.6;
         }
-        #calendar #dates .day.outofrange {
+        #calendar #days .day.outofrange {
           pointer-events: none !important;
         }
-        #calendar #dates .day.outofrange:after {
+        #calendar #days .day.outofrange:after {
           font-style: var(--input-disabled-font-style, oblique);
           @apply --input-disabled;
         }
-        #calendar #dates .day.outofrange:before {
+        #calendar #days .day.outofrange:before {
           opacity: 0.25;
         }
-        #calendar #dates .day.outofrange {
+        #calendar #days .day.outofrange {
           opacity: 0.5;
         }
       `;
@@ -205,15 +206,15 @@
               <option value="11"></option>
               <option value="12"></option>
             </select>
-            <integer-input id="yearInput" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value-as-number="{{year}}"></integer-input>
+            <integer-input id="yearSelector" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value="{{year}}"></integer-input>
             <button class="icon switch" prop$="[[_computeIncremPropTop(partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[partsDisabled.year]]">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="days" hidden$="[[_ifClamped(clamp, 'day')]]" disabled$="[[partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
+          <div id="daySelector" hidden$="[[_ifClamped(clamp, 'day')]]" disabled$="[[partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
             <div id="caption">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
-            <div id="dates" on-mousedown="_onClickDay" on-touchstart="_onClickDay" on-mousemove="_onMouseMoveDay">
+            <div id="days" on-mousedown="_onClickDay" on-touchstart="_onClickDay" on-mousemove="_onMouseMoveDay">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
@@ -248,19 +249,46 @@
         },
 
         /**
-         * Node of the last selected day (warning: if view changes )
+         * Node of the last selected day (warning: if daySelector changes )
          * to access: bind the attribute ('current-hovered-day') and get its '.dataset.date'- property represents the DateString
          */
         currentHoveredDayNode: {
           type: Node,
           notify: true
+        },
+
+        /**
+         * defines the property that should be used for the value
+         */
+        propertyForValue: {
+          type: String,
+          value: 'valueAsNumber'
         }
       }
     }
 
-    _setDate(d) {
-      super._setDate(d);
-      this.renderCalendar(this.year, this.month, this.day);
+    static get observers() {
+      return [
+        'renderCalendar(year, month, day)'
+      ]
+    }
+
+    _defaultChanged(def) {
+      // overwrite form-element-mixin's behaviour in favour of datetime-mixins handling
+      if (this._isSet(def) === false) {
+        this.default = undefined;
+      }
+    }
+
+    _isSet(value) {
+      return !(typeof value === 'boolean' || value === undefined || value === null || value === '');
+    }
+
+    _valueChanged(value) {
+      // test if value is set and if needed set value to default
+      if (this._isSet(value) === false) {
+        this.resetDate();
+      }
     }
 
     _onMouseMoveDay(e) {
@@ -288,17 +316,17 @@
           this._dayClicked = false;
           return;
         }
-        if (this.timezone === undefined) {
-          this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-        }
-        this.setProperties({
-          year: +match[1],
-          month: +match[2],
-          day: +match[3]
-        })
+        // if (this.timezone === undefined) {
+        //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+        // }
         if (this._dayClicked === true) {
           // emulating double-click behaviour for click event (tab event will appear as double click)
           this._dayClicked = false;
+          this.setProperties({
+            year: +match[1],
+            month: +match[2],
+            day: +match[3]
+          })
           this._onDblClickDay();
           return;
         }
@@ -311,7 +339,6 @@
     }
 
     _onDblClickDay() {
-      console.log('deblick');
       this.renderCalendar(this.year, this.month, this.day);
     }
 
@@ -349,16 +376,15 @@
     }
 
     /**
-     * renderCalendars the current view (manually).
-     * @param {number} year The year of the date of the current view.
-     * @param {number} month The month of the date of the current view.
-     * @param {number} day The day of the date of the current view.
+     * renderCalendars the current daySelector (manually).
+     * @param {number} year The year of the date of the current daySelector.
+     * @param {number} month The month of the date of the current daySelector.
+     * @param {number} day The day of the date of the current daySelector.
      * @param {number} date The current selected date.
      */
     renderCalendar(year, month, day, date) { // eslint-disable-line
-      // working in UTC-timezone
       const currentDate = this._clampDay(new Date()),
-        selectedDate = (year === undefined || month === undefined || day === undefined) ? this._min || currentDate : this._clampDay(new Date(year, +month - 1, day));
+        selectedDate = !(year === undefined || month === undefined || day === undefined) ? this._clampDay(new Date(year, +month - 1, day)) : undefined;
       let recentDate;
       if (date || this.date) {
         const match = this._regexpDate.exec(date || this.date);
@@ -366,91 +392,88 @@
           recentDate = new Date(+match[1], +match[2] - 1, +match[3]);
         }
       }
-      if (isNaN(recentDate)) {
-        recentDate = selectedDate;
-      }
-      year = year || selectedDate.getFullYear();
-      const monthCounter = month === undefined ? selectedDate.getMonth() : (month - 1);
+      year = isNaN(year) ? (isNaN(selectedDate) ? currentDate : selectedDate ).getFullYear() : year;
+      const monthCounter = isNaN(month) ? (isNaN(selectedDate) ? currentDate : selectedDate ).getMonth() : (month - 1);
       const firstDateOfMonth = new Date(year, monthCounter, 0);
 
       const currentDay = this._dayDiff(currentDate, firstDateOfMonth),
-        selectedDay = this._dayDiff(selectedDate, firstDateOfMonth),
-        recentDay = this._dayDiff(recentDate, firstDateOfMonth);
+        selectedDay = isNaN(selectedDate) ? undefined : this._dayDiff(selectedDate, firstDateOfMonth),
+        recentDay = isNaN(recentDate) ? undefined : this._dayDiff(recentDate, firstDateOfMonth);
 
       let min, max;
-      if (this._min) {
-        min = this._dayDiff(new Date(this._min.getFullYear(), this._min.getMonth(), this._min.getDate()), firstDateOfMonth);
+      if (this._minValue) {
+        min = this._dayDiff(this._clampDay(new Date(this._minValue)), firstDateOfMonth);
       }
-      if (this._max) {
-        max = this._dayDiff(new Date(this._max.getFullYear(), this._max.getMonth(), this._max.getDate()), firstDateOfMonth);
+      if (this._maxValue) {
+        max = this._dayDiff(this._clampDay(new Date(this._maxValue)), firstDateOfMonth);
       }
 
       const prevmonthlength = +new Date(year, monthCounter, 0).getDate();
       const thismonthlength = +new Date(year, monthCounter + 1, 0).getDate();
       const firstWeekDay = +new Date(year, monthCounter, 1).getDay() - 1; // Monday is first day
-      let selectedDayInView;
 
+      let selectedDayInView;
       let counter = -(firstWeekDay + 7) % 7 + 1;
 
       for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 7; j++) {
           // Day Numbers
           if (counter <= 0) {
-            this.$.dates.children[7*i + j].classList.add('notinmonth');
-            this.$.dates.children[7*i + j].setAttribute('day', prevmonthlength + counter);
+            this.$.days.children[7*i + j].classList.add('notinmonth');
+            this.$.days.children[7*i + j].setAttribute('day', prevmonthlength + counter);
           } else if (counter > thismonthlength) {
-            this.$.dates.children[7*i + j].classList.add('notinmonth');
-            this.$.dates.children[7*i + j].setAttribute('day', counter - thismonthlength);
+            this.$.days.children[7*i + j].classList.add('notinmonth');
+            this.$.days.children[7*i + j].setAttribute('day', counter - thismonthlength);
           } else {
-            this.$.dates.children[7*i + j].classList.remove('notinmonth');
-            this.$.dates.children[7*i + j].setAttribute('day', counter);
+            this.$.days.children[7*i + j].classList.remove('notinmonth');
+            this.$.days.children[7*i + j].setAttribute('day', counter);
           }
 
           // Day is Current Day
           if (counter === currentDay) {
-            this.$.dates.children[7*i + j].classList.add('current');
+            this.$.days.children[7*i + j].classList.add('current');
           } else {
-            this.$.dates.children[7*i + j].classList.remove('current')
+            this.$.days.children[7*i + j].classList.remove('current')
           }
 
           // Day is Recent Selected Day
           if (counter === recentDay) {
-            this.$.dates.children[7*i + j].classList.add('recent');
+            this.$.days.children[7*i + j].classList.add('recent');
           } else {
-            this.$.dates.children[7*i + j].classList.remove('recent');
+            this.$.days.children[7*i + j].classList.remove('recent');
           }
 
           // Day is Selected Day
           if (counter === selectedDay) {
-            this.$.dates.children[7*i + j].classList.add('selected');
-            this.currentSelectedDayNode = this.$.dates.children[7*i + j];
+            this.$.days.children[7*i + j].classList.add('selected');
+            this.currentSelectedDayNode = this.$.days.children[7*i + j];
             selectedDayInView = true;
           } else {
-            this.$.dates.children[7*i + j].classList.remove('selected');
+            this.$.days.children[7*i + j].classList.remove('selected');
           }
 
           // Day is Min
           if (counter === min) {
-            this.$.dates.children[7*i + j].classList.add('min');
+            this.$.days.children[7*i + j].classList.add('min');
           } else  {
-            this.$.dates.children[7*i + j].classList.remove('min');
+            this.$.days.children[7*i + j].classList.remove('min');
           }
 
           // Day is Max
           if (counter === max) {
-            this.$.dates.children[7*i + j].classList.add('max');
+            this.$.days.children[7*i + j].classList.add('max');
           } else  {
-            this.$.dates.children[7*i + j].classList.remove('max');
+            this.$.days.children[7*i + j].classList.remove('max');
           }
 
           // Day is out of range
           if (counter < min || counter > max) {
-            this.$.dates.children[7*i + j].classList.add('outofrange');
+            this.$.days.children[7*i + j].classList.add('outofrange');
           } else {
-            this.$.dates.children[7*i + j].classList.remove('outofrange');
+            this.$.days.children[7*i + j].classList.remove('outofrange');
           }
 
-          this.$.dates.children[7*i + j].dataset.date = this._toUTCDate(Date.UTC(year, monthCounter, counter));
+          this.$.days.children[7*i + j].dataset.date = this._toUTCDate(Date.UTC(year, monthCounter, counter));
           counter++;
         }
       }
@@ -458,7 +481,7 @@
       if (!selectedDayInView) {
         this.currentSelectedDayNode = null;
       }
-      // fix for initial view
+      // fix for initial daySelector
       this.$.monthSelector.selectedIndex = monthCounter;
     }
 
@@ -485,7 +508,7 @@
     }
 
     /**
-     * key press event handler on dates area
+     * key press event handler on days area
      * @param  {[type]} e Event
      */
     _checkKeycodeForDates(e) {
@@ -496,9 +519,9 @@
               if (this.currentSelectedDayNode) {
                 const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
                 if (match) {
-                  if (this.timezone === undefined) {
-                    this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-                  }
+                  // if (this.timezone === undefined) {
+                  //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+                  // }
                   this.setProperties({
                     year: +match[1],
                     month: +match[2],
@@ -516,9 +539,9 @@
               if (this.currentSelectedDayNode) {
                 const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
                 if (match) {
-                  if (this.timezone === undefined) {
-                    this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-                  }
+                  // if (this.timezone === undefined) {
+                  //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+                  // }
                   this.setProperties({
                     year: +match[1],
                     month: +match[2],
@@ -545,9 +568,9 @@
             if (this.currentSelectedDayNode) {
               const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
               if (match) {
-                if (this.timezone === undefined) {
-                  this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-                }
+                // if (this.timezone === undefined) {
+                //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
+                // }
                 this.setProperties({
                   year: +match[1],
                   month: +match[2],
@@ -561,16 +584,14 @@
 
     _getDefaultForProp(prop) {
       const d = (this._defaultValue && new Date(this._defaultValue)) || new Date();
-      this._checkDefaultTimezone(d);
-      // shift to utc timezone to get properties
-      d.setMinutes(d.getMinutes() - this.offsetMinutes);
+      // this._checkDefaultTimezone(d);
       switch (prop) {
         case 'year':
-          return d.getUTCFullYear();
+          return d.getFullYear();
         case 'month':
-          return d.getUTCMonth() + 1;
+          return d.getMonth() + 1;
         case 'day':
-          return d.getUTCDate();
+          return d.getDate();
         default:
           return 0;
       }

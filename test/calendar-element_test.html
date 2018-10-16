@@ -9,6 +9,7 @@
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
   <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
 
   <link rel="import" href="../calendar-element.html">
@@ -76,6 +77,8 @@
         assert.isDefined(element.pmString, 'pmString is defined');
         assert.isDefined(element.dateOrder, 'dateOrder is defined');
         assert.isDefined(element.propertyForValue, 'propertyForValue is defined');
+        assert.isNotOk(element.currentHoveredDayNode, 'no currentHoveredDayNode is defined');
+        assert.isNotOk(element.currentSelectedDayNode, 'no currentSelectedDayNode is defined');
         done();
       });
 
@@ -85,7 +88,6 @@
         assert.isDefined(element.date, 'date is defined');
         assert.isDefined(element.time, 'time is defined');
         assert.isDefined(element.datetime, 'datetime is defined');
-        assert.isDefined(element.value, 'value is defined');
         assert.isDefined(element.valueAsNumber, 'valueAsNumber is defined');
         assert.isDefined(element.valueAsDate, 'valueAsDate is defined');
         assert.isDefined(element.year, 'year is defined');
@@ -99,6 +101,42 @@
         assert.isDefined(element.offsetMinutes, 'timezone-offset is defined');
         assert.isDefined(element._timeZoneHours, 'timezone-hours is defined');
         assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
+        assert.isNotOk(element.currentHoveredDayNode, 'no currentHoveredDayNode is defined');
+        assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
+        done();
+      });
+
+      test('default view', done => {
+        let yearSelector = element.shadowRoot.querySelector('#yearSelector');
+        let monthSelector = element.shadowRoot.querySelector('#monthSelector');
+        let daySelector = element.shadowRoot.querySelector('#daySelector');
+        let days = element.shadowRoot.querySelector('#days');
+
+        assert.equal(yearSelector.placeholder, element._getDefaultForProp('year'));
+        assert.equal(yearSelector.startAt, element._getDefaultForProp('year'));
+        if (monthSelector) {
+          assert.isOk(monthSelector.value, 'monthSelector is set');
+          assert.isTrue(Array.prototype.every.call(monthSelector.options, el => Boolean(el.value) && Boolean(el.text)), 'every option in month selector has a value and a text set');
+        }
+        if (days) {
+          assert.isOk(days.children.length, 'days has children');
+          assert.isNotOk(days.querySelector('.recent'), 'there is no recent selected day node');
+          assert.isOk(days.querySelectorAll('.notinmonth').length, 'there is day nodes outside of the monthly view');
+          assert.isTrue(Array.prototype.every.call(days.querySelectorAll('.day'), el => Boolean(el.dataset.date)), 'every day node has in dataset a date property');
+        }
+        if (!element.default) {
+          assert.isNotOk(yearSelector.value, 'yearSelector is not set');
+          assert.isNotOk(element.currentSelectedDayNode, 'no currentSelectedDayNode is defined');
+          if (days) {
+            assert.isNotOk(days.querySelector('.selected'), 'there is no selected day node');
+          }
+        } else {
+          assert.isOk(yearSelector.value, 'yearSelector is set');
+          assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
+          if (days) {
+            assert.isOk(days.querySelector('.selected'), 'there is a selected day node');
+          }
+        }
         done();
       });
     });
@@ -128,6 +166,75 @@
       });
     });
 
+    suite('interactions', function() {
+      let element, yearSelector, monthSelector, daySelector, days, randomDayNode, monthUpButton, monthDownButton, currentSelectedMonth;
+
+      setup(function() {
+        element = fixture('Basic');
+        // enshure that days are shown
+        element.clamp = 'hour';
+        yearSelector = element.shadowRoot.querySelector('#yearSelector');
+        monthSelector = element.shadowRoot.querySelector('#monthSelector');
+        daySelector = element.shadowRoot.querySelector('#daySelector');
+        days = element.shadowRoot.querySelectorAll('#days .day:not(.notinmonth)');
+        randomDayNode = days[Math.floor(days.length * Math.random())];
+        monthUpButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll(element._switchSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') > 0);
+        monthDownButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll(element._switchSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') < 0);
+      });
+
+      test('basic', done => {
+        assert.isDefined(yearSelector);
+        assert.isDefined(monthSelector);
+        assert.isDefined(daySelector);
+        assert.isDefined(days);
+        assert.isDefined(randomDayNode);
+        assert.isDefined(monthUpButton);
+        assert.isDefined(monthDownButton);
+        currentSelectedMonth = +monthSelector.value;
+        assert.isDefined(currentSelectedMonth);
+        done();
+      });
+
+      test('hover a day node', done => {
+        MockInteractions.move(randomDayNode, {x: 0, y: 0}, MockInteractions.middleOfNode(randomDayNode));
+        assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+        assert.isNotOk(element.currentSelectedDayNode, 'currentSelectedDayNode is not set');
+        done();
+      });
+
+      test('clicking a day node', done => {
+        MockInteractions.tap(randomDayNode);
+        assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+        assert.equal(element.currentSelectedDayNode, randomDayNode, 'currentSelectedDayNode is randomDayNode');
+        assert.notEqual(element.currentSelectedDayNode.dataset.date, element.date, 'date is not set to currentSelectedDayNode\'s dataset.date');
+        done();
+      });
+
+      test('double-clicking a day node', done => {
+        MockInteractions.tap(randomDayNode);
+        MockInteractions.tap(randomDayNode);
+        assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+        assert.equal(element.currentSelectedDayNode, randomDayNode, 'currentSelectedDayNode is randomDayNode');
+        assert.equal(element.currentSelectedDayNode.dataset.date, element.date, 'date is set to currentSelectedDayNode\'s dataset.date');
+        done();
+      });
+
+      test('switching month-up-button', done => {
+        MockInteractions.tap(monthUpButton);
+        assert.equal(+monthSelector.value, element.month);
+        assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthUpButton.getAttribute('step'))) % 12);
+        done();
+      });
+
+      test('switching month-down-button', done => {
+        MockInteractions.tap(monthDownButton);
+        assert.equal(+monthSelector.value, element.month);
+        assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthDownButton.getAttribute('step'))) % 12);
+        done();
+      });
+    });
+
+
     suite('clamp and hidden pickers', function() {
       let f;
 
@@ -142,16 +249,16 @@
           // wait a tick to let dom-if stamping finish
           assert.equal(element.clamp, 'month', 'clamp is set');
 
-          let yearPicker = element.shadowRoot.querySelector('#year');
-          let monthPicker = element.shadowRoot.querySelector('#month');
-          let dayPicker = element.shadowRoot.querySelector('#day');
+          let yearSelector = element.shadowRoot.querySelector('#yearSelector');
+          let monthSelector = element.shadowRoot.querySelector('#monthSelector');
+          let daySelector = element.shadowRoot.querySelector('#daySelector');
 
-          assert.notEqual(document.defaultView.getComputedStyle(yearPicker).display, 'none', 'year is not hidden');
-          if (monthPicker) {
-            assert.equal(document.defaultView.getComputedStyle(monthPicker).display, 'none', 'month is hidden');
+          assert.notEqual(document.defaultView.getComputedStyle(yearSelector).display, 'none', 'year is not hidden');
+          if (monthSelector) {
+            assert.equal(document.defaultView.getComputedStyle(monthSelector).display, 'none', 'month is hidden');
           }
-          if (dayPicker) {
-            assert.equal(document.defaultView.getComputedStyle(dayPicker).display, 'none', 'day is hidden');
+          if (daySelector) {
+            assert.equal(document.defaultView.getComputedStyle(daySelector).display, 'none', 'day is hidden');
           }
           done();
         }, 0);
@@ -161,15 +268,15 @@
         let element = f.querySelector('#clamp-day');
         setTimeout(() => {
           // wait a tick to let dom-if stamping finish
-          let yearPicker = element.shadowRoot.querySelector('#year');
-          let monthPicker = element.shadowRoot.querySelector('#month');
-          let dayPicker = element.shadowRoot.querySelector('#day');
+          let yearSelector = element.shadowRoot.querySelector('#yearSelector');
+          let monthSelector = element.shadowRoot.querySelector('#monthSelector');
+          let daySelector = element.shadowRoot.querySelector('#daySelector');
 
-          assert.notEqual(document.defaultView.getComputedStyle(yearPicker).display, 'none', 'year is not hidden');
-          assert.notEqual(document.defaultView.getComputedStyle(monthPicker).display, 'none', 'month is not hidden');
+          assert.notEqual(document.defaultView.getComputedStyle(yearSelector).display, 'none', 'year is not hidden');
+          assert.notEqual(document.defaultView.getComputedStyle(monthSelector).display, 'none', 'month is not hidden');
 
-          if (dayPicker) {
-            assert.equal(document.defaultView.getComputedStyle(dayPicker).display, 'none', 'day is hidden');
+          if (daySelector) {
+            assert.equal(document.defaultView.getComputedStyle(daySelector).display, 'none', 'day is hidden');
           }
           done();
         }, 0);
@@ -179,13 +286,13 @@
         let element = f.querySelector('#clamp-none');
         setTimeout(() => {
           // wait a tick to let dom-if stamping finish
-          let yearPicker = element.shadowRoot.querySelector('#year');
-          let monthPicker = element.shadowRoot.querySelector('#month');
-          let dayPicker = element.shadowRoot.querySelector('#day');
+          let yearSelector = element.shadowRoot.querySelector('#yearSelector');
+          let monthSelector = element.shadowRoot.querySelector('#monthSelector');
+          let daySelector = element.shadowRoot.querySelector('#daySelector');
 
-          assert.notEqual(document.defaultView.getComputedStyle(yearPicker).display, 'none', 'year is not hidden');
-          assert.notEqual(document.defaultView.getComputedStyle(monthPicker).display, 'none', 'month is not hidden');
-          assert.notEqual(document.defaultView.getComputedStyle(dayPicker).display, 'none', 'day is not hidden');
+          assert.notEqual(document.defaultView.getComputedStyle(yearSelector).display, 'none', 'year is not hidden');
+          assert.notEqual(document.defaultView.getComputedStyle(monthSelector).display, 'none', 'month is not hidden');
+          assert.notEqual(document.defaultView.getComputedStyle(daySelector).display, 'none', 'day is not hidden');
 
           done();
         }, 0);
