@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../datetime-input/datetime-input.html">
-<link rel="import" href="datetime-polyfill-picker-mixin.html">
+<link rel="import" href="datetime-picker-mixin.html">
 <link rel="import" href="time-element.html">
 <link rel="import" href="calendar-element.html">
 
@@ -15,7 +15,7 @@
    *  @appliesMixin TimeElementPattern
    *  @appliesMixin SwitchContainerMixin
    *  @appliesMixin SwitchContainerMixin
-   *  @appliesMixin DatetimePolyfillPickerMixin
+   *  @appliesMixin DatetimePickerMixin
    *
    * @mixinFunction
    * @polymer
@@ -23,7 +23,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatetimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(DateInputPattern(TimeInputPattern(DatetimeInputMixin(CalendarElementPattern(TimeElementPattern(SwitchContainerMixin(DatetimeMixin(superClass)))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatetimePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(TimeInputPattern(DatetimeInputMixin(CalendarElementPattern(TimeElementPattern(SwitchContainerMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'datetime-local';

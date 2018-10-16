@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 
+<link rel="import" href="../property-mixins/intl-datetime-format-mixin.html">
 <link rel="import" href="../property-mixins/datetime-mixin.html">
 <link rel="import" href="../input-picker-pattern/form-element-mixin.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
@@ -19,6 +20,15 @@
    * @return {Object} extended class
    */
   const CalendarElementPattern = superClass => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
+
+    constructor() {
+      super();
+
+      /**
+       * simplified Regular Expression for parsing dates
+       */
+      this._regexpDate = /(-?\d+)-(\d\d)-(\d\d)/;
+    }
 
     static get styleToInclude() {
       return `input-picker-shared-style input-shared-style`;
@@ -179,9 +189,9 @@
       return `
         ${super.contentTemplate || ''}
         <div id="calendar">
-          <div id="top" hidden$="[[_computeMultibleClampExclusive(clamp, 'month', partsHidden.month, 'year', partsHidden.year)]]" >
+          <div id="top">
             <button class="icon switch" prop$="[[_computeIncremPropTop(partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
-            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month', partsHidden.month)]]" style="order:[[dateOrder.month]];" disabled$="[[partsDisabled.month]]" value="{{month::change}}">
+            <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month')]]" style="order:[[dateOrder.month]];" disabled$="[[partsDisabled.month]]" value="{{month::change}}">
               <option value="1"></option>
               <option value="2"></option>
               <option value="3"></option>
@@ -195,11 +205,11 @@
               <option value="11"></option>
               <option value="12"></option>
             </select>
-            <integer-input id="yearInput" hidden$="[[_ifClamped(clamp, 'year', partsHidden.year)]]" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value-as-number="{{year}}"></integer-input>
+            <integer-input id="yearInput" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value-as-number="{{year}}"></integer-input>
             <button class="icon switch" prop$="[[_computeIncremPropTop(partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[partsDisabled.year]]">${this._iconStepRightTemplate}</button>
           </div>
 
-          <div id="days" hidden$="[[_ifClamped(clamp, 'day', partsHidden.day)]]" disabled$="[[partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
+          <div id="days" hidden$="[[_ifClamped(clamp, 'day')]]" disabled$="[[partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
             <div id="caption">
               <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div>
             </div>
@@ -244,29 +254,8 @@
         currentHoveredDayNode: {
           type: Node,
           notify: true
-        },
-
-        /**
-         * date-parts that are hidden, affected by the `clamp`-attribute too
-         * e.g. { year: true } would hide the input for year
-         */
-        partsHidden: {
-          type: Object,
-          value: function() {
-            return {}
-          },
-          notify: true
-        },
-
-        _regexpDate: {
-          type: RegExp,
-          value: /(-?\d+)-(\d\d)-(\d\d)/
         }
       }
-    }
-
-    _computeMultibleClampExclusive(clamp, prop1, hidden1, prop2, hidden2) {
-      return this._ifClamped(clamp, prop1, hidden1) && this._ifClamped(clamp, prop2, hidden2);
     }
 
     _setDate(d) {
@@ -291,11 +280,6 @@
     }
 
     _onClickDay(e) {
-      if (this._dayClicked === true) {
-        this._onDblClickDay();
-        this._dayClicked = false;
-        return;
-      }
       this._onMouseMoveDay(e);
       if (this.currentHoveredDayNode && this.currentHoveredDayNode.dataset.date) {
         this.currentSelectedDayNode = this.currentHoveredDayNode;
@@ -307,21 +291,27 @@
         if (this.timezone === undefined) {
           this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
         }
-        setTimeout(() => {
-          this.setProperties({
-            year: +match[1],
-            month: +match[2],
-            day: +match[3]
-          })
-        }, 0);
+        this.setProperties({
+          year: +match[1],
+          month: +match[2],
+          day: +match[3]
+        })
+        if (this._dayClicked === true) {
+          // emulating double-click behaviour for click event (tab event will appear as double click)
+          this._dayClicked = false;
+          this._onDblClickDay();
+          return;
+        }
+        // setting up dblclick behaviour
         this._dayClicked = true;
         setTimeout(() => {
           this._dayClicked = false;
-        }, 250);
+        }, 500);
       }
     }
 
     _onDblClickDay() {
+      console.log('deblick');
       this.renderCalendar(this.year, this.month, this.day);
     }
 
@@ -570,20 +560,23 @@
     }
 
     _getDefaultForProp(prop) {
-      const d = (this.default && this._fromDatetime(this.default)) || new Date();
+      const d = (this._defaultValue && new Date(this._defaultValue)) || new Date();
+      this._checkDefaultTimezone(d);
+      // shift to utc timezone to get properties
+      d.setMinutes(d.getMinutes() - this.offsetMinutes);
       switch (prop) {
         case 'year':
-          return d.getFullYear();
+          return d.getUTCFullYear();
         case 'month':
-          return d.getMonth() + 1;
+          return d.getUTCMonth() + 1;
         case 'day':
-          return d.getDate();
+          return d.getUTCDate();
         default:
           return 0;
       }
     }
   }
-  
+
   window.CalendarElementPattern = CalendarElementPattern;
 </script>
 
@@ -625,7 +618,7 @@
   *
   * @demo demo/date-elements.html date elements
   **/
-    class CalendarElement extends CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element)))) { // eslint-disable-line no-undef
+    class CalendarElement extends CalendarElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(IntlDatetimeFormatMixin(Polymer.Element))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'calendar-element';

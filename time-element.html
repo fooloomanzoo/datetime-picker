@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../property-mixins/datetime-mixin.html">
+<link rel="import" href="../property-mixins/intl-datetime-format-mixin.html">
 <link rel="import" href="../input-picker-pattern/form-element-mixin.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
@@ -221,7 +222,7 @@
        *
        * @demo demo/time-elements.html time elements
        **/
-    class TimeElement extends TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(Polymer.Element)))) { // eslint-disable-line no-undef
+    class TimeElement extends TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(IntlDatetimeFormatMixin(Polymer.Element))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';

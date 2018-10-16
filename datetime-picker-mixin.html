@@ -15,7 +15,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatetimePolyfillPickerMixin = superClass => { // eslint-disable-line no-unused-vars
+  const DatetimePickerMixin = superClass => { // eslint-disable-line no-unused-vars
 
     return class extends InputPickerPattern(superClass) {  // eslint-disable-line no-undef
       /**
@@ -205,8 +205,8 @@
         return [
           '_confirmedDatetimeChanged(confirmedDatetime)',
           '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
-          '_computeNativeValueAsNumber(native, valueAsDate, _timezoneOffset)',
-          '_reflectNativeValueAsNumber(native, _nativeValueAsNumber, _timezoneOffset)'
+          '_computeNativeValueAsNumber(native, valueAsDate, offsetMinutes)',
+          '_reflectNativeValueAsNumber(native, _nativeValueAsNumber, offsetMinutes)'
         ];
       }
 
@@ -255,14 +255,14 @@
         if (this._timeOnly) {
           if (!this.timezone || !this.date) {
             this.__updatingTimezoneOffset = true;
-            this._timezoneOffset = 0;
+            this.offsetMinutes = 0;
             this.__updatingTimezoneOffset = false;
           }
         } else {
           if (!this.timezone) {
             this._checkDefaultTimezone(d);
           }
-          d.setMinutes(d.getMinutes() - this._timezoneOffset);
+          d.setMinutes(d.getMinutes() - this.offsetMinutes);
         }
         this._nativeValueAsNumber = +d;
       }
@@ -281,14 +281,14 @@
           if (this._timeOnly) {
             if (!this.timezone || !this.date) {
               this.__updatingTimezoneOffset = true;
-              this._timezoneOffset = 0;
+              this.offsetMinutes = 0;
               this.__updatingTimezoneOffset = false;
             }
           } else {
             if (!this.timezone) {
               this._checkDefaultTimezone(d);
             }
-            d.setMinutes(d.getMinutes() + this._timezoneOffset);
+            d.setMinutes(d.getMinutes() + this.offsetMinutes);
           }
           this._setDate(d);
       }
@@ -387,6 +387,6 @@
       }
     }
   }
-  
-  window.DatetimePolyfillPickerMixin = DatetimePolyfillPickerMixin;
+
+  window.DatetimePickerMixin = DatetimePickerMixin;
 </script>

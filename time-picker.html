@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../datetime-input/time-input.html">
-<link rel="import" href="datetime-polyfill-picker-mixin.html">
+<link rel="import" href="datetime-picker-mixin.html">
 <link rel="import" href="time-element.html">
 
 <script>
@@ -12,7 +12,7 @@
    *  @appliesMixin FormElementMixin
    *  @appliesMixin TimeElementPattern
    *  @appliesMixin SwitchContainerMixin
-   *  @appliesMixin DatetimePolyfillPickerMixin
+   *  @appliesMixin DatetimePickerMixin
    *
    * @mixinFunction
    * @polymer
@@ -20,7 +20,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(TimeInputPattern(DatetimeInputMixin(TimeElementPattern(SwitchContainerMixin(DatetimeMixin(superClass)))))) { // eslint-disable-line no-unused-vars, no-undef
+  const TimePickerPattern = superClass => class extends DatetimePickerMixin(TimeInputPattern(DatetimeInputMixin(TimeElementPattern(SwitchContainerMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'time';
@@ -67,7 +67,7 @@
       if (!this.time) {
         if (!this.timezone || !this.date) {
           this.__updatingTimezoneOffset = true;
-          this._timezoneOffset = 0;
+          this.offsetMinutes = 0;
           this.__updatingTimezoneOffset = false;
         }
         this.setProperties({

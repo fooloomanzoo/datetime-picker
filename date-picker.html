@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../datetime-input/date-input.html">
-<link rel="import" href="datetime-polyfill-picker-mixin.html">
+<link rel="import" href="datetime-picker-mixin.html">
 <link rel="import" href="calendar-element.html">
 
 <script>
@@ -12,7 +12,7 @@
    *  @appliesMixin FormElementMixin
    *  @appliesMixin CalendarElementPattern
    *  @appliesMixin SwitchContainerMixin
-   *  @appliesMixin DatetimePolyfillPickerMixin
+   *  @appliesMixin DatetimePickerMixin
    *
    * @mixinFunction
    * @polymer
@@ -20,7 +20,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatePickerPattern = superClass => class extends DatetimePolyfillPickerMixin(DateInputPattern(DatetimeInputMixin(CalendarElementPattern(SwitchContainerMixin(DatetimeMixin(superClass)))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(DatetimeInputMixin(CalendarElementPattern(SwitchContainerMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'date';
@@ -82,7 +82,7 @@
       })
     }
   }
-  
+
   window.DatePickerPattern = DatePickerPattern;
 </script>
 

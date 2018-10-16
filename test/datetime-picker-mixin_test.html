@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>basic-datetime-picker test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+
+    <link rel="import" href="elements/basic-datetime-picker.html">
+  </head>
+  <body>
+
+    <test-fixture id="Basic">
+      <template>
+        <basic-datetime-picker></basic-datetime-picker>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="Required">
+      <template>
+        <basic-datetime-picker required></basic-datetime-picker>
+      </template>
+    </test-fixture>
+
+
+    <script>
+      WCT.helpers.mixinSuite('basic-datetime-picker');
+
+      suite('basic', function() {
+
+        let element;
+
+        setup(function() {
+          element = fixture('Basic');
+        });
+
+        test('instantiating the element with default properties should work', done => {
+          assert.isUndefined(element.date, 'no date is defined');
+          assert.isUndefined(element.time, 'no time is defined');
+          assert.isUndefined(element.datetime, 'no datetime is defined');
+          assert.isUndefined(element.value, 'no value is defined');
+          assert.isUndefined(element.valueAsNumber, 'no valueAsNumber is defined');
+          assert.isUndefined(element.valueAsDate, 'no valueAsDate is defined');
+          assert.isUndefined(element.year, 'no year is defined');
+          assert.isUndefined(element.month, 'no month is defined');
+          assert.isUndefined(element.day, 'no day is defined');
+          assert.isUndefined(element.hour, 'no hour is defined');
+          assert.isUndefined(element.hour12, 'no hour12 is defined');
+          assert.isUndefined(element.minute, 'no minute is defined');
+          assert.isUndefined(element.second, 'no second is defined');
+          assert.isUndefined(element.millisecond, 'no millisecond is defined');
+          assert.isUndefined(element.timezone, 'no timezone is defined');
+          assert.isUndefined(element.offsetMinutes, 'no timezone-offset is defined');
+          assert.isUndefined(element._timeZoneHours, 'no timezone-hours is defined');
+          assert.isUndefined(element._timeZoneMinutes, 'no timezone-minutes is defined');
+          assert.isUndefined(element.setp, 'no step is defined');
+          assert.isDefined(element.locale, 'locale is defined');
+          assert.isDefined(element.decimalSeparator, 'decimalSeparator is defined');
+          assert.isDefined(element.dateSeparator, 'dateSeparator is defined');
+          assert.isDefined(element.timeSeparator, 'timeSeparator is defined');
+          assert.isDefined(element.amString, 'amString is defined');
+          assert.isDefined(element.pmString, 'pmString is defined');
+          assert.isDefined(element.dateOrder, 'dateOrder is defined');
+          assert.isDefined(element.propertyForValue, 'propertyForValue is defined');
+          done();
+        });
+
+        test('calling "now" on the element should work', done => {
+          assert.isDefined(element.now, '"now" exists');
+          element.now();
+          assert.isDefined(element.date, 'date is defined');
+          assert.isDefined(element.time, 'time is defined');
+          assert.isDefined(element.datetime, 'datetime is defined');
+          assert.isDefined(element.value, 'value is defined');
+          assert.isDefined(element.valueAsNumber, 'valueAsNumber is defined');
+          assert.isDefined(element.valueAsDate, 'valueAsDate is defined');
+          assert.isDefined(element.year, 'year is defined');
+          assert.isDefined(element.month, 'month is defined');
+          assert.isDefined(element.day, 'day is defined');
+          assert.isDefined(element.hour, 'hour is defined');
+          assert.isDefined(element.minute, 'minute is defined');
+          assert.isDefined(element.second, 'second is defined');
+          assert.isDefined(element.millisecond, 'millisecond is defined');
+          assert.isDefined(element.timezone, 'timezone is defined');
+          assert.isDefined(element.offsetMinutes, 'timezone-offset is defined');
+          assert.isDefined(element._timeZoneHours, 'timezone-hours is defined');
+          assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
+          done();
+        });
+      });
+
+      suite('required', function() {
+
+        let element;
+
+        setup(function() {
+          element = fixture('Required');
+        });
+
+        test('"value is not set" is invalid when required', done => {
+          assert.isUndefined(element.value, 'no value is defined');
+          assert.isTrue(element.invalid, 'state is invalid');
+          done();
+        });
+
+        test('settting an invalid date is invalid', done => {
+          element.setAttribute('datetime', 'abc');
+          assert.isUndefined(element.value, 'no value is defined');
+          assert.isTrue(element.invalid, 'state is invalid');
+          done();
+        });
+
+        test('"value is set" is not invalid when required', done => {
+          element.now();
+          assert.isDefined(element.value, 'value is defined');
+          assert.isFalse(element.invalid, 'state is not invalid');
+          done();
+        });
+      });
+
+      suite('property for value', function() {
+
+        let element;
+
+        setup(function() {
+          element = fixture('valueAsDate for value-property');
+        });
+
+        test('valueAsDate should serialize and deserialize"', done => {
+          let d = new Date();
+          // transforming date according to its clamp attribute
+          d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+          d = element._clampUTC(d, element.clamp);
+          d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+          // NOTE: milliseconds are often not serialized by browsers
+          d.setMilliseconds(0);
+          element.setAttribute('value', d);
+          assert.equal(+new Date(element.value), +d, 'value does not change');
+          assert.equal(+element.valueAsNumber, +d, 'valueAsNumber is set');
+          assert.equal(+element.valueAsDate, +d, 'valueAsDate is set');
+          assert.isTrue(element.value instanceof Date, 'value is a date-object');
+          done();
+        });
+      });
+    </script>
+
+  </body>
+</html>
