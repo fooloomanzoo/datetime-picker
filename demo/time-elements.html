@@ -32,17 +32,18 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-element time="{{time}}"></time-element>
-              <div class="vertical-section-container result">
+              <time-element time="{{time}}" with-timezone></time-element>
+              <integer-input pad-length="2" always-sign step="1" placeholder="±00" min="-23" max="23" use-negative-zero></integer-input>
+              <!-- <div class="vertical-section-container result">
                 <time-input time="{{time}}"></time-input>
-              </div>
+              </div> -->
             </template>
           </dom-bind>
         </template>
       </demo-snippet>
     </div>
 
-    <div class="vertical-section-container centered">
+    <!-- <div class="vertical-section-container centered">
       <h3>Create a native time-picker, if available</h3>
       <demo-snippet>
         <template>
@@ -158,7 +159,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div>
+    </div> -->
 
   </body>
 

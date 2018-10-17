@@ -1,11 +1,8 @@
 <link rel="import" href="../polymer/polymer.html">
-
-<link rel="import" href="../property-mixins/datetime-mixin.html">
-<link rel="import" href="../property-mixins/intl-datetime-format-mixin.html">
-<link rel="import" href="../input-picker-pattern/form-element-mixin.html">
+<link rel="import" href="../datetime-input/datetime-input-mixin.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
-<link rel="import" href="../input-picker-pattern/switch-container-mixin.html">
+<link rel="import" href="../input-picker-pattern/switch-mixin.html">
 <link rel="import" href="../number-input/integer-input.html">
 
 
@@ -53,6 +50,10 @@
           flex-direction: column;
           align-items: center;
         }
+        #timer .timezone {
+          display: flex;
+          align-items: center;
+        }
         #timer .buttons {
           display: flex;
           flex-direction: column;
@@ -79,11 +80,9 @@
         }
         #timer .hour12 {
           flex-shrink: 0;
-          height: unset;
-          width: unset;
-          font-size: 0.8em;
-          margin: 0 0.2em;
-          padding: 0.5em 0.25em;
+          font-size: 0.85em;
+          margin: 0 0.15em;
+          padding: 0.1em;
           border-color: transparent;
         }
         #timer .field > integer-input {
@@ -95,48 +94,50 @@
     static get timeTemplate() {
       return `
         <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
-          <div class="field" hidden$="[[_ifClamped(clamp, 'hour', partsHidden.hour)]]">
-            <button class="icon switch" prop="hour" step$="[[partsStep.hour]]" disabled$="[[partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
-            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[partsDisabled.hour]]" step="[[partsStep.hour]]"></integer-input>
+          <div class="field">
+            <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
+            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
             <template is="dom-if" if="[[hour12Format]]">
-              <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[partsDisabled.hour]]" step="[[partsStep.hour]]"></integer-input>
+              <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
             </template>
-            <button class="icon switch" prop="hour" step$="[[partsStep.hour]]" disabled$="[[partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
+            <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_computeMultibleClamp(clamp, 'hour', partsHidden.hour, 'minute', partsHidden.minute)]]">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[_ifClamped(clamp, 'minute', partsHidden.minute)]]">
-            <button class="icon switch" prop="minute" step$="[[partsStep.minute]]" disabled$="[[partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[partsDisabled.minute]]" step="[[partsStep.minute]]"></integer-input>
-            <button class="icon switch" prop="minute" step$="[[partsStep.minute]]" disabled$="[[partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
+          <span hidden$="[[_computeMultipleClamp(clamp, 'hour', 'minute')]]">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[_ifClamped(clamp, 'minute')]]">
+            <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
+            <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <span hidden$="[[_computeMultibleClamp(clamp, 'second', partsHidden.second, 'minute', partsHidden.minute)]]">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[_ifClamped(clamp, 'second', partsHidden.second)]]">
-            <button class="icon switch" prop="second" step$="[[partsStep.second]]" disabled$="[[partsDisabled.second]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[partsDisabled.second]]" step="[[partsStep.second]]"></integer-input>
-            <button class="icon switch" prop="second" step$="[[partsStep.second]]" disabled$="[[partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
+          <span hidden$="[[_computeMultipleClamp(clamp, 'second', 'minute')]]">[[timeSeparator]]</span>
+          <div class="field" hidden$="[[_ifClamped(clamp, 'second')]]">
+            <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
+            <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <template is="dom-if" if="[[_ifClamped(clamp, 'second', partsHidden.second)]]">
-            <span hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">0</span>
+          <template is="dom-if" if="[[_ifClamped(clamp, 'second')]]">
+            <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">0</span>
           </template>
-          <span hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">[[decimalSeparator]]</span>
-          <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond', partsHidden.millisecond)]]">
-            <button class="icon switch" prop="millisecond" step$="[[partsStep.millisecond]]" disabled$="[[partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[partsDisabled.millisecond]]" step="[[partsStep.millisecond]]"></integer-input>
-            <button class="icon switch" prop="millisecond" step$="[[partsStep.millisecond]]" disabled$="[[partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
+          <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">[[decimalSeparator]]</span>
+          <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond')]]">
+            <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
+            <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
+            <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
           </div>
-          <div hidden$="[[!withTimezone]]" style="display:inline-flex;align-items:center;">
-            <div class="field">
-              <button class="icon switch" prop="_timeZoneHours" step="1" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" hidden$="[[!withTimezone]]" always-sign step="1" min="-23" max="23" value-as-number="{{_timeZoneHours}}" placeholder="+00" disabled="[[disabled]]"></integer-input>
-              <button class="icon switch" prop="_timeZoneHours" step="-1" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
+          <template is="dom-if" if="[[withTimezone]]">
+            <div class="timezone">
+              <div class="field">
+                <button class="icon switch" prop="_timeZoneHours" step="1" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
+                <integer-input value="{{_timeZoneHours}}" pad-length="2" always-sign step="1" placeholder="±00" min="-23" max="23" use-negative-zero></integer-input>
+                <button class="icon switch" prop="_timeZoneHours" step="-1" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
+              </div>
+              <span>[[timeSeparator]]</span>
+              <div class="field">
+                <button class="icon switch" prop="_timeZoneMinutes" step="15" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
+                <integer-input value="{{_timeZoneMinutes}}" pad-length="2" min="0" max="45" step="15" placeholder="00"></integer-input>
+                <button class="icon switch" prop="_timeZoneMinutes" step="-15" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
+              </div>
             </div>
-            <span>[[timeSeparator]]</span>
-            <div class="field">
-              <button class="icon switch" prop="_timeZoneMinutes" step="15" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" hidden$="[[!withTimezone]]" min="0" max="45" step="15" value-as-number="{{_timeZoneMinutes}}" placeholder="00" disabled="[[disabled]]"></integer-input>
-              <button class="icon switch" prop="_timeZoneMinutes" step="-15" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
-            </div>
-          </div>
+          </template>
           <template is="dom-if" if="[[hour12Format]]">
             <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
               <div hidden$="[[!isAm]]">[[amString]]</div>
@@ -149,44 +150,33 @@
 
     static get properties() {
       return {
-
+      /**
+       * if true, timezone inputs are shown
+       */
         withTimezone: {
           type: Boolean,
           value: false
-        },
-
-        /**
-         * date-parts that are hidden, affected by the `clamp`-attribute too
-         * e.g. { second: true } would hide the input for the second
-         */
-        partsHidden: {
-          type: Object,
-          value: function() {
-            return {}
-          },
-          notify: true
         }
       }
     }
 
-    _computeInvalid(required, value) {
-      this.invalid = required && isNaN(value);
+    static get observers() {
+      // timezone-inputs and hour12-input are created asynchronously
+      return [
+        '_addSwitchListener(withTimezone, hour12Format)'
+      ]
     }
 
-    _computeMultibleClamp(clamp, prop1, hidden1, prop2, hidden2) {
-      return hidden1 || hidden2 || this._ifClamped(clamp, prop1) || this._ifClamped(clamp, prop2);
+    _computeMultipleClamp(clamp, prop1, prop2) {
+      return this._ifClamped(clamp, prop1, this._ifClamped(clamp, prop2));
     }
 
-    _switchAm(e) {
-      e && e.stopPropagation();
+    _switchAm() {
+      // e && e.stopPropagation();
       this.isAm = !this.isAm;
     }
-
-    // modified step for millisecond switches
-    _computePartsStepMillisecond(partsStepMillisecond) {
-      return (partsStepMillisecond === undefined) ? 1 : window._numberUtilities._safeMult(partsStepMillisecond, 1000);
-    }
   }
+  window.TimeElementPattern = TimeElementPattern;
 </script>
 
 <dom-module id="time-element">
@@ -216,13 +206,13 @@
        * @polymer
        *
        * @appliesMixin TimeElementPattern
-       * @appliesMixin SwitchContainerMixin
+       * @appliesMixin SwitchMixin
        * @appliesMixin FormElementMixin
        * @appliesMixin DatetimeMixin
        *
        * @demo demo/time-elements.html time elements
        **/
-    class TimeElement extends TimeElementPattern(SwitchContainerMixin(FormElementMixin(DatetimeMixin(IntlDatetimeFormatMixin(Polymer.Element))))) { // eslint-disable-line no-undef
+    class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(Polymer.Element))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';
@@ -239,29 +229,11 @@
 
       static get properties() {
         return {
-          /**
-           * is true when the value is not undefined
-           */
-          _valueIsSet: {
-            type: Boolean,
-            value: false
-          },
-
           _timeOnly: {
             type: Boolean,
             value: true
           }
         }
-      }
-
-      static get observers() {
-        return [
-          '_computeValueIsSet(valueAsNumber)'
-        ]
-      }
-
-      _computeValueIsSet(value) {
-        this._valueIsSet = value !== undefined;
       }
     }
     window.customElements.define(TimeElement.is, TimeElement);

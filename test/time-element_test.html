@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>time-element test</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+
+  <link rel="import" href="../time-element.html">
+</head>
+
+<body>
+
+  <test-fixture id="Basic">
+    <template>
+      <time-element></time-element>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="ChangingProperties">
+    <template>
+      <time-element time="01:02:03.456" clamp=""></time-element>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="WithTimezone">
+    <template>
+      <time-element with-timezone></time-element>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="Hour12Format">
+    <template>
+      <time-element hour12-format></time-element>
+    </template>
+  </test-fixture>
+
+  <script>
+    WCT.helpers.mixinSuite('time-element');
+
+    suite('basic', function() {
+
+      let element;
+
+      setup(function() {
+        element = fixture('Basic');
+      });
+
+      test('instantiating the element with default properties should work', done => {
+        assert.isUndefined(element.date, 'no date is defined');
+        assert.isUndefined(element.time, 'no time is defined');
+        assert.isUndefined(element.datetime, 'no datetime is defined');
+        assert.isUndefined(element.value, 'no value is defined');
+        assert.isUndefined(element.valueAsNumber, 'no valueAsNumber is defined');
+        assert.isUndefined(element.valueAsDate, 'no valueAsDate is defined');
+        assert.isUndefined(element.year, 'no year is defined');
+        assert.isUndefined(element.month, 'no month is defined');
+        assert.isUndefined(element.day, 'no day is defined');
+        assert.isUndefined(element.hour, 'no hour is defined');
+        assert.isUndefined(element.hour12, 'no hour12 is defined');
+        assert.isUndefined(element.minute, 'no minute is defined');
+        assert.isUndefined(element.second, 'no second is defined');
+        assert.isUndefined(element.millisecond, 'no millisecond is defined');
+        assert.isUndefined(element.timezone, 'no timezone is defined');
+        assert.isUndefined(element.offsetMinutes, 'no timezone-offset is defined');
+        assert.isUndefined(element._timeZoneHours, 'no timezone-hours is defined');
+        assert.isUndefined(element._timeZoneMinutes, 'no timezone-minutes is defined');
+        assert.isDefined(element.locale, 'locale is defined');
+        assert.isDefined(element.decimalSeparator, 'decimalSeparator is defined');
+        assert.isDefined(element.dateSeparator, 'dateSeparator is defined');
+        assert.isDefined(element.timeSeparator, 'timeSeparator is defined');
+        assert.isDefined(element.amString, 'amString is defined');
+        assert.isDefined(element.pmString, 'pmString is defined');
+        assert.isDefined(element.dateOrder, 'dateOrder is defined');
+        assert.isDefined(element.propertyForValue, 'propertyForValue is defined');
+        done();
+      });
+
+      test('calling "now" on the element should work', done => {
+        assert.isDefined(element.now, '"now" exists');
+        element.now();
+        assert.isDefined(element.date, 'date is defined');
+        assert.isDefined(element.time, 'time is defined');
+        assert.isDefined(element.datetime, 'datetime is defined');
+        assert.isDefined(element.valueAsNumber, 'valueAsNumber is defined');
+        assert.isDefined(element.valueAsDate, 'valueAsDate is defined');
+        assert.isDefined(element.year, 'year is defined');
+        assert.isDefined(element.month, 'month is defined');
+        assert.isDefined(element.day, 'day is defined');
+        assert.isDefined(element.hour, 'hour is defined');
+        assert.isDefined(element.minute, 'minute is defined');
+        assert.isDefined(element.second, 'second is defined');
+        assert.isDefined(element.millisecond, 'millisecond is defined');
+        assert.isDefined(element.timezone, 'timezone is defined');
+        assert.isDefined(element.offsetMinutes, 'timezone-offset is defined');
+        assert.isDefined(element._timeZoneHours, 'timezone-hours is defined');
+        assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
+        done();
+      });
+    });
+
+    suite('setting properties', () => {
+      let element;
+
+      setup(function() {
+        element = fixture('ChangingProperties');
+      });
+
+      test('setting property should work', done => {
+        assert.equal(element.year, 1970, 'year should be set');
+        assert.equal(element.month, 1, 'month should be set');
+        assert.equal(element.day, 1, 'day should be set');
+        assert.equal(element.hour, 1, 'hour should be set');
+        assert.equal(element.minute, 2, 'minute should be set');
+        assert.equal(element.second, 3, 'second should be set');
+        assert.equal(element.millisecond, 456, 'millisecond should be set');
+        assert.equal(element.date, '1970-01-01', 'date should be set');
+        assert.equal(element.time, '01:02:03.456', 'time should be set');
+        assert.isDefined(element.valueAsNumber, 'valueAsNumber should be set');
+        assert.isDefined(element.valueAsDate, 'valueAsDate should be set');
+        assert.isDefined(element.timezone, 'timezone should be set');
+        assert.isDefined(element.offsetMinutes, 'offsetMinutes should be set');
+        done();
+      });
+    });
+
+    suite('with timezone', function() {
+      let element;
+
+      setup(function() {
+        element = fixture('WithTimezone');
+      });
+
+      test('basic', done => {
+        assert.isTrue(element.withTimezone);
+        done();
+      });
+
+      test('timezone elements are visible', done => {
+        assert.isTrue(Array.prototype.every.call(element.shadowRoot.querySelectorAll('.timezone'), el => (document.defaultView.getComputedStyle(el).display !== 'hidden' && el.getBoundingClientRect().width !== 0 &&  el.getBoundingClientRect().height !== 0)), 'every timezone element is not hidden');
+        done();
+      });
+    });
+
+    suite('hour12 format', function() {
+      let element;
+
+      setup(function() {
+        element = fixture('Hour12Format');
+      });
+
+      test('basic', done => {
+        assert.isTrue(element.hour12Format);
+        done();
+      });
+
+      test('timezone elements are visible', done => {
+        assert.isTrue(Array.prototype.every.call(element.shadowRoot.querySelectorAll('.hour12'), el => (document.defaultView.getComputedStyle(el).display !== 'hidden' && el.getBoundingClientRect().width !== 0 &&  el.getBoundingClientRect().height !== 0)), 'every timezone element is not hidden');
+        done();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

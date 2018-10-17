@@ -11,7 +11,7 @@
    *  @appliesMixin DatetimeMixin
    *  @appliesMixin FormElementMixin
    *  @appliesMixin CalendarElementPattern
-   *  @appliesMixin SwitchContainerMixin
+   *  @appliesMixin SwitchMixin
    *  @appliesMixin DatetimePickerMixin
    *
    * @mixinFunction
@@ -20,7 +20,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(DatetimeInputMixin(CalendarElementPattern(SwitchContainerMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(DatetimeInputMixin(CalendarElementPattern(SwitchMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'date';
@@ -82,7 +82,6 @@
       })
     }
   }
-
   window.DatePickerPattern = DatePickerPattern;
 </script>
 
