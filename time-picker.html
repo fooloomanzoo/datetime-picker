@@ -20,7 +20,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimePickerPattern = superClass => class extends DatetimePickerMixin(TimeInputPattern(DatetimeInputMixin(TimeElementPattern(SwitchMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const TimePickerPattern = superClass => class extends DatetimePickerMixin(TimeInputPattern(TimeElementPattern(SwitchMixin(DatetimeInputMixin(superClass))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'time';

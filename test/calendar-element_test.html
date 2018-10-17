@@ -139,6 +139,25 @@
         }
         done();
       });
+
+      test('pressing keys', done => {
+        element.clamp = '';
+        element.datetime = '2000-06-15T05:04:03.210Z';
+        let daySelector = element.shadowRoot.querySelector('#daySelector');
+        // up
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 38);
+        assert.equal(element.month, 5, 'up should decrease month');
+        // down
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
+        assert.equal(element.month, 6, 'down should increase month');
+        // left
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 37);
+        assert.equal(element.day, 14, 'left should decrease day');
+        // rigth
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
+        assert.equal(element.day, 15, 'right should increase day');
+        done();
+      });
     });
 
     suite('setting properties', () => {
@@ -178,8 +197,8 @@
         daySelector = element.shadowRoot.querySelector('#daySelector');
         days = element.shadowRoot.querySelectorAll('#days .day:not(.notinmonth)');
         randomDayNode = days[Math.floor(days.length * Math.random())];
-        monthUpButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll(element._switchSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') > 0);
-        monthDownButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll(element._switchSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') < 0);
+        monthUpButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') > 0);
+        monthDownButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') < 0);
       });
 
       test('basic', done => {
@@ -220,17 +239,31 @@
       });
 
       test('switching month-up-button', done => {
-        MockInteractions.tap(monthUpButton);
-        assert.equal(+monthSelector.value, element.month);
-        assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthUpButton.getAttribute('step'))) % 12);
-        done();
+        // wait a tick to let eventlisteners be added
+        setTimeout(function() {
+          MockInteractions.down(monthUpButton);
+          setTimeout(function() {
+            MockInteractions.up(monthUpButton);
+            console.log(monthSelector.value);
+            assert.equal(+monthSelector.value, element.month, 'month should have been set on the selector and the element');
+            assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthUpButton.getAttribute('step'))) % 12);
+            done();
+          }, element.dwellDelay + element.dwellTime*1.5); // calling increment maximal once
+        }, 0);
       });
 
       test('switching month-down-button', done => {
-        MockInteractions.tap(monthDownButton);
-        assert.equal(+monthSelector.value, element.month);
-        assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthDownButton.getAttribute('step'))) % 12);
-        done();
+        // wait a tick to let eventlisteners be added
+        setTimeout(function() {
+          MockInteractions.down(monthDownButton);
+          // wait a tick to let all property effects to take place and default being set
+          setTimeout(function() {
+            MockInteractions.up(monthDownButton);
+            assert.equal(+monthSelector.value, element.month, 'month should have been set on the selector and the element');
+            assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthDownButton.getAttribute('step'))) % 12);
+            done();
+          }, element.dwellDelay + element.dwellTime*1.5); // calling increment maximal once
+        }, 0);
       });
     });
 

@@ -99,9 +99,10 @@
           min-width: 2em;
           min-height: 2em;
           box-sizing: content-box;
-          transition-property: background;
-          transition-duration: 250ms;
-          transition-timing-function: cubic-bezier(0.5, 1, 0.5, 1);
+          background-color: transparent;
+          transition-property: background-color;
+          transition-duration: var(--input-transition-duration, 250ms);
+          transition-timing-function: var(--input-transition-timing-function, cubic-bezier(0.6, 1, 0.2, 1));
         }
         #calendar .day:nth-child(7n+1) {
           clear: left;
@@ -110,6 +111,9 @@
         #calendar #daySelector:not([disabled]):focus .day.selected {
           background-color: var(--inner-input-focus-background);
           color: var(--inner-input-focus-color);
+        }
+        #calendar #daySelector .day.selected.immediate {
+          transition: none;
         }
         #calendar .day:before {
           content: '';
@@ -125,7 +129,7 @@
           border: thin solid transparent;
           transition-property: opacity;
           transition-duration: var(--input-transition-duration, 250ms);
-          transition-timing-function: cubic-bezier(0.6, 1, 0.2, 1);
+          transition-timing-function: var(--input-transition-timing-function, cubic-bezier(0.6, 1, 0.2, 1));
         }
         #calendar .day:after {
           content: attr(day);
@@ -142,7 +146,7 @@
           cursor: pointer;
         }
         #calendar #days .day:hover {
-          will-change: background;
+          will-change: background-color;
           @apply --calendar-cell-hovered;
         }
         #calendar #days .day:hover:before,
@@ -489,9 +493,6 @@
               if (this.currentSelectedDayNode) {
                 const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
                 if (match) {
-                  // if (this.timezone === undefined) {
-                  //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-                  // }
                   this.setProperties({
                     year: +match[1],
                     month: +match[2],
@@ -500,7 +501,7 @@
                 }
               }
             }
-            this._incremProp('day', -1* ((this._partsStep && this._partsStep.day) || 1));
+            this.__incremProp('day', -1* ((this._partsStep && this._partsStep.day) || 1));
             e.preventDefault();
             e.stopPropagation();
             return;
@@ -509,9 +510,6 @@
               if (this.currentSelectedDayNode) {
                 const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
                 if (match) {
-                  // if (this.timezone === undefined) {
-                  //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-                  // }
                   this.setProperties({
                     year: +match[1],
                     month: +match[2],
@@ -520,34 +518,20 @@
                 }
               }
             }
-            this._incremProp('day', ((this._partsStep && this._partsStep.day) || 1));
+            this.__incremProp('day', ((this._partsStep && this._partsStep.day) || 1));
             e.preventDefault();
             e.stopPropagation();
             return;
           case 38: // up
-            this._incremProp('month', 1);
+            this.__incremProp('month', -1);
             e.preventDefault();
             e.stopPropagation();
             return;
           case 40: // down
-            this._incremProp('month', -1);
+            this.__incremProp('month', 1);
             e.preventDefault();
             e.stopPropagation();
             return;
-          case 13: // enter
-            if (this.currentSelectedDayNode) {
-              const match = this._regexpDate.exec(this.currentSelectedDayNode.dataset.date);
-              if (match) {
-                // if (this.timezone === undefined) {
-                //   this._checkDefaultTimezone(new Date(+match[1], +match[2], +match[3]));
-                // }
-                this.setProperties({
-                  year: +match[1],
-                  month: +match[2],
-                  day: +match[3]
-                })
-              }
-            }
         }
       }
     }

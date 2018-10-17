@@ -20,7 +20,7 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(DatetimeInputMixin(CalendarElementPattern(SwitchMixin(DatetimeMixin(IntlDatetimeFormatMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(CalendarElementPattern(SwitchMixin(DatetimeInputMixin(superClass))))) { // eslint-disable-line no-unused-vars, no-undef
 
     static get expectedNativeInputType() {
       return 'date';
@@ -47,6 +47,17 @@
         return;
       }
       super.renderCalendar(year, month, day, this.confirmedDate);
+    }
+
+    /**
+     * key press event handler on days area
+     * @param  {[type]} e Event
+     */
+    _checkKeycodeForDates(e) {
+      super._checkKeycodeForDates(e);
+      if (e && e.keyCode && e.keyCode === 13) {
+        this.confirm();
+      }
     }
 
     open() {
