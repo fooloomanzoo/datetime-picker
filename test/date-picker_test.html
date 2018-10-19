@@ -127,7 +127,6 @@
       test('by calling confirm-fn', done => {
         element.confirm();
         setTimeout(function() {
-          console.log(element.propertyForValue, element._partsStep, element._partsDisabled);
           assert.equal(element.confirmedDatetime, '1980-02-01T00:00:00.000' + element.timezone, 'datetime should be set');
           assert.isDefined(element.confirmedValue, 'confirmed value is defined');
           done();

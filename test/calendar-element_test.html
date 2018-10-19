@@ -103,41 +103,54 @@
         assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
         assert.isNotOk(element.currentHoveredDayNode, 'no currentHoveredDayNode is defined');
         assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
+        let days = element.shadowRoot.querySelector('#daySelector > #days');
+        if (days) {
+          assert.isOk(days.querySelector('.selected'), 'there is a selected day node');
+        }
         done();
       });
 
       test('default view', done => {
-        let yearSelector = element.shadowRoot.querySelector('#yearSelector');
-        let monthSelector = element.shadowRoot.querySelector('#monthSelector');
-        let daySelector = element.shadowRoot.querySelector('#daySelector');
-        let days = element.shadowRoot.querySelector('#days');
+        setTimeout(() => {
+          let yearSelector = element.shadowRoot.querySelector('#yearSelector');
+          let monthSelector = element.shadowRoot.querySelector('#monthSelector');
+          let daySelector = element.shadowRoot.querySelector('#daySelector');
+          let days = element.shadowRoot.querySelector('#daySelector > #days');
+          let caption = element.shadowRoot.querySelector('#daySelector > #caption');
 
-        assert.equal(yearSelector.placeholder, element._getDefaultForProp('year'));
-        assert.equal(yearSelector.startAt, element._getDefaultForProp('year'));
-        if (monthSelector) {
-          assert.isOk(monthSelector.value, 'monthSelector is set');
-          assert.isTrue(Array.prototype.every.call(monthSelector.options, el => Boolean(el.value) && Boolean(el.text)), 'every option in month selector has a value and a text set');
-        }
-        if (days) {
-          assert.isOk(days.children.length, 'days has children');
-          assert.isNotOk(days.querySelector('.recent'), 'there is no recent selected day node');
-          assert.isOk(days.querySelectorAll('.notinmonth').length, 'there is day nodes outside of the monthly view');
-          assert.isTrue(Array.prototype.every.call(days.querySelectorAll('.day'), el => Boolean(el.dataset.date)), 'every day node has in dataset a date property');
-        }
-        if (!element.default) {
-          assert.isNotOk(yearSelector.value, 'yearSelector is not set');
-          assert.isNotOk(element.currentSelectedDayNode, 'no currentSelectedDayNode is defined');
-          if (days) {
-            assert.isNotOk(days.querySelector('.selected'), 'there is no selected day node');
+
+
+          assert.equal(yearSelector.placeholder, element._getDefaultForProp('year'));
+          assert.equal(yearSelector.startAt, element._getDefaultForProp('year'));
+          if (monthSelector) {
+            assert.isOk(monthSelector.value, 'monthSelector is set');
+            assert.isTrue(Array.prototype.every.call(monthSelector.options, el => Boolean(el.value) && Boolean(el.text)), 'every option in month selector has a value and a text set');
           }
-        } else {
-          assert.isOk(yearSelector.value, 'yearSelector is set');
-          assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
-          if (days) {
-            assert.isOk(days.querySelector('.selected'), 'there is a selected day node');
+          if (daySelector) {
+            assert.isOk(days, 'days is defined');
+            assert.isOk(caption, 'caption is defined');
+            assert.isOk(days.children.length, 'days has children');
+            assert.isOk(days.querySelectorAll('.notinmonth').length, 'there is day nodes outside of the monthly view');
+            assert.isTrue(Array.prototype.every.call(days.children, el => Boolean(el.dataset.day) && Boolean(el.dataset.month) && Boolean(el.dataset.year)), 'every day node has in dataset properties');
+            assert.isTrue(Array.prototype.every.call(caption.children, el => Boolean(el.dataset.day)), 'every caption in day selector has a text set');
           }
-        }
-        done();
+          if (!element.default) {
+            assert.isNotOk(yearSelector.value, 'yearSelector is not set');
+            if (daySelector) {
+              assert.isNotOk(element.currentSelectedDayNode, 'no currentSelectedDayNode is defined');
+              assert.isNotOk(element.currentActiveDayNode, 'no currentActiveDayNode is defined');
+              assert.isNotOk(days.querySelector('.selected'), 'there is no selected day node');
+            }
+          } else {
+            assert.isOk(yearSelector.value, 'yearSelector is set');
+            if (daySelector) {
+              assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
+              assert.isOk(element.currentActiveDayNode, 'currentActiveDayNode is defined');
+              assert.isOk(days.querySelector('.selected'), 'there is a selected day node');
+            }
+          }
+          done();
+        })
       });
 
       test('pressing keys', done => {
@@ -146,16 +159,28 @@
         let daySelector = element.shadowRoot.querySelector('#daySelector');
         // up
         MockInteractions.pressAndReleaseKeyOn(daySelector, 38);
-        assert.equal(element.month, 5, 'up should decrease month');
+        assert.equal(element.currentActiveDayNode.dataset.month, 5, 'up should decrease month');
+        assert.equal(element.date, '2000-06-15', 'date should not be set');
         // down
         MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
-        assert.equal(element.month, 6, 'down should increase month');
+        assert.equal(element.currentActiveDayNode.dataset.month, 6, 'down should increase month');
+        assert.equal(element.date, '2000-06-15', 'date should not be set');
         // left
         MockInteractions.pressAndReleaseKeyOn(daySelector, 37);
-        assert.equal(element.day, 14, 'left should decrease day');
+        assert.equal(element.currentActiveDayNode.dataset.day, 14, 'left should decrease day');
+        assert.equal(element.date, '2000-06-15', 'date should not be set');
         // rigth
         MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
-        assert.equal(element.day, 15, 'right should increase day');
+        assert.equal(element.currentActiveDayNode.dataset.day, 15, 'right should increase day');
+        assert.equal(element.date, '2000-06-15', 'date should not be set');
+        // new date by enter
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 13);
+        assert.equal(element.date, '2000-06-16', 'date should be set');
+        // new date by space
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
+        MockInteractions.pressAndReleaseKeyOn(daySelector, 32);
+        assert.equal(element.date, '2000-07-16', 'date should be set');
         done();
       });
     });
@@ -186,82 +211,114 @@
     });
 
     suite('interactions', function() {
-      let element, yearSelector, monthSelector, daySelector, days, randomDayNode, monthUpButton, monthDownButton, currentSelectedMonth;
+      let element, yearSelector, monthSelector, daySelector, days, randomDayNode, upButton, downButton, buttonProperty;
 
       setup(function() {
         element = fixture('Basic');
         // enshure that days are shown
         element.clamp = 'hour';
-        yearSelector = element.shadowRoot.querySelector('#yearSelector');
-        monthSelector = element.shadowRoot.querySelector('#monthSelector');
-        daySelector = element.shadowRoot.querySelector('#daySelector');
-        days = element.shadowRoot.querySelectorAll('#days .day:not(.notinmonth)');
-        randomDayNode = days[Math.floor(days.length * Math.random())];
-        monthUpButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') > 0);
-        monthDownButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') < 0);
+        setTimeout(() => {
+          yearSelector = element.shadowRoot.querySelector('#yearSelector');
+          monthSelector = element.shadowRoot.querySelector('#monthSelector');
+          daySelector = element.shadowRoot.querySelector('#daySelector');
+          if (daySelector) {
+            days = element.shadowRoot.querySelectorAll('#daySelector > #days :not(.notinmonth)');
+            randomDayNode = days[Math.floor(days.length * Math.random())];
+          }
+          upButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') > 0);
+          downButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'month' && +s.getAttribute('step') < 0);
+          if (!upButton || !downButton) {
+            upButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'year' && +s.getAttribute('step') > 0);
+            downButton = Array.prototype.find.call(element.shadowRoot.querySelectorAll('.' + element._switchClassSelector), s => s.getAttribute('prop') === 'year' && +s.getAttribute('step') < 0);
+            buttonProperty = 'year';
+          } else {
+            buttonProperty = 'month';
+          }
+        }, 0)
       });
 
       test('basic', done => {
-        assert.isDefined(yearSelector);
-        assert.isDefined(monthSelector);
-        assert.isDefined(daySelector);
-        assert.isDefined(days);
-        assert.isDefined(randomDayNode);
-        assert.isDefined(monthUpButton);
-        assert.isDefined(monthDownButton);
-        currentSelectedMonth = +monthSelector.value;
-        assert.isDefined(currentSelectedMonth);
-        done();
-      });
-
-      test('hover a day node', done => {
-        MockInteractions.move(randomDayNode, {x: 0, y: 0}, MockInteractions.middleOfNode(randomDayNode));
-        assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
-        assert.isNotOk(element.currentSelectedDayNode, 'currentSelectedDayNode is not set');
-        done();
-      });
-
-      test('clicking a day node', done => {
-        MockInteractions.tap(randomDayNode);
-        assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
-        assert.equal(element.currentSelectedDayNode, randomDayNode, 'currentSelectedDayNode is randomDayNode');
-        assert.notEqual(element.currentSelectedDayNode.dataset.date, element.date, 'date is not set to currentSelectedDayNode\'s dataset.date');
-        done();
-      });
-
-      test('double-clicking a day node', done => {
-        MockInteractions.tap(randomDayNode);
-        MockInteractions.tap(randomDayNode);
-        assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
-        assert.equal(element.currentSelectedDayNode, randomDayNode, 'currentSelectedDayNode is randomDayNode');
-        assert.equal(element.currentSelectedDayNode.dataset.date, element.date, 'date is set to currentSelectedDayNode\'s dataset.date');
-        done();
-      });
-
-      test('switching month-up-button', done => {
-        element.dwellDelay = element.dwellTime = 15;
-        // wait a tick to let eventlisteners be added
-        setTimeout(function() {
-          MockInteractions.down(monthUpButton);
-          setTimeout(function() {
-            MockInteractions.up(monthUpButton);
-            assert.equal(+monthSelector.value, element.month, 'month should have been set on the selector and the element');
-            done();
-          }, element.dwellDelay + element.dwellTime*1.5); // calling increment maximal once
+        setTimeout(() => {
+          assert.isDefined(yearSelector);
+          assert.isDefined(monthSelector);
+          if (daySelector) {
+            assert.isDefined(days);
+            assert.isDefined(randomDayNode);
+          }
+          assert.isDefined(upButton);
+          assert.isDefined(downButton);
+          assert.isDefined(+monthSelector.value);
+          done();
         }, 0);
       });
 
-      test('switching month-down-button', done => {
-        element.dwellDelay = element.dwellTime = 15;
-        // wait a tick to let eventlisteners be added
+      test('hover a day node', done => {
         setTimeout(function() {
-          MockInteractions.down(monthDownButton);
+          if (daySelector) {
+            MockInteractions.move(randomDayNode, {
+              x: 0,
+              y: 0
+            }, MockInteractions.middleOfNode(randomDayNode));
+            assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+            assert.isNotOk(element.currentActiveDayNode, 'currentActiveDayNode is not set');
+            assert.isNotOk(element.currentSelectedDayNode, 'currentSelectedDayNode is not set');
+          }
+          done();
+        }, 0);
+      });
+
+      test('clicking a day node', done => {
+        setTimeout(function() {
+          if (daySelector) {
+            MockInteractions.tap(randomDayNode);
+            assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+            assert.equal(element.currentActiveDayNode, randomDayNode, 'currentActiveDayNode is randomDayNode');
+            assert.isNotOk(element.currentSelectedDayNode, 'currentSelectedDayNode is not set');
+          }
+          done();
+        }, 0);
+      });
+
+      test('double-clicking a day node', done => {
+        setTimeout(function() {
+          if (daySelector) {
+            MockInteractions.tap(randomDayNode);
+            MockInteractions.tap(randomDayNode);
+            assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+            assert.equal(element.currentActiveDayNode, randomDayNode, 'currentActiveDayNode is randomDayNode');
+            assert.equal(element.currentSelectedDayNode, randomDayNode, 'currentSelectedDayNode is randomDayNode');
+            assert.equal(element.currentSelectedDayNode.dataset.day, element.day, 'day is set to currentSelectedDayNode\'s dataset.day');
+            assert.equal(element.currentSelectedDayNode.dataset.month, element.month, 'month is set to currentSelectedDayNode\'s dataset.month');
+            assert.equal(element.currentSelectedDayNode.dataset.year, element.year, 'year is set to currentSelectedDayNode\'s dataset.year');
+          }
+          done();
+        }, 0);
+      });
+
+      test('switching up-button', done => {
+        setTimeout(function() {
+          element.dwellDelay = element.dwellTime = 15;
+          MockInteractions.down(upButton);
+          setTimeout(function() {
+            MockInteractions.up(upButton);
+            const value = buttonProperty === 'month' ? +monthSelector.value : +yearSelector.value;
+            assert.equal(value, element[buttonProperty], 'property should have been set on the selector and the element');
+            done();
+          }, element.dwellDelay + element.dwellTime * 1.5); // calling increment maximal once
+        }, 0);
+      });
+
+      test('switching down-button', done => {
+        setTimeout(function() {
+          element.dwellDelay = element.dwellTime = 15;
+          MockInteractions.down(downButton);
           // wait a tick to let all property effects to take place and default being set
           setTimeout(function() {
-            MockInteractions.up(monthDownButton);
-            assert.equal(+monthSelector.value, element.month, 'month should have been set on the selector and the element');
+            MockInteractions.up(downButton);
+            const value = buttonProperty === 'month' ? +monthSelector.value : +yearSelector.value;
+            assert.equal(value, element[buttonProperty], 'property should have been set on the selector and the element');
             done();
-          }, element.dwellDelay + element.dwellTime*1.5); // calling increment maximal once
+          }, element.dwellDelay + element.dwellTime * 1.5); // calling increment maximal once
         }, 0);
       });
     });

@@ -436,22 +436,22 @@
 
         const prevmonthlength = lastDateOfPreviousMonth.getDate();
         const thismonthlength = +new Date(new Date(year, month, 0).setFullYear(year)).getDate();
-        const firstWeekDay = ((lastDateOfPreviousMonth.getDay() + 1 - (this.firstDayOfWeek || 0)) % 7 + 7) % 7 - 1; // mathematical modulus
+        const firstVisibleDayIndex = ((lastDateOfPreviousMonth.getDay() + 1 - (this.firstDayOfWeek || 0)) % 7 + 7) % 7 - 1; // mathematical modulus
 
-        const currentDayIndex = this._dayDiff(currentDate, lastDateOfPreviousMonth) + firstWeekDay,
-          activeDayIndex = isNaN(activeDate) ? undefined : (this._dayDiff(activeDate, lastDateOfPreviousMonth) + firstWeekDay),
-          selectedDayIndex = isNaN(d) ? undefined : (this._dayDiff(d, lastDateOfPreviousMonth) + firstWeekDay);
+        const currentDayIndex = this._dayDiff(currentDate, lastDateOfPreviousMonth) + firstVisibleDayIndex,
+          activeDayIndex = isNaN(activeDate) ? undefined : (this._dayDiff(activeDate, lastDateOfPreviousMonth) + firstVisibleDayIndex),
+          selectedDayIndex = isNaN(d) ? undefined : (this._dayDiff(d, lastDateOfPreviousMonth) + firstVisibleDayIndex);
 
         let min, max;
         if (this._minValue) {
-          min = this._dayDiff(this._clampDay(new Date(this._minValue)), lastDateOfPreviousMonth) + firstWeekDay;
+          min = this._dayDiff(this._clampDay(new Date(this._minValue)), lastDateOfPreviousMonth) + firstVisibleDayIndex;
         }
         if (this._maxValue) {
-          max = this._dayDiff(this._clampDay(new Date(this._maxValue)), lastDateOfPreviousMonth) + firstWeekDay;
+          max = this._dayDiff(this._clampDay(new Date(this._maxValue)), lastDateOfPreviousMonth) + firstVisibleDayIndex;
         }
 
         let selectedDayInView;
-        let counter = -firstWeekDay;
+        let counter = -firstVisibleDayIndex;
 
         // for each children in date view
         for (let i = 0; i < 42; i++, counter++) {
