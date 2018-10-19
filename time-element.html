@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/lib/utils/mixin.html">
 <link rel="import" href="../datetime-input/datetime-input-mixin.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
@@ -13,167 +14,181 @@
    * @mixinFunction
    * @polymer
    *
+   * @appliesMixin SwitchMixin
+   * @appliesMixin DatetimeFormMixin
+   *
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimeElementPattern = superClass => class extends superClass { // eslint-disable-line no-unused-vars, no-undef
+  const TimeElementPattern = superClass => { // eslint-disable-line no-unused-vars
 
-    static get styleToInclude() {
-      return `input-picker-shared-style input-shared-style`;
-    }
+    return class extends SwitchMixin(DatetimeFormMixin(superClass)) { // eslint-disable-line no-unused-vars, no-undef
 
-    /**
-     * custom style content
-     * @type {string}
-     */
-    static get styleTemplate() {
-      return `
-        ${super.styleTemplate || ''}
-        :host {
-          --computed-reduced-icon-padding: calc(var(--input-icon-padding, 0.5em) / 4);
-        }
-        #timer {
-          color: var(--input-picker-color);
-          background-color: var(--input-picker-background);
-          border-radius: var(--input-picker-border-radius);
-          padding: var(--input-picker-padding);
-          @apply --input-picker;
-          display: -ms-inline-flexbox;
-          display: -webkit-inline-flex;
-          display: inline-flex;
-          flex-flow: row nowrap;
-          align-items: center;
-          @apply --time-element;
-        }
-        #timer .field {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        #timer .timezone {
-          display: flex;
-          align-items: center;
-        }
-        #timer .buttons {
-          display: flex;
-          flex-direction: column;
-          align-self: stretch;
-          justify-content: space-between;
-        }
-        #timer .field > integer-input {
-          --input-color: currentColor;
-          --input-background: transparent;
-          --input-border-color: transparent;
-          --input-focus-border-color: transparent;
-        }
-        #timer .field > .switch {
-          padding-top: var(--computed-reduced-icon-padding);
-          padding-bottom: var(--computed-reduced-icon-padding);
-        }
-        #timer .field > .switch:first-of-type {
-          border-bottom-left-radius: 1px;
-          border-bottom-right-radius: 1px;
-        }
-        #timer .field > .switch:last-of-type {
-          border-top-left-radius: 1px;
-          border-top-right-radius: 1px;
-        }
-        #timer .hour12 {
-          flex-shrink: 0;
-          font-size: 0.85em;
-          margin: 0 0.15em;
-          padding: 0.1em;
-          border-color: transparent;
-        }
-        #timer .field > integer-input {
-          --input-color: var(--inner-input-color, var(--input-picker-color));
-        }
-      `;
-    }
+      static get styleToInclude() {
+        return `input-picker-shared-style input-shared-style`;
+      }
 
-    static get timeTemplate() {
-      return `
-        <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
-          <div class="field">
-            <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
-            <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
-            <template is="dom-if" if="[[hour12Format]]">
-              <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
-            </template>
-            <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
-          </div>
-          <span hidden$="[[_computeMultipleClamp(clamp, 'hour', 'minute')]]">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[_ifClamped(clamp, 'minute')]]">
-            <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
-            <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
-          </div>
-          <span hidden$="[[_computeMultipleClamp(clamp, 'second', 'minute')]]">[[timeSeparator]]</span>
-          <div class="field" hidden$="[[_ifClamped(clamp, 'second')]]">
-            <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
-            <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
-          </div>
-          <template is="dom-if" if="[[_ifClamped(clamp, 'second')]]">
-            <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">0</span>
-          </template>
-          <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">[[decimalSeparator]]</span>
-          <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond')]]">
-            <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
-            <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
-            <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
-          </div>
-          <template is="dom-if" if="[[withTimezone]]">
-            <div class="timezone">
-              <div class="field">
-                <button class="icon switch" prop="_timeZoneHours" step="1" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
-                <integer-input value="{{_timeZoneHours}}" pad-length="2" always-sign step="1" placeholder="±00" min="-23" max="23" use-negative-zero></integer-input>
-                <button class="icon switch" prop="_timeZoneHours" step="-1" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
-              </div>
-              <span>[[timeSeparator]]</span>
-              <div class="field">
-                <button class="icon switch" prop="_timeZoneMinutes" step="15" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
-                <integer-input value="{{_timeZoneMinutes}}" pad-length="2" min="0" max="45" step="15" placeholder="00"></integer-input>
-                <button class="icon switch" prop="_timeZoneMinutes" step="-15" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
-              </div>
-            </div>
-          </template>
-          <template is="dom-if" if="[[hour12Format]]">
-            <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
-              <div hidden$="[[!isAm]]">[[amString]]</div>
-              <div hidden$="[[isAm]]">[[pmString]]</div>
-            </button>
-          </template>
-        </div>
-      `
-    }
-
-    static get properties() {
-      return {
       /**
-       * if true, timezone inputs are shown
+       * custom style content
+       * @type {string}
        */
-        withTimezone: {
-          type: Boolean,
-          value: false
+      static get styleTemplate() {
+        return `
+          ${super.styleTemplate || ''}
+          :host {
+            --computed-reduced-icon-padding: calc(var(--input-icon-padding, 0.5em) / 4);
+          }
+          #timer {
+            color: var(--input-picker-color);
+            background-color: var(--input-picker-background);
+            border-radius: var(--input-picker-border-radius);
+            padding: var(--input-picker-padding);
+            @apply --input-picker;
+            display: -ms-inline-flexbox;
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            @apply --time-element;
+          }
+          #timer .field {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          #timer .timezone {
+            display: flex;
+            align-items: center;
+          }
+          #timer .buttons {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            justify-content: space-between;
+          }
+          #timer .field > integer-input {
+            --input-color: currentColor;
+            --input-background: transparent;
+            --input-border-color: transparent;
+            --input-focus-border-color: transparent;
+          }
+          #timer .field > .switch {
+            padding-top: var(--computed-reduced-icon-padding);
+            padding-bottom: var(--computed-reduced-icon-padding);
+          }
+          #timer .field > .switch:first-of-type {
+            border-bottom-left-radius: 1px;
+            border-bottom-right-radius: 1px;
+          }
+          #timer .field > .switch:last-of-type {
+            border-top-left-radius: 1px;
+            border-top-right-radius: 1px;
+          }
+          #timer .hour12 {
+            flex-shrink: 0;
+            font-size: 0.85em;
+            margin: 0 0.15em;
+            padding: 0.1em;
+            border-color: transparent;
+          }
+          #timer .field > integer-input {
+            --input-color: var(--inner-input-color, var(--input-picker-color));
+          }
+        `;
+      }
+
+      static get timeTemplate() {
+        return `
+          <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
+            <div class="field">
+              <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
+              <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+              <template is="dom-if" if="[[hour12Format]]">
+                <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+              </template>
+              <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
+            </div>
+            <span hidden$="[[_computeMultipleClamp(clamp, 'hour', 'minute')]]">[[timeSeparator]]</span>
+            <div class="field" hidden$="[[_ifClamped(clamp, 'minute')]]">
+              <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
+              <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
+            </div>
+            <span hidden$="[[_computeMultipleClamp(clamp, 'second', 'minute')]]">[[timeSeparator]]</span>
+            <div class="field" hidden$="[[_ifClamped(clamp, 'second')]]">
+              <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
+              <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
+            </div>
+            <template is="dom-if" if="[[_ifClamped(clamp, 'second')]]">
+              <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">0</span>
+            </template>
+            <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">[[decimalSeparator]]</span>
+            <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond')]]">
+              <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
+              <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
+              <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
+            </div>
+            <template is="dom-if" if="[[withTimezone]]">
+              <div class="timezone">
+                <div class="field">
+                  <button class="icon switch" prop="_timeZoneHours" step="1" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
+                  <integer-input value="{{_timeZoneHours}}" pad-length="2" always-sign step="1" placeholder="±00" min="-23" max="23" use-negative-zero></integer-input>
+                  <button class="icon switch" prop="_timeZoneHours" step="-1" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
+                </div>
+                <span>[[timeSeparator]]</span>
+                <div class="field">
+                  <button class="icon switch" prop="_timeZoneMinutes" step="15" disabled$="[[disabled]]">${this._iconStepUpTemplate}</button>
+                  <integer-input value="{{_timeZoneMinutes}}" pad-length="2" min="0" max="45" step="15" placeholder="00"></integer-input>
+                  <button class="icon switch" prop="_timeZoneMinutes" step="-15" disabled$="[[disabled]]">${this._iconStepDownTemplate}</button>
+                </div>
+              </div>
+            </template>
+            <template is="dom-if" if="[[hour12Format]]">
+              <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
+                <div hidden$="[[!isAm]]">[[amString]]</div>
+                <div hidden$="[[isAm]]">[[pmString]]</div>
+              </button>
+            </template>
+          </div>
+        `
+      }
+
+      static get properties() {
+        return {
+        /**
+         * if true, timezone inputs are shown
+         */
+          withTimezone: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * if true perspective starts at 0 (1970-01-01)
+           */
+          _timeOnly: {
+            type: Boolean,
+            value: true
+          }
         }
       }
-    }
 
-    static get observers() {
-      // timezone-inputs and hour12-input are created asynchronously
-      return [
-        '_addSwitchListener(withTimezone, hour12Format)'
-      ]
-    }
+      static get observers() {
+        // timezone-inputs and hour12-input are created asynchronously
+        return [
+          '_addSwitchListener(withTimezone, hour12Format)'
+        ]
+      }
 
-    _computeMultipleClamp(clamp, prop1, prop2) {
-      return this._ifClamped(clamp, prop1, this._ifClamped(clamp, prop2));
-    }
+      _computeMultipleClamp(clamp, prop1, prop2) {
+        return this._ifClamped(clamp, prop1, this._ifClamped(clamp, prop2));
+      }
 
-    _switchAm() {
-      // e && e.stopPropagation();
-      this.isAm = !this.isAm;
+      _switchAm() {
+        // e && e.stopPropagation();
+        this.isAm = !this.isAm;
+      }
     }
   }
   window.TimeElementPattern = TimeElementPattern;
@@ -206,13 +221,10 @@
        * @polymer
        *
        * @appliesMixin TimeElementPattern
-       * @appliesMixin SwitchMixin
-       * @appliesMixin FormElementMixin
-       * @appliesMixin DatetimeMixin
        *
        * @demo demo/time-elements.html time elements
        **/
-    class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(Polymer.Element))) { // eslint-disable-line no-undef
+    class TimeElement extends TimeElementPattern(Polymer.Element) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';
@@ -225,15 +237,6 @@
           </style>
           ${this.timeTemplate}
         `
-      }
-
-      static get properties() {
-        return {
-          _timeOnly: {
-            type: Boolean,
-            value: true
-          }
-        }
       }
     }
     window.customElements.define(TimeElement.is, TimeElement);

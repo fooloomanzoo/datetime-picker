@@ -23,7 +23,7 @@
   },
   "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt",
   "dependencies": {
-    "polymer": "Polymer/polymer#2",
+    "polymer": "Polymer/polymer#2.6.1",
     "datetime-input": "fooloomanzoo/datetime-input#2",
     "number-input": "fooloomanzoo/number-input#2",
     "property-mixins": "fooloomanzoo/property-mixins#2",

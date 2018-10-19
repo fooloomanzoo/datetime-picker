@@ -239,20 +239,20 @@
       });
 
       test('switching month-up-button', done => {
+        element.dwellDelay = element.dwellTime = 15;
         // wait a tick to let eventlisteners be added
         setTimeout(function() {
           MockInteractions.down(monthUpButton);
           setTimeout(function() {
             MockInteractions.up(monthUpButton);
-            console.log(monthSelector.value);
             assert.equal(+monthSelector.value, element.month, 'month should have been set on the selector and the element');
-            assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthUpButton.getAttribute('step'))) % 12);
             done();
           }, element.dwellDelay + element.dwellTime*1.5); // calling increment maximal once
         }, 0);
       });
 
       test('switching month-down-button', done => {
+        element.dwellDelay = element.dwellTime = 15;
         // wait a tick to let eventlisteners be added
         setTimeout(function() {
           MockInteractions.down(monthDownButton);
@@ -260,7 +260,6 @@
           setTimeout(function() {
             MockInteractions.up(monthDownButton);
             assert.equal(+monthSelector.value, element.month, 'month should have been set on the selector and the element');
-            assert.equal(+monthSelector.value, (12*Math.ceil(currentSelectedMonth/12) + currentSelectedMonth + (+monthDownButton.getAttribute('step'))) % 12);
             done();
           }, element.dwellDelay + element.dwellTime*1.5); // calling increment maximal once
         }, 0);

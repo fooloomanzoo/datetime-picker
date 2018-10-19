@@ -1,12 +1,15 @@
+<link rel="import" href="../polymer/lib/utils/mixin.html">
 <link rel="import" href="../input-picker-pattern/input-picker-pattern.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/dropdown-style.html">
 <link rel="import" href="../input-picker-pattern/dropdown-tip-style.html">
+<link rel="import" href="../datetime-input/datetime-input-mixin.html">
 
 <script>
   /**
    * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
    *
+   * @appliesMixin DatetimeInputMixin
    * @appliesMixin InputPickerPattern
    *
    * @mixinFunction
@@ -17,7 +20,7 @@
    */
   const DatetimePickerMixin = superClass => { // eslint-disable-line no-unused-vars
 
-    return class extends InputPickerPattern(superClass) {  // eslint-disable-line no-undef
+    return class extends DatetimeFormMixin(InputPickerPattern(superClass)) {  // eslint-disable-line no-undef
       /**
        * template for native input element
        * @type {string}
@@ -26,11 +29,7 @@
         return `
           <template is="dom-if" if="[[_computeAnd(_hasNative, native)]]" restamp>
             <input class="native" autofocus type="${this.expectedNativeInputType}" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{_nativeValueAsNumber::input}}" step="[[_computeNativeStep(step, clamp)]]">
-            <template is="dom-if" if="[[withTimezone]]">
-              <integer-input class="native timezone" pad-length="2" always-sign step="1" value-as-number="{{_timeZoneHours}}" placeholder="+00" min="-23" max="23" disabled="{{disabled}}"></integer-input>
-              <span>[[timeSeparator]]</span>
-              <integer-input class="native timezone" pad-length="2" min="0" max="45" step="15" value-as-number="{{_timeZoneMinutes}}" placeholder="00" disabled="{{disabled}}"></integer-input>
-            </template>
+            ${this.timezoneInputTemplate}
           </template>
         `;
       }
@@ -134,21 +133,21 @@
       static get properties() {
         return {
 
-          /**
-           * The confirmed date. When `auto-confirm` is not set, the date will only change, when you confirm.
-           */
-          confirmedDate: {
-            type: String,
-            notify: true
-          },
-
-          /**
-           * The confirmed time. When `auto-confirm` is not set, the time will only change, when you confirm.
-           */
-          confirmedTime: {
-            type: String,
-            notify: true
-          },
+          // /**
+          //  * The confirmed date. When `auto-confirm` is not set, the date will only change, when you confirm.
+          //  */
+          // confirmedDate: {
+          //   type: String,
+          //   notify: true
+          // },
+          //
+          // /**
+          //  * The confirmed time. When `auto-confirm` is not set, the time will only change, when you confirm.
+          //  */
+          // confirmedTime: {
+          //   type: String,
+          //   notify: true
+          // },
 
           /**
            * The confirmed datetime. When `auto-confirm` is not set, the datetime will only change, when you confirm.
@@ -163,40 +162,6 @@
            */
           hideNowButton: {
             type: Boolean
-          },
-
-          /**
-          * If set the step defines the step a date should be incremented (in seconds). The input for the most inferior standing that would create an integer step is used to increment the value.
-          * For example, if the **step** is:
-          *  + **0.05**: the millisecond-input will increment the value by 50 (50 milliseconds), the other inputs behaive as expected
-          *  + **1.05**: the millisecond-input will increment the value by 1050 (1 second and 50 millisecond), the other inputs behaive as expected
-          *  + **2**: the millisecond-input will be disabled, the second-input will increment the value by 2000 (2 seconds), the other inputs behaive as expected
-          *  + **180**: the millisecond-input and the second-input will be disabled, the minute-input will increment the value by 180000 (3 minutes), the other inputs behaive as expected
-          * If `step="0"` all inputs will be disabled, else if the step is below _0.001_ the step will be set to **0.001**. The most superior input that will become the given step is the day-input.
-           */
-          step: {
-            type: Number,
-            notify: true
-          },
-
-          /**
-           * date-parts that are hidden
-           * e.g. '{ "year": true }' would hide the input for year
-           */
-          partsHidden: {
-            type: Object,
-            value: function() {
-              return {}
-            },
-            notify: true
-          },
-
-          /**
-           * defines the property that should be used for the value
-           */
-          propertyForValue: {
-            type: String,
-            value: 'valueAsNumber'
           }
         };
       }
@@ -204,16 +169,15 @@
       static get observers() {
         return [
           '_confirmedDatetimeChanged(confirmedDatetime)',
-          '_confirmedDateTimeChanged(confirmedDate, confirmedTime)',
-          '_computeNativeValueAsNumber(native, valueAsDate, offsetMinutes)',
+          '_computeNativeValueAsNumber(native, valueAsNumber, offsetMinutes)',
           '_reflectNativeValueAsNumber(native, _nativeValueAsNumber, offsetMinutes)'
         ];
       }
 
-      validate() {
-        this.value = this.confirmedValue;
-        return super.validate();
-      }
+      // validate() {
+      //   this.value = this.confirmedValue;
+      //   return super.validate();
+      // }
 
       _computeAnd(a, b) {
         return a && b;
@@ -240,14 +204,14 @@
         }
       }
 
-      _computeNativeValueAsNumber(native, valueAsDate) {
+      _computeNativeValueAsNumber(native, valueAsNumber) {
         if (!(native && this._hasNative)) {
           return;
         }
-        if (valueAsDate === undefined) {
+        if (isNaN(valueAsNumber)) {
           return;
         }
-        const d = new Date(valueAsDate);
+        const d = new Date(valueAsNumber);
         if (this._timeOnly) {
           if (!this.timezone || !this.date) {
             this.__updatingTimezoneOffset = true;
@@ -270,10 +234,10 @@
         if (this.__updatingTimezoneOffset) {
           return;
         }
-        if (nativeValueAsNumber === undefined) {
+        if (isNaN(nativeValueAsNumber)) {
           return;
         }
-        const d = new Date(nativeValueAsNumber)
+        const d = new Date(nativeValueAsNumber);
         if (this._timeOnly) {
           if (!this.timezone || !this.date) {
             this.__updatingTimezoneOffset = true;
@@ -307,43 +271,43 @@
         // asnyc setting the computed the other confirmed values
         this.setProperties({
           confirmedValue: this.value,
-          confirmedDate: this.date,
-          confirmedTime: this.time
+          // confirmedDate: this.date,
+          // confirmedTime: this.time
         });
       }
 
-      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-        if (confirmedDate === undefined && confirmedTime === undefined) {
-          this._resetConfirmedValues();
-          return; // return, if resseting, so that the picker is not itself resetted
-        }
-
-        this.setProperties({
-          date: confirmedDate,
-          time: confirmedTime
-        });
-        // asnyc setting the computed the other confirmed values
-        this.setProperties({
-          confirmedValue: this.value,
-          confirmedDatetime: this.datetime
-        });
-      }
+      // _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
+      //   if (confirmedDate === undefined && confirmedTime === undefined) {
+      //     this._resetConfirmedValues();
+      //     return; // return, if resseting, so that the picker is not itself resetted
+      //   }
+      //
+      //   this.setProperties({
+      //     date: confirmedDate,
+      //     time: confirmedTime
+      //   });
+      //   // asnyc setting the computed the other confirmed values
+      //   this.setProperties({
+      //     confirmedValue: this.value,
+      //     confirmedDatetime: this.datetime
+      //   });
+      // }
 
       _confirmedValueChanged(confirmedValue) {
         this.value = confirmedValue;
         // asnyc setting the computed the other confirmed values
         this.setProperties({
           confirmedDatetime: this.datetime,
-          confirmedDate: this.date,
-          confirmedTime: this.time
+          // confirmedDate: this.date,
+          // confirmedTime: this.time
         });
       }
 
       _setConfirmedValue() {
         this.setProperties({
           confirmedDatetime: this.datetime,
-          confirmedDate: this.date,
-          confirmedTime: this.time,
+          // confirmedDate: this.date,
+          // confirmedTime: this.time,
           confirmedValue: this.value
         })
       }
@@ -357,8 +321,8 @@
         this.setProperties({
           value: undefined,
           confirmedDatetime: undefined,
-          confirmedDate: undefined,
-          confirmedTime: undefined,
+          // confirmedDate: undefined,
+          // confirmedTime: undefined,
           confirmedValue: undefined
         })
       }
@@ -366,13 +330,13 @@
       _resetValues() {
         this.setProperties({
           datetime: this.confirmedDatetime,
-          date: this.confirmedDate,
-          time: this.confirmedTime,
+          // date: this.confirmedDate,
+          // time: this.confirmedTime,
           value: this.confirmedValue
         })
       }
     }
   }
 
-  window.DatetimePickerMixin = DatetimePickerMixin;
+  window.DatetimePickerMixin = Polymer.dedupingMixin(DatetimePickerMixin);
 </script>

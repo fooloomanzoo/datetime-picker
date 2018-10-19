@@ -1,100 +1,90 @@
 <link rel="import" href="../polymer/polymer.html">
-
-<link rel="import" href="../datetime-input/datetime-input.html">
-<link rel="import" href="datetime-picker-mixin.html">
-<link rel="import" href="time-element.html">
-<link rel="import" href="calendar-element.html">
+<link rel="import" href="../polymer/lib/utils/mixin.html">
+<link rel="import" href="date-picker.html">
+<link rel="import" href="time-picker.html">
 
 <script>
   /**
    * Mixin for datetime-picker
    *
-   *  @appliesMixin DatetimeMixin
-   *  @appliesMixin FormElementMixin
-   *  @appliesMixin CalendarElementPattern
-   *  @appliesMixin TimeElementPattern
-   *  @appliesMixin SwitchMixin
-   *  @appliesMixin SwitchMixin
-   *  @appliesMixin DatetimePickerMixin
-   *
    * @mixinFunction
    * @polymer
+   *
+   * @appliesMixin DatePickerPattern
+   * @appliesMixin TimePickerPattern
    *
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatetimePickerPattern = superClass => class extends DatetimePickerMixin(DateInputPattern(TimeInputPattern(CalendarElementPattern(TimeElementPattern(SwitchMixin(DatetimeInputMixin(superClass))))))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatetimePickerPattern = superClass => { // eslint-disable-line no-unused-vars
 
-    static get expectedNativeInputType() {
-      return 'datetime-local';
-    }
+    return class extends DatePickerPattern(TimePickerPattern(superClass)) { // eslint-disable-line no-unused-vars, no-undef
 
-    static get pickerTemplate() {
-      return `
-        <div id="picker" class="dropdown" horizontal$="[[_ifClamped(clamp, 'day')]]">
-          ${this.calendarTemplate}
-          ${this.timeTemplate}
-          <div id="buttons">
-            ${this.buttonTemplate}
+      static get expectedNativeInputType() {
+        return 'datetime-local';
+      }
+
+      static get pickerTemplate() {
+        return `
+          <div id="picker" class="dropdown" horizontal$="[[_ifClamped(clamp, 'day')]]">
+            ${this.calendarTemplate}
+            ${this.timeTemplate}
+            <div id="buttons">
+              ${this.buttonTemplate}
+            </div>
           </div>
-        </div>
-      `;
-    }
+        `;
+      }
 
-    static get properties() {
-      return {
-        /**
-         * Clamp datetime to a property
-         * possible values: 'month', 'day', 'hour', 'minute', 'second', 'millisecond' or ''
-         */
-        clamp: {
-          type: String,
-          value: 'millisecond',
-          notify: true
+      static get properties() {
+        return {
+          /**
+           * Clamp datetime to a property
+           * possible values: 'month', 'day', 'hour', 'minute', 'second', 'millisecond' or ''
+           */
+          clamp: {
+            type: String,
+            value: 'millisecond',
+            notify: true
+          }
         }
       }
-    }
 
-    _onDblClickDay() {
-      super._onDblClickDay();
-      this.confirm();
-    }
-
-    renderCalendar(year, month, day) {
-      if (this._hasNative && this.native) {
-        return;
+      renderCalendar(year, month, day) {
+        if (this._hasNative && this.native) {
+          return;
+        }
+        super.renderCalendar(year, month, day, this.confirmedDate);
       }
-      super.renderCalendar(year, month, day, this.confirmedDate);
-    }
 
-    open() {
-      const oldValue = this.opened;
-      if (super.open) {
-        super.open();
-      }
-      this.renderCalendar(this.year, this.month, this.day);
-      if (oldValue === false) {
-        if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
-          this.$.days.focus();
+      open() {
+        const oldValue = this.opened;
+        if (super.open) {
+          super.open();
+        }
+        this.renderCalendar(this.year, this.month, this.day);
+        if (oldValue === false) {
+          if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
+            this.$.days.focus();
+          }
         }
       }
-    }
 
-    _setConfirmedValues() {
-      if (!this.date && this.currentSelectedDayNode) {
-        this.date = this.currentSelectedDayNode.dataset.date;
-        return;
+      _setConfirmedValues() {
+        if (!this.date && this.currentSelectedDayNode) {
+          this.date = this.currentSelectedDayNode.dataset.date;
+          return;
+        }
+        this.setProperties({
+          confirmedDatetime: this.datetime,
+          confirmedDate: this.date,
+          confirmedTime: this.time,
+          confirmedValue: this.value
+        })
       }
-      this.setProperties({
-        confirmedDatetime: this.datetime,
-        confirmedDate: this.date,
-        confirmedTime: this.time,
-        confirmedValue: this.value
-      })
     }
   }
-
-  window.DatetimePickerPattern = DatetimePickerPattern;
+  window.DatetimePickerPattern = Polymer.dedupingMixin(DatetimePickerPattern);
 </script>
 
 <dom-module id="datetime-picker">
@@ -116,15 +106,18 @@
      *
      * Custom property | Description | Default
      * ----------------|-------------|----------
-     * `--calendar-element`               | Mixin applied to the calendar                  | {}
-     * `--calendar-cell`                  | Mixin applied to the date cells                | {}
-     * `--calendar-cell-hovered`          | Mixin applied to hovered date cells            | {}
-     * `--calendar-cell-size`             | width of a date cell                           | 3em
-     * `--calendar-cell-border-radius`    | border-radius of a date cell                   | 0.25em
-     * `--calendar-cell-font-size`        | font-size of a date cell                       | 0.75em
-     * `--time-element`                   | Mixin applied to the time-element              | {}
+     * `--calendar-element`                   | Mixin applied to the calendar                  | {}
+     * `--calendar-cell`                      | Mixin applied to the date cells                | {}
+     * `--calendar-cell-hovered-background`   | background of the hovered date cells           | transparent
+     * `--calendar-cell-hovered-border-color` | border-color of the hovered date cells         | currentColor
+     * `--calendar-cell-size`                 | width of a date cell                           | 3em
+     * `--calendar-cell-border-radius`        | border-radius of a date cell                   | 0.3em
+     * `--calendar-cell-font-size`            | font-size of a date cell                       | 0.75em
+     * `--calendar-cell-notinmonth-opacity`   | text opacity of a date cell that are not in the current month | 0.6
+     * `--calendar-cell-weekend-opacity`      | text opacity of a date cell that are on weekend | 1
+     * `--time-element`                       | Mixin applied to the time-element               | {}
      *
-     *  Have a look at [input-picker-pattern#input-picker-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-picker-shared-style) and [input-picker-pattern#input-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-shared-style) to see how to style the element.
+     *  Have a look at [input-picker-pattern#input-picker-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-picker-shared-style) and [input-picker-pattern#input-shared-style](https://github.com/fooloomanzoo/input-picker-pattern#input-shared-style) to see how to style the element. `--inner-input-focus-background` and `--inner-input-focus-color` will style the selected date-cell and inputs.
      *
      *  @customElement
      *  @polymer

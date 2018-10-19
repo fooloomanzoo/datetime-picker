@@ -1,0 +1,18 @@
+{
+  "sources": [
+    "calendar-element.html",
+    "time-element.html",
+    "datetime-picker.html",
+    "date-picker.html",
+    "time-picker.html",
+    "datetime-picker-mixin.html",
+    "overlay-datetime-picker.html",
+    "overlay-date-picker.html",
+    "overlay-time-picker.html"
+  ],
+  "lint": {
+    "rules": [
+      "polymer-2"
+    ]
+  }
+}

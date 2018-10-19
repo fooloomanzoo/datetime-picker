@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-
+<link rel="import" href="../polymer/lib/utils/mixin.html">
 <link rel="import" href="../datetime-input/time-input.html">
 <link rel="import" href="datetime-picker-mixin.html">
 <link rel="import" href="time-element.html">
@@ -8,11 +8,9 @@
   /**
    * Mixin for datetime-picker
    *
-   *  @appliesMixin DatetimeMixin
-   *  @appliesMixin FormElementMixin
-   *  @appliesMixin TimeElementPattern
-   *  @appliesMixin SwitchMixin
-   *  @appliesMixin DatetimePickerMixin
+   * @appliesMixin TimeInputPattern
+   * @appliesMixin TimeElementPattern
+   * @appliesMixin DatetimePickerMixin
    *
    * @mixinFunction
    * @polymer
@@ -20,69 +18,63 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimePickerPattern = superClass => class extends DatetimePickerMixin(TimeInputPattern(TimeElementPattern(SwitchMixin(DatetimeInputMixin(superClass))))) { // eslint-disable-line no-unused-vars, no-undef
+  const TimePickerPattern = superClass => { // eslint-disable-line no-unused-vars
 
-    static get expectedNativeInputType() {
-      return 'time';
-    }
+    return class extends DatetimePickerMixin(TimeInputPattern(TimeElementPattern(superClass))) { // eslint-disable-line no-unused-vars, no-undef
 
-    static get pickerTemplate() {
-      return `
-        <div id="picker" class="dropdown" horizontal>
-          ${this.timeTemplate}
-          <div id="buttons">
-            ${this.buttonTemplate}
-          <div>
-        </div>
-      `;
-    }
+      static get expectedNativeInputType() {
+        return 'time';
+      }
 
-    static get properties() {
-      return {
-        _timeOnly: {
-          type: Boolean,
-          value: true
+      static get pickerTemplate() {
+        return `
+          <div id="picker" class="dropdown" horizontal>
+            ${this.timeTemplate}
+            <div id="buttons">
+              ${this.buttonTemplate}
+            <div>
+          </div>
+        `;
+      }
+
+      _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
+        if (confirmedTime === undefined) {
+          this._resetConfirmedValues();
+          return; // return, if reseting, so that the picker is not itself resetted
         }
+
+        this.setProperties({
+          date: confirmedDate,
+          time: confirmedTime
+        });
+        // asnyc setting the computed other confirmed values
+        this.setProperties({
+          confirmedValue: this.value,
+          confirmedDatetime: this.datetime
+        });
       }
-    }
 
-    _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-      if (confirmedTime === undefined) {
-        this._resetConfirmedValues();
-        return; // return, if reseting, so that the picker is not itself resetted
-      }
-
-      this.setProperties({
-        date: confirmedDate,
-        time: confirmedTime
-      });
-      // asnyc setting the computed other confirmed values
-      this.setProperties({
-        confirmedValue: this.value,
-        confirmedDatetime: this.datetime
-      });
-    }
-
-    _setConfirmedValues() {
-      if (!this.time) {
-        if (!this.timezone || !this.date) {
-          this.__updatingTimezoneOffset = true;
-          this.offsetMinutes = 0;
-          this.__updatingTimezoneOffset = false;
+      _setConfirmedValues() {
+        if (!this.time) {
+          if (!this.timezone || !this.date) {
+            this.__updatingTimezoneOffset = true;
+            this.offsetMinutes = 0;
+            this.__updatingTimezoneOffset = false;
+          }
+          this.setProperties({
+            valueAsNumber: 0,
+            time: '00:00',
+            confirmedTime: '00:00'
+          });
+          return;
         }
         this.setProperties({
-          valueAsNumber: 0,
-          time: '00:00',
-          confirmedTime: '00:00'
-        });
-        return;
+          confirmedDatetime: this.datetime,
+          confirmedDate: this.date,
+          confirmedTime: this.time,
+          confirmedValue: this.value
+        })
       }
-      this.setProperties({
-        confirmedDatetime: this.datetime,
-        confirmedDate: this.date,
-        confirmedTime: this.time,
-        confirmedValue: this.value
-      })
     }
   }
   window.TimePickerPattern = TimePickerPattern;

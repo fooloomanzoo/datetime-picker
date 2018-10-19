@@ -28,16 +28,6 @@
     </template>
   </test-fixture>
 
-  <test-fixture id="Clamp">
-    <template>
-      <div>
-        <date-picker id="clamp-month" clamp="month"></date-picker>
-        <date-picker id="clamp-day" clamp="day"></date-picker>
-        <date-picker id="clamp-none" clamp=""></date-picker>
-      </div>
-    </template>
-  </test-fixture>
-
   <script>
     WCT.helpers.mixinSuite('date-picker');
 
@@ -68,13 +58,8 @@
         assert.isUndefined(element.offsetMinutes, 'no timezone-offset is defined');
         assert.isUndefined(element._timeZoneHours, 'no timezone-hours is defined');
         assert.isUndefined(element._timeZoneMinutes, 'no timezone-minutes is defined');
-        assert.isDefined(element.locale, 'locale is defined');
-        assert.isDefined(element.decimalSeparator, 'decimalSeparator is defined');
-        assert.isDefined(element.dateSeparator, 'dateSeparator is defined');
-        assert.isDefined(element.timeSeparator, 'timeSeparator is defined');
-        assert.isDefined(element.amString, 'amString is defined');
-        assert.isDefined(element.pmString, 'pmString is defined');
-        assert.isDefined(element.dateOrder, 'dateOrder is defined');
+        assert.isUndefined(element.confirmedValue, 'no confirmed value is defined');
+        assert.isUndefined(element.confirmedDatetime, 'no confirmed datetime is defined');
         assert.isDefined(element.propertyForValue, 'propertyForValue is defined');
         done();
       });
@@ -85,7 +70,6 @@
         assert.isDefined(element.date, 'date is defined');
         assert.isDefined(element.time, 'time is defined');
         assert.isDefined(element.datetime, 'datetime is defined');
-        assert.isDefined(element.value, 'value is defined');
         assert.isDefined(element.valueAsNumber, 'valueAsNumber is defined');
         assert.isDefined(element.valueAsDate, 'valueAsDate is defined');
         assert.isDefined(element.year, 'year is defined');
@@ -99,6 +83,8 @@
         assert.isDefined(element.offsetMinutes, 'timezone-offset is defined');
         assert.isDefined(element._timeZoneHours, 'timezone-hours is defined');
         assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
+        assert.isUndefined(element.confirmedValue, 'no confirmed value is defined');
+        assert.isUndefined(element.confirmedDatetime, 'no confirmed datetime is defined');
         done();
       });
     });
@@ -124,69 +110,26 @@
         assert.isDefined(element.valueAsDate, 'valueAsDate should be set');
         assert.isDefined(element.timezone, 'timezone should be set');
         assert.isDefined(element.offsetMinutes, 'offsetMinutes should be set');
+        assert.equal(element.datetime, '1980-02-01T00:00:00.000' + element.timezone, 'datetime should be set');
+        assert.isUndefined(element.confirmedValue, 'no confirmed value is defined');
+        assert.isUndefined(element.confirmedDatetime, 'no confirmed datetime is defined');
         done();
       });
     });
 
-    suite('clamp and hidden pickers', function() {
-      let f;
+    suite('confirming', () => {
+      let element;
 
       setup(function() {
-        f = fixture('Clamp');
+        element = fixture('ChangingProperties');
       });
 
-      test('clamp month', done => {
-        let element = f.querySelector('#clamp-month');
-
-        setTimeout(() => {
-          // wait a tick to let dom-if stamping finish
-          assert.equal(element.clamp, 'month', 'clamp is set');
-
-          let yearPicker = element.shadowRoot.querySelector('#year');
-          let monthPicker = element.shadowRoot.querySelector('#month');
-          let dayPicker = element.shadowRoot.querySelector('#day');
-
-          assert.notEqual(document.defaultView.getComputedStyle(yearPicker).display, 'none', 'year is not hidden');
-          if (monthPicker) {
-            assert.equal(document.defaultView.getComputedStyle(monthPicker).display, 'none', 'month is hidden');
-          }
-          if (dayPicker) {
-            assert.equal(document.defaultView.getComputedStyle(dayPicker).display, 'none', 'day is hidden');
-          }
-          done();
-        }, 0);
-      });
-
-      test('clamp day', done => {
-        let element = f.querySelector('#clamp-day');
-        setTimeout(() => {
-          // wait a tick to let dom-if stamping finish
-          let yearPicker = element.shadowRoot.querySelector('#year');
-          let monthPicker = element.shadowRoot.querySelector('#month');
-          let dayPicker = element.shadowRoot.querySelector('#day');
-
-          assert.notEqual(document.defaultView.getComputedStyle(yearPicker).display, 'none', 'year is not hidden');
-          assert.notEqual(document.defaultView.getComputedStyle(monthPicker).display, 'none', 'month is not hidden');
-
-          if (dayPicker) {
-            assert.equal(document.defaultView.getComputedStyle(dayPicker).display, 'none', 'day is hidden');
-          }
-          done();
-        }, 0);
-      });
-
-      test('no clamp', done => {
-        let element = f.querySelector('#clamp-none');
-        setTimeout(() => {
-          // wait a tick to let dom-if stamping finish
-          let yearPicker = element.shadowRoot.querySelector('#year');
-          let monthPicker = element.shadowRoot.querySelector('#month');
-          let dayPicker = element.shadowRoot.querySelector('#day');
-
-          assert.notEqual(document.defaultView.getComputedStyle(yearPicker).display, 'none', 'year is not hidden');
-          assert.notEqual(document.defaultView.getComputedStyle(monthPicker).display, 'none', 'month is not hidden');
-          assert.notEqual(document.defaultView.getComputedStyle(dayPicker).display, 'none', 'day is not hidden');
-
+      test('by calling confirm-fn', done => {
+        element.confirm();
+        setTimeout(function() {
+          console.log(element.propertyForValue, element._partsStep, element._partsDisabled);
+          assert.equal(element.confirmedDatetime, '1980-02-01T00:00:00.000' + element.timezone, 'datetime should be set');
+          assert.isDefined(element.confirmedValue, 'confirmed value is defined');
           done();
         }, 0);
       });
