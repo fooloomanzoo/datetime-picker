@@ -36,6 +36,18 @@
         `;
       }
 
+      static get properties() {
+        return {
+          /**
+           * if true perspective starts at 0 (1970-01-01)
+           */
+          _timeOnly: {
+            type: Boolean,
+            value: false
+          }
+        }
+      }
+
       renderCalendar(year, month, day) {
         if (this._hasNative && this.native) {
           return;
@@ -44,35 +56,17 @@
       }
 
       open() {
-        const oldValue = this.opened;
+        const wasClosedBefore = !this.opened;
         super.open && super.open();
-        this.renderCalendar(this.year, this.month, this.day);
-        if (oldValue === false) {
-          if (!(this.partsDisabled && this.partsDisabled.days) && !(this.partsHidden && this.partsHidden.days)) {
-            this.$.days.focus();
+        if (wasClosedBefore) {
+          this.renderCalendar(this.year, this.month, this.day);
+          if (!(this._partsDisabled && this._partsDisabled.days)) {
+            setTimeout(() => {
+              this.$.daySelector && this.$.daySelector.focus();
+            }, 0);
           }
         }
       }
-
-      // _computeNativeStep(step) {
-      //   if (step !== undefined) {
-      //     return step;
-      //   }
-      //   return 1;
-      // }
-
-      // _setConfirmedValue() {
-      //   if (!this.date && this.currentSelectedDayNode) {
-      //     this.date = this.currentSelectedDayNode.dataset.date;
-      //     return;
-      //   }
-      //   this.setProperties({
-      //     confirmedDatetime: this.datetime,
-      //     // confirmedDate: this.date,
-      //     // confirmedTime: this.time,
-      //     confirmedValue: this.value
-      //   })
-      // }
     }
   }
   window.DatePickerPattern = Polymer.dedupingMixin(DatePickerPattern);

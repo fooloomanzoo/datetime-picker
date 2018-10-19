@@ -132,31 +132,6 @@
 
       static get properties() {
         return {
-
-          // /**
-          //  * The confirmed date. When `auto-confirm` is not set, the date will only change, when you confirm.
-          //  */
-          // confirmedDate: {
-          //   type: String,
-          //   notify: true
-          // },
-          //
-          // /**
-          //  * The confirmed time. When `auto-confirm` is not set, the time will only change, when you confirm.
-          //  */
-          // confirmedTime: {
-          //   type: String,
-          //   notify: true
-          // },
-
-          /**
-           * The confirmed datetime. When `auto-confirm` is not set, the datetime will only change, when you confirm.
-           */
-          confirmedDatetime: {
-            type: String,
-            notify: true
-          },
-
           /**
            * Set to `true` to hide the `now`-button
            */
@@ -168,16 +143,10 @@
 
       static get observers() {
         return [
-          '_confirmedDatetimeChanged(confirmedDatetime)',
           '_computeNativeValueAsNumber(native, valueAsNumber, offsetMinutes)',
           '_reflectNativeValueAsNumber(native, _nativeValueAsNumber, offsetMinutes)'
         ];
       }
-
-      // validate() {
-      //   this.value = this.confirmedValue;
-      //   return super.validate();
-      // }
 
       _computeAnd(a, b) {
         return a && b;
@@ -262,78 +231,22 @@
         }
       }
 
-      _confirmedDatetimeChanged(confirmedDatetime) {
-        if (confirmedDatetime === undefined) {
-          this._resetConfirmedValues();
-          return; // return, if resseting, so that the picker is not itself resetted
+      _valueChanged(value) {
+        super._valueChanged(value);
+        if (this._isSet(this.value) === false) {
+          this._reset(this.value);
+          return; // return, if reseting, so that the picker is not itself resetted
         }
-        this.datetime = confirmedDatetime;
-        // asnyc setting the computed the other confirmed values
-        this.setProperties({
-          confirmedValue: this.value,
-          // confirmedDate: this.date,
-          // confirmedTime: this.time
-        });
+        if (this.autoConfirm) {
+          this._setConfirmedValue();
+        }
       }
 
-      // _confirmedDateTimeChanged(confirmedDate, confirmedTime) {
-      //   if (confirmedDate === undefined && confirmedTime === undefined) {
-      //     this._resetConfirmedValues();
-      //     return; // return, if resseting, so that the picker is not itself resetted
-      //   }
-      //
-      //   this.setProperties({
-      //     date: confirmedDate,
-      //     time: confirmedTime
-      //   });
-      //   // asnyc setting the computed the other confirmed values
-      //   this.setProperties({
-      //     confirmedValue: this.value,
-      //     confirmedDatetime: this.datetime
-      //   });
-      // }
-
-      _confirmedValueChanged(confirmedValue) {
-        this.value = confirmedValue;
-        // asnyc setting the computed the other confirmed values
-        this.setProperties({
-          confirmedDatetime: this.datetime,
-          // confirmedDate: this.date,
-          // confirmedTime: this.time
-        });
-      }
-
-      _setConfirmedValue() {
-        this.setProperties({
-          confirmedDatetime: this.datetime,
-          // confirmedDate: this.date,
-          // confirmedTime: this.time,
-          confirmedValue: this.value
-        })
-      }
-
-      _resetDate() {
-        this._resetConfirmedValues();
-        super._resetDate();
-      }
-
-      _resetConfirmedValues() {
-        this.setProperties({
-          value: undefined,
-          confirmedDatetime: undefined,
-          // confirmedDate: undefined,
-          // confirmedTime: undefined,
-          confirmedValue: undefined
-        })
-      }
-
-      _resetValues() {
-        this.setProperties({
-          datetime: this.confirmedDatetime,
-          // date: this.confirmedDate,
-          // time: this.confirmedTime,
-          value: this.confirmedValue
-        })
+      _defaultValueChanged(def) {
+        super._defaultValueChanged(def);
+        if (this._isSet(this.value)) {
+          this._setConfirmedValue();
+        }
       }
     }
   }

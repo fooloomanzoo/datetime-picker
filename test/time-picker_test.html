@@ -1,275 +1,65 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>time-picker test</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+  <title>time-picker test</title>
 
-    <link rel="import" href="../time-picker.html">
-  </head>
-  <body>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
 
-    <test-fixture id="Basic">
-      <template>
-        <time-picker></time-picker>
-      </template>
-    </test-fixture>
+  <link rel="import" href="../time-picker.html">
+</head>
 
-    <test-fixture id="ChangingProperties">
-      <template>
-        <time-picker time="02:03:04.567" with-timezone clamp=""></time-picker>
-      </template>
-    </test-fixture>
+<body>
 
-    <test-fixture id="Clamp">
-      <template>
-        <div>
-          <time-picker id="clamp-hour" clamp="hour"></time-picker>
-          <time-picker id="clamp-minute" clamp="minute"></time-picker>
-          <time-picker id="clamp-second" clamp="second"></time-picker>
-          <time-picker id="clamp-millisecond" clamp="millisecond"></time-picker>
-          <time-picker id="clamp-none" clamp=""></time-picker>
-        </div>
-      </template>
-    </test-fixture>
+  <test-fixture id="Basic">
+    <template>
+      <time-picker></time-picker>
+    </template>
+  </test-fixture>
 
-    <script>
-      WCT.helpers.mixinSuite('time-picker');
+  <test-fixture id="ChangingProperties">
+    <template>
+      <time-picker time="01:02:03.456"></time-picker>
+    </template>
+  </test-fixture>
 
-      suite('basic', function() {
+  <script>
+    WCT.helpers.mixinSuite('time-picker');
 
-        let element;
+    suite('setting properties', () => {
+      let element;
 
-        setup(function() {
-          element = fixture('Basic');
-        });
-
-        test('instantiating the element with default properties should work', done => {
-          assert.isUndefined(element.date, 'no date is defined');
-          assert.isUndefined(element.time, 'no time is defined');
-          assert.isUndefined(element.datetime, 'no datetime is defined');
-          assert.isUndefined(element.value, 'no value is defined');
-          assert.isUndefined(element.valueAsNumber, 'no valueAsNumber is defined');
-          assert.isUndefined(element.valueAsDate, 'no valueAsDate is defined');
-          assert.isUndefined(element.year, 'no year is defined');
-          assert.isUndefined(element.month, 'no month is defined');
-          assert.isUndefined(element.day, 'no day is defined');
-          assert.isUndefined(element.hour, 'no hour is defined');
-          assert.isUndefined(element.hour12, 'no hour12 is defined');
-          assert.isUndefined(element.minute, 'no minute is defined');
-          assert.isUndefined(element.second, 'no second is defined');
-          assert.isUndefined(element.millisecond, 'no millisecond is defined');
-          assert.isUndefined(element.timezone, 'no timezone is defined');
-          assert.isUndefined(element.offsetMinutes, 'no timezone-offset is defined');
-          assert.isUndefined(element._timeZoneHours, 'no timezone-hours is defined');
-          assert.isUndefined(element._timeZoneMinutes, 'no timezone-minutes is defined');
-          assert.isDefined(element.locale, 'locale is defined');
-          assert.isDefined(element.decimalSeparator, 'decimalSeparator is defined');
-          assert.isDefined(element.dateSeparator, 'dateSeparator is defined');
-          assert.isDefined(element.timeSeparator, 'timeSeparator is defined');
-          assert.isDefined(element.amString, 'amString is defined');
-          assert.isDefined(element.pmString, 'pmString is defined');
-          assert.isDefined(element.dateOrder, 'dateOrder is defined');
-          assert.isDefined(element.propertyForValue, 'propertyForValue is defined');
-          done();
-        });
-
-        test('calling "now" on the element should work', done => {
-          assert.isDefined(element.now, '"now" exists');
-          element.now();
-          assert.isDefined(element.date, 'date is defined');
-          assert.isDefined(element.time, 'time is defined');
-          assert.isDefined(element.datetime, 'datetime is defined');
-          assert.isDefined(element.value, 'value is defined');
-          assert.isDefined(element.valueAsNumber, 'valueAsNumber is defined');
-          assert.isDefined(element.valueAsDate, 'valueAsDate is defined');
-          assert.isDefined(element.year, 'year is defined');
-          assert.isDefined(element.month, 'month is defined');
-          assert.isDefined(element.day, 'day is defined');
-          assert.isDefined(element.hour, 'hour is defined');
-          assert.isDefined(element.minute, 'minute is defined');
-          assert.isDefined(element.second, 'second is defined');
-          assert.isDefined(element.millisecond, 'millisecond is defined');
-          assert.isDefined(element.timezone, 'timezone is defined');
-          assert.isDefined(element.offsetMinutes, 'timezone-offset is defined');
-          assert.isDefined(element._timeZoneHours, 'timezone-hours is defined');
-          assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
-          done();
-        });
-
-        test('hour12 format', done => {
-          element.clamp = ''; // enshure that hours are always displayed
-          element.hour12Format = true;
-          setTimeout(() => {
-            // wait a tick to let dom-if stamping finish
-            let hourPicker = element.shadowRoot.querySelector('#hour');
-            let hour12Picker = element.shadowRoot.querySelector('#hour12');
-
-            assert.equal(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(hour12Picker).display, 'none', 'hour12 is not hidden');
-
-            element.hour12Format = false;
-            setTimeout(() => {
-              // wait a tick to let dom-if stamping finish
-              assert.notEqual(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is not hidden');
-              assert.equal(document.defaultView.getComputedStyle(hour12Picker).display, 'none', 'hour12 is hidden');
-              done();
-            }, 0);
-          }, 0);
-        });
+      setup(function() {
+        element = fixture('ChangingProperties');
       });
 
-      suite('setting properties', () => {
-        let element;
-
-        setup(function() {
-          element = fixture('ChangingProperties');
-        });
-
-        test('setting property should work', done => {
-          assert.isTrue(element.withTimezone, 'with timezone is set');
-          assert.equal(element.year, 1970, 'year should be set');
-          assert.equal(element.date, '1970-01-01', 'date should be set');
-          assert.equal(element.month, 1, 'month should be set');
-          assert.equal(element.day, 1, 'day should be set');
-          assert.equal(element.hour, 2, 'hour should be set');
-          assert.equal(element.minute, 3, 'minute should be set');
-          assert.equal(element.second, 4, 'second should be set');
-          assert.equal(element.millisecond, 567, 'millisecond should be set');
-          assert.equal(element.time, '02:03:04.567', 'date should be set');
-          assert.isDefined(element.valueAsNumber, 'valueAsNumber should be set');
-          assert.isDefined(element.valueAsDate, 'valueAsDate should be set');
-          assert.isDefined(element.timezone, 'timezone should be set');
-          assert.isDefined(element.offsetMinutes, 'offsetMinutes should be set');
-          if (element._timeOnly) {
-            assert.equal(element.timezone, '+00:00', 'timezone should be set to GMT');
-            assert.equal(element.offsetMinutes, 0, 'offsetMinutes should be set to 0');
-          }
-          done();
-        });
+      test('setting property should work', done => {
+        assert.isTrue(element._timeOnly, 'element is a _timeOnly element');
+        assert.equal(element.year, 1970, 'year should be set');
+        assert.equal(element.month, 1, 'month should be set');
+        assert.equal(element.day, 1, 'day should be set');
+        assert.equal(element.hour, 1, 'hour should be set');
+        assert.equal(element.minute, 2, 'minute should be set');
+        assert.equal(element.second, 3, 'second should be set');
+        assert.equal(element.millisecond, 456, 'millisecond should be set');
+        assert.equal(element.date, '1970-01-01', 'date should be set');
+        assert.equal(element.time, '01:02:03.456', 'time should be set');
+        assert.equal(element.valueAsNumber, 3723456, 'valueAsNumber should be set');
+        assert.equal(+element.valueAsDate, 3723456, 'valueAsDate should be set');
+        assert.equal(element.timezone, '+00:00', 'timezone should be set');
+        assert.equal(element.offsetMinutes, 0, 'offsetMinutes should be set');
+        assert.equal(element.datetime, '1970-01-01T01:02:03.456+00:00', 'datetime should be set');
+        assert.isUndefined(element.confirmedValue, 'no confirmed value is defined');
+        done();
       });
+    });
+  </script>
 
-      suite('clamp and hidden inputs', function() {
-        let f;
+</body>
 
-        setup(function() {
-          f = fixture('Clamp');
-        });
-
-        test('clamp hour', done => {
-          let element = f.querySelector('#clamp-hour');
-          setTimeout(() => {
-            // wait a tick to let dom-if stamping finish
-            let hourPicker = element.shadowRoot.querySelector('#hour');
-            let minutePicker = element.shadowRoot.querySelector('#minute');
-            let secondPicker = element.shadowRoot.querySelector('#second');
-            let millisecondPicker = element.shadowRoot.querySelector('#millisecond');
-            if (hourPicker) {
-              assert.equal(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is hidden');
-            }
-            if (minutePicker) {
-              assert.equal(document.defaultView.getComputedStyle(minutePicker).display, 'none', 'minute is hidden');
-            }
-            if (secondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(secondPicker).display, 'none', 'second is hidden');
-            }
-            if (millisecondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(millisecondPicker).display, 'none', 'millisecond is hidden');
-            }
-            done();
-          }, 0);
-        });
-
-        test('clamp minute', done => {
-          let element = f.querySelector('#clamp-minute');
-          setTimeout(() => {
-            // wait a tick to let dom-if stamping finish
-            let hourPicker = element.shadowRoot.querySelector('#hour');
-            let minutePicker = element.shadowRoot.querySelector('#minute');
-            let secondPicker = element.shadowRoot.querySelector('#second');
-            let millisecondPicker = element.shadowRoot.querySelector('#millisecond');
-
-            assert.notEqual(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is not hidden');
-
-            if (minutePicker) {
-              assert.equal(document.defaultView.getComputedStyle(minutePicker).display, 'none', 'minute is hidden');
-            }
-            if (secondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(secondPicker).display, 'none', 'second is hidden');
-            }
-            if (millisecondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(millisecondPicker).display, 'none', 'millisecond is hidden');
-            }
-            done();
-          }, 0);
-        });
-
-        test('clamp second', done => {
-          let element = f.querySelector('#clamp-second');
-          setTimeout(() => {
-            // wait a tick to let dom-if stamping finish
-            let hourPicker = element.shadowRoot.querySelector('#hour');
-            let minutePicker = element.shadowRoot.querySelector('#minute');
-            let secondPicker = element.shadowRoot.querySelector('#second');
-            let millisecondPicker = element.shadowRoot.querySelector('#millisecond');
-
-            assert.notEqual(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is not hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(minutePicker).display, 'none', 'minute is not hidden');
-
-            if (secondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(secondPicker).display, 'none', 'second is hidden');
-            }
-            if (millisecondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(millisecondPicker).display, 'none', 'millisecond is hidden');
-            }
-            done();
-          }, 0);
-        });
-
-        test('clamp millisecond', done => {
-          let element = f.querySelector('#clamp-millisecond');
-          setTimeout(() => {
-            // wait a tick to let dom-if stamping finish
-            let hourPicker = element.shadowRoot.querySelector('#hour');
-            let minutePicker = element.shadowRoot.querySelector('#minute');
-            let secondPicker = element.shadowRoot.querySelector('#second');
-            let millisecondPicker = element.shadowRoot.querySelector('#millisecond');
-
-            assert.notEqual(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is not hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(minutePicker).display, 'none', 'minute is not hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(secondPicker).display, 'none', 'second is not hidden');
-
-            if (millisecondPicker) {
-              assert.equal(document.defaultView.getComputedStyle(millisecondPicker).display, 'none', 'millisecond is hidden');
-            }
-            done();
-          }, 0);
-        });
-
-        test('no clamp', done => {
-          let element = f.querySelector('#clamp-none');
-          setTimeout(() => {
-            // wait a tick to let dom-if stamping finish
-            let hourPicker = element.shadowRoot.querySelector('#hour');
-            let minutePicker = element.shadowRoot.querySelector('#minute');
-            let secondPicker = element.shadowRoot.querySelector('#second');
-            let millisecondPicker = element.shadowRoot.querySelector('#millisecond');
-
-            assert.notEqual(document.defaultView.getComputedStyle(hourPicker).display, 'none', 'hour is not hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(minutePicker).display, 'none', 'minute is not hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(secondPicker).display, 'none', 'second is not hidden');
-            assert.notEqual(document.defaultView.getComputedStyle(millisecondPicker).display, 'none', 'millisecond is not hidden');
-
-            done();
-          }, 0);
-        });
-      });
-    </script>
-
-  </body>
 </html>

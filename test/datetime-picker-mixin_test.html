@@ -26,6 +26,12 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="propertyForValue">
+      <template>
+        <basic-datetime-picker property-for-value="valueAsDate"></basic-datetime-picker>
+      </template>
+    </test-fixture>
+
 
     <script>
       WCT.helpers.mixinSuite('basic-datetime-picker');
@@ -107,7 +113,7 @@
           done();
         });
 
-        test('settting an invalid date is invalid', done => {
+        test('setting an invalid date is invalid', done => {
           element.setAttribute('datetime', 'abc');
           assert.isUndefined(element.value, 'no value is defined');
           assert.isTrue(element.invalid, 'state is invalid');
@@ -123,14 +129,13 @@
       });
 
       suite('property for value', function() {
-
         let element;
 
         setup(function() {
-          element = fixture('valueAsDate for value-property');
+          element = fixture('propertyForValue');
         });
 
-        test('valueAsDate should serialize and deserialize"', done => {
+        test('serialize valueAsDate', done => {
           let d = new Date();
           // transforming date according to its clamp attribute
           d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
@@ -139,11 +144,30 @@
           // NOTE: milliseconds are often not serialized by browsers
           d.setMilliseconds(0);
           element.setAttribute('value', d);
+          assert.equal(element.propertyForValue, 'valueAsDate', 'propertyForValue is set');
           assert.equal(+new Date(element.value), +d, 'value does not change');
           assert.equal(+element.valueAsNumber, +d, 'valueAsNumber is set');
           assert.equal(+element.valueAsDate, +d, 'valueAsDate is set');
           assert.isTrue(element.value instanceof Date, 'value is a date-object');
           done();
+        });
+      });
+
+      suite('confirming', () => {
+        let element;
+
+        setup(function() {
+          element = fixture('Basic');
+        });
+
+        test('by calling confirm-fn', done => {
+          element.now();
+          element.confirm();
+          setTimeout(function() {
+            assert.isDefined(element.value, 'value is defined');
+            assert.isDefined(element.confirmedValue, 'confirmed value is defined');
+            done();
+          }, 0);
         });
       });
     </script>

@@ -1,6 +1,6 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker)
 [![API](https://img.shields.io/badge/API-available-green.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/elements/datetime-picker)
-[![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/demo/demo/datetime-picker.html) 
+[![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/demo/demo/datetime-picker.html)
 [![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/fooloomanzoodatetime-picker)
 
 
@@ -53,9 +53,9 @@ You can use other pickers and elements, too. In this collection are for:
 
 Every Element has the same API, so that it would use the given date-properties or for the pickers the native or the polyfill picker. Please see the [docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/component-page.html#/mixins/DatetimeMixin) for the given attributes.
 
-The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-value`-, `confirmed-datetime`-, `confirmed-date`- and `confirmed-time`-attribute will be set if they are confirmed. `confirmed-datetime`, `confirmed-date` and `confirmed-time` are the equivalent values of the native inputs. Be aware of **timezone**-attribute, when you sync datetime, because the Datetime-Object in the browser will use the local time-zone. The consistent value will always be the `value`-attribute for every client.
+The **picker**-elements can use the **auto-confirm**-attribute, so that all values will be automatically confirmed when the polyfilled inputs are used. Else the attributes will update like the picker is used but will reset to the old attributes when being canceled and `confirmed-value`-attribute will be set if they are confirmed. `datetime`, `date` and `time` are the equivalent values of the native inputs. Be aware of **timezone**-attribute, when you sync datetime, because the Datetime-Object in the browser will use the local timezone.
 
-If you are looking just for an input for date and time, please have a look at [datetime-input](https://github.com/fooloomanzoo/datetime-input).
+If you are looking just for an input for date and/or time, please have a look at [datetime-input](https://github.com/fooloomanzoo/datetime-input).
 
 ### Motivation
 
@@ -316,6 +316,11 @@ bower update -f
     + simular for all mixins: by default are `--input-style`, `--input-focus`, `--input-placeholder`, `--input-invalid` etc. from now on empty and their most important values are separately split up in own values which are applied before the mixins. This might not be the final solution, while the behaviours of `shadycss` and `webcomponents` are still changing.
   - changed internationalization implementation
   - `default` can also be a `time`-value
+
+* 2.9.2
+  - the only confirmed-property is `confirmed-value` (but it is possible by changing `propertyForValue` to define the kind of property that is used for `value` and `confirmedValue`)
+  - new buildup for the calendar, new property `currentActiveDayNode`, using dataset-attributes for the calendar-cells
+  - performance improvements and test-suites for every element and their dependencies
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!

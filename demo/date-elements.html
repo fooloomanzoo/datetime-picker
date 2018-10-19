@@ -60,6 +60,23 @@
     </div>
 
     <div class="vertical-section-container centered">
+      <h3>Presetting date</h3>
+      <demo-snippet>
+        <template>
+          <dom-bind>
+            <template is="dom-bind">
+              <date-picker confirmed-value="{{confirmedValue}}" value="{{value}}" date="2099-02-14"></date-picker>
+              <div class="vertical-section-container result">
+                <div><code>value</code>: <b>[[value]]</b></div>
+                <div><code>confirmed value</code>: <b>[[confirmedValue]]</b></div>
+              </div>
+            </template>
+          </dom-bind>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
       <h3>Autoconfirming Input</h3>
       <h4>to confirm the values for date, time, datetime and value</h4>
       <demo-snippet>
@@ -70,22 +87,6 @@
               <div class="vertical-section-container result">
                 <div><code>current date</code>: <b>[[date]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
-              </div>
-            </template>
-          </dom-bind>
-        </template>
-      </demo-snippet>
-    </div>
-
-    <div class="vertical-section-container centered">
-      <h3>Presetting date</h3>
-      <demo-snippet>
-        <template>
-          <dom-bind>
-            <template is="dom-bind">
-              <date-picker confirmed-value="{{confirmedValue}}" default="2005-02-01"></date-picker>
-              <div class="vertical-section-container result">
-                <div><code>confirmed value</code>: <b>[[confirmedValue]]</b></div>
               </div>
             </template>
           </dom-bind>
