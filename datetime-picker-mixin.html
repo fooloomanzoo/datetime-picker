@@ -10,9 +10,6 @@
   /**
    * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
    *
-   * @appliesMixin DatetimeInputMixin
-   * @appliesMixin InputPickerPattern
-   *
    * @mixinFunction
    * @polymer
    *
@@ -33,10 +30,6 @@
             ${this.timezoneInputTemplate}
           </template>
         `;
-      }
-
-      mixinApplied() {
-        return 'DatetimePickerMixin ' + (super.mixinApplied && super.mixinApplied())
       }
 
       static get styleTemplate() {
@@ -238,22 +231,9 @@
       setDate(d) {
         super.setDate(d);
         if (this.autoConfirm || (this._hasNative && this.native)) {
-          // setTimeout(() => {
-            this._setConfirmedValue();
-          // })
+          this._setConfirmedValue();
         }
       }
-
-      // _valueChanged(value) {
-      //   super._valueChanged(value);
-      //   // if (this._isSet(this.value) === false) {
-      //   //   this._reset();
-      //   //   return; // return, if reseting, so that the picker is not itself resetted
-      //   // }
-      //   if (this.autoConfirm) {
-      //     this._setConfirmedValue();
-      //   }
-      // }
 
       _defaultValueChanged(def) {
         super._defaultValueChanged(def);
@@ -265,7 +245,7 @@
       /**
        * reset confirmedValue and value
        */
-      _reset() {
+      reset() {
         this.resetDate();
         console.log(this.mixinApplied(), this.propertyForValue);
         this._setConfirmedValue();

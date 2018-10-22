@@ -15,9 +15,6 @@
    * @mixinFunction
    * @polymer
    *
-   * @appliesMixin SwitchMixin
-   * @appliesMixin DatetimeFormMixin
-   *
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
@@ -213,11 +210,15 @@
        * @customElement
        * @polymer
        *
-       * @appliesMixin TimeElementPattern
+       *  @appliesMixin TimeElementPattern
+       *  @appliesMixin SwitchMixin
+       *  @appliesMixin DatetimeFormMixin
+       *  @appliesMixin FormElementMixin
+       *  @appliesMixin DatetimeMixin
        *
        * @demo demo/time-elements.html time elements
        **/
-    class TimeElement extends TimeElementPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(Polymer.Element))))))))) { // eslint-disable-line no-undef
+    class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(FormElementMixin(DatetimeMixin(Polymer.Element))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';

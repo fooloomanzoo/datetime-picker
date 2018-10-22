@@ -8,10 +8,6 @@
   /**
    * Mixin for date-picker
    *
-   * @appliesMixin DateInputPattern
-   * @appliesMixin CalendarElementPattern
-   * @appliesMixin DatetimePickerMixin
-   *
    * @mixinFunction
    * @polymer
    *
@@ -43,10 +39,6 @@
             border-color: var(--inner-input-focus-background);
           }
         `;
-      }
-
-      mixinApplied() {
-        return 'DatePickerPattern ' + (super.mixinApplied && super.mixinApplied())
       }
 
       renderCalendar(year, month, day) {
@@ -116,6 +108,14 @@
    *  @customElement
    *
    *  @appliesMixin DatePickerPattern
+   *  @appliesMixin DatetimePickerMixin
+   *  @appliesMixin DatetimeInputMixin
+   *  @appliesMixin DateInputPattern
+   *  @appliesMixin CalendarElementPattern
+   *  @appliesMixin SwitchMixin
+   *  @appliesMixin InputPickerPattern
+   *  @appliesMixin DatetimeFormMixin
+   *  @appliesMixin DatetimeMixin
    *
    *  @demo demo/index.html
    *  @demo demo/date-elements.html date elements
