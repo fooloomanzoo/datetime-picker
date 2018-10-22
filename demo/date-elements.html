@@ -10,6 +10,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
+    <link rel="import" href="../../datetime-input/datetime-input.html">
     <link rel="import" href="../date-picker.html">
     <link rel="import" href="../../input-picker-pattern/overlay-element.html">
     <custom-style>
@@ -65,7 +66,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker confirmed-value="{{confirmedValue}}" value="{{value}}" date="2099-02-14"></date-picker>
+              <date-picker confirmed-value="{{confirmedValue}}" value="{{value}}" default="2099-02-14" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>value</code>: <b>[[value]]</b></div>
                 <div><code>confirmed value</code>: <b>[[confirmedValue]]</b></div>
@@ -83,7 +84,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker auto-confirm date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
+              <date-picker max="123" auto-confirm value="{{date}}" confirmed-value="{{confirmedDate}}" property-for-value="date" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>current date</code>: <b>[[date]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
@@ -111,6 +112,7 @@
                     --input-focus-color: #fff;
                     --inner-input-focus-background: #9bf1e1;
                     --inner-input-focus-color: #444;
+                    --dropdown-background: #9bf1e1;
                   }
                   date-picker.end {
                     --input-color: #fff;
@@ -121,12 +123,13 @@
                     --input-focus-background: #7551ee;
                     --inner-input-focus-background: #b7a4f4;
                     --inner-input-focus-color: #fff;
+                    --dropdown-background: #b7a4f4;
                   }
                 </style>
               </custom-style>
               <div class="vertical-section-container">
                 <date-picker class="begin" year="2010" month="6" day="11" date="{{min}}" max="{{max}}" vertical-align="bottom"></date-picker>
-                <date-picker class="end" year="2030" month="6" day="21" date="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
+                <date-picker class="end" year="2010" month="6" day="21" date="{{max}}" min="{{min}}" vertical-align="top"></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>start</code>: <b>[[min]]</b></div>
@@ -171,13 +174,13 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <date-picker id="eventPicker" opened="{{opened}}" date="{{date}}" current-selected-day-node="{{currentSelectedDayNode}}" vertical-align="bottom"></date-picker>
-                <template is="dom-if" if="[[currentSelectedDayNode]]">
-                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentSelectedDayNode)]]" on-mousedown="close" no-overlap fit-into="[[currentSelectedDayNode]]" no-cancel-on-outside-click dynamic-align vertical-align="auto" horizontal-align="auto">
+                <date-picker id="eventPicker" opened="{{opened}}" date="{{date}}" current-active-day-node="{{currentActiveDayNode}}" vertical-align="bottom"></date-picker>
+                <template is="dom-if" if="[[currentActiveDayNode]]">
+                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentActiveDayNode)]]" on-mousedown="close" no-overlap fit-into="[[currentActiveDayNode]]" no-cancel-on-outside-click dynamic-align vertical-align="auto" horizontal-align="auto">
                     <div class="info">
-                      <div><b>[[_toLocaleDateString(currentSelectedDayNode.dataset.date)]]</b></div>
+                      <div><b>[[_toLocaleDateString(currentActiveDayNode.dataset.year, currentActiveDayNode.dataset.month, currentActiveDayNode.dataset.day)]]</b></div>
                       <ul>
-                        <template is="dom-repeat" items="[[_generateEventList(currentSelectedDayNode.dataset.date)]]">
+                        <template is="dom-repeat" items="[[_generateEventList(currentActiveDayNode)]]">
                           <li><b>[[item.time]]:  </b>[[item.detail]]</li>
                         </template>
                       </ul>
@@ -189,8 +192,8 @@
           </dom-bind>
           <script>
             const bind = document.querySelector('#eventPickerDemo');
-            bind._toLocaleDateString = function(datestr) {
-              return new Date(datestr).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            bind._toLocaleDateString = function(year, month, day) {
+              return new Date(year, month - 1, day).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             }
             bind._generateEventList = function() {
               const list = [];

@@ -1,12 +1,9 @@
 <link rel="import" href="../../../polymer/polymer.html">
 <link rel="import" href="../../datetime-picker-mixin.html">
-<link rel="import" href="../../../property-mixins/datetime-mixin.html">
-<link rel="import" href="../../../property-mixins/intl-datetime-format-mixin.html">
-<link rel="import" href="../../../input-picker-pattern/form-element-mixin.html">
 
 <dom-module id="basic-datetime-picker">
   <script>
-    class BasicDatetimePicker extends DatetimePickerMixin(FormElementMixin(DatetimeMixin(IntlDatetimeFormatMixin(Polymer.Element)))) { // eslint-disable-line no-undef
+    class BasicDatetimePicker extends DatetimePickerMixin(Polymer.Element) { // eslint-disable-line no-undef
       static get is() {
         return 'basic-datetime-picker';
       }

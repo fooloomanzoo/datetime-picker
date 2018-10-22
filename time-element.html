@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymer/lib/utils/mixin.html">
 <link rel="import" href="../datetime-input/datetime-input-mixin.html">
+<link rel="import" href="../input-picker-pattern/form-element-mixin.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 <link rel="import" href="../input-picker-pattern/switch-mixin.html">
@@ -20,13 +21,9 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const TimeElementPattern = superClass => { // eslint-disable-line no-unused-vars
+  const TimeElementPattern = function(superClass) { // eslint-disable-line no-unused-vars
 
-    return class extends SwitchMixin(DatetimeFormMixin(superClass)) { // eslint-disable-line no-unused-vars, no-undef
-
-      static get styleToInclude() {
-        return `input-picker-shared-style input-shared-style`;
-      }
+    return class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
       /**
        * custom style content
@@ -44,8 +41,6 @@
             border-radius: var(--input-picker-border-radius);
             padding: var(--input-picker-padding);
             @apply --input-picker;
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
             display: inline-flex;
             flex-flow: row nowrap;
             align-items: center;
@@ -67,10 +62,8 @@
             justify-content: space-between;
           }
           #timer .field > integer-input {
-            --input-color: currentColor;
-            --input-background: transparent;
-            --input-border-color: transparent;
-            --input-focus-border-color: transparent;
+            --input-color: var(--inner-input-color, var(--input-picker-color));
+            align-self: stretch;
           }
           #timer .field > .switch {
             padding-top: var(--computed-reduced-icon-padding);
@@ -91,9 +84,6 @@
             padding: 0.1em;
             border-color: transparent;
           }
-          #timer .field > integer-input {
-            --input-color: var(--inner-input-color, var(--input-picker-color));
-          }
         `;
       }
 
@@ -102,33 +92,36 @@
           <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
             <div class="field">
               <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
-              <integer-input id="hour" hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+              <integer-input hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
               <template is="dom-if" if="[[hour12Format]]">
                 <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
               </template>
               <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
             </div>
-            <span hidden$="[[_computeMultipleClamp(clamp, 'hour', 'minute')]]">[[timeSeparator]]</span>
+            <span hidden$="[[_ifClamped(clamp, 'minute')]]">[[timeSeparator]]</span>
             <div class="field" hidden$="[[_ifClamped(clamp, 'minute')]]">
               <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
               <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
               <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
             </div>
-            <span hidden$="[[_computeMultipleClamp(clamp, 'second', 'minute')]]">[[timeSeparator]]</span>
+            <span hidden$="[[_ifClamped(clamp, 'minute')]]">[[timeSeparator]]</span>
             <div class="field" hidden$="[[_ifClamped(clamp, 'second')]]">
               <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
               <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
               <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
             </div>
-            <template is="dom-if" if="[[_ifClamped(clamp, 'second')]]">
-              <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">0</span>
-            </template>
             <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">[[decimalSeparator]]</span>
             <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond')]]">
               <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
               <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
               <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
             </div>
+            <template is="dom-if" if="[[hour12Format]]">
+              <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
+                <div hidden$="[[!isAm]]">[[amString]]</div>
+                <div hidden$="[[isAm]]">[[pmString]]</div>
+              </button>
+            </template>
             <template is="dom-if" if="[[withTimezone]]">
               <div class="timezone">
                 <div class="field">
@@ -144,12 +137,6 @@
                 </div>
               </div>
             </template>
-            <template is="dom-if" if="[[hour12Format]]">
-              <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
-                <div hidden$="[[!isAm]]">[[amString]]</div>
-                <div hidden$="[[isAm]]">[[pmString]]</div>
-              </button>
-            </template>
           </div>
         `
       }
@@ -162,6 +149,16 @@
           withTimezone: {
             type: Boolean,
             value: false
+          },
+
+          /**
+           * Clamp timetime to a property
+           * possible values: 'month', 'day', 'hour', 'minute', 'second', 'millisecond' or ''
+           */
+          clamp: {
+            type: String,
+            value: '',
+            notify: true
           },
 
           /**
@@ -181,17 +178,13 @@
         ]
       }
 
-      _computeMultipleClamp(clamp, prop1, prop2) {
-        return this._ifClamped(clamp, prop1, this._ifClamped(clamp, prop2));
-      }
-
       _switchAm() {
         // e && e.stopPropagation();
         this.isAm = !this.isAm;
       }
     }
   }
-  window.TimeElementPattern = TimeElementPattern;
+  window.TimeElementPattern = Polymer.dedupingMixin(TimeElementPattern);
 </script>
 
 <dom-module id="time-element">
@@ -224,7 +217,7 @@
        *
        * @demo demo/time-elements.html time elements
        **/
-    class TimeElement extends TimeElementPattern(Polymer.Element) { // eslint-disable-line no-undef
+    class TimeElement extends TimeElementPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(Polymer.Element))))))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'time-element';
@@ -232,7 +225,7 @@
 
       static get template() {
         return `
-          <style include="${this.styleToInclude || ''}">
+          <style include="input-shared-style input-picker-shared-style">
             ${this.styleTemplate}
           </style>
           ${this.timeTemplate}

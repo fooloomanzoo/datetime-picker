@@ -18,8 +18,8 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatePickerPattern = superClass => { // eslint-disable-line no-unused-vars
-    return class extends DatetimePickerMixin(DateInputPattern(CalendarElementPattern(superClass))) { // eslint-disable-line no-unused-vars, no-undef
+  const DatePickerPattern = function(superClass) { // eslint-disable-line no-unused-vars
+    return class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
       static get expectedNativeInputType() {
         return 'date';
@@ -36,36 +36,51 @@
         `;
       }
 
-      static get properties() {
-        return {
-          /**
-           * if true perspective starts at 0 (1970-01-01)
-           */
-          _timeOnly: {
-            type: Boolean,
-            value: false
+      static get styleTemplate() {
+        return `
+          ${super.styleTemplate || ''}
+          :host(:not([opened])) #calendar #days > *:hover:before {
+            border-color: var(--inner-input-focus-background);
           }
-        }
+        `;
+      }
+
+      mixinApplied() {
+        return 'DatePickerPattern ' + (super.mixinApplied && super.mixinApplied())
       }
 
       renderCalendar(year, month, day) {
+        if (!this.opened || (this._hasNative && this.native)) {
+          return;
+        }
+        super.renderCalendar(year, month, day);
+      }
+
+      _openedChanged(opened) {
         if (this._hasNative && this.native) {
           return;
         }
-        super.renderCalendar(year, month, day, this.confirmedDate);
-      }
-
-      open() {
-        const wasClosedBefore = !this.opened;
-        super.open && super.open();
-        if (wasClosedBefore) {
-          this.renderCalendar(this.year, this.month, this.day);
+        super._openedChanged && super._openedChanged(opened);
+        // render the calendar always when non-native, so that it is also rendered while it is closing
+        super.renderCalendar(this.year, this.month, this.day, this.confirmedDate);
+        if (opened) {
+          // focus the daySelector when it is opened
           if (!(this._partsDisabled && this._partsDisabled.days)) {
             setTimeout(() => {
               this.$.daySelector && this.$.daySelector.focus();
             }, 0);
           }
+        } else {
+          // remove current day nodes, when picker closes
+          this._setCurrentHoveredDayNode(null);
+          this._setCurrentActiveDayNode(null);
+          this._setCurrentSelectedDayNode(null);
         }
+      }
+
+      _confirmedValueChanged(confirmedValue) {
+        super._confirmedValueChanged(confirmedValue);
+        this.__lastSelectedDay = [this.year, this.month - 1, this.day];
       }
     }
   }
@@ -107,7 +122,7 @@
    *  @demo demo/form.html in a form
    *  @demo demo/music-album.html music album demo
    **/
-    class DatePicker extends DatePickerPattern(Polymer.Element) { // eslint-disable-line no-undef
+    class DatePicker extends DatePickerPattern(DatetimePickerMixin(CalendarElementPattern(SwitchMixin(DateInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(Polymer.Element))))))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'date-picker';
@@ -118,9 +133,8 @@
       }
 
       static get styleToInclude() {
-        return `${super.styleToInclude || ''} dropdown-style`;
+        return `${super.styleToInclude || ''}dropdown-style`;
       }
-
     }
     window.customElements.define(DatePicker.is, DatePicker);
   </script>

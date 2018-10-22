@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymer/lib/utils/mixin.html">
 <link rel="import" href="../datetime-input/datetime-input-mixin.html">
+<link rel="import" href="../input-picker-pattern/form-element-mixin.html">
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/input-picker-shared-style.html">
 <link rel="import" href="../input-picker-pattern/switch-mixin.html">
@@ -19,22 +20,17 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const CalendarElementPattern = superClass => { // eslint-disable-line no-unused-vars
+  const CalendarElementPattern = function(superClass) { // eslint-disable-line no-unused-vars
 
-    return class extends SwitchMixin(DatetimeFormMixin(superClass)) { // eslint-disable-line no-unused-vars, no-undef
+    return class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
       constructor() {
         super();
-
         /**
          * simplified Regular Expression for parsing days
          */
         this._regexpDate = /(-?\d+)-(\d\d)-(\d\d)/;
         this.renderCalendar = this.renderCalendar.bind(this);
-      }
-
-      static get styleToInclude() {
-        return `input-picker-shared-style input-shared-style`;
       }
 
       /**
@@ -50,8 +46,6 @@
             border-radius: var(--input-picker-border-radius);
             padding: var(--input-picker-padding);
             @apply --input-picker;
-            display: -ms-inline-flexbox;
-            display: -webkit-inline-flex;
             display: inline-flex;
             flex-flow: column nowrap;
             @apply --calendar-element;
@@ -80,6 +74,7 @@
             --input-border-style: solid;
             --input-focus-border-style: solid;
             --input-padding: var(--inner-input-padding, 0.5em);
+            align-self: stretch;
           }
           #calendar #daySelector {
             position: relative;
@@ -152,8 +147,7 @@
             will-change: background-color;
             background-color: var(--calendar-cell-hovered-background, transparent);
           }
-          #calendar:hover #daySelector:not([disabled]) .selected,
-          #calendar #daySelector:not([disabled]):focus .selected {
+          #calendar #daySelector:not([disabled]) .selected {
             background-color: var(--inner-input-focus-background);
             color: var(--inner-input-focus-color);
           }
@@ -247,13 +241,12 @@
       static get properties() {
         return {
           /**
-           * Clamp datetime to a property
-           * possible values: 'month', 'day', 'hour'
+           * Defines the first day of the week to use. Defaults to `1` (`monday`)
+           * e.g. when `firstDayOfWeek` is `0` the first day of the week would be `sunday`
            */
-          clamp: {
-            type: String,
-            value: 'hour',
-            notify: true
+          firstDayOfWeek: {
+            type: Number,
+            value: 1
           },
 
           /**
@@ -273,7 +266,8 @@
           currentActiveDayNode: {
             type: Node,
             readOnly: true,
-            notify: true
+            notify: true,
+            observer: '_currentActiveDayNodeChanged'
           },
 
           /**
@@ -283,6 +277,17 @@
           currentSelectedDayNode: {
             type: Node,
             readOnly: true,
+            notify: true,
+            observer: '_currentSelectedDayNodeChanged'
+          },
+
+          /**
+           * Clamp datetime to a property
+           * possible values: 'month', 'day', 'hour'
+           */
+          clamp: {
+            type: String,
+            value: 'hour',
             notify: true
           },
 
@@ -292,15 +297,6 @@
           _timeOnly: {
             type: Boolean,
             value: false
-          },
-
-          /**
-           * Defines the first day of the week to use. Defaults to `1` (`monday`)
-           * e.g. when `firstDayOfWeek` is `0` the first day of the week would be `sunday`
-           */
-          firstDayOfWeek: {
-            type: Number,
-            value: 1
           }
         }
       }
@@ -315,7 +311,7 @@
 
       connectedCallback() {
         super.connectedCallback();
-        this.renderCalendar(this.year, this.month, this.day, this.date);
+        this.renderCalendar(this.year, this.month, this.day);
       }
 
       _onMouseMoveDay(e) {
@@ -335,24 +331,18 @@
 
       _onClickDay(e) {
         this._onMouseMoveDay(e);
-        if (this.currentHoveredDayNode && this.currentHoveredDayNode.dataset.day) {
+        if (this.currentHoveredDayNode) {
           if (this.currentActiveDayNode) {
             if (this._dayDblClicked === true) {
+              this._setCurrentSelectedDayNode(this.currentActiveDayNode);
               // emulating double-click behaviour for click event (tab event will appear as double click)
               this._dayDblClicked = false;
-              this.confirm();
+              // confirm, when dblclick
+              this.confirm && this.confirm();
               return;
             }
-            this.currentActiveDayNode.classList.remove('active');
           }
           this._setCurrentActiveDayNode(this.currentHoveredDayNode);
-          this.currentActiveDayNode.classList.add('active');
-          // if clicked outside the current month rerender the calender, delayed so that a dbl-click is still catchable, but faster than an usual dblclick dwell delay
-          setTimeout(() => {
-            if (this.currentActiveDayNode.classList.contains('notinmonth')) {
-              this.renderCalendar(+this.currentActiveDayNode.dataset.year, +this.currentActiveDayNode.dataset.month, +this.currentActiveDayNode.dataset.day);
-            }
-          }, 250);
           // setting up dblclick behaviour
           this._dayDblClicked = true;
           setTimeout(() => {
@@ -361,15 +351,20 @@
         }
       }
 
-      confirm(e) {
-        if (this.currentActiveDayNode) {
-          this.setProperties({
-            year: +this.currentActiveDayNode.dataset.year,
-            month: +this.currentActiveDayNode.dataset.month,
-            day: +this.currentActiveDayNode.dataset.day
-          })
+      _currentActiveDayNodeChanged(node, oldNode) {
+        oldNode && oldNode.classList.remove('active');
+        if (node) {
+          node.classList.add('active');
+          this._computeDatetime(+node.dataset.year, +node.dataset.month, +node.dataset.day, this.hour, this.minute, this.second, this.millisecond);
         }
-        super.confirm && super.confirm(e);
+      }
+
+      _currentSelectedDayNodeChanged(node, oldNode) {
+        oldNode && oldNode.classList.remove('selected');
+        if (node) {
+          node.classList.add('selected');
+          this.__lastSelectedDay = [+node.dataset.year, +node.dataset.month - 1, +node.dataset.day];
+        }
       }
 
       _computeIncremPropTop(hideMonth) {
@@ -414,23 +409,24 @@
        * @param {number} day The day of the date of the current daySelector.
        * @param {number} date The current selected date.
        */
-      renderCalendar(year, month, day, date) { // eslint-disable-line
-        const currentDate = this._clampDay(new Date()),
-          activeDate = !(year === undefined || month === undefined || day === undefined) ? new Date(year, +month - 1, day) : undefined;
-        if (activeDate) {
+      renderCalendar(year, month, day) { // eslint-disable-line
+        const currentDate = this._clampDay(this._checkThreshold(new Date()));
+        let activeDate = !(year === undefined || month === undefined || day === undefined) ? new Date(year, +month - 1, day) : undefined;
+        if (!isNaN(activeDate)) {
           // setting full year each time manually to avoid wrong dates for two digit years
           activeDate.setFullYear(year);
+          activeDate = this._clampDay(this._checkThreshold(activeDate));
+          // resetting visible year and month to match a possible threshold
+          year = activeDate.getFullYear();
+          month = activeDate.getMonth() + 1;
+        } else {
+          year = currentDate.getFullYear();
+          month = currentDate.getMonth() + 1;
         }
-        let d;
-        if (date || this.date) {
-          const match = this._regexpDate.exec(date || this.date);
-          if (match) {
-            d = new Date(+match[1], +match[2] - 1, +match[3]);
-            d.setFullYear(+match[1]);
-          }
+        let selectedDate = this.__lastSelectedDay ? this._fromDatetime(this.__lastSelectedDay) : undefined;
+        if (!isNaN(selectedDate)) {
+          selectedDate = this._clampDay(this._checkThreshold(selectedDate));
         }
-        year = isNaN(year) ? (isNaN(activeDate) ? currentDate : activeDate).getFullYear() : +year;
-        month = isNaN(month) ? (isNaN(activeDate) ? currentDate : activeDate).getMonth() + 1: +month;
         const lastDateOfPreviousMonth = new Date(year, month - 1, 0);
         lastDateOfPreviousMonth.setFullYear(month <= 1 ? year - 1 : year);
 
@@ -440,7 +436,7 @@
 
         const currentDayIndex = this._dayDiff(currentDate, lastDateOfPreviousMonth) + firstVisibleDayIndex,
           activeDayIndex = isNaN(activeDate) ? undefined : (this._dayDiff(activeDate, lastDateOfPreviousMonth) + firstVisibleDayIndex),
-          selectedDayIndex = isNaN(d) ? undefined : (this._dayDiff(d, lastDateOfPreviousMonth) + firstVisibleDayIndex);
+          selectedDayIndex = isNaN(selectedDate) ? undefined : (this._dayDiff(selectedDate, lastDateOfPreviousMonth) + firstVisibleDayIndex);
 
         let min, max;
         if (this._minValue) {
@@ -505,24 +501,16 @@
           this.$.days.children[currentDayIndex].classList.add('current');
         }
 
-        // Selected Day is in view
-        if (this.currentSelectedDayNode) {
-          this.currentSelectedDayNode.classList.remove('selected');
-        }
+        // // Selected Day is in view
         if (!isNaN(selectedDayIndex) && this.$.days.children[selectedDayIndex]) {
           this._setCurrentSelectedDayNode(this.$.days.children[selectedDayIndex]);
-          this.currentSelectedDayNode.classList.add('selected');
         } else {
           this._setCurrentSelectedDayNode(null);
         }
 
         // Active Day is in view
-        if (this.currentActiveDayNode) {
-          this.currentActiveDayNode.classList.remove('active');
-        }
         if (!isNaN(activeDayIndex) && this.$.days.children[activeDayIndex]) {
           this._setCurrentActiveDayNode(this.$.days.children[activeDayIndex]);
-          this.currentActiveDayNode.classList.add('active');
         }
 
         // Min Day is in view
@@ -567,64 +555,89 @@
        */
       _checkKeycodeForDates(e) {
         if (e && e.keyCode) {
-          if (e.keyCode === 13 || e.keyCode ===32) {
-            // enter or space is presssed
-            this.confirm();
-            e.stopPropagation();
-            return;
-          }
-          if (e.keyCode >= 37 && e.keyCode <= 40) {
-            // arrow keys
-            const node = (this.currentActiveDayNode || this.currentHoverededDayNode || this.currentactiveDayNode);
-            let year = +node.dataset.year;
-            let month = +node.dataset.month;
-            let day = +node.dataset.day;
-            switch (e.keyCode) {
-              case 37: // left
-                day--;
-                if (day < 1) {
+          switch (e.keyCode) {
+            case 13: // enter // falls through
+            case 32: // space
+              // set current selected node to current active node
+              if (this.currentActiveDayNode) {
+                this._setCurrentSelectedDayNode(this.currentActiveDayNode);
+              }
+              e.stopPropagation();
+              return;
+            case 27: // esc
+              // reset current active node to selected node
+              if (this.__lastSelectedDay) {
+                this._computeDatetime(this.__lastSelectedDay[0], this.__lastSelectedDay[1] + 1, this.__lastSelectedDay[2], this.hour, this.minute, this.second, this.millisecond);
+              }
+              return;
+            case 37: // falls through
+            case 38: // falls through
+            case 39: // falls through
+            case 40:
+              // arrow keys
+              const node = (this.currentActiveDayNode || this.currentSelectedDayNode || this.currentHoveredDayNode);
+              let year, month, day;
+              if (node) {
+                year = +node.dataset.year;
+                month = +node.dataset.month;
+                day = +node.dataset.day;
+              } else {
+                year = +this.$.yearSelector.input;
+                month = +this.$.monthSelector.selectedIndex + 1;
+                day = new Date().getDate();
+              }
+              switch (e.keyCode) {
+                case 37: // left
+                  // unshift day
+                  day = day - this._partsStep.day;
+                  while (day < 1) {
+                    month--;
+                    if (month < 1) {
+                      month = 12;
+                      year--;
+                    }
+                    day = this._computeMaxDayOfMonth(year, month) - day;
+                  }
+                  break;
+                case 39: // right
+                  // shift day
+                  day = day + this._partsStep.day;
+                  let maxDay;
+                  while (day > (maxDay = this._computeMaxDayOfMonth(year, month))) {
+                    month++;
+                    if (month > 12) {
+                      month = 1;
+                      year++;
+                    }
+                    day = day - maxDay;
+                  }
+                  break;
+                case 38: // up
+                  // unshift month
                   month--;
                   if (month < 1) {
                     month = 12;
                     year--;
                   }
-                  day = this._computeMaxDayOfMonth(year, month);
-                }
-                break;
-              case 39: // right
-                day++;
-                if (day > this._computeMaxDayOfMonth(year, month)) {
+                  day = Math.min(day, this._computeMaxDayOfMonth(year, month));
+                  break;
+                case 40: // down
+                  // shift month
                   month++;
                   if (month > 12) {
                     month = 1;
                     year++;
                   }
-                  day = 1;
-                }
-                break;
-              case 38: // up
-                month--;
-                if (month < 0) {
-                  month = 12;
-                  year--;
-                }
-                day = Math.min(day, this._computeMaxDayOfMonth(year, month));
-                break;
-              case 40: // down
-                month++;
-                if (month > 12) {
-                  month = 1;
-                  year++;
-                }
-                if (day > this._computeMaxDayOfMonth(year, month)) {
-                  day = 1;
-                }
-                break;
+                  if (day > this._computeMaxDayOfMonth(year, month)) {
+                    day = 1;
+                  }
+                  break;
+              }
+              this.renderCalendar(year, month, day);
+              e.preventDefault();
+              e.stopPropagation();
+              return;
             }
-            this.renderCalendar(year, month, day);
-            e.preventDefault();
-            e.stopPropagation();
-          }
         }
       }
 
@@ -682,7 +695,7 @@
   *
   * @demo demo/date-elements.html date elements
   **/
-    class CalendarElement extends CalendarElementPattern(Polymer.Element) { // eslint-disable-line no-undef
+    class CalendarElement extends CalendarElementPattern(SwitchMixin(DatetimeFormMixin(FormElementMixin(DatetimeMixin(Polymer.Element))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'calendar-element';
@@ -690,7 +703,7 @@
 
       static get template() {
         return `
-          <style include="${this.styleToInclude || ''}">
+          <style include="input-shared-style input-picker-shared-style">
             ${this.styleTemplate}
           </style>
           ${this.calendarTemplate}

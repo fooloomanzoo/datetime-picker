@@ -78,6 +78,7 @@
         assert.isDefined(element.dateOrder, 'dateOrder is defined');
         assert.isDefined(element.propertyForValue, 'propertyForValue is defined');
         assert.isNotOk(element.currentHoveredDayNode, 'no currentHoveredDayNode is defined');
+        assert.isNotOk(element.currentActiveDayNode, 'no currentActiveDayNode is defined');
         assert.isNotOk(element.currentSelectedDayNode, 'no currentSelectedDayNode is defined');
         done();
       });
@@ -102,6 +103,7 @@
         assert.isDefined(element._timeZoneHours, 'timezone-hours is defined');
         assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
         assert.isNotOk(element.currentHoveredDayNode, 'no currentHoveredDayNode is defined');
+        assert.isOk(element.currentActiveDayNode, 'currentActiveDayNode is defined');
         assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
         let days = element.shadowRoot.querySelector('#daySelector > #days');
         if (days) {
@@ -118,8 +120,6 @@
           let days = element.shadowRoot.querySelector('#daySelector > #days');
           let caption = element.shadowRoot.querySelector('#daySelector > #caption');
 
-
-
           assert.equal(yearSelector.placeholder, element._getDefaultForProp('year'));
           assert.equal(yearSelector.startAt, element._getDefaultForProp('year'));
           if (monthSelector) {
@@ -131,8 +131,8 @@
             assert.isOk(caption, 'caption is defined');
             assert.isOk(days.children.length, 'days has children');
             assert.isOk(days.querySelectorAll('.notinmonth').length, 'there is day nodes outside of the monthly view');
-            assert.isTrue(Array.prototype.every.call(days.children, el => Boolean(el.dataset.day) && Boolean(el.dataset.month) && Boolean(el.dataset.year)), 'every day node has in dataset properties');
-            assert.isTrue(Array.prototype.every.call(caption.children, el => Boolean(el.dataset.day)), 'every caption in day selector has a text set');
+            assert.isTrue(Array.prototype.every.call(days.children, el => el && Boolean(el.dataset.day) && Boolean(el.dataset.month) && Boolean(el.dataset.year)), 'every day node has in dataset properties');
+            assert.isTrue(Array.prototype.every.call(caption.children, el => el && Boolean(el.dataset.day)), 'every caption in day selector has a text set');
           }
           if (!element.default) {
             assert.isNotOk(yearSelector.value, 'yearSelector is not set');
@@ -146,7 +146,8 @@
             if (daySelector) {
               assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
               assert.isOk(element.currentActiveDayNode, 'currentActiveDayNode is defined');
-              assert.isOk(days.querySelector('.selected'), 'there is a selected day node');
+              // there is maximal one selected day node
+              assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
             }
           }
           done();
@@ -155,33 +156,47 @@
 
       test('pressing keys', done => {
         element.clamp = '';
-        element.datetime = '2000-06-15T05:04:03.210Z';
-        let daySelector = element.shadowRoot.querySelector('#daySelector');
-        // up
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 38);
-        assert.equal(element.currentActiveDayNode.dataset.month, 5, 'up should decrease month');
-        assert.equal(element.date, '2000-06-15', 'date should not be set');
-        // down
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
-        assert.equal(element.currentActiveDayNode.dataset.month, 6, 'down should increase month');
-        assert.equal(element.date, '2000-06-15', 'date should not be set');
-        // left
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 37);
-        assert.equal(element.currentActiveDayNode.dataset.day, 14, 'left should decrease day');
-        assert.equal(element.date, '2000-06-15', 'date should not be set');
-        // rigth
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
-        assert.equal(element.currentActiveDayNode.dataset.day, 15, 'right should increase day');
-        assert.equal(element.date, '2000-06-15', 'date should not be set');
-        // new date by enter
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 13);
-        assert.equal(element.date, '2000-06-16', 'date should be set');
-        // new date by space
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
-        MockInteractions.pressAndReleaseKeyOn(daySelector, 32);
-        assert.equal(element.date, '2000-07-16', 'date should be set');
-        done();
+        setTimeout(() => {
+          element.datetime = '2000-06-15T05:04:03.210Z';
+          let daySelector = element.shadowRoot.querySelector('#daySelector');
+          setTimeout(() => {
+            // up
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 38);
+            assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.month, 5, 'up should decrease month');
+            assert.equal(element.date, '2000-06-15', 'date should not be set on `up`');
+            // down
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
+            assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.month, 6, 'down should increase month');
+            assert.equal(element.date, '2000-06-15', 'date should not be set on `down`');
+            // left
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 37);
+            assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.day, 14, 'left should decrease day');
+            assert.equal(element.date, '2000-06-15', 'date should not be set on `left`');
+            // rigth
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
+            assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.day, 15, 'right should increase day');
+            assert.equal(element.date, '2000-06-15', 'date should not be set on `right`');
+            // there is only one active day node
+            assert.equal(daySelector.querySelectorAll('.active').length, 1, 'there is only one active day node');
+            // there is maximal one selected day node
+            assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
+            // new date by enter
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 13);
+            assert.equal(element.date, '2000-06-16', 'date should be set on `right` and `enter`');
+            // there is maximal one selected day node
+            assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
+            // a picker could be closed on confirming
+            element.opened = true;
+            // new date by space
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
+            MockInteractions.pressAndReleaseKeyOn(daySelector, 32);
+            assert.equal(element.date, '2000-07-16', 'date should be set on `down` and `space`');
+            // there is maximal one selected day node
+            assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
+            done();
+          }, 0);
+        }, 0);
       });
     });
 
@@ -284,7 +299,8 @@
           if (daySelector) {
             MockInteractions.tap(randomDayNode);
             MockInteractions.tap(randomDayNode);
-            assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
+            // a picker could be closed
+            element.opened = true;
             assert.equal(element.currentActiveDayNode, randomDayNode, 'currentActiveDayNode is randomDayNode');
             assert.equal(element.currentSelectedDayNode, randomDayNode, 'currentSelectedDayNode is randomDayNode');
             assert.equal(element.currentSelectedDayNode.dataset.day, element.day, 'day is set to currentSelectedDayNode\'s dataset.day');

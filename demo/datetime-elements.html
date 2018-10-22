@@ -25,18 +25,14 @@
 
   <body>
 
-  <!-- <div class="vertical-section-container centered">
+  <div class="vertical-section-container centered">
       <h3>Create a standalone datetime-input and preset date</h3>
       <demo-snippet>
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-input datetime="{{datetime}}" date="{{date}}" default="2001-01-02"></datetime-input> -->
-              <!-- <date-input locale="{{locale}}" date="{{date}}" ></date-input> -->
-              <!-- <calendar-element locale="{{locale}}" date="{{date}}" datetime="{{datetime}}"></calendar-element> -->
-              <!-- <datetime-picker locale="{{locale}}" date="{{date}}" datetime="{{datetime}}"></datetime-picker> -->
-              <!-- <time-element locale="{{locale}}" hour12-format="[[hour12Format]]" datetime="{{datetime}}" date="{{date}}"></time-element> -->
-              <!-- <div class="vertical-section-container result">
+              <datetime-picker datetime="{{datetime}}" date="{{date}}" default="2001-01-02"></datetime-picker>
+              <div class="vertical-section-container result">
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
               </div>
@@ -57,7 +53,7 @@
               <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
               <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
                 value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="bottom"
-                confirmed-time="{{confirmedTime}}" confirmed-value="{{confirmedValue}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}"
+                confirmed-value="{{confirmedValue}}"
                 vertical-align="bottom" horizontal-align="left"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
@@ -65,16 +61,13 @@
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
-                <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
-                <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
-                <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
                 <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
               </div>
             </template>
           </dom-bind>
         </template>
       </demo-snippet>
-    </div> -->
+    </div>
 
     <div class="vertical-section-container centered">
       <h3>Presetting date</h3>
@@ -83,22 +76,24 @@
           <dom-bind>
             <template is="dom-bind">
               <h4>by default</h4>
-              <!-- <datetime-picker default="2005-02-01" datetime="{{datetime1}}" time="{{time1}}" timezone="{{timezone1}}"></datetime-picker> -->
+              <datetime-picker default="2005-02-01" datetime="{{datetime}}" value="{{value}}" confirmed-value="{{confirmedValue}}"></datetime-picker>
               <div class="vertical-section-container result">
-                <div><code>datetime</code>: <b>[[datetime1]]</b></div>
-                <div><code>time</code>: <b>[[time1]]</b></div>
-                <div><code>timezone</code>: <b>[[timezone1]]</b></div>
+                <div><code>datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>value</code>: <b>[[value]]</b></div>
+                <div><code>confirmed value</code>: <b>[[confirmedValue]]</b></div>
               </div>
-              <h4>by value</h4>
-              <h5>auto confirm</h5>
-              <!-- <datetime-picker value="1500000021000" auto-confirm datetime="{{datetime2}}" time="{{time2}}" timezone="{{timezone2}}"></datetime-picker> -->
+              <h4>by setting property</h4>
               <h5>not auto confirm</h5>
-              <datetime-input value="1500000021000" datetime="{{datetime2}}" time="{{time2}}" timezone="{{timezone2}}"></datetime-input>
-              <!-- <datetime-picker value="1523466123000" datetime="{{datetime2}}" time="{{time2}}" timezone="{{timezone2}}"></datetime-picker> -->
+              <datetime-picker date="2005-02-01" value="{{value2}}" confirmed-value="{{confirmedValue2}}"></datetime-picker>
               <div class="vertical-section-container result">
-                <div><code>datetime</code>: <b>[[datetime2]]</b></div>
-                <div><code>time</code>: <b>[[time2]]</b></div>
-                <div><code>timezone</code>: <b>[[timezone2]]</b></div>
+                <div><code>value</code>: <b>[[value2]]</b></div>
+                <div><code>confirmed value</code>: <b>[[confirmedValue2]]</b></div>
+              </div>
+              <h5>auto confirm</h5>
+              <datetime-picker auto-confirm datetime="2005-02-01T02:03:45.678Z" value="{{value3}}" confirmed-value="{{confirmedValue3}}"></datetime-picker>
+              <div class="vertical-section-container result">
+                <div><code>value</code>: <b>[[value3]]</b></div>
+                <div><code>confirmed value</code>: <b>[[confirmedValue3]]</b></div>
               </div>
             </template>
           </dom-bind>
@@ -106,7 +101,7 @@
       </demo-snippet>
     </div>
 
-    <!-- <div class="vertical-section-container centered">
+    <div class="vertical-section-container centered">
       <h3>Handling range of dates</h3>
       <demo-snippet>
         <template>
@@ -135,8 +130,8 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <datetime-picker class="begin" confirmed-datetime="{{min}}" max="{{max}}" vertical-align="bottom"></datetime-picker>
-                <datetime-picker class="end" confirmed-datetime="{{max}}" min="{{min}}" vertical-align="top"></datetime-picker>
+                <datetime-picker class="begin" confirmed-value="{{min}}" max="{{max}}" vertical-align="bottom"></datetime-picker>
+                <datetime-picker class="end" confirmed-value="{{max}}" min="{{min}}" vertical-align="top"></datetime-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>start</code>: <b>[[min]]</b></div>
@@ -175,9 +170,9 @@
                 <template is="dom-if" if="[[currentHoveredDay]]">
                   <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentHoveredDay)]]" on-click="close" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">
-                      <div><b>[[_toLocaleDateString(currentHoveredDay.dataset.date)]]</b></div>
+                      <div><b>[[_toLocaleDateString(currentActiveDayNode.dataset.year, currentActiveDayNode.dataset.month, currentActiveDayNode.dataset.day)]]</b></div>
                       <ul>
-                        <template is="dom-repeat" items="[[_generateEventList(currentHoveredDay.dataset.date)]]">
+                        <template is="dom-repeat" items="[[_generateEventList(currentHoveredDay)]]">
                           <li><b>[[item.time]]:  </b>[[item.detail]]</li>
                         </template>
                       </ul>
@@ -189,8 +184,8 @@
           </dom-bind>
           <script>
             const bind = document.querySelector('#eventPickerDemo');
-            bind._toLocaleDateString = function(datestr) {
-              return new Date(datestr).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            bind._toLocaleDateString = function(year, month, day) {
+              return new Date(year, month - 1, day).toLocaleDateString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             }
             bind._generateEventList = function() {
               const list = [];
@@ -305,7 +300,7 @@
           </dom-bind>
         </template>
       </demo-snippet>
-    </div> -->
+    </div>
 
   </body>
 

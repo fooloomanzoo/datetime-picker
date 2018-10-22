@@ -42,24 +42,20 @@
                 step: <number-input class="step" no-clamp default="0.1" value="{{step}}"></number-input><br>
               </p>
               <p>
-                <datetime-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" confirmed-date="{{confirmedDate}}" confirmed-datetime="{{confirmedDatetime}}" confirmed-time="{{confirmedTime}}" time="{{time}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></datetime-picker>
+                <datetime-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></datetime-picker>
                 <br>
                 <br>
-                <date-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" confirmed-date="{{confirmedDate}}" hour12-format="[[hour12Format]]"></date-picker>
+                <date-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" confirmed-value="{{confirmedValue}}" hour12-format="[[hour12Format]]"></date-picker>
                 <br>
                 <br>
-                <time-picker confirmed-value="{{timeValue}}" native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" confirmed-time="{{confirmedTime}}" hour12-format="[[hour12Format]]"></time-picker>
+                <time-picker confirmed-value="{{confirmedValue}}" native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" hour12-format="[[hour12Format]]"></time-picker>
               </p>
               <div class="vertical-section-container result">
-                <div><code>time value</code>: <b>[[timeValue]]</b></div>
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
                 <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
-                <div><code>confirmed time</code>: <b>[[confirmedTime]]</b></div>
-                <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
-                <div><code>confirmed datetime</code>: <b>[[confirmedDatetime]]</b></div>
                 <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
               </div>
             </template>

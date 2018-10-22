@@ -3,6 +3,7 @@
 <link rel="import" href="../input-picker-pattern/input-shared-style.html">
 <link rel="import" href="../input-picker-pattern/dropdown-style.html">
 <link rel="import" href="../input-picker-pattern/dropdown-tip-style.html">
+<link rel="import" href="../input-picker-pattern/switch-mixin.html">
 <link rel="import" href="../datetime-input/datetime-input-mixin.html">
 
 <script>
@@ -18,9 +19,9 @@
    * @param {Object} superClass class to extend
    * @return {Object} extended class
    */
-  const DatetimePickerMixin = superClass => { // eslint-disable-line no-unused-vars
+  const DatetimePickerMixin = function(superClass) { // eslint-disable-line no-unused-vars
 
-    return class extends DatetimeFormMixin(InputPickerPattern(superClass)) {  // eslint-disable-line no-undef
+    return class extends superClass {  // eslint-disable-line no-undef
       /**
        * template for native input element
        * @type {string}
@@ -34,21 +35,25 @@
         `;
       }
 
+      mixinApplied() {
+        return 'DatetimePickerMixin ' + (super.mixinApplied && super.mixinApplied())
+      }
+
       static get styleTemplate() {
         return `
           ${super.styleTemplate || ''}
-          ::-webkit-datetime-edit,
-          ::-webkit-datetime-edit-fields-wrapper,
-          ::-webkit-datetime-edit-ampm-field,
-          ::-webkit-datetime-edit-text,
-          ::-webkit-datetime-edit-day-field,
-          ::-webkit-datetime-edit-second-field,
-          ::-webkit-datetime-edit-millisecond-field,
-          ::-webkit-datetime-edit-hour-field,
-          ::-webkit-datetime-edit-minute-field,
-          ::-webkit-datetime-edit-month-field,
-          ::-webkit-datetime-edit-week-field,
-          ::-webkit-datetime-edit-year-field {
+          .native::-webkit-datetime-edit,
+          .native::-webkit-datetime-edit-fields-wrapper,
+          .native::-webkit-datetime-edit-ampm-field,
+          .native::-webkit-datetime-edit-text,
+          .native::-webkit-datetime-edit-day-field,
+          .native::-webkit-datetime-edit-second-field,
+          .native::-webkit-datetime-edit-millisecond-field,
+          .native::-webkit-datetime-edit-hour-field,
+          .native::-webkit-datetime-edit-minute-field,
+          .native::-webkit-datetime-edit-month-field,
+          .native::-webkit-datetime-edit-week-field,
+          .native::-webkit-datetime-edit-year-field {
             position: relative;
             line-height: normal;
             outline: none;
@@ -56,18 +61,17 @@
             font-family: inherit;
             font-size: inherit;
             flex: 0 0 auto;
-            box-sizing: border-box;
             padding: 0;
           }
-          ::-webkit-datetime-edit-ampm-field,
-          ::-webkit-datetime-edit-day-field,
-          ::-webkit-datetime-edit-second-field,
-          ::-webkit-datetime-edit-millisecond-field,
-          ::-webkit-datetime-edit-hour-field,
-          ::-webkit-datetime-edit-minute-field,
-          ::-webkit-datetime-edit-month-field,
-          ::-webkit-datetime-edit-week-field,
-          ::-webkit-datetime-edit-year-field {
+          .native::-webkit-datetime-edit-ampm-field,
+          .native::-webkit-datetime-edit-day-field,
+          .native::-webkit-datetime-edit-second-field,
+          .native::-webkit-datetime-edit-millisecond-field,
+          .native::-webkit-datetime-edit-hour-field,
+          .native::-webkit-datetime-edit-minute-field,
+          .native::-webkit-datetime-edit-month-field,
+          .native::-webkit-datetime-edit-week-field,
+          .native::-webkit-datetime-edit-year-field {
             cursor: var(--input-cursor, pointer);
             border: thin solid transparent;
             @apply --input-style;
@@ -77,36 +81,44 @@
             border-style: var(--inner-input-border-style, dotted);
             padding: var(--inner-input-padding, 0);
             border-radius: var(--inner-input-border-radius, 0.1em);
+            box-sizing: border-box;
+            vertical-align: baseline;
           }
-          ::-webkit-datetime-edit-ampm-field:focus,
-          ::-webkit-datetime-edit-day-field:focus,
-          ::-webkit-datetime-edit-second-field:focus,
-          ::-webkit-datetime-edit-millisecond-field:focus,
-          ::-webkit-datetime-edit-hour-field:focus,
-          ::-webkit-datetime-edit-minute-field:focus,
-          ::-webkit-datetime-edit-month-field:focus,
-          ::-webkit-datetime-edit-week-field:focus,
-          ::-webkit-datetime-edit-year-field:focus {
+          .native::-webkit-datetime-edit-ampm-field:focus,
+          .native::-webkit-datetime-edit-day-field:focus,
+          .native::-webkit-datetime-edit-second-field:focus,
+          .native::-webkit-datetime-edit-millisecond-field:focus,
+          .native::-webkit-datetime-edit-hour-field:focus,
+          .native::-webkit-datetime-edit-minute-field:focus,
+          .native::-webkit-datetime-edit-month-field:focus,
+          .native::-webkit-datetime-edit-week-field:focus,
+          .native::-webkit-datetime-edit-year-field:focus {
             color: var(--inner-input-focus-color, currentColor);
             background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
             border-color: var(--inner-input-focus-border-color, rgba(0,0,0,0.1));
             border-style: var(--inner-input-focus-border-style, dotted);
           }
-          ::-webkit-datetime-edit,
-          ::-webkit-datetime-edit-fields-wrapper {
-            display: inline-flex;
+          .native::-webkit-datetime-edit,
+          .native::-webkit-datetime-edit-fields-wrapper {
+            padding: var(--inner-input-padding, 0);
+            box-sizing: content-box;
             align-items: baseline;
-            padding: 0;
           }
-          ::-webkit-datetime-edit-fields-wrapper {
-            flex: 1;
+          .native::-webkit-datetime-edit {
+            padding-right: 2ch;
           }
-          ::-webkit-calendar-picker-indicator {
+          .native::-webkit-calendar-picker-indicator {
             fill: currentColor;
             cursor: pointer;
           }
-          ::-webkit-calendar-picker-indicator:hover {
+          .native::-webkit-calendar-picker-indicator:hover {
             background: transparent;
+          }
+          .native::-webkit-inner-spin-button {
+            display: none;
+          }
+          :host([hide-reset-button]) .native::-webkit-clear-button {
+            display: none;
           }
           .native.timezone {
             --input-border-color: transparent;
@@ -177,6 +189,7 @@
         if (!(native && this._hasNative)) {
           return;
         }
+        console.log(native, valueAsNumber);
         if (isNaN(valueAsNumber)) {
           return;
         }
@@ -219,34 +232,43 @@
           }
           d.setMinutes(d.getMinutes() + this.offsetMinutes);
         }
-        this._setDate(d);
+        this.setDate(d);
       }
 
-      _setDate(d) {
-        super._setDate(d);
+      setDate(d) {
+        super.setDate(d);
         if (this.autoConfirm || (this._hasNative && this.native)) {
-          setTimeout(() => {
+          // setTimeout(() => {
             this._setConfirmedValue();
-          })
+          // })
         }
       }
 
-      _valueChanged(value) {
-        super._valueChanged(value);
-        if (this._isSet(this.value) === false) {
-          this._reset(this.value);
-          return; // return, if reseting, so that the picker is not itself resetted
-        }
-        if (this.autoConfirm) {
-          this._setConfirmedValue();
-        }
-      }
+      // _valueChanged(value) {
+      //   super._valueChanged(value);
+      //   // if (this._isSet(this.value) === false) {
+      //   //   this._reset();
+      //   //   return; // return, if reseting, so that the picker is not itself resetted
+      //   // }
+      //   if (this.autoConfirm) {
+      //     this._setConfirmedValue();
+      //   }
+      // }
 
       _defaultValueChanged(def) {
         super._defaultValueChanged(def);
         if (this._isSet(this.value)) {
           this._setConfirmedValue();
         }
+      }
+
+      /**
+       * reset confirmedValue and value
+       */
+      _reset() {
+        this.resetDate();
+        console.log(this.mixinApplied(), this.propertyForValue);
+        this._setConfirmedValue();
       }
     }
   }

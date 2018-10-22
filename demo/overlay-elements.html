@@ -51,10 +51,10 @@
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section-container">
-                <overlay-date-picker confirmed-datetime="{{datetime}}" with-backdrop no-overlap></overlay-date-picker>
+                <overlay-date-picker confirmed-value="{{value}}" with-backdrop no-overlap></overlay-date-picker>
               </div>
               <div class="vertical-section-container result">
-                <div><code>confirmed datetime</code>: <b>[[datetime]]</b></div>
+                <div><code>confirmed value</code>: <b>[[value]]</b></div>
               </div>
             </template>
           </dom-bind>
@@ -99,7 +99,7 @@
                 }
               </style>
               <div class="vertical-section-container">
-                <overlay-date-picker class="custom"  date="{{date}}" with-backdrop vertical-align="auto" horizontal-align="auto" no-overlap></overlay-datetime-picker>
+                <overlay-date-picker class="custom" date="{{date}}" with-backdrop vertical-align="auto" horizontal-align="auto" no-overlap></overlay-datetime-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>date</code>:  <b>[[date]]</b></div>
