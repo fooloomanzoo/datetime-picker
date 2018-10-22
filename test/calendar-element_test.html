@@ -104,10 +104,9 @@
         assert.isDefined(element._timeZoneMinutes, 'timezone-minutes is defined');
         assert.isNotOk(element.currentHoveredDayNode, 'no currentHoveredDayNode is defined');
         assert.isOk(element.currentActiveDayNode, 'currentActiveDayNode is defined');
-        assert.isOk(element.currentSelectedDayNode, 'currentSelectedDayNode is defined');
         let days = element.shadowRoot.querySelector('#daySelector > #days');
         if (days) {
-          assert.isOk(days.querySelector('.selected'), 'there is a selected day node');
+          assert.isOk(days.querySelector('.active'), 'there is a selected day node');
         }
         done();
       });
@@ -163,23 +162,20 @@
             // up
             MockInteractions.pressAndReleaseKeyOn(daySelector, 38);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.month, 5, 'up should decrease month');
-            assert.equal(element.date, '2000-06-15', 'date should not be set on `up`');
             // down
             MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.month, 6, 'down should increase month');
-            assert.equal(element.date, '2000-06-15', 'date should not be set on `down`');
             // left
             MockInteractions.pressAndReleaseKeyOn(daySelector, 37);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.day, 14, 'left should decrease day');
-            assert.equal(element.date, '2000-06-15', 'date should not be set on `left`');
             // rigth
             MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.day, 15, 'right should increase day');
-            assert.equal(element.date, '2000-06-15', 'date should not be set on `right`');
             // there is only one active day node
             assert.equal(daySelector.querySelectorAll('.active').length, 1, 'there is only one active day node');
             // there is maximal one selected day node
             assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
+            element.datetime = '2000-06-15T05:04:03.210Z';
             // new date by enter
             MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
             MockInteractions.pressAndReleaseKeyOn(daySelector, 13);
