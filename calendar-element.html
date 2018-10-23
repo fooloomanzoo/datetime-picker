@@ -137,6 +137,10 @@
           #calendar #daySelector *:nth-child(7n):after {
             opacity: var(--calendar-cell-weekend-opacity, 1);
           }
+          #calendar #daySelector[disabled] #days {
+            font-style: var(--input-disabled-font-style, oblique);
+            opacity: var(--input-disabled-opacity, 0.75);
+          }
           #calendar #days {
             cursor: pointer;
           }

@@ -43,7 +43,7 @@
                 <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br>
                 <input type="checkbox" checked="{{hour12Format::change}}">hour 12<br>
                 <input type="checkbox" checked="{{disabled::change}}">disabled<br><br>
-                step: <number-input class="step" no-clamp default="0.001" min="0.001" value="{{step}}"></number-input><br>
+                step: <number-input class="step" no-clamp default="0.001" min="0" value="{{step}}"></number-input><br>
               </p>
               <p>
                 <datetime-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></datetime-picker>
