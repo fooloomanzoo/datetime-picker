@@ -9,11 +9,15 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../datetime-input/datetime-input.html">
 
     <link rel="import" href="../datetime-picker.html">
     <link rel="import" href="../date-picker.html">
     <link rel="import" href="../time-picker.html">
+    <link rel="import" href="../test/elements/basic-datetime-picker.html">
     <link rel="import" href="../../number-input/number-input.html">
+
+
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .result {
@@ -39,7 +43,7 @@
                 <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br>
                 <input type="checkbox" checked="{{hour12Format::change}}">hour 12<br>
                 <input type="checkbox" checked="{{disabled::change}}">disabled<br><br>
-                step: <number-input class="step" no-clamp default="0.1" value="{{step}}"></number-input><br>
+                step: <number-input class="step" no-clamp default="0.001" min="0.001" value="{{step}}"></number-input><br>
               </p>
               <p>
                 <datetime-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></datetime-picker>

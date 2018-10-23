@@ -27,12 +27,20 @@
      *  @polymer
      *
      *  @appliesMixin OverlayPickerMixin
+     *  @appliesMixin DatetimePickerMixin
+     *  @appliesMixin DatetimeInputMixin
      *  @appliesMixin TimePickerPattern
+     *  @appliesMixin TimeInputPattern
+     *  @appliesMixin TimeElementPattern
+     *  @appliesMixin SwitchMixin
+     *  @appliesMixin InputPickerPattern
+     *  @appliesMixin DatetimeFormMixin
+     *  @appliesMixin DatetimeMixin
      *
      *  @demo demo/overlay-elements.html overlay demo
      *  @demo demo/music-album.html music album demo
      **/
-    class OverlayTimePicker extends OverlayPickerMixin(TimePickerPattern(Polymer.Element)) { // eslint-disable-line no-undef
+    class OverlayTimePicker extends OverlayPickerMixin(TimePickerPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(Polymer.Element)))))))))) { // eslint-disable-line no-undef
 
       static get is() {
         return 'overlay-time-picker';

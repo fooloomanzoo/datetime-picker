@@ -27,7 +27,6 @@
         time-picker,
         date-picker,
         datetime-picker {
-          margin-bottom: 0.25em;
           margin-left: 8px;
           color: #111;
           --input-color: #444;
@@ -97,11 +96,17 @@
                   name: <input name="name" required value="Batman"/><br>
                   job: <input name="job" required value="Hero"/><br>
                   <br>
-                  first day: <date-picker name="first" required max="{{end}}" confirmed-value="{{start}}"></date-picker><br>
-                  last day: <date-picker name="last" min="{{start}}" confirmed-value="{{end}}"></date-picker><br>
+                  first day: <date-picker name="first" required max="{{end}}" confirmed-value="{{start}}"></date-picker>
                   <br>
-                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" date="{{lastjob}}" property-for-value="datetime"></datetime-picker><br>
-                  return: <time-picker name="return" min="[[lastjob]]" max="[[end]]" confirmed-value="{{return}}"></time-picker><br>
+                  <br>
+                  last day: <date-picker name="last" min="{{start}}" confirmed-value="{{end}}"></date-picker>
+                  <br>
+                  <br>
+                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" date="{{lastjob}}" property-for-value="datetime"></datetime-picker>
+                  <br>
+                  <br>
+                  return: <time-picker name="return" min="[[lastjob]]" max="[[end]]" confirmed-value="{{return}}"></time-picker>
+                  <br>
                   <br>
                   <button onclick="form1.submit()">Submit</button>
                   <button onclick="form1.validate()">Validate</button>

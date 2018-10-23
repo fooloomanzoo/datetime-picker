@@ -150,24 +150,22 @@
           }
           #calendar #days > *:hover:before {
             will-change: opacity, border-color;
-          }
-          #calendar #days > *:hover:before {
             border-color: var(--calendar-cell-hovered-border-color, currentColor);
+            opacity: 0.5;
           }
-          #calendar #days > .current:before {
+          #calendar #days > .current:before,
+          #calendar #days > .active:before {
+            opacity: 0.5;
             border-color: currentColor;
           }
           #calendar #days > .selected:before,
-          #calendar #days > .active:before {
+          :host(:hover) #calendar #days > .active:before,
+          #calendar #daySelector:focus .active:before {
             border-color: var(--inner-input-focus-background);
           }
-          #calendar #days > .active:before,
-          #calendar #days > .active:hover:before,
-          #calendar #days > .current:before {
+          :host(:hover) #calendar #days > .active:before,
+          #calendar #days > .active:hover:before {
             opacity: 0.75;
-          }
-          #calendar #days > *:hover:before {
-            opacity: 0.5;
           }
           #calendar #days > .active:before {
             transition-duration: 0;
@@ -197,10 +195,10 @@
       static get calendarTemplate() {
         return `
           ${super.contentTemplate || ''}
-          <div id="calendar">
+          <div id="calendar" tabindex>
             <div id="top">
-              <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
-              <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month')]]" style="order:[[dateOrder.month]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}">
+              <button class="icon switch" autofocus prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
+              <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month')]]" style="order:[[_computeOrderMonth(dateOrder)]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}">
                 <option value="1"></option>
                 <option value="2"></option>
                 <option value="3"></option>
@@ -214,8 +212,8 @@
                 <option value="11"></option>
                 <option value="12"></option>
               </select>
-              <integer-input id="yearSelector" style="order:[[dateOrder.year]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value="{{year}}"></integer-input>
-              <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:6" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
+              <integer-input id="yearSelector" style="order:[[_computeOrderMonth(dateOrder, 'true')]];" pad-length="4" disabled="[[_partsDisabled.year]]" start-at="[[_getDefaultForProp('year')]]" placeholder="[[_getDefaultForProp('year')]]" value="{{year}}"></integer-input>
+              <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:3" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
             </div>
 
             <div id="daySelector" hidden$="[[_ifClamped(clamp, 'day')]]" disabled$="[[_partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
@@ -311,6 +309,18 @@
         this.renderCalendar(this.year, this.month, this.day);
       }
 
+      _computeOrderMonth(dateOrder, forYear) {
+        if (!(dateOrder && dateOrder.parts)) {
+          return;
+        }
+        let indexMonth = dateOrder.parts.indexOf('month');
+        let indexYear = dateOrder.parts.indexOf('year');
+        if (indexMonth < indexYear) {
+          return forYear ? 2 : 1;
+        }
+        return forYear ? 1 : 2;
+      }
+
       _onMouseMoveDay(e) {
         if (e) {
           const paths = e.path || [e.target];
@@ -352,6 +362,9 @@
         oldNode && oldNode.classList.remove('active');
         if (node) {
           node.classList.add('active');
+          if (this.__updatingTimezoneOffset) {
+            return;
+          }
           this._computeDatetime(+node.dataset.year, +node.dataset.month, +node.dataset.day, this.hour, this.minute, this.second, this.millisecond);
         }
       }

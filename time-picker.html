@@ -20,7 +20,7 @@
    */
   const TimePickerPattern = function(superClass) { // eslint-disable-line no-unused-vars
 
-    return class extends TimeInputPattern(TimeElementPattern(DatetimePickerMixin(superClass))) { // eslint-disable-line no-unused-vars, no-undef
+    return class extends superClass { // eslint-disable-line no-unused-vars, no-undef
 
       static get expectedNativeInputType() {
         return 'time';

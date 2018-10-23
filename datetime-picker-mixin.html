@@ -21,8 +21,8 @@
        */
       static get nativeInputTemplate() {
         return `
-          <template is="dom-if" if="[[_computeAnd(_hasNative, native)]]" restamp>
-            <input class="native" autofocus type="${this.expectedNativeInputType}" disabled$="[[disabled]]" min="[[min]]" max="[[max]]" value-as-number="{{_nativeValueAsNumber::input}}" step="[[_computeNativeStep(step, clamp)]]">
+          <template is="dom-if" if="[[_computeShouldNative(native)]]" restamp>
+            <input class="native" autofocus type="${this.expectedNativeInputType}" disabled$="[[disabled]]" value-as-number="{{_nativeValueAsNumber::input}}" step="[[_computeNativeStep(step, clamp)]]">
             ${this.timezoneInputTemplate}
           </template>
         `;
@@ -31,6 +31,18 @@
       static get styleTemplate() {
         return `
           ${super.styleTemplate || ''}
+          .native,
+          .native::-webkit-datetime-edit,
+          .native::-webkit-datetime-edit-fields-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .native::-webkit-datetime-edit-fields-wrapper {
+            padding: var(--input-field-padding, 0 1px);
+            border: var(--input-border-width, thin) solid transparent;
+          }
+          .native,
           .native::-webkit-datetime-edit,
           .native::-webkit-datetime-edit-fields-wrapper,
           .native::-webkit-datetime-edit-ampm-field,
@@ -49,8 +61,9 @@
             color: var(--inner-input-color, currentColor);
             font-family: inherit;
             font-size: inherit;
-            flex: 0 0 auto;
-            padding: 0;
+            box-sizing: content-box;
+            letter-spacing: inherit;
+            align-self: center;
           }
           .native::-webkit-datetime-edit-ampm-field,
           .native::-webkit-datetime-edit-day-field,
@@ -62,16 +75,30 @@
           .native::-webkit-datetime-edit-week-field,
           .native::-webkit-datetime-edit-year-field {
             cursor: var(--input-cursor, pointer);
-            border: thin solid transparent;
             @apply --input-style;
-            background: var(--inner-input-background, transparent);
+            background: var(--inner-input-background);
             border-width: var(--inner-input-border-width, thin);
             border-color: var(--inner-input-border-color, transparent);
-            border-style: var(--inner-input-border-style, dotted);
-            padding: var(--inner-input-padding, 0);
-            border-radius: var(--inner-input-border-radius, 0.1em);
-            box-sizing: border-box;
-            vertical-align: baseline;
+            border-style: var(--inner-input-border-style, solid);
+            padding: var(--inner-input-padding);
+            border-radius: var(--inner-input-border-radius);
+            text-align: center;
+            align-self: center;
+          }
+          .native::-webkit-datetime-edit-day-field,
+          .native::-webkit-datetime-edit-second-field,
+          .native::-webkit-datetime-edit-millisecond-field,
+          .native::-webkit-datetime-edit-hour-field,
+          .native::-webkit-datetime-edit-minute-field,
+          .native::-webkit-datetime-edit-month-field,
+          .native::-webkit-datetime-edit-week-field {
+            min-width: 2ch;
+          }
+          .native::-webkit-datetime-edit-millisecond-field {
+            min-width: 3ch;
+          }
+          .native::-webkit-datetime-edit-year-field {
+            min-width: 4ch;
           }
           .native::-webkit-datetime-edit-ampm-field:focus,
           .native::-webkit-datetime-edit-day-field:focus,
@@ -82,31 +109,20 @@
           .native::-webkit-datetime-edit-month-field:focus,
           .native::-webkit-datetime-edit-week-field:focus,
           .native::-webkit-datetime-edit-year-field:focus {
-            color: var(--inner-input-focus-color, currentColor);
-            background: var(--inner-input-focus-background, rgba(0,0,0,0.1));
-            border-color: var(--inner-input-focus-border-color, rgba(0,0,0,0.1));
-            border-style: var(--inner-input-focus-border-style, dotted);
-          }
-          .native::-webkit-datetime-edit,
-          .native::-webkit-datetime-edit-fields-wrapper {
-            padding: var(--inner-input-padding, 0);
-            box-sizing: content-box;
-            align-items: baseline;
-          }
-          .native::-webkit-datetime-edit {
-            padding-right: 2ch;
+            color: var(--inner-input-focus-color);
+            background: var(--inner-input-focus-background);
+            border-color: var(--inner-input-focus-border-color, transparent);
+            border-style: var(--inner-input-focus-border-style, solid);
           }
           .native::-webkit-calendar-picker-indicator {
             fill: currentColor;
+            align-self: center;
             cursor: pointer;
           }
           .native::-webkit-calendar-picker-indicator:hover {
             background: transparent;
           }
           .native::-webkit-inner-spin-button {
-            display: none;
-          }
-          :host([hide-reset-button]) .native::-webkit-clear-button {
             display: none;
           }
           .native.timezone {
@@ -144,13 +160,13 @@
 
       static get observers() {
         return [
-          '_computeNativeValueAsNumber(native, valueAsNumber, offsetMinutes)',
-          '_reflectNativeValueAsNumber(native, _nativeValueAsNumber, offsetMinutes)'
+          '_computeNativeValueAsNumber(native, valueAsNumber)',
+          '_reflectNativeValueAsNumber(native, _nativeValueAsNumber)'
         ];
       }
 
-      _computeAnd(a, b) {
-        return a && b;
+      _computeShouldNative(native) {
+        return this._hasNative && native;
       }
 
       _computeNativeStep(step, clamp) {
@@ -175,31 +191,34 @@
       }
 
       _computeNativeValueAsNumber(native, valueAsNumber) {
-        if (!(native && this._hasNative)) {
+        if (!this._computeShouldNative(native)) {
           return;
         }
-        console.log(native, valueAsNumber);
         if (isNaN(valueAsNumber)) {
+          this._nativeValueAsNumber = undefined;
+          return;
+        }
+        if (this.__updatingTimezoneOffset) {
           return;
         }
         const d = new Date(valueAsNumber);
-        if (this._timeOnly) {
-          if (!this.timezone || !this.date) {
+        if (isNaN(this.offsetMinutes)) {
+          if (this._timeOnly && valueAsNumber >= 0 && valueAsNumber < 864E5) {
+            // only set offset minutes to 0 if time span is less than a day
             this.__updatingTimezoneOffset = true;
             this.offsetMinutes = 0;
             this.__updatingTimezoneOffset = false;
-          }
-        } else {
-          if (!this.timezone) {
+          } else {
             this._checkDefaultTimezone(d);
           }
-          d.setMinutes(d.getMinutes() - this.offsetMinutes);
         }
+        // WARNING: setting offsetMinutes (shifting to UTC) on native input might be a bug in native inputs
+        d.setMinutes(d.getMinutes() - this.offsetMinutes);
         this._nativeValueAsNumber = +d;
       }
 
       _reflectNativeValueAsNumber(native, nativeValueAsNumber) {
-        if (!(native && this._hasNative)) {
+        if (!this._computeShouldNative(native)) {
           return;
         }
         if (this.__updatingTimezoneOffset) {
@@ -209,19 +228,26 @@
           return;
         }
         const d = new Date(nativeValueAsNumber);
-        if (this._timeOnly) {
-          if (!this.timezone || !this.date) {
+        if (isNaN(this.offsetMinutes)) {
+          if (this._timeOnly && nativeValueAsNumber >= 0 && nativeValueAsNumber < 864E5) {
+            // only set offset minutes to 0 if time span is less than a day
             this.__updatingTimezoneOffset = true;
             this.offsetMinutes = 0;
             this.__updatingTimezoneOffset = false;
-          }
-        } else {
-          if (!this.timezone) {
+          } else {
             this._checkDefaultTimezone(d);
           }
-          d.setMinutes(d.getMinutes() + this.offsetMinutes);
         }
+        // WARNING: setting offsetMinutes (shifting to UTC) on native input might be a bug in native inputs
+        d.setMinutes(d.getMinutes() + this.offsetMinutes);
         this.setDate(d);
+      }
+
+      _valueChanged(value) {
+        super._valueChanged(value);
+        if (this.autoConfirm) {
+          this._setConfirmedValue();
+        }
       }
 
       setDate(d) {
@@ -243,7 +269,6 @@
        */
       reset() {
         this.resetDate();
-        console.log(this.mixinApplied(), this.propertyForValue);
         this._setConfirmedValue();
       }
     }

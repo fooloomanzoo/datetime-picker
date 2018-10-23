@@ -8,6 +8,7 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../iron-test-helpers/mock-interactions.js"></script>
     <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
 
     <link rel="import" href="elements/basic-datetime-picker.html">
@@ -29,6 +30,12 @@
     <test-fixture id="propertyForValue">
       <template>
         <basic-datetime-picker property-for-value="valueAsDate"></basic-datetime-picker>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="Native">
+      <template>
+        <basic-datetime-picker native></basic-datetime-picker>
       </template>
     </test-fixture>
 
@@ -63,7 +70,7 @@
           assert.isUndefined(element.offsetMinutes, 'no timezone-offset is defined');
           assert.isUndefined(element._timeZoneHours, 'no timezone-hours is defined');
           assert.isUndefined(element._timeZoneMinutes, 'no timezone-minutes is defined');
-          assert.isUndefined(element.setp, 'no step is defined');
+          assert.isUndefined(element.step, 'no step is defined');
           assert.isDefined(element.locale, 'locale is defined');
           assert.isDefined(element.decimalSeparator, 'decimalSeparator is defined');
           assert.isDefined(element.dateSeparator, 'dateSeparator is defined');
@@ -167,6 +174,56 @@
             assert.isDefined(element.value, 'value is defined');
             assert.isDefined(element.confirmedValue, 'confirmed value is defined');
             done();
+          }, 0);
+        });
+      });
+
+      suite('native inputs', () => {
+        let element;
+
+        setup(function() {
+          element = fixture('Native');
+          element.offsetMinutes = undefined;
+          element.clamp = '';
+        });
+
+        test('reflect value to native input', done => {
+          const value = 1234567654321;
+          element.valueAsNumber = value;
+          setTimeout(function() {
+            if (element._hasNative) {
+              assert.isDefined(element._nativeValueAsNumber, 'native value-as-number should be defined');
+            }
+            done();
+          }, 0);
+        });
+
+        test('reflect native value to value', done => {
+          const value = 1234567654321;
+          element._nativeValueAsNumber = value;
+          setTimeout(function() {
+            if (element._hasNative) {
+              assert.isDefined(element.valueAsNumber, 'value-as-number should be defined');
+            }
+            done();
+          }, 0);
+        });
+
+        test('changing offset', done => {
+          const value = 1234567654321;
+          element.valueAsNumber = value;
+          setTimeout(function() {
+            if (element._hasNative) {
+              let offsetMinutes = element.offsetMinutes;
+              let nativeValueAsNumber = element._nativeValueAsNumber;
+              element.offsetMinutes = offsetMinutes + 30;
+              setTimeout(function() {
+                assert.equal(element._nativeValueAsNumber, nativeValueAsNumber, 'native value-as-number should be not change to value-as-number, for a possible bug in native inputs valueAsNumber');
+                done();
+              }, 0);
+            } else {
+              done();
+            }
           }, 0);
         });
       });
