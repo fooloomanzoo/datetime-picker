@@ -265,11 +265,18 @@
       }
 
       /**
-       * reset confirmedValue and value
+       * reset confirmedValue and value and the date properties
        */
-      reset() {
-        this.resetDate();
+      resetDate(e) {
+        super.resetDate(e);
         this._setConfirmedValue();
+      }
+
+      /**
+       * reset confirmedValue and value and the date properties
+       */
+      reset(e) {
+        this.resetDate(e);
       }
     }
   }
