@@ -46,6 +46,21 @@
           }
         }
       }
+
+      _computeNativeInput(date, time) {
+        if (!date || !time) {
+          return;
+        }
+        this._nativeInput = `${date}T${time}`;
+      }
+
+      _reflectNativeInput(nativeInput) {
+        if (!this._computeShouldNative(this.native) || !nativeInput) {
+          return;
+        }
+        const parts = nativeInput.split('T');
+        this._dateTimeChanged(parts[0], parts[1]);
+      }
     }
   }
   window.DatetimePickerPattern = Polymer.dedupingMixin(DatetimePickerPattern);

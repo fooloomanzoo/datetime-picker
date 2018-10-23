@@ -179,7 +179,7 @@
       });
 
       suite('native inputs', () => {
-        let element;
+        let element, nativeInput;
 
         setup(function() {
           element = fixture('Native');
@@ -192,18 +192,20 @@
           element.valueAsNumber = value;
           setTimeout(function() {
             if (element._hasNative) {
-              assert.isDefined(element._nativeValueAsNumber, 'native value-as-number should be defined');
+              nativeInput = element._nativeInput
+              assert.isOk(nativeInput, 'native value-as-number should be defined');
+              assert.equal(element.valueAsNumber, value, 'valueAsNumber should not change');
             }
             done();
           }, 0);
         });
 
         test('reflect native value to value', done => {
-          const value = 1234567654321;
-          element._nativeValueAsNumber = value;
+          element._nativeInput = nativeInput;
           setTimeout(function() {
             if (element._hasNative) {
-              assert.isDefined(element.valueAsNumber, 'value-as-number should be defined');
+              assert.isOk(element.valueAsNumber, 'value-as-number should be defined');
+              assert.equal(element._nativeInput, nativeInput, 'native input should not change');
             }
             done();
           }, 0);
@@ -214,11 +216,10 @@
           element.valueAsNumber = value;
           setTimeout(function() {
             if (element._hasNative) {
-              let offsetMinutes = element.offsetMinutes;
-              let nativeValueAsNumber = element._nativeValueAsNumber;
-              element.offsetMinutes = offsetMinutes + 30;
+              nativeInput = element._nativeInput;
+              element.offsetMinutes = element.offsetMinutes; + 30;
               setTimeout(function() {
-                assert.equal(element._nativeValueAsNumber, nativeValueAsNumber, 'native value-as-number should be not change to value-as-number, for a possible bug in native inputs valueAsNumber');
+                assert.equal(element._nativeInput, nativeInput, 'native input should not change');
                 done();
               }, 0);
             } else {

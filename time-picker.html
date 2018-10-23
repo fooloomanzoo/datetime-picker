@@ -36,6 +36,23 @@
           </div>
         `;
       }
+
+      _computeNativeInput(date, time) {
+        if (!(date && time)) {
+          if (!(date || time)) {
+            this._nativeInput = '';
+          }
+          return;
+        }
+        this._nativeInput = time;
+      }
+
+      _reflectNativeInput(nativeInput) {
+        if (!this._computeShouldNative(this.native) || !nativeInput) {
+          return;
+        }
+        this._dateTimeChanged(this.date, nativeInput);
+      }
     }
   }
   window.TimePickerPattern = Polymer.dedupingMixin(TimePickerPattern);

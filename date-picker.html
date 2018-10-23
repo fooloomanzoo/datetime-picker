@@ -42,6 +42,23 @@
         `;
       }
 
+      _computeNativeInput(date, time) {
+        if (!(date && time)) {
+          if (!(date || time)) {
+            this._nativeInput = '';
+          }
+          return;
+        }
+        this._nativeInput = date;
+      }
+
+      _reflectNativeInput(nativeInput) {
+        if (!this._computeShouldNative(this.native) || !nativeInput) {
+          return;
+        }
+        this._dateTimeChanged(nativeInput, this.time);
+      }
+
       renderCalendar(year, month, day) {
         if (!this.opened || (this._hasNative && this.native)) {
           return;
@@ -54,7 +71,6 @@
         if (this._hasNative && this.native) {
           return;
         }
-        // render the calendar always when non-native, so that it is also rendered while it is closing
         if (opened) {
           super.renderCalendar(this.year, this.month, this.day);
         } else {
