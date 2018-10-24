@@ -114,7 +114,7 @@
               <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
             </div>
             <template is="dom-if" if="[[hour12Format]]">
-              <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!_valueIsSet]]">
+              <button class="hour12" disabled$="[[partsHidden.hour]]" on-click="_switchAm" hidden$="[[!valueIsSet]]">
                 <div hidden$="[[!isAm]]">[[amString]]</div>
                 <div hidden$="[[isAm]]">[[pmString]]</div>
               </button>
