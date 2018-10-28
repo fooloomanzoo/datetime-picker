@@ -214,13 +214,6 @@
         }
       }
 
-      _valueChanged(value) {
-        super._valueChanged(value);
-        if (this.autoConfirm) {
-          this._setConfirmedValue();
-        }
-      }
-
       setDate(d) {
         super.setDate(d);
         if (this.autoConfirm || (this._hasNative && this.native)) {
@@ -241,13 +234,6 @@
       resetDate(e) {
         super.resetDate(e);
         this._setConfirmedValue();
-      }
-
-      /**
-       * reset confirmedValue and value and the date properties
-       */
-      reset(e) {
-        this.resetDate(e);
       }
     }
   }
