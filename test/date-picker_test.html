@@ -54,7 +54,7 @@
         assert.isDefined(element.timezone, 'timezone should be set');
         assert.isDefined(element.offsetMinutes, 'offsetMinutes should be set');
         assert.equal(element.datetime, '1980-02-01T00:00:00.000' + element.timezone, 'datetime should be set');
-        assert.isUndefined(element.confirmedValue, 'no confirmed value is defined');
+        assert.isDefined(element.confirmedValue, 'confirmed value is defined when initialized with property set');
         done();
       });
     });

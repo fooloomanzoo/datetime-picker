@@ -89,28 +89,28 @@
           <div id="timer" hidden$="[[_ifClamped(clamp, 'hour')]]">
             <div class="field">
               <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]">${this._iconStepUpTemplate}</button>
-              <integer-input hidden$="[[hour12Format]]" pad-length="2" no-clamp value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+              <integer-input hidden$="[[hour12Format]]" pad-length="2" no-clamp min="-1" max="24" value-as-number="{{hour}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
               <template is="dom-if" if="[[hour12Format]]">
-                <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
+                <integer-input pad-length="2" no-clamp value-as-number="{{hour12}}" min="0" max="13" placeholder="00" disabled$="[[_partsDisabled.hour]]" step="[[_partsStep.hour]]"></integer-input>
               </template>
               <button class="icon switch" prop="hour" step$="[[_partsStep.hour]]" disabled$="[[_partsDisabled.hour]]" invert>${this._iconStepDownTemplate}</button>
             </div>
             <span hidden$="[[_ifClamped(clamp, 'minute')]]">[[timeSeparator]]</span>
             <div class="field" hidden$="[[_ifClamped(clamp, 'minute')]]">
               <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" value-as-number="{{minute}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
+              <integer-input pad-length="2" value-as-number="{{minute}}" min="-1" max="60" no-clamp placeholder="00" disabled$="[[_partsDisabled.minute]]" step="[[_partsStep.minute]]"></integer-input>
               <button class="icon switch" prop="minute" step$="[[_partsStep.minute]]" disabled$="[[_partsDisabled.minute]]" invert>${this._iconStepDownTemplate}</button>
             </div>
             <span hidden$="[[_ifClamped(clamp, 'minute')]]">[[timeSeparator]]</span>
             <div class="field" hidden$="[[_ifClamped(clamp, 'second')]]">
               <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="2" value-as-number="{{second}}" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
+              <integer-input pad-length="2" value-as-number="{{second}}" min="-1" max="60" no-clamp placeholder="00" disabled$="[[_partsDisabled.second]]" step="[[_partsStep.second]]"></integer-input>
               <button class="icon switch" prop="second" step$="[[_partsStep.second]]" disabled$="[[_partsDisabled.second]]" invert>${this._iconStepDownTemplate}</button>
             </div>
             <span hidden$="[[_ifClamped(clamp, 'millisecond')]]">[[decimalSeparator]]</span>
             <div class="field" hidden$="[[_ifClamped(clamp, 'millisecond')]]">
               <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]">${this._iconStepUpTemplate}</button>
-              <integer-input pad-length="3" value-as-number="{{millisecond}}" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
+              <integer-input pad-length="3" value-as-number="{{millisecond}}" min="0" max="999" no-clamp placeholder="000" disabled$="[[_partsDisabled.millisecond]]" step="[[_partsStep.millisecond]]"></integer-input>
               <button class="icon switch" prop="millisecond" step$="[[_partsStep.millisecond]]" disabled$="[[_partsDisabled.millisecond]]" invert>${this._iconStepDownTemplate}</button>
             </div>
             <template is="dom-if" if="[[hour12Format]]">
