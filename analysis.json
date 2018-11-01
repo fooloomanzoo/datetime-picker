@@ -4280,11 +4280,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -4303,11 +4303,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -6066,11 +6066,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 173,
+              "line": 176,
               "column": 6
             },
             "end": {
-              "line": 181,
+              "line": 184,
               "column": 7
             }
           },
@@ -6095,11 +6095,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 183,
+              "line": 186,
               "column": 6
             },
             "end": {
-              "line": 189,
+              "line": 192,
               "column": 7
             }
           },
@@ -6211,21 +6211,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -9013,11 +9036,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -10098,11 +10121,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -11379,11 +11402,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -13184,11 +13207,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 220,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 234,
+          "line": 235,
           "column": 5
         }
       },
@@ -13201,11 +13224,11 @@
           "description": "if true, timezone inputs are shown",
           "sourceRange": {
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -13944,11 +13967,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -13967,11 +13990,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -14013,11 +14036,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -15682,21 +15705,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -15842,11 +15888,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -18212,11 +18258,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -18248,11 +18294,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -19275,11 +19321,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -19299,11 +19345,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -19322,11 +19368,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -21012,11 +21058,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 173,
+              "line": 176,
               "column": 6
             },
             "end": {
-              "line": 181,
+              "line": 184,
               "column": 7
             }
           },
@@ -21041,11 +21087,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 183,
+              "line": 186,
               "column": 6
             },
             "end": {
-              "line": 189,
+              "line": 192,
               "column": 7
             }
           },
@@ -21157,11 +21203,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -21179,21 +21225,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -23999,11 +24068,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -24017,11 +24086,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -25332,11 +25401,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -25356,11 +25425,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -25379,11 +25448,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -27137,11 +27206,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 173,
+              "line": 176,
               "column": 6
             },
             "end": {
-              "line": 181,
+              "line": 184,
               "column": 7
             }
           },
@@ -27166,11 +27235,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 183,
+              "line": 186,
               "column": 6
             },
             "end": {
-              "line": 189,
+              "line": 192,
               "column": 7
             }
           },
@@ -27282,11 +27351,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -27304,21 +27373,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -30212,11 +30304,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -30230,11 +30322,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -31479,11 +31571,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -31502,11 +31594,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -33333,11 +33425,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 173,
+              "line": 176,
               "column": 6
             },
             "end": {
-              "line": 181,
+              "line": 184,
               "column": 7
             }
           },
@@ -33362,11 +33454,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 183,
+              "line": 186,
               "column": 6
             },
             "end": {
-              "line": 189,
+              "line": 192,
               "column": 7
             }
           },
@@ -33478,21 +33570,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -36368,11 +36483,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -37649,11 +37764,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -37672,11 +37787,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -37718,11 +37833,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -39457,21 +39572,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -39617,11 +39755,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -42075,11 +42213,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -42111,11 +42249,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -43073,11 +43211,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -43094,11 +43232,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -43116,11 +43254,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 173,
+              "line": 176,
               "column": 6
             },
             "end": {
-              "line": 181,
+              "line": 184,
               "column": 7
             }
           },
@@ -43143,11 +43281,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 183,
+              "line": 186,
               "column": 6
             },
             "end": {
-              "line": 189,
+              "line": 192,
               "column": 7
             }
           },
@@ -43167,21 +43305,42 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ]
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ]
         },
@@ -43191,11 +43350,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 212,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 217,
+              "line": 242,
               "column": 7
             }
           },
@@ -43215,11 +43374,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 219,
+              "line": 244,
               "column": 6
             },
             "end": {
-              "line": 224,
+              "line": 249,
               "column": 7
             }
           },
@@ -43239,11 +43398,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 229,
+              "line": 254,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 257,
               "column": 7
             }
           },
@@ -43267,7 +43426,7 @@
           "column": 2
         },
         "end": {
-          "line": 234,
+          "line": 259,
           "column": 3
         }
       },
@@ -43279,11 +43438,11 @@
           "description": "Set to `true` to hide the `now`-button",
           "sourceRange": {
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -44113,11 +44272,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -44135,11 +44294,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 154,
+              "line": 155,
               "column": 10
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 11
             }
           },
@@ -44158,11 +44317,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 163,
+              "line": 164,
               "column": 10
             },
             "end": {
-              "line": 166,
+              "line": 167,
               "column": 11
             }
           },
@@ -44181,11 +44340,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -44205,7 +44364,7 @@
           "column": 2
         },
         "end": {
-          "line": 182,
+          "line": 183,
           "column": 3
         }
       },
@@ -44217,11 +44376,11 @@
           "description": "if true, timezone inputs are shown",
           "sourceRange": {
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -44233,11 +44392,11 @@
           "description": "Clamp timetime to a property\npossible values: 'month', 'day', 'hour', 'minute', 'second', 'millisecond' or ''",
           "sourceRange": {
             "start": {
-              "line": 154,
+              "line": 155,
               "column": 10
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 11
             }
           },
@@ -44265,11 +44424,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 154,
+              "line": 155,
               "column": 10
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 11
             }
           },
@@ -44290,11 +44449,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 163,
+              "line": 164,
               "column": 10
             },
             "end": {
-              "line": 166,
+              "line": 167,
               "column": 11
             }
           },
@@ -44314,11 +44473,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -44338,11 +44497,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
@@ -44361,11 +44520,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 160,
+              "line": 163,
               "column": 10
             },
             "end": {
-              "line": 162,
+              "line": 165,
               "column": 11
             }
           },
@@ -44385,11 +44544,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 177,
+              "line": 178,
               "column": 6
             },
             "end": {
-              "line": 180,
+              "line": 181,
               "column": 7
             }
           },
@@ -44458,21 +44617,44 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 191,
+              "line": 194,
               "column": 6
             },
             "end": {
-              "line": 210,
+              "line": 216,
               "column": 7
             }
           },
           "metadata": {},
           "params": [
             {
-              "name": "step"
+              "name": "partsStep"
             },
             {
               "name": "clamp"
+            }
+          ],
+          "inheritedFrom": "DatetimePickerMixin"
+        },
+        {
+          "name": "_computeNativeThreshold",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "datetime-picker-mixin.html",
+            "start": {
+              "line": 218,
+              "column": 6
+            },
+            "end": {
+              "line": 235,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
             }
           ],
           "inheritedFrom": "DatetimePickerMixin"
@@ -44484,11 +44666,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 212,
+              "line": 237,
               "column": 6
             },
             "end": {
-              "line": 217,
+              "line": 242,
               "column": 7
             }
           },
@@ -44510,11 +44692,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 219,
+              "line": 244,
               "column": 6
             },
             "end": {
-              "line": 224,
+              "line": 249,
               "column": 7
             }
           },
@@ -44536,11 +44718,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 229,
+              "line": 254,
               "column": 6
             },
             "end": {
-              "line": 232,
+              "line": 257,
               "column": 7
             }
           },
@@ -44578,11 +44760,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 154,
+              "line": 155,
               "column": 10
             },
             "end": {
-              "line": 158,
+              "line": 159,
               "column": 11
             }
           },
@@ -44596,11 +44778,11 @@
           "sourceRange": {
             "file": "time-element.html",
             "start": {
-              "line": 145,
+              "line": 146,
               "column": 10
             },
             "end": {
-              "line": 148,
+              "line": 149,
               "column": 11
             }
           },
@@ -44614,11 +44796,11 @@
           "sourceRange": {
             "file": "datetime-picker-mixin.html",
             "start": {
-              "line": 154,
+              "line": 157,
               "column": 10
             },
             "end": {
-              "line": 156,
+              "line": 159,
               "column": 11
             }
           },
