@@ -88,6 +88,37 @@
             <template>
               <label>
                 <input type="checkbox" checked onchange="form1.allowRedirect = !this.checked;">Prevent automatic form redirection
+                <br>
+                <br>
+                locale: <select value="{{locale::change}}">
+                  <option value=""></option>
+                  <option value="en">english</option>
+                  <option value="fr">français</option>
+                  <option value="de">deutsch</option>
+                  <option value="es">español</option>
+                  <option value="it">italiano</option>
+                  <option value="ru">русский</option>
+                  <option value="tr">Türkçe</option>
+                  <option value="ar">العربية</option>
+                  <option value="he">עברית</option>
+                  <option value="ja">日本語</option>
+                  <option value="zh">中文</option>
+                </select>
+                <br>
+                <br>
+                property for value: <select value="{{propertyForValue::change}}">
+                  <option value="datetime">datetime</option>
+                  <option value="date">date</option>
+                  <option value="time">date</option>
+                  <option value="valueAsNumber" selected>valueAsNumber</option>
+                  <option value="year">year</option>
+                  <option value="month">month</option>
+                  <option value="day">day</option>
+                  <option value="hour">hour</option>
+                  <option value="minute">minute</option>
+                  <option value="second">second</option>
+                  <option value="millisecond">millisecond</option>
+                </select>
               </label>
               <br><br>
 
@@ -96,16 +127,16 @@
                   name: <input name="name" required value="Batman"/><br>
                   job: <input name="job" required value="Hero"/><br>
                   <br>
-                  first day: <date-picker name="first" required max="{{end}}" confirmed-value="{{start}}"></date-picker>
+                  first day: <date-picker name="first" locale="{{locale}}" required max="{{end}}" datetime="{{start}}" property-for-value="{{propertyForValue}}"></date-picker>
                   <br>
                   <br>
-                  last day: <date-picker name="last" min="{{start}}" confirmed-value="{{end}}"></date-picker>
+                  last day: <date-picker name="last" locale="{{locale}}" min="{{start}}" datetime="{{end}}" property-for-value="{{propertyForValue}}"></date-picker>
                   <br>
                   <br>
-                  last job: <datetime-picker name="lastjob" min="[[start]]" max="[[end]]" date="{{lastjob}}" property-for-value="datetime"></datetime-picker>
+                  last job: <datetime-picker name="lastjob" locale="{{locale}}" min="[[start]]" max="[[end]]" datetime="{{lastjob}}" property-for-value="{{propertyForValue}}"></datetime-picker>
                   <br>
                   <br>
-                  return: <time-picker name="return" min="[[lastjob]]" max="[[end]]" confirmed-value="{{return}}"></time-picker>
+                  return: <time-picker name="return" locale="{{locale}}" min="[[lastjob]]" max="[[end]]" property-for-value="{{propertyForValue}}"></time-picker>
                   <br>
                   <br>
                   <button onclick="form1.submit()">Submit</button>

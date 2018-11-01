@@ -185,14 +185,17 @@
             pointer-events: none !important;
           }
           #calendar #days > .outofrange:after {
-            font-style: var(--input-disabled-font-style, oblique);
-            @apply --input-disabled;
+            opacity: 0.5;
           }
           #calendar #days > .outofrange:before {
             opacity: 0.25;
           }
-          #calendar #days > .outofrange {
+          #calendar #days > .outofrange:not(.notinmonth):after {
+            font-style: var(--input-disabled-font-style, oblique);
+          }
+          #calendar #days > .outofrange:after {
             opacity: 0.5;
+            @apply --input-disabled;
           }
         `;
       }
