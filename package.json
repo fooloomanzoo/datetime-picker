@@ -37,16 +37,17 @@
   "license": "MIT",
   "dependencies": {
     "@polymer/polymer": "^2.6.1",
-    "@fooloomanzoo/datetime-input": "^2.2.4",
-    "@fooloomanzoo/input-picker-pattern": "^2.1.8",
-    "@fooloomanzoo/number-input": "^2.2.2",
-    "@fooloomanzoo/property-mixins": "^2.3.8"
+    "@fooloomanzoo/datetime-input": "^2",
+    "@fooloomanzoo/input-picker-pattern": "^2",
+    "@fooloomanzoo/number-input": "^2",
+    "@fooloomanzoo/property-mixins": "^2"
   },
-  "devDependencies": {
-    "@webcomponents/webcomponentsjs": "*",
-    "@polymer/iron-component-page": "*",
-    "@polymer/iron-flex-layout": "*",
-    "@polymer/iron-demo-helpers": "*",
-    "@polymer/iron-form": "*"
+  "devDependencies": {    
+    "web-component-tester": "^6.5.0",
+    "@webcomponents/webcomponentsjs": "^1",
+    "@polymer/iron-component-page": "^3",
+    "@polymer/iron-flex-layout": "^2",
+    "@polymer/iron-demo-helpers": "^2",
+    "@polymer/iron-form": "^2"
   }
 }
