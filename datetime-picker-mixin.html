@@ -22,7 +22,7 @@
       static get nativeInputTemplate() {
         return `
           <template is="dom-if" if="[[_computeShouldNative(native)]]" restamp>
-            <input class="native" autofocus type="${this.expectedNativeInputType}" disabled$="[[disabled]]" value="{{_nativeInput::input}}" step="[[_computeNativeStep(step, clamp)]]">
+            <input class="native" autofocus type="${this.expectedNativeInputType}" disabled$="[[disabled]]" value="{{_nativeInput::input}}" step="[[_computeNativeStep(_partsStep, clamp)]]" min="[[_computeNativeThreshold(_minValue)]]" max="[[_computeNativeThreshold(_maxValue)]]">
             ${this.timezoneInputTemplate}
           </template>
         `;
@@ -31,6 +31,9 @@
       static get styleTemplate() {
         return `
           ${super.styleTemplate || ''}
+          .native {
+            text-align: var(--input-align, left);
+          }
           .native,
           .native::-webkit-datetime-edit,
           .native::-webkit-datetime-edit-fields-wrapper {
@@ -189,25 +192,47 @@
         this._dateTimeChanged(parts[0], parts[1]);
       }
 
-      _computeNativeStep(step, clamp) {
-        if (step !== undefined) {
-          return step;
+      _computeNativeStep(partsStep, clamp) {
+        if (partsStep === undefined) {
+          return 1;
+        }
+        if (this.constructor.expectedNativeInputType === 'date') {
+          return partsStep.day;
         }
         switch (clamp) {
           case 'year':
           case 'month':
           case 'day':
           case 'hour':
-            return 86400;
+            return 86400 * partsStep.day;
           case 'minute':
-            return 3600;
+            return 3600 * partsStep.hour;
           case 'second':
-            return 60;
+            return 60 * partsStep.second;
           case 'millisecond':
-            return 1;
+            return 1 * partsStep.millisecond;
           default:
             return 0.001;
         }
+      }
+
+      _computeNativeThreshold(value) {
+        if (isNaN(value)) {
+          return;
+        }
+        const d = new Date(value);
+        let offsetMinutes = this.offsetMinutes;
+        if (isNaN(offsetMinutes)) {
+          offsetMinutes = d.getTimezoneOffset();
+        }
+        // shift to UTC
+        d.setMinutes(d.getMinutes() - offsetMinutes);
+        if (this.constructor.expectedNativeInputType === 'date') {
+          return this._toUTCDate(d);
+        } else if (this.constructor.expectedNativeInputType === 'time') {
+          return this._toUTCTime(d);
+        }
+        return this._toUTCDate(d) + 'T' + this._toUTCTime(d);
       }
 
       setDate(d) {
