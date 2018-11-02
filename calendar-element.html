@@ -205,7 +205,7 @@
           ${super.contentTemplate || ''}
           <div id="calendar" tabindex>
             <div id="top">
-              <button class="icon switch" autofocus prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
+              <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="-1" style="order:0" disabled$="[[_partsDisabled.year]]">${this._iconStepLeftTemplate}</button>
               <select id="monthSelector" hidden$="[[_ifClamped(clamp, 'month')]]" style="order:[[_computeOrderMonth(dateOrder)]];" disabled$="[[_partsDisabled.month]]" value="{{month::change}}">
                 <option value="1"></option>
                 <option value="2"></option>
@@ -224,7 +224,7 @@
               <button class="icon switch" prop$="[[_computeIncremPropTop(_partsDisabled.month, clamp)]]" step="1" style="order:3" disabled$="[[_partsDisabled.year]]">${this._iconStepRightTemplate}</button>
             </div>
 
-            <div id="daySelector" hidden$="[[_ifClamped(clamp, 'day')]]" disabled$="[[_partsDisabled.day]]" tabindex="0" autofocus on-keydown="_checkKeycodeForDates">
+            <div id="daySelector" hidden$="[[_ifClamped(clamp, 'day')]]" disabled$="[[_partsDisabled.day]]" tabindex="0" on-keydown="_checkKeycodeForDates">
               <div id="caption">
                 <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
               </div>

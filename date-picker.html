@@ -73,6 +73,9 @@
         }
         if (opened) {
           super.renderCalendar(this.year, this.month, this.day);
+          if (this.$.daySelector) {
+            this.$.daySelector.focus();
+          }
         } else {
           setTimeout(() => {
             // remove current day nodes, when picker closes

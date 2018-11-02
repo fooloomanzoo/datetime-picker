@@ -33,7 +33,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 -->
 ```html
-<datetime-picker></datetime-picker>
+<datetime-picker default="2022-05-07T11:13"></datetime-picker>
 ```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
@@ -139,6 +139,8 @@ If `step="0"` all inputs will be disabled, or when the step is below `0.001` the
 <time-element time="{{time}}"></time-element>
 <p> time: <time-input time="{{time}}" hour="8"></time-input></p>
 ```
+
+Note: If you preset the date by the `default`-attribute and it contains a timezone, This timezone will also used by default.
 
 #### Use the polyfill or the native picker
 By default it checks if `datetime-local`, `date` or `time` is supported as input. Set the ``auto-confirm`` attribute to automatically confirm the input. If `native` is set, the native picker will be used instead of the polyfill:
