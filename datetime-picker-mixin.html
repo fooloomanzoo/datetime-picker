@@ -22,7 +22,7 @@
       static get nativeInputTemplate() {
         return `
           <template is="dom-if" if="[[_computeShouldNative(native)]]" restamp>
-            <input class="native" autofocus type="${this.expectedNativeInputType}" disabled$="[[disabled]]" value="{{_nativeInput::input}}" step="[[_computeNativeStep(_partsStep, clamp)]]" min="[[_computeNativeThreshold(_minValue)]]" max="[[_computeNativeThreshold(_maxValue)]]">
+            <input class="native" type="${this.expectedNativeInputType}" disabled$="[[disabled]]" value="{{_nativeInput::input}}" step="[[_computeNativeStep(_partsStep, clamp)]]" min="[[_computeNativeThreshold(_minValue)]]" max="[[_computeNativeThreshold(_maxValue)]]">
             ${this.timezoneInputTemplate}
           </template>
         `;
