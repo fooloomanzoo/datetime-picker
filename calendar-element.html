@@ -441,7 +441,7 @@
           year = currentDate.getFullYear();
           month = currentDate.getMonth() + 1;
         }
-        let selectedDate = this.__lastSelectedDay ? this._fromDatetime(this.__lastSelectedDay) : undefined;
+        let selectedDate = this.__lastSelectedDay ? new (Date.bind.apply(Date, [null].concat(this.__lastSelectedDay))) : undefined;
         if (!isNaN(selectedDate)) {
           selectedDate = this._clampDay(this._checkThreshold(selectedDate));
         }
