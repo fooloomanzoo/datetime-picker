@@ -1,43 +1,4 @@
 {
   "name": "datetime-picker",
-  "authors": [
-    "Johannes Brautzsch <fooloomanzoo>"
-  ],
-  "description": "A picker for date and time, that prefers to use the native input. It includes a calendar and a timer.",
-  "homepage": "https://github.com/fooloomanzoo/datetime-picker/",
-  "keywords": [
-    "webcomponents",
-    "polymer",
-    "picker",
-    "datetime",
-    "date",
-    "calendar",
-    "time",
-    "timer",
-    "range",
-    "polyfill"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fooloomanzoo/datetime-picker.git"
-  },
-  "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt",
-  "dependencies": {
-    "polymer": "Polymer/polymer#2.6.1",
-    "datetime-input": "fooloomanzoo/datetime-input#2",
-    "number-input": "fooloomanzoo/number-input#2",
-    "property-mixins": "fooloomanzoo/property-mixins#2",
-    "input-picker-pattern": "fooloomanzoo/input-picker-pattern#2"
-  },
-  "devDependencies": {
-    "web-component-tester": "^6.5.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#1",
-    "iron-test-helpers": "PolymerElements/iron-test-helpers#2",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2",
-    "iron-form": "PolymerElements/iron-form#2",
-    "iron-component-page": "PolymerElements/iron-component-page#^3.0.1"
-  },
-  "resolutions": {
-    "polymer": "^2"
-  }
+  "licence": "https://github.com/fooloomanzoo/datetime-picker/raw/master/LICENSE.txt"
 }

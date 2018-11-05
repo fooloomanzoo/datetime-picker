@@ -6,17 +6,16 @@
 
     <title>datetime-picker in iron-Form</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
-    <link rel="import" href="../../polymer/polymer.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../iron-form/iron-form.html">
-    <link rel="import" href="../../paper-styles/shadow.html">
-
-    <link rel="import" href="../datetime-picker.html">
-    <link rel="import" href="../date-picker.html">
-    <link rel="import" href="../time-picker.html">
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '@polymer/iron-demo-helpers/demo-snippet.js';
+      import '@polymer/iron-form/iron-form.js';
+      import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
+      import '../datetime-picker.js';
+      import '../date-picker.js';
+      import '../time-picker.js';
+    </script>
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -77,8 +76,6 @@
         }
       </style>
     </custom-style>
-  </head>
-  <body>
 
     <div class="vertical-section-container centered">
       <h3>datetime-picker in <code>iron-form</code></h3>
@@ -87,7 +84,7 @@
           <dom-bind>
             <template>
               <label>
-                <input type="checkbox" checked onchange="form1.allowRedirect = !this.checked;">Prevent automatic form redirection
+                <input type="checkbox" checked="" onchange="form1.allowRedirect = !this.checked;">Prevent automatic form redirection
                 <br>
                 <br>
                 locale: <select value="{{locale::change}}">
@@ -110,7 +107,7 @@
                   <option value="datetime">datetime</option>
                   <option value="date">date</option>
                   <option value="time">time</option>
-                  <option value="valueAsNumber" selected>valueAsNumber</option>
+                  <option value="valueAsNumber" selected="">valueAsNumber</option>
                   <option value="year">year</option>
                   <option value="month">month</option>
                   <option value="day">day</option>
@@ -124,10 +121,10 @@
 
               <iron-form id="form1">
                 <form action="/foo" method="get">
-                  name: <input name="name" required value="Batman"/><br>
-                  job: <input name="job" required value="Hero"/><br>
+                  name: <input name="name" required="" value="Batman"><br>
+                  job: <input name="job" required="" value="Hero"><br>
                   <br>
-                  first day: <date-picker name="first" locale="{{locale}}" required max="{{end}}" datetime="{{start}}" property-for-value="{{propertyForValue}}"></date-picker>
+                  first day: <date-picker name="first" locale="{{locale}}" required="" max="{{end}}" datetime="{{start}}" property-for-value="{{propertyForValue}}"></date-picker>
                   <br>
                   <br>
                   last day: <date-picker name="last" locale="{{locale}}" min="{{start}}" datetime="{{end}}" property-for-value="{{propertyForValue}}"></date-picker>
@@ -154,6 +151,5 @@
         </template>
       </demo-snippet>
     </div>
-
   </body>
 </html>

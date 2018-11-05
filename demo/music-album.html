@@ -5,18 +5,28 @@
   <title>music album demo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-  <link rel="import" href="../datetime-picker.html">
-  <link rel="import" href="../overlay-date-picker.html">
-  <link rel="import" href="../overlay-datetime-picker.html">
-  <link rel="import" href="../overlay-time-picker.html">
-
-  <link rel="import" href="../../iron-icons/iron-icons.html">
-  <link rel="import" href="../../iron-icon/iron-icon.html">
-  <link rel="import" href="../../paper-behaviors/paper-inky-focus-behavior.html">
-  <link rel="import" href="../../paper-styles/default-theme.html">
-  <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module">
+    import '@polymer/app-layout/app-header/app-header.js';
+    import '@polymer/app-layout/app-header-layout/app-header-layout.js';
+    import '@polymer/app-layout/app-toolbar/app-toolbar.js';
+    import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
+    import '@polymer/app-layout/app-drawer/app-drawer.js';
+    import '@polymer/app-layout/app-box/app-box.js';
+    import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
+    import '@polymer/paper-behaviors/paper-inky-focus-behavior.js';
+    import '@polymer/paper-styles/default-theme.js';
+    import '@polymer/paper-icon-button/paper-icon-button.js';
+    import '@polymer/iron-icons/iron-icons.js';
+    import '@polymer/iron-icons/iron-icon.js';
+    import '@polymer/iron-iconset-svg/demo/svg-sample-icons.js';
+    import '@polymer/font-roboto/roboto.js';
+    import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
+    import '../overlay-datetime-picker.js';
+    import '../overlay-date-picker.js';
+    import '../overlay-time-picker.js';
+  </script>
 
   <style>
     body {
@@ -27,17 +37,6 @@
       font-size: 0.9em;
     }
   </style>
-
-  <link rel="import" href="../../font-roboto/roboto.html">
-  <link rel="import" href="../../app-layout/app-scroll-effects/app-scroll-effects.html">
-  <link rel="import" href="../../app-layout/app-header/app-header.html">
-  <link rel="import" href="../../app-layout/app-toolbar/app-toolbar.html">
-  <link rel="import" href="../../app-layout/demo/sample-content.html">
-  <link rel="import" href="../../app-layout/app-header-layout/app-header-layout.html">
-  <link rel="import" href="../../app-layout/app-box/app-box.html">
-  <link rel="import" href="../../app-layout/app-drawer-layout/app-drawer-layout.html">
-  <link rel="import" href="../../app-layout/app-drawer/app-drawer.html">
-  <link rel="import" href="../../iron-iconset-svg/demo/svg-sample-icons.html">
 
   <custom-style>
     <style is="custom-style">
@@ -183,13 +182,9 @@
       }
     </style>
   </custom-style>
-
 </head>
 
-
 <body>
-
-
   <app-drawer-layout force-narrow>
     <app-drawer slot="drawer" id="drawer">
       <datetime-picker></datetime-picker><br>

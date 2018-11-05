@@ -6,15 +6,13 @@
 
     <title>basic-datetime-picker test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="../../iron-test-helpers/mock-interactions.js"></script>
-    <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../../wct-browser-legacy/browser.js"></script>
 
-    <link rel="import" href="elements/basic-datetime-picker.html">
+    <script type="module" src="./elements/basic-datetime-picker.js"></script>
   </head>
-  <body>
 
+  <body>
     <test-fixture id="Basic">
       <template>
         <basic-datetime-picker></basic-datetime-picker>
@@ -39,12 +37,16 @@
       </template>
     </test-fixture>
 
+    <script type="module">
+      import {
+        getParams,
+        mixinSuite
+      } from '@fooloomanzoo/input-picker-pattern/utils/wct-mixin-test-helper.js';
 
-    <script>
-      WCT.helpers.mixinSuite('basic-datetime-picker');
+      const params = getParams();
+      mixinSuite('basic-datetime-picker');
 
       suite('basic', function() {
-
         let element;
 
         setup(function() {
@@ -229,6 +231,5 @@
         });
       });
     </script>
-
   </body>
 </html>

@@ -5,18 +5,18 @@
     <title>&lt;datetime-picker&gt; demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../datetime-input/datetime-input.html">
-
-    <link rel="import" href="../datetime-picker.html">
-    <link rel="import" href="../date-picker.html">
-    <link rel="import" href="../time-picker.html">
-    <link rel="import" href="../test/elements/basic-datetime-picker.html">
-    <link rel="import" href="../../number-input/number-input.html">
-
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '@polymer/iron-demo-helpers/demo-snippet.js';
+      import '@polymer/iron-form/iron-form.js';
+      import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
+      import '@fooloomanzoo/number-input/number-input.js';
+      import '../datetime-picker.js';
+      import '../date-picker.js';
+      import '../time-picker.js';
+    </script>
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -30,7 +30,6 @@
   </head>
 
   <body>
-
     <div class="vertical-section-container centered">
       <h3>Create a native datetime-picker, if available</h3>
       <demo-snippet id="dombind">
@@ -43,7 +42,7 @@
                 <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br>
                 <input type="checkbox" checked="{{hour12Format::change}}">hour 12<br>
                 <input type="checkbox" checked="{{disabled::change}}">disabled<br><br>
-                step: <number-input class="step" no-clamp default="0.001" min="0" value="{{step}}"></number-input><br>
+                step: <number-input class="step" no-clamp="" default="0.001" min="0" value="{{step}}"></number-input><br>
               </p>
               <p>
                 <datetime-picker native="[[native]]" disabled="[[disabled]]" with-timezone="[[withTimezone]]" step="[[step]]" clamp="{{clamp}}" auto-confirm="[[autoConfirm]]" value="{{value}}" confirmed-value="{{confirmedValue}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" hour12-format="[[hour12Format]]"></datetime-picker>
@@ -59,7 +58,7 @@
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
-                <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
+                <div><code>timezone</code>: <b><input pattern="[+-]\\d\\d:\\d\\d" value="{{timezone::change}}"></b></div>
                 <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
               </div>
             </template>
@@ -67,6 +66,5 @@
         </template>
       </demo-snippet>
     </div>
-
   </body>
 </html>
