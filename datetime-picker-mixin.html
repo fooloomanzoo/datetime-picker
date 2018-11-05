@@ -228,11 +228,11 @@
         // shift to UTC
         d.setMinutes(d.getMinutes() - offsetMinutes);
         if (this.constructor.expectedNativeInputType === 'date') {
-          return this._toUTCDate(d);
+          return this.__toDate(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate());
         } else if (this.constructor.expectedNativeInputType === 'time') {
-          return this._toUTCTime(d);
+          return this.__toTime(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
         }
-        return this._toUTCDate(d) + 'T' + this._toUTCTime(d);
+        return this.__toDate(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()) + 'T' + this.__toTime(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
       }
 
       setDate(d) {
