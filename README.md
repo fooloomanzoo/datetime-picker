@@ -11,29 +11,8 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 
 `datetime-picker` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** date-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes. A codepen demo is available [here](https://codepen.io/fooloomanzoo/pen/RxqNOb).
 
-<!--
-```
-<custom-element-demo  height="300">
-  <template>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
-    <script type="module" src="./datetime-picker.js"></script>
-    <style>
-      html {
-        font-family: 'Roboto', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 ```html
-<datetime-picker default="2022-05-07T11:13"></datetime-picker>
+<datetime-picker></datetime-picker>
 ```
 
 If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
@@ -77,29 +56,6 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 
 #### Stand-alone calendar and date-input (preset by using its attributes)
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
-    <script type="module" src="../../@fooloomanzoo/datetime-input/datetime-input.js"></script>
-    <script type="module" src="../../@fooloomanzoo/datetime-input/date-input.js"></script>
-    <script type="module" src="./calendar-element.js"></script>
-    <style>
-      html {
-        font-family: 'Roboto', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 ```html
 <p><calendar-element date="{{date}}"></calendar-element></p>
 <p>date: <date-input date="{{date}}"></date-input></p>
@@ -116,28 +72,6 @@ If `step="0"` all inputs will be disabled, or when the step is below `0.001` the
 
 #### Stand-alone time-picker and time-input (preset by using its attributes)
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
-    <script type="module" src="../../@fooloomanzoo/datetime-input/time-input.js"></script>
-    <script type="module" src="./time-element.js"></script>
-    <style>
-      html {
-        font-family: 'Roboto', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 ```html
 <time-element time="{{time}}"></time-element>
 <p> time: <time-input time="{{time}}" hour="8"></time-input></p>
@@ -157,28 +91,6 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 
 #### Define date ranges
 Set cross data bindings to limit the values of the inputs. Use the ``confirmed-value`` or the ``auto-confirm``-attribute to prevent resetting. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-elements.html):
-
-<!--
-```
-<custom-element-demo height="300">
-  <template>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
-    <script type="module" src="./datetime-picker.js"></script>
-    <style>
-      html {
-        font-family: 'Roboto', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 
 ```html
 <p>
@@ -204,29 +116,6 @@ Choose the related elements:
 
 #### Use locale date formats
 The properties `date`, `time`, `datetime` are always in **iso8061** but the visualization will be localized. By default your locale date format from `window.navigator.language` will be used, but you can select another *locale*:
-
-<!--
-```
-<custom-element-demo height="300">
-  <template>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
-    <script type="module" src="./calendar-element.js"></script>
-    <script type="module" src="./time-element.js"></script>
-    <style>
-      html {
-        font-family: 'Roboto', sans-serif;
-      }
-    </style>
-    <dom-bind>
-      <template is="dom-bind">
-        <next-code-block></next-code-block>
-      </template>
-    </dom-bind>
-  </template>
-</custom-element-demo>
-```
--->
 
 ```html
 <p>

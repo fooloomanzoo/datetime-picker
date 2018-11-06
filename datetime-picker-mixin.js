@@ -4,7 +4,7 @@ import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
 /**
- * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
+ * Mixin for creating a picker for datetime
  *
  * @mixinFunction
  * @polymer

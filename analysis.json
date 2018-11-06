@@ -40340,7 +40340,7 @@
       "slots": []
     },
     {
-      "description": "mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed",
+      "description": "Mixin for creating a picker for datetime",
       "summary": "",
       "path": "datetime-picker-mixin.js",
       "properties": [
@@ -40757,7 +40757,7 @@
       "slots": []
     },
     {
-      "description": "Mixin for calendar-element",
+      "description": "Mixin for time-element",
       "summary": "",
       "path": "time-element.js",
       "properties": [

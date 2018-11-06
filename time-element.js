@@ -10,7 +10,7 @@ import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
 import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
 
 /**
- * Mixin for calendar-element
+ * Mixin for time-element
  *
  * @mixinFunction
  * @polymer
