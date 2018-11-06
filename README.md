@@ -15,9 +15,9 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 ```
 <custom-element-demo  height="300">
   <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
+    <script type="module" src="./datetime-picker.js"></script>
     <style>
       html {
         font-family: 'Roboto', sans-serif;
@@ -81,9 +81,11 @@ You can use it stand-alone, with overlay or as a range of dates. Examples:
 ```
 <custom-element-demo>
   <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
+    <script type="module" src="../../@fooloomanzoo/datetime-input/datetime-input.js"></script>
+    <script type="module" src="../../@fooloomanzoo/datetime-input/date-input.js"></script>
+    <script type="module" src="./calendar-element.js"></script>
     <style>
       html {
         font-family: 'Roboto', sans-serif;
@@ -118,9 +120,10 @@ If `step="0"` all inputs will be disabled, or when the step is below `0.001` the
 ```
 <custom-element-demo>
   <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
+    <script type="module" src="../../@fooloomanzoo/datetime-input/time-input.js"></script>
+    <script type="module" src="./time-element.js"></script>
     <style>
       html {
         font-family: 'Roboto', sans-serif;
@@ -159,9 +162,9 @@ Set cross data bindings to limit the values of the inputs. Use the ``confirmed``
 ```
 <custom-element-demo height="300">
   <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="import" href="datetime-picker.html">
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
+    <script type="module" src="./datetime-picker.js"></script>
     <style>
       html {
         font-family: 'Roboto', sans-serif;
@@ -206,9 +209,10 @@ The properties `date`, `time`, `datetime` are always in **iso8061** but the visu
 ```
 <custom-element-demo height="300">
   <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="import" href="overlay-datetime-picker.html">
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src="../../@polymer/font-roboto/roboto.js"></script>
+    <script type="module" src="./calendar-element.js"></script>
+    <script type="module" src="./time-element.js"></script>
     <style>
       html {
         font-family: 'Roboto', sans-serif;
