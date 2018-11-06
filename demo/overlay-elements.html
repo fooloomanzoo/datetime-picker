@@ -35,7 +35,7 @@
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section-container">
-                <overlay-datetime-picker auto-confirm="" date="{{date}}" time="{{time}}" no-overlap=""></overlay-datetime-picker>
+                <overlay-datetime-picker auto-confirm date="{{date}}" time="{{time}}" no-overlap></overlay-datetime-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>date</code>:  <b>[[date]]</b></div>
@@ -54,7 +54,7 @@
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section-container">
-                <overlay-date-picker confirmed-value="{{value}}" with-backdrop="" no-overlap=""></overlay-date-picker>
+                <overlay-date-picker confirmed-value="{{value}}" with-backdrop no-overlap></overlay-date-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>confirmed value</code>: <b>[[value]]</b></div>
@@ -72,7 +72,7 @@
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section-container">
-                <overlay-time-picker hour12-format="" time="{{time}}" with-backdrop="" no-overlap=""></overlay-time-picker>
+                <overlay-time-picker hour12-format time="{{time}}" with-backdrop no-overlap></overlay-time-picker>
               </div>
               <div class="vertical-section-container result">
                 <div><code>time</code>:  <b>[[time]]</b></div>
@@ -102,7 +102,7 @@
                 }
               </style>
               <div class="vertical-section-container">
-                <overlay-date-picker class="custom" date="{{date}}" with-backdrop="" vertical-align="auto" horizontal-align="auto" no-overlap="">
+                <overlay-date-picker class="custom" date="{{date}}" with-backdrop vertical-align="auto" horizontal-align="auto" no-overlap>
               </overlay-date-picker></div>
               <div class="vertical-section-container result">
                 <div><code>date</code>:  <b>[[date]]</b></div>
@@ -136,7 +136,7 @@
               <input type="checkbox" checked="{{noOverlap::change}}">no overlap
               <input type="checkbox" checked="{{dynamicAlign::change}}">dynamic align<br><br>
               <div class="spacer" style="display:flex;justify-content:center;position:relative;">
-                <overlay-datetime-picker id="align" no-cancel-on-outside-click="" no-overlap="[[noOverlap]]" dynamic-align="[[dynamicAlign]]" horizontal-align="[[updateAlign(noOverlap, dynamicAlign, horizontalAlign)]]" vertical-align="[[updateAlign(noOverlap, dynamicAlign, verticalAlign)]]"></overlay-datetime-picker>
+                <overlay-datetime-picker id="align" no-cancel-on-outside-click no-overlap="[[noOverlap]]" dynamic-align="[[dynamicAlign]]" horizontal-align="[[updateAlign(noOverlap, dynamicAlign, horizontalAlign)]]" vertical-align="[[updateAlign(noOverlap, dynamicAlign, verticalAlign)]]"></overlay-datetime-picker>
               </div>
             </template>
           </dom-bind>
@@ -159,7 +159,7 @@
         <template>
           <dom-bind id="bind">
             <template is="dom-bind">
-              <overlay-element id="overlay" with-backdrop="">
+              <overlay-element id="overlay" with-backdrop>
                 <div style="background: white;padding:8px;">this is the content of an overlay-element</div>
               </overlay-element>
               <button type="button" name="open" on-click="openOverlay">open the overlay</button>

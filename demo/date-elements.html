@@ -47,7 +47,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker native="" confirmed-value="{{value}}" date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
+              <date-picker native confirmed-value="{{value}}" date="{{date}}" confirmed-date="{{confirmedDate}}" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>(confirmed) numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
@@ -83,7 +83,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker max="123" auto-confirm="" value="{{date}}" confirmed-value="{{confirmedDate}}" property-for-value="date" vertical-align="bottom"></date-picker>
+              <date-picker auto-confirm value="{{date}}" confirmed-value="{{confirmedDate}}" property-for-value="date" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>current date</code>: <b>[[date]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
@@ -175,7 +175,7 @@
               <div class="vertical-section-container">
                 <date-picker id="eventPicker" opened="{{opened}}" date="{{date}}" current-active-day-node="{{currentActiveDayNode}}" vertical-align="bottom"></date-picker>
                 <template is="dom-if" if="[[currentActiveDayNode]]">
-                  <overlay-element class="overlay" opened\$="[[_enshureOpened(opened, currentActiveDayNode)]]" on-mousedown="close" no-overlap="" fit-into="[[currentActiveDayNode]]" no-cancel-on-outside-click="" dynamic-align="" vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened\$="[[_enshureOpened(opened, currentActiveDayNode)]]" on-mousedown="close" no-overlap fit-into="[[currentActiveDayNode]]" no-cancel-on-outside-click dynamic-align vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentActiveDayNode.dataset.year, currentActiveDayNode.dataset.month, currentActiveDayNode.dataset.day)]]</b></div>
                       <ul>

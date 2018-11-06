@@ -6,12 +6,8 @@ import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js'
 import { DatetimeFormMixin, DatetimeInputMixin } from '@fooloomanzoo/datetime-input/datetime-input-mixin.js';
 import { DateInputPattern } from '@fooloomanzoo/datetime-input/date-input.js';
 import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
-import { DatePickerPattern } from './date-picker.js';
 import { CalendarElementPattern } from './calendar-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
-import '@fooloomanzoo/number-input/integer-input.js';
-import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
-import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
@@ -25,7 +21,7 @@ export const DatePickerPattern = dedupingMixin( superClass => {
   return class extends superClass {
 
     static get expectedNativeInputType() {
-      return 'date';
+      return htmlLiteral`date`;
     }
 
     static get pickerTemplate() {

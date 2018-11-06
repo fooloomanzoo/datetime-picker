@@ -10,9 +10,6 @@ import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { TimeElementPattern } from './time-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
 import { TimePickerPattern } from './time-picker.js';
-import '@fooloomanzoo/number-input/integer-input.js';
-import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
-import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 /**
  *   `<overlay-time-picker>` extends `time-picker` in an overlay.

@@ -89,7 +89,7 @@
                 <div><code>confirmed value</code>: <b>[[confirmedValue2]]</b></div>
               </div>
               <h5>auto confirm</h5>
-              <datetime-picker auto-confirm="" datetime="2005-02-01T02:03:45.678Z" value="{{value3}}" confirmed-value="{{confirmedValue3}}"></datetime-picker>
+              <datetime-picker auto-confirm datetime="2005-02-01T02:03:45.678Z" value="{{value3}}" confirmed-value="{{confirmedValue3}}"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>value</code>: <b>[[value3]]</b></div>
                 <div><code>confirmed value</code>: <b>[[confirmedValue3]]</b></div>
@@ -167,7 +167,7 @@
               <div class="vertical-section-container">
                 <datetime-picker opened="{{opened}}" date="{{date}}" current-hovered-day-node="{{currentHoveredDay}}" vertical-align="bottom"></datetime-picker>
                 <template is="dom-if" if="[[currentHoveredDay]]">
-                  <overlay-element class="overlay" opened\$="[[_enshureOpened(opened, currentHoveredDay)]]" on-click="close" no-overlap="" fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click="" vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened\$="[[_enshureOpened(opened, currentHoveredDay)]]" on-click="close" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentActiveDayNode.dataset.year, currentActiveDayNode.dataset.month, currentActiveDayNode.dataset.day)]]</b></div>
                       <ul>
@@ -227,7 +227,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <datetime-picker hour12-format="" value="{{value}}" datetime="{{datetime}}" default="2019-04-06T17:12" vertical-align="bottom"></datetime-picker>
+              <datetime-picker hour12-format value="{{value}}" datetime="{{datetime}}" default="2019-04-06T17:12" vertical-align="bottom"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
@@ -246,7 +246,7 @@
             <template is="dom-bind">
               hour12-format: <input type="checkbox" checked="{{hour12Format::change}}">
               <select value="{{locale::change}}">
-                <option value=""></option>
+                <option value></option>
                 <option value="en">english</option>
                 <option value="fr">français</option>
                 <option value="de">deutsch</option>
@@ -260,7 +260,7 @@
                 <option value="zh">中文</option>
               </select>
               <br>
-              <datetime-picker auto-confirm="" hour12-format="{{hour12Format}}" locale="{{locale}}" value="{{value}}" default="2025-07-05T15:00" datetime="{{datetime}}" vertical-align="bottom" horizontal-align="left"></datetime-picker>
+              <datetime-picker auto-confirm hour12-format="{{hour12Format}}" locale="{{locale}}" value="{{value}}" default="2025-07-05T15:00" datetime="{{datetime}}" vertical-align="bottom" horizontal-align="left"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>locale</code>: <b>[[locale]]</b></div>
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
@@ -293,7 +293,7 @@
                 <option value="middle">middle</option>
               </select><br><br>
               <div class="spacer" style="display:flex;justify-content:center;position:relative;">
-                <datetime-picker no-cancel-on-outside-click="" horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]"></datetime-picker>
+                <datetime-picker no-cancel-on-outside-click horizontal-align="[[horizontalAlign]]" vertical-align="[[verticalAlign]]"></datetime-picker>
               </div>
             </template>
           </dom-bind>

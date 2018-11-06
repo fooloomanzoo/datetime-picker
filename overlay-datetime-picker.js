@@ -9,13 +9,11 @@ import { DateInputPattern } from '@fooloomanzoo/datetime-input/date-input.js';
 import { TimeInputPattern } from '@fooloomanzoo/datetime-input/time-input.js';
 import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { CalendarElementPattern } from './calendar-element.js';
+import { DatetimePickerPattern } from './datetime-picker.js';
 import { DatePickerPattern } from './date-picker.js';
 import { TimeElementPattern } from './time-element.js';
 import { TimePickerPattern } from './time-picker.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
-import '@fooloomanzoo/number-input/integer-input.js';
-import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
-import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 /**
  *   `<overlay-datetime-picker>` extends `datetime-picker` and behaves simular.

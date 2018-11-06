@@ -8,9 +8,6 @@ import { TimeInputPattern } from '@fooloomanzoo/datetime-input/time-input.js';
 import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { TimeElementPattern } from './time-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
-import '@fooloomanzoo/number-input/integer-input.js';
-import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
-import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
@@ -28,7 +25,7 @@ export const TimePickerPattern = dedupingMixin( superClass => {
   return class extends superClass {
 
     static get expectedNativeInputType() {
-      return 'time';
+      return htmlLiteral`time`;
     }
 
     static get pickerTemplate() {

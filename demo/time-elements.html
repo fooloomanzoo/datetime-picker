@@ -51,7 +51,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <time-picker native="" time="{{time}}" confirmed-value="{{confirmedValue}}"></time-picker>
+              <time-picker native time="{{time}}" confirmed-value="{{confirmedValue}}"></time-picker>
               <div class="vertical-section-container result">
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>confirmed value</code>: <b>[[confirmedValue]]</b></div>
@@ -115,11 +115,11 @@
               </custom-style>
               <div class="vertical-section-container">
                 <b>starting time:</b>
-                <time-picker class="begin" auto-confirm="" value="[[value]]" datetime="{{min}}" max="[[max]]" vertical-align="bottom"></time-picker>
+                <time-picker class="begin" auto-confirm value="[[value]]" datetime="{{min}}" max="[[max]]" vertical-align="bottom"></time-picker>
                 <b>end time:</b>
-                <time-picker class="end" auto-confirm="" value="[[value]]" datetime="{{max}}" min="[[min]]" vertical-align="top"></time-picker>
+                <time-picker class="end" auto-confirm value="[[value]]" datetime="{{max}}" min="[[min]]" vertical-align="top"></time-picker>
                 <b>at date:</b>
-                <date-picker value="{{value}}" vertical-align="top" auto-confirm=""></date-picker>
+                <date-picker value="{{value}}" vertical-align="top" auto-confirm></date-picker>
               </div>
               <div class="vertical-section-container result">
                 <code>start:</code>

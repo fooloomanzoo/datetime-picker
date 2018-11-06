@@ -84,11 +84,11 @@
           <dom-bind>
             <template>
               <label>
-                <input type="checkbox" checked="" onchange="form1.allowRedirect = !this.checked;">Prevent automatic form redirection
+                <input type="checkbox" checked onchange="form1.allowRedirect = !this.checked;">Prevent automatic form redirection
                 <br>
                 <br>
                 locale: <select value="{{locale::change}}">
-                  <option value=""></option>
+                  <option value></option>
                   <option value="en">english</option>
                   <option value="fr">français</option>
                   <option value="de">deutsch</option>
@@ -107,7 +107,7 @@
                   <option value="datetime">datetime</option>
                   <option value="date">date</option>
                   <option value="time">time</option>
-                  <option value="valueAsNumber" selected="">valueAsNumber</option>
+                  <option value="valueAsNumber" selected>valueAsNumber</option>
                   <option value="year">year</option>
                   <option value="month">month</option>
                   <option value="day">day</option>
@@ -121,10 +121,10 @@
 
               <iron-form id="form1">
                 <form action="/foo" method="get">
-                  name: <input name="name" required="" value="Batman"><br>
-                  job: <input name="job" required="" value="Hero"><br>
+                  name: <input name="name" required value="Batman"><br>
+                  job: <input name="job" required value="Hero"><br>
                   <br>
-                  first day: <date-picker name="first" locale="{{locale}}" required="" max="{{end}}" datetime="{{start}}" property-for-value="{{propertyForValue}}"></date-picker>
+                  first day: <date-picker name="first" locale="{{locale}}" required max="{{end}}" datetime="{{start}}" property-for-value="{{propertyForValue}}"></date-picker>
                   <br>
                   <br>
                   last day: <date-picker name="last" locale="{{locale}}" min="{{start}}" datetime="{{end}}" property-for-value="{{propertyForValue}}"></date-picker>

@@ -12,9 +12,6 @@ import { DatePickerPattern } from './date-picker.js';
 import { TimeElementPattern } from './time-element.js';
 import { TimePickerPattern } from './time-picker.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
-import '@fooloomanzoo/number-input/integer-input.js';
-import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
-import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
 import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
@@ -29,7 +26,7 @@ export const DatetimePickerPattern = dedupingMixin( superClass => {
   return class extends superClass {
 
     static get expectedNativeInputType() {
-      return 'datetime-local';
+      return htmlLiteral`datetime-local`;
     }
 
     static get pickerTemplate() {
