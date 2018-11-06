@@ -18,20 +18,18 @@
       import '../time-picker.js';
 
       import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-      const template = html
-      `<custom-style><style is="custom-style" include="demo-pages-shared-styles"></style></custom-style>`;
+      const template = html`
+        <custom-style>
+          <style is="custom-style" include="demo-pages-shared-styles">
+            .result {
+              margin: 0.75em;
+              padding: 0.5em;
+              line-height: 1.5;
+            }
+          </style>
+        </custom-style>`;
       document.body.appendChild(template.content);
     </script>
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-        .result {
-          margin: 0.75em auto;
-          padding: 0.5em;
-          line-height: 1.5;
-        }
-      </style>
-    </custom-style>
   </head>
 
   <body>
