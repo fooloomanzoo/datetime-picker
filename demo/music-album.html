@@ -28,6 +28,11 @@
     import '../overlay-datetime-picker.js';
     import '../overlay-date-picker.js';
     import '../overlay-time-picker.js';
+
+    import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+    const template = html
+    `<custom-style><style is="custom-style" include="demo-pages-shared-styles"></style></custom-style>`;
+    document.body.appendChild(template.content);
   </script>
 
   <style>

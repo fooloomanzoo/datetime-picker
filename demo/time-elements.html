@@ -16,6 +16,11 @@
       import '../time-element.js';
       import '../date-picker.js';
       import '../time-picker.js';
+
+      import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+      const template = html
+      `<custom-style><style is="custom-style" include="demo-pages-shared-styles"></style></custom-style>`;
+      document.body.appendChild(template.content);
     </script>
 
     <custom-style>
