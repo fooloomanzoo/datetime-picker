@@ -7,23 +7,27 @@
 
   <title>datetime-picker test</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../../../wct-browser-legacy/browser.js"></script>
 
-  <link rel="import" href="../datetime-picker.html">
+  <script type="module" src="../datetime-picker.js"></script>
 </head>
 
 <body>
-
   <test-fixture id="ChangingProperties">
     <template>
       <datetime-picker datetime="1980-02-01T00:00:00.000+00:00"></datetime-picker>
     </template>
   </test-fixture>
 
-  <script>
-    WCT.helpers.mixinSuite('datetime-picker');
+  <script type="module">
+    import {
+      getParams,
+      mixinSuite
+    } from '@fooloomanzoo/input-picker-pattern/utils/wct-mixin-test-helper.js';
+
+    const params = getParams();
+    mixinSuite('datetime-picker');
 
     suite('setting properties', () => {
       let element;
@@ -52,8 +56,6 @@
         done();
       });
     });
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>

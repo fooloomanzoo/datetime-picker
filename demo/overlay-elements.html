@@ -5,14 +5,17 @@
     <title>&lt;overlay-element&gt; demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '@fooloomanzoo/number-input/number-input.js';
+      import '../overlay-datetime-picker.js';
+      import '../overlay-date-picker.js';
+      import '../overlay-time-picker.js';
+    </script>
 
-    <link rel="import" href="../overlay-datetime-picker.html">
-    <link rel="import" href="../overlay-date-picker.html">
-    <link rel="import" href="../overlay-time-picker.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .vertical-section-container {
@@ -99,8 +102,8 @@
                 }
               </style>
               <div class="vertical-section-container">
-                <overlay-date-picker class="custom" date="{{date}}" with-backdrop vertical-align="auto" horizontal-align="auto" no-overlap></overlay-datetime-picker>
-              </div>
+                <overlay-date-picker class="custom" date="{{date}}" with-backdrop vertical-align="auto" horizontal-align="auto" no-overlap>
+              </overlay-date-picker></div>
               <div class="vertical-section-container result">
                 <div><code>date</code>:  <b>[[date]]</b></div>
               </div>
@@ -172,6 +175,5 @@
         </template>
       </demo-snippet>
     </div>
-
   </body>
 </html>

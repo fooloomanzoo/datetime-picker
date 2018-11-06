@@ -5,13 +5,16 @@
     <title>&lt;datetime-picker&gt; demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
+      import '../calendar-element.js';
+      import '../datetime-picker.js';
+    </script>
 
-    <link rel="import" href="../datetime-picker.html">
-    <link rel="import" href="../../input-picker-pattern/overlay-element.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .result {
@@ -24,8 +27,7 @@
   </head>
 
   <body>
-
-  <div class="vertical-section-container centered">
+    <div class="vertical-section-container centered">
       <h3>Create a standalone datetime-input and preset date</h3>
       <demo-snippet>
         <template>
@@ -51,16 +53,13 @@
               <input type="checkbox" checked="{{native::change}}">native picker<br><br>
               <input type="checkbox" checked="{{autoConfirm::change}}">auto confirm<br><br>
               <input type="checkbox" checked="{{withTimezone::change}}">with timezone<br><br>
-              <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}"
-                value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="bottom"
-                confirmed-value="{{confirmedValue}}"
-                vertical-align="bottom" horizontal-align="left"></datetime-picker>
+              <datetime-picker native="[[native]]" auto-confirm="[[autoConfirm]]" with-timezone="{{withTimezone}}" value="{{value}}" date="{{date}}" datetime="{{datetime}}" time="{{time}}" timezone="{{timezone}}" vertical-align="bottom" confirmed-value="{{confirmedValue}}" horizontal-align="left"></datetime-picker>
               <div class="vertical-section-container result">
                 <div><code>numeric value</code>: <b>[[value]]</b></div>
                 <div><code>date</code>: <b>[[date]]</b></div>
                 <div><code>time</code>: <b>[[time]]</b></div>
                 <div><code>datetime</code>: <b>[[datetime]]</b></div>
-                <div><code>timezone</code>: <b><input pattern="[+-]\d\d:\d\d" value="{{timezone::change}}"></b></div>
+                <div><code>timezone</code>: <b><input pattern="[+-]\\d\\d:\\d\\d" value="{{timezone::change}}"></b></div>
                 <div><code>confirmed numeric value</code>: <b>[[confirmedValue]]</b></div>
               </div>
             </template>
@@ -166,9 +165,9 @@
                 </style>
               </custom-style>
               <div class="vertical-section-container">
-                <datetime-picker opened="{{opened}}"  date="{{date}}" current-hovered-day-node="{{currentHoveredDay}}" vertical-align="bottom"></datetime-picker>
+                <datetime-picker opened="{{opened}}" date="{{date}}" current-hovered-day-node="{{currentHoveredDay}}" vertical-align="bottom"></datetime-picker>
                 <template is="dom-if" if="[[currentHoveredDay]]">
-                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentHoveredDay)]]" on-click="close" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened\$="[[_enshureOpened(opened, currentHoveredDay)]]" on-click="close" no-overlap fit-into="[[currentHoveredDay]]" no-cancel-on-outside-click vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentActiveDayNode.dataset.year, currentActiveDayNode.dataset.month, currentActiveDayNode.dataset.day)]]</b></div>
                       <ul>
@@ -247,7 +246,7 @@
             <template is="dom-bind">
               hour12-format: <input type="checkbox" checked="{{hour12Format::change}}">
               <select value="{{locale::change}}">
-                <option value=""></option>
+                <option value></option>
                 <option value="en">english</option>
                 <option value="fr">français</option>
                 <option value="de">deutsch</option>
@@ -301,7 +300,5 @@
         </template>
       </demo-snippet>
     </div>
-
   </body>
-
 </html>

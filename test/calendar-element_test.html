@@ -7,16 +7,13 @@
 
   <title>calendar-element test</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../iron-test-helpers/mock-interactions.js"></script>
-  <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../../../wct-browser-legacy/browser.js"></script>
 
-  <link rel="import" href="../calendar-element.html">
+  <script type="module" src="../calendar-element.js"></script>
 </head>
 
 <body>
-
   <test-fixture id="Basic">
     <template>
       <calendar-element></calendar-element>
@@ -39,11 +36,20 @@
     </template>
   </test-fixture>
 
-  <script>
-    WCT.helpers.mixinSuite('calendar-element');
+  <script type="module">
+    import {
+      Base
+    } from '@polymer/polymer/polymer-legacy.js';
+    import { pressAndReleaseKeyOn, middleOfNode, tap, move, down, up } from '@polymer/iron-test-helpers/mock-interactions.js';
+    import {
+      getParams,
+      mixinSuite
+    } from '@fooloomanzoo/input-picker-pattern/utils/wct-mixin-test-helper.js';
+
+    const params = getParams();
+    mixinSuite('calendar-element');
 
     suite('basic', function() {
-
       let element;
 
       setup(function() {
@@ -160,16 +166,16 @@
           let daySelector = element.shadowRoot.querySelector('#daySelector');
           setTimeout(() => {
             // up
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 38);
+            pressAndReleaseKeyOn(daySelector, 38);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.month, 5, 'up should decrease month');
             // down
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
+            pressAndReleaseKeyOn(daySelector, 40);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.month, 6, 'down should increase month');
             // left
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 37);
+            pressAndReleaseKeyOn(daySelector, 37);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.day, 14, 'left should decrease day');
             // rigth
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
+            pressAndReleaseKeyOn(daySelector, 39);
             assert.equal(element.currentActiveDayNode && element.currentActiveDayNode.dataset.day, 15, 'right should increase day');
             // there is only one active day node
             assert.equal(daySelector.querySelectorAll('.active').length, 1, 'there is only one active day node');
@@ -177,16 +183,16 @@
             assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
             element.datetime = '2000-06-15T05:04:03.210Z';
             // new date by enter
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 39);
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 13);
+            pressAndReleaseKeyOn(daySelector, 39);
+            pressAndReleaseKeyOn(daySelector, 13);
             assert.equal(element.date, '2000-06-16', 'date should be set on `right` and `enter`');
             // there is maximal one selected day node
             assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
             // a picker could be closed on confirming
             element.opened = true;
             // new date by space
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 40);
-            MockInteractions.pressAndReleaseKeyOn(daySelector, 32);
+            pressAndReleaseKeyOn(daySelector, 40);
+            pressAndReleaseKeyOn(daySelector, 32);
             assert.equal(element.date, '2000-07-16', 'date should be set on `down` and `space`');
             // there is maximal one selected day node
             assert.isAtMost(daySelector.querySelectorAll('.selected').length, 1, 'there is only at most one selected day node');
@@ -266,10 +272,10 @@
       test('hover a day node', done => {
         setTimeout(function() {
           if (daySelector) {
-            MockInteractions.move(randomDayNode, {
+            move(randomDayNode, {
               x: 0,
               y: 0
-            }, MockInteractions.middleOfNode(randomDayNode));
+            }, middleOfNode(randomDayNode));
             assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
             assert.isNotOk(element.currentActiveDayNode, 'currentActiveDayNode is not set');
             assert.isNotOk(element.currentSelectedDayNode, 'currentSelectedDayNode is not set');
@@ -281,7 +287,7 @@
       test('clicking a day node', done => {
         setTimeout(function() {
           if (daySelector) {
-            MockInteractions.tap(randomDayNode);
+            tap(randomDayNode);
             assert.equal(element.currentHoveredDayNode, randomDayNode, 'currentHoveredDayNode is randomDayNode');
             assert.equal(element.currentActiveDayNode, randomDayNode, 'currentActiveDayNode is randomDayNode');
             assert.isNotOk(element.currentSelectedDayNode, 'currentSelectedDayNode is not set');
@@ -293,8 +299,8 @@
       test('double-clicking a day node', done => {
         setTimeout(function() {
           if (daySelector) {
-            MockInteractions.tap(randomDayNode);
-            MockInteractions.tap(randomDayNode);
+            tap(randomDayNode);
+            tap(randomDayNode);
             // a picker could be closed
             element.opened = true;
             assert.equal(element.currentActiveDayNode, randomDayNode, 'currentActiveDayNode is randomDayNode');
@@ -310,9 +316,9 @@
       test('switching up-button', done => {
         setTimeout(function() {
           element.dwellDelay = element.dwellTime = 15;
-          MockInteractions.down(upButton);
+          down(upButton);
           setTimeout(function() {
-            MockInteractions.up(upButton);
+            up(upButton);
             const value = buttonProperty === 'month' ? +monthSelector.value : +yearSelector.value;
             assert.equal(value, element[buttonProperty], 'property should have been set on the selector and the element');
             done();
@@ -323,10 +329,10 @@
       test('switching down-button', done => {
         setTimeout(function() {
           element.dwellDelay = element.dwellTime = 15;
-          MockInteractions.down(downButton);
+          down(downButton);
           // wait a tick to let all property effects to take place and default being set
           setTimeout(function() {
-            MockInteractions.up(downButton);
+            up(downButton);
             const value = buttonProperty === 'month' ? +monthSelector.value : +yearSelector.value;
             assert.equal(value, element[buttonProperty], 'property should have been set on the selector and the element');
             done();
@@ -400,7 +406,5 @@
       });
     });
   </script>
-
-</body>
-
+  </body>
 </html>

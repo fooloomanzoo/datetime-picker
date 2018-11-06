@@ -7,18 +7,16 @@
 
   <title>time-element test</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../input-picker-pattern/utils/wct-mixin-test-helper.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../../../wct-browser-legacy/browser.js"></script>
 
-  <link rel="import" href="../time-element.html">
+  <script type="module" src="../time-element.js"></script>
 </head>
 
 <body>
-
   <test-fixture id="Basic">
     <template>
-      <time-element></time-element>
+     <time-element></time-element>
     </template>
   </test-fixture>
 
@@ -40,11 +38,16 @@
     </template>
   </test-fixture>
 
-  <script>
-    WCT.helpers.mixinSuite('time-element');
+  <script type="module">
+    import {
+      getParams,
+      mixinSuite
+    } from '@fooloomanzoo/input-picker-pattern/utils/wct-mixin-test-helper.js';
+
+    const params = getParams();
+    mixinSuite('time-element');
 
     suite('basic', function() {
-
       let element;
 
       setup(function() {
@@ -164,8 +167,6 @@
         done();
       });
     });
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>

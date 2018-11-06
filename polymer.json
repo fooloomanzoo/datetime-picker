@@ -1,18 +1,20 @@
 {
+  "moduleResolution": "node",
+  "npm": true,
   "sources": [
-    "calendar-element.html",
-    "time-element.html",
-    "datetime-picker.html",
-    "date-picker.html",
-    "time-picker.html",
-    "datetime-picker-mixin.html",
-    "overlay-datetime-picker.html",
-    "overlay-date-picker.html",
-    "overlay-time-picker.html"
+    "calendar-element.js",
+    "time-element.js",
+    "datetime-picker.js",
+    "date-picker.js",
+    "time-picker.js",
+    "datetime-picker-mixin.js",
+    "overlay-datetime-picker.js",
+    "overlay-date-picker.js",
+    "overlay-time-picker.js"
   ],
   "lint": {
     "rules": [
-      "polymer-2"
+      "polymer-3"
     ]
   }
 }

@@ -2,77 +2,73 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
   </head>
   <body>
     <script>
-      // Load and run all tests (.html, .js):
       WCT.loadSuites([
         // calendar-element
         'calendar-element_test.html',
-        '/components/input-picker-pattern/test/switch-mixin_test.html?specifier=calendar-element&url=datetime-picker/calendar-element.html',
-        '/components/input-picker-pattern/test/form-element-mixin_test.html?specifier=calendar-element&url=datetime-picker/calendar-element.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/datetime-input/test/datetime-form-mixin_test.html?specifier=calendar-element&url=datetime-picker/calendar-element.html',
-        '/components/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=calendar-element&url=datetime-picker/calendar-element.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/property-mixins/test/datetime-mixin-test.html?specifier=calendar-element&url=datetime-picker/calendar-element.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/switch-mixin_test.html?specifier=calendar-element&url=@fooloomanzoo/datetime-picker/calendar-element',
+        '/components/@fooloomanzoo/input-picker-pattern/test/form-element-mixin_test.html?specifier=calendar-element&url=@fooloomanzoo/datetime-picker/calendar-element&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-form-mixin_test.html?specifier=calendar-element&url=@fooloomanzoo/datetime-picker/calendar-element',
+        '/components/@fooloomanzoo/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=calendar-element&url=@fooloomanzoo/datetime-picker/calendar-element&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/property-mixins/test/datetime-mixin-test.html?specifier=calendar-element&url=@fooloomanzoo/datetime-picker/calendar-element&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
         // time-element
         'time-element_test.html',
-        '/components/input-picker-pattern/test/switch-mixin_test.html?specifier=time-element&url=datetime-picker/time-element.html&props=%7B%22withTimezone%22%3Atrue%7D',
-        '/components/input-picker-pattern/test/form-element-mixin_test.html?specifier=time-element&url=datetime-picker/time-element.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/datetime-input/test/datetime-form-mixin_test.html?specifier=time-element&url=datetime-picker/time-element.html',
-        '/components/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=time-element&url=datetime-picker/time-element.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/property-mixins/test/datetime-mixin-test.html?specifier=time-element&url=datetime-picker/time-element.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/switch-mixin_test.html?specifier=time-element&url=@fooloomanzoo/datetime-picker/time-element&props=%7B%22withTimezone%22%3Atrue%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/form-element-mixin_test.html?specifier=time-element&url=@fooloomanzoo/datetime-picker/time-element&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-form-mixin_test.html?specifier=time-element&url=@fooloomanzoo/datetime-picker/time-element',
+        '/components/@fooloomanzoo/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=time-element&url=@fooloomanzoo/datetime-picker/time-element&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/property-mixins/test/datetime-mixin-test.html?specifier=time-element&url=@fooloomanzoo/datetime-picker/time-element&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
         // datetime-picker-mixin
         'datetime-picker-mixin_test.html',
         // date-picker
         'date-picker_test.html',
-        'datetime-picker-mixin_test.html?specifier=date-picker&url=datetime-picker/date-picker.html',
-        'calendar-element_test.html?specifier=date-picker&url=datetime-picker/date-picker.html&props=%7B%22opened%22%3Atrue%7D',
-        '/components/input-picker-pattern/test/form-element-mixin_test.html?specifier=date-picker&url=datetime-picker/date-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/input-picker-pattern/test/input-picker-pattern_test.html?specifier=date-picker&url=datetime-picker/date-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/input-picker-pattern/test/switch-mixin_test.html?specifier=date-picker&url=datetime-picker/date-picker.html&props=%7B%22opened%22%3Atrue%2C%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/datetime-input/test/datetime-input-mixin_test.html?specifier=date-picker&url=datetime-picker/date-picker.html',
-        '/components/datetime-input/test/datetime-form-mixin_test.html?specifier=date-picker&url=datetime-picker/date-picker.html',
-        '/components/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=date-picker&url=datetime-picker/date-picker.html',
-        '/components/property-mixins/test/datetime-mixin-test.html?specifier=date-picker&url=datetime-picker/date-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        'datetime-picker-mixin_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker',
+        'calendar-element_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker&props=%7B%22opened%22%3Atrue%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/form-element-mixin_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/input-picker-pattern_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/switch-mixin_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker&props=%7B%22opened%22%3Atrue%2C%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-input-mixin_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-form-mixin_test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker',
+        '/components/@fooloomanzoo/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker',
+        '/components/@fooloomanzoo/property-mixins/test/datetime-mixin-test.html?specifier=date-picker&url=@fooloomanzoo/datetime-picker/date-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
         // time-picker
         'time-picker_test.html',
-        'datetime-picker-mixin_test.html?specifier=time-picker&url=datetime-picker/time-picker.html',
-        'time-element_test.html?specifier=time-picker&url=datetime-picker/time-picker.html&props=%7B%22opened%22%3Atrue%7D',
-        '/components/input-picker-pattern/test/form-element-mixin_test.html?specifier=time-picker&url=datetime-picker/time-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/input-picker-pattern/test/input-picker-pattern_test.html?specifier=time-picker&url=datetime-picker/time-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/input-picker-pattern/test/switch-mixin_test.html?specifier=time-picker&url=datetime-picker/time-picker.html&props=%7B%22opened%22%3Atrue%2C%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/datetime-input/test/datetime-input-mixin_test.html?specifier=time-picker&url=datetime-picker/time-picker.html',
-        '/components/datetime-input/test/datetime-form-mixin_test.html?specifier=time-picker&url=datetime-picker/time-picker.html',
-        '/components/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=time-picker&url=datetime-picker/time-picker.html',
-        '/components/property-mixins/test/datetime-mixin-test.html?specifier=time-picker&url=datetime-picker/time-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        'datetime-picker-mixin_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker',
+        'time-element_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker&props=%7B%22opened%22%3Atrue%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/form-element-mixin_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/input-picker-pattern_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/switch-mixin_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker&props=%7B%22opened%22%3Atrue%2C%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-input-mixin_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-form-mixin_test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker',
+        '/components/@fooloomanzoo/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker',
+        '/components/@fooloomanzoo/property-mixins/test/datetime-mixin-test.html?specifier=time-picker&url=@fooloomanzoo/datetime-picker/time-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
         // datetime-picker
         'datetime-picker_test.html',
-        'datetime-picker-mixin_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html',
-        'calendar-element_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html&props=%7B%22opened%22%3Atrue%7D',
-        'time-element_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html&props=%7B%22opened%22%3Atrue%7D',
-        '/components/input-picker-pattern/test/form-element-mixin_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/input-picker-pattern/test/input-picker-pattern_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/input-picker-pattern/test/switch-mixin_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html&props=%7B%22opened%22%3Atrue%2C%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
-        '/components/datetime-input/test/datetime-input-mixin_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html',
-        '/components/datetime-input/test/datetime-form-mixin_test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html',
-        '/components/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html',
-        '/components/property-mixins/test/datetime-mixin-test.html?specifier=datetime-picker&url=datetime-picker/datetime-picker.html&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        'datetime-picker-mixin_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker',
+        'calendar-element_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker&props=%7B%22opened%22%3Atrue%7D',
+        'time-element_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker&props=%7B%22opened%22%3Atrue%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/form-element-mixin_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/input-picker-pattern_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/input-picker-pattern/test/switch-mixin_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker&props=%7B%22opened%22%3Atrue%2C%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-input-mixin_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker',
+        '/components/@fooloomanzoo/datetime-input/test/datetime-form-mixin_test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker',
+        '/components/@fooloomanzoo/property-mixins/test/intl-datetime-format-mixin-test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker',
+        '/components/@fooloomanzoo/property-mixins/test/datetime-mixin-test.html?specifier=datetime-picker&url=@fooloomanzoo/datetime-picker/datetime-picker&props=%7B%22clamp%22%3A%22%22%2C%22with-timezone%22%3A%20true%7D',
         // overlay-date-picker
-        'date-picker_test.html?specifier=overlay-date-picker&url=datetime-picker/overlay-date-picker.html',
-        'datetime-picker-mixin_test.html?specifier=overlay-date-picker&url=datetime-picker/overlay-date-picker.html',
-        '/components/input-picker-pattern/test/overlay-picker-mixin_test.html?specifier=overlay-date-picker&url=datetime-picker/overlay-date-picker.html',
+        'date-picker_test.html?specifier=overlay-date-picker&url=@fooloomanzoo/datetime-picker/overlay-date-picker',
+        'datetime-picker-mixin_test.html?specifier=overlay-date-picker&url=@fooloomanzoo/datetime-picker/overlay-date-picker',
+        '/components/@fooloomanzoo/input-picker-pattern/test/overlay-picker-mixin_test.html?specifier=overlay-date-picker&url=@fooloomanzoo/datetime-picker/overlay-date-picker',
         // overlay-time-picker
-        'time-picker_test.html?specifier=overlay-time-picker&url=datetime-picker/overlay-time-picker.html',
-        'datetime-picker-mixin_test.html?specifier=overlay-time-picker&url=datetime-picker/overlay-time-picker.html',
-        '/components/input-picker-pattern/test/overlay-picker-mixin_test.html?specifier=overlay-time-picker&url=datetime-picker/overlay-time-picker.html',
+        'time-picker_test.html?specifier=overlay-time-picker&url=@fooloomanzoo/datetime-picker/overlay-time-picker',
+        'datetime-picker-mixin_test.html?specifier=overlay-time-picker&url=@fooloomanzoo/datetime-picker/overlay-time-picker',
+        '/components/@fooloomanzoo/input-picker-pattern/test/overlay-picker-mixin_test.html?specifier=overlay-time-picker&url=@fooloomanzoo/datetime-picker/overlay-time-picker',
         // overlay-datetime-picker
-        'datetime-picker_test.html?specifier=overlay-datetime-picker&url=datetime-picker/overlay-datetime-picker.html',
-        'datetime-picker-mixin_test.html?specifier=overlay-datetime-picker&url=datetime-picker/overlay-datetime-picker.html',
-        '/components/input-picker-pattern/test/overlay-picker-mixin_test.html?specifier=overlay-datetime-picker&url=datetime-picker/overlay-datetime-picker.html'
+        'datetime-picker_test.html?specifier=overlay-datetime-picker&url=@fooloomanzoo/datetime-picker/overlay-datetime-picker',
+        'datetime-picker-mixin_test.html?specifier=overlay-datetime-picker&url=@fooloomanzoo/datetime-picker/overlay-datetime-picker',
+        '/components/@fooloomanzoo/input-picker-pattern/test/overlay-picker-mixin_test.html?specifier=overlay-datetime-picker&url=@fooloomanzoo/datetime-picker/overlay-datetime-picker'
       ]);
     </script>
 

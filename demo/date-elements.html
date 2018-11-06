@@ -5,14 +5,16 @@
     <title>&lt;date-picker&gt; demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
+      import '../calendar-element.js';
+      import '../date-picker.js';
+    </script>
 
-    <link rel="import" href="../../datetime-input/datetime-input.html">
-    <link rel="import" href="../date-picker.html">
-    <link rel="import" href="../../input-picker-pattern/overlay-element.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .result {
@@ -25,7 +27,6 @@
   </head>
 
   <body>
-
     <div class="vertical-section-container centered">
       <h3>Create a standalone calendar-element and date-input</h3>
       <demo-snippet>
@@ -82,7 +83,7 @@
         <template>
           <dom-bind>
             <template is="dom-bind">
-              <date-picker max="123" auto-confirm value="{{date}}" confirmed-value="{{confirmedDate}}" property-for-value="date" vertical-align="bottom"></date-picker>
+              <date-picker auto-confirm value="{{date}}" confirmed-value="{{confirmedDate}}" property-for-value="date" vertical-align="bottom"></date-picker>
               <div class="vertical-section-container result">
                 <div><code>current date</code>: <b>[[date]]</b></div>
                 <div><code>confirmed date</code>: <b>[[confirmedDate]]</b></div>
@@ -174,7 +175,7 @@
               <div class="vertical-section-container">
                 <date-picker id="eventPicker" opened="{{opened}}" date="{{date}}" current-active-day-node="{{currentActiveDayNode}}" vertical-align="bottom"></date-picker>
                 <template is="dom-if" if="[[currentActiveDayNode]]">
-                  <overlay-element class="overlay" opened$="[[_enshureOpened(opened, currentActiveDayNode)]]" on-mousedown="close" no-overlap fit-into="[[currentActiveDayNode]]" no-cancel-on-outside-click dynamic-align vertical-align="auto" horizontal-align="auto">
+                  <overlay-element class="overlay" opened\$="[[_enshureOpened(opened, currentActiveDayNode)]]" on-mousedown="close" no-overlap fit-into="[[currentActiveDayNode]]" no-cancel-on-outside-click dynamic-align vertical-align="auto" horizontal-align="auto">
                     <div class="info">
                       <div><b>[[_toLocaleDateString(currentActiveDayNode.dataset.year, currentActiveDayNode.dataset.month, currentActiveDayNode.dataset.day)]]</b></div>
                       <ul>
@@ -258,7 +259,5 @@
         </template>
       </demo-snippet>
     </div>
-
   </body>
-
 </html>

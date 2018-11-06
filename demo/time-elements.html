@@ -5,14 +5,18 @@
     <title>&lt;time-picker&gt; demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '@fooloomanzoo/number-input/number-input.js';
+      import '@fooloomanzoo/datetime-input/time-input.js';
+      import '../time-element.js';
+      import '../date-picker.js';
+      import '../time-picker.js';
+    </script>
 
-    <link rel="import" href="../../datetime-input/time-input.html">
-    <link rel="import" href="../time-picker.html">
-    <link rel="import" href="../date-picker.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
         .result {
@@ -25,7 +29,6 @@
   </head>
 
   <body>
-
     <div class="vertical-section-container centered">
       <h3>Create a standalone time-element and time-input</h3>
       <demo-snippet>
@@ -157,6 +160,5 @@
         </template>
       </demo-snippet>
     </div>
-
   </body>
 </html>
