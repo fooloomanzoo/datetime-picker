@@ -71,7 +71,7 @@ Another use case could be for example, if you want on _mobile devices_ use the n
 
 ### How?
 
-The **[component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)** explains, which of the attributes you can use and how. You can see there a **[demo](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html)**, too.
+The **[component page](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)** explains, which of the attributes you can use and how. You can see there a **[demo](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-elements.html)**, too.
 
 You can use it stand-alone, with overlay or as a range of dates. Examples:
 
@@ -156,7 +156,7 @@ By default it checks if `datetime-local`, `date` or `time` is supported as input
 ```
 
 #### Define date ranges
-Set cross data bindings to limit the values of the inputs. Use the ``confirmed``-attributes to validate only confirmed values. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-picker.html):
+Set cross data bindings to limit the values of the inputs. Use the ``confirmed-value`` or the ``auto-confirm``-attribute to prevent resetting. Please also visit the [demos](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/#/elements/datetime-picker/demos/demo/datetime-elements.html):
 
 <!--
 ```
