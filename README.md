@@ -258,17 +258,7 @@ Have a look at [input-picker-pattern#input-picker-shared-style](https://github.c
 
 ### Installation
 ```
-bower install --save fooloomanzoo/datetime-picker
-```
-or
-```
-npm install --save @fooloomanzoo/datetime-picker
-```
-
-### Update
-to last version
-```
-bower update -f
+npm i @fooloomanzoo/datetime-picker
 ```
 
 ### Notable Changes
@@ -323,6 +313,9 @@ bower update -f
   - the only confirmed-property is `confirmed-value` (but it is possible by changing `propertyForValue` to define the kind of property that is used for `value` and `confirmedValue`)
   - new buildup for the calendar, new property `currentActiveDayNode`, using dataset-attributes for the calendar-cells
   - performance improvements and test-suites for every element and their dependencies
+
+* 3.0.0
+  - update to polymer 3.0
 
 ### Contribute?
 Feel free to send a new issue, a commit, a pull request or just fork it!
