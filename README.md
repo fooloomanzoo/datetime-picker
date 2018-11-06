@@ -262,7 +262,7 @@ Have a look at [input-picker-pattern#input-picker-shared-style](https://github.c
 
 ### Installation
 ```
-npm i @fooloomanzoo/datetime-picker
+npm i --save @fooloomanzoo/datetime-picker
 ```
 
 ### Notable Changes
