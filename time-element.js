@@ -7,6 +7,7 @@ import { DatetimeFormMixin } from '@fooloomanzoo/datetime-input/datetime-input-m
 import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js';
 import '@fooloomanzoo/number-input/integer-input.js';
 import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
+import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
 
 /**
  * Mixin for calendar-element
@@ -214,7 +215,7 @@ class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(FormE
 
   static get template() {
     return html`
-      <style include="input-picker-shared-style">
+      <style include="input-shared-style input-picker-shared-style">
         ${this.styleTemplate}
       </style>
       ${this.timeTemplate}

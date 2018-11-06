@@ -10,7 +10,6 @@ import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { CalendarElementPattern } from './calendar-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
 import { DatePickerPattern } from './date-picker.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 /**
  *   `<overlay-date-picker>` extends `date-picker` in an overlay.
  *

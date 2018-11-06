@@ -5,13 +5,13 @@ import { DatetimeFormMixin } from '@fooloomanzoo/datetime-input/datetime-input-m
 import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { DatetimePickerMixin } from '../../datetime-picker-mixin.js';
 
-class BasicDatetimePicker extends DatetimePickerMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(Element)))) {
+class BasicDatetimePicker extends DatetimePickerMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))) {
   static get is() {
     return 'basic-datetime-picker';
   }
 
   static get expectedNativeInputType() {
-    return 'datetime-local';
+    return htmlLiteral`datetime-local`;
   }
 
   static get inputTemplate() {

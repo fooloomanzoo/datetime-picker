@@ -1,5 +1,7 @@
 import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
+import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
+import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
 /**
  * mixin to extend an element with a test for an expected input type and implement a polyfill, when wanted or needed
@@ -14,7 +16,7 @@ export const DatetimePickerMixin = dedupingMixin( superClass => {
       return html`
         <template is="dom-if" if="[[_computeShouldNative(native)]]" restamp>
           <input class="native" type="${this.expectedNativeInputType}" disabled$="[[disabled]]" value="{{_nativeInput::input}}" step="[[_computeNativeStep(_partsStep, clamp)]]" min="[[_computeNativeThreshold(_minValue)]]" max="[[_computeNativeThreshold(_maxValue)]]">
-          ${this.timezoneInputTemplate}
+          ${this.timezoneInputTemplate || html``}
         </template>
       `;
     }

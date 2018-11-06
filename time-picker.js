@@ -8,8 +8,6 @@ import { TimeInputPattern } from '@fooloomanzoo/datetime-input/time-input.js';
 import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { TimeElementPattern } from './time-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
 /**
  * Mixin for time-picker

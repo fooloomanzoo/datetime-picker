@@ -148,7 +148,7 @@
           let d = new Date();
           // transforming date according to its clamp attribute
           d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-          d = element._clampUTC(d, element.clamp);
+          d = element._clampUTCComponents(d, element.clamp);
           d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
           // NOTE: milliseconds are often not serialized by browsers
           d.setMilliseconds(0);

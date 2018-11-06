@@ -12,8 +12,6 @@ import { DatePickerPattern } from './date-picker.js';
 import { TimeElementPattern } from './time-element.js';
 import { TimePickerPattern } from './time-picker.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
 
 /**
  * Mixin for datetime-picker
