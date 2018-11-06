@@ -4,15 +4,21 @@
   <head>
     <title>&lt;datetime-picker&gt; demo</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
     <script type="module">
-      import '../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-      import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
-      import '../node_modules/@fooloomanzoo/input-picker-pattern/overlay-element.js';
+      import '@polymer/iron-demo-helpers/demo-snippet.js';
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
       import '../calendar-element.js';
       import '../datetime-picker.js';
+
+      import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+      const template = html
+      `<custom-style><style is="custom-style" include="demo-pages-shared-styles"></style></custom-style>`;
+      document.body.appendChild(template.content);
     </script>
 
     <custom-style>
