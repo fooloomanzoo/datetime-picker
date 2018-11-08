@@ -1,13 +1,13 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
-import { FormElementMixin } from '@fooloomanzoo/input-picker-pattern/form-element-mixin.js';
-import { DatetimeMixin, maxDayOfMonth } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
-import { DatetimeFormMixin } from '@fooloomanzoo/datetime-input/datetime-input-mixin.js';
-import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js';
-import '@fooloomanzoo/number-input/integer-input.js';
-import '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
-import '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
+import { PolymerElement } from '../../@polymer/polymer/polymer-element.js';
+import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
+import { FormElementMixin } from '../input-picker-pattern/form-element-mixin.js';
+import { DatetimeMixin, maxDayOfMonth } from '../property-mixins/datetime-mixin.js';
+import { DatetimeFormMixin } from '../datetime-input/datetime-input-mixin.js';
+import { SwitchMixin } from '../input-picker-pattern/switch-mixin.js';
+import '../number-input/integer-input.js';
+import '../input-picker-pattern/input-picker-shared-style.js';
+import '../input-picker-pattern/input-shared-style.js';
 
 /**
  * clamp a date object to the day property

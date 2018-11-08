@@ -8,15 +8,15 @@
 
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.1.3/webcomponents-loader.js"></script>
     <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-      import '@polymer/iron-demo-helpers/demo-snippet.js';
-      import '@polymer/iron-form/iron-form.js';
-      import '@fooloomanzoo/input-picker-pattern/overlay-element.js';
+      import '../../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '../../../@polymer/iron-demo-helpers/demo-snippet.js';
+      import '../../../@polymer/iron-form/iron-form.js';
+      import '../../input-picker-pattern/overlay-element.js';
       import '../datetime-picker.js';
       import '../date-picker.js';
       import '../time-picker.js';
 
-      import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+      import {html} from '../../../@polymer/polymer/lib/utils/html-tag.js';
       const template = html`
         <custom-style>
           <style is="custom-style" include="demo-pages-shared-styles">

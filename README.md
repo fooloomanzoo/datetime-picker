@@ -1,4 +1,4 @@
-[![Published on NPM](https://img.shields.io/npm/v/@fooloomanzoo/datetime-picker.svg)](https://www.npmjs.com/package/@fooloomanzoo/datetime-picker)
+[![Published on NPM](https://img.shields.io/npm/v/../datetime-picker.svg)](https://www.npmjs.com/package/../datetime-picker)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker)
 [![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/fooloomanzoo/datetime-picker/demo/demo/index.html)
 [![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/fooloomanzoodatetime-picker)
@@ -15,7 +15,7 @@ _[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/d
 <datetime-picker></datetime-picker>
 ```
 
-If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer.IronOverlayBehavior and will create some of its attribute-bindings.
+If you like an **overlay** then use `<overlay-datetime-picker>`, what creates the polyfill in an `<overlay-element>`, that extends Polymer's IronOverlayBehavior and will create some of its attribute-bindings.
 
 You can use other pickers and elements, too. In this collection are for:
 * **datetime**
@@ -151,7 +151,7 @@ Have a look at [input-picker-pattern#input-picker-shared-style](https://github.c
 
 ### Installation
 ```
-npm i --save @fooloomanzoo/datetime-picker
+npm i --save ../datetime-picker
 ```
 
 ### Notable Changes

@@ -1,7 +1,7 @@
-import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
-import '@fooloomanzoo/input-picker-pattern/dropdown-tip-style.js';
+import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
+import '../input-picker-pattern/dropdown-style.js';
+import '../input-picker-pattern/dropdown-tip-style.js';
 
 /**
  * Mixin for creating a picker for datetime
@@ -243,10 +243,10 @@ export const DatetimePickerMixin = dedupingMixin( superClass => {
     }
 
     /**
-     * reset confirmedValue and value and the date properties
+     * reset the value and date properties
      */
-    resetDate(e) {
-      super.resetDate(e);
+    reset(e) {
+      this.resetDate(e);
       this._setConfirmedValue();
     }
   }

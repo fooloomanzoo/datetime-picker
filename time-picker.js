@@ -1,11 +1,11 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
-import { InputPickerPattern } from '@fooloomanzoo/input-picker-pattern/input-picker-pattern.js';
-import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js';
-import { DatetimeFormMixin, DatetimeInputMixin } from '@fooloomanzoo/datetime-input/datetime-input-mixin.js';
-import { TimeInputPattern } from '@fooloomanzoo/datetime-input/time-input.js';
-import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
+import { PolymerElement } from '../../@polymer/polymer/polymer-element.js';
+import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
+import { InputPickerPattern } from '../input-picker-pattern/input-picker-pattern.js';
+import { SwitchMixin } from '../input-picker-pattern/switch-mixin.js';
+import { DatetimeFormMixin, DatetimeInputMixin } from '../datetime-input/datetime-input-mixin.js';
+import { TimeInputPattern } from '../datetime-input/time-input.js';
+import { DatetimeMixin } from '../property-mixins/datetime-mixin.js';
 import { TimeElementPattern } from './time-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
 
@@ -57,7 +57,7 @@ export const TimePickerPattern = dedupingMixin( superClass => {
 });
 
 /**
- *  `<time-picker>` is a picker for time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** time-picker. The `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
+ *  `<time-picker>` is a picker for time for **[Polymer](https://github.com/Polymer/@polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** time-picker. The `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
  *
  *  ```html
  *    <time-picker value="{{value}}"></time-picker>

@@ -34,11 +34,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@polymer/polymer": "^3",
     "@fooloomanzoo/datetime-input": "^3",
     "@fooloomanzoo/input-picker-pattern": "^3",
     "@fooloomanzoo/number-input": "^3",
-    "@fooloomanzoo/property-mixins": "^3"
+    "@fooloomanzoo/property-mixins": "^3",
+    "@polymer/polymer": "^3"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2",

@@ -1,12 +1,12 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
-import { InputPickerPattern } from '@fooloomanzoo/input-picker-pattern/input-picker-pattern.js';
-import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js';
-import { DatetimeFormMixin, DatetimeInputMixin } from '@fooloomanzoo/datetime-input/datetime-input-mixin.js';
-import { DateInputPattern } from '@fooloomanzoo/datetime-input/date-input.js';
-import { TimeInputPattern } from '@fooloomanzoo/datetime-input/time-input.js';
-import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
+import { PolymerElement } from '../../@polymer/polymer/polymer-element.js';
+import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
+import { InputPickerPattern } from '../input-picker-pattern/input-picker-pattern.js';
+import { SwitchMixin } from '../input-picker-pattern/switch-mixin.js';
+import { DatetimeFormMixin, DatetimeInputMixin } from '../datetime-input/datetime-input-mixin.js';
+import { DateInputPattern } from '../datetime-input/date-input.js';
+import { TimeInputPattern } from '../datetime-input/time-input.js';
+import { DatetimeMixin } from '../property-mixins/datetime-mixin.js';
 import { CalendarElementPattern } from './calendar-element.js';
 import { DatePickerPattern } from './date-picker.js';
 import { TimeElementPattern } from './time-element.js';
@@ -71,7 +71,7 @@ export const DatetimePickerPattern = dedupingMixin( superClass => {
 });
 
 /**
- *  `<datetime-picker>` is a picker for date and time for **[Polymer](https://github.com/Polymer/polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** datetime-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
+ *  `<datetime-picker>` is a picker for date and time for **[Polymer](https://github.com/Polymer/@polymer)** that can use the **native** input, too. If the **native** picker is choosen and is not supported, this element uses the **polyfill** datetime-picker. The `<calendar-element>` and the `<time-element>` will come in place if the native picker is not available or is not explicitly wanted. A range picker is provided by combining the `min`- and `max`-attributes.
  *
  *  ```html
  *    <datetime-picker value="{{value}}"></datetime-picker>
