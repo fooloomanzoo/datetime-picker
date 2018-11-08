@@ -847,11 +847,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 142,
+              "line": 145,
               "column": 2
             },
             "end": {
-              "line": 144,
+              "line": 147,
               "column": 3
             }
           },
@@ -962,11 +962,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 68,
+              "line": 71,
               "column": 4
             },
             "end": {
-              "line": 86,
+              "line": 89,
               "column": 5
             }
           },
@@ -987,11 +987,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 88,
+              "line": 91,
               "column": 4
             },
             "end": {
-              "line": 91,
+              "line": 94,
               "column": 5
             }
           },
@@ -1108,8 +1108,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
@@ -1495,11 +1495,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 136,
+          "line": 139,
           "column": 0
         },
         "end": {
-          "line": 149,
+          "line": 152,
           "column": 1
         }
       },
@@ -2108,8 +2108,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
@@ -2612,11 +2612,11 @@
           "sourceRange": {
             "file": "date-picker.js",
             "start": {
-              "line": 68,
+              "line": 71,
               "column": 4
             },
             "end": {
-              "line": 86,
+              "line": 89,
               "column": 5
             }
           },
@@ -2638,11 +2638,11 @@
           "sourceRange": {
             "file": "date-picker.js",
             "start": {
-              "line": 88,
+              "line": 91,
               "column": 4
             },
             "end": {
-              "line": 91,
+              "line": 94,
               "column": 5
             }
           },
@@ -2781,8 +2781,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
@@ -3678,11 +3678,11 @@
           "sourceRange": {
             "file": "date-picker.js",
             "start": {
-              "line": 68,
+              "line": 71,
               "column": 4
             },
             "end": {
-              "line": 86,
+              "line": 89,
               "column": 5
             }
           },
@@ -3704,11 +3704,11 @@
           "sourceRange": {
             "file": "date-picker.js",
             "start": {
-              "line": 88,
+              "line": 91,
               "column": 4
             },
             "end": {
-              "line": 91,
+              "line": 94,
               "column": 5
             }
           },
@@ -3847,8 +3847,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
@@ -4713,11 +4713,11 @@
           "sourceRange": {
             "file": "date-picker.js",
             "start": {
-              "line": 68,
+              "line": 71,
               "column": 4
             },
             "end": {
-              "line": 86,
+              "line": 89,
               "column": 5
             }
           },
@@ -4739,11 +4739,11 @@
           "sourceRange": {
             "file": "date-picker.js",
             "start": {
-              "line": 88,
+              "line": 91,
               "column": 4
             },
             "end": {
-              "line": 91,
+              "line": 94,
               "column": 5
             }
           },
@@ -4860,8 +4860,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
@@ -5684,8 +5684,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
@@ -6628,8 +6628,8 @@
           }
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "start": {
@@ -6759,7 +6759,7 @@
               "column": 4
             },
             "end": {
-              "line": 66,
+              "line": 69,
               "column": 5
             }
           },
@@ -6785,11 +6785,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 68,
+              "line": 71,
               "column": 4
             },
             "end": {
-              "line": 86,
+              "line": 89,
               "column": 5
             }
           },
@@ -6809,11 +6809,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 88,
+              "line": 91,
               "column": 4
             },
             "end": {
-              "line": 91,
+              "line": 94,
               "column": 5
             }
           },
@@ -6837,7 +6837,7 @@
           "column": 7
         },
         "end": {
-          "line": 93,
+          "line": 96,
           "column": 3
         }
       },
@@ -7303,8 +7303,8 @@
           "inheritedFrom": "DatetimePickerMixin"
         },
         {
-          "name": "resetDate",
-          "description": "reset confirmedValue and value and the date properties",
+          "name": "reset",
+          "description": "reset the value and date properties",
           "privacy": "public",
           "sourceRange": {
             "file": "datetime-picker-mixin.js",
