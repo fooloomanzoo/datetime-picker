@@ -1,8 +1,5 @@
-import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
-import '../input-picker-pattern/dropdown-style.js';
-import '../input-picker-pattern/dropdown-tip-style.js';
-
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
 /**
  * Mixin for creating a picker for datetime
  *
@@ -22,109 +19,111 @@ export const DatetimePickerMixin = dedupingMixin( superClass => {
     }
 
     static get styleTemplate() {
-      return htmlLiteral`
-        ${super.styleTemplate || htmlLiteral``}
-        .native {
-          text-align: var(--input-align, left);
-        }
-        .native,
-        .native::-webkit-datetime-edit,
-        .native::-webkit-datetime-edit-fields-wrapper {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .native::-webkit-datetime-edit-fields-wrapper {
-          padding: var(--input-field-padding, 0 1px);
-          border: var(--input-border-width, thin) solid transparent;
-        }
-        .native,
-        .native::-webkit-datetime-edit,
-        .native::-webkit-datetime-edit-fields-wrapper,
-        .native::-webkit-datetime-edit-ampm-field,
-        .native::-webkit-datetime-edit-text,
-        .native::-webkit-datetime-edit-day-field,
-        .native::-webkit-datetime-edit-second-field,
-        .native::-webkit-datetime-edit-millisecond-field,
-        .native::-webkit-datetime-edit-hour-field,
-        .native::-webkit-datetime-edit-minute-field,
-        .native::-webkit-datetime-edit-month-field,
-        .native::-webkit-datetime-edit-week-field,
-        .native::-webkit-datetime-edit-year-field {
-          position: relative;
-          line-height: normal;
-          outline: none;
-          color: var(--inner-input-color, currentColor);
-          font-family: inherit;
-          font-size: inherit;
-          box-sizing: content-box;
-          letter-spacing: inherit;
-          align-self: center;
-        }
-        .native::-webkit-datetime-edit-ampm-field,
-        .native::-webkit-datetime-edit-day-field,
-        .native::-webkit-datetime-edit-second-field,
-        .native::-webkit-datetime-edit-millisecond-field,
-        .native::-webkit-datetime-edit-hour-field,
-        .native::-webkit-datetime-edit-minute-field,
-        .native::-webkit-datetime-edit-month-field,
-        .native::-webkit-datetime-edit-week-field,
-        .native::-webkit-datetime-edit-year-field {
-          cursor: var(--input-cursor, pointer);
-          @apply --input-style;
-          background: var(--inner-input-background);
-          border-width: var(--inner-input-border-width, thin);
-          border-color: var(--inner-input-border-color, transparent);
-          border-style: var(--inner-input-border-style, solid);
-          padding: var(--inner-input-padding);
-          border-radius: var(--inner-input-border-radius);
-          text-align: center;
-          align-self: center;
-        }
-        .native::-webkit-datetime-edit-day-field,
-        .native::-webkit-datetime-edit-second-field,
-        .native::-webkit-datetime-edit-millisecond-field,
-        .native::-webkit-datetime-edit-hour-field,
-        .native::-webkit-datetime-edit-minute-field,
-        .native::-webkit-datetime-edit-month-field,
-        .native::-webkit-datetime-edit-week-field {
-          min-width: 2ch;
-        }
-        .native::-webkit-datetime-edit-millisecond-field {
-          min-width: 3ch;
-        }
-        .native::-webkit-datetime-edit-year-field {
-          min-width: 4ch;
-        }
-        .native::-webkit-datetime-edit-ampm-field:focus,
-        .native::-webkit-datetime-edit-day-field:focus,
-        .native::-webkit-datetime-edit-second-field:focus,
-        .native::-webkit-datetime-edit-millisecond-field:focus,
-        .native::-webkit-datetime-edit-hour-field:focus,
-        .native::-webkit-datetime-edit-minute-field:focus,
-        .native::-webkit-datetime-edit-month-field:focus,
-        .native::-webkit-datetime-edit-week-field:focus,
-        .native::-webkit-datetime-edit-year-field:focus {
-          color: var(--inner-input-focus-color);
-          background: var(--inner-input-focus-background);
-          border-color: var(--inner-input-focus-border-color, transparent);
-          border-style: var(--inner-input-focus-border-style, solid);
-        }
-        .native::-webkit-calendar-picker-indicator {
-          fill: currentColor;
-          align-self: center;
-          cursor: pointer;
-        }
-        .native::-webkit-calendar-picker-indicator:hover {
-          background: transparent;
-        }
-        .native::-webkit-inner-spin-button {
-          display: none;
-        }
-        .native.timezone {
-          --input-border-color: transparent;
-          --input-focus-border-color: transparent;
-        }
+      return html`
+        ${super.styleTemplate || html``}
+        <style>
+          .native {
+            text-align: var(--input-align, left);
+          }
+          .native,
+          .native::-webkit-datetime-edit,
+          .native::-webkit-datetime-edit-fields-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .native::-webkit-datetime-edit-fields-wrapper {
+            padding: var(--input-field-padding, 0 1px);
+            border: var(--input-border-width, thin) solid transparent;
+          }
+          .native,
+          .native::-webkit-datetime-edit,
+          .native::-webkit-datetime-edit-fields-wrapper,
+          .native::-webkit-datetime-edit-ampm-field,
+          .native::-webkit-datetime-edit-text,
+          .native::-webkit-datetime-edit-day-field,
+          .native::-webkit-datetime-edit-second-field,
+          .native::-webkit-datetime-edit-millisecond-field,
+          .native::-webkit-datetime-edit-hour-field,
+          .native::-webkit-datetime-edit-minute-field,
+          .native::-webkit-datetime-edit-month-field,
+          .native::-webkit-datetime-edit-week-field,
+          .native::-webkit-datetime-edit-year-field {
+            position: relative;
+            line-height: normal;
+            outline: none;
+            color: var(--inner-input-color, currentColor);
+            font-family: inherit;
+            font-size: inherit;
+            box-sizing: content-box;
+            letter-spacing: inherit;
+            align-self: center;
+          }
+          .native::-webkit-datetime-edit-ampm-field,
+          .native::-webkit-datetime-edit-day-field,
+          .native::-webkit-datetime-edit-second-field,
+          .native::-webkit-datetime-edit-millisecond-field,
+          .native::-webkit-datetime-edit-hour-field,
+          .native::-webkit-datetime-edit-minute-field,
+          .native::-webkit-datetime-edit-month-field,
+          .native::-webkit-datetime-edit-week-field,
+          .native::-webkit-datetime-edit-year-field {
+            cursor: var(--input-cursor, pointer);
+            @apply --input-style;
+            background: var(--inner-input-background);
+            border-width: var(--inner-input-border-width, thin);
+            border-color: var(--inner-input-border-color, transparent);
+            border-style: var(--inner-input-border-style, solid);
+            padding: var(--inner-input-padding);
+            border-radius: var(--inner-input-border-radius);
+            text-align: center;
+            align-self: center;
+          }
+          .native::-webkit-datetime-edit-day-field,
+          .native::-webkit-datetime-edit-second-field,
+          .native::-webkit-datetime-edit-millisecond-field,
+          .native::-webkit-datetime-edit-hour-field,
+          .native::-webkit-datetime-edit-minute-field,
+          .native::-webkit-datetime-edit-month-field,
+          .native::-webkit-datetime-edit-week-field {
+            min-width: 2ch;
+          }
+          .native::-webkit-datetime-edit-millisecond-field {
+            min-width: 3ch;
+          }
+          .native::-webkit-datetime-edit-year-field {
+            min-width: 4ch;
+          }
+          .native::-webkit-datetime-edit-ampm-field:focus,
+          .native::-webkit-datetime-edit-day-field:focus,
+          .native::-webkit-datetime-edit-second-field:focus,
+          .native::-webkit-datetime-edit-millisecond-field:focus,
+          .native::-webkit-datetime-edit-hour-field:focus,
+          .native::-webkit-datetime-edit-minute-field:focus,
+          .native::-webkit-datetime-edit-month-field:focus,
+          .native::-webkit-datetime-edit-week-field:focus,
+          .native::-webkit-datetime-edit-year-field:focus {
+            color: var(--inner-input-focus-color);
+            background: var(--inner-input-focus-background);
+            border-color: var(--inner-input-focus-border-color, transparent);
+            border-style: var(--inner-input-focus-border-style, solid);
+          }
+          .native::-webkit-calendar-picker-indicator {
+            fill: currentColor;
+            align-self: center;
+            cursor: pointer;
+          }
+          .native::-webkit-calendar-picker-indicator:hover {
+            background: transparent;
+          }
+          .native::-webkit-inner-spin-button {
+            display: none;
+          }
+          .native.timezone {
+            --input-border-color: transparent;
+            --input-focus-border-color: transparent;
+          }
+        </style>
       `;
     }
 

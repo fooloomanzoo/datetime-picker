@@ -1,13 +1,13 @@
-import { PolymerElement } from '../../@polymer/polymer/polymer-element.js';
-import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
-import { FormElementMixin } from '../input-picker-pattern/form-element-mixin.js';
-import { DatetimeMixin } from '../property-mixins/datetime-mixin.js';
-import { DatetimeFormMixin } from '../datetime-input/datetime-input-mixin.js';
-import { SwitchMixin } from '../input-picker-pattern/switch-mixin.js';
-import '../number-input/integer-input.js';
-import '../input-picker-pattern/input-picker-shared-style.js';
-import '../input-picker-pattern/input-shared-style.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
+import { FormElementMixin } from '@fooloomanzoo/input-picker-pattern/form-element-mixin.js';
+import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
+import { DatetimeFormMixin } from '@fooloomanzoo/datetime-input/datetime-input-mixin.js';
+import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js';
+import '@fooloomanzoo/number-input/integer-input.js';
+import { style as inputPickerStyle } from '@fooloomanzoo/input-picker-pattern/input-picker-shared-style.js';
+import { style as inputStyle } from '@fooloomanzoo/input-picker-pattern/input-shared-style.js';
 
 /**
  * Mixin for time-element
@@ -19,61 +19,64 @@ export const TimeElementPattern = dedupingMixin( superClass => {
   return class extends superClass {
 
     static get styleTemplate() {
-      return htmlLiteral`
-        ${super.styleTemplate || htmlLiteral``}
-        :host {
-          --computed-reduced-icon-padding: calc(var(--input-icon-padding, 0.5em) / 4);
-        }
-        #timer {
-          color: var(--input-picker-color);
-          background-color: var(--input-picker-background);
-          border-radius: var(--input-picker-border-radius);
-          padding: var(--input-picker-padding);
-          @apply --input-picker;
-          display: inline-flex;
-          flex-flow: row nowrap;
-          align-items: center;
-          @apply --time-element;
-        }
-        #timer .field {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        #timer .timezone {
-          display: flex;
-          align-items: center;
-        }
-        #timer .buttons {
-          display: flex;
-          flex-direction: column;
-          align-self: stretch;
-          justify-content: space-between;
-        }
-        #timer .field > integer-input {
-          --input-color: var(--inner-input-color, var(--input-picker-color));
-          align-self: stretch;
-          justify-content: center;
-        }
-        #timer .field > .switch {
-          padding-top: var(--computed-reduced-icon-padding);
-          padding-bottom: var(--computed-reduced-icon-padding);
-        }
-        #timer .field > .switch:first-of-type {
-          border-bottom-left-radius: 1px;
-          border-bottom-right-radius: 1px;
-        }
-        #timer .field > .switch:last-of-type {
-          border-top-left-radius: 1px;
-          border-top-right-radius: 1px;
-        }
-        #timer .hour12 {
-          flex-shrink: 0;
-          font-size: 0.85em;
-          margin: 0 0.15em;
-          padding: 0.1em;
-          border-color: transparent;
-        }
+      return html`
+        ${super.styleTemplate || html``}
+        ${inputStyle}
+        <style>
+          :host {
+            --computed-reduced-icon-padding: calc(var(--input-icon-padding, 0.5em) / 4);
+          }
+          #timer {
+            color: var(--input-picker-color);
+            background-color: var(--input-picker-background);
+            border-radius: var(--input-picker-border-radius);
+            padding: var(--input-picker-padding);
+            @apply --input-picker;
+            display: inline-flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            @apply --time-element;
+          }
+          #timer .field {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          #timer .timezone {
+            display: flex;
+            align-items: center;
+          }
+          #timer .buttons {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            justify-content: space-between;
+          }
+          #timer .field > integer-input {
+            --input-color: var(--inner-input-color, var(--input-picker-color));
+            align-self: stretch;
+            justify-content: center;
+          }
+          #timer .field > .switch {
+            padding-top: var(--computed-reduced-icon-padding);
+            padding-bottom: var(--computed-reduced-icon-padding);
+          }
+          #timer .field > .switch:first-of-type {
+            border-bottom-left-radius: 1px;
+            border-bottom-right-radius: 1px;
+          }
+          #timer .field > .switch:last-of-type {
+            border-top-left-radius: 1px;
+            border-top-right-radius: 1px;
+          }
+          #timer .hour12 {
+            flex-shrink: 0;
+            font-size: 0.85em;
+            margin: 0 0.15em;
+            padding: 0.1em;
+            border-color: transparent;
+          }
+        </style>
       `;
     }
 
@@ -215,9 +218,8 @@ class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(FormE
 
   static get template() {
     return html`
-      <style include="input-shared-style input-picker-shared-style">
-        ${this.styleTemplate}
-      </style>
+      ${inputPickerStyle}
+      ${this.styleTemplate}
       ${this.timeTemplate}
     `
   }

@@ -1,13 +1,14 @@
-import { PolymerElement } from '../../@polymer/polymer/polymer-element.js';
-import { html, htmlLiteral } from '../../@polymer/polymer/lib/utils/html-tag.js';
-import { dedupingMixin } from '../../@polymer/polymer/lib/utils/mixin.js';
-import { InputPickerPattern } from '../input-picker-pattern/input-picker-pattern.js';
-import { SwitchMixin } from '../input-picker-pattern/switch-mixin.js';
-import { DatetimeFormMixin, DatetimeInputMixin } from '../datetime-input/datetime-input-mixin.js';
-import { DateInputPattern } from '../datetime-input/date-input.js';
-import { DatetimeMixin } from '../property-mixins/datetime-mixin.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { html, htmlLiteral } from '@polymer/polymer/lib/utils/html-tag.js';
+import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin.js';
+import { InputPickerPattern } from '@fooloomanzoo/input-picker-pattern/input-picker-pattern.js';
+import { SwitchMixin } from '@fooloomanzoo/input-picker-pattern/switch-mixin.js';
+import { DatetimeFormMixin, DatetimeInputMixin } from '@fooloomanzoo/datetime-input/datetime-input-mixin.js';
+import { DateInputPattern } from '@fooloomanzoo/datetime-input/date-input.js';
+import { DatetimeMixin } from '@fooloomanzoo/property-mixins/datetime-mixin.js';
 import { CalendarElementPattern } from './calendar-element.js';
 import { DatetimePickerMixin } from './datetime-picker-mixin.js';
+import { style as dropdownStyle } from '@fooloomanzoo/input-picker-pattern/dropdown-style.js';
 
 /**
  * Mixin for date-picker
@@ -34,11 +35,13 @@ export const DatePickerPattern = dedupingMixin( superClass => {
     }
 
     static get styleTemplate() {
-      return htmlLiteral`
-        ${super.styleTemplate || htmlLiteral``}
-        :host(:not([opened])) #calendar #days > *:hover:before {
-          border-color: var(--inner-input-focus-background);
-        }
+      return html`
+        ${super.styleTemplate || html``}
+        <style>
+          :host(:not([opened])) #calendar #days > *:hover:before {
+            border-color: var(--inner-input-focus-background);
+          }
+        </style>
       `;
     }
 
@@ -147,8 +150,11 @@ class DatePicker extends DatePickerPattern(DatetimePickerMixin(CalendarElementPa
     return DatePicker._hasNative;
   }
 
-  static get styleToInclude() {
-    return htmlLiteral`${super.styleToInclude || htmlLiteral``}dropdown-style`;
+  static get styleTemplate() {
+    return html`
+      ${dropdownStyle}
+      ${super.styleTemplate}
+    `
   }
 }
 customElements.define(DatePicker.is, DatePicker);
