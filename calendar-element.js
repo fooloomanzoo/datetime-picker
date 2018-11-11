@@ -709,7 +709,7 @@ export const CalendarElementPattern = dedupingMixin( superClass => {
 *
 * @demo demo/date-elements.html date elements
 **/
-class CalendarElement extends CalendarElementPattern(SwitchMixin(DatetimeFormMixin(FormElementMixin(DatetimeMixin(PolymerElement))))) {
+export class CalendarElement extends CalendarElementPattern(SwitchMixin(DatetimeFormMixin(FormElementMixin(DatetimeMixin(PolymerElement))))) {
 
   static get is() {
     return 'calendar-element';

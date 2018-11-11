@@ -60,7 +60,7 @@ import { DatetimePickerMixin } from './datetime-picker-mixin.js';
  *  @demo demo/overlay-elements.html overlay demo
  *  @demo demo/music-album.html music album demo
  **/
-class OverlayDatetimePicker extends OverlayPickerMixin(DatetimePickerPattern(DatePickerPattern(TimePickerPattern(DatetimePickerMixin(CalendarElementPattern(TimeElementPattern(SwitchMixin(DateInputPattern(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))))))))))))) {
+export class OverlayDatetimePicker extends OverlayPickerMixin(DatetimePickerPattern(DatePickerPattern(TimePickerPattern(DatetimePickerMixin(CalendarElementPattern(TimeElementPattern(SwitchMixin(DateInputPattern(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))))))))))))) {
 
   static get is() {
     return 'overlay-datetime-picker';

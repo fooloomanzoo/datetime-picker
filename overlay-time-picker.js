@@ -46,7 +46,7 @@ import { TimePickerPattern } from './time-picker.js';
  *  @demo demo/overlay-elements.html overlay demo
  *  @demo demo/music-album.html music album demo
  **/
-class OverlayTimePicker extends OverlayPickerMixin(TimePickerPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))))))))) {
+export class OverlayTimePicker extends OverlayPickerMixin(TimePickerPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))))))))) {
 
   static get is() {
     return 'overlay-time-picker';

@@ -210,7 +210,7 @@ export const TimeElementPattern = dedupingMixin( superClass => {
    *
    * @demo demo/time-elements.html time elements
    **/
-class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(FormElementMixin(DatetimeMixin(PolymerElement))))) {
+export class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixin(FormElementMixin(DatetimeMixin(PolymerElement))))) {
 
   static get is() {
     return 'time-element';

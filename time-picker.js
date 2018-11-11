@@ -90,7 +90,7 @@ export const TimePickerPattern = dedupingMixin( superClass => {
  *  @demo demo/form.html in a form
  *  @demo demo/music-album.html music album demo
  **/
-class TimePicker extends TimePickerPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement))))))))) {
+export class TimePicker extends TimePickerPattern(DatetimePickerMixin(TimeElementPattern(SwitchMixin(TimeInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement))))))))) {
 
   static get is() {
     return 'time-picker';

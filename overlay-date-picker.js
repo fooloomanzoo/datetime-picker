@@ -51,7 +51,7 @@ import { DatePickerPattern } from './date-picker.js';
  *  @demo demo/overlay-elements.html overlay demo
  *  @demo demo/music-album.html music album demo
  **/
-class OverlayDatePicker extends OverlayPickerMixin(DatePickerPattern(DatetimePickerMixin(CalendarElementPattern(SwitchMixin(DateInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))))))))) {
+export class OverlayDatePicker extends OverlayPickerMixin(DatePickerPattern(DatetimePickerMixin(CalendarElementPattern(SwitchMixin(DateInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement)))))))))) {
 
   static get is() {
     return 'overlay-date-picker';

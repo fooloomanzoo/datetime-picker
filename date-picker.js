@@ -140,7 +140,7 @@ export const DatePickerPattern = dedupingMixin( superClass => {
  *  @demo demo/form.html in a form
  *  @demo demo/music-album.html music album demo
  **/
-class DatePicker extends DatePickerPattern(DatetimePickerMixin(CalendarElementPattern(SwitchMixin(DateInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement))))))))) {
+export class DatePicker extends DatePickerPattern(DatetimePickerMixin(CalendarElementPattern(SwitchMixin(DateInputPattern(DatetimeInputMixin(DatetimeFormMixin(InputPickerPattern(DatetimeMixin(PolymerElement))))))))) {
 
   static get is() {
     return 'date-picker';
