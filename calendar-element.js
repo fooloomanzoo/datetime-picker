@@ -103,15 +103,20 @@ export const CalendarElementPattern = dedupingMixin( superClass => {
             position: relative;
             font-size: var(--calendar-cell-font-size, 0.75em);
             border-radius: var(--calendar-cell-border-radius, 0.3em);
-            width: var(--calendar-cell-size, 3em);
-            height: var(--calendar-cell-size, 3em);
-            min-width: 2em;
-            min-height: 2em;
+            min-width: 2ch;
+            min-height: 1em;
             box-sizing: content-box;
             background-color: transparent;
             transition-property: background-color;
             transition-duration: var(--input-transition-duration, 250ms);
             transition-timing-function: var(--input-transition-timing-function, cubic-bezier(0.6, 1, 0.2, 1));
+            width: var(--calendar-cell-size, 3em);
+          }
+          #calendar #days > * {
+            height: var(--calendar-cell-size, 3em);
+          }
+          #calendar #caption > *{
+            height: var(--calendar-caption-height, 1em);
           }
           #calendar #days > *:nth-child(7n+1) {
             clear: left;

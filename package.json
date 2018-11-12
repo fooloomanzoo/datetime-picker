@@ -26,7 +26,7 @@
   "scripts": {
     "prepublishOnly": "npm run build && git add . && git commit -m \"publish new version\" && npm version patch && git push",
     "gh-pages": "git checkout gh-pages && git pull && bower update -f && git add . && git commit -m \"update\" && git push && git checkout master",
-    "build": "git pull && npm i && npm run analyze",
+    "build": "git pull && npm update -f && npm run analyze",
     "start": "npm run analyze && polymer serve -o",
     "analyze": "polymer analyze > analysis.json",
     "test": "polymer test",
@@ -36,8 +36,8 @@
   "dependencies": {
     "@fooloomanzoo/datetime-input": "^3.0.3",
     "@fooloomanzoo/input-picker-pattern": "^3.0.8",
-    "@fooloomanzoo/number-input": "^3.0.4",
-    "@fooloomanzoo/property-mixins": "^3.0.7",
+    "@fooloomanzoo/number-input": "^3.0.9",
+    "@fooloomanzoo/property-mixins": "^3.0.9",
     "@polymer/polymer": "^3"
   },
   "devDependencies": {
