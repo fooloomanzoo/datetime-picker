@@ -34,10 +34,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fooloomanzoo/datetime-input": "^3",
-    "@fooloomanzoo/input-picker-pattern": "^3",
-    "@fooloomanzoo/number-input": "^3",
-    "@fooloomanzoo/property-mixins": "^3",
+    "@fooloomanzoo/datetime-input": "^3.0.3",
+    "@fooloomanzoo/input-picker-pattern": "^3.0.8",
+    "@fooloomanzoo/number-input": "^3.0.4",
+    "@fooloomanzoo/property-mixins": "^3.0.7",
     "@polymer/polymer": "^3"
   },
   "devDependencies": {

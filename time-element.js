@@ -224,4 +224,7 @@ export class TimeElement extends TimeElementPattern(SwitchMixin(DatetimeFormMixi
     `
   }
 }
-customElements.define(TimeElement.is, TimeElement);
+
+if (!customElements.get(TimeElement.is)) {
+  customElements.define(TimeElement.is, TimeElement);
+}

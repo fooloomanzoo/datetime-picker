@@ -56,4 +56,7 @@ export class OverlayTimePicker extends OverlayPickerMixin(TimePickerPattern(Date
     return OverlayTimePicker._hasNative;
   }
 }
-customElements.define(OverlayTimePicker.is, OverlayTimePicker);
+
+if (!customElements.get(OverlayTimePicker.is)) {
+  customElements.define(OverlayTimePicker.is, OverlayTimePicker);
+}

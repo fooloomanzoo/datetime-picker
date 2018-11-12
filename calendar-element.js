@@ -723,4 +723,7 @@ export class CalendarElement extends CalendarElementPattern(SwitchMixin(Datetime
     `
   }
 }
-customElements.define(CalendarElement.is, CalendarElement);
+
+if (!customElements.get(CalendarElement.is)) {
+  customElements.define(CalendarElement.is, CalendarElement);
+}

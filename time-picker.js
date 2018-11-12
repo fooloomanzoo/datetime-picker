@@ -107,4 +107,7 @@ export class TimePicker extends TimePickerPattern(DatetimePickerMixin(TimeElemen
     return TimePicker._hasNative;
   }
 }
-customElements.define(TimePicker.is, TimePicker);
+
+if (!customElements.get(TimePicker.is)) {
+  customElements.define(TimePicker.is, TimePicker);
+}

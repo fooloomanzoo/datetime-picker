@@ -61,4 +61,7 @@ export class OverlayDatePicker extends OverlayPickerMixin(DatePickerPattern(Date
     return OverlayDatePicker._hasNative;
   }
 }
-customElements.define(OverlayDatePicker.is, OverlayDatePicker);
+
+if (!customElements.get(OverlayDatePicker.is)) {
+  customElements.define(OverlayDatePicker.is, OverlayDatePicker);
+}

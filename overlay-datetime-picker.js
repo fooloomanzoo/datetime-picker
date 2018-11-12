@@ -70,4 +70,7 @@ export class OverlayDatetimePicker extends OverlayPickerMixin(DatetimePickerPatt
     return OverlayDatetimePicker._hasNative;
   }
 }
-window.customElements.define(OverlayDatetimePicker.is, OverlayDatetimePicker);
+
+if (!customElements.get(OverlayDatetimePicker.is)) {
+  customElements.define(OverlayDatetimePicker.is, OverlayDatetimePicker);
+}

@@ -157,4 +157,7 @@ export class DatePicker extends DatePickerPattern(DatetimePickerMixin(CalendarEl
     `
   }
 }
-customElements.define(DatePicker.is, DatePicker);
+
+if (!customElements.get(DatePicker.is)) {
+  customElements.define(DatePicker.is, DatePicker);
+}

@@ -141,4 +141,6 @@ export class DatetimePicker extends DatetimePickerPattern(DatePickerPattern(Time
   }
 }
 
-customElements.define(DatetimePicker.is, DatetimePicker);
+if (!customElements.get(DatetimePicker.is)) {
+  customElements.define(DatetimePicker.is, DatetimePicker);
+}
