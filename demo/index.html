@@ -4,32 +4,18 @@
   <head>
     <title>&lt;datetime-picker&gt; demo</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.1.3/webcomponents-loader.js"></script>
-    <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-      import '@polymer/iron-demo-helpers/demo-snippet.js';
-      import '@polymer/iron-form/iron-form.js';
-      import '../../input-picker-pattern/overlay-element.js';
-      import '../../number-input/number-input.js';
-      import '../datetime-picker.js';
-      import '../date-picker.js';
-      import '../time-picker.js';
 
-      import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-      const template = html`
-        <custom-style>
-          <style is="custom-style" include="demo-pages-shared-styles">
-            .result {
-              margin: 0.75em;
-              padding: 0.5em;
-              line-height: 1.5;
-            }
-          </style>
-        </custom-style>`;
-      document.body.appendChild(template.content);
-    </script>
+    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/custom-elements-es5-adapter.js"></script>
+    <!--! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
+
+    <style>
+      body {
+        font-family: 'Roboto', 'Noto', sans-serif;
+        font-size: 14px;
+      }
+    </style>
   </head>
 
   <body>
@@ -69,5 +55,12 @@
         </template>
       </demo-snippet>
     </div>
+
+    <!-- Load the external helpers to run the code transpiled to ES5 -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/babel-helpers.min.js"></script>
+    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/webcomponents-loader.js"></script>
+    <!-- Load bundled dependencies for the demos -->
+    <script src="./dist/demo-index-import.js"></script>
   </body>
 </html>

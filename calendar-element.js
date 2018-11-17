@@ -83,6 +83,7 @@ export const CalendarElementPattern = dedupingMixin( superClass => {
             align-self: stretch;
           }
           #calendar #daySelector {
+            display: inline-block;
             position: relative;
           }
           #calendar #daySelector:focus {
@@ -116,7 +117,7 @@ export const CalendarElementPattern = dedupingMixin( superClass => {
             height: var(--calendar-cell-size, 3em);
           }
           #calendar #caption > *{
-            height: var(--calendar-caption-height, 1em);
+            height: var(--calendar-caption-height, 2em);
           }
           #calendar #days > *:nth-child(7n+1) {
             clear: left;

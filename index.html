@@ -1,12 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
     <title>datetime-picker</title>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="../input-picker-pattern/utils/component-page.js"></script>
+
+    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/custom-elements-es5-adapter.js"></script>
+    <!--! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
 
     <style>
       body {
@@ -20,5 +22,11 @@
   </head>
   <body>
     <component-page page-title="@fooloomanzoo/datetime-picker" github-url="https://github.com/fooloomanzoo/datetime-picker" webcomponents-url="https://www.webcomponents.org/element/fooloomanzoo/datetime-picker"></component-page>
+    <!-- Load the external helpers to run the code transpiled to ES5 -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/babel-helpers.min.js"></script>
+    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/webcomponents-loader.js"></script>
+    <!-- Load component-page bundled dependencies -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/component-page-import.js"></script>
   </body>
 </html>

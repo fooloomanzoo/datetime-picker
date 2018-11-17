@@ -1,84 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
     <title>datetime-picker in iron-Form</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.1.3/webcomponents-loader.js"></script>
-    <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-      import '@polymer/iron-demo-helpers/demo-snippet.js';
-      import '@polymer/iron-form/iron-form.js';
-      import '../../input-picker-pattern/overlay-element.js';
-      import '../datetime-picker.js';
-      import '../date-picker.js';
-      import '../time-picker.js';
 
-      import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-      const template = html`
-        <custom-style>
-          <style is="custom-style" include="demo-pages-shared-styles">
-            input {
-              margin-bottom: 0.25em;
-              margin-left: 8px;
-            }
-            time-picker,
-            date-picker,
-            datetime-picker {
-              margin-left: 8px;
-              color: #111;
-              --input-color: #444;
-              --input-background: #ddd;
-              --input-focus-color: #000;
-              --input-focus-background: #649ae9;
-              --inner-input-focus-color: #eee;
-              --inner-input-focus-background: #2b7aed;
-              --input-invalid-color: #e8395e;
-              --input-padding: 0.25em;
-              --input-border-radius: 0.25em;
-              --input-border-color: rgba(0,0,0,0.2);
-              --input-border-width: thin;
-              --input-border-style: dotted;
-              --input-transition: background 150ms ease-in-out;
-              --inner-input-focus-border-color: #005eff;
-              --input-focus-border-color: #224f9d;
-              --input-focus-border-width: thin;
-              --input-focus-border-style: solid;
-              --input-picker-color: #111;
-              --input-picker-background: #97b7ee;
-              --input-picker-border-radius: 12px 12px 12px 24px;
-              --input-placeholder-color: rgba(0,0,0,0.5);
-              --input-icon: {
-                border-radius: 50%;
-                border-color: rgba(0,0,0,0);
-                border-width: thin;
-                border-style: solid;
-              };
-              --calendar-cell-hovered: {
-                border-color: rgba(0,0,0,0.5);
-              };
-            }
-            iron-form {
-              @apply --shadow-elevation-2dp;
-              padding: 20px;
-            }
-            .output {
-              color: #333;
-              margin-top: 20px;
-              padding: 0.3em;
-              word-wrap: break-word;
-              font-family: monospace;
-              background: rgba(0, 0, 0, 0.05);
-              border-color: #555;
-              border-width: thin;
-              border-style: dashed;
-            }
-          </style>
-        </custom-style>`;
-      document.body.appendChild(template.content);
-    </script>
+    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/custom-elements-es5-adapter.js"></script>
+    <!--! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
 
+    <style>
+      body {
+        font-family: 'Roboto', 'Noto', sans-serif;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
     <div class="vertical-section-container centered">
       <h3>datetime-picker in <code>iron-form</code></h3>
       <demo-snippet>
@@ -153,5 +92,12 @@
         </template>
       </demo-snippet>
     </div>
+
+    <!-- Load the external helpers to run the code transpiled to ES5 -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/babel-helpers.min.js"></script>
+    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+    <script src="https://fooloomanzoo.github.io/input-picker-pattern/demo/dist/webcomponents-loader.js"></script>
+    <!-- Load bundled dependencies for the demos -->
+    <script src="./dist/demo-form-import.js"></script>
   </body>
 </html>

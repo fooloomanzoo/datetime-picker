@@ -1,10 +1,9 @@
 [![Published on NPM](https://img.shields.io/npm/v/@fooloomanzoo/datetime-picker.svg)](https://www.npmjs.com/package/@fooloomanzoo/datetime-picker)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/@fooloomanzoo/datetime-picker)
-[![Demo](https://img.shields.io/badge/demo-available-red.svg)](https://www.webcomponents.org/element/@fooloomanzoo/datetime-picker/demo/demo/index.html)
 [![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/fooloomanzoodatetime-picker)
 
+_[API & Demo](https://fooloomanzoo.github.io/datetime-picker)_
 
-_[Demo and API docs](https://fooloomanzoo.github.io/datetime-picker/components/datetime-picker/)_
 ## &lt;datetime-picker&gt;
 
 ### What is it for?
